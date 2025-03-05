@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#forge:is_snowy",
+  "spawners": {
+    "type": "dungeonsmobs:frozen_zombie",
+    "weight": 100,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

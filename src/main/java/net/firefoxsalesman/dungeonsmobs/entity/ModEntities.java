@@ -7,6 +7,7 @@ import com.google.common.base.Supplier;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
 import net.minecraft.resources.ResourceLocation;
@@ -28,12 +29,21 @@ public class ModEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister
 			.create(ForgeRegistries.ENTITY_TYPES, Dungeonsmobs.MOD_ID);
 
+	// ZOMBIES
 	public static final RegistryObject<EntityType<JungleZombie>> JUNGLE_ZOMBIE = registerEntity("jungle_zombie",
 			() -> EntityType.Builder.<JungleZombie>of(JungleZombie::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "jungle_zombie").toString()),
 			0x4f7d33, 0x00afa8);
+
+	public static final RegistryObject<EntityType<FrozenZombie>> FROZEN_ZOMBIE = registerEntity(
+			"frozen_zombie",
+			() -> EntityType.Builder.<FrozenZombie>of(FrozenZombie::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "frozen_zombie").toString()),
+			0x639694, 0xbae1ec);
 
 	// SKELETONS
 	public static final RegistryObject<EntityType<MossySkeleton>> MOSSY_SKELETON = registerEntity(

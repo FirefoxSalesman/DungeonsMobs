@@ -1,6 +1,8 @@
 {
   "entity.dungeonsmobs.jungle_zombie": "Jungle Zombie",
   "item.dungeonsmobs.jungle_zombie_spawn_egg": "Jungle Zombie Spawn Egg",
+  "entity.dungeonsmobs.frozen_zombie": "Frozen Zombie",
+  "item.dungeonsmobs.frozen_zombie_spawn_egg": "Frozen Zombie Spawn Egg",
   
   "entity.dungeonsmobs.mossy_skeleton": "Mossy Skeleton",
   "item.dungeonsmobs.mossy_skeleton_spawn_egg": "Mossy Skeleton Spawn Egg",

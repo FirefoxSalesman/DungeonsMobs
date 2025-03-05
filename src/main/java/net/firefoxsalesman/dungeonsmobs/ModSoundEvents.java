@@ -20,6 +20,15 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_STEP = registerSoundEvents(
 			"entity.jungle_zombie.step");
 
+	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_IDLE = registerSoundEvents(
+			"entity.frozen_zombie.idle");
+	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_HURT = registerSoundEvents(
+			"entity.frozen_zombie.hurt");
+	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_DEATH = registerSoundEvents(
+			"entity.frozen_zombie.death");
+	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_SNOWBALL_LAND = registerSoundEvents(
+			"entity.frozen_zombie.snowball_land");
+
 	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
 			"entity.icy_creeper.explode");
 

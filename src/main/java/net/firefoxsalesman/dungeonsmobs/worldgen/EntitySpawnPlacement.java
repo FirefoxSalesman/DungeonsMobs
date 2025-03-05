@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
 import net.minecraft.core.BlockPos;
@@ -44,6 +45,10 @@ public class EntitySpawnPlacement {
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
 				JungleZombie::canJungleZombieSpawn);
+		SpawnPlacements.register(ModEntities.FROZEN_ZOMBIE.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				FrozenZombie::canFrozenZombieSpawn);
 		SpawnPlacements.register(ModEntities.MOSSY_SKELETON.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
