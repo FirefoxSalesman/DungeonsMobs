@@ -1,4 +1,14 @@
 {
+  "entity.icy_creeper.explode": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.icy_creeper.explode",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/icy_creeper/explode",
+	"stream": true
+      }
+    ]
+  },
   "entity.jungle_zombie.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.jungle_zombie.idle",

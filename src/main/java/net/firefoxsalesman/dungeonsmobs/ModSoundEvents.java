@@ -20,6 +20,9 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_STEP = registerSoundEvents(
 			"entity.jungle_zombie.step");
 
+	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
+			"entity.icy_creeper.explode");
+
 	public static void register(IEventBus eventBus) {
 		SOUNDS.register(eventBus);
 	}

@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs;
 
 import com.mojang.logging.LogUtils;
 
+import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -35,6 +36,7 @@ public class Dungeonsmobs {
 
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.register(modEventBus);
+		ModParticleTypes.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
