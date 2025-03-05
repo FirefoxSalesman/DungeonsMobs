@@ -23,6 +23,17 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
 			"entity.icy_creeper.explode");
 
+	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_IDLE = registerSoundEvents(
+			"entity.mossy_skeleton.idle");
+	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_HURT = registerSoundEvents(
+			"entity.mossy_skeleton.hurt");
+	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_DEATH = registerSoundEvents(
+			"entity.mossy_skeleton.death");
+	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_SHOOT = registerSoundEvents(
+			"entity.mossy_skeleton.shoot");
+	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_STEP = registerSoundEvents(
+			"entity.mossy_skeleton.step");
+
 	public static void register(IEventBus eventBus) {
 		SOUNDS.register(eventBus);
 	}

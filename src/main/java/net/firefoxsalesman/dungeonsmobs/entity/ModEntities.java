@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -34,6 +35,14 @@ public class ModEntities {
 					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "jungle_zombie").toString()),
 			0x4f7d33, 0x00afa8);
 
+	// SKELETONS
+	public static final RegistryObject<EntityType<MossySkeleton>> MOSSY_SKELETON = registerEntity(
+			"mossy_skeleton",
+			() -> EntityType.Builder.<MossySkeleton>of(MossySkeleton::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.99F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "mossy_skeleton").toString()),
+			0xd6d7c6, 0x4a5d18);
 	// CREEPER
 
 	public static final RegistryObject<EntityType<IcyCreeper>> ICY_CREEPER = registerEntity("icy_creeper",

@@ -9,6 +9,7 @@
       }
     ]
   },
+
   "entity.jungle_zombie.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.jungle_zombie.idle",
@@ -89,6 +90,121 @@
       },
       {
 	"name": "dungeonsmobs:entities/jungle_zombie/step5",
+	"stream": true
+      }
+    ]
+  },
+  
+  "entity.mossy_skeleton.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mossy_skeleton.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mossy_skeleton.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mossy_skeleton.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/hurt4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mossy_skeleton.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mossy_skeleton.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death6",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/death7",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mossy_skeleton.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mossy_skeleton.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/shoot1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/shoot2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/shoot3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mossy_skeleton.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mossy_skeleton.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mossy_skeleton/step4",
 	"stream": true
       }
     ]

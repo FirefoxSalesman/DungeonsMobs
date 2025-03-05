@@ -2,6 +2,9 @@
   "entity.dungeonsmobs.jungle_zombie": "Jungle Zombie",
   "item.dungeonsmobs.jungle_zombie_spawn_egg": "Jungle Zombie Spawn Egg",
   
+  "entity.dungeonsmobs.mossy_skeleton": "Mossy Skeleton",
+  "item.dungeonsmobs.mossy_skeleton_spawn_egg": "Mossy Skeleton Spawn Egg",
+
   "entity.dungeonsmobs.icy_creeper": "Icy Creeper",
   "item.dungeonsmobs.icy_creeper_spawn_egg": "Icy Creeper Spawn Egg"
 }
