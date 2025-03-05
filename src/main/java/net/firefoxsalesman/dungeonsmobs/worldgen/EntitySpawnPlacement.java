@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -42,6 +43,10 @@ public class EntitySpawnPlacement {
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
 				JungleZombie::canJungleZombieSpawn);
+		SpawnPlacements.register(ModEntities.ICY_CREEPER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				IcyCreeper::canIcyCreeperSpawn);
 	}
 
 	public static boolean canSeeSkyLight(ServerLevelAccessor world, BlockPos blockPos) {
