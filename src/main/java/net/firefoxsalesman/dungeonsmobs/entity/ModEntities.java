@@ -10,6 +10,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -61,6 +62,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "icy_creeper").toString()),
 			0x5ccea5, 0xd9eef2);
+
+	// WATER
+	public static final RegistryObject<EntityType<SunkenSkeletonEntity>> SUNKEN_SKELETON = registerEntity(
+			"sunken_skeleton", () -> EntityType.Builder.of(SunkenSkeletonEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.99F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "sunken_skeleton").toString()),
+			0x87a964, 0xc06fe5);
 
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);

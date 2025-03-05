@@ -2,24 +2,69 @@ package net.firefoxsalesman.dungeonsmobs;
 
 import java.util.List;
 
+import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.Convertible;
+import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.ConvertibleHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Dungeonsmobs.MOD_ID)
 public class MobEvents {
+	@SubscribeEvent
+	public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
+		LivingEntity livingEntity = event.getEntity();
+		if (livingEntity instanceof Mob && ConvertibleHelper.convertsInWater((Mob) livingEntity)) {
+			Mob mob = (Mob) livingEntity;
+			if (!mob.level().isClientSide && mob.isAlive() && !mob.isNoAi()) {
+				Convertible convertibleCap = ConvertibleHelper.getConvertibleCapability(mob);
+				if (convertibleCap == null)
+					return;
+
+				convertibleCap.setCanConvert(mob.isEyeInFluid(FluidTags.WATER));
+
+				if (convertibleCap.isConverting()) {
+					convertibleCap.tickConversionTime();
+
+					EntityType<? extends Mob> convertToType = ConvertibleHelper
+							.getDrowningConvertTo(mob);
+
+					if (convertibleCap.getConversionTime() < 0
+							&& net.minecraftforge.event.ForgeEventFactory.canLivingConvert(
+									mob, convertToType,
+									convertibleCap::setConversionTime)) {
+						convertibleCap.doConversion(mob, convertToType,
+								ConvertibleHelper::onDrownedAndConvertedTo);
+					}
+				} else {
+					if (convertibleCap.canConvert()) {
+						convertibleCap.tickPrepareConversionTime();
+						if (convertibleCap.getPrepareConversionTime() >= 600) {
+							convertibleCap.startConversion(300);
+						}
+					} else {
+						convertibleCap.setPrepareConversionTime(-1);
+					}
+				}
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public static void onSnowballHitPlayer(ProjectileImpactEvent event) {
 		if (event.getEntity() instanceof Snowball) {

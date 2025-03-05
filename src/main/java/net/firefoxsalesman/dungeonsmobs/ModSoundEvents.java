@@ -42,6 +42,16 @@ public class ModSoundEvents {
 			"entity.mossy_skeleton.shoot");
 	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_STEP = registerSoundEvents(
 			"entity.mossy_skeleton.step");
+	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_IDLE = registerSoundEvents(
+			"entity.sunken_skeleton.idle");
+	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_HURT = registerSoundEvents(
+			"entity.sunken_skeleton.hurt");
+	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_DEATH = registerSoundEvents(
+			"entity.sunken_skeleton.death");
+	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_STEP = registerSoundEvents(
+			"entity.sunken_skeleton.step");
+	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
+			"entity.sunken_skeleton.shoot");
 
 	public static void register(IEventBus eventBus) {
 		SOUNDS.register(eventBus);

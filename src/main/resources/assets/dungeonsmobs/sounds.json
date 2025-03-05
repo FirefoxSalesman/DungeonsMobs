@@ -208,5 +208,104 @@
 	"stream": true
       }
     ]
+  },
+  
+  "entity.sunken_skeleton.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.sunken_skeleton.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.sunken_skeleton.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.sunken_skeleton.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/hurt4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.sunken_skeleton.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.sunken_skeleton.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/death3",
+	"stream": true
+      }
+    ]
+  } ,
+  "entity.sunken_skeleton.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.sunken_skeleton.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/step4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.sunken_skeleton.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.sunken_skeleton.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/shoot1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/shoot2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/sunken_skeleton/shoot3",
+	"stream": true
+      }
+    ]
   }
 }

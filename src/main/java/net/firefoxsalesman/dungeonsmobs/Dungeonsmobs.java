@@ -27,7 +27,7 @@ public class Dungeonsmobs {
 	// Define mod id in a common place for everything to reference
 	public static final String MOD_ID = "dungeonsmobs";
 	// Directly reference a slf4j logger
-	private static final Logger LOGGER = LogUtils.getLogger();
+	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public Dungeonsmobs() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
