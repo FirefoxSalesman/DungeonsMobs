@@ -1,10 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.SpawnPlacements;

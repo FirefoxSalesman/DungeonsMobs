@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

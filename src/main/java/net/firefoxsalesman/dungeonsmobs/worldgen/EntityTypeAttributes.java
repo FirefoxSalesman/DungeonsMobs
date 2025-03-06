@@ -2,11 +2,11 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.Convertible;
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.ConvertibleHelper;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;

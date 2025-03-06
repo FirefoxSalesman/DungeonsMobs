@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.creeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.IcyCreeperChargeLayer;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

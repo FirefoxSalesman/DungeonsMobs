@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.RenderLayerParent;

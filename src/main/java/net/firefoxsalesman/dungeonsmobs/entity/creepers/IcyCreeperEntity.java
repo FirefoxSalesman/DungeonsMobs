@@ -1,4 +1,4 @@
-package net.firefoxsalesman.dungeonsmobs.entity.entities.creepers;
+package net.firefoxsalesman.dungeonsmobs.entity.creepers;
 
 import java.util.Collection;
 

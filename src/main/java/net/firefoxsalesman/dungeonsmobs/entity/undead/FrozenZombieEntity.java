@@ -1,4 +1,4 @@
-package net.firefoxsalesman.dungeonsmobs.entity.entities.undead;
+package net.firefoxsalesman.dungeonsmobs.entity.undead;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;

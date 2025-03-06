@@ -1,4 +1,4 @@
-package net.firefoxsalesman.dungeonsmobs.entity.entities.water;
+package net.firefoxsalesman.dungeonsmobs.entity.water;
 
 import org.joml.Vector3f;
 

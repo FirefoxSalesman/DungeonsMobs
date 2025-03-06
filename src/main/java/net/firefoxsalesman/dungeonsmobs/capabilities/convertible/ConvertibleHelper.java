@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;

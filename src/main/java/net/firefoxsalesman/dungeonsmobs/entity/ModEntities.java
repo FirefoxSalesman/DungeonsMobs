@@ -6,11 +6,11 @@ import com.google.common.base.Supplier;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;

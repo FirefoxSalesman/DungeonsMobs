@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.resources.ResourceLocation;

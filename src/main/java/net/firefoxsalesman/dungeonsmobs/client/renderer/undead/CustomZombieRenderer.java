@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
 import net.minecraft.resources.ResourceLocation;
