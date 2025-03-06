@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.capabilities.convertible;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
@@ -24,7 +24,7 @@ public class ConvertibleHelper {
 			if (!original.isSilent()) {
 				original.level().levelEvent(null, 1040, original.blockPosition(), 0);
 			}
-			Dungeonsmobs.LOGGER.info("Converted {} to {}", original, convertedTo);
+			DungeonsMobs.LOGGER.info("Converted {} to {}", original, convertedTo);
 		}
 
 		if (original instanceof Zombie && convertedTo instanceof Zombie) {

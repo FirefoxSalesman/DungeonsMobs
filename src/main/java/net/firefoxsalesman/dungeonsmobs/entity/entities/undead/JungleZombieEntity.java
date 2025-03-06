@@ -18,16 +18,16 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-public class JungleZombie extends Zombie {
-	public JungleZombie(Level level) {
+public class JungleZombieEntity extends Zombie {
+	public JungleZombieEntity(Level level) {
 		super(level);
 	}
 
-	public JungleZombie(EntityType<? extends Zombie> entity, Level level) {
+	public JungleZombieEntity(EntityType<? extends Zombie> entity, Level level) {
 		super(entity, level);
 	}
 
-	public static boolean canJungleZombieSpawn(EntityType<JungleZombie> entityType,
+	public static boolean canJungleZombieSpawn(EntityType<JungleZombieEntity> entityType,
 			ServerLevelAccessor iWorld, MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return checkMonsterSpawnRules(entityType, iWorld, spawnReason, blockPos, rand)
 				&& (spawnReason == MobSpawnType.SPAWNER

@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -10,11 +10,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class IcyCreeperChargeLayer extends EnergySwirlLayer<IcyCreeper, CreeperModel<IcyCreeper>> {
+public class IcyCreeperChargeLayer extends EnergySwirlLayer<IcyCreeperEntity, CreeperModel<IcyCreeperEntity>> {
     private static final ResourceLocation POWER_LOCATION = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
-    private final EntityModel<IcyCreeper> model;
+    private final EntityModel<IcyCreeperEntity> model;
 
-    public IcyCreeperChargeLayer(RenderLayerParent<IcyCreeper, CreeperModel<IcyCreeper>> p_i50947_1_, CreeperModel<IcyCreeper> model) {
+    public IcyCreeperChargeLayer(RenderLayerParent<IcyCreeperEntity, CreeperModel<IcyCreeperEntity>> p_i50947_1_, CreeperModel<IcyCreeperEntity> model) {
         super(p_i50947_1_);
         this.model = model;
     }
@@ -27,7 +27,7 @@ public class IcyCreeperChargeLayer extends EnergySwirlLayer<IcyCreeper, CreeperM
         return POWER_LOCATION;
     }
 
-    protected EntityModel<IcyCreeper> model() {
+    protected EntityModel<IcyCreeperEntity> model() {
         return this.model;
     }
 }

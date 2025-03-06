@@ -36,16 +36,16 @@ import net.minecraft.world.item.SnowballItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-public class FrozenZombie extends Zombie implements RangedAttackMob {
-	public FrozenZombie(Level worldIn) {
+public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
+	public FrozenZombieEntity(Level worldIn) {
 		super(worldIn);
 	}
 
-	public FrozenZombie(EntityType<? extends FrozenZombie> zombie, Level worldIn) {
+	public FrozenZombieEntity(EntityType<? extends FrozenZombieEntity> zombie, Level worldIn) {
 		super(zombie, worldIn);
 	}
 
-	public static boolean canFrozenZombieSpawn(EntityType<FrozenZombie> entityType,
+	public static boolean canFrozenZombieSpawn(EntityType<FrozenZombieEntity> entityType,
 			ServerLevelAccessor iWorld, MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return checkMonsterSpawnRules(entityType, iWorld, spawnReason, blockPos, rand)
 				&& (spawnReason == MobSpawnType.SPAWNER || iWorld.canSeeSky(blockPos));
@@ -127,10 +127,10 @@ public class FrozenZombie extends Zombie implements RangedAttackMob {
 	}
 
 	static class FrozenZombieAttackGoal extends ThrowAndMeleeAttackGoal {
-		private final FrozenZombie zombie;
+		private final FrozenZombieEntity zombie;
 		private int raiseArmTicks;
 
-		FrozenZombieAttackGoal(FrozenZombie zombieEntity, double speedAmplifier, int attackInterval,
+		FrozenZombieAttackGoal(FrozenZombieEntity zombieEntity, double speedAmplifier, int attackInterval,
 				float maxDistance, boolean useLongMemory) {
 			super(zombieEntity, speedAmplifier, attackInterval, maxDistance, useLongMemory);
 			this.zombie = zombieEntity;

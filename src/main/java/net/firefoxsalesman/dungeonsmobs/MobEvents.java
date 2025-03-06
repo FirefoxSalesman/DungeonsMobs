@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.Convertible;
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.ConvertibleHelper;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -24,7 +24,7 @@ import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Dungeonsmobs.MOD_ID)
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class MobEvents {
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
@@ -70,7 +70,7 @@ public class MobEvents {
 		if (event.getEntity() instanceof Snowball) {
 			Snowball snowballEntity = (Snowball) event.getEntity();
 			Entity shooter = snowballEntity.getOwner();
-			if (shooter instanceof FrozenZombie) {
+			if (shooter instanceof FrozenZombieEntity) {
 				snowballEntity.playSound(ModSoundEvents.FROZEN_ZOMBIE_SNOWBALL_LAND.get(), 1.0F, 1.0F);
 				HitResult rayTraceResult = event.getRayTraceResult();
 				if (rayTraceResult instanceof EntityHitResult) {
@@ -103,7 +103,7 @@ public class MobEvents {
 
 	@SubscribeEvent
 	public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
-		if (event.getExplosion().getExploder() instanceof IcyCreeper) {
+		if (event.getExplosion().getExploder() instanceof IcyCreeperEntity) {
 			List<Entity> entityList = event.getAffectedEntities();
 			for (Entity entity : entityList) {
 				if (entity instanceof LivingEntity) {

@@ -22,14 +22,14 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Dungeonsmobs.MOD_ID)
-public class Dungeonsmobs {
+@Mod(DungeonsMobs.MOD_ID)
+public class DungeonsMobs {
 	// Define mod id in a common place for everything to reference
 	public static final String MOD_ID = "dungeonsmobs";
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public Dungeonsmobs() {
+	public DungeonsMobs() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModSoundEvents.register(modEventBus);

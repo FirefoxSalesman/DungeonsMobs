@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.capabilities.convertible;
 
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +18,7 @@ public class AttacherConvertible {
 
     private static class ConvertibleProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(Dungeonsmobs.MOD_ID, "convertible");
+        public static final ResourceLocation IDENTIFIER = new ResourceLocation(DungeonsMobs.MOD_ID, "convertible");
         private final Convertible backend = new Convertible();
         private final LazyOptional<Convertible> optionalData = LazyOptional.of(() -> backend);
 

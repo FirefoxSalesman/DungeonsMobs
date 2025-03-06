@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModSoundEvents {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
-			Dungeonsmobs.MOD_ID);
+			DungeonsMobs.MOD_ID);
 
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_IDLE = registerSoundEvents(
 			"entity.jungle_zombie.idle");
@@ -59,6 +59,6 @@ public class ModSoundEvents {
 
 	public static RegistryObject<SoundEvent> registerSoundEvents(String name) {
 		return SOUNDS.register(name, () -> SoundEvent
-				.createVariableRangeEvent(new ResourceLocation(Dungeonsmobs.MOD_ID, name)));
+				.createVariableRangeEvent(new ResourceLocation(DungeonsMobs.MOD_ID, name)));
 	}
 }

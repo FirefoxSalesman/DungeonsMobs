@@ -1,17 +1,17 @@
-package net.firefoxsalesman.dungeonsmobs.entity.renderer.undead;
+package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Zombie;
 
 public class CustomZombieRenderer extends ZombieRenderer {
-	private static final ResourceLocation JUNGLE_ZOMBIE_TEXUTRE = new ResourceLocation(Dungeonsmobs.MOD_ID,
+	private static final ResourceLocation JUNGLE_ZOMBIE_TEXUTRE = new ResourceLocation(DungeonsMobs.MOD_ID,
 			"textures/entity/zombie/jungle_zombie.png");
-	private static final ResourceLocation FROZEN_ZOMBIE_TEXTURE = new ResourceLocation(Dungeonsmobs.MOD_ID,
+	private static final ResourceLocation FROZEN_ZOMBIE_TEXTURE = new ResourceLocation(DungeonsMobs.MOD_ID,
 			"textures/entity/zombie/frozen_zombie.png");
 
 	public CustomZombieRenderer(EntityRendererProvider.Context renderContext) {
@@ -19,9 +19,9 @@ public class CustomZombieRenderer extends ZombieRenderer {
 	}
 
 	public ResourceLocation getTextureLocation(Zombie zombieEntity) {
-		if (zombieEntity instanceof JungleZombie) {
+		if (zombieEntity instanceof JungleZombieEntity) {
 			return JUNGLE_ZOMBIE_TEXUTRE;
-		} else if (zombieEntity instanceof FrozenZombie) {
+		} else if (zombieEntity instanceof FrozenZombieEntity) {
 			return FROZEN_ZOMBIE_TEXTURE;
 		} else {
 			return super.getTextureLocation(zombieEntity);

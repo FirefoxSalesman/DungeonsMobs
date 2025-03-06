@@ -1,10 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -44,19 +44,19 @@ public class EntitySpawnPlacement {
 		SpawnPlacements.register(ModEntities.JUNGLE_ZOMBIE.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
-				JungleZombie::canJungleZombieSpawn);
+				JungleZombieEntity::canJungleZombieSpawn);
 		SpawnPlacements.register(ModEntities.FROZEN_ZOMBIE.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				FrozenZombie::canFrozenZombieSpawn);
+				FrozenZombieEntity::canFrozenZombieSpawn);
 		SpawnPlacements.register(ModEntities.MOSSY_SKELETON.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
-				MossySkeleton::canMossySkeletonSpawn);
+				MossySkeletonEntity::canMossySkeletonSpawn);
 		SpawnPlacements.register(ModEntities.ICY_CREEPER.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				IcyCreeper::canIcyCreeperSpawn);
+				IcyCreeperEntity::canIcyCreeperSpawn);
 	}
 
 	public static boolean canSeeSkyLight(ServerLevelAccessor world, BlockPos blockPos) {

@@ -19,17 +19,17 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-public class IcyCreeper extends Creeper {
+public class IcyCreeperEntity extends Creeper {
 	private int oldSwell;
 	private int swell;
 	private final int maxSwell = 30;
 	private final int explosionRadius = 3;
 
-	public IcyCreeper(Level worldIn) {
+	public IcyCreeperEntity(Level worldIn) {
 		super(ModEntities.ICY_CREEPER.get(), worldIn);
 	}
 
-	public static boolean canIcyCreeperSpawn(EntityType<IcyCreeper> entityType, ServerLevelAccessor iWorld,
+	public static boolean canIcyCreeperSpawn(EntityType<IcyCreeperEntity> entityType, ServerLevelAccessor iWorld,
 			MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return checkMonsterSpawnRules(entityType, iWorld, spawnReason, blockPos, rand)
 				&& (spawnReason == MobSpawnType.SPAWNER || iWorld.canSeeSky(blockPos));
@@ -46,7 +46,7 @@ public class IcyCreeper extends Creeper {
 		super.aiStep();
 	}
 
-	public IcyCreeper(EntityType<? extends Creeper> type, Level worldIn) {
+	public IcyCreeperEntity(EntityType<? extends Creeper> type, Level worldIn) {
 		super(type, worldIn);
 	}
 

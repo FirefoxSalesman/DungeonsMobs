@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.water;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
@@ -23,9 +23,9 @@ import org.joml.Vector3f;
 
 @OnlyIn(Dist.CLIENT)
 public class SunkenSkeletonRenderer<T extends SunkenSkeletonEntity> extends HumanoidMobRenderer<T, SunkenSkeletonModel<T>> {
-    private static final ResourceLocation SUNKEN_SKELETON_LOCATION = new ResourceLocation(Dungeonsmobs.MOD_ID, "textures/entity/ocean/sunken_skeleton.png");
-    private static final ResourceLocation RED_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION = new ResourceLocation(Dungeonsmobs.MOD_ID, "textures/entity/ocean/red_coral_armored_sunken_skeleton.png");
-    private static final ResourceLocation YELLOW_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION = new ResourceLocation(Dungeonsmobs.MOD_ID, "textures/entity/ocean/yellow_coral_armored_sunken_skeleton.png");
+    private static final ResourceLocation SUNKEN_SKELETON_LOCATION = new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ocean/sunken_skeleton.png");
+    private static final ResourceLocation RED_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION = new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ocean/red_coral_armored_sunken_skeleton.png");
+    private static final ResourceLocation YELLOW_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION = new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ocean/yellow_coral_armored_sunken_skeleton.png");
     private static final List<ResourceLocation> ARMORED_SKELETON_LOCATIONS = Arrays.asList(RED_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION, YELLOW_CORAL_ARMORED_SUNKEN_SKELETON_LOCATION);
 
     public SunkenSkeletonRenderer(EntityRendererProvider.Context renderContext) {

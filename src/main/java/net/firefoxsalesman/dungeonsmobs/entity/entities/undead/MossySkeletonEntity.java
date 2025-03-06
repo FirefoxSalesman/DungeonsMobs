@@ -24,16 +24,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-public class MossySkeleton extends AbstractSkeleton {
-	public MossySkeleton(Level worldIn) {
+public class MossySkeletonEntity extends AbstractSkeleton {
+	public MossySkeletonEntity(Level worldIn) {
 		super(ModEntities.MOSSY_SKELETON.get(), worldIn);
 	}
 
-	public MossySkeleton(EntityType<? extends MossySkeleton> entityType, Level world) {
+	public MossySkeletonEntity(EntityType<? extends MossySkeletonEntity> entityType, Level world) {
 		super(entityType, world);
 	}
 
-	public static boolean canMossySkeletonSpawn(EntityType<MossySkeleton> entityType,
+	public static boolean canMossySkeletonSpawn(EntityType<MossySkeletonEntity> entityType,
 			ServerLevelAccessor iWorld, MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return checkMonsterSpawnRules(entityType, iWorld, spawnReason, blockPos, rand)
 				&& (spawnReason == MobSpawnType.SPAWNER

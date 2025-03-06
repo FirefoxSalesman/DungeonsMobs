@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.tags;
 
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -16,7 +16,7 @@ public class EntityTags {
     public static final TagKey<EntityType<?>> PIGLINS = tag("piglins");
 
     private static TagKey<EntityType<?>> tag(String name) {
-        return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Dungeonsmobs.MOD_ID, name));
+        return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(DungeonsMobs.MOD_ID, name));
     }
 
     public static void register() {

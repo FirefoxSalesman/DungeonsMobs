@@ -5,11 +5,11 @@ import java.util.List;
 import com.google.common.base.Supplier;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeper;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombie;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombie;
-import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeleton;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.FrozenZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.JungleZombieEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.entities.undead.MossySkeletonEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -24,43 +24,43 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntities {
 	public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS,
-			Dungeonsmobs.MOD_ID);
+			DungeonsMobs.MOD_ID);
 	public static final List<String> ENTITY_IDS = new ObjectArrayList<>();
 
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister
-			.create(ForgeRegistries.ENTITY_TYPES, Dungeonsmobs.MOD_ID);
+			.create(ForgeRegistries.ENTITY_TYPES, DungeonsMobs.MOD_ID);
 
 	// ZOMBIES
-	public static final RegistryObject<EntityType<JungleZombie>> JUNGLE_ZOMBIE = registerEntity("jungle_zombie",
-			() -> EntityType.Builder.<JungleZombie>of(JungleZombie::new, MobCategory.MONSTER)
+	public static final RegistryObject<EntityType<JungleZombieEntity>> JUNGLE_ZOMBIE = registerEntity("jungle_zombie",
+			() -> EntityType.Builder.<JungleZombieEntity>of(JungleZombieEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
-					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "jungle_zombie").toString()),
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "jungle_zombie").toString()),
 			0x4f7d33, 0x00afa8);
 
-	public static final RegistryObject<EntityType<FrozenZombie>> FROZEN_ZOMBIE = registerEntity(
+	public static final RegistryObject<EntityType<FrozenZombieEntity>> FROZEN_ZOMBIE = registerEntity(
 			"frozen_zombie",
-			() -> EntityType.Builder.<FrozenZombie>of(FrozenZombie::new, MobCategory.MONSTER)
+			() -> EntityType.Builder.<FrozenZombieEntity>of(FrozenZombieEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
-					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "frozen_zombie").toString()),
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "frozen_zombie").toString()),
 			0x639694, 0xbae1ec);
 
 	// SKELETONS
-	public static final RegistryObject<EntityType<MossySkeleton>> MOSSY_SKELETON = registerEntity(
+	public static final RegistryObject<EntityType<MossySkeletonEntity>> MOSSY_SKELETON = registerEntity(
 			"mossy_skeleton",
-			() -> EntityType.Builder.<MossySkeleton>of(MossySkeleton::new, MobCategory.MONSTER)
+			() -> EntityType.Builder.<MossySkeletonEntity>of(MossySkeletonEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.99F)
 					.clientTrackingRange(8)
-					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "mossy_skeleton").toString()),
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "mossy_skeleton").toString()),
 			0xd6d7c6, 0x4a5d18);
 	// CREEPER
 
-	public static final RegistryObject<EntityType<IcyCreeper>> ICY_CREEPER = registerEntity("icy_creeper",
-			() -> EntityType.Builder.<IcyCreeper>of(IcyCreeper::new, MobCategory.MONSTER)
+	public static final RegistryObject<EntityType<IcyCreeperEntity>> ICY_CREEPER = registerEntity("icy_creeper",
+			() -> EntityType.Builder.<IcyCreeperEntity>of(IcyCreeperEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.7F)
 					.clientTrackingRange(8)
-					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "icy_creeper").toString()),
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "icy_creeper").toString()),
 			0x5ccea5, 0xd9eef2);
 
 	// WATER
@@ -68,7 +68,7 @@ public class ModEntities {
 			"sunken_skeleton", () -> EntityType.Builder.of(SunkenSkeletonEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.99F)
 					.clientTrackingRange(8)
-					.build(new ResourceLocation(Dungeonsmobs.MOD_ID, "sunken_skeleton").toString()),
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "sunken_skeleton").toString()),
 			0x87a964, 0xc06fe5);
 
 	public static void register(IEventBus eventBus) {
