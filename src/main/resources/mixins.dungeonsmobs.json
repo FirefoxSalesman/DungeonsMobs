@@ -3,7 +3,7 @@
   "package": "net.firefoxsalesman.dungeonsmobs.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8.4",
-  "refmap": "dungeonsmobs.refmap.json",
+  "refmap": "mixins.dungeonsmobs.refmap.json",
   "mixins": [
     "AbstractArrowEntityMixin"
   ],
