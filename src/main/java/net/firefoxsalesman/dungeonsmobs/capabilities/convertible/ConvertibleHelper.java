@@ -7,7 +7,6 @@ import net.firefoxsalesman.dungeonsmobs.Dungeonsmobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.entities.water.SunkenSkeletonEntity;
-import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
