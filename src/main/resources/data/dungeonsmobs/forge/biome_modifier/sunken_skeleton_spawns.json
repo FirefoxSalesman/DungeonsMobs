@@ -3,7 +3,7 @@
   "biomes": "#minecraft:is_ocean",
   "spawners": {
     "type": "dungeonsmobs:sunken_skeleton",
-    "weight": 80,
+    "weight": 20,
     "minCount": 1,
     "maxCount": 2
   }

@@ -1,0 +1,19 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+  "type": "forge:and",
+  "values": [
+    "#minecraft:is_end",
+    {
+      "type": "forge:not",
+      "value": "minecraft:the_end"
+    }
+  ]
+},
+  "spawners": {
+    "type": "dungeonsmobs:watchling",
+    "weight": 5,
+    "minCount": 2,
+    "maxCount": 4
+  }
+}

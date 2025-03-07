@@ -3,10 +3,10 @@ package net.firefoxsalesman.dungeonsmobs.client.models.ender;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.AbstractEnderlingEntity;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
 import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.object.DataTicket;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
@@ -33,11 +33,10 @@ public class WatchlingModel extends GeoModel<AbstractEnderlingEntity> {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 		CoreGeoBone head = this.getAnimationProcessor().getBone("head");
 
-		LivingEntity entityIn = (LivingEntity) entity;
-		// EntityModelData extraData = customPredicate.getData(new DataTicket<>("0", EntityModelData.class));
-		// if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {
-		// 	head.setRotX(head.getRotX() + (extraData.headPitch() * ((float) Math.PI / 180F)));
-		// 	head.setRotY(head.getRotY() + (extraData.netHeadYaw() * ((float) Math.PI / 180F)));
-		// }
+		if (head != null) {
+			EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
+			head.setRotX(extraData.headPitch() * Mth.DEG_TO_RAD);
+			head.setRotY(extraData.netHeadYaw() * Mth.DEG_TO_RAD);
+		}
 	}
 }

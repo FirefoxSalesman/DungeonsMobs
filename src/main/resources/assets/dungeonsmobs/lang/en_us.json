@@ -15,8 +15,8 @@
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
   "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
   
-  "entity.dungeons_mobs.watchling": "Watchling",
-  "item.dungeons_mobs.watchling_spawn_egg": "Watchling Spawn Egg",
+  "entity.dungeonsmobs.watchling": "Watchling",
+  "item.dungeonsmobs.watchling_spawn_egg": "Watchling Spawn Egg",
   
   "subtitles.entity.watchling.idle": "Watchling growls",
   "subtitles.entity.watchling.hurt": "Watchling hurts",
