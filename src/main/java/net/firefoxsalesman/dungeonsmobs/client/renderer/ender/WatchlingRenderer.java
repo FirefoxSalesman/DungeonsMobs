@@ -15,13 +15,4 @@ public class WatchlingRenderer extends GeoEntityRenderer<AbstractEnderlingEntity
 		addRenderLayer(new GeoEyeLayer<>(this,
 				new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/watchling_eyes.png")));
 	}
-
-	// @Override
-	// public RenderType getRenderType(AbstractEnderlingEntity animatable, float
-	// partialTicks, PoseStack stack,
-	// MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int
-	// packedLightIn,
-	// ResourceLocation textureLocation) {
-	// return RenderType.entityTranslucent(getTextureLocation(animatable));
-	// }
 }
