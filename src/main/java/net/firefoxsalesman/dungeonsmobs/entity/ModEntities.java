@@ -7,6 +7,7 @@ import com.google.common.base.Supplier;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
@@ -31,7 +32,8 @@ public class ModEntities {
 			.create(ForgeRegistries.ENTITY_TYPES, DungeonsMobs.MOD_ID);
 
 	// ZOMBIES
-	public static final RegistryObject<EntityType<JungleZombieEntity>> JUNGLE_ZOMBIE = registerEntity("jungle_zombie",
+	public static final RegistryObject<EntityType<JungleZombieEntity>> JUNGLE_ZOMBIE = registerEntity(
+			"jungle_zombie",
 			() -> EntityType.Builder.<JungleZombieEntity>of(JungleZombieEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
@@ -70,6 +72,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "sunken_skeleton").toString()),
 			0x87a964, 0xc06fe5);
+
+	// ENDER
+	public static final RegistryObject<EntityType<WatchlingEntity>> WATCHLING = registerEntity("watchling",
+			() -> EntityType.Builder.of(WatchlingEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 2.4F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "watchling").toString()),
+			0x110e13, 0xff84f7);
 
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);

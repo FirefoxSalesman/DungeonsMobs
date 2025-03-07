@@ -305,6 +305,141 @@
       {
 	"name": "dungeonsmobs:entities/sunken_skeleton/shoot3",
 	"stream": true
+      },
+    ]
+  },
+  
+  "entity.watchling.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.watchling.idle",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/watchling/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/idle3",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/idle4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.watchling.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.watchling.hurt",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt4",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt5",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/hurt6",
+	"stream": true
+      }
+    ]
+  },
+  "entity.watchling.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.watchling.death",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/watchling/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/death3",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/death4",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/death5",
+	"stream": true
+      }
+    ]
+  },
+  "entity.watchling.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.watchling.step",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/watchling/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/step4",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/step5",
+	"stream": true
+      }
+    ]
+  },
+  "entity.watchling.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.watchling.attack",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/watchling/attack1",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/attack3",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/attack4",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/attack5",
+	"stream": true
+      },
+      {
+	"name": "dungeons_mobs:entities/watchling/attack6",
+	"stream": true
       }
     ]
   }

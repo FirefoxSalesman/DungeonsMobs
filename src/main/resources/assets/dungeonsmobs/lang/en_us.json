@@ -13,5 +13,38 @@
   "entity.dungeonsmobs.armored_sunken_skeleton": "Armored Sunken Skeleton",
   "item.dungeonsmobs.armored_sunken_skeleton_spawn_egg": "Armored Sunken Skeleton Spawn Egg",
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
-  "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg"
+  "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
+  
+  "entity.dungeons_mobs.watchling": "Watchling",
+  "item.dungeons_mobs.watchling_spawn_egg": "Watchling Spawn Egg",
+  
+  "subtitles.entity.watchling.idle": "Watchling growls",
+  "subtitles.entity.watchling.hurt": "Watchling hurts",
+  "subtitles.entity.watchling.death": "Watchling dies",
+  "subtitles.entity.watchling.step": "Footsteps",
+  "subtitles.entity.watchling.attack": "Watchling attacks",
+  
+  "subtitles.entity.icy_creeper.explode": "Icy Creeper explodes",
+  
+  "subtitles.entity.jungle_zombie.idle": "Jungle Zombie gurgles",
+  "subtitles.entity.jungle_zombie.hurt": "Jungle Zombie hurts",
+  "subtitles.entity.jungle_zombie.death": "Jungle Zombie dies",
+  "subtitles.entity.jungle_zombie.step": "Footsteps",
+  
+  "subtitles.entity.frozen_zombie.idle": "Frozen Zombie groans",
+  "subtitles.entity.frozen_zombie.hurt": "Frozen Zombie hurts",
+  "subtitles.entity.frozen_zombie.death": "Frozen Zombie dies",
+  "subtitles.entity.frozen_zombie.snowball_land": "Snowball impacts",
+  
+  "subtitles.entity.mossy_skeleton.idle": "Mossy Skeleton creaks",
+  "subtitles.entity.mossy_skeleton.hurt": "Mossy Skeleton hurts",
+  "subtitles.entity.mossy_skeleton.death": "Mossy Skeleton dies",
+  "subtitles.entity.mossy_skeleton.shoot": "Mossy Skeleton shoots",
+  "subtitles.entity.mossy_skeleton.step": "Footsteps",
+  
+  "subtitles.entity.sunken_skeleton.idle": "Sunken Skeleton bubbles",
+  "subtitles.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
+  "subtitles.entity.sunken_skeleton.death": "Sunken Skeleton dies",
+  "subtitles.entity.sunken_skeleton.step": "Sunken Skeleton swims",
+  "subtitles.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots"
 }

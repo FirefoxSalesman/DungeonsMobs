@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
@@ -28,6 +29,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.ICY_CREEPER.get(), IcyCreeperRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)

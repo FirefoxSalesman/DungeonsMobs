@@ -28,6 +28,12 @@ public class ModSoundEvents {
 			"entity.frozen_zombie.death");
 	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_SNOWBALL_LAND = registerSoundEvents(
 			"entity.frozen_zombie.snowball_land");
+	public static final RegistryObject<SoundEvent> WATCHLING_IDLE = registerSoundEvents("entity.watchling.idle");
+	public static final RegistryObject<SoundEvent> WATCHLING_HURT = registerSoundEvents("entity.watchling.hurt");
+	public static final RegistryObject<SoundEvent> WATCHLING_DEATH = registerSoundEvents("entity.watchling.death");
+	public static final RegistryObject<SoundEvent> WATCHLING_STEP = registerSoundEvents("entity.watchling.step");
+	public static final RegistryObject<SoundEvent> WATCHLING_ATTACK = registerSoundEvents(
+			"entity.watchling.attack");
 
 	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
 			"entity.icy_creeper.explode");
