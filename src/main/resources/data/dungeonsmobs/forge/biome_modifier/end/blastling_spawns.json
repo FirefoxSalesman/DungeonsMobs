@@ -11,7 +11,7 @@
   ]
 },
   "spawners": {
-    "type": "dungeons_mobs:blastling",
+    "type": "dungeonsmobs:blastling",
     "weight": 2,
     "minCount": 1,
     "maxCount": 1

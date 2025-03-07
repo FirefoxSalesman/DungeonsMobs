@@ -6,8 +6,10 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.OrbProjectileModel;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.core.object.Color;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -56,5 +58,11 @@ public class OrbProjectileRenderer extends GeoEntityRenderer<NecromancerOrbEntit
 	@Override
 	public Color getRenderColor(NecromancerOrbEntity animatable, float partialTick, int packedLight) {
 		return color;
+	}
+
+	@Override
+	public RenderType getRenderType(NecromancerOrbEntity animatable, ResourceLocation texture,
+			MultiBufferSource bufferSource, float partialTick) {
+		return RenderType.eyes(getTextureLocation(animatable));
 	}
 }

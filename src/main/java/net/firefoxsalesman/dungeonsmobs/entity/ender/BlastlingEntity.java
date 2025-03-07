@@ -62,9 +62,6 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 				.setAlertOthers().setUnseenMemoryTicks(500));
 		this.targetSelector.addGoal(1,
 				new EnderlingTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
-
-		// this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this,
-		// AbstractEndermanVariant.class, true, false));
 	}
 
 	public MobType getMobType() {
@@ -105,7 +102,6 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 
 		if (this.getTarget() != null && this.getShootTime() <= 2) {
 			this.setShootTime(15);
-			// this.playSound(SoundEvents.EVOKER_CAST_SPELL, 3.0F, 1.0F);
 		}
 
 		if (this.getShootTime() > 0) {
