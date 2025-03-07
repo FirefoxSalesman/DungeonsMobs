@@ -11,9 +11,9 @@
   ]
 },
   "spawners": {
-    "type": "dungeonsmobs:watchling",
-    "weight": 3,
-    "minCount": 2,
-    "maxCount": 4
+    "type": "dungeons_mobs:blastling",
+    "weight": 2,
+    "minCount": 1,
+    "maxCount": 1
   }
 }

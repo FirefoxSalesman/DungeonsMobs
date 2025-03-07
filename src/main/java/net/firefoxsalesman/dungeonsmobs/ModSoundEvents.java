@@ -28,6 +28,14 @@ public class ModSoundEvents {
 			"entity.frozen_zombie.death");
 	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_SNOWBALL_LAND = registerSoundEvents(
 			"entity.frozen_zombie.snowball_land");
+
+	public static final RegistryObject<SoundEvent> BLASTLING_IDLE = registerSoundEvents("entity.blastling.idle");
+	public static final RegistryObject<SoundEvent> BLASTLING_HURT = registerSoundEvents("entity.blastling.hurt");
+	public static final RegistryObject<SoundEvent> BLASTLING_DEATH = registerSoundEvents("entity.blastling.death");
+	public static final RegistryObject<SoundEvent> BLASTLING_STEP = registerSoundEvents("entity.blastling.step");
+	public static final RegistryObject<SoundEvent> BLASTLING_SHOOT = registerSoundEvents("entity.blastling.shoot");
+	public static final RegistryObject<SoundEvent> BLASTLING_BULLET_LAND = registerSoundEvents("entity.blastling.bullet_land");
+
 	public static final RegistryObject<SoundEvent> WATCHLING_IDLE = registerSoundEvents("entity.watchling.idle");
 	public static final RegistryObject<SoundEvent> WATCHLING_HURT = registerSoundEvents("entity.watchling.hurt");
 	public static final RegistryObject<SoundEvent> WATCHLING_DEATH = registerSoundEvents("entity.watchling.death");
@@ -58,6 +66,11 @@ public class ModSoundEvents {
 			"entity.sunken_skeleton.step");
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
 			"entity.sunken_skeleton.shoot");
+
+	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
+			"entity.necromancer.shoot");
+	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(
+			"entity.necromancer.orb_impact");
 
 	public static void register(IEventBus eventBus) {
 		SOUNDS.register(eventBus);

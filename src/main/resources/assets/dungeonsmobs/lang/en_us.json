@@ -14,9 +14,17 @@
   "item.dungeonsmobs.armored_sunken_skeleton_spawn_egg": "Armored Sunken Skeleton Spawn Egg",
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
   "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
+
+  "entity.dungeonsmobs.blastling": "Blastling",
+  "item.dungeonsmobs.blastling_spawn_egg": "Blastling Spawn Egg",
   
   "entity.dungeonsmobs.watchling": "Watchling",
   "item.dungeonsmobs.watchling_spawn_egg": "Watchling Spawn Egg",
+
+  "entity.dungeonsmobs.blastling_bullet" : "Blastling Bullet",
+
+  "death.blastling": "%1$s was blasted",
+  "death.attack.blastling": "%1$s was blasted by %2$s",
   
   "subtitles.entity.watchling.idle": "Watchling growls",
   "subtitles.entity.watchling.hurt": "Watchling hurts",

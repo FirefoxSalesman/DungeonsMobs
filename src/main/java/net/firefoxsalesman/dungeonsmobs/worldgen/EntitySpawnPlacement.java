@@ -5,12 +5,23 @@ import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.interfaces.IAquaticMob;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -57,6 +68,42 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				IcyCreeperEntity::canIcyCreeperSpawn);
+
+		// Ocean
+		SpawnPlacements.register(ModEntities.SUNKEN_SKELETON.get(),
+				SpawnPlacements.Type.IN_WATER,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::checkAquaticMobSpawnRules);
+
+		// Enderlings
+		SpawnPlacements.register(ModEntities.BLASTLING.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
+		SpawnPlacements.register(ModEntities.WATCHLING.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
+	}
+
+	public static boolean checkAquaticMobSpawnRules(EntityType<? extends Mob> type,
+			ServerLevelAccessor pServerLevel, MobSpawnType pMobSpawnType, BlockPos pPos,
+			RandomSource pRandom) {
+		if (!pServerLevel.getFluidState(pPos.below()).is(FluidTags.WATER)) {
+			return false;
+		} else {
+			Holder<Biome> holder = pServerLevel.getBiome(pPos);
+			boolean flag = pServerLevel.getDifficulty() != Difficulty.PEACEFUL
+					&& Monster.isDarkEnoughToSpawn(pServerLevel, pPos, pRandom)
+					&& (pMobSpawnType == MobSpawnType.SPAWNER
+							|| pServerLevel.getFluidState(pPos).is(FluidTags.WATER));
+			if (holder.is(BiomeTags.MORE_FREQUENT_DROWNED_SPAWNS)) {
+				return pRandom.nextInt(15) == 0 && flag;
+			} else {
+				return pRandom.nextInt(40) == 0 && IAquaticMob.isDeepEnoughToSpawn(pServerLevel, pPos)
+						&& flag;
+			}
+		}
 	}
 
 	public static boolean canSeeSkyLight(ServerLevelAccessor world, BlockPos blockPos) {

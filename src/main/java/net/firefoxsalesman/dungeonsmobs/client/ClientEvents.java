@@ -4,7 +4,9 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.BlastlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
@@ -30,7 +32,11 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.BLASTLING_BULLET.get(),
+				(manager) -> new OrbProjectileRenderer(manager, 0xFFFF93F7, false));
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)

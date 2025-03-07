@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
@@ -25,6 +26,7 @@ public class EntityTypeAttributes {
 
 		event.put(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonEntity.setCustomAttributes().build());
 
+		event.put(ModEntities.BLASTLING.get(), BlastlingEntity.setCustomAttributes().build());
 		event.put(ModEntities.WATCHLING.get(), WatchlingEntity.setCustomAttributes().build());
 	}
 }

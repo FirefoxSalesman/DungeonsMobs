@@ -209,6 +209,43 @@
       }
     ]
   },
+
+  "entity.necromancer.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/spell1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/spell2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.orb_impact": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.orb_impact",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/arrow_impact_normal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/arrow_impact_normal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/arrow_impact_normal3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/arrow_impact_normal4",
+	"stream": true
+      }
+    ]
+  },
   
   "entity.sunken_skeleton.idle": {
     "category": "entity",
@@ -304,6 +341,155 @@
       },
       {
 	"name": "dungeonsmobs:entities/sunken_skeleton/shoot3",
+	"stream": true
+      }
+    ]
+  },
+
+  "entity.blastling.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/idle3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/idle4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.blastling.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/hurt6",
+	"stream": true
+      }
+    ]
+  },
+  "entity.blastling.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/death3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/death4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/death5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/death6",
+	"stream": true
+      }
+    ]
+  },
+  "entity.blastling.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/step4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.blastling.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/shoot1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/shoot2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/shoot3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/shoot4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.blastling.bullet_land": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.blastling.bullet_land",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/blastling/bullet_land1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/bullet_land2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/bullet_land3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/blastling/bullet_land4",
 	"stream": true
       }
     ]
