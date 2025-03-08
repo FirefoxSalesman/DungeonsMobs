@@ -45,32 +45,32 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 		super(ModEntities.NECROMANCER_ORB.get(), worldIn);
 	}
 
-	public NecromancerOrbEntity(EntityType<? extends NecromancerOrbEntity> p_i50147_1_, Level p_i50147_2_) {
-		super(p_i50147_1_, p_i50147_2_);
+	public NecromancerOrbEntity(EntityType<? extends NecromancerOrbEntity> pEntityType, Level pLevel) {
+		super(pEntityType, pLevel);
 	}
 
-	public NecromancerOrbEntity(Level p_i1794_1_, LivingEntity p_i1794_2_, double p_i1794_3_, double p_i1794_5_,
+	public NecromancerOrbEntity(Level pLevel, LivingEntity pOwner, double p_i1794_3_, double p_i1794_5_,
 			double p_i1794_7_) {
-		super(ModEntities.NECROMANCER_ORB.get(), p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, p_i1794_1_);
+		super(ModEntities.NECROMANCER_ORB.get(), pOwner, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
 	}
 
 	public NecromancerOrbEntity(EntityType<? extends NecromancerOrbEntity> necromancerOrbEntityType,
-			Level p_i1795_1_, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
+			Level pLevel, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
 			double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
 		super(necromancerOrbEntityType, p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_,
-				p_i1795_12_, p_i1795_1_);
+				p_i1795_12_, pLevel);
 	}
 
-	public NecromancerOrbEntity(Level p_i1795_1_, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
+	public NecromancerOrbEntity(Level pLevel, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
 			double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
 		super(ModEntities.NECROMANCER_ORB.get(), p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_,
-				p_i1795_12_, p_i1795_1_);
+				p_i1795_12_, pLevel);
 	}
 
 	public NecromancerOrbEntity(EntityType<? extends NecromancerOrbEntity> necromancerOrbEntityType,
 			LivingEntity p_i1794_2_, double p_i1794_3_, double p_i1794_5_, double p_i1794_7_,
-			Level p_i1794_1_) {
-		super(necromancerOrbEntityType, p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, p_i1794_1_);
+			Level pLevel) {
+		super(necromancerOrbEntityType, p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
 	}
 
 	public void handleEntityEvent(byte p_28844_) {

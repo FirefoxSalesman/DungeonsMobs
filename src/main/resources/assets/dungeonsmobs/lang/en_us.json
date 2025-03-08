@@ -17,14 +17,34 @@
 
   "entity.dungeonsmobs.blastling": "Blastling",
   "item.dungeonsmobs.blastling_spawn_egg": "Blastling Spawn Egg",
-  
   "entity.dungeonsmobs.watchling": "Watchling",
   "item.dungeonsmobs.watchling_spawn_egg": "Watchling Spawn Egg",
+  "entity.dungeonsmobs.snareling": "Snareling",
+  "item.dungeonsmobs.snareling_spawn_egg": "Snareling Spawn Egg",
 
   "entity.dungeonsmobs.blastling_bullet" : "Blastling Bullet",
+  "entity.dungeonsmobs.snareling_glob" : "Snareling Glob",
+  
+  "effect.dungeonsmobs.ensnared" : "Ensnared",
 
   "death.blastling": "%1$s was blasted",
   "death.attack.blastling": "%1$s was blasted by %2$s",
+
+  "subtitles.entity.snareling.idle": "Snareling gurgles",
+  "subtitles.entity.snareling.hurt": "Snareling hurts",
+  "subtitles.entity.snareling.death": "Snareling dies",
+  "subtitles.entity.snareling.step": "Footsteps",
+  "subtitles.entity.snareling.attack": "Snareling attacks",
+  "subtitles.entity.snareling.pre_shoot": "Snareling readies shot",
+  "subtitles.entity.snareling.shoot": "Snareling shoots",
+  "subtitles.entity.snareling.glob_land": "Snareling glob lands",
+  
+  "subtitles.entity.blastling.idle": "Blastling mutters",
+  "subtitles.entity.blastling.hurt": "Blastling hurts",
+  "subtitles.entity.blastling.death": "Blastling dies",
+  "subtitles.entity.blastling.step": "Footsteps",
+  "subtitles.entity.blastling.shoot": "Blastling shoots",
+  "subtitles.entity.blastling.bullet_land": "Blastling Bullet bursts",
   
   "subtitles.entity.watchling.idle": "Watchling growls",
   "subtitles.entity.watchling.hurt": "Watchling hurts",

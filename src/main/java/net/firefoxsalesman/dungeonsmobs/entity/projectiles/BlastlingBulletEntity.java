@@ -17,16 +17,16 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class BlastlingBulletEntity extends NecromancerOrbEntity {
 
-    public BlastlingBulletEntity(EntityType<? extends BlastlingBulletEntity> p_i50147_1_, Level p_i50147_2_) {
-        super(p_i50147_1_, p_i50147_2_);
+    public BlastlingBulletEntity(EntityType<? extends BlastlingBulletEntity> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
     }
 
-    public BlastlingBulletEntity(Level p_i1794_1_, LivingEntity p_i1794_2_, double p_i1794_3_, double p_i1794_5_, double p_i1794_7_) {
-        super(ModEntities.BLASTLING_BULLET.get(), p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, p_i1794_1_);
+    public BlastlingBulletEntity(Level pLevel, LivingEntity owner, double p_i1794_3_, double p_i1794_5_, double p_i1794_7_) {
+        super(ModEntities.BLASTLING_BULLET.get(), owner, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
     }
 
-    public BlastlingBulletEntity(Level p_i1795_1_, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_, double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
-        super(ModEntities.BLASTLING_BULLET.get(), p_i1795_1_, p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_, p_i1795_12_);
+    public BlastlingBulletEntity(Level pLevel, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_, double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
+        super(ModEntities.BLASTLING_BULLET.get(), pLevel, p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_, p_i1795_12_);
     }
 
     protected float getInertia() {

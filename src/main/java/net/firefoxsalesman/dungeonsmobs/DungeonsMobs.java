@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -33,6 +34,7 @@ public class DungeonsMobs {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModSoundEvents.register(modEventBus);
+		ModEffects.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.register(modEventBus);

@@ -29,12 +29,25 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> FROZEN_ZOMBIE_SNOWBALL_LAND = registerSoundEvents(
 			"entity.frozen_zombie.snowball_land");
 
+	public static final RegistryObject<SoundEvent> SNARELING_STEP = registerSoundEvents("entity.snareling.step");
+	public static final RegistryObject<SoundEvent> SNARELING_IDLE = registerSoundEvents("entity.snareling.idle");
+	public static final RegistryObject<SoundEvent> SNARELING_HURT = registerSoundEvents("entity.snareling.hurt");
+	public static final RegistryObject<SoundEvent> SNARELING_DEATH = registerSoundEvents("entity.snareling.death");
+	public static final RegistryObject<SoundEvent> SNARELING_ATTACK = registerSoundEvents(
+			"entity.snareling.attack");
+	public static final RegistryObject<SoundEvent> SNARELING_PREPARE_SHOOT = registerSoundEvents(
+			"entity.snareling.prepare_shoot");
+	public static final RegistryObject<SoundEvent> SNARELING_SHOOT = registerSoundEvents("entity.snareling.shoot");
+	public static final RegistryObject<SoundEvent> SNARELING_GLOB_LAND = registerSoundEvents(
+			"entity.snareling.glob_land");
+
 	public static final RegistryObject<SoundEvent> BLASTLING_IDLE = registerSoundEvents("entity.blastling.idle");
 	public static final RegistryObject<SoundEvent> BLASTLING_HURT = registerSoundEvents("entity.blastling.hurt");
 	public static final RegistryObject<SoundEvent> BLASTLING_DEATH = registerSoundEvents("entity.blastling.death");
 	public static final RegistryObject<SoundEvent> BLASTLING_STEP = registerSoundEvents("entity.blastling.step");
 	public static final RegistryObject<SoundEvent> BLASTLING_SHOOT = registerSoundEvents("entity.blastling.shoot");
-	public static final RegistryObject<SoundEvent> BLASTLING_BULLET_LAND = registerSoundEvents("entity.blastling.bullet_land");
+	public static final RegistryObject<SoundEvent> BLASTLING_BULLET_LAND = registerSoundEvents(
+			"entity.blastling.bullet_land");
 
 	public static final RegistryObject<SoundEvent> WATCHLING_IDLE = registerSoundEvents("entity.watchling.idle");
 	public static final RegistryObject<SoundEvent> WATCHLING_HURT = registerSoundEvents("entity.watchling.hurt");

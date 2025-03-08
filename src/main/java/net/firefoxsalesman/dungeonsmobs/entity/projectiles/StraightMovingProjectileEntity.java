@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.projectiles;
 
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -39,33 +40,33 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     public float lockedXRot;
     public float lockedYRot;
 
-    protected StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> p_i50173_1_, Level p_i50173_2_) {
-        super(p_i50173_1_, p_i50173_2_);
+    protected StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
     }
 
-    public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> p_i50174_1_, double p_i50174_2_, double p_i50174_4_, double p_i50174_6_, double p_i50174_8_, double p_i50174_10_, double p_i50174_12_, Level p_i50174_14_) {
-        this(p_i50174_1_, p_i50174_14_);
+    public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType, double p_i50174_2_, double p_i50174_4_, double p_i50174_6_, double pX, double pY, double pZ, Level pLevel) {
+        this(pEntityType, pLevel);
         this.moveTo(p_i50174_2_, p_i50174_4_, p_i50174_6_, this.getYRot(), this.getXRot());
         this.reapplyPosition();
-        double d0 = Mth.sqrt((float) (p_i50174_8_ * p_i50174_8_ + p_i50174_10_ * p_i50174_10_ + p_i50174_12_ * p_i50174_12_));
+        double d0 = Mth.sqrt((float) (pX * pX + pY * pY + pZ * pZ));
         if (d0 != 0.0D) {
-            this.xPower = p_i50174_8_ / d0 * 0.1D;
-            this.yPower = p_i50174_10_ / d0 * 0.1D;
-            this.zPower = p_i50174_12_ / d0 * 0.1D;
+            this.xPower = pX / d0 * 0.1D;
+            this.yPower = pY / d0 * 0.1D;
+            this.zPower = pZ / d0 * 0.1D;
         }
-        Vec3 vec3 = (new Vec3(p_i50174_8_, p_i50174_10_, p_i50174_12_)).normalize();
+        Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize();
         double d1 = vec3.horizontalDistance();
-        this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * (double)(180F / (float)Math.PI)));
-        this.setXRot((float)(Mth.atan2(vec3.y, d1) * (double)(180F / (float)Math.PI)));
+        this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * Mth.DEG_TO_RAD));
+        this.setXRot((float)(Mth.atan2(vec3.y, d1) * Mth.DEG_TO_RAD));
         this.yRotO = this.getYRot();
         this.xRotO = this.getXRot();
 
     }
 
-    public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> p_i50175_1_, LivingEntity p_i50175_2_, double p_i50175_3_, double p_i50175_5_, double p_i50175_7_, Level p_i50175_9_) {
-        this(p_i50175_1_, p_i50175_2_.getX(), p_i50175_2_.getY(), p_i50175_2_.getZ(), p_i50175_3_, p_i50175_5_, p_i50175_7_, p_i50175_9_);
-        this.setOwner(p_i50175_2_);
-        this.setRot(p_i50175_2_.getYRot(), p_i50175_2_.getXRot());
+    public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType, LivingEntity owner, double p_i50175_3_, double p_i50175_5_, double p_i50175_7_, Level pLevel) {
+        this(pEntityType, owner.getX(), owner.getY(), owner.getZ(), p_i50175_3_, p_i50175_5_, p_i50175_7_, pLevel);
+        this.setOwner(owner);
+        this.setRot(owner.getYRot(), owner.getXRot());
     }
 
     protected void defineSynchedData() {

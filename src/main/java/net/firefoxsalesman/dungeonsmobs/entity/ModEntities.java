@@ -8,9 +8,11 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
@@ -92,6 +94,13 @@ public class ModEntities {
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "watchling").toString()),
 			0x110e13, 0xff84f7);
 
+	public static final RegistryObject<EntityType<SnarelingEntity>> SNARELING = registerEntity("snareling",
+			() -> EntityType.Builder.of(SnarelingEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 2.4F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "snareling").toString()),
+			0x161616, 0xdbe64e);
+
 	// PROJECTILES
 	public static final RegistryObject<EntityType<NecromancerOrbEntity>> NECROMANCER_ORB = ENTITY_TYPES.register(
 			"necromancer_orb",
@@ -110,6 +119,14 @@ public class ModEntities {
 					.updateInterval(2)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "blastling_bullet")
 							.toString()));
+
+	public static final RegistryObject<EntityType<SnarelingGlobEntity>> SNARELING_GLOB = registerEntityWithoutEgg(
+			"snareling_glob",
+			() -> EntityType.Builder.<SnarelingGlobEntity>of(SnarelingGlobEntity::new, MobCategory.MISC)
+					.sized(0.6F, 0.6F)
+					.clientTrackingRange(4)
+					.updateInterval(2)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "snareling_glob").toString()));
 
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
