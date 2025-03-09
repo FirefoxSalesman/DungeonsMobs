@@ -14,6 +14,6 @@
     "type": "dungeonsmobs:snareling",
     "weight": 1,
     "minCount": 1,
-    "maxCount": 3
+    "maxCount": 1
   }
 }
