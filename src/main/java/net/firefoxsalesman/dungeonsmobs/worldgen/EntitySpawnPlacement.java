@@ -84,6 +84,10 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
+		SpawnPlacements.register(ModEntities.SNARELING.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
 	}
 
 	public static boolean checkAquaticMobSpawnRules(EntityType<? extends Mob> type,
