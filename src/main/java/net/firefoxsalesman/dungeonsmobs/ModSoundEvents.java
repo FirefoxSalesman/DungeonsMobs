@@ -95,6 +95,23 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
 			"entity.sunken_skeleton.shoot");
 
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_IDLE = registerSoundEvents(
+			"entity.redstone_golem.idle");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_HURT = registerSoundEvents(
+			"entity.redstone_golem.hurt");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_DEATH = registerSoundEvents(
+			"entity.redstone_golem.death");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_STEP = registerSoundEvents(
+			"entity.redstone_golem.step");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_ATTACK = registerSoundEvents(
+			"entity.redstone_golem.attack");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_SUMMON_MINES = registerSoundEvents(
+			"entity.redstone_golem.summon_mines");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_IDLE_PULSE_LOOP = registerSoundEvents(
+			"entity.redstone_golem.idle_pulse_loop");
+	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_SPARK = registerSoundEvents(
+			"entity.redstone_golem.spark");
+
 	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
 			"entity.necromancer.shoot");
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(

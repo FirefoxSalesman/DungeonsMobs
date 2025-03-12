@@ -18,6 +18,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -69,6 +70,15 @@ public class EntitySpawnPlacement {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				IcyCreeperEntity::canIcyCreeperSpawn);
 
+		SpawnPlacements.register(ModEntities.SQUALL_GOLEM.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canRaiderSpawn);
+
+		SpawnPlacements.register(ModEntities.REDSTONE_GOLEM.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
 		// Ocean
 		SpawnPlacements.register(ModEntities.SUNKEN_SKELETON.get(),
 				SpawnPlacements.Type.IN_WATER,
@@ -112,5 +122,10 @@ public class EntitySpawnPlacement {
 
 	public static boolean canSeeSkyLight(ServerLevelAccessor world, BlockPos blockPos) {
 		return world.getBrightness(LightLayer.SKY, blockPos) > 4;
+	}
+
+	public static boolean canRaiderSpawn(EntityType<? extends Raider> entityType, ServerLevelAccessor world,
+			MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
+		return Monster.checkMonsterSpawnRules(entityType, world, spawnReason, blockPos, rand);
 	}
 }

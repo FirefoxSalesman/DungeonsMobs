@@ -16,5 +16,8 @@ public class RaidEntries {
 
 		Raid.RaiderType.create("squall_golem", ModEntities.SQUALL_GOLEM.get(),
 				new int[] { 0, 0, 0, 1, 0, 1, 0, 2 });
+
+		Raid.RaiderType.create("redstone_golem", ModEntities.REDSTONE_GOLEM.get(),
+				new int[] { 0, 0, 0, 0, 0, 0, 0, 1 });
 	}
 }

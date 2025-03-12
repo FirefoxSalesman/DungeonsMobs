@@ -82,10 +82,6 @@ public class IcyCreeperEntity extends Creeper {
 
 	private void explodeCreeper() {
 		if (!this.level().isClientSide) {
-			// Explosion.BlockInteraction explosion$mode =
-			// net.minecraftforge.event.ForgeEventFactory
-			// .getMobGriefingEvent(this.level(), this) ? Explosion.BlockInteraction.DESTROY
-			// : Explosion.BlockInteraction.KEEP;
 			float f = this.isPowered() ? 2.0F : 1.0F;
 			this.dead = true;
 			this.level().explode(this, this.getX(), this.getY(), this.getZ(),

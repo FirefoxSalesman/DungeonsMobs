@@ -15,8 +15,8 @@
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
   "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
 
-  "entity.dungeons_mobs.squall_golem": "Squall Golem",
-  "item.dungeons_mobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
+  "entity.dungeonsmobs.squall_golem": "Squall Golem",
+  "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
   "entity.dungeonsmobs.blastling": "Blastling",
   "item.dungeonsmobs.blastling_spawn_egg": "Blastling Spawn Egg",
@@ -32,6 +32,19 @@
 
   "death.blastling": "%1$s was blasted",
   "death.attack.blastling": "%1$s was blasted by %2$s",
+
+  "entity.dungeonsmobs.redstone_mine": "Redstone Mine",
+
+  "entity.dungeonsmobs.redstone_golem": "Redstone Golem",
+  "item.dungeonsmobs.redstone_golem_spawn_egg": "Redstone Golem Spawn Egg",
+
+  "subtitles.entity.redstone_golem.idle": "Redstone Golem breathes",
+  "subtitles.entity.redstone_golem.hurt": "Redstone Golem hurts",
+  "subtitles.entity.redstone_golem.death": "Redstone Golem dies",
+  "subtitles.entity.redstone_golem.step": "Redstone Golem steps",
+  "subtitles.entity.redstone_golem.attack": "Redstone Golem attacks",
+  "subtitles.entity.redstone_golem.summon_mines": "Redstone Golem summons mines",
+  "subtitles.entity.redstone_golem.spark": "Redstone sparks",
 
   "subtitles.entity.squall_golem.idle": "Squall Golem creaks",
   "subtitles.entity.squall_golem.hurt": "Squall Golem hurts",

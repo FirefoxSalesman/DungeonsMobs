@@ -14,6 +14,9 @@ import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
@@ -72,6 +75,15 @@ public class ModEntities {
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "icy_creeper").toString()),
 			0x5ccea5, 0xd9eef2);
 
+	// REDSTONE
+	public static final RegistryObject<EntityType<RedstoneGolemEntity>> REDSTONE_GOLEM = registerEntity(
+			"redstone_golem",
+			() -> EntityType.Builder.<RedstoneGolemEntity>of(RedstoneGolemEntity::new, MobCategory.MONSTER)
+					.sized(2.66F, 3.83F)
+					.clientTrackingRange(10)
+					.fireImmune()
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "redstone_golem").toString()),
+			0xaeaaa6, 0xe3260c);
 	// GOLEM
 	public static final RegistryObject<EntityType<SquallGolemEntity>> SQUALL_GOLEM = registerEntity("squall_golem",
 			() -> EntityType.Builder.<SquallGolemEntity>of(SquallGolemEntity::new, MobCategory.MONSTER)
@@ -111,6 +123,15 @@ public class ModEntities {
 			0x161616, 0xdbe64e);
 
 	// PROJECTILES
+	public static final RegistryObject<EntityType<RedstoneMineEntity>> REDSTONE_MINE = registerEntityWithoutEgg(
+			"redstone_mine",
+			() -> EntityType.Builder.<RedstoneMineEntity>of(RedstoneMineEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(1.0F, 0.5F)
+					.clientTrackingRange(6)
+					.updateInterval(2)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "redstone_mine").toString()));
+
 	public static final RegistryObject<EntityType<NecromancerOrbEntity>> NECROMANCER_ORB = ENTITY_TYPES.register(
 			"necromancer_orb",
 			() -> EntityType.Builder.<NecromancerOrbEntity>of(NecromancerOrbEntity::new, MobCategory.MISC)
@@ -119,6 +140,15 @@ public class ModEntities {
 					.updateInterval(1)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "necromancer_orb")
 							.toString()));
+
+	public static final RegistryObject<EntityType<AreaDamageEntity>> AREA_DAMAGE = registerEntityWithoutEgg(
+			"area_damage",
+			() -> EntityType.Builder.<AreaDamageEntity>of(AreaDamageEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(1.0F, 1.0F)
+					.clientTrackingRange(10)
+					.updateInterval(1)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "area_damage").toString()));
 
 	public static final RegistryObject<EntityType<BlastlingBulletEntity>> BLASTLING_BULLET = registerEntityWithoutEgg(
 			"blastling_bullet",
