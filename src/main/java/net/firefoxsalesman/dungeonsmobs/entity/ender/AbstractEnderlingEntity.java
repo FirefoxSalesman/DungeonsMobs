@@ -32,12 +32,20 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
 import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.object.PlayState;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public abstract class AbstractEnderlingEntity extends Monster implements GeoEntity {
+	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public static final EntityDataAccessor<Integer> ATTACKING = SynchedEntityData.defineId(
 			AbstractEnderlingEntity.class,
@@ -443,5 +451,17 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 			}
 
 		}
+	}
+
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return factory;
+	}
+
+	abstract protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event);
+
+	@Override
+	public void registerControllers(ControllerRegistrar controllers) {
+		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 5, this::predicate));
 	}
 }

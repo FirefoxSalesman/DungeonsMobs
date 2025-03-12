@@ -25,14 +25,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
@@ -41,8 +37,6 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 
 	public static final EntityDataAccessor<Integer> SHOOT_TIME = SynchedEntityData.defineId(BlastlingEntity.class,
 			EntityDataSerializers.INT);
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public float flameTicks;
 
@@ -168,29 +162,21 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		entityData.set(SHOOT_TIME, p_189794_1_);
 	}
 
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 5, this::predicate));
+    protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+	if (getShootTime() > 0) {
+	    event.getController()
+		.setAnimation(RawAnimation.begin().then("blastling_shoot", LoopType.LOOP));
+	} else {
+	    if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
+		event.getController().setAnimation(
+		    RawAnimation.begin().then("blastling_walk", LoopType.LOOP));
+	    } else {
+		event.getController().setAnimation(
+		    RawAnimation.begin().then("blastling_idle", LoopType.LOOP));
+	    }
 	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (getShootTime() > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("blastling_shoot", LoopType.LOOP));
-		} else {
-			if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-				event.getController().setAnimation(RawAnimation.begin().then("blastling_walk", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(RawAnimation.begin().then("blastling_idle", LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
-	}
+	return PlayState.CONTINUE;
+    }
 
 	public class AvoidEntityGoal<T extends LivingEntity> extends Goal {
 		protected final PathfinderMob mob;

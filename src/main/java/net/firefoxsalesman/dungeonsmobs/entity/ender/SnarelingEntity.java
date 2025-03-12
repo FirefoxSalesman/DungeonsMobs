@@ -23,14 +23,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
@@ -39,8 +35,6 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 
 	public static final EntityDataAccessor<Integer> SHOOT_TIME = SynchedEntityData.defineId(SnarelingEntity.class,
 			EntityDataSerializers.INT);
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public SnarelingEntity(EntityType<? extends SnarelingEntity> p_i50210_1_, Level p_i50210_2_) {
 		super(p_i50210_1_, p_i50210_2_);
@@ -148,12 +142,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		entityData.set(SHOOT_TIME, p_189794_1_);
 	}
 
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 5, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (getShootTime() > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("snareling_shoot", LoopType.LOOP));
 		} else if (isAttacking() > 0) {
@@ -165,11 +154,6 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 			event.getController().setAnimation(RawAnimation.begin().then("snareling_idle", LoopType.LOOP));
 		}
 		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
 	}
 
 	class AttackGoal extends MeleeAttackGoal {

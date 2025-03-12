@@ -20,19 +20,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.animation.Animation.LoopType;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class WatchlingEntity extends AbstractEnderlingEntity {
-
-    AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-
     public WatchlingEntity(EntityType<? extends WatchlingEntity> p_i50210_1_, Level p_i50210_2_) {
 	super(p_i50210_1_, p_i50210_2_);
     }
@@ -94,11 +87,7 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 	super.setTarget(p_70624_1_);
     }
 
-    public void baseTick() {
-	super.baseTick();
-    }
-
-    private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+    protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 	if (isAttacking() > 0) {
 	    event.getController()
 		.setAnimation(RawAnimation.begin().then("watchling_attack", LoopType.LOOP));
@@ -114,15 +103,5 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 	    event.getController().setAnimation(RawAnimation.begin().then("watchling_idle", LoopType.LOOP));
 	}
 	return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers(ControllerRegistrar controllers) {
-	controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 5, this::predicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-	return factory;
     }
 }
