@@ -310,9 +310,9 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 			this(p_i50313_1_, p_i50313_2_, p_i50313_3_, false);
 		}
 
-		public EnderlingTargetGoal(Mob p_i50314_1_, Class<T> p_i50314_2_, boolean p_i50314_3_,
+		public EnderlingTargetGoal(Mob mob, Class<T> p_i50314_2_, boolean p_i50314_3_,
 				boolean p_i50314_4_) {
-			this(p_i50314_1_, p_i50314_2_, 10, p_i50314_3_, p_i50314_4_, null);
+			this(mob, p_i50314_2_, 10, p_i50314_3_, p_i50314_4_, null);
 		}
 
 		public EnderlingTargetGoal(Mob p_i50315_1_, Class<T> p_i50315_2_, int p_i50315_3_, boolean p_i50315_4_,

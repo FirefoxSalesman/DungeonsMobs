@@ -38,19 +38,16 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
     }
 
     protected void registerGoals() {
-	this.goalSelector.addGoal(0, new FloatGoal(this));
-	this.goalSelector.addGoal(2, new AbstractEnderlingEntity.AttackGoal(1.5D));
-	this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
-	this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-	this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-	this.targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
-	this.targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
+	goalSelector.addGoal(0, new FloatGoal(this));
+	goalSelector.addGoal(2, new AbstractEnderlingEntity.AttackGoal(1.5D));
+	goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
+	goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+	goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+	targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
+	targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
 	    .setAlertOthers().setUnseenMemoryTicks(500));
-	this.targetSelector.addGoal(1,
+	targetSelector.addGoal(1,
 	    new EnderlingTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
-
-	// this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this,
-	// AbstractEndermanVariant.class, true, false));
     }
 
     public MobType getMobType() {
@@ -76,13 +73,13 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
     }
 
     public boolean doHurtTarget(Entity p_70652_1_) {
-	this.playSound(ModSoundEvents.WATCHLING_ATTACK.get(), 1.0F, 1.0F);
+	playSound(ModSoundEvents.WATCHLING_ATTACK.get(), 1.0F, 1.0F);
 	return super.doHurtTarget(p_70652_1_);
     }
 
     @Override
     protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-	this.playSound(this.getStepSound(), 0.75F, 1.0F);
+	playSound(getStepSound(), 0.75F, 1.0F);
     }
 
     protected SoundEvent getStepSound() {
@@ -90,9 +87,9 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
     }
 
     public void setTarget(LivingEntity p_70624_1_) {
-	if (p_70624_1_ != null && p_70624_1_ != this.getTarget()) {
-	    this.teleport(p_70624_1_.getX() - 3 + this.random.nextInt(6), p_70624_1_.getY(),
-		p_70624_1_.getZ() - 3 + this.random.nextInt(6));
+	if (p_70624_1_ != null && p_70624_1_ != getTarget()) {
+	    teleport(p_70624_1_.getX() - 3 + random.nextInt(6), p_70624_1_.getY(),
+		p_70624_1_.getZ() - 3 + random.nextInt(6));
 	}
 	super.setTarget(p_70624_1_);
     }
@@ -102,11 +99,11 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
     }
 
     private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-	if (this.isAttacking() > 0) {
+	if (isAttacking() > 0) {
 	    event.getController()
 		.setAnimation(RawAnimation.begin().then("watchling_attack", LoopType.LOOP));
 	} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-	    if (this.isRunning() > 0) {
+	    if (isRunning() > 0) {
 		event.getController().setAnimation(
 		    RawAnimation.begin().then("watchling_run", LoopType.LOOP));
 	    } else {

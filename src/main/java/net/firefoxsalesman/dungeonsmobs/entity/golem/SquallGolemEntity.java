@@ -108,27 +108,27 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		Vec3 velocity = this.getDeltaMovement();
+		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		if (this.attackID == GOLEM_ACTIVATE) {
+		if (attackID == GOLEM_ACTIVATE) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController().setAnimation(RawAnimation.begin().then("animation.squall_golem.activate",
 					LoopType.PLAY_ONCE));
 			return PlayState.CONTINUE;
 
-		} else if (this.attackID == GOLEM_DEACTIVATE) {
+		} else if (attackID == GOLEM_DEACTIVATE) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController().setAnimation(RawAnimation.begin()
 					.then("animation.squall_golem.deactivate", LoopType.PLAY_ONCE));
 			return PlayState.CONTINUE;
 
-		} else if (!this.getActivate()) {
+		} else if (!getActivate()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController().setAnimation(
 					RawAnimation.begin().then("animation.squall_golem.deactivated", LoopType.LOOP));
 			return PlayState.CONTINUE;
 
-		} else if (this.isMeleeAttacking() && this.isAlive()) {
+		} else if (isMeleeAttacking() && isAlive()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController().setAnimation(
 					RawAnimation.begin().then("animation.squall_golem.attack", LoopType.PLAY_ONCE));
@@ -155,23 +155,23 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(4, new SquallGolemEntity.AttackGoal());
-		this.goalSelector.addGoal(0, new SquallGolemEntity.MeleeGoal());
-		this.goalSelector.addGoal(1, new SquallGolemEntity.DoNothingGoal());
-		this.goalSelector.addGoal(0, new SquallGolemEntity.Deactivate());
-		this.goalSelector.addGoal(0, new SquallGolemEntity.Activate());
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.6D));
+		goalSelector.addGoal(4, new SquallGolemEntity.AttackGoal());
+		goalSelector.addGoal(0, new SquallGolemEntity.MeleeGoal());
+		goalSelector.addGoal(1, new SquallGolemEntity.DoNothingGoal());
+		goalSelector.addGoal(0, new SquallGolemEntity.Deactivate());
+		goalSelector.addGoal(0, new SquallGolemEntity.Activate());
+		goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.6D));
 
-		this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		targetSelector.addGoal(2, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+		targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(ACTIVATE, false);
+		entityData.define(ACTIVATE, false);
 		entityData.define(MELEEATTACKING, false);
 	}
 

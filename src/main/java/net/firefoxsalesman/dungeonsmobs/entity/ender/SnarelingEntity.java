@@ -47,20 +47,17 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 	}
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new SnarelingEntity.AvoidEntityGoal<>(this, 3, 1.0D, 1.0D));
-		this.goalSelector.addGoal(2, new SnarelingEntity.AttackGoal());
-		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
-		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
-		this.targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
+		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(0, new SnarelingEntity.AvoidEntityGoal<>(this, 3, 1.0D, 1.0D));
+		goalSelector.addGoal(2, new SnarelingEntity.AttackGoal());
+		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
+		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
+		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
 				.setAlertOthers().setUnseenMemoryTicks(500));
-		this.targetSelector.addGoal(1,
+		targetSelector.addGoal(1,
 				new EnderlingTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
-
-		// this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this,
-		// AbstractEndermanVariant.class, true, false));
 	}
 
 	public MobType getMobType() {
@@ -69,7 +66,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 
 	@Override
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(this.getStepSound(), 0.75F, 1.0F);
+		playSound(getStepSound(), 0.75F, 1.0F);
 	}
 
 	protected SoundEvent getStepSound() {
@@ -91,68 +88,64 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 	public void baseTick() {
 		super.baseTick();
 
-		if (this.getTarget() != null && this.getTarget().isAlive() && this.distanceTo(this.getTarget()) > 5
-				&& this.getTarget().hasEffect(ModEffects.ENSNARED.get())
-				&& this.random.nextInt(10) == 0) {
-			this.teleport(this.getTarget().getX() - 3 + this.random.nextInt(6), this.getTarget().getY(),
-					this.getTarget().getZ() - 3 + this.random.nextInt(6));
+		if (getTarget() != null && getTarget().isAlive() && distanceTo(getTarget()) > 5
+				&& getTarget().hasEffect(ModEffects.ENSNARED.get())
+				&& random.nextInt(10) == 0) {
+			teleport(getTarget().getX() - 3 + random.nextInt(6), getTarget().getY(),
+					getTarget().getZ() - 3 + random.nextInt(6));
 		}
 
-		if (this.getTarget() != null && this.getTarget().isAlive()
-				&& !this.getTarget().hasEffect(ModEffects.ENSNARED.get())
-				&& this.hasLineOfSight(this.getTarget()) && this.getShootTime() <= 0
-				&& this.random.nextInt(10) == 0) {
-			this.setShootTime(80);
-			this.playSound(ModSoundEvents.SNARELING_PREPARE_SHOOT.get(), 2.0F,
-					1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-			// this.playSound(SoundEvents.EVOKER_CAST_SPELL, 3.0F, 1.0F);
+		if (getTarget() != null && getTarget().isAlive() && !getTarget().hasEffect(ModEffects.ENSNARED.get())
+				&& hasLineOfSight(getTarget()) && getShootTime() <= 0 && random.nextInt(10) == 0) {
+			setShootTime(80);
+			playSound(ModSoundEvents.SNARELING_PREPARE_SHOOT.get(), 2.0F,
+					1.0F / (getRandom().nextFloat() * 0.4F + 0.8F));
 		}
 
-		if (this.getShootTime() > 0) {
-			this.setShootTime(this.getShootTime() - 1);
+		if (getShootTime() > 0) {
+			setShootTime(getShootTime() - 1);
 		}
 
-		if (!this.level().isClientSide && this.getShootTime() == 15 && this.getTarget() != null
-				&& this.getTarget().isAlive()) {
+		if (!level().isClientSide && getShootTime() == 15 && getTarget() != null && getTarget().isAlive()) {
 
-			this.performRangedAttack(this.getTarget(), 2.0F);
+			performRangedAttack(getTarget(), 2.0F);
 		}
 
-		if (this.isAttacking() == 29) {
-			this.playSound(ModSoundEvents.SNARELING_ATTACK.get(), 1.0F, 1.0F);
+		if (isAttacking() == 29) {
+			playSound(ModSoundEvents.SNARELING_ATTACK.get(), 1.0F, 1.0F);
 		}
 
-		if (this.getShootTime() > 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+		if (getShootTime() > 0) {
+			getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.3F);
+			getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.3F);
 		}
 	}
 
 	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-		SnarelingGlobEntity snowballentity = new SnarelingGlobEntity(this.level(), this);
+		SnarelingGlobEntity snowballentity = new SnarelingGlobEntity(level(), this);
 		double d0 = p_82196_1_.getEyeY() - 1.75F;
-		double d1 = p_82196_1_.getX() - this.getX();
+		double d1 = p_82196_1_.getX() - getX();
 		double d2 = d0 - snowballentity.getY();
-		double d3 = p_82196_1_.getZ() - this.getZ();
+		double d3 = p_82196_1_.getZ() - getZ();
 		float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 		snowballentity.shoot(d1, d2 + (double) f, d3, 1.6F, 2.0F);
-		this.playSound(ModSoundEvents.SNARELING_SHOOT.get(), 2.0F,
-				1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-		this.level().addFreshEntity(snowballentity);
+		playSound(ModSoundEvents.SNARELING_SHOOT.get(), 2.0F,
+				1.0F / (getRandom().nextFloat() * 0.4F + 0.8F));
+		level().addFreshEntity(snowballentity);
 	}
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(SHOOT_TIME, 0);
+		entityData.define(SHOOT_TIME, 0);
 	}
 
 	public int getShootTime() {
-		return this.entityData.get(SHOOT_TIME);
+		return entityData.get(SHOOT_TIME);
 	}
 
 	public void setShootTime(int p_189794_1_) {
-		this.entityData.set(SHOOT_TIME, p_189794_1_);
+		entityData.set(SHOOT_TIME, p_189794_1_);
 	}
 
 	@Override
@@ -161,9 +154,9 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.getShootTime() > 0) {
+		if (getShootTime() > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("snareling_shoot", LoopType.LOOP));
-		} else if (this.isAttacking() > 0) {
+		} else if (isAttacking() > 0) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("snareling_attack", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
@@ -190,24 +183,24 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return this.mob.getBbWidth() * 3.0F * this.mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
+			return mob.getBbWidth() * 3.0F * mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
 		}
 
 		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = this.getAttackReachSqr(p_190102_1_);
-			if (p_190102_2_ <= d0 && this.isTimeToAttack() && SnarelingEntity.this.getShootTime() <= 0) {
-				this.resetAttackCooldown();
-				this.mob.doHurtTarget(p_190102_1_);
+			double d0 = getAttackReachSqr(p_190102_1_);
+			if (p_190102_2_ <= d0 && isTimeToAttack() && SnarelingEntity.this.getShootTime() <= 0) {
+				resetAttackCooldown();
+				mob.doHurtTarget(p_190102_1_);
 			} else if (p_190102_2_ <= d0 * 1.5D) {
-				if (this.isTimeToAttack()) {
-					this.resetAttackCooldown();
+				if (isTimeToAttack()) {
+					resetAttackCooldown();
 				}
 
-				if (this.getTicksUntilNextAttack() <= 30) {
+				if (getTicksUntilNextAttack() <= 30) {
 					SnarelingEntity.this.setAttacking(30);
 				}
 			} else {
-				this.resetAttackCooldown();
+				resetAttackCooldown();
 			}
 		}
 	}
@@ -224,53 +217,53 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		protected final Predicate<LivingEntity> predicateOnAvoidEntity;
 		private final TargetingConditions avoidEntityTargeting;
 
-		public AvoidEntityGoal(PathfinderMob p_i46404_1_, float p_i46404_3_, double p_i46404_4_,
+		public AvoidEntityGoal(PathfinderMob mob, float p_i46404_3_, double p_i46404_4_,
 				double p_i46404_6_) {
-			this(p_i46404_1_, (p_200828_0_) -> {
+			this(mob, (p_200828_0_) -> {
 				return true;
 			}, p_i46404_3_, p_i46404_4_, p_i46404_6_, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
 		}
 
-		public AvoidEntityGoal(PathfinderMob p_i48859_1_, Predicate<LivingEntity> p_i48859_3_,
-				float p_i48859_4_, double p_i48859_5_, double p_i48859_7_,
-				Predicate<LivingEntity> p_i48859_9_) {
-			this.mob = p_i48859_1_;
-			this.avoidPredicate = p_i48859_3_;
-			this.maxDist = p_i48859_4_;
-			this.walkSpeedModifier = p_i48859_5_;
-			this.sprintSpeedModifier = p_i48859_7_;
-			this.predicateOnAvoidEntity = p_i48859_9_;
-			this.pathNav = p_i48859_1_.getNavigation();
+		public AvoidEntityGoal(PathfinderMob mob, Predicate<LivingEntity> avoidPredicate,
+				float maxDist, double walkSpeedModifier, double sprintSpeedModifier,
+				Predicate<LivingEntity> predicateOnAvoidEntity) {
+			this.mob = mob;
+			this.avoidPredicate = avoidPredicate;
+			this.maxDist = maxDist;
+			this.walkSpeedModifier = walkSpeedModifier;
+			this.sprintSpeedModifier = sprintSpeedModifier;
+			this.predicateOnAvoidEntity = predicateOnAvoidEntity;
+			this.pathNav = mob.getNavigation();
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-			this.avoidEntityTargeting = TargetingConditions.forCombat().range(p_i48859_4_)
-					.selector(p_i48859_9_.and(p_i48859_3_));
+			this.avoidEntityTargeting = TargetingConditions.forCombat().range(maxDist)
+					.selector(predicateOnAvoidEntity.and(avoidPredicate));
 		}
 
-		public AvoidEntityGoal(PathfinderMob p_i48860_1_, float p_i48860_3_, double p_i48860_4_,
+		public AvoidEntityGoal(PathfinderMob mob, float p_i48860_3_, double p_i48860_4_,
 				double p_i48860_6_, Predicate<LivingEntity> p_i48860_8_) {
-			this(p_i48860_1_, (p_203782_0_) -> {
+			this(mob, (p_203782_0_) -> {
 				return true;
 			}, p_i48860_3_, p_i48860_4_, p_i48860_6_, p_i48860_8_);
 		}
 
 		public boolean canUse() {
-			this.toAvoid = SnarelingEntity.this.getTarget();
-			if (this.toAvoid == null || this.mob.distanceTo(this.toAvoid) > this.maxDist) {
+			toAvoid = SnarelingEntity.this.getTarget();
+			if (toAvoid == null || mob.distanceTo(toAvoid) > maxDist) {
 				return false;
 			} else {
-				Vec3 vector3d = DefaultRandomPos.getPosAway(this.mob, 16, 7, this.toAvoid.position());
+				Vec3 vector3d = DefaultRandomPos.getPosAway(mob, 16, 7, toAvoid.position());
 				if (vector3d == null) {
 					return false;
-				} else if (this.toAvoid.distanceToSqr(vector3d.x, vector3d.y, vector3d.z) < this.toAvoid
-						.distanceToSqr(this.mob)) {
+				} else if (toAvoid.distanceToSqr(vector3d.x, vector3d.y, vector3d.z) < toAvoid
+						.distanceToSqr(mob)) {
 					return false;
 				} else {
-					this.path = this.pathNav.createPath(vector3d.x, vector3d.y, vector3d.z, 0);
+					path = pathNav.createPath(vector3d.x, vector3d.y, vector3d.z, 0);
 					return SnarelingEntity.this.getTarget() != null
 							&& SnarelingEntity.this.getTarget().isAlive()
 							&& !SnarelingEntity.this.getTarget()
 									.hasEffect(ModEffects.ENSNARED.get())
-							&& this.path != null;
+							&& path != null;
 				}
 			}
 		}
@@ -278,23 +271,23 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		public boolean canContinueToUse() {
 			return SnarelingEntity.this.getTarget() != null && SnarelingEntity.this.getTarget().isAlive()
 					&& !SnarelingEntity.this.getTarget().hasEffect(ModEffects.ENSNARED.get())
-					&& !this.pathNav.isDone();
+					&& !pathNav.isDone();
 		}
 
 		public void start() {
-			this.pathNav.moveTo(this.path, this.walkSpeedModifier);
+			pathNav.moveTo(path, walkSpeedModifier);
 		}
 
 		public void stop() {
-			this.toAvoid = null;
+			toAvoid = null;
 		}
 
 		public void tick() {
 			SnarelingEntity.this.setShootTime(0);
-			if (this.mob.distanceToSqr(this.toAvoid) < 49.0D) {
-				this.mob.getNavigation().setSpeedModifier(this.sprintSpeedModifier);
+			if (mob.distanceToSqr(toAvoid) < 49.0D) {
+				mob.getNavigation().setSpeedModifier(sprintSpeedModifier);
 			} else {
-				this.mob.getNavigation().setSpeedModifier(this.walkSpeedModifier);
+				mob.getNavigation().setSpeedModifier(walkSpeedModifier);
 			}
 
 		}

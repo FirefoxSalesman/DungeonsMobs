@@ -11,6 +11,6 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class BlastlingRenderer extends GeoEntityRenderer<AbstractEnderlingEntity> {
     public BlastlingRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new BlastlingModel());
-        this.addRenderLayer(new GeoEyeLayer<>(this, new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/blastling1_eyes.png")));
+        addRenderLayer(new GeoEyeLayer<>(this, new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/blastling1_eyes.png")));
     }
 }

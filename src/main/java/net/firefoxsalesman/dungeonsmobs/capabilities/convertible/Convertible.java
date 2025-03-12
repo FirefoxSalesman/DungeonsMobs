@@ -16,7 +16,7 @@ public class Convertible implements INBTSerializable<CompoundTag> {
     int prepareConversionTime;
 
     public void tickConversionTime() {
-        this.setConversionTime(this.getConversionTime() - 1);
+        setConversionTime(getConversionTime() - 1);
     }
 
     public <T extends Mob> T doConversion(Mob original, EntityType<T> convertToType, BiConsumer<Mob, T> onConversion) {
@@ -27,20 +27,20 @@ public class Convertible implements INBTSerializable<CompoundTag> {
     }
 
     public void startConversion(int conversionLength) {
-        this.setConverting(true);
-        this.setConversionTime(conversionLength);
+        setConverting(true);
+        setConversionTime(conversionLength);
     }
 
     public void tickPrepareConversionTime() {
-        this.setPrepareConversionTime(this.getPrepareConversionTime() + 1);
+        setPrepareConversionTime(getPrepareConversionTime() + 1);
     }
 
     public boolean isConverting() {
-        return this.isConverting;
+        return isConverting;
     }
 
     public void setConverting(boolean converting) {
-        this.isConverting = converting;
+        isConverting = converting;
     }
 
     public void setConversionTime(int conversionTime) {
@@ -48,7 +48,7 @@ public class Convertible implements INBTSerializable<CompoundTag> {
     }
 
     public int getConversionTime() {
-        return this.conversionTime;
+        return conversionTime;
     }
 
     public void setPrepareConversionTime(int prepareConversionTime) {
@@ -56,11 +56,11 @@ public class Convertible implements INBTSerializable<CompoundTag> {
     }
 
     public int getPrepareConversionTime() {
-        return this.prepareConversionTime;
+        return prepareConversionTime;
     }
 
     public boolean canConvert() {
-        return this.canConvert;
+        return canConvert;
     }
 
     public void setCanConvert(boolean canConvert) {
@@ -73,16 +73,16 @@ public class Convertible implements INBTSerializable<CompoundTag> {
             return new CompoundTag();
         }
         CompoundTag tag = new CompoundTag();
-        tag.putInt("conversionTime", this.isConverting() ? this.getConversionTime() : -1);
-        tag.putInt("prepareConversionTime", this.canConvert() ? this.getPrepareConversionTime() : -1);
+        tag.putInt("conversionTime", isConverting() ? getConversionTime() : -1);
+        tag.putInt("prepareConversionTime", canConvert() ? getPrepareConversionTime() : -1);
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundTag tag) {
-        this.setPrepareConversionTime(tag.getInt("prepareConversionTime"));
+        setPrepareConversionTime(tag.getInt("prepareConversionTime"));
         if (tag.contains("DrownedConversionTime", 99) && tag.getInt("conversionTime") > -1) {
-            this.startConversion(tag.getInt("conversionTime"));
+            startConversion(tag.getInt("conversionTime"));
         }
     }
 }

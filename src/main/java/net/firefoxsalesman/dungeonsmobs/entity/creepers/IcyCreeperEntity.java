@@ -37,11 +37,11 @@ public class IcyCreeperEntity extends Creeper {
 
 	@Override
 	public void aiStep() {
-		if (this.level().isClientSide) {
-			this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(), this.getRandomX(0.5D),
-					this.getRandomY() - 0.25D, this.getRandomZ(0.5D),
-					(this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(),
-					(this.random.nextDouble() - 0.5D) * 2.0D);
+		if (level().isClientSide) {
+			level().addParticle(ModParticleTypes.SNOWFLAKE.get(), getRandomX(0.5D),
+					getRandomY() - 0.25D, getRandomZ(0.5D),
+					(random.nextDouble() - 0.5D) * 2.0D, -random.nextDouble(),
+					(random.nextDouble() - 0.5D) * 2.0D);
 		}
 		super.aiStep();
 	}
@@ -55,25 +55,25 @@ public class IcyCreeperEntity extends Creeper {
 	}
 
 	public void tick() {
-		if (this.isAlive()) {
-			this.oldSwell = this.swell;
-			if (this.isIgnited()) {
-				this.setSwellDir(1);
+		if (isAlive()) {
+			oldSwell = swell;
+			if (isIgnited()) {
+				setSwellDir(1);
 			}
 
-			int i = this.getSwellDir();
-			if (i > 0 && this.swell == 0) {
-				this.playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.25F);
+			int i = getSwellDir();
+			if (i > 0 && swell == 0) {
+				playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.25F);
 			}
 
-			this.swell += i;
-			if (this.swell < 0) {
-				this.swell = 0;
+			swell += i;
+			if (swell < 0) {
+				swell = 0;
 			}
 
-			if (this.swell >= this.maxSwell) {
-				this.swell = this.maxSwell;
-				this.explodeCreeper();
+			if (swell >= maxSwell) {
+				swell = maxSwell;
+				explodeCreeper();
 			}
 		}
 
@@ -81,40 +81,37 @@ public class IcyCreeperEntity extends Creeper {
 	}
 
 	private void explodeCreeper() {
-		if (!this.level().isClientSide) {
-			float f = this.isPowered() ? 2.0F : 1.0F;
-			this.dead = true;
-			this.level().explode(this, this.getX(), this.getY(), this.getZ(),
-					(float) this.explosionRadius * f, Level.ExplosionInteraction.BLOCK);
-			this.playSound(ModSoundEvents.ICY_CREEPER_EXPLODE.get(), 2.0F, 1.0F);
-			this.remove(RemovalReason.DISCARDED);
-			this.spawnLingeringCloud();
+		if (!level().isClientSide) {
+			float f = isPowered() ? 2.0F : 1.0F;
+			dead = true;
+			level().explode(this, getX(), getY(), getZ(), (float) explosionRadius * f,
+					Level.ExplosionInteraction.BLOCK);
+			playSound(ModSoundEvents.ICY_CREEPER_EXPLODE.get(), 2.0F, 1.0F);
+			remove(RemovalReason.DISCARDED);
+			spawnLingeringCloud();
 		}
 
 		for (int i = 0; i < 75; ++i) {
-			double d0 = this.random.nextGaussian() * 0.3D;
-			double d1 = this.random.nextGaussian() * 0.2D;
-			double d2 = this.random.nextGaussian() * 0.3D;
-			this.level().addParticle(ParticleTypes.POOF, this.getX(), this.getY(), this.getZ(), d0, d1, d2);
+			double d0 = random.nextGaussian() * 0.3D;
+			double d1 = random.nextGaussian() * 0.2D;
+			double d2 = random.nextGaussian() * 0.3D;
+			level().addParticle(ParticleTypes.POOF, getX(), getY(), getZ(), d0, d1, d2);
 		}
 
 		for (int i = 0; i < 50; ++i) {
-			double d0 = this.random.nextGaussian() * 0.6D;
-			double d1 = this.random.nextGaussian() * 0.3D;
-			double d2 = this.random.nextGaussian() * 0.6D;
-			this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(), this.getX(), this.getY(),
-					this.getZ(),
-					d0, d1, d2);
+			double d0 = random.nextGaussian() * 0.6D;
+			double d1 = random.nextGaussian() * 0.3D;
+			double d2 = random.nextGaussian() * 0.6D;
+			level().addParticle(ModParticleTypes.SNOWFLAKE.get(), getX(), getY(), getZ(), d0, d1, d2);
 		}
 
 	}
 
 	private void spawnLingeringCloud() {
 		addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600));
-		Collection<MobEffectInstance> collection = this.getActiveEffects();
+		Collection<MobEffectInstance> collection = getActiveEffects();
 		if (!collection.isEmpty()) {
-			AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(this.level(), this.getX(),
-					this.getY(), this.getZ());
+			AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(level(), getX(), getY(), getZ());
 			areaeffectcloudentity.setRadius(2.5F);
 			areaeffectcloudentity.setRadiusOnUse(-0.5F);
 			areaeffectcloudentity.setWaitTime(10);
@@ -126,7 +123,7 @@ public class IcyCreeperEntity extends Creeper {
 				areaeffectcloudentity.addEffect(new MobEffectInstance(effectinstance));
 			}
 
-			this.level().addFreshEntity(areaeffectcloudentity);
+			level().addFreshEntity(areaeffectcloudentity);
 		}
 
 	}
