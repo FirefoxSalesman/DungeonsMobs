@@ -1,10 +1,17 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
@@ -27,38 +34,15 @@ public class PulsatingGlowLayer<T extends LivingEntity & GeoAnimatable> extends 
 		this.minimumPulseAmount = minimumPulseAmount;
 	}
 
-	// @Override
-	// public void render(PoseStack poseStack, T animatable, BakedGeoModel
-	// bakedModel, RenderType renderType,
-	// MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int
-	// packedLight,
-	// int packedOverlay) {
-	// float glow = Math.max(minimumPulseAmount, Mth.cos(animatable.tickCount *
-	// pulseSpeed) * pulseAmount);
-	// super.render(poseStack, animatable, bakedModel, renderType, bufferSource,
-	// buffer, partialTick,
-	// packedLight,
-	// packedOverlay);
-	// }
-
-	// @Override
-	// public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int
-	// packedLightIn,
-	// T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float
-	// partialTicks,
-	// float ageInTicks, float netHeadYaw, float headPitch) {
-
-	// GeoModelProvider<T> geomodel = this.getEntityModel();
-
-	// // original speed: 0.045F
-	// // original amount: 0.25F
-
-	// float glow = Math.max(minimumPulseAmount, Mth.cos(ageInTicks * pulseSpeed) *
-	// pulseAmount);
-	// renderModel(geomodel, textureLocation, matrixStackIn, bufferIn,
-	// packedLightIn, entitylivingbaseIn, 1.0F,
-	// glow, glow, glow);
-	// }
+	@Override
+	public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType renderType,
+			MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight,
+	    int packedOverlay) {
+	    float glow = Math.max(minimumPulseAmount, Mth.cos(animatable.tickCount *
+							      pulseSpeed) * pulseAmount);
+	    RenderType emmissiveRenderType = getRenderType(animatable);
+	    getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, emmissiveRenderType, bufferSource.getBuffer(emmissiveRenderType), partialTick, 15728640, OverlayTexture.NO_OVERLAY, glow, glow, glow, 1.0F);
+	}
 
 	@Override
 	protected RenderType getRenderType(T animatable) {
