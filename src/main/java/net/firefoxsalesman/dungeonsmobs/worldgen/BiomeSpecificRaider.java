@@ -31,11 +31,11 @@ public enum BiomeSpecificRaider {
     }
 
     public EntityType<? extends Raider> getType() {
-        return this.entityType;
+        return entityType;
     }
 
     public EntityType<? extends Raider> getEquivalentType() {
-        return this.equivalentType;
+        return equivalentType;
     }
 
     public TagKey<Biome> getBiomeTag() {

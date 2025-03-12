@@ -19,48 +19,48 @@ public class GoToWaterGoal extends Goal {
 	public final double speedModifier;
 	public final Level level;
 
-	public GoToWaterGoal(PathfinderMob p_i48910_1_, double p_i48910_2_) {
-		this.mob = p_i48910_1_;
-		this.speedModifier = p_i48910_2_;
-		this.level = p_i48910_1_.level();
-		this.setFlags(EnumSet.of(Flag.MOVE));
+	public GoToWaterGoal(PathfinderMob mob, double speedModifier) {
+		this.mob = mob;
+		this.speedModifier = speedModifier;
+		level = mob.level();
+		setFlags(EnumSet.of(Flag.MOVE));
 	}
 
 	public boolean canUse() {
-		if (!this.level.isDay()) {
+		if (!level.isDay()) {
 			return false;
-		} else if (this.mob.isInWater()) {
+		} else if (mob.isInWater()) {
 			return false;
 		} else {
-			Vec3 vector3d = this.getWaterPos();
+			Vec3 vector3d = getWaterPos();
 			if (vector3d == null) {
 				return false;
 			} else {
-				this.wantedX = vector3d.x;
-				this.wantedY = vector3d.y;
-				this.wantedZ = vector3d.z;
+				wantedX = vector3d.x;
+				wantedY = vector3d.y;
+				wantedZ = vector3d.z;
 				return true;
 			}
 		}
 	}
 
 	public boolean canContinueToUse() {
-		return !this.mob.getNavigation().isDone();
+		return !mob.getNavigation().isDone();
 	}
 
 	public void start() {
-		this.mob.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, this.speedModifier);
+		mob.getNavigation().moveTo(wantedX, wantedY, wantedZ, speedModifier);
 	}
 
 	@Nullable
 	public Vec3 getWaterPos() {
-		RandomSource random = this.mob.getRandom();
-		BlockPos blockpos = this.mob.blockPosition();
+		RandomSource random = mob.getRandom();
+		BlockPos blockpos = mob.blockPosition();
 
 		for (int i = 0; i < 10; ++i) {
 			BlockPos blockpos1 = blockpos.offset(random.nextInt(20) - 10, 2 - random.nextInt(8),
 					random.nextInt(20) - 10);
-			if (this.level.getBlockState(blockpos1).is(Blocks.WATER)) {
+			if (level.getBlockState(blockpos1).is(Blocks.WATER)) {
 				return Vec3.atBottomCenterOf(blockpos1);
 			}
 		}

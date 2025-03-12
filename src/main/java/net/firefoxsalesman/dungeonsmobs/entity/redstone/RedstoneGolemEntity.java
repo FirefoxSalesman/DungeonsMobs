@@ -82,31 +82,31 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	public RedstoneGolemEntity(EntityType<? extends RedstoneGolemEntity> type, Level worldIn) {
 		super(type, worldIn);
 		setMaxUpStep(1.25F);
-		this.xpReward = 40;
-		this.mineAttackCooldown = 10 * 20;
+		xpReward = 40;
+		mineAttackCooldown = 10 * 20;
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(SUMMONING_MINES, false);
-		this.entityData.define(MELEEATTACKING, false);
+		entityData.define(SUMMONING_MINES, false);
+		entityData.define(MELEEATTACKING, false);
 	}
 
 	public boolean isSummoningMines() {
-		return this.entityData.get(SUMMONING_MINES);
+		return entityData.get(SUMMONING_MINES);
 	}
 
 	public void setSummoningMines(boolean summoningMines) {
-		this.entityData.set(SUMMONING_MINES, summoningMines);
+		entityData.set(SUMMONING_MINES, summoningMines);
 	}
 
 	public boolean isMeleeAttacking() {
-		return this.entityData.get(MELEEATTACKING);
+		return entityData.get(MELEEATTACKING);
 	}
 
 	public void setMeleeAttacking(boolean attacking) {
-		this.entityData.set(MELEEATTACKING, attacking);
+		entityData.set(MELEEATTACKING, attacking);
 	}
 
 	@Override
@@ -115,9 +115,9 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		Vec3 velocity = this.getDeltaMovement();
+		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		if (this.isSummoningMines()) {
+		if (isSummoningMines()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController().setAnimation(RawAnimation.begin().then("animation.redstone_golem.summon",
 					LoopType.PLAY_ONCE));
@@ -139,17 +139,17 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new RedstoneGolemEntity.MeleeGoal());
-		this.goalSelector.addGoal(5, new RedstoneGolemEntity.AttackGoal(this, 1.3D));
-		this.goalSelector.addGoal(4, new RedstoneGolemEntity.SummonRedstoneMinesGoal());
-		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		goalSelector.addGoal(0, new RedstoneGolemEntity.MeleeGoal());
+		goalSelector.addGoal(5, new RedstoneGolemEntity.AttackGoal(this, 1.3D));
+		goalSelector.addGoal(4, new RedstoneGolemEntity.SummonRedstoneMinesGoal());
+		goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+		goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
-		this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		targetSelector.addGoal(2, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+		targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -157,7 +157,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(ModSoundEvents.REDSTONE_GOLEM_STEP.get(), 1.0F, 1.0F);
+		playSound(ModSoundEvents.REDSTONE_GOLEM_STEP.get(), 1.0F, 1.0F);
 	}
 
 	@Nullable
@@ -174,73 +174,73 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	public void baseTick() {
 		super.baseTick();
 
-		this.soundLoopTick++;
-		if (this.soundLoopTick % 30 == 0) {
-			this.playSound(ModSoundEvents.REDSTONE_GOLEM_IDLE_PULSE_LOOP.get(), 0.75F, 1.0F);
+		soundLoopTick++;
+		if (soundLoopTick % 30 == 0) {
+			playSound(ModSoundEvents.REDSTONE_GOLEM_IDLE_PULSE_LOOP.get(), 0.75F, 1.0F);
 		}
 
-		if (!this.level().isClientSide && this.random.nextInt(100) == 0) {
-			this.playSound(ModSoundEvents.REDSTONE_GOLEM_SPARK.get(), 0.25F, this.getVoicePitch());
-			this.level().broadcastEntityEvent(this, (byte) 4);
+		if (!level().isClientSide && random.nextInt(100) == 0) {
+			playSound(ModSoundEvents.REDSTONE_GOLEM_SPARK.get(), 0.25F, getVoicePitch());
+			level().broadcastEntityEvent(this, (byte) 4);
 		}
 	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.attackID != 0) {
-			++this.attackTimer;
+		if (attackID != 0) {
+			++attackTimer;
 		}
-		if (!this.level().isClientSide && this.mineAttackCooldown > 0) {
-			--this.mineAttackCooldown;
+		if (!level().isClientSide && mineAttackCooldown > 0) {
+			--mineAttackCooldown;
 		}
-		this.handleLeafCollision();
-		this.handleSteppingOnBlocks();
+		handleLeafCollision();
+		handleSteppingOnBlocks();
 	}
 
 	private void handleSteppingOnBlocks() {
-		if (this.getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
-				&& this.random.nextInt(5) == 0) {
-			int i = Mth.floor(this.getX());
-			int j = Mth.floor(this.getY() - (double) 0.2F);
-			int k = Mth.floor(this.getZ());
+		if (getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
+				&& random.nextInt(5) == 0) {
+			int i = Mth.floor(getX());
+			int j = Mth.floor(getY() - (double) 0.2F);
+			int k = Mth.floor(getZ());
 			BlockPos pos = new BlockPos(i, j, k);
-			BlockState blockstate = this.level().getBlockState(pos);
+			BlockState blockstate = level().getBlockState(pos);
 			if (!blockstate.isAir()) {
-				this.level().addParticle(
+				level().addParticle(
 						new BlockParticleOption(ParticleTypes.BLOCK, blockstate).setPos(pos),
-						this.getX() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						this.getY() + 0.1D,
-						this.getZ() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D,
-						((double) this.random.nextFloat() - 0.5D) * 4.0D);
+						getX() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						getY() + 0.1D,
+						getZ() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						4.0D * ((double) random.nextFloat() - 0.5D), 0.5D,
+						((double) random.nextFloat() - 0.5D) * 4.0D);
 			}
 		}
 	}
 
 	private void handleLeafCollision() {
-		if (this.isAlive()) {
+		if (isAlive()) {
 
-			if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory
-					.getMobGriefingEvent(this.level(), this)) {
+			if (horizontalCollision && net.minecraftforge.event.ForgeEventFactory
+					.getMobGriefingEvent(level(), this)) {
 				boolean destroyedLeafBlock = false;
-				AABB axisalignedbb = this.getBoundingBox().inflate(0.2D);
+				AABB axisalignedbb = getBoundingBox().inflate(0.2D);
 
 				for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(axisalignedbb.minX),
 						Mth.floor(axisalignedbb.minY), Mth.floor(axisalignedbb.minZ),
 						Mth.floor(axisalignedbb.maxX), Mth.floor(axisalignedbb.maxY),
 						Mth.floor(axisalignedbb.maxZ))) {
-					BlockState blockstate = this.level().getBlockState(blockpos);
+					BlockState blockstate = level().getBlockState(blockpos);
 					Block block = blockstate.getBlock();
 					if (block instanceof LeavesBlock) {
-						destroyedLeafBlock = this.level().destroyBlock(blockpos, true, this)
+						destroyedLeafBlock = level().destroyBlock(blockpos, true, this)
 								|| destroyedLeafBlock;
 					}
 				}
 
-				if (!destroyedLeafBlock && this.onGround()) {
-					this.jumpFromGround();
+				if (!destroyedLeafBlock && onGround()) {
+					jumpFromGround();
 				}
 			}
 		}
@@ -248,7 +248,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return this.factory;
+		return factory;
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -262,7 +262,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	}
 
 	private float getAttackKnockback() {
-		return (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+		return (float) getAttributeValue(Attributes.ATTACK_KNOCKBACK);
 	}
 
 	/**
@@ -274,14 +274,14 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	}
 
 	public boolean doHurtTarget(Entity entityIn) {
-		if (!this.level().isClientSide && this.attackID == 0) {
-			this.attackID = MELEE_ATTACK;
+		if (!level().isClientSide && attackID == 0) {
+			attackID = MELEE_ATTACK;
 		}
 		return true;
 	}
 
 	public boolean checkSpawnObstruction(LevelReader worldIn) {
-		BlockPos golemPos = this.blockPosition();
+		BlockPos golemPos = blockPosition();
 		BlockPos posBeneathGolem = golemPos.below();
 		BlockState blockstateBeneathGolem = worldIn.getBlockState(posBeneathGolem);
 		if (!blockstateBeneathGolem.entityCanStandOn(worldIn, posBeneathGolem, this)) {
@@ -314,23 +314,23 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 	 * Handler for {link WorldsetEntityState}
 	 */
 	private void setAttackID(int id) {
-		this.attackID = id;
-		this.attackTimer = 0;
-		this.level().broadcastEntityEvent(this, (byte) -id);
+		attackID = id;
+		attackTimer = 0;
+		level().broadcastEntityEvent(this, (byte) -id);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte id) {
 		if (id <= 0) {
-			this.attackID = Math.abs(id);
-			this.attackTimer = 0;
+			attackID = Math.abs(id);
+			attackTimer = 0;
 		} else if (id == 4) {
 			for (int i = 0; i < 5; i++) {
-				this.level().addParticle(ModParticleTypes.REDSTONE_SPARK.get(), this.getRandomX(1.1D),
-						this.getRandomY(), this.getRandomZ(1.1D),
-						-0.15D + this.random.nextDouble() * 0.15D,
-						-0.15D + this.random.nextDouble() * 0.15D,
-						-0.15D + this.random.nextDouble() * 0.15D);
+				level().addParticle(ModParticleTypes.REDSTONE_SPARK.get(), getRandomX(1.1D),
+						getRandomY(), getRandomZ(1.1D),
+						-0.15D + random.nextDouble() * 0.15D,
+						-0.15D + random.nextDouble() * 0.15D,
+						-0.15D + random.nextDouble() * 0.15D);
 			}
 		} else {
 			super.handleEntityEvent(id);
@@ -339,7 +339,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 
 	@OnlyIn(Dist.CLIENT)
 	public Vec3 getLeashOffset() {
-		return new Vec3(0.0D, 0.875F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
+		return new Vec3(0.0D, 0.875F * getEyeHeight(), getBbWidth() * 0.4F);
 	}
 
 	public SoundSource getSoundSource() {
@@ -358,8 +358,8 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 		}
 
 		protected PathFinder createPathFinder(int p_179679_1_) {
-			this.nodeEvaluator = new RedstoneGolemEntity.Processor();
-			return new PathFinder(this.nodeEvaluator, p_179679_1_);
+			nodeEvaluator = new RedstoneGolemEntity.Processor();
+			return new PathFinder(nodeEvaluator, p_179679_1_);
 		}
 	}
 
@@ -394,7 +394,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 			return true;
 		} else if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).getMobType() == MobType.ILLAGER
 				|| entityIn instanceof Raider) {
-			return this.getTeam() == null && entityIn.getTeam() == null;
+			return getTeam() == null && entityIn.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -420,7 +420,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 		@Override
 		public void start() {
 			RedstoneGolemEntity.this.setAggressive(true);
-			this.delayCounter = 0;
+			delayCounter = 0;
 		}
 
 		@Override
@@ -432,22 +432,22 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 
 			RedstoneGolemEntity.this.lookControl.setLookAt(livingentity, 30.0F, 30.0F);
 
-			if (--this.delayCounter <= 0) {
-				this.delayCounter = 4 + RedstoneGolemEntity.this.getRandom().nextInt(7);
-				RedstoneGolemEntity.this.getNavigation().moveTo(livingentity, this.moveSpeed);
+			if (--delayCounter <= 0) {
+				delayCounter = 4 + RedstoneGolemEntity.this.getRandom().nextInt(7);
+				RedstoneGolemEntity.this.getNavigation().moveTo(livingentity, moveSpeed);
 			}
 
-			this.attackTimer = Math.max(this.attackTimer - 1, 0);
-			this.checkAndPerformAttack(livingentity, RedstoneGolemEntity.this.distanceToSqr(
+			attackTimer = Math.max(attackTimer - 1, 0);
+			checkAndPerformAttack(livingentity, RedstoneGolemEntity.this.distanceToSqr(
 					livingentity.getX(), livingentity.getBoundingBox().minY, livingentity.getZ()));
 		}
 
 		@Override
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-			if ((distToEnemySqr <= this.getAttackReachSqr(enemy)
+			if ((distToEnemySqr <= getAttackReachSqr(enemy)
 					|| RedstoneGolemEntity.this.getBoundingBox().intersects(enemy.getBoundingBox()))
-					&& this.attackTimer <= 0) {
-				this.attackTimer = this.maxAttackTimer;
+					&& attackTimer <= 0) {
+				attackTimer = maxAttackTimer;
 				RedstoneGolemEntity.this.doHurtTarget(enemy);
 			}
 		}
@@ -461,14 +461,14 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 		}
 
 		public AttackGoal setMaxAttackTick(int max) {
-			this.maxAttackTimer = max;
+			maxAttackTimer = max;
 			return this;
 		}
 	}
 
 	class MeleeGoal extends Goal {
 		public MeleeGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
+			setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
 		}
 
 		@Override
@@ -509,7 +509,7 @@ public class RedstoneGolemEntity extends Raider implements GeoEntity {
 					attackTarget.hurt(damageSources().mobAttack(RedstoneGolemEntity.this),
 							(float) RedstoneGolemEntity.this
 									.getAttributeValue(Attributes.ATTACK_DAMAGE));
-					this.forceKnockback(attackTarget, attackKnockback * 0.5F, ratioX, ratioZ,
+					forceKnockback(attackTarget, attackKnockback * 0.5F, ratioX, ratioZ,
 							knockbackReduction);
 					RedstoneGolemEntity.this.setDeltaMovement(RedstoneGolemEntity.this
 							.getDeltaMovement().multiply(0.6D, 1.0D, 0.6D));

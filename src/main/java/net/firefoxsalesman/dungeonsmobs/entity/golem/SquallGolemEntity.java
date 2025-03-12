@@ -82,7 +82,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	public SquallGolemEntity(EntityType<? extends Raider> type, Level world) {
 		super(type, world);
-		this.xpReward = 20;
+		xpReward = 20;
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -172,7 +172,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(ACTIVATE, false);
-		this.entityData.define(MELEEATTACKING, false);
+		entityData.define(MELEEATTACKING, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -186,85 +186,83 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	public void setActivate(boolean isActivate) {
-		this.entityData.set(ACTIVATE, isActivate);
+		entityData.set(ACTIVATE, isActivate);
 	}
 
 	public boolean getActivate() {
-		return this.entityData.get(ACTIVATE);
+		return entityData.get(ACTIVATE);
 	}
 
 	public boolean isMeleeAttacking() {
-		return this.entityData.get(MELEEATTACKING);
+		return entityData.get(MELEEATTACKING);
 	}
 
 	public void setMeleeAttacking(boolean attacking) {
-		this.entityData.set(MELEEATTACKING, attacking);
+		entityData.set(MELEEATTACKING, attacking);
 	}
 
 	public void aiStep() {
 		super.aiStep();
-		if (this.attackID != 0) {
-			++this.attackTimer;
+		if (attackID != 0) {
+			++attackTimer;
 		}
-		this.setDeltaMovement(SquallGolemEntity.this.getDeltaMovement().x,
+		setDeltaMovement(SquallGolemEntity.this.getDeltaMovement().x,
 				SquallGolemEntity.this.getDeltaMovement().y - 2.5,
 				SquallGolemEntity.this.getDeltaMovement().z);
-		this.handleLeafCollision();
-		this.handleSteppingOnBlocks();
+		handleLeafCollision();
+		handleSteppingOnBlocks();
 	}
 
 	public void tick() {
 		super.tick();
 
-		if (this.attackID == STOMP_ATTACK) {
-			if (this.attackTimer == 30) {
+		if (attackID == STOMP_ATTACK) {
+			if (attackTimer == 30) {
 				Attackparticle(40, 0.5f, 2.6f, 0.5f);
 				Attackparticle(40, 0.5f, 2.4f, -1f);
-				// this.playSound(SoundEvents.GENERIC_EXPLODE, 1.5f, 1F +
-				// this.getRandom().nextFloat() * 0.1F);
 			}
 		}
-		LivingEntity target = this.getTarget();
+		LivingEntity target = getTarget();
 		if (!level().isClientSide) {
 			timeWithoutTarget++;
 			if (target != null) {
 				timeWithoutTarget = 0;
-				if (!this.getActivate()) {
-					this.setActivate(true);
-					this.attackID = GOLEM_ACTIVATE;
+				if (!getActivate()) {
+					setActivate(true);
+					attackID = GOLEM_ACTIVATE;
 				}
 			}
-			if (this.getCurrentRaid() != null && this.getCurrentRaid().isActive()) {
+			if (getCurrentRaid() != null && getCurrentRaid().isActive()) {
 				timeWithoutTarget = 0;
-				if (!this.getActivate()) {
-					this.setActivate(true);
-					this.attackID = GOLEM_ACTIVATE;
+				if (!getActivate()) {
+					setActivate(true);
+					attackID = GOLEM_ACTIVATE;
 				}
 			}
 
-			if (timeWithoutTarget > 200 && this.getActivate() && target == null) {
+			if (timeWithoutTarget > 200 && getActivate() && target == null) {
 				timeWithoutTarget = 0;
-				this.setActivate(false);
-				this.attackID = GOLEM_DEACTIVATE;
+				setActivate(false);
+				attackID = GOLEM_DEACTIVATE;
 
 			}
 		}
 
-		if (this.cd > 0) {
-			this.cd--;
+		if (cd > 0) {
+			cd--;
 		}
 
 	}
 
 	private void Attackparticle(int paticle, float circle, float vec, float math) {
-		if (this.level().isClientSide) {
+		if (level().isClientSide) {
 			for (int i1 = 0; i1 < paticle; i1++) {
 				double DeltaMovementX = getRandom().nextGaussian() * 0.07D;
 				double DeltaMovementY = getRandom().nextGaussian() * 0.07D;
 				double DeltaMovementZ = getRandom().nextGaussian() * 0.07D;
-				float angle = (0.01745329251F * this.yBodyRot) + i1;
-				float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F));
-				float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F));
+				float angle = (0.01745329251F * yBodyRot) + i1;
+				float f = Mth.cos(getYRot() * ((float) Math.PI / 180F));
+				float f1 = Mth.sin(getYRot() * ((float) Math.PI / 180F));
 				double extraX = circle * Mth.sin((float) (Math.PI + angle));
 				double extraY = 0.3F;
 				double extraZ = circle * Mth.cos(angle);
@@ -277,8 +275,8 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				int hitZ = Mth.floor(getZ() + vec * vecZ + extraZ);
 				BlockPos hit = new BlockPos(hitX, hitY, hitZ);
 				BlockState block = level().getBlockState(hit.below());
-				this.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, block),
-						getX() + vec * vecX + extraX + f * math, this.getY() + extraY,
+				level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, block),
+						getX() + vec * vecX + extraX + f * math, getY() + extraY,
 						getZ() + vec * vecZ + extraZ + f1 * math, DeltaMovementX,
 						DeltaMovementY, DeltaMovementZ);
 
@@ -287,49 +285,49 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	private void handleSteppingOnBlocks() {
-		if (this.getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
-				&& this.random.nextInt(5) == 0) {
-			int i = Mth.floor(this.getX());
-			int j = Mth.floor(this.getY() - (double) 0.2F);
-			int k = Mth.floor(this.getZ());
+		if (getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
+				&& random.nextInt(5) == 0) {
+			int i = Mth.floor(getX());
+			int j = Mth.floor(getY() - (double) 0.2F);
+			int k = Mth.floor(getZ());
 			BlockPos pos = new BlockPos(i, j, k);
-			BlockState blockstate = this.level().getBlockState(pos);
+			BlockState blockstate = level().getBlockState(pos);
 			if (!blockstate.isAir()) {
-				this.level().addParticle(
+				level().addParticle(
 						new BlockParticleOption(ParticleTypes.BLOCK, blockstate).setPos(pos),
-						this.getX() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						this.getY() + 0.1D,
-						this.getZ() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D,
-						((double) this.random.nextFloat() - 0.5D) * 4.0D);
+						getX() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						getY() + 0.1D,
+						getZ() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						4.0D * ((double) random.nextFloat() - 0.5D), 0.5D,
+						((double) random.nextFloat() - 0.5D) * 4.0D);
 			}
 		}
 	}
 
 	private void handleLeafCollision() {
-		if (this.isAlive()) {
+		if (isAlive()) {
 
-			if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory
-					.getMobGriefingEvent(this.level(), this)) {
+			if (horizontalCollision && net.minecraftforge.event.ForgeEventFactory
+					.getMobGriefingEvent(level(), this)) {
 				boolean destroyedLeafBlock = false;
-				AABB axisalignedbb = this.getBoundingBox().inflate(0.2D);
+				AABB axisalignedbb = getBoundingBox().inflate(0.2D);
 
 				for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(axisalignedbb.minX),
 						Mth.floor(axisalignedbb.minY), Mth.floor(axisalignedbb.minZ),
 						Mth.floor(axisalignedbb.maxX), Mth.floor(axisalignedbb.maxY),
 						Mth.floor(axisalignedbb.maxZ))) {
-					BlockState blockstate = this.level().getBlockState(blockpos);
+					BlockState blockstate = level().getBlockState(blockpos);
 					Block block = blockstate.getBlock();
 					if (block instanceof LeavesBlock) {
-						destroyedLeafBlock = this.level().destroyBlock(blockpos, true, this)
+						destroyedLeafBlock = level().destroyBlock(blockpos, true, this)
 								|| destroyedLeafBlock;
 					}
 				}
 
-				if (!destroyedLeafBlock && this.onGround()) {
-					this.jumpFromGround();
+				if (!destroyedLeafBlock && onGround()) {
+					jumpFromGround();
 				}
 			}
 		}
@@ -342,7 +340,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	@Nullable
 	@Override
 	protected SoundEvent getAmbientSound() {
-		if (this.entityData.get(ACTIVATE) && this.noActionTime > 5) {
+		if (entityData.get(ACTIVATE) && noActionTime > 5) {
 			return ModSoundEvents.SQUALL_GOLEM_IDLE.get();
 		} else {
 			return null;
@@ -350,8 +348,8 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	public boolean doHurtTarget(Entity entityIn) {
-		if (!this.level().isClientSide && this.attackID == 0) {
-			this.attackID = STOMP_ATTACK;
+		if (!level().isClientSide && attackID == 0) {
+			attackID = STOMP_ATTACK;
 		}
 		return true;
 	}
@@ -362,10 +360,10 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		boolean flag = false;
-		if (!this.getActivate() && source != damageSources().fellOutOfWorld()) {
-			this.playSound(SoundEvents.ZOMBIE_ATTACK_IRON_DOOR, 1.0F, 0.4F);
+		if (!getActivate() && source != damageSources().fellOutOfWorld()) {
+			playSound(SoundEvents.ZOMBIE_ATTACK_IRON_DOOR, 1.0F, 0.4F);
 			if (source.getEntity() instanceof LivingEntity && source.getEntity().isInvulnerable()) {
-				this.setTarget((LivingEntity) source.getEntity());
+				setTarget((LivingEntity) source.getEntity());
 			}
 			flag = false;
 		} else {
@@ -375,7 +373,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	public boolean checkSpawnObstruction(LevelReader worldIn) {
-		BlockPos golemPos = this.blockPosition();
+		BlockPos golemPos = blockPosition();
 		BlockPos posBeneathGolem = golemPos.below();
 		BlockState blockstateBeneathGolem = worldIn.getBlockState(posBeneathGolem);
 		if (!blockstateBeneathGolem.entityCanStandOn(worldIn, posBeneathGolem, this)) {
@@ -408,16 +406,16 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	 * Handler for {link WorldsetEntityState}
 	 */
 	private void setAttackID(int id) {
-		this.attackID = id;
-		this.attackTimer = 0;
-		this.level().broadcastEntityEvent(this, (byte) -id);
+		attackID = id;
+		attackTimer = 0;
+		level().broadcastEntityEvent(this, (byte) -id);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte id) {
 		if (id <= 0) {
-			this.attackID = Math.abs(id);
-			this.attackTimer = 0;
+			attackID = Math.abs(id);
+			attackTimer = 0;
 		} else {
 			super.handleEntityEvent(id);
 		}
@@ -425,7 +423,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	@OnlyIn(Dist.CLIENT)
 	public Vec3 getLeashOffset() {
-		return new Vec3(0.0D, 0.875F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
+		return new Vec3(0.0D, 0.875F * getEyeHeight(), getBbWidth() * 0.4F);
 	}
 
 	public SoundSource getSoundSource() {
@@ -433,7 +431,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(ModSoundEvents.SQUALL_GOLEM_WALK.get(), 1.12F, 1.0F);
+		playSound(ModSoundEvents.SQUALL_GOLEM_WALK.get(), 1.12F, 1.0F);
 	}
 
 	@Nullable
@@ -463,8 +461,8 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		}
 
 		protected PathFinder createPathFinder(int p_179679_1_) {
-			this.nodeEvaluator = new Processor();
-			return new PathFinder(this.nodeEvaluator, p_179679_1_);
+			nodeEvaluator = new Processor();
+			return new PathFinder(nodeEvaluator, p_179679_1_);
 		}
 	}
 
@@ -507,7 +505,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	class DoNothingGoal extends Goal {
 		public DoNothingGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 		}
 
 		public boolean canUse() {
@@ -522,7 +520,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	class Activate extends Goal {
 		public Activate() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 		}
 
 		public boolean canUse() {
@@ -554,7 +552,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	class Deactivate extends Goal {
 		public Deactivate() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 		}
 
 		public boolean canUse() {
@@ -586,7 +584,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 	class MeleeGoal extends Goal {
 		public MeleeGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
+			setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
 		}
 
 		@Override
@@ -662,7 +660,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
 						double knockbackReduction = 0.35D;
 						entityHit.hurt(damageSources().mobAttack(SquallGolemEntity.this), damage);
-						this.forceKnockback(entityHit, attackKnockback * 0.8F, ratioX, ratioZ,
+						forceKnockback(entityHit, attackKnockback * 0.8F, ratioX, ratioZ,
 								knockbackReduction);
 						entityHit.setDeltaMovement(
 								entityHit.getDeltaMovement().add(0, 0.3333333, 0));

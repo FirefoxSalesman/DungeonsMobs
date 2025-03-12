@@ -72,30 +72,30 @@ public class AreaDamageEntity extends Entity {
 
 	@Override
 	public EntityDimensions getDimensions(Pose p_213305_1_) {
-		return EntityDimensions.scalable(this.getSize(), this.getYSize());
+		return EntityDimensions.scalable(getSize(), getYSize());
 	}
 
 	public void refreshDimensions() {
-		double d0 = this.getX();
-		double d1 = this.getY();
-		double d2 = this.getZ();
+		double d0 = getX();
+		double d1 = getY();
+		double d2 = getZ();
 		super.refreshDimensions();
-		this.setPos(d0, d1, d2);
+		setPos(d0, d1, d2);
 	}
 
 	public boolean canEntityBeDamaged(Entity entity) {
 		if (entity == null) {
 			return false;
-		} else if (this.owner != null && entity == this.owner) {
+		} else if (owner != null && entity == owner) {
 			return false;
-		} else if (this.owner != null && this.owner.isAlliedTo(entity) && !this.friendlyFire) {
+		} else if (owner != null && owner.isAlliedTo(entity) && !friendlyFire) {
 			return false;
-		} else if (!this.damagedEntities.isEmpty() && !this.constantDamage
-				&& this.damagedEntities.contains(entity)) {
+		} else if (!damagedEntities.isEmpty() && !constantDamage
+				&& damagedEntities.contains(entity)) {
 			return false;
-		} else if (!this.connectedAreaDamages.isEmpty()) {
+		} else if (!connectedAreaDamages.isEmpty()) {
 			boolean canConnectedAreaDamagesHarm = true;
-			for (AreaDamageEntity areaDamage : this.connectedAreaDamages) {
+			for (AreaDamageEntity areaDamage : connectedAreaDamages) {
 				if (!areaDamage.damagedEntities.isEmpty() && !areaDamage.constantDamage
 						&& areaDamage.damagedEntities.contains(entity)) {
 					canConnectedAreaDamagesHarm = false;
@@ -111,47 +111,47 @@ public class AreaDamageEntity extends Entity {
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 1) {
 			for (int particleAmount = 0; particleAmount < 25; particleAmount++) {
-				int i = Mth.floor(this.getX());
-				int j = Mth.floor(this.getY() - (double) 0.2F);
-				int k = Mth.floor(this.getZ());
+				int i = Mth.floor(getX());
+				int j = Mth.floor(getY() - (double) 0.2F);
+				int k = Mth.floor(getZ());
 				BlockPos pos = new BlockPos(i, j, k);
 				BlockState blockstate = level().getBlockState(pos);
 				if (!blockstate.isAir()) {
 					level().addParticle(
 							new BlockParticleOption(ParticleTypes.BLOCK, blockstate)
 									.setPos(pos),
-							this.getX(), this.getY() + 0.1D, this.getZ(), 0, 0, 0);
+							getX(), getY() + 0.1D, getZ(), 0, 0, 0);
 				}
 			}
 
 			for (int i = 0; i < 60; ++i) {
-				Vec3 vector3d = this.position();
-				double d0 = this.random.nextGaussian() * 15.0D;
-				double d1 = this.random.nextFloat() * 1.75D;
-				double d2 = this.random.nextGaussian() * 15.0D;
+				Vec3 vector3d = position();
+				double d0 = random.nextGaussian() * 15.0D;
+				double d1 = random.nextFloat() * 1.75D;
+				double d2 = random.nextGaussian() * 15.0D;
 				level().addParticle(ModParticleTypes.DUST.get(), vector3d.x, vector3d.y, vector3d.z,
 						d0, d1, d2);
 			}
 		} else if (p_70103_1_ == 2) {
 			for (int particleAmount = 0; particleAmount < 25; particleAmount++) {
-				int i = Mth.floor(this.getX());
-				int j = Mth.floor(this.getY() - (double) 0.2F);
-				int k = Mth.floor(this.getZ());
+				int i = Mth.floor(getX());
+				int j = Mth.floor(getY() - (double) 0.2F);
+				int k = Mth.floor(getZ());
 				BlockPos pos = new BlockPos(i, j, k);
 				BlockState blockstate = level().getBlockState(pos);
 				if (!blockstate.isAir()) {
 					level().addParticle(
 							new BlockParticleOption(ParticleTypes.BLOCK, blockstate)
 									.setPos(pos),
-							this.getX(), this.getY() + 0.1D, this.getZ(), 0, 0, 0);
+							getX(), getY() + 0.1D, getZ(), 0, 0, 0);
 				}
 			}
 
 			for (int i = 0; i < 50; ++i) {
-				Vec3 vector3d = this.position();
-				double d0 = this.random.nextGaussian() * 0.5D;
-				double d1 = this.random.nextFloat() * 2.0D;
-				double d2 = this.random.nextGaussian() * 0.5D;
+				Vec3 vector3d = position();
+				double d0 = random.nextGaussian() * 0.5D;
+				double d1 = random.nextFloat() * 2.0D;
+				double d2 = random.nextGaussian() * 0.5D;
 				level().addParticle(ParticleTypes.BUBBLE, vector3d.x, vector3d.y, vector3d.z, d0, d1,
 						d2);
 			}
@@ -188,44 +188,44 @@ public class AreaDamageEntity extends Entity {
 	public void baseTick() {
 		super.baseTick();
 
-		this.refreshDimensions();
+		refreshDimensions();
 
-		List<Entity> list = level().getEntities(this, this.getBoundingBox(), Entity::isAlive);
+		List<Entity> list = level().getEntities(this, getBoundingBox(), Entity::isAlive);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
-				if (!level().isClientSide && this.canEntityBeDamaged(entity)) {
-					entity.hurt(this.damageSource, damage);
-					if (this.distanceTo(entity) >= 0.5) {
-						double d0 = entity.getX() - this.getX();
-						double d1 = entity.getZ() - this.getZ();
+				if (!level().isClientSide && canEntityBeDamaged(entity)) {
+					entity.hurt(damageSource, damage);
+					if (distanceTo(entity) >= 0.5) {
+						double d0 = entity.getX() - getX();
+						double d1 = entity.getZ() - getZ();
 						double d2 = Math.max(d0 * d0 + d1 * d1, 0.001D);
-						entity.push(d0 / d2 * this.knockbackAmount, this.knockbackAmountY,
-								d1 / d2 * this.knockbackAmount);
+						entity.push(d0 / d2 * knockbackAmount, knockbackAmountY,
+								d1 / d2 * knockbackAmount);
 					}
-					if (entity instanceof LivingEntity && this.disableShields) {
-						this.disableShield(((LivingEntity) entity), disableShieldTime);
+					if (entity instanceof LivingEntity && disableShields) {
+						disableShield(((LivingEntity) entity), disableShieldTime);
 					}
-					this.damagedEntities.add(entity);
+					damagedEntities.add(entity);
 				}
 			}
 		}
 
-		if (this.getParticleType() > 0) {
-			level().broadcastEntityEvent(this, (byte) this.getParticleType());
-			this.setParticleType(0);
+		if (getParticleType() > 0) {
+			level().broadcastEntityEvent(this, (byte) getParticleType());
+			setParticleType(0);
 		}
 
-		if (this.getSize() < this.getSizeToReach()) {
-			this.setSize(this.getSize() + this.getGrowSpeed());
+		if (getSize() < getSizeToReach()) {
+			setSize(getSize() + getGrowSpeed());
 		}
 
-		if (this.getSize() >= this.getSizeToReach()) {
-			this.extraTimeTick++;
+		if (getSize() >= getSizeToReach()) {
+			extraTimeTick++;
 		}
 
-		if (!level().isClientSide && ((this.getExtraTime() > 0 && this.extraTimeTick >= this.getExtraTime())
-				|| (this.getExtraTime() <= 0 && this.getSize() >= this.getSizeToReach()))) {
-			this.remove(RemovalReason.DISCARDED);
+		if (!level().isClientSide && ((getExtraTime() > 0 && extraTimeTick >= getExtraTime())
+				|| (getExtraTime() <= 0 && getSize() >= getSizeToReach()))) {
+			remove(RemovalReason.DISCARDED);
 		}
 	}
 
@@ -241,92 +241,92 @@ public class AreaDamageEntity extends Entity {
 
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(SIZE, 0.0F);
-		this.entityData.define(SIZE_TO_REACH, 0.0F);
-		this.entityData.define(Y_SIZE, 0.0F);
-		this.entityData.define(GROW_SPEED, 0.0F);
-		this.entityData.define(PARTICLE_TYPE, 0);
-		this.entityData.define(EXTRA_TIME, 0);
+		entityData.define(SIZE, 0.0F);
+		entityData.define(SIZE_TO_REACH, 0.0F);
+		entityData.define(Y_SIZE, 0.0F);
+		entityData.define(GROW_SPEED, 0.0F);
+		entityData.define(PARTICLE_TYPE, 0);
+		entityData.define(EXTRA_TIME, 0);
 	}
 
 	public float getSize() {
-		return this.entityData.get(SIZE);
+		return entityData.get(SIZE);
 	}
 
 	public void setSize(float attached) {
-		this.entityData.set(SIZE, attached);
+		entityData.set(SIZE, attached);
 	}
 
 	public float getSizeToReach() {
-		return this.entityData.get(SIZE_TO_REACH);
+		return entityData.get(SIZE_TO_REACH);
 	}
 
 	public void setSizeToReach(float attached) {
-		this.entityData.set(SIZE_TO_REACH, attached);
+		entityData.set(SIZE_TO_REACH, attached);
 	}
 
 	public float getYSize() {
-		return this.entityData.get(Y_SIZE);
+		return entityData.get(Y_SIZE);
 	}
 
 	public void setYSize(float attached) {
-		this.entityData.set(Y_SIZE, attached);
+		entityData.set(Y_SIZE, attached);
 	}
 
 	public float getGrowSpeed() {
-		return this.entityData.get(GROW_SPEED);
+		return entityData.get(GROW_SPEED);
 	}
 
 	public void setGrowSpeed(float attached) {
-		this.entityData.set(GROW_SPEED, attached);
+		entityData.set(GROW_SPEED, attached);
 	}
 
 	public int getParticleType() {
-		return this.entityData.get(PARTICLE_TYPE);
+		return entityData.get(PARTICLE_TYPE);
 	}
 
 	public void setParticleType(int attached) {
-		this.entityData.set(PARTICLE_TYPE, attached);
+		entityData.set(PARTICLE_TYPE, attached);
 	}
 
 	public int getExtraTime() {
-		return this.entityData.get(EXTRA_TIME);
+		return entityData.get(EXTRA_TIME);
 	}
 
 	public void setExtraTime(int attached) {
-		this.entityData.set(EXTRA_TIME, attached);
+		entityData.set(EXTRA_TIME, attached);
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-		this.setSize(p_70037_1_.getFloat("Size"));
-		this.setSizeToReach(p_70037_1_.getFloat("SizeToReach"));
-		this.setYSize(p_70037_1_.getFloat("YSize"));
-		this.setGrowSpeed(p_70037_1_.getFloat("GrowSpeed"));
-		this.setParticleType(p_70037_1_.getInt("ParticleType"));
-		this.setExtraTime(p_70037_1_.getInt("ExtraTime"));
-		this.damage = p_70037_1_.getFloat("Damage");
-		this.constantDamage = p_70037_1_.getBoolean("ConstantDamage");
-		this.knockbackAmount = p_70037_1_.getDouble("KnockbackAmount");
-		this.knockbackAmountY = p_70037_1_.getDouble("KnockbackAmountY");
-		this.disableShieldTime = p_70037_1_.getInt("DisableShieldTime");
-		this.disableShields = p_70037_1_.getBoolean("DisableShields");
+		setSize(p_70037_1_.getFloat("Size"));
+		setSizeToReach(p_70037_1_.getFloat("SizeToReach"));
+		setYSize(p_70037_1_.getFloat("YSize"));
+		setGrowSpeed(p_70037_1_.getFloat("GrowSpeed"));
+		setParticleType(p_70037_1_.getInt("ParticleType"));
+		setExtraTime(p_70037_1_.getInt("ExtraTime"));
+		damage = p_70037_1_.getFloat("Damage");
+		constantDamage = p_70037_1_.getBoolean("ConstantDamage");
+		knockbackAmount = p_70037_1_.getDouble("KnockbackAmount");
+		knockbackAmountY = p_70037_1_.getDouble("KnockbackAmountY");
+		disableShieldTime = p_70037_1_.getInt("DisableShieldTime");
+		disableShields = p_70037_1_.getBoolean("DisableShields");
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
-		p_213281_1_.putFloat("Size", this.getSize());
-		p_213281_1_.putFloat("SizeToReach", this.getSizeToReach());
-		p_213281_1_.putFloat("YSize", this.getYSize());
-		p_213281_1_.putFloat("GrowSpeed", this.getGrowSpeed());
-		p_213281_1_.putInt("ParticleType", this.getParticleType());
-		p_213281_1_.putFloat("Damage", this.damage);
-		p_213281_1_.putBoolean("ConstantDamage", this.constantDamage);
-		p_213281_1_.putDouble("KnockbackAmount", this.knockbackAmount);
-		p_213281_1_.putDouble("KnockbackAmountY", this.knockbackAmountY);
-		p_213281_1_.putInt("DisableShieldTime", this.disableShieldTime);
-		p_213281_1_.putBoolean("DisableShields", this.disableShields);
-		p_213281_1_.putInt("ExtraTime", this.getExtraTime());
+		p_213281_1_.putFloat("Size", getSize());
+		p_213281_1_.putFloat("SizeToReach", getSizeToReach());
+		p_213281_1_.putFloat("YSize", getYSize());
+		p_213281_1_.putFloat("GrowSpeed", getGrowSpeed());
+		p_213281_1_.putInt("ParticleType", getParticleType());
+		p_213281_1_.putFloat("Damage", damage);
+		p_213281_1_.putBoolean("ConstantDamage", constantDamage);
+		p_213281_1_.putDouble("KnockbackAmount", knockbackAmount);
+		p_213281_1_.putDouble("KnockbackAmountY", knockbackAmountY);
+		p_213281_1_.putInt("DisableShieldTime", disableShieldTime);
+		p_213281_1_.putBoolean("DisableShields", disableShields);
+		p_213281_1_.putInt("ExtraTime", getExtraTime());
 	}
 
 	@Override

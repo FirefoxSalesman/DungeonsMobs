@@ -42,19 +42,19 @@ public abstract class ConstructEntity extends PathfinderMob {
 
 	@Nullable
 	public LivingEntity getCaster() {
-		if (this.caster == null && this.casterUuid != null && this.level() instanceof ServerLevel) {
-			Entity entity = ((ServerLevel) this.level()).getEntity(this.casterUuid);
+		if (caster == null && casterUuid != null && level() instanceof ServerLevel) {
+			Entity entity = ((ServerLevel) level()).getEntity(casterUuid);
 			if (entity instanceof LivingEntity) {
-				this.caster = (LivingEntity) entity;
+				caster = (LivingEntity) entity;
 			}
 		}
 
-		return this.caster;
+		return caster;
 	}
 
 	public void setCaster(@Nullable LivingEntity caster) {
 		this.caster = caster;
-		this.casterUuid = caster == null ? null : caster.getUUID();
+		casterUuid = caster == null ? null : caster.getUUID();
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public abstract class ConstructEntity extends PathfinderMob {
 			rotationAmount = 180.0F;
 		}
 
-		this.setYRot(rotationAmount);
+		setYRot(rotationAmount);
 	}
 
 	/**
@@ -123,40 +123,40 @@ public abstract class ConstructEntity extends PathfinderMob {
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
-		this.setLifeTicks(compound.getInt("LifeTicks"));
+		setLifeTicks(compound.getInt("LifeTicks"));
 		if (compound.hasUUID("Owner")) {
-			this.casterUuid = compound.getUUID("Owner");
+			casterUuid = compound.getUUID("Owner");
 		}
 
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
-		compound.putInt("LifeTicks", this.getLifeTicks());
-		if (this.casterUuid != null) {
-			compound.putUUID("Owner", this.casterUuid);
+		compound.putInt("LifeTicks", getLifeTicks());
+		if (casterUuid != null) {
+			compound.putUUID("Owner", casterUuid);
 		}
 	}
 
 	public int getLifeTicks() {
-		return this.entityData.get(LIFE_TICKS);
+		return entityData.get(LIFE_TICKS);
 	}
 
 	public void setLifeTicks(int p_189794_1_) {
-		this.entityData.set(LIFE_TICKS, p_189794_1_);
+		entityData.set(LIFE_TICKS, p_189794_1_);
 	}
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(LIFE_TICKS, 0);
+		entityData.define(LIFE_TICKS, 0);
 	}
 
 	public void handleExistence() {
-		this.updateInWaterStateAndDoFluidPushing(); // handles being in water
+		updateInWaterStateAndDoFluidPushing(); // handles being in water
 	}
 
 	public void handleExpiration() {
-		this.remove(RemovalReason.DISCARDED);
+		remove(RemovalReason.DISCARDED);
 	}
 
 	/**
@@ -165,11 +165,7 @@ public abstract class ConstructEntity extends PathfinderMob {
 
 	@Override
 	public void baseTick() {
-		// super.tick();
-
-		// this.faceDirection(this.directionToFace);
-
-		if (this.getLifeTicks() > 100) {
+		if (getLifeTicks() > 100) {
 			List<Entity> v = level().getEntities(this, getBoundingBox());
 			for (Entity entity : v) {
 				if (entity != this && entity instanceof ConstructEntity) {
@@ -179,11 +175,11 @@ public abstract class ConstructEntity extends PathfinderMob {
 			}
 		}
 
-		this.setLifeTicks(this.getLifeTicks() - 1);
+		setLifeTicks(getLifeTicks() - 1);
 		if (!level().isClientSide() && getLifeTicks() <= 0) {
-			this.handleExpiration();
+			handleExpiration();
 		} else {
-			this.handleExistence();
+			handleExistence();
 		}
 	}
 

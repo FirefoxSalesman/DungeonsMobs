@@ -34,7 +34,7 @@ public interface IAquaticMob {
 		if (aquaticMob != this)
 			throw new IllegalArgumentException("Supplied aquaticMob is not this instance!");
 
-		if (this.isSearchingForLand()) {
+		if (isSearchingForLand()) {
 			return true;
 		} else {
 			LivingEntity target = aquaticMob.getTarget();
@@ -63,7 +63,7 @@ public interface IAquaticMob {
 			throw new IllegalArgumentException("Supplied aquaticMob is not this instance!");
 
 		if (!aquaticMob.level().isClientSide) {
-			if (aquaticMob.isEffectiveAi() && aquaticMob.isInWater() && this.wantsToSwim(aquaticMob)) {
+			if (aquaticMob.isEffectiveAi() && aquaticMob.isInWater() && wantsToSwim(aquaticMob)) {
 				aquaticMob.setNavigation(aquaticMob.getWaterNavigation());
 				aquaticMob.setSwimming(true);
 			} else {
@@ -77,12 +77,12 @@ public interface IAquaticMob {
 		if (aquaticMob != this)
 			throw new IllegalArgumentException("Supplied aquaticMob is not this instance!");
 
-		if (aquaticMob.isEffectiveAi() && aquaticMob.isInWater() && this.wantsToSwim(aquaticMob)) {
+		if (aquaticMob.isEffectiveAi() && aquaticMob.isInWater() && wantsToSwim(aquaticMob)) {
 			aquaticMob.moveRelative(0.01F, travelVec);
 			aquaticMob.move(MoverType.SELF, aquaticMob.getDeltaMovement());
 			aquaticMob.setDeltaMovement(aquaticMob.getDeltaMovement().scale(0.9D));
 		} else {
-			this.normalTravel(travelVec);
+			normalTravel(travelVec);
 		}
 	}
 

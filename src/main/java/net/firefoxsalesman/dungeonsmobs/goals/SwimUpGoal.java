@@ -12,39 +12,39 @@ public class SwimUpGoal<T extends PathfinderMob & IAquaticMob> extends Goal {
     private final int seaLevel;
     private boolean stuck;
 
-    public SwimUpGoal(T aquaticMob, double p_i48908_2_, int p_i48908_4_) {
+    public SwimUpGoal(T aquaticMob, double speedModifier, int seaLevel) {
         this.aquaticMob = aquaticMob;
-        this.speedModifier = p_i48908_2_;
-        this.seaLevel = p_i48908_4_;
+        this.speedModifier = speedModifier;
+        this.seaLevel = seaLevel;
     }
 
     public boolean canUse() {
-        return !this.aquaticMob.level().isDay() && this.aquaticMob.isInWater() && this.aquaticMob.getY() < (double) (this.seaLevel - 2);
+        return !aquaticMob.level().isDay() && aquaticMob.isInWater() && aquaticMob.getY() < (double) (seaLevel - 2);
     }
 
     public boolean canContinueToUse() {
-        return this.canUse() && !this.stuck;
+        return canUse() && !stuck;
     }
 
     public void tick() {
-        if (this.aquaticMob.getY() < (double) (this.seaLevel - 1) && (this.aquaticMob.getNavigation().isDone() || this.aquaticMob.closeToNextPos(this.aquaticMob))) {
-            Vec3 vector3d = DefaultRandomPos.getPosTowards(this.aquaticMob, 4, 8, new Vec3(this.aquaticMob.getX(), this.seaLevel - 1, this.aquaticMob.getZ()), (float) Math.PI / 2F);
+        if (aquaticMob.getY() < (double) (seaLevel - 1) && (aquaticMob.getNavigation().isDone() || aquaticMob.closeToNextPos(aquaticMob))) {
+            Vec3 vector3d = DefaultRandomPos.getPosTowards(aquaticMob, 4, 8, new Vec3(aquaticMob.getX(), seaLevel - 1, aquaticMob.getZ()), (float) Math.PI / 2F);
             if (vector3d == null) {
-                this.stuck = true;
+                stuck = true;
                 return;
             }
 
-            this.aquaticMob.getNavigation().moveTo(vector3d.x, vector3d.y, vector3d.z, this.speedModifier);
+            aquaticMob.getNavigation().moveTo(vector3d.x, vector3d.y, vector3d.z, speedModifier);
         }
 
     }
 
     public void start() {
-        this.aquaticMob.setSearchingForLand(true);
-        this.stuck = false;
+        aquaticMob.setSearchingForLand(true);
+        stuck = false;
     }
 
     public void stop() {
-        this.aquaticMob.setSearchingForLand(false);
+        aquaticMob.setSearchingForLand(false);
     }
 }

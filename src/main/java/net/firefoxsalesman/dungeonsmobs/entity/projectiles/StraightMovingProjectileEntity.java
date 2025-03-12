@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.entity.projectiles;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -34,7 +33,7 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
     public boolean stuckInBlock;
     private final Predicate<Entity> CAN_HIT = (entity) -> {
-        return this.canHitEntity(entity);
+        return canHitEntity(entity);
     };
     public int lifeTime;
     public float lockedXRot;
@@ -46,27 +45,27 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
     public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType, double p_i50174_2_, double p_i50174_4_, double p_i50174_6_, double pX, double pY, double pZ, Level pLevel) {
         this(pEntityType, pLevel);
-        this.moveTo(p_i50174_2_, p_i50174_4_, p_i50174_6_, this.getYRot(), this.getXRot());
-        this.reapplyPosition();
+        moveTo(p_i50174_2_, p_i50174_4_, p_i50174_6_, getYRot(), getXRot());
+        reapplyPosition();
         double d0 = Mth.sqrt((float) (pX * pX + pY * pY + pZ * pZ));
         if (d0 != 0.0D) {
-            this.xPower = pX / d0 * 0.1D;
-            this.yPower = pY / d0 * 0.1D;
-            this.zPower = pZ / d0 * 0.1D;
+            xPower = pX / d0 * 0.1D;
+            yPower = pY / d0 * 0.1D;
+            zPower = pZ / d0 * 0.1D;
         }
         Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize();
         double d1 = vec3.horizontalDistance();
-        this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * Mth.DEG_TO_RAD));
-        this.setXRot((float)(Mth.atan2(vec3.y, d1) * Mth.DEG_TO_RAD));
-        this.yRotO = this.getYRot();
-        this.xRotO = this.getXRot();
+        setYRot((float)(Mth.atan2(vec3.x, vec3.z) * Mth.DEG_TO_RAD));
+        setXRot((float)(Mth.atan2(vec3.y, d1) * Mth.DEG_TO_RAD));
+        yRotO = getYRot();
+        xRotO = getXRot();
 
     }
 
     public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType, LivingEntity owner, double p_i50175_3_, double p_i50175_5_, double p_i50175_7_, Level pLevel) {
         this(pEntityType, owner.getX(), owner.getY(), owner.getZ(), p_i50175_3_, p_i50175_5_, p_i50175_7_, pLevel);
-        this.setOwner(owner);
-        this.setRot(owner.getYRot(), owner.getXRot());
+        setOwner(owner);
+        setRot(owner.getYRot(), owner.getXRot());
     }
 
     protected void defineSynchedData() {
@@ -75,15 +74,15 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     public void setPower(double powerX, double powerY, double powerZ) {
         double d0 = Mth.sqrt((float) (powerX * powerX + powerY * powerY + powerZ * powerZ));
         if (d0 != 0.0D) {
-            this.xPower = powerX / d0 * 0.1D;
-            this.yPower = powerY / d0 * 0.1D;
-            this.zPower = powerZ / d0 * 0.1D;
+            xPower = powerX / d0 * 0.1D;
+            yPower = powerY / d0 * 0.1D;
+            zPower = powerZ / d0 * 0.1D;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     public boolean shouldRenderAtSqrDistance(double p_70112_1_) {
-        double d0 = this.getBoundingBox().getSize() * 4.0D;
+        double d0 = getBoundingBox().getSize() * 4.0D;
         if (Double.isNaN(d0)) {
             d0 = 4.0D;
         }
@@ -93,16 +92,16 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     }
 
     public void tryToDealDamage() {
-        List<Entity> list = this.level().getEntities(this, this.getBoundingBox(), CAN_HIT);
-        if (!list.isEmpty() && !this.level().isClientSide) {
+        List<Entity> list = level().getEntities(this, getBoundingBox(), CAN_HIT);
+        if (!list.isEmpty() && !level().isClientSide) {
             for (Entity entity : list) {
-                this.onHitEntity(entity);
+                onHitEntity(entity);
             }
         }
     }
 
     public void rotateToMatchMovement() {
-        this.updateRotation();
+        updateRotation();
     }
 
     public boolean shouldUpdateRotation() {
@@ -111,9 +110,9 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
     @Override
     protected void updateRotation() {
-        if (this.stuckInBlock) {
-            this.setXRot(this.lockedXRot);
-            this.setYRot(this.lockedYRot);
+        if (stuckInBlock) {
+            setXRot(lockedXRot);
+            setYRot(lockedYRot);
         } else {
             super.updateRotation();
         }
@@ -123,70 +122,70 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     public void baseTick() {
         super.baseTick();
 
-        if (this.shouldUpdateRotation()) {
-            this.updateRotation();
+        if (shouldUpdateRotation()) {
+            updateRotation();
         }
 
-        if (!this.level().isClientSide && this.vanishesAfterTime()) {
-            if (this.lifeTime < this.vanishAfterTime() + this.getVanishAnimationLength()) {
-                this.lifeTime++;
+        if (!level().isClientSide && vanishesAfterTime()) {
+            if (lifeTime < vanishAfterTime() + getVanishAnimationLength()) {
+                lifeTime++;
             } else {
-                this.remove(RemovalReason.DISCARDED);
+                remove(RemovalReason.DISCARDED);
             }
         }
 
-        if (this.level().isClientSide) {
-            if (this.lifeTime < this.vanishAfterTime() + this.getVanishAnimationLength()) {
-                this.lifeTime++;
+        if (level().isClientSide) {
+            if (lifeTime < vanishAfterTime() + getVanishAnimationLength()) {
+                lifeTime++;
             }
         }
 
-        this.tryToDealDamage();
+        tryToDealDamage();
     }
 
     public void tick() {
-        Entity entity = this.getOwner();
+        Entity entity = getOwner();
 
-        if (this.stuckInBlock) {
-            this.noPhysics = false;
+        if (stuckInBlock) {
+            noPhysics = false;
         }
 
-        if (this.level().isClientSide || (entity == null || !entity.isRemoved()) && this.level().hasChunkAt(this.blockPosition())) {
+        if (level().isClientSide || (entity == null || !entity.isRemoved()) && level().hasChunkAt(blockPosition())) {
             super.tick();
-            if (this.shouldBurn()) {
-                this.setSecondsOnFire(1);
+            if (shouldBurn()) {
+                setSecondsOnFire(1);
             }
 
             HitResult raytraceresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
             if (raytraceresult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-                this.onHit(raytraceresult);
+                onHit(raytraceresult);
             }
 
-            this.checkInsideBlocks();
-            Vec3 vector3d = this.getDeltaMovement();
-            double d0 = this.getX() + vector3d.x;
-            double d1 = this.getY() + vector3d.y;
-            double d2 = this.getZ() + vector3d.z;
-            float f = this.getInertia();
-            if (this.isInWater()) {
+            checkInsideBlocks();
+            Vec3 vector3d = getDeltaMovement();
+            double d0 = getX() + vector3d.x;
+            double d1 = getY() + vector3d.y;
+            double d2 = getZ() + vector3d.z;
+            float f = getInertia();
+            if (isInWater()) {
                 for (int i = 0; i < 4; ++i) {
-                    if (this.getUnderWaterTrailParticle() != null && this.shouldSpawnParticles()) {
-                        this.spawnUnderWaterTrailParticle();
+                    if (getUnderWaterTrailParticle() != null && shouldSpawnParticles()) {
+                        spawnUnderWaterTrailParticle();
                     }
                 }
 
-                if (this.slowedDownInWater()) {
+                if (slowedDownInWater()) {
                     f = 0.8F;
                 }
             }
 
-            this.setDeltaMovement(vector3d.add(this.xPower, this.yPower, this.zPower).scale(f));
-            if (this.getTrailParticle() != null && this.shouldSpawnParticles()) {
-                this.spawnTrailParticle();
+            setDeltaMovement(vector3d.add(xPower, yPower, zPower).scale(f));
+            if (getTrailParticle() != null && shouldSpawnParticles()) {
+                spawnTrailParticle();
             }
-            this.setPos(d0, d1, d2);
+            setPos(d0, d1, d2);
         } else {
-            this.remove(RemovalReason.DISCARDED);
+            remove(RemovalReason.DISCARDED);
         }
     }
 
@@ -203,7 +202,7 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     }
 
     public void onHitEntity(Entity entity) {
-        this.playImpactSound();
+        playImpactSound();
     }
 
     public boolean getsStuckInBlocks() {
@@ -217,27 +216,27 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     public abstract SoundEvent getImpactSound();
 
     public void playImpactSound() {
-        if (this.getImpactSound() != null) {
-            this.playSound(this.getImpactSound(), 1.0F, 1.0F);
+        if (getImpactSound() != null) {
+            playSound(getImpactSound(), 1.0F, 1.0F);
         }
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult p_230299_1_) {
-        super.onHitBlock(p_230299_1_);
-        if (!this.stuckInBlock) {
-            this.playImpactSound();
+    protected void onHitBlock(BlockHitResult pResult) {
+        super.onHitBlock(pResult);
+        if (!stuckInBlock) {
+            playImpactSound();
         }
-        if (!this.getsStuckInBlocks()) {
-            if (!this.level().isClientSide) {
-                this.remove(RemovalReason.DISCARDED);
+        if (!getsStuckInBlocks()) {
+            if (!level().isClientSide) {
+                remove(RemovalReason.DISCARDED);
             }
         } else {
-            this.lockedXRot = this.getXRot();
-            this.lockedYRot = this.getYRot();
-            this.stuckInBlock = true;
-            this.setPower(0, 0, 0);
-            this.setDeltaMovement(0, 0, 0);
+            lockedXRot = getXRot();
+            lockedYRot = getYRot();
+            stuckInBlock = true;
+            setPower(0, 0, 0);
+            setDeltaMovement(0, 0, 0);
         }
     }
 
@@ -246,11 +245,11 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
     }
 
     public void spawnTrailParticle() {
-        this.level().addParticle(this.getTrailParticle(), this.getX(), this.getY() + this.getSpawnParticlesY(), this.getZ(), 0, 0, 0);
+        level().addParticle(getTrailParticle(), getX(), getY() + getSpawnParticlesY(), getZ(), 0, 0, 0);
     }
 
     public void spawnUnderWaterTrailParticle() {
-        this.level().addParticle(this.getUnderWaterTrailParticle(), this.getX(), this.getY() + this.getSpawnParticlesY(), this.getZ(), 0, 0, 0);
+        level().addParticle(getUnderWaterTrailParticle(), getX(), getY() + getSpawnParticlesY(), getZ(), 0, 0, 0);
     }
 
     public double getSpawnParticlesY() {
@@ -263,14 +262,14 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
     protected boolean canHitEntity(Entity p_230298_1_) {
         boolean foundOwnerPartInEntity = false;
-        if (this.getOwner() != null && this.getOwner().isMultipartEntity()) {
-            for (PartEntity<?> entity : this.getOwner().getParts()) {
+        if (getOwner() != null && getOwner().isMultipartEntity()) {
+            for (PartEntity<?> entity : getOwner().getParts()) {
                 if (p_230298_1_ == entity) {
                     foundOwnerPartInEntity = true;
                 }
             }
         }
-        return super.canHitEntity(p_230298_1_) && (this.keepsHittingAfterStuck() || !this.stuckInBlock) && !p_230298_1_.noPhysics && foundOwnerPartInEntity == false;
+        return super.canHitEntity(p_230298_1_) && (keepsHittingAfterStuck() || !stuckInBlock) && !p_230298_1_.noPhysics && foundOwnerPartInEntity == false;
     }
 
     protected boolean shouldBurn() {
@@ -291,7 +290,7 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
     public void addAdditionalSaveData(CompoundTag p_213281_1_) {
         super.addAdditionalSaveData(p_213281_1_);
-        p_213281_1_.put("power", this.newDoubleList(this.xPower, this.yPower, this.zPower));
+        p_213281_1_.put("power", newDoubleList(xPower, yPower, zPower));
     }
 
     public void readAdditionalSaveData(CompoundTag p_70037_1_) {
@@ -299,9 +298,9 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
         if (p_70037_1_.contains("power", 9)) {
             ListTag listnbt = p_70037_1_.getList("power", 6);
             if (listnbt.size() == 3) {
-                this.xPower = listnbt.getDouble(0);
-                this.yPower = listnbt.getDouble(1);
-                this.zPower = listnbt.getDouble(2);
+                xPower = listnbt.getDouble(0);
+                yPower = listnbt.getDouble(1);
+                zPower = listnbt.getDouble(2);
             }
         }
 
@@ -315,19 +314,19 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
         return 1.0F;
     }
 
-    public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.isInvulnerableTo(p_70097_1_)) {
+    public boolean hurt(DamageSource pSource, float p_70097_2_) {
+        if (isInvulnerableTo(pSource)) {
             return false;
         } else {
-            this.markHurt();
-            Entity entity = p_70097_1_.getEntity();
+            markHurt();
+            Entity entity = pSource.getEntity();
             if (entity != null) {
                 Vec3 vector3d = entity.getLookAngle();
-                this.setDeltaMovement(vector3d);
-                this.xPower = vector3d.x * 0.1D;
-                this.yPower = vector3d.y * 0.1D;
-                this.zPower = vector3d.z * 0.1D;
-                this.setOwner(entity);
+                setDeltaMovement(vector3d);
+                xPower = vector3d.x * 0.1D;
+                yPower = vector3d.y * 0.1D;
+                zPower = vector3d.z * 0.1D;
+                setOwner(entity);
                 return true;
             } else {
                 return false;

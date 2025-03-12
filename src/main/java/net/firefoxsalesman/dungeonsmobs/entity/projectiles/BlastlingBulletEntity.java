@@ -37,11 +37,11 @@ public class BlastlingBulletEntity extends NecromancerOrbEntity {
         return false;
     }
 
-    protected void onHitEntity(EntityHitResult p_213868_1_) {
-        super.onHitEntity(p_213868_1_);
-        if (!this.level().isClientSide) {
-            Entity entity = p_213868_1_.getEntity();
-            Entity entity1 = this.getOwner();
+    protected void onHitEntity(EntityHitResult pResult) {
+        super.onHitEntity(pResult);
+        if (!level().isClientSide) {
+            Entity entity = pResult.getEntity();
+            Entity entity1 = getOwner();
             if (entity1 instanceof LivingEntity && !(entity instanceof AbstractEnderlingEntity)) {
                 LivingEntity livingentity = (LivingEntity) entity1;
                 entity.hurt(level().damageSources().mobProjectile(this, livingentity), 4.0F);
@@ -52,14 +52,12 @@ public class BlastlingBulletEntity extends NecromancerOrbEntity {
 
     protected void onHit(HitResult p_70227_1_) {
         super.onHit(p_70227_1_);
-        this.playSound(ModSoundEvents.BLASTLING_BULLET_LAND.get(), 1.0F, 1.0F);
-        for (int i = 0; i < this.random.nextInt(35) + 20; ++i) {
-            this.level().addParticle(ParticleTypes.WITCH, this.getX() + this.random.nextGaussian(), this.getY() + 0.5D + this.random.nextGaussian() * (double) 0.13F, this.getZ() + this.random.nextGaussian(), 0.0D, 0.0D, 0.0D);
+        playSound(ModSoundEvents.BLASTLING_BULLET_LAND.get(), 1.0F, 1.0F);
+        for (int i = 0; i < random.nextInt(35) + 20; ++i) {
+            level().addParticle(ParticleTypes.WITCH, getX() + random.nextGaussian(), getY() + 0.5D + random.nextGaussian() * (double) 0.13F, getZ() + random.nextGaussian(), 0.0D, 0.0D, 0.0D);
         }
-        if (!this.level().isClientSide) {
-            //Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
-            //this.level.explode(this, this.getX(), this.getY(), this.getZ(), 0.5F, false, explosion$mode);
-            this.remove(RemovalReason.DISCARDED);
+        if (!level().isClientSide) {
+            remove(RemovalReason.DISCARDED);
         }
 
     }

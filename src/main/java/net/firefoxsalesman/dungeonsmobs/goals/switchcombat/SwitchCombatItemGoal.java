@@ -16,36 +16,36 @@ public class SwitchCombatItemGoal extends Goal {
     private final double maxDistance;
 
     public SwitchCombatItemGoal(Mob mobEntity, double minDistance, double maxDistance) {
-        this.hostMob = mobEntity;
+        hostMob = mobEntity;
         this.minDistance = minDistance;
         this.maxDistance = maxDistance;
     }
 
 
     private boolean hasRangedItemInMainhand() {
-        return this.hostMob.getMainHandItem().getItem() instanceof ProjectileWeaponItem
-                || this.hostMob.getMainHandItem().getItem() instanceof SnowballItem
-                || this.hostMob.getMainHandItem().getItem() instanceof EggItem;
+        return hostMob.getMainHandItem().getItem() instanceof ProjectileWeaponItem
+                || hostMob.getMainHandItem().getItem() instanceof SnowballItem
+                || hostMob.getMainHandItem().getItem() instanceof EggItem;
     }
 
     private boolean hasRangedItemInOffhand() {
-        return this.hostMob.getOffhandItem().getItem() instanceof ProjectileWeaponItem
-                || this.hostMob.getOffhandItem().getItem() instanceof SnowballItem
-                || this.hostMob.getMainHandItem().getItem() instanceof EggItem;
+        return hostMob.getOffhandItem().getItem() instanceof ProjectileWeaponItem
+                || hostMob.getOffhandItem().getItem() instanceof SnowballItem
+                || hostMob.getMainHandItem().getItem() instanceof EggItem;
     }
 
     private void swapWeapons() {
-        ItemStack mainhand = this.hostMob.getMainHandItem();
-        ItemStack offhand = this.hostMob.getOffhandItem();
-        this.hostMob.setItemSlot(EquipmentSlot.OFFHAND, mainhand);
-        this.hostMob.setItemSlot(EquipmentSlot.MAINHAND, offhand);
+        ItemStack mainhand = hostMob.getMainHandItem();
+        ItemStack offhand = hostMob.getOffhandItem();
+        hostMob.setItemSlot(EquipmentSlot.OFFHAND, mainhand);
+        hostMob.setItemSlot(EquipmentSlot.MAINHAND, offhand);
     }
 
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean canUse() {
-        this.target = this.hostMob.getTarget();
+        target = hostMob.getTarget();
 
         if (target == null) {
             return false;
@@ -55,9 +55,9 @@ public class SwitchCombatItemGoal extends Goal {
             // check if we are close to the target and have a ranged item in mainhand and do not have one in offhand,
             // or if we are far from the target and we do not have a ranged item in our mainhand but do have one in our offhand
             return (
-                    (this.hostMob.distanceTo(this.target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand())
-                            || (this.hostMob.distanceTo(this.target) > maxDistance && !hasRangedItemInMainhand()) && hasRangedItemInOffhand())
-                    && this.hostMob.hasLineOfSight(this.target);
+                    (hostMob.distanceTo(target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand())
+                            || (hostMob.distanceTo(target) > maxDistance && !hasRangedItemInMainhand()) && hasRangedItemInOffhand())
+                    && hostMob.hasLineOfSight(target);
         }
     }
 
@@ -72,9 +72,9 @@ public class SwitchCombatItemGoal extends Goal {
      * Updates the task
      */
     public void tick() {
-        if (this.hostMob.distanceTo(this.target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand()) {
+        if (hostMob.distanceTo(target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand()) {
             swapWeapons();
-        } else if (this.hostMob.distanceTo(this.target) > maxDistance && !hasRangedItemInMainhand() && hasRangedItemInOffhand()) {
+        } else if (hostMob.distanceTo(target) > maxDistance && !hasRangedItemInMainhand() && hasRangedItemInOffhand()) {
             swapWeapons();
         }
     }

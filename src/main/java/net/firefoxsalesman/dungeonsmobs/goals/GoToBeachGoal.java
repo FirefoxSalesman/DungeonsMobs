@@ -9,14 +9,14 @@ import net.minecraft.world.level.LevelReader;
 public class GoToBeachGoal<T extends PathfinderMob & IAquaticMob> extends MoveToBlockGoal {
 	private final T aquaticMob;
 
-	public GoToBeachGoal(T p_i48911_1_, double p_i48911_2_) {
-		super(p_i48911_1_, p_i48911_2_, 8, 2);
-		this.aquaticMob = p_i48911_1_;
+	public GoToBeachGoal(T aquaticMob, double speedModifier) {
+		super(aquaticMob, speedModifier, 8, 2);
+		this.aquaticMob = aquaticMob;
 	}
 
 	public boolean canUse() {
-		return super.canUse() && !this.aquaticMob.level().isDay() && this.aquaticMob.isInWater()
-				&& this.aquaticMob.getY() >= (double) (this.aquaticMob.level().getSeaLevel() - 3);
+		return super.canUse() && !aquaticMob.level().isDay() && aquaticMob.isInWater()
+				&& aquaticMob.getY() >= (double) (aquaticMob.level().getSeaLevel() - 3);
 	}
 
 	public boolean canContinueToUse() {
@@ -26,12 +26,12 @@ public class GoToBeachGoal<T extends PathfinderMob & IAquaticMob> extends MoveTo
 	protected boolean isValidTarget(LevelReader worldReader, BlockPos blockPos) {
 		BlockPos blockpos = blockPos.above();
 		return worldReader.isEmptyBlock(blockpos) && worldReader.isEmptyBlock(blockpos.above()) && worldReader
-				.getBlockState(blockPos).entityCanStandOn(worldReader, blockPos, this.aquaticMob);
+				.getBlockState(blockPos).entityCanStandOn(worldReader, blockPos, aquaticMob);
 	}
 
 	public void start() {
-		this.aquaticMob.setSearchingForLand(false);
-		this.aquaticMob.setNavigation(this.aquaticMob.getGroundNavigation());
+		aquaticMob.setSearchingForLand(false);
+		aquaticMob.setNavigation(aquaticMob.getGroundNavigation());
 		super.start();
 	}
 

@@ -53,11 +53,11 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 	private final TargetingConditions followPredicate = TargetingConditions.forCombat().range(50.0D)
 			.ignoreInvisibilityTesting();
 
-	protected AbstractEnderlingEntity(EntityType<? extends AbstractEnderlingEntity> p_i48553_1_,
-			Level p_i48553_2_) {
-		super(p_i48553_1_, p_i48553_2_);
+	protected AbstractEnderlingEntity(EntityType<? extends AbstractEnderlingEntity> pEntityType,
+			Level pLevel) {
+		super(pEntityType, pLevel);
 		setMaxUpStep(1.0F);
-		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+		setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -68,7 +68,7 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 
 	public void setTarget(@Nullable LivingEntity p_70624_1_) {
 		if (p_70624_1_ == null) {
-			this.entityData.set(DATA_STARED_AT, false);
+			entityData.set(DATA_STARED_AT, false);
 		} else {
 
 		}
@@ -78,17 +78,17 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(ATTACKING, 0);
-		this.entityData.define(RUNNING, 0);
-		this.entityData.define(DATA_STARED_AT, false);
+		entityData.define(ATTACKING, 0);
+		entityData.define(RUNNING, 0);
+		entityData.define(DATA_STARED_AT, false);
 	}
 
 	public boolean hasBeenStaredAt() {
-		return this.entityData.get(DATA_STARED_AT);
+		return entityData.get(DATA_STARED_AT);
 	}
 
 	public void setBeingStaredAt() {
-		this.entityData.set(DATA_STARED_AT, true);
+		entityData.set(DATA_STARED_AT, true);
 	}
 
 	private boolean isLookingAtMe(Player p_70821_1_) {
@@ -97,9 +97,9 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 			return false;
 		} else {
 			Vec3 vector3d = p_70821_1_.getViewVector(1.0F).normalize();
-			Vec3 vector3d1 = new Vec3(this.getX() - p_70821_1_.getX(),
-					this.getEyeY() - p_70821_1_.getEyeY(),
-					this.getZ() - p_70821_1_.getZ());
+			Vec3 vector3d1 = new Vec3(getX() - p_70821_1_.getX(),
+					getEyeY() - p_70821_1_.getEyeY(),
+					getZ() - p_70821_1_.getZ());
 			double d0 = vector3d1.length();
 			vector3d1 = vector3d1.normalize();
 			double d1 = vector3d.dot(vector3d1);
@@ -107,61 +107,54 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		}
 	}
 
-	// public static boolean checkMobSpawnRules(EntityType<? extends MobEntity>
-	// p_223315_0_, IWorld p_223315_1_, SpawnReason p_223315_2_, BlockPos
-	// p_223315_3_, Random p_223315_4_) {
-	// return super.checkMobSpawnRules(p_223315_0_, p_223315_1_, p_223315_2_,
-	// p_223315_3_, p_223315_4_);
-	// }
-
 	@SuppressWarnings("unchecked")
 	public boolean checkSpawnRules(LevelAccessor p_213380_1_, MobSpawnType p_213380_2_) {
 		return (p_213380_2_ != MobSpawnType.NATURAL
-				|| !this.level().getBiome(this.blockPosition()).is(Biomes.THE_END))
-				&& checkMobSpawnRules(((EntityType<? extends Mob>) this.getType()), p_213380_1_,
-						p_213380_2_, this.blockPosition(), this.random);
+				|| !level().getBiome(blockPosition()).is(Biomes.THE_END))
+				&& checkMobSpawnRules(((EntityType<? extends Mob>) getType()), p_213380_1_,
+						p_213380_2_, blockPosition(), random);
 	}
 
 	public void baseTick() {
 		super.baseTick();
 
-		if (this.isAttacking() > 0) {
-			this.setAttacking(this.isAttacking() - 1);
+		if (isAttacking() > 0) {
+			setAttacking(isAttacking() - 1);
 		}
 
-		if (this.isRunning() > 0) {
-			this.setRunning(this.isRunning() - 1);
+		if (isRunning() > 0) {
+			setRunning(isRunning() - 1);
 		}
 	}
 
 	public int isAttacking() {
-		return this.entityData.get(ATTACKING);
+		return entityData.get(ATTACKING);
 	}
 
 	public void setAttacking(int p_189794_1_) {
-		this.entityData.set(ATTACKING, p_189794_1_);
+		entityData.set(ATTACKING, p_189794_1_);
 	}
 
 	public int isRunning() {
-		return this.entityData.get(RUNNING);
+		return entityData.get(RUNNING);
 	}
 
 	public void setRunning(int p_189794_1_) {
-		this.entityData.set(RUNNING, p_189794_1_);
+		entityData.set(RUNNING, p_189794_1_);
 	}
 
 	public void aiStep() {
-		if (this.level().isClientSide) {
+		if (level().isClientSide) {
 			for (int i = 0; i < 2; ++i) {
-				this.level().addParticle(ParticleTypes.PORTAL, this.getRandomX(0.5D),
-						this.getRandomY() - 0.25D,
-						this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D,
-						-this.random.nextDouble(),
-						(this.random.nextDouble() - 0.5D) * 2.0D);
+				level().addParticle(ParticleTypes.PORTAL, getRandomX(0.5D),
+						getRandomY() - 0.25D,
+						getRandomZ(0.5D), (random.nextDouble() - 0.5D) * 2.0D,
+						-random.nextDouble(),
+						(random.nextDouble() - 0.5D) * 2.0D);
 			}
 		}
 
-		this.jumping = false;
+		jumping = false;
 
 		super.aiStep();
 	}
@@ -171,12 +164,12 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 	}
 
 	protected void customServerAiStep() {
-		if (this.shouldTeleportInDay() && this.level().isDay() && this.random.nextInt(600) == 0) {
-			float f = this.getLightLevelDependentMagicValue();
-			if (f > 0.5F && this.level().canSeeSky(this.blockPosition())
-					&& this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
-				this.setTarget(null);
-				this.teleport();
+		if (shouldTeleportInDay() && level().isDay() && random.nextInt(600) == 0) {
+			float f = getLightLevelDependentMagicValue();
+			if (f > 0.5F && level().canSeeSky(blockPosition())
+					&& random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
+				setTarget(null);
+				teleport();
 			}
 		}
 
@@ -188,25 +181,25 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 	}
 
 	protected boolean teleport() {
-		if (!this.level().isClientSide() && this.isAlive()) {
-			double d0 = this.getX() + (this.random.nextDouble() - 0.5D) * 64.0D;
-			double d1 = this.getY() + (double) (this.random.nextInt(64) - 32);
-			double d2 = this.getZ() + (this.random.nextDouble() - 0.5D) * 64.0D;
-			return this.teleport(d0, d1, d2);
+		if (!level().isClientSide() && isAlive()) {
+			double d0 = getX() + (random.nextDouble() - 0.5D) * 64.0D;
+			double d1 = getY() + (double) (random.nextInt(64) - 32);
+			double d2 = getZ() + (random.nextDouble() - 0.5D) * 64.0D;
+			return teleport(d0, d1, d2);
 		} else {
 			return false;
 		}
 	}
 
 	private boolean teleportTowards(Entity p_70816_1_) {
-		Vec3 vector3d = new Vec3(this.getX() - p_70816_1_.getX(), this.getY(0.5D) - p_70816_1_.getEyeY(),
-				this.getZ() - p_70816_1_.getZ());
+		Vec3 vector3d = new Vec3(getX() - p_70816_1_.getX(), getY(0.5D) - p_70816_1_.getEyeY(),
+				getZ() - p_70816_1_.getZ());
 		vector3d = vector3d.normalize();
 		double d0 = 16.0D;
-		double d1 = this.getX() + (this.random.nextDouble() - 0.5D) * 8.0D - vector3d.x * 16.0D;
-		double d2 = this.getY() + (double) (this.random.nextInt(16) - 8) - vector3d.y * 16.0D;
-		double d3 = this.getZ() + (this.random.nextDouble() - 0.5D) * 8.0D - vector3d.z * 16.0D;
-		return this.teleport(d1, d2, d3);
+		double d1 = getX() + (random.nextDouble() - 0.5D) * 8.0D - vector3d.x * 16.0D;
+		double d2 = getY() + (double) (random.nextInt(16) - 8) - vector3d.y * 16.0D;
+		double d3 = getZ() + (random.nextDouble() - 0.5D) * 8.0D - vector3d.z * 16.0D;
+		return teleport(d1, d2, d3);
 	}
 
 	protected boolean teleport(double p_70825_1_, double p_70825_3_, double p_70825_5_) {
@@ -214,11 +207,11 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 				p_70825_5_);
 
 		while (blockpos$mutable.getY() > 0
-				&& !this.level().getBlockState(blockpos$mutable).blocksMotion()) {
+				&& !level().getBlockState(blockpos$mutable).blocksMotion()) {
 			blockpos$mutable.move(Direction.DOWN);
 		}
 
-		BlockState blockstate = this.level().getBlockState(blockpos$mutable);
+		BlockState blockstate = level().getBlockState(blockpos$mutable);
 		boolean flag = blockstate.blocksMotion();
 		boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
 		if (flag && !flag1) {
@@ -226,12 +219,12 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 					.onEnderTeleport(this, p_70825_1_, p_70825_3_, p_70825_5_);
 			if (event.isCanceled())
 				return false;
-			boolean flag2 = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
+			boolean flag2 = randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
 					true);
-			if (!this.isSilent()) {
-				this.level().playSound(null, this.xo, this.yo, this.zo, SoundEvents.ENDERMAN_TELEPORT,
-						this.getSoundSource(), 1.0F, 1.0F);
-				this.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+			if (!isSilent()) {
+				level().playSound(null, xo, yo, zo, SoundEvents.ENDERMAN_TELEPORT,
+						getSoundSource(), 1.0F, 1.0F);
+				playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
 			}
 			return flag2;
 		} else {
@@ -252,13 +245,13 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 	}
 
 	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-		if (this.isInvulnerableTo(p_70097_1_)) {
+		if (isInvulnerableTo(p_70097_1_)) {
 			return false;
 		} else {
 			boolean flag = super.hurt(p_70097_1_, p_70097_2_);
-			if (!this.level().isClientSide() && !(p_70097_1_.getEntity() instanceof LivingEntity)
-					&& this.random.nextInt(2) == 0) {
-				this.teleport();
+			if (!level().isClientSide() && !(p_70097_1_.getEntity() instanceof LivingEntity)
+					&& random.nextInt(2) == 0) {
+				teleport();
 			}
 
 			return flag;
@@ -279,7 +272,7 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		}
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return this.mob.getBbWidth() * 3.0F * this.mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
+			return mob.getBbWidth() * 3.0F * mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
 		}
 
 		public void tick() {
@@ -289,20 +282,20 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		}
 
 		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = this.getAttackReachSqr(p_190102_1_);
-			if (p_190102_2_ <= d0 && this.isTimeToAttack()) {
-				this.resetAttackCooldown();
-				this.mob.doHurtTarget(p_190102_1_);
+			double d0 = getAttackReachSqr(p_190102_1_);
+			if (p_190102_2_ <= d0 && isTimeToAttack()) {
+				resetAttackCooldown();
+				mob.doHurtTarget(p_190102_1_);
 			} else if (p_190102_2_ <= d0 * 1.5D) {
-				if (this.isTimeToAttack()) {
-					this.resetAttackCooldown();
+				if (isTimeToAttack()) {
+					resetAttackCooldown();
 				}
 
-				if (this.getTicksUntilNextAttack() <= 30) {
+				if (getTicksUntilNextAttack() <= 30) {
 					AbstractEnderlingEntity.this.setAttacking(30);
 				}
 			} else {
-				this.resetAttackCooldown();
+				resetAttackCooldown();
 			}
 		}
 	}
@@ -325,47 +318,47 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		public EnderlingTargetGoal(Mob p_i50315_1_, Class<T> p_i50315_2_, int p_i50315_3_, boolean p_i50315_4_,
 				boolean p_i50315_5_, @Nullable Predicate<LivingEntity> p_i50315_6_) {
 			super(p_i50315_1_, p_i50315_4_, p_i50315_5_);
-			this.targetType = p_i50315_2_;
-			this.randomInterval = p_i50315_3_;
-			this.setFlags(EnumSet.of(Goal.Flag.TARGET));
-			this.targetConditions = TargetingConditions.forCombat().range(this.getFollowDistance())
+			targetType = p_i50315_2_;
+			randomInterval = p_i50315_3_;
+			setFlags(EnumSet.of(Goal.Flag.TARGET));
+			targetConditions = TargetingConditions.forCombat().range(getFollowDistance())
 					.selector(p_i50315_6_);
 		}
 
 		public boolean canUse() {
-			if (this.randomInterval > 0 && this.mob.getRandom().nextInt(this.randomInterval) != 0) {
+			if (randomInterval > 0 && mob.getRandom().nextInt(randomInterval) != 0) {
 				return false;
 			} else {
-				this.findTarget();
-				return this.target != null;
+				findTarget();
+				return target != null;
 			}
 		}
 
 		protected AABB getTargetSearchArea(double p_188511_1_) {
-			return this.mob.getBoundingBox().inflate(p_188511_1_, 4.0D, p_188511_1_);
+			return mob.getBoundingBox().inflate(p_188511_1_, 4.0D, p_188511_1_);
 		}
 
 		protected void findTarget() {
-			if (this.targetType != Player.class && this.targetType != ServerPlayer.class) {
-				this.target = this.mob.level().getNearestEntity(this.targetType, this.targetConditions,
-						this.mob,
-						this.mob.getX(), this.mob.getEyeY(), this.mob.getZ(),
-						this.getTargetSearchArea(this.getFollowDistance()));
+			if (targetType != Player.class && targetType != ServerPlayer.class) {
+				target = mob.level().getNearestEntity(targetType, targetConditions,
+						mob,
+						mob.getX(), mob.getEyeY(), mob.getZ(),
+						getTargetSearchArea(getFollowDistance()));
 			} else {
-				this.target = this.mob.level().getNearestPlayer(this.targetConditions, this.mob,
-						this.mob.getX(),
-						this.mob.getEyeY(), this.mob.getZ());
+				target = mob.level().getNearestPlayer(targetConditions, mob,
+						mob.getX(),
+						mob.getEyeY(), mob.getZ());
 			}
 
 		}
 
 		public void start() {
-			this.mob.setTarget(this.target);
+			mob.setTarget(target);
 			super.start();
 		}
 
-		public void setTarget(@Nullable LivingEntity p_234054_1_) {
-			this.target = p_234054_1_;
+		public void setTarget(@Nullable LivingEntity target) {
+			this.target = target;
 		}
 	}
 
@@ -377,72 +370,72 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		private final TargetingConditions startAggroTargetConditions;
 		private final TargetingConditions continueAggroTargetConditions = TargetingConditions.forCombat();
 
-		public FindPlayerGoal(AbstractEnderlingEntity p_i241912_1_,
+		public FindPlayerGoal(AbstractEnderlingEntity enderman,
 				@Nullable Predicate<LivingEntity> p_i241912_2_) {
-			super(p_i241912_1_, Player.class, 10, false, false, p_i241912_2_);
-			this.enderman = p_i241912_1_;
+			super(enderman, Player.class, 10, false, false, p_i241912_2_);
+			this.enderman = enderman;
 			this.startAggroTargetConditions = TargetingConditions.forCombat()
 					.range(this.getFollowDistance())
 					.selector((p_220790_1_) -> {
-						return p_i241912_1_.isLookingAtMe((Player) p_220790_1_);
+						return enderman.isLookingAtMe((Player) p_220790_1_);
 					});
 		}
 
 		public boolean canUse() {
-			this.pendingTarget = this.enderman.level().getNearestPlayer(this.startAggroTargetConditions,
-					this.enderman);
-			return this.pendingTarget != null;
+			pendingTarget = enderman.level().getNearestPlayer(startAggroTargetConditions,
+					enderman);
+			return pendingTarget != null;
 		}
 
 		public void start() {
-			this.aggroTime = 5;
-			this.teleportTime = 0;
-			this.enderman.setBeingStaredAt();
+			aggroTime = 5;
+			teleportTime = 0;
+			enderman.setBeingStaredAt();
 		}
 
 		public void stop() {
-			this.pendingTarget = null;
+			pendingTarget = null;
 			super.stop();
 		}
 
 		public boolean canContinueToUse() {
-			if (this.pendingTarget != null) {
-				if (!this.enderman.isLookingAtMe(this.pendingTarget)) {
+			if (pendingTarget != null) {
+				if (!enderman.isLookingAtMe(pendingTarget)) {
 					return false;
 				} else {
-					this.enderman.lookAt(this.pendingTarget, 10.0F, 10.0F);
+					enderman.lookAt(pendingTarget, 10.0F, 10.0F);
 					return true;
 				}
 			} else {
-				return this.target != null
-						&& this.continueAggroTargetConditions.test(this.enderman, this.target)
+				return target != null
+						&& continueAggroTargetConditions.test(enderman, target)
 						|| super.canContinueToUse();
 			}
 		}
 
 		public void tick() {
-			if (this.enderman.getTarget() == null) {
+			if (enderman.getTarget() == null) {
 				super.setTarget(null);
 			}
 
-			if (this.pendingTarget != null) {
-				if (--this.aggroTime <= 0) {
-					this.target = this.pendingTarget;
-					this.pendingTarget = null;
+			if (pendingTarget != null) {
+				if (--aggroTime <= 0) {
+					target = pendingTarget;
+					pendingTarget = null;
 					super.start();
 				}
 			} else {
-				if (this.target != null && !this.enderman.isPassenger()) {
-					if (this.enderman.isLookingAtMe((Player) this.target)) {
-						if (this.target.distanceToSqr(this.enderman) < 16.0D) {
-							this.enderman.teleport();
+				if (target != null && !enderman.isPassenger()) {
+					if (enderman.isLookingAtMe((Player) target)) {
+						if (target.distanceToSqr(enderman) < 16.0D) {
+							enderman.teleport();
 						}
 
-						this.teleportTime = 0;
-					} else if (this.target.distanceToSqr(this.enderman) > 256.0D
-							&& this.teleportTime++ >= 30
-							&& this.enderman.teleportTowards(this.target)) {
-						this.teleportTime = 0;
+						teleportTime = 0;
+					} else if (target.distanceToSqr(enderman) > 256.0D
+							&& teleportTime++ >= 30
+							&& enderman.teleportTowards(target)) {
+						teleportTime = 0;
 					}
 				}
 

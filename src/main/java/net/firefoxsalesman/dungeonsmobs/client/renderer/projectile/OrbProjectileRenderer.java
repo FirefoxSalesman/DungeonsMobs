@@ -1,8 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.projectile;
 
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -37,8 +34,6 @@ public class OrbProjectileRenderer extends GeoEntityRenderer<NecromancerOrbEntit
 	float scaleFactor = 1.0F;
 	if (animatable.lifeTime <= 3) {
 	    scaleFactor = 0.0F;
-	} else {
-	    scaleFactor = 1.0F;
 	}
 	poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
     }

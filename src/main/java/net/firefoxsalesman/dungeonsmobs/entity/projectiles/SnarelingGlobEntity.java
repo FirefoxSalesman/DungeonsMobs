@@ -40,17 +40,17 @@ public class SnarelingGlobEntity extends ThrowableItemProjectile {
 
     @OnlyIn(Dist.CLIENT)
     private ParticleOptions getParticle() {
-        ItemStack itemstack = this.getItemRaw();
+        ItemStack itemstack = getItemRaw();
         return itemstack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void handleEntityEvent(byte p_70103_1_) {
         if (p_70103_1_ == 3) {
-            ParticleOptions iparticledata = this.getParticle();
+            ParticleOptions iparticledata = getParticle();
 
             for (int i = 0; i < 8; ++i) {
-                this.level().addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+                level().addParticle(iparticledata, getX(), getY(), getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
 
@@ -60,7 +60,7 @@ public class SnarelingGlobEntity extends ThrowableItemProjectile {
         super.onHitEntity(p_213868_1_);
         Entity entity = p_213868_1_.getEntity();
         if (entity instanceof LivingEntity && !(entity instanceof AbstractEnderlingEntity)) {
-            entity.hurt(level().damageSources().thrown(this, this.getOwner()), 3);
+            entity.hurt(level().damageSources().thrown(this, getOwner()), 3);
         }
 
         if (entity instanceof LivingEntity && !entity.level().isClientSide) {
@@ -70,12 +70,12 @@ public class SnarelingGlobEntity extends ThrowableItemProjectile {
 
     protected void onHit(HitResult p_70227_1_) {
         super.onHit(p_70227_1_);
-        if (!this.level().isClientSide) {
-            this.level().broadcastEntityEvent(this, (byte) 3);
-            this.remove(RemovalReason.DISCARDED);
+        if (!level().isClientSide) {
+            level().broadcastEntityEvent(this, (byte) 3);
+            remove(RemovalReason.DISCARDED);
         }
 
-        this.playSound(ModSoundEvents.SNARELING_GLOB_LAND.get(), 2.0F, 1.0F);
+        playSound(ModSoundEvents.SNARELING_GLOB_LAND.get(), 2.0F, 1.0F);
 
     }
 

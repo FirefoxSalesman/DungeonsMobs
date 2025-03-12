@@ -23,14 +23,14 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
 
     public ThrowAndMeleeAttackGoal(T rangedAttackMob, double speedAmplifier, int attackInterval, float maxDistance, boolean useLongMemory) {
         super(rangedAttackMob, speedAmplifier, useLongMemory);
-        this.rangedAttackTime = -1;
-        this.hostCreature = rangedAttackMob;
-        this.entityMoveSpeed = speedAmplifier;
-        this.attackIntervalMin = attackInterval;
-        this.maxRangedAttackTime = attackInterval;
-        this.attackRadius = maxDistance;
-        this.maxAttackDistance = maxDistance * maxDistance;
-        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        rangedAttackTime = -1;
+        hostCreature = rangedAttackMob;
+        entityMoveSpeed = speedAmplifier;
+        attackIntervalMin = attackInterval;
+        maxRangedAttackTime = attackInterval;
+        attackRadius = maxDistance;
+        maxAttackDistance = maxDistance * maxDistance;
+        setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     /**
@@ -38,7 +38,7 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
      */
     public boolean canUse() {
         if (hasThrowableItemInMainhand()) {
-            LivingEntity attackTarget = this.hostCreature.getTarget();
+            LivingEntity attackTarget = hostCreature.getTarget();
             return attackTarget != null && attackTarget.isAlive();
         } else {
             return super.canUse();
@@ -46,8 +46,8 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
     }
 
     public boolean hasThrowableItemInMainhand() {
-        return this.hostCreature.getMainHandItem().getItem() instanceof SnowballItem
-                | this.hostCreature.getMainHandItem().getItem() instanceof EggItem;
+        return hostCreature.getMainHandItem().getItem() instanceof SnowballItem
+                | hostCreature.getMainHandItem().getItem() instanceof EggItem;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
      */
     public boolean canContinueToUse() {
         if (hasThrowableItemInMainhand()) {
-            return this.canUse() || !this.hostCreature.getNavigation().isDone();
+            return canUse() || !hostCreature.getNavigation().isDone();
         } else {
             return super.canContinueToUse();
         }
@@ -66,8 +66,8 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
      */
     public void stop() {
         if (hasThrowableItemInMainhand()) {
-            this.seeTime = 0;
-            this.rangedAttackTime = -1;
+            seeTime = 0;
+            rangedAttackTime = -1;
         } else {
             super.stop();
         }
@@ -77,40 +77,40 @@ public class ThrowAndMeleeAttackGoal<T extends PathfinderMob & RangedAttackMob> 
      * Updates the task
      */
     public void tick() {
-        LivingEntity attackTarget = this.hostCreature.getTarget();
+        LivingEntity attackTarget = hostCreature.getTarget();
         if (hasThrowableItemInMainhand() && attackTarget != null) {
-            float hostDistanceSq = (float) this.hostCreature.distanceToSqr(attackTarget.getX(), attackTarget.getY(), attackTarget.getZ());
-            boolean canSee = this.hostCreature.getSensing().hasLineOfSight(attackTarget);
+            float hostDistanceSq = (float) hostCreature.distanceToSqr(attackTarget.getX(), attackTarget.getY(), attackTarget.getZ());
+            boolean canSee = hostCreature.getSensing().hasLineOfSight(attackTarget);
             if (canSee) {
-                ++this.seeTime;
+                ++seeTime;
             } else {
-                this.seeTime = 0;
+                seeTime = 0;
             }
 
-            if (hostDistanceSq <= (double) this.maxAttackDistance && this.seeTime >= 5) {
-                this.hostCreature.getNavigation().stop();
+            if (hostDistanceSq <= (double) maxAttackDistance && seeTime >= 5) {
+                hostCreature.getNavigation().stop();
             } else {
-                this.hostCreature.getNavigation().moveTo(attackTarget, this.entityMoveSpeed);
+                hostCreature.getNavigation().moveTo(attackTarget, entityMoveSpeed);
             }
 
-            this.hostCreature.getLookControl().setLookAt(attackTarget, 30.0F, 30.0F);
+            hostCreature.getLookControl().setLookAt(attackTarget, 30.0F, 30.0F);
             float distanceOverAttackRadius;
-            if (--this.rangedAttackTime == 0) {
+            if (--rangedAttackTime == 0) {
                 if (!canSee) {
                     return;
                 }
 
-                distanceOverAttackRadius = Mth.sqrt(hostDistanceSq) / this.attackRadius;
+                distanceOverAttackRadius = Mth.sqrt(hostDistanceSq) / attackRadius;
                 float clampedDistanceOverAttackRadius = Mth.clamp(distanceOverAttackRadius, 0.1F, 1.0F);
 
                 // Used to animate snowball or egg throwing
-                if (this.hasThrowableItemInMainhand()) this.hostCreature.swing(InteractionHand.MAIN_HAND);
+                if (hasThrowableItemInMainhand()) hostCreature.swing(InteractionHand.MAIN_HAND);
 
-                this.hostCreature.performRangedAttack(attackTarget, clampedDistanceOverAttackRadius);
-                this.rangedAttackTime = Mth.floor(distanceOverAttackRadius * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
-            } else if (this.rangedAttackTime < 0) {
-                distanceOverAttackRadius = Mth.sqrt(hostDistanceSq) / this.attackRadius;
-                this.rangedAttackTime = Mth.floor(distanceOverAttackRadius * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
+                hostCreature.performRangedAttack(attackTarget, clampedDistanceOverAttackRadius);
+                rangedAttackTime = Mth.floor(distanceOverAttackRadius * (float) (maxRangedAttackTime - attackIntervalMin) + (float) attackIntervalMin);
+            } else if (rangedAttackTime < 0) {
+                distanceOverAttackRadius = Mth.sqrt(hostDistanceSq) / attackRadius;
+                rangedAttackTime = Mth.floor(distanceOverAttackRadius * (float) (maxRangedAttackTime - attackIntervalMin) + (float) attackIntervalMin);
             }
         } else if (attackTarget != null) {
             super.tick();
