@@ -53,15 +53,15 @@ public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
 
 	@Override
 	protected void addBehaviourGoals() {
-		this.goalSelector.addGoal(2, new FrozenZombieAttackGoal(this, 1.0D, 20, 15.0F, false));
-		this.goalSelector.addGoal(3, new SwitchCombatItemGoal(this, 6.0D, 6.0D));
-		this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
-		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
+		goalSelector.addGoal(2, new FrozenZombieAttackGoal(this, 1.0D, 20, 15.0F, false));
+		goalSelector.addGoal(3, new SwitchCombatItemGoal(this, 6.0D, 6.0D));
+		goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
+		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
+		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
 				Turtle.BABY_ON_LAND_SELECTOR));
 	}
 
@@ -89,7 +89,7 @@ public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
 			return true;
 		} else if (entityIn instanceof LivingEntity
 				&& entityIn instanceof Zombie) {
-			return this.getTeam() == null && entityIn.getTeam() == null;
+			return getTeam() == null && entityIn.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -102,28 +102,28 @@ public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
 
 	@Override
 	public void aiStep() {
-		if (this.level().isClientSide) {
-			this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(), this.getRandomX(0.5D),
-					this.getRandomY() - 0.25D, this.getRandomZ(0.5D),
-					(this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(),
-					(this.random.nextDouble() - 0.5D) * 2.0D);
+		if (level().isClientSide) {
+			level().addParticle(ModParticleTypes.SNOWFLAKE.get(), getRandomX(0.5D),
+					getRandomY() - 0.25D, getRandomZ(0.5D),
+					(random.nextDouble() - 0.5D) * 2.0D, -random.nextDouble(),
+					(random.nextDouble() - 0.5D) * 2.0D);
 		}
 		super.aiStep();
 	}
 
 	@Override
 	public void performRangedAttack(LivingEntity livingEntity, float v) {
-		Snowball snowballentity = new Snowball(this.level(), this);
+		Snowball snowballentity = new Snowball(level(), this);
 		double adjustedEyeY = livingEntity.getEyeY() - 1.100000023841858D;
-		double xDifference = livingEntity.getX() - this.getX();
+		double xDifference = livingEntity.getX() - getX();
 		double yDifference = adjustedEyeY - snowballentity.getY();
-		double zDifference = livingEntity.getZ() - this.getZ();
+		double zDifference = livingEntity.getZ() - getZ();
 		float adjustedHorizontalDistance = Mth
 				.sqrt((float) (xDifference * xDifference + zDifference * zDifference)) * 0.2F;
 		snowballentity.shoot(xDifference, yDifference + (double) adjustedHorizontalDistance, zDifference, 1.6F,
 				7.5F);
-		this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-		this.level().addFreshEntity(snowballentity);
+		playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (getRandom().nextFloat() * 0.4F + 0.8F));
+		level().addFreshEntity(snowballentity);
 	}
 
 	static class FrozenZombieAttackGoal extends ThrowAndMeleeAttackGoal {
@@ -133,32 +133,32 @@ public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
 		FrozenZombieAttackGoal(FrozenZombieEntity zombieEntity, double speedAmplifier, int attackInterval,
 				float maxDistance, boolean useLongMemory) {
 			super(zombieEntity, speedAmplifier, attackInterval, maxDistance, useLongMemory);
-			this.zombie = zombieEntity;
+			zombie = zombieEntity;
 		}
 
 		@Override
 		public boolean hasThrowableItemInMainhand() {
-			return (this.zombie.getMainHandItem().getItem() instanceof SnowballItem
-					| this.zombie.getMainHandItem().getItem() instanceof EggItem)
+			return (zombie.getMainHandItem().getItem() instanceof SnowballItem
+					| zombie.getMainHandItem().getItem() instanceof EggItem)
 					&& zombie.getTarget() != null
 					&& !zombie.getTarget().hasEffect(MobEffects.MOVEMENT_SLOWDOWN);
 		}
 
 		public void start() {
 			super.start();
-			this.raiseArmTicks = 0;
+			raiseArmTicks = 0;
 		}
 
 		public void stop() {
 			super.stop();
-			this.zombie.setAggressive(false);
+			zombie.setAggressive(false);
 		}
 
 		public void tick() {
 			super.tick();
-			++this.raiseArmTicks;
-			this.zombie.setAggressive(this.raiseArmTicks >= 5
-					&& this.getTicksUntilNextAttack() < this.getAttackInterval() / 2);
+			++raiseArmTicks;
+			zombie.setAggressive(raiseArmTicks >= 5
+					&& getTicksUntilNextAttack() < getAttackInterval() / 2);
 
 		}
 	}

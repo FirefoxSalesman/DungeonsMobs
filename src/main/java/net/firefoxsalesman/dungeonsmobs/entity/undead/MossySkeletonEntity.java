@@ -46,9 +46,9 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 
 	@Override
 	public void playAmbientSound() {
-		SoundEvent soundevent = this.getAmbientSound();
+		SoundEvent soundevent = getAmbientSound();
 		if (soundevent != null) {
-			this.playSound(soundevent, 0.25F, this.getVoicePitch());
+			playSound(soundevent, 0.25F, getVoicePitch());
 		}
 	}
 
@@ -71,21 +71,21 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 
 	@Override
 	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-		ItemStack itemstack = this.getProjectile(this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this,
+		ItemStack itemstack = getProjectile(getItemInHand(ProjectileUtil.getWeaponHoldingHand(this,
 				item -> item instanceof net.minecraft.world.item.BowItem)));
-		AbstractArrow abstractarrowentity = this.getArrow(itemstack, p_82196_2_);
-		if (this.getMainHandItem().getItem() instanceof net.minecraft.world.item.BowItem)
-			abstractarrowentity = ((net.minecraft.world.item.BowItem) this.getMainHandItem().getItem())
+		AbstractArrow abstractarrowentity = getArrow(itemstack, p_82196_2_);
+		if (getMainHandItem().getItem() instanceof net.minecraft.world.item.BowItem)
+			abstractarrowentity = ((net.minecraft.world.item.BowItem) getMainHandItem().getItem())
 					.customArrow(abstractarrowentity);
-		double d0 = p_82196_1_.getX() - this.getX();
+		double d0 = p_82196_1_.getX() - getX();
 		double d1 = p_82196_1_.getY(0.3333333333333333D) - abstractarrowentity.getY();
-		double d2 = p_82196_1_.getZ() - this.getZ();
+		double d2 = p_82196_1_.getZ() - getZ();
 		double d3 = Mth.sqrt((float) (d0 * d0 + d2 * d2));
 		abstractarrowentity.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F,
-				(float) (14 - this.level().getDifficulty().getId() * 4));
-		this.playSound(ModSoundEvents.MOSSY_SKELETON_SHOOT.get(), 1.0F,
-				1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-		this.level().addFreshEntity(abstractarrowentity);
+				(float) (14 - level().getDifficulty().getId() * 4));
+		playSound(ModSoundEvents.MOSSY_SKELETON_SHOOT.get(), 1.0F,
+				1.0F / (getRandom().nextFloat() * 0.4F + 0.8F));
+		level().addFreshEntity(abstractarrowentity);
 	}
 
 	@Override
@@ -93,9 +93,9 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 		if (super.doHurtTarget(targetEntity)) {
 			if (targetEntity instanceof LivingEntity) {
 				int i = 0;
-				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+				if (level().getDifficulty() == Difficulty.NORMAL) {
 					i = 4;
-				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+				} else if (level().getDifficulty() == Difficulty.HARD) {
 					i = 8;
 				}
 
@@ -114,9 +114,9 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 	protected AbstractArrow getArrow(ItemStack stack, float damageMultiplier) {
 		AbstractArrow abstractArrowEntity = super.getArrow(stack, damageMultiplier);
 		int i = 0;
-		if (this.level().getDifficulty() == Difficulty.NORMAL) {
+		if (level().getDifficulty() == Difficulty.NORMAL) {
 			i = 4;
-		} else if (this.level().getDifficulty() == Difficulty.HARD) {
+		} else if (level().getDifficulty() == Difficulty.HARD) {
 			i = 8;
 		}
 		if (abstractArrowEntity instanceof Arrow && i > 0) {

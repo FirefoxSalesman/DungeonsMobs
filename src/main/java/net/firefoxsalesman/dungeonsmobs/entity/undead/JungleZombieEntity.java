@@ -67,9 +67,9 @@ public class JungleZombieEntity extends Zombie {
 		if (super.doHurtTarget(targetEntity)) {
 			if (targetEntity instanceof LivingEntity) {
 				int i = 0;
-				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+				if (level().getDifficulty() == Difficulty.NORMAL) {
 					i = 4;
-				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+				} else if (level().getDifficulty() == Difficulty.HARD) {
 					i = 8;
 				}
 
