@@ -411,6 +411,78 @@
       }
     ]
   },
+  "entity.frozen_zombie.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.frozen_zombie.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.frozen_zombie.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.frozen_zombie.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/hurt3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.frozen_zombie.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.frozen_zombie.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/death3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/death4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.frozen_zombie.snowball_land": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.frozen_zombie.snowball_land",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/snowball_land1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/frozen_zombie/snowball_land2",
+	"stream": true
+      }
+    ]
+  },
   
   "entity.mossy_skeleton.idle": {
     "category": "entity",
