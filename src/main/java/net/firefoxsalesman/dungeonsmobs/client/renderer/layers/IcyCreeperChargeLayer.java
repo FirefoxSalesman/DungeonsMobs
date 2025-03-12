@@ -28,6 +28,6 @@ public class IcyCreeperChargeLayer extends EnergySwirlLayer<IcyCreeperEntity, Cr
     }
 
     protected EntityModel<IcyCreeperEntity> model() {
-        return this.model;
+        return model;
     }
 }

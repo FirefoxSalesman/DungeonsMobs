@@ -35,9 +35,9 @@ public class OrbProjectileModel extends GeoModel<NecromancerOrbEntity> {
 	public void setCustomAnimations(NecromancerOrbEntity entity, long uniqueID,
 			AnimationState<NecromancerOrbEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
-		CoreGeoBone everything = this.getAnimationProcessor().getBone("everything");
+		CoreGeoBone everything = getAnimationProcessor().getBone("everything");
 		if (!renderTrail) {
-			CoreGeoBone trail = this.getAnimationProcessor().getBone("trail1");
+			CoreGeoBone trail = getAnimationProcessor().getBone("trail1");
 			trail.setHidden(true);
 		}
 

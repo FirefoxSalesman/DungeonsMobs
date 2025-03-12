@@ -32,19 +32,10 @@ public class SquallGolemModel extends GeoModel<SquallGolemEntity> {
 			AnimationState<SquallGolemEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("head");
-		CoreGeoBone eye = this.getAnimationProcessor().getBone("head2");
-		CoreGeoBone eyeBrow = this.getAnimationProcessor().getBone("head3");
+		CoreGeoBone head = getAnimationProcessor().getBone("head");
+		CoreGeoBone eye = getAnimationProcessor().getBone("head2");
+		CoreGeoBone eyeBrow = getAnimationProcessor().getBone("head3");
 		EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
-		// if (head != null) {
-		// EntityModelData extraData =
-		// customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
-		// head.setRotX(extraData.headPitch() * Mth.DEG_TO_RAD);
-		// head.setRotY(extraData.netHeadYaw() * Mth.DEG_TO_RAD);
-		// eye.setPosY(Math.max(Math.min(extraData.headPitch() / 80, 0.15F), -0.2F));
-		// eyeBrow.setPosY(Math.max(Math.min(extraData.headPitch() / 80, 0.15F),
-		// -0.2F));
-		// }
 		if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {
 			eye.setPosX((float) Math.max(Math.min(
 					(extraData.netHeadYaw() / 80) + Math.sin(eye.getPosX() * Math.PI / 180F), 1),

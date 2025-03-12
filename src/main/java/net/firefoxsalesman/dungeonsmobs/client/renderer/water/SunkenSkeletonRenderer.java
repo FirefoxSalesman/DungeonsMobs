@@ -30,7 +30,7 @@ public class SunkenSkeletonRenderer<T extends SunkenSkeletonEntity> extends Huma
 
     public SunkenSkeletonRenderer(EntityRendererProvider.Context renderContext) {
         super(renderContext, new SunkenSkeletonModel<>(renderContext.bakeLayer(ModModelLayers.SUNKEN_SKELETON)), 0.5F);
-        this.addLayer(new HumanoidArmorLayer<>(this, new SunkenSkeletonModel<>(renderContext.bakeLayer(ModelLayers.SKELETON_INNER_ARMOR)), new SunkenSkeletonModel<>(renderContext.bakeLayer(ModelLayers.SKELETON_OUTER_ARMOR)), Minecraft.getInstance().getModelManager()));
+        addLayer(new HumanoidArmorLayer<>(this, new SunkenSkeletonModel<>(renderContext.bakeLayer(ModelLayers.SKELETON_INNER_ARMOR)), new SunkenSkeletonModel<>(renderContext.bakeLayer(ModelLayers.SKELETON_OUTER_ARMOR)), Minecraft.getInstance().getModelManager()));
     }
 
     @Override

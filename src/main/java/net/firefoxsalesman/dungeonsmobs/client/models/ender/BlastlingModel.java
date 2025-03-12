@@ -33,7 +33,7 @@ public class BlastlingModel extends GeoModel<AbstractEnderlingEntity> {
 	public void setCustomAnimations(AbstractEnderlingEntity entity, long uniqueID,
 			AnimationState<AbstractEnderlingEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
-		CoreGeoBone head = this.getAnimationProcessor().getBone("head");
+		CoreGeoBone head = getAnimationProcessor().getBone("head");
 
 		if (head != null) {
 			EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);

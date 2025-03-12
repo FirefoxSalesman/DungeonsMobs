@@ -19,28 +19,28 @@ public class SmartSkeletonModel<T extends AbstractSkeleton> extends SkeletonMode
     @Override
     public void prepareMobModel(T skeleton, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
         super.prepareMobModel(skeleton, p_212843_2_, p_212843_3_, p_212843_4_);
-        this.rightArmPose = HumanoidModel.ArmPose.EMPTY;
-        this.leftArmPose = HumanoidModel.ArmPose.EMPTY;
+        rightArmPose = HumanoidModel.ArmPose.EMPTY;
+        leftArmPose = HumanoidModel.ArmPose.EMPTY;
         if (skeleton.getMainArm() == HumanoidArm.RIGHT) {
-            this.giveModelRightArmPoses(InteractionHand.MAIN_HAND, skeleton);
-            this.giveModelLeftArmPoses(InteractionHand.OFF_HAND, skeleton);
+            giveModelRightArmPoses(InteractionHand.MAIN_HAND, skeleton);
+            giveModelLeftArmPoses(InteractionHand.OFF_HAND, skeleton);
         } else {
-            this.giveModelRightArmPoses(InteractionHand.OFF_HAND, skeleton);
-            this.giveModelLeftArmPoses(InteractionHand.MAIN_HAND, skeleton);
+            giveModelRightArmPoses(InteractionHand.OFF_HAND, skeleton);
+            giveModelLeftArmPoses(InteractionHand.MAIN_HAND, skeleton);
         }
     }
 
     @Override
     public void setupAnim(T skeleton, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         super.setupAnim(skeleton, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
-        if (this.swimAmount > 0.0F) {
-            this.rightArm.xRot = this.rotlerpRad(this.swimAmount, this.rightArm.xRot, -2.5132742F) + this.swimAmount * 0.35F * Mth.sin(0.1F * p_225597_4_);
-            this.leftArm.xRot = this.rotlerpRad(this.swimAmount, this.leftArm.xRot, -2.5132742F) - this.swimAmount * 0.35F * Mth.sin(0.1F * p_225597_4_);
-            this.rightArm.zRot = this.rotlerpRad(this.swimAmount, this.rightArm.zRot, -0.15F);
-            this.leftArm.zRot = this.rotlerpRad(this.swimAmount, this.leftArm.zRot, 0.15F);
-            this.leftLeg.xRot -= this.swimAmount * 0.55F * Mth.sin(0.1F * p_225597_4_);
-            this.rightLeg.xRot += this.swimAmount * 0.55F * Mth.sin(0.1F * p_225597_4_);
-            this.head.xRot = 0.0F;
+        if (swimAmount > 0.0F) {
+            rightArm.xRot = rotlerpRad(swimAmount, rightArm.xRot, -2.5132742F) + swimAmount * 0.35F * Mth.sin(0.1F * p_225597_4_);
+            leftArm.xRot = rotlerpRad(swimAmount, leftArm.xRot, -2.5132742F) - swimAmount * 0.35F * Mth.sin(0.1F * p_225597_4_);
+            rightArm.zRot = rotlerpRad(swimAmount, rightArm.zRot, -0.15F);
+            leftArm.zRot = rotlerpRad(swimAmount, leftArm.zRot, 0.15F);
+            leftLeg.xRot -= swimAmount * 0.55F * Mth.sin(0.1F * p_225597_4_);
+            rightLeg.xRot += swimAmount * 0.55F * Mth.sin(0.1F * p_225597_4_);
+            head.xRot = 0.0F;
         }
     }
 
@@ -50,27 +50,27 @@ public class SmartSkeletonModel<T extends AbstractSkeleton> extends SkeletonMode
         switch (useaction) {
             case BLOCK:
                 if (skeleton.isBlocking()) {
-                    this.rightArmPose = ArmPose.BLOCK;
+                    rightArmPose = ArmPose.BLOCK;
                 } else {
-                    this.rightArmPose = ArmPose.ITEM;
+                    rightArmPose = ArmPose.ITEM;
                 }
                 break;
             case CROSSBOW:
-                this.rightArmPose = ArmPose.CROSSBOW_HOLD;
+                rightArmPose = ArmPose.CROSSBOW_HOLD;
                 if (skeleton.isUsingItem()) {
-                    this.rightArmPose = ArmPose.CROSSBOW_CHARGE;
+                    rightArmPose = ArmPose.CROSSBOW_CHARGE;
                 }
                 break;
             case BOW:
-                this.rightArmPose = ArmPose.BOW_AND_ARROW;
+                rightArmPose = ArmPose.BOW_AND_ARROW;
                 break;
             case SPEAR:
-                this.leftArmPose = ArmPose.THROW_SPEAR;
+                leftArmPose = ArmPose.THROW_SPEAR;
                 break;
             default:
-                this.rightArmPose = ArmPose.EMPTY;
+                rightArmPose = ArmPose.EMPTY;
                 if (!itemstack.isEmpty()) {
-                    this.rightArmPose = ArmPose.ITEM;
+                    rightArmPose = ArmPose.ITEM;
                 }
                 break;
         }
@@ -82,27 +82,27 @@ public class SmartSkeletonModel<T extends AbstractSkeleton> extends SkeletonMode
         switch (useaction) {
             case BLOCK:
                 if (entityIn.isBlocking()) {
-                    this.leftArmPose = ArmPose.BLOCK;
+                    leftArmPose = ArmPose.BLOCK;
                 } else {
-                    this.leftArmPose = ArmPose.ITEM;
+                    leftArmPose = ArmPose.ITEM;
                 }
                 break;
             case CROSSBOW:
-                this.leftArmPose = ArmPose.CROSSBOW_HOLD;
+                leftArmPose = ArmPose.CROSSBOW_HOLD;
                 if (entityIn.isUsingItem()) {
-                    this.leftArmPose = ArmPose.CROSSBOW_CHARGE;
+                    leftArmPose = ArmPose.CROSSBOW_CHARGE;
                 }
                 break;
             case BOW:
-                this.leftArmPose = ArmPose.BOW_AND_ARROW;
+                leftArmPose = ArmPose.BOW_AND_ARROW;
                 break;
             case SPEAR:
-                this.leftArmPose = ArmPose.THROW_SPEAR;
+                leftArmPose = ArmPose.THROW_SPEAR;
                 break;
             default:
-                this.leftArmPose = ArmPose.EMPTY;
+                leftArmPose = ArmPose.EMPTY;
                 if (!itemstack.isEmpty()) {
-                    this.leftArmPose = ArmPose.ITEM;
+                    leftArmPose = ArmPose.ITEM;
                 }
                 break;
         }

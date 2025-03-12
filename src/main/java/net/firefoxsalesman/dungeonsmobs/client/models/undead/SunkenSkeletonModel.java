@@ -6,11 +6,6 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 
-// Made with Blockbench 4.3.1
-// Exported for Minecraft version 1.15 - 1.16 with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
-
 public class SunkenSkeletonModel<T extends AbstractSkeleton> extends SmartSkeletonModel<T> {
 
 

@@ -17,7 +17,7 @@ public class SnarelingGlobModel<T extends Entity> extends ListModel<T> {
     private final ModelPart root;
 
     public SnarelingGlobModel(ModelPart modelPart) {
-        this.root = modelPart.getChild("root");
+        root = modelPart.getChild("root");
     }
 
     public static LayerDefinition createLayer() {
@@ -31,6 +31,6 @@ public class SnarelingGlobModel<T extends Entity> extends ListModel<T> {
     }
 
     public Iterable<ModelPart> parts() {
-        return ImmutableList.of(this.root);
+        return ImmutableList.of(root);
     }
 }

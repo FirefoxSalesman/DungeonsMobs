@@ -17,11 +17,11 @@ public class SnowflakeParticle extends TextureSheetParticle {
                                 SpriteSet spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
-        this.quadSize *= 1.25F;
-        this.lifetime = 5 + this.random.nextInt(10);
-        this.hasPhysics = false;
+        quadSize *= 1.25F;
+        lifetime = 5 + random.nextInt(10);
+        hasPhysics = false;
 
-        this.pickSprite(spriteSet);
+        pickSprite(spriteSet);
     }
 
     public ParticleRenderType getRenderType() {
@@ -30,25 +30,25 @@ public class SnowflakeParticle extends TextureSheetParticle {
 
 
     public void tick() {
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
-        if (this.age++ >= this.lifetime) {
-            this.remove();
+        xo = x;
+        yo = y;
+        zo = z;
+        if (age++ >= lifetime) {
+            remove();
         } else {
-            this.yd += 0.004D;
-            this.move(this.xd, this.yd, this.zd);
-            if (this.y == this.yo) {
-                this.xd *= 1.1D;
-                this.zd *= 1.1D;
+            yd += 0.004D;
+            move(xd, yd, zd);
+            if (y == yo) {
+                xd *= 1.1D;
+                zd *= 1.1D;
             }
 
-            this.xd *= 0.75F;
-            this.yd *= 0.75F;
-            this.zd *= 0.75F;
-            if (this.onGround) {
-                this.xd *= 0.6F;
-                this.zd *= 0.6F;
+            xd *= 0.75F;
+            yd *= 0.75F;
+            zd *= 0.75F;
+            if (onGround) {
+                xd *= 0.6F;
+                zd *= 0.6F;
             }
 
         }
@@ -59,13 +59,13 @@ public class SnowflakeParticle extends TextureSheetParticle {
         private final SpriteSet sprites;
 
         public Factory(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
+            sprites = spriteSet;
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new SnowflakeParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new SnowflakeParticle(level, x, y, z, sprites, dx, dy, dz);
         }
     }
 }
