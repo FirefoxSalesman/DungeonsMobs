@@ -35,6 +35,7 @@ public class OrbProjectileRenderer extends ProjectileRenderer<NecromancerOrbEnti
 	    scaleFactor = 0.0F;
 	}
 	poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
+	super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     @Override
