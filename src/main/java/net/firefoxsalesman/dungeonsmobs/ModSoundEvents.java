@@ -11,6 +11,21 @@ public class ModSoundEvents {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
 			DungeonsMobs.MOD_ID);
 
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_IDLE = registerSoundEvents(
+			"entity.squall_golem.idle");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_HURT = registerSoundEvents(
+			"entity.squall_golem.hurt");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_DEATH = registerSoundEvents(
+			"entity.squall_golem.death");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_ATTACK = registerSoundEvents(
+			"entity.squall_golem.attack");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_OPEN = registerSoundEvents(
+			"entity.squall_golem.on");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_OFF = registerSoundEvents(
+			"entity.squall_golem.off");
+	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_WALK = registerSoundEvents(
+			"entity.squall_golem.walk");
+
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_IDLE = registerSoundEvents(
 			"entity.jungle_zombie.idle");
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_HURT = registerSoundEvents(

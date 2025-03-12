@@ -1,5 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.projectile;
 
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 

@@ -40,12 +40,8 @@ public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
 		poseStack.translate(0.0D, 0.15F, 0.0D);
 		Vector3f v1 = new Vector3f();
 		Vector3f v2 = new Vector3f();
-		// poseStack.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(p_225623_3_,
-		// snarelingGlob.yRotO, snarelingGlob.getYRot())));
 		poseStack.mulPose(v1.rotationTo(p_225623_3_, snarelingGlob.yRotO, snarelingGlob.getYRot(),
 				new Quaternionf()));
-		// poseStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(p_225623_3_,
-		// snarelingGlob.xRotO, snarelingGlob.getXRot())));
 		poseStack.mulPose(v2.rotationTo(p_225623_2_, snarelingGlob.xRotO, snarelingGlob.getXRot(),
 				new Quaternionf()));
 		this.model.setupAnim(snarelingGlob, p_225623_3_, 0.0F, -0.1F, 0.0F, 0.0F);

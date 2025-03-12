@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
+import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -58,6 +59,7 @@ public class DungeonsMobs {
 	private void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(EntitySpawnPlacement::createPlacementTypes);
 		event.enqueueWork(EntitySpawnPlacement::initSpawnPlacements);
+		event.enqueueWork(RaidEntries::initWaveMemberEntries);
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call

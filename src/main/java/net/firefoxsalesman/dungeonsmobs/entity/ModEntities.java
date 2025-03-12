@@ -10,6 +10,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
@@ -70,6 +71,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "icy_creeper").toString()),
 			0x5ccea5, 0xd9eef2);
+
+	// GOLEM
+	public static final RegistryObject<EntityType<SquallGolemEntity>> SQUALL_GOLEM = registerEntity("squall_golem",
+			() -> EntityType.Builder.<SquallGolemEntity>of(SquallGolemEntity::new, MobCategory.MONSTER)
+					.sized(1.9F, 2.75F) // 42 px wide, 29px tall + 16px of height
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "squall_golem").toString()),
+			0x828f8f, 0xffd426);
 
 	// WATER
 	public static final RegistryObject<EntityType<SunkenSkeletonEntity>> SUNKEN_SKELETON = registerEntity(

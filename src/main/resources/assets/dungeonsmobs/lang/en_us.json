@@ -15,6 +15,9 @@
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
   "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
 
+  "entity.dungeons_mobs.squall_golem": "Squall Golem",
+  "item.dungeons_mobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
+
   "entity.dungeonsmobs.blastling": "Blastling",
   "item.dungeonsmobs.blastling_spawn_egg": "Blastling Spawn Egg",
   "entity.dungeonsmobs.watchling": "Watchling",
@@ -29,6 +32,14 @@
 
   "death.blastling": "%1$s was blasted",
   "death.attack.blastling": "%1$s was blasted by %2$s",
+
+  "subtitles.entity.squall_golem.idle": "Squall Golem creaks",
+  "subtitles.entity.squall_golem.hurt": "Squall Golem hurts",
+  "subtitles.entity.squall_golem.death": "Squall Golem dies",
+  "subtitles.entity.squall_golem.attack": "Squall Golem attacks",
+  "subtitles.entity.squall_golem.activate": "Squall Golem activates",
+  "subtitles.entity.squall_golem.deactivate": "Squall Golem deactivates",
+  "subtitles.entity.squall_golem.step": "Squall Golem steps",
 
   "subtitles.entity.snareling.idle": "Snareling gurgles",
   "subtitles.entity.snareling.hurt": "Snareling hurts",
