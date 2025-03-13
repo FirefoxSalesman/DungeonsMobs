@@ -24,7 +24,7 @@ public class ProjectileRenderer<T extends Projectile & GeoAnimatable> extends Ge
 			int packedOverlay, float red,
 			float green, float blue, float alpha) {
 		poseStack.mulPose(Axis.YP
-				.rotationDegrees(Mth.lerp(partialTick, animatable.yRotO, animatable.getYRot()) - 90));
+				.rotationDegrees(Mth.lerp(partialTick, animatable.yRotO, animatable.getYRot())));
 		poseStack.mulPose(Axis.ZP
 				.rotationDegrees(Mth.lerp(partialTick, animatable.xRotO, animatable.getXRot())));
 		super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick,
