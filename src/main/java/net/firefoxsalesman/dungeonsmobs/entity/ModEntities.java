@@ -11,6 +11,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
@@ -91,6 +92,14 @@ public class ModEntities {
 					.clientTrackingRange(10)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "squall_golem").toString()),
 			0x828f8f, 0xffd426);
+
+	// JUNGLE
+	public static final RegistryObject<EntityType<LeapleafEntity>> LEAPLEAF = registerEntity("leapleaf",
+			() -> EntityType.Builder.<LeapleafEntity>of(LeapleafEntity::new, MobCategory.MONSTER)
+					.sized(1.9F, 1.9F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "leapleaf").toString()),
+			0x818a1a, 0x8a54ef);
 
 	// WATER
 	public static final RegistryObject<EntityType<SunkenSkeletonEntity>> SUNKEN_SKELETON = registerEntity(

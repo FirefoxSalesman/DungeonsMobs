@@ -112,6 +112,37 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_SPARK = registerSoundEvents(
 			"entity.redstone_golem.spark");
 
+	public static final RegistryObject<SoundEvent> LEAPLEAF_IDLE_VOCAL = registerSoundEvents(
+			"entity.leapleaf.idle_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_HURT_VOCAL = registerSoundEvents(
+			"entity.leapleaf.hurt_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_STEP_VOCAL = registerSoundEvents(
+			"entity.leapleaf.step_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_ATTACK_VOCAL = registerSoundEvents(
+			"entity.leapleaf.attack_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_PREPARE_LEAP_VOCAL = registerSoundEvents(
+			"entity.leapleaf.prepare_leap_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_LEAP_VOCAL = registerSoundEvents(
+			"entity.leapleaf.leap_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_REST_VOCAL = registerSoundEvents(
+			"entity.leapleaf.rest_vocal");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_IDLE_FOLEY = registerSoundEvents(
+			"entity.leapleaf.idle_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_HURT_FOLEY = registerSoundEvents(
+			"entity.leapleaf.hurt_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_STEP_FOLEY = registerSoundEvents(
+			"entity.leapleaf.step_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_ATTACK_FOLEY = registerSoundEvents(
+			"entity.leapleaf.attack_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_PREPARE_LEAP_FOLEY = registerSoundEvents(
+			"entity.leapleaf.prepare_leap_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_LEAP_FOLEY = registerSoundEvents(
+			"entity.leapleaf.leap_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_REST_FOLEY = registerSoundEvents(
+			"entity.leapleaf.rest_foley");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_DEATH = registerSoundEvents("entity.leapleaf.death");
+	public static final RegistryObject<SoundEvent> LEAPLEAF_LAND = registerSoundEvents("entity.leapleaf.land");
+
 	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
 			"entity.necromancer.shoot");
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(

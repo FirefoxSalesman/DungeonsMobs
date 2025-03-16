@@ -198,6 +198,281 @@
       }
     ]
   },
+
+  "entity.leapleaf.idle_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_vocal3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.idle_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/idle_foley3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.hurt_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_vocal3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.hurt_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/hurt_foley3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/death",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.land": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.land",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/land1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/land2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/land3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.step_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_vocal3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_vocal4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.step_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_foley3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/step_foley4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.attack_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_vocal3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.attack_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/attack_foley3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.leap_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.leap",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_vocal3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.leap_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/leap_foley3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.prepare_leap_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.prepare_leap",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/prepare_leap_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/prepare_leap_vocal2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.prepare_leap_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/prepare_leap_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/prepare_leap_foley2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.rest_vocal": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.leapleaf.rest",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_vocal1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_vocal2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_vocal3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.leapleaf.rest_foley": {
+    "category": "entity",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_foley1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_foley2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/leapleaf/rest_foley3",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.squall_golem.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.squall_golem.idle",

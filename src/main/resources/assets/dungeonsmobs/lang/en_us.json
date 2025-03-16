@@ -15,6 +15,9 @@
   "entity.dungeonsmobs.sunken_skeleton": "Sunken Skeleton",
   "item.dungeonsmobs.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
 
+  "entity.dungeonsmobs.leapleaf": "Leapleaf",
+  "item.dungeonsmobs.leapleaf_spawn_egg": "Leapleaf Spawn Egg",
+
   "entity.dungeonsmobs.squall_golem": "Squall Golem",
   "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
@@ -45,6 +48,16 @@
   "subtitles.entity.redstone_golem.attack": "Redstone Golem attacks",
   "subtitles.entity.redstone_golem.summon_mines": "Redstone Golem summons mines",
   "subtitles.entity.redstone_golem.spark": "Redstone sparks",
+
+  "subtitles.entity.leapleaf.idle": "Leapleaf growls",
+  "subtitles.entity.leapleaf.hurt": "Leapleaf hurts",
+  "subtitles.entity.leapleaf.death": "Leapleaf dies",
+  "subtitles.entity.leapleaf.step": "Leapleaf steps",
+  "subtitles.entity.leapleaf.attack": "Leapleaf attacks",
+  "subtitles.entity.leapleaf.prepare_leap": "Leapleaf prepares to leap",
+  "subtitles.entity.leapleaf.leap": "Leapleaf leaps",
+  "subtitles.entity.leapleaf.land": "Leapleaf smashes",
+  "subtitles.entity.leapleaf.rest": "Leapleaf rests",
 
   "subtitles.entity.squall_golem.idle": "Squall Golem creaks",
   "subtitles.entity.squall_golem.hurt": "Squall Golem hurts",
