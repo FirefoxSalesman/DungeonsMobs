@@ -13,8 +13,10 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectile
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
@@ -40,6 +42,8 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.ICY_CREEPER.get(), IcyCreeperRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.WRAITH.get(), WraithRenderer::new);
+
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
@@ -49,6 +53,9 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.SNARELING.get(), SnarelingRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_MINE.get(), RedstoneMineRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.WRAITH_FIRE.get(), WraithFireRenderer::new);
+
 		event.registerEntityRenderer(ModEntities.BLASTLING_BULLET.get(),
 				(manager) -> new OrbProjectileRenderer(manager, 0xFFFF93F7, false));
 		event.registerEntityRenderer(ModEntities.SNARELING_GLOB.get(), SnarelingGlobRenderer::new);

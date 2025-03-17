@@ -10,6 +10,13 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModSoundEvents {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
 			DungeonsMobs.MOD_ID);
+	public static final RegistryObject<SoundEvent> WRAITH_IDLE = registerSoundEvents("entity.wraith.idle");
+	public static final RegistryObject<SoundEvent> WRAITH_HURT = registerSoundEvents("entity.wraith.hurt");
+	public static final RegistryObject<SoundEvent> WRAITH_DEATH = registerSoundEvents("entity.wraith.death");
+	public static final RegistryObject<SoundEvent> WRAITH_ATTACK = registerSoundEvents("entity.wraith.attack");
+	public static final RegistryObject<SoundEvent> WRAITH_FIRE = registerSoundEvents("entity.wraith.fire");
+	public static final RegistryObject<SoundEvent> WRAITH_FLY = registerSoundEvents("entity.wraith.fly");
+	public static final RegistryObject<SoundEvent> WRAITH_TELEPORT = registerSoundEvents("entity.wraith.teleport");
 
 	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_IDLE = registerSoundEvents(
 			"entity.squall_golem.idle");

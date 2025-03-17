@@ -18,9 +18,11 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -75,6 +77,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "icy_creeper").toString()),
 			0x5ccea5, 0xd9eef2);
+	// WRAITH
+
+	public static final RegistryObject<EntityType<WraithEntity>> WRAITH = registerEntity("wraith",
+			() -> EntityType.Builder.of(WraithEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.99F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "wraith").toString()),
+			0x0a2c40, 0x82d8f8);
 
 	// REDSTONE
 	public static final RegistryObject<EntityType<RedstoneGolemEntity>> REDSTONE_GOLEM = registerEntity(
@@ -149,6 +159,12 @@ public class ModEntities {
 					.updateInterval(1)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "necromancer_orb")
 							.toString()));
+	public static final RegistryObject<EntityType<WraithFireEntity>> WRAITH_FIRE = registerEntityWithoutEgg(
+			"wraith_fire", () -> EntityType.Builder.of(WraithFireEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(3.25F, 1.25F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "wraith_fire").toString()));
 
 	public static final RegistryObject<EntityType<AreaDamageEntity>> AREA_DAMAGE = registerEntityWithoutEgg(
 			"area_damage",

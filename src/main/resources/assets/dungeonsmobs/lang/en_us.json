@@ -36,10 +36,23 @@
   "death.blastling": "%1$s was blasted",
   "death.attack.blastling": "%1$s was blasted by %2$s",
 
+  "entity.dungeonsmobs.wraith_fireball": "Wraith Fireball",
+
   "entity.dungeonsmobs.redstone_mine": "Redstone Mine",
 
   "entity.dungeonsmobs.redstone_golem": "Redstone Golem",
   "item.dungeonsmobs.redstone_golem_spawn_egg": "Redstone Golem Spawn Egg",
+
+  "block.dungeonsmobs.wraith_fire": "Wraith Fire",
+  "item.dungeonsmobs.wraith_fire_charge": "Wraith Fire Charge",
+
+  "subtitles.entity.wraith.idle": "Wraith wails",
+  "subtitles.entity.wraith.hurt": "Wraith hurts",
+  "subtitles.entity.wraith.death": "Wraith dies",
+  "subtitles.entity.wraith.attack": "Wraith attacks",
+  "subtitles.entity.wraith.fire": "Wraith summons fire",
+  "subtitles.entity.wraith.fly": "Wraith glides",
+  "subtitles.entity.wraith.teleport": "Wraith teleports",
 
   "subtitles.entity.redstone_golem.idle": "Redstone Golem breathes",
   "subtitles.entity.redstone_golem.hurt": "Redstone Golem hurts",

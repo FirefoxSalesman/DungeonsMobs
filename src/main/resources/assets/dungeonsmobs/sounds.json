@@ -1,4 +1,126 @@
 {
+  "entity.wraith.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/idle3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/idle4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/idle5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/idle6",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/hurt3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/death2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/attack",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.fire": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.fire",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/fire",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.fly": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.fly",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/fly1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/fly2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/fly3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/fly4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/fly5",
+	"stream": true
+      }
+    ]
+  },
+  "entity.wraith.teleport": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.wraith.teleport",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/wraith/teleport1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/wraith/teleport2",
+	"stream": true
+      }
+    ]
+  },
   "entity.redstone_golem.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.redstone_golem.idle",
