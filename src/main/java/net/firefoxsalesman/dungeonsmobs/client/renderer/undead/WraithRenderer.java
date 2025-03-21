@@ -37,8 +37,7 @@ public class WraithRenderer extends DynamicGeoEntityRenderer<WraithEntity> {
 	public void renderRecursively(PoseStack poseStack, WraithEntity animatable, GeoBone bone, RenderType renderType,
 			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
 			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		if (this.isArmorBone(bone)) {
-			// bone.setCubesHidden(true);
+		if (isArmorBone(bone)) {
 			bone.setChildrenHidden(true);
 		}
 		super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
@@ -101,33 +100,6 @@ public class WraithRenderer extends DynamicGeoEntityRenderer<WraithEntity> {
 	// stack.mulPose(Axis.YP.rotationDegrees(180));
 	// }
 	// }
-	// }
-
-	// @Override
-	// protected void postRenderItem(PoseStack matrixStack, ItemStack item, String
-	// boneName,
-	// WraithEntity currentEntity, IBone bone) {
-
-	// }
-
-	// @Override
-	// protected BlockState getHeldBlockForBone(String boneName, WraithEntity
-	// currentEntity) {
-	// return null;
-	// }
-
-	// @Override
-	// protected void preRenderBlock(PoseStack matrixStack, BlockState block, String
-	// boneName,
-	// WraithEntity currentEntity) {
-
-	// }
-
-	// @Override
-	// protected void postRenderBlock(PoseStack matrixStack, BlockState block,
-	// String boneName,
-	// WraithEntity currentEntity) {
-
 	// }
 
     // @Nullable

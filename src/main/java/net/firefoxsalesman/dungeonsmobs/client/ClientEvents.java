@@ -1,8 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.EmptyRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.BlastlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
@@ -59,10 +61,14 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.BLASTLING_BULLET.get(),
 				(manager) -> new OrbProjectileRenderer(manager, 0xFFFF93F7, false));
 		event.registerEntityRenderer(ModEntities.SNARELING_GLOB.get(), SnarelingGlobRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.AREA_DAMAGE.get(), EmptyRenderer::new);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onParticleFactory(RegisterParticleProvidersEvent event) {
+		Minecraft.getInstance().particleEngine.register(ModParticleTypes.DUST.get(),
+				DustParticle.Factory::new);
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.SNOWFLAKE.get(),
 				SnowflakeParticle.Factory::new);
 	}
