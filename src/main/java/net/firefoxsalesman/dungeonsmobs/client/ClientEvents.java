@@ -1,6 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
+import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
@@ -11,15 +13,23 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
@@ -40,12 +50,22 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.WHISPERER.get(), WhispererRenderer::new);
 		event.registerEntityRenderer(ModEntities.LEAPLEAF.get(), LeapleafRenderer::new);
+		event.registerEntityRenderer(ModEntities.POISON_QUILL_VINE.get(), PoisonQuillVineRenderer::new);
+		event.registerEntityRenderer(ModEntities.QUICK_GROWING_VINE.get(), QuickGrowingVineRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.POISON_QUILL.get(), PoisonQuillRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ICY_CREEPER.get(), IcyCreeperRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.WRAITH.get(), WraithRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.SIMPLE_TRAP.get(), SimpleTrapRenderer::new);
+		event.registerEntityRenderer(ModEntities.KELP_TRAP.get(), KelpTrapRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.WAVEWHISPERER.get(), WavewhispererRenderer::new);
+		event.registerEntityRenderer(ModEntities.POISON_ANEMONE.get(), PoisonAnemoneRenderer::new);
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
@@ -71,5 +91,9 @@ public class ClientEvents {
 				DustParticle.Factory::new);
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.SNOWFLAKE.get(),
 				SnowflakeParticle.Factory::new);
+		Minecraft.getInstance().particleEngine.register(ModParticleTypes.CORRUPTED_MAGIC.get(),
+				CorruptedMagicParticle.Factory::new);
+		Minecraft.getInstance().particleEngine.register(ModParticleTypes.CORRUPTED_DUST.get(),
+				CorruptedDustParticle.Factory::new);
 	}
 }

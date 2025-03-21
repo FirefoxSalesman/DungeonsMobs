@@ -18,6 +18,9 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> WRAITH_FLY = registerSoundEvents("entity.wraith.fly");
 	public static final RegistryObject<SoundEvent> WRAITH_TELEPORT = registerSoundEvents("entity.wraith.teleport");
 
+	public static final RegistryObject<SoundEvent> GEOMANCER_BOMB_SPAWN = registerSoundEvents(
+			"entity.geomancer.bomb_spawn");
+
 	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_IDLE = registerSoundEvents(
 			"entity.squall_golem.idle");
 	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_HURT = registerSoundEvents(
@@ -119,6 +122,36 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_SPARK = registerSoundEvents(
 			"entity.redstone_golem.spark");
 
+	public static final RegistryObject<SoundEvent> WHISPERER_IDLE_VOCAL = registerSoundEvents(
+			"entity.whisperer.idle_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_HURT_VOCAL = registerSoundEvents(
+			"entity.whisperer.hurt_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_STEP_VOCAL = registerSoundEvents(
+			"entity.whisperer.step_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_ATTACK_VOCAL = registerSoundEvents(
+			"entity.whisperer.attack_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_SUMMON_PQV_VOCAL = registerSoundEvents(
+			"entity.whisperer.summon_pqv_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_SUMMON_QGV_VOCAL = registerSoundEvents(
+			"entity.whisperer.summon_qgv_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_GRAPPLE_VOCAL = registerSoundEvents(
+			"entity.whisperer.grapple_vocal");
+	public static final RegistryObject<SoundEvent> WHISPERER_IDLE_FOLEY = registerSoundEvents(
+			"entity.whisperer.idle_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_HURT_FOLEY = registerSoundEvents(
+			"entity.whisperer.hurt_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_STEP_FOLEY = registerSoundEvents(
+			"entity.whisperer.step_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_ATTACK_FOLEY = registerSoundEvents(
+			"entity.whisperer.attack_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_SUMMON_PQV_FOLEY = registerSoundEvents(
+			"entity.whisperer.summon_pqv_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_SUMMON_QGV_FOLEY = registerSoundEvents(
+			"entity.whisperer.summon_qgv_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_GRAPPLE_FOLEY = registerSoundEvents(
+			"entity.whisperer.grapple_foley");
+	public static final RegistryObject<SoundEvent> WHISPERER_DEATH = registerSoundEvents("entity.whisperer.death");
+
 	public static final RegistryObject<SoundEvent> LEAPLEAF_IDLE_VOCAL = registerSoundEvents(
 			"entity.leapleaf.idle_vocal");
 	public static final RegistryObject<SoundEvent> LEAPLEAF_HURT_VOCAL = registerSoundEvents(
@@ -149,6 +182,73 @@ public class ModSoundEvents {
 			"entity.leapleaf.rest_foley");
 	public static final RegistryObject<SoundEvent> LEAPLEAF_DEATH = registerSoundEvents("entity.leapleaf.death");
 	public static final RegistryObject<SoundEvent> LEAPLEAF_LAND = registerSoundEvents("entity.leapleaf.land");
+
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_IDLE = registerSoundEvents(
+			"entity.wavewhisperer.idle");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_HURT = registerSoundEvents(
+			"entity.wavewhisperer.hurt");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_DEATH = registerSoundEvents(
+			"entity.wavewhisperer.death");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_STEP = registerSoundEvents(
+			"entity.wavewhisperer.step");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_ATTACK = registerSoundEvents(
+			"entity.wavewhisperer.attack");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_SUMMON_PA_FOLEY = registerSoundEvents(
+			"entity.wavewhisperer.summon_pa_foley");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_SUMMON_PA_VOCAL = registerSoundEvents(
+			"entity.wavewhisperer.summon_pa_vocal");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_SUMMON_QGK = registerSoundEvents(
+			"entity.wavewhisperer.summon_qgk");
+	public static final RegistryObject<SoundEvent> WAVEWHISPERER_GRAPPLE = registerSoundEvents(
+			"entity.wavewhisperer.grapple");
+
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_KELP_BURST = registerSoundEvents(
+			"entity.quick_growing_kelp.burst");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_KELP_BURST_DOWN = registerSoundEvents(
+			"entity.quick_growing_kelp.burst_down");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_KELP_HURT = registerSoundEvents(
+			"entity.quick_growing_kelp.hurt");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_KELP_DEATH = registerSoundEvents(
+			"entity.quick_growing_kelp.death");
+
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_BURST = registerSoundEvents(
+			"entity.poison_anemone.burst");
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_IDLE = registerSoundEvents(
+			"entity.poison_anemone.idle");
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_HURT = registerSoundEvents(
+			"entity.poison_anemone.hurt_vocal");
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_DEATH = registerSoundEvents(
+			"entity.poison_anemone.death");
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_CLOSE = registerSoundEvents(
+			"entity.poison_anemone.close");
+	public static final RegistryObject<SoundEvent> POISON_ANEMONE_SHOOT = registerSoundEvents(
+			"entity.poison_anemone.shoot");
+
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_VINE_BURST = registerSoundEvents(
+			"entity.quick_growing_vine.burst");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_VINE_BURST_DOWN = registerSoundEvents(
+			"entity.quick_growing_vine.burst_down");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_VINE_HURT = registerSoundEvents(
+			"entity.quick_growing_vine.hurt");
+	public static final RegistryObject<SoundEvent> QUICK_GROWING_VINE_DEATH = registerSoundEvents(
+			"entity.quick_growing_vine.death");
+
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_BURST = registerSoundEvents(
+			"entity.poison_quill_vine.burst");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_IDLE = registerSoundEvents(
+			"entity.poison_quill_vine.idle");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_HURT_VOCAL = registerSoundEvents(
+			"entity.poison_quill_vine.hurt_vocal");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_HURT_FOLEY = registerSoundEvents(
+			"entity.poison_quill_vine.hurt_foley");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_DEATH = registerSoundEvents(
+			"entity.poison_quill_vine.death");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_OPEN = registerSoundEvents(
+			"entity.poison_quill_vine.open");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_CLOSE = registerSoundEvents(
+			"entity.poison_quill_vine.close");
+	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_SHOOT = registerSoundEvents(
+			"entity.poison_quill_vine.shoot");
 
 	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
 			"entity.necromancer.shoot");

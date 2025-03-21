@@ -12,17 +12,25 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -104,6 +112,13 @@ public class ModEntities {
 			0x828f8f, 0xffd426);
 
 	// JUNGLE
+	public static final RegistryObject<EntityType<WhispererEntity>> WHISPERER = registerEntity("whisperer",
+			() -> EntityType.Builder.of(WhispererEntity::new, MobCategory.MONSTER)
+					.sized(0.8F, 2.25F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "whisperer").toString()),
+			0x80a242, 0xe20703);
+
 	public static final RegistryObject<EntityType<LeapleafEntity>> LEAPLEAF = registerEntity("leapleaf",
 			() -> EntityType.Builder.<LeapleafEntity>of(LeapleafEntity::new, MobCategory.MONSTER)
 					.sized(1.9F, 1.9F)
@@ -111,7 +126,50 @@ public class ModEntities {
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "leapleaf").toString()),
 			0x818a1a, 0x8a54ef);
 
+	public static final RegistryObject<EntityType<QuickGrowingVineEntity>> QUICK_GROWING_VINE = registerEntity(
+			"quick_growing_vine",
+			() -> EntityType.Builder.of(QuickGrowingVineEntity::new, MobCategory.MONSTER)
+					// .fireImmune()
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "quick_growing_vine")
+							.toString()),
+			0x90ad49, 0xfbc883);
+
+	public static final RegistryObject<EntityType<PoisonQuillVineEntity>> POISON_QUILL_VINE = registerEntity(
+			"poison_quill_vine",
+			() -> EntityType.Builder.of(PoisonQuillVineEntity::new, MobCategory.MONSTER)
+					// .fireImmune()
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "poison_quill_vine")
+							.toString()),
+			0x90ad49, 0x632cbb);
+
+	public static final RegistryObject<EntityType<QuickGrowingKelpEntity>> QUICK_GROWING_KELP = registerEntity(
+			"quick_growing_kelp",
+			() -> EntityType.Builder.of(QuickGrowingKelpEntity::new, MobCategory.MONSTER)
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "quick_growing_kelp")
+							.toString()),
+			0x2b9477, 0x0d8f99);
+
+	public static final RegistryObject<EntityType<PoisonAnemoneEntity>> POISON_ANEMONE = registerEntity(
+			"poison_anemone", () -> EntityType.Builder.of(PoisonAnemoneEntity::new, MobCategory.MONSTER)
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "poison_anemone").toString()),
+			0x2b9477, 0xc436cd);
+
 	// WATER
+	public static final RegistryObject<EntityType<WhispererEntity>> WAVEWHISPERER = registerEntity("wavewhisperer",
+			() -> EntityType.Builder.of(WhispererEntity::new, MobCategory.MONSTER)
+					.sized(0.8F, 2.25F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "wavewhisperer").toString()),
+			0x48a867, 0x69ebff);
+
 	public static final RegistryObject<EntityType<SunkenSkeletonEntity>> SUNKEN_SKELETON = registerEntity(
 			"sunken_skeleton", () -> EntityType.Builder.of(SunkenSkeletonEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.99F)
@@ -159,6 +217,29 @@ public class ModEntities {
 					.updateInterval(1)
 					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "necromancer_orb")
 							.toString()));
+
+	public static final RegistryObject<EntityType<PoisonQuillEntity>> POISON_QUILL = ENTITY_TYPES.register(
+			"poison_quill",
+			() -> EntityType.Builder.<PoisonQuillEntity>of(PoisonQuillEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(0.35F, 0.35F)
+					.updateInterval(1)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "poison_quill").toString()));
+
+	public static final RegistryObject<EntityType<SimpleTrapEntity>> SIMPLE_TRAP = registerEntityWithoutEgg(
+			"simple_trap", () -> EntityType.Builder.of(SimpleTrapEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(2.0F, 0.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "simple_trap").toString()));
+
+	public static final RegistryObject<EntityType<KelpTrapEntity>> KELP_TRAP = registerEntityWithoutEgg("kelp_trap",
+			() -> EntityType.Builder.of(KelpTrapEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(2.0F, 0.5F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(DungeonsMobs.MOD_ID, "kelp_trap").toString()));
+
 	public static final RegistryObject<EntityType<WraithFireEntity>> WRAITH_FIRE = registerEntityWithoutEgg(
 			"wraith_fire", () -> EntityType.Builder.of(WraithFireEntity::new, MobCategory.MISC)
 					.fireImmune()
