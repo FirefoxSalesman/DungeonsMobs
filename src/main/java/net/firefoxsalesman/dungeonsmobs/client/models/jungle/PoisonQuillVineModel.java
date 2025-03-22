@@ -36,8 +36,7 @@ public class PoisonQuillVineModel extends AbstractVineModel {
 		if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {
 			head.setRotX(head.getRotX() + (extraData.headPitch() * ((float) Math.PI / 180F)));
 
-			headRotator.setRotY(
-					headRotator.getRotY() + (extraData.netHeadYaw() * ((float) Math.PI / 180F)));
+			headRotator.setRotY(extraData.netHeadYaw() * ((float) Math.PI / 180F));
 		}
 	}
 }
