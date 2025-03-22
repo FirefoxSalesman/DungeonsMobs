@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "dungeonsmobs:whisperer",
+    "dungeonsmobs:leapleaf",
+    "dungeonsmobs:quick_growing_vine",
+    "dungeonsmobs:poison_quill_vine",
+    "dungeonsmobs:wavewhisperer",
+    "dungeonsmobs:quick_growing_kelp",
+    "dungeonsmobs:poison_anemone"
+  ]
+}

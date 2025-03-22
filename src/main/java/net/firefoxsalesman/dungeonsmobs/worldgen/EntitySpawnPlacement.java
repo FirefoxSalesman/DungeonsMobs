@@ -79,7 +79,21 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
+
+		SpawnPlacements.register(ModEntities.WHISPERER.get(),
+				ON_GROUND_ALLOW_LEAVES,
+				Heightmap.Types.MOTION_BLOCKING,
+				EntitySpawnPlacement::canJungleMobSpawn);
+		SpawnPlacements.register(ModEntities.LEAPLEAF.get(),
+				ON_GROUND_ALLOW_LEAVES,
+				Heightmap.Types.MOTION_BLOCKING,
+				EntitySpawnPlacement::canJungleMobSpawn);
+
 		// Ocean
+		SpawnPlacements.register(ModEntities.WAVEWHISPERER.get(),
+				SpawnPlacements.Type.IN_WATER,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::checkAquaticMobSpawnRules);
 		SpawnPlacements.register(ModEntities.SUNKEN_SKELETON.get(),
 				SpawnPlacements.Type.IN_WATER,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -127,5 +141,11 @@ public class EntitySpawnPlacement {
 	public static boolean canRaiderSpawn(EntityType<? extends Raider> entityType, ServerLevelAccessor world,
 			MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return Monster.checkMonsterSpawnRules(entityType, world, spawnReason, blockPos, rand);
+	}
+
+	public static boolean canJungleMobSpawn(EntityType<? extends Monster> entityType, ServerLevelAccessor world,
+			MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
+		return Monster.checkMonsterSpawnRules(entityType, world, spawnReason, blockPos, rand)
+				&& world.getSeaLevel() <= blockPos.getY();
 	}
 }
