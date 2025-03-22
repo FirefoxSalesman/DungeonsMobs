@@ -28,6 +28,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRen
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
@@ -66,6 +67,7 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.WAVEWHISPERER.get(), WavewhispererRenderer::new);
 		event.registerEntityRenderer(ModEntities.POISON_ANEMONE.get(), PoisonAnemoneRenderer::new);
+		event.registerEntityRenderer(ModEntities.QUICK_GROWING_KELP.get(), QuickGrowingKelpRenderer::new);
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
