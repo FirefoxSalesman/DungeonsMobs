@@ -37,8 +37,8 @@ public class WraithRenderer extends GeoEntityRenderer<WraithEntity> {
 	public void renderRecursively(PoseStack poseStack, WraithEntity animatable, GeoBone bone, RenderType renderType,
 			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
 			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		if (isArmorBone(bone)) {
-			bone.setChildrenHidden(true);
+		if (this.isArmorBone(bone)) {
+			bone.setHidden(true);
 		}
 		super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
 				partialTick,
@@ -48,4 +48,5 @@ public class WraithRenderer extends GeoEntityRenderer<WraithEntity> {
 	protected boolean isArmorBone(CoreGeoBone bone) {
 		return bone.getName().startsWith("armor");
 	}
+
 }
