@@ -15,10 +15,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
-public class WhispererRenderer extends DynamicGeoEntityRenderer<WhispererEntity> {
+public class WhispererRenderer extends GeoEntityRenderer<WhispererEntity> {
 	public WhispererRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new WhispererModel<WhispererEntity>());
 		addRenderLayer(new GeoEyeLayer<>(this, new ResourceLocation(DungeonsMobs.MOD_ID,
