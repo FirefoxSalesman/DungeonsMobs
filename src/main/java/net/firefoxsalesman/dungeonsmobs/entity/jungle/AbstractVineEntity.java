@@ -317,7 +317,7 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
     @Override
     public boolean shouldShowName() {
-        return this.isOut();
+        return false;
     }
 
     @Override

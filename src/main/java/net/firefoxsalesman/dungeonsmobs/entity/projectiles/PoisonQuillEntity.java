@@ -115,8 +115,6 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 		if (!this.level().isClientSide) {
 			super.onHitEntity(entity);
 			boolean flag;
-			// flag = entity.hurt(ModDamageSources.poisonQuill(this,
-			// MoreObjects.firstNonNull(this.getOwner(), this)), 5.0F);
 			flag = entity.hurt(damageSources().mobProjectile(this,
 					(LivingEntity) MoreObjects.firstNonNull(this.getOwner(), this)), 5.0F);
 			if (entity instanceof LivingEntity) {
