@@ -13,9 +13,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class WraithRenderer extends DynamicGeoEntityRenderer<WraithEntity> {
+public class WraithRenderer extends GeoEntityRenderer<WraithEntity> {
 
 	public WraithRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new WraithModel());
