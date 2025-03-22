@@ -53,6 +53,10 @@ public class EntitySpawnPlacement {
 	}
 
 	public static void initSpawnPlacements() {
+		SpawnPlacements.register(ModEntities.WRAITH.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
 		SpawnPlacements.register(ModEntities.JUNGLE_ZOMBIE.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
