@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +19,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -33,6 +35,7 @@ public class DungeonsMobs {
 
 	public DungeonsMobs() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onLoadComplete);
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
@@ -74,5 +77,9 @@ public class DungeonsMobs {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 		}
+	}
+
+	private void onLoadComplete(final FMLLoadCompleteEvent event) {
+		EntityType.HUSK.getDimensions().scale(0.6F * 1.2F, 1.95F * 1.2F);
 	}
 }

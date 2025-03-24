@@ -34,6 +34,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRend
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -47,6 +48,8 @@ public class ClientEvents {
 	public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(ModEntities.JUNGLE_ZOMBIE.get(), CustomZombieRenderer::new);
 		event.registerEntityRenderer(ModEntities.FROZEN_ZOMBIE.get(), CustomZombieRenderer::new);
+		// To match Husk proportions found in MCD
+		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
 
