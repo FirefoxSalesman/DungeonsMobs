@@ -255,6 +255,12 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(
 			"entity.necromancer.orb_impact");
 
+	public static final RegistryObject<SoundEvent> SPIDER_PREPARE_SHOOT = registerSoundEvents(
+			"entity.spider.prepare_shoot");
+	public static final RegistryObject<SoundEvent> SPIDER_SHOOT = registerSoundEvents("entity.spider.shoot");
+	public static final RegistryObject<SoundEvent> SPIDER_WEB_IMPACT = registerSoundEvents(
+			"entity.spider.web_impact");
+
 	public static void register(IEventBus eventBus) {
 		SOUNDS.register(eventBus);
 	}

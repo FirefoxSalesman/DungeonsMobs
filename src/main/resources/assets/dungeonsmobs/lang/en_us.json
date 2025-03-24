@@ -30,6 +30,9 @@
   "entity.dungeonsmobs.poison_quill_vine": "Poison-Quill Vine",
   "item.dungeonsmobs.poison_quill_vine_spawn_egg": "Poison-Quill Vine Spawn Egg",
 
+  "entity.dungeonsmobs.cobweb_trap": "Cobweb Trap",
+  "entity.dungeonsmobs.cobweb_projectile": "Cobweb Projectile",
+
   "entity.dungeonsmobs.squall_golem": "Squall Golem",
   "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
@@ -182,5 +185,9 @@
   "subtitles.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
   "subtitles.entity.sunken_skeleton.death": "Sunken Skeleton dies",
   "subtitles.entity.sunken_skeleton.step": "Sunken Skeleton swims",
-  "subtitles.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots"
+  "subtitles.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots",
+
+  "subtitles.entity.spider.prepare_shoot": "Spider calls",
+  "subtitles.entity.spider.shoot": "Spider shoots",
+  "subtitles.entity.spider.web_impact": "Spider Web hits"
 }

@@ -6,9 +6,12 @@
   "refmap": "mixins.dungeonsmobs.refmap.json",
   "mixins": [
     "AbstractArrowEntityMixin",
-    "CropsBlockMixin"
+    "CropsBlockMixin",
+    "GoalSelectorAccessor",
+    "SpiderEntityMixin"
   ],
   "client": [
+    "SpiderModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1
