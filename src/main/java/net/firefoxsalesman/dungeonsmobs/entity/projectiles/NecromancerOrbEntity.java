@@ -245,11 +245,6 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
-
-	@Override
 	public SoundEvent getImpactSound() {
 		return ModSoundEvents.NECROMANCER_ORB_IMPACT.get();
 	}

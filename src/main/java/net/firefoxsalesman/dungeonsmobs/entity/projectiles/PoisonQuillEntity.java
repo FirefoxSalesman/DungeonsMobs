@@ -5,8 +5,6 @@ import com.google.common.base.MoreObjects;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,7 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -163,11 +160,6 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 
 	protected boolean shouldBurn() {
 		return false;
-	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
