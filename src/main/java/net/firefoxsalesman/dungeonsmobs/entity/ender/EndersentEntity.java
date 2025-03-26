@@ -40,13 +40,13 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 
 	public static final EntityDataAccessor<Integer> TELEPORTING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.INT);
-	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(),
+	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
 			BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(true)
 			.setPlayBossMusic(true);
 
 	public EndersentEntity(EntityType<? extends EndersentEntity> p_i50210_1_, Level p_i50210_2_) {
 		super(p_i50210_1_, p_i50210_2_);
-		this.xpReward = 50;
+		xpReward = 50;
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -56,63 +56,63 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	}
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(2, new EndersentEntity.AttackGoal(1.0D));
-		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
-		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
+		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(1.0D));
+		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
+		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
 				.setAlertOthers().setUnseenMemoryTicks(500));
-		this.targetSelector.addGoal(1,
+		targetSelector.addGoal(1,
 				new NearestAttackableTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
-		this.targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
+		targetSelector.addGoal(1, new AbstractEnderlingEntity.FindPlayerGoal(this, null));
 	}
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(TELEPORTING, 0);
+		entityData.define(TELEPORTING, 0);
 	}
 
 	public int isTeleporting() {
-		return this.entityData.get(TELEPORTING);
+		return entityData.get(TELEPORTING);
 	}
 
 	public void setTeleporting(int p_189794_1_) {
 
 		if (p_189794_1_ == 15) {
-			if (this.getTarget() != null) {
-				this.setPos(this.getTarget().getX() - 5 + this.random.nextInt(10),
-						this.getTarget().getY(),
-						this.getTarget().getZ() - 5 + this.random.nextInt(10));
-				this.level().playSound(null, this.xo, this.yo, this.zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), this.getSoundSource(), 1.0F,
+			if (getTarget() != null) {
+				setPos(getTarget().getX() - 5 + random.nextInt(10),
+						getTarget().getY(),
+						getTarget().getZ() - 5 + random.nextInt(10));
+				level().playSound(null, xo, yo, zo,
+						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
 						1.0F);
-				this.playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
 			} else {
-				this.setPos(this.getX() - 20 + this.random.nextInt(40), this.getY(),
-						this.getZ() - 20 + this.random.nextInt(40));
-				this.level().playSound(null, this.xo, this.yo, this.zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), this.getSoundSource(), 1.0F,
+				setPos(getX() - 20 + random.nextInt(40), getY(),
+						getZ() - 20 + random.nextInt(40));
+				level().playSound(null, xo, yo, zo,
+						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
 						1.0F);
-				this.playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
 			}
 		}
 
-		this.entityData.set(TELEPORTING, p_189794_1_);
+		entityData.set(TELEPORTING, p_189794_1_);
 	}
 
 	@Override
 	protected void tickDeath() {
-		++this.deathTime;
-		if (this.deathTime == 100) {
-			this.remove(RemovalReason.KILLED);
+		++deathTime;
+		if (deathTime == 100) {
+			remove(RemovalReason.KILLED);
 
 			for (int i = 0; i < 20; ++i) {
-				double d0 = this.random.nextGaussian() * 0.02D;
-				double d1 = this.random.nextGaussian() * 0.02D;
-				double d2 = this.random.nextGaussian() * 0.02D;
-				this.level().addParticle(ParticleTypes.POOF, this.getRandomX(1.0D), this.getRandomY(),
-						this.getRandomZ(1.0D), d0, d1, d2);
+				double d0 = random.nextGaussian() * 0.02D;
+				double d1 = random.nextGaussian() * 0.02D;
+				double d2 = random.nextGaussian() * 0.02D;
+				level().addParticle(ParticleTypes.POOF, getRandomX(1.0D), getRandomY(),
+						getRandomZ(1.0D), d0, d1, d2);
 			}
 		}
 
@@ -120,15 +120,15 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 
 	public void readAdditionalSaveData(CompoundTag p_70037_1_) {
 		super.readAdditionalSaveData(p_70037_1_);
-		if (this.hasCustomName()) {
-			this.bossEvent.setName(this.getDisplayName());
+		if (hasCustomName()) {
+			bossEvent.setName(getDisplayName());
 		}
 
 	}
 
 	public void setCustomName(@Nullable Component p_200203_1_) {
 		super.setCustomName(p_200203_1_);
-		this.bossEvent.setName(this.getDisplayName());
+		bossEvent.setName(getDisplayName());
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -144,13 +144,13 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	}
 
 	public boolean doHurtTarget(Entity p_70652_1_) {
-		this.playSound(ModSoundEvents.ENDERSENT_ATTACK.get(), 1.0F, 1.0F);
+		playSound(ModSoundEvents.ENDERSENT_ATTACK.get(), 1.0F, 1.0F);
 		return super.doHurtTarget(p_70652_1_);
 	}
 
 	@Override
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(this.getStepSound(), 1.25F, 1.0F);
+		playSound(getStepSound(), 1.25F, 1.0F);
 	}
 
 	@Override
@@ -165,47 +165,42 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	public void baseTick() {
 		super.baseTick();
 
-		if (this.isTeleporting() > 0) {
-			this.setTeleporting(this.isTeleporting() - 1);
+		if (isTeleporting() > 0) {
+			setTeleporting(isTeleporting() - 1);
 		}
 
-		// System.out.print("\r\n" + this.tickCount);
-
-		// Player player = this.level.getNearestPlayer(this,
-		// EnderlingConfig.endersent_patrol_distance.get());
-
-		if (this.random.nextInt(500) == 0 && this.getTarget() == null) {
-			this.setTeleporting(50);
-		} else if (this.random.nextInt(200) == 0 && this.getTarget() != null) {
-			this.setTeleporting(50);
+		if (random.nextInt(500) == 0 && getTarget() == null) {
+			setTeleporting(50);
+		} else if (random.nextInt(200) == 0 && getTarget() != null) {
+			setTeleporting(50);
 		}
 
-		if (this.isTeleporting() > 0) {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+		if (isTeleporting() > 0) {
+			getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
 		} else {
-			this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2F);
+			getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2F);
 		}
 
-		this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+		bossEvent.setProgress(getHealth() / getMaxHealth());
 	}
 
-	public void startSeenByPlayer(ServerPlayer p_184178_1_) {
-		super.startSeenByPlayer(p_184178_1_);
-		this.bossEvent.addPlayer(p_184178_1_);
+	public void startSeenByPlayer(ServerPlayer player) {
+		super.startSeenByPlayer(player);
+		bossEvent.addPlayer(player);
 	}
 
-	public void stopSeenByPlayer(ServerPlayer p_184203_1_) {
-		super.stopSeenByPlayer(p_184203_1_);
-		this.bossEvent.removePlayer(p_184203_1_);
+	public void stopSeenByPlayer(ServerPlayer player) {
+		super.stopSeenByPlayer(player);
+		bossEvent.removePlayer(player);
 	}
 
 	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.deathTime > 0) {
+		if (deathTime > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("endersent_death", LoopType.LOOP));
-		} else if (this.isTeleporting() > 0) {
+		} else if (isTeleporting() > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("endersent_teleport", LoopType.PLAY_ONCE));
-		} else if (this.isAttacking() > 0) {
+		} else if (isAttacking() > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("endersent_attack", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
@@ -217,11 +212,11 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	}
 
 	protected boolean teleport() {
-		if (!this.level().isClientSide() && this.isAlive()) {
-			double d0 = this.getX() + (this.random.nextDouble() - 0.5D) * 32.0D;
-			double d1 = this.getY() + (double) (this.random.nextInt(8) - 4);
-			double d2 = this.getZ() + (this.random.nextDouble() - 0.5D) * 32.0D;
-			return this.teleport(d0, d1, d2);
+		if (!level().isClientSide() && isAlive()) {
+			double d0 = getX() + (random.nextDouble() - 0.5D) * 32.0D;
+			double d1 = getY() + (double) (random.nextInt(8) - 4);
+			double d2 = getZ() + (random.nextDouble() - 0.5D) * 32.0D;
+			return teleport(d0, d1, d2);
 		} else {
 			return false;
 		}
@@ -232,11 +227,11 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 				p_70825_5_);
 
 		while (blockpos$mutable.getY() > 0
-				&& !this.level().getBlockState(blockpos$mutable).blocksMotion()) {
+				&& !level().getBlockState(blockpos$mutable).blocksMotion()) {
 			blockpos$mutable.move(Direction.DOWN);
 		}
 
-		BlockState blockstate = this.level().getBlockState(blockpos$mutable);
+		BlockState blockstate = level().getBlockState(blockpos$mutable);
 		boolean flag = blockstate.blocksMotion();
 		boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
 		if (flag && !flag1) {
@@ -244,13 +239,13 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 					.onEnderTeleport(this, p_70825_1_, p_70825_3_, p_70825_5_);
 			if (event.isCanceled())
 				return false;
-			boolean flag2 = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
+			boolean flag2 = randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
 					true);
-			if (flag2 && !this.isSilent()) {
-				this.level().playSound(null, this.xo, this.yo, this.zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), this.getSoundSource(), 1.0F,
+			if (flag2 && !isSilent()) {
+				level().playSound(null, xo, yo, zo,
+						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
 						1.0F);
-				this.playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
 			}
 
 			return flag2;
@@ -269,31 +264,31 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 			return super.canContinueToUse();
 		}
 
-		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return this.mob.getBbWidth() * 5.0F * this.mob.getBbWidth() * 5.0F + p_179512_1_.getBbWidth();
+		protected double getAttackReachSqr(LivingEntity pEntity) {
+			return mob.getBbWidth() * 5.0F * mob.getBbWidth() * 5.0F + pEntity.getBbWidth();
 		}
 
 		public void tick() {
 			super.tick();
 
-			EndersentEntity.this.setRunning(10);
+			setRunning(10);
 		}
 
-		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = this.getAttackReachSqr(p_190102_1_);
-			if (p_190102_2_ <= d0 && this.isTimeToAttack()) {
-				this.resetAttackCooldown();
-				this.mob.doHurtTarget(p_190102_1_);
+		protected void checkAndPerformAttack(LivingEntity pEntity, double p_190102_2_) {
+			double d0 = getAttackReachSqr(pEntity);
+			if (p_190102_2_ <= d0 && isTimeToAttack()) {
+				resetAttackCooldown();
+				mob.doHurtTarget(pEntity);
 			} else if (p_190102_2_ <= d0 * 1.5D) {
-				if (this.isTimeToAttack()) {
-					this.resetAttackCooldown();
+				if (isTimeToAttack()) {
+					resetAttackCooldown();
 				}
 
-				if (this.getTicksUntilNextAttack() <= 30) {
-					EndersentEntity.this.setAttacking(30);
+				if (getTicksUntilNextAttack() <= 30) {
+					setAttacking(30);
 				}
 			} else {
-				this.resetAttackCooldown();
+				resetAttackCooldown();
 			}
 		}
 	}

@@ -31,7 +31,7 @@ public class EndersentModel extends GeoModel<AbstractEnderlingEntity> {
 	public void setCustomAnimations(AbstractEnderlingEntity entity, long uniqueID,
 			AnimationState<AbstractEnderlingEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
-		CoreGeoBone head = this.getAnimationProcessor().getBone("head");
+		CoreGeoBone head = getAnimationProcessor().getBone("head");
 
 		EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
 		if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {

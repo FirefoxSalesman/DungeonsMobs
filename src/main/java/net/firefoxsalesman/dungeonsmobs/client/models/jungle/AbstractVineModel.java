@@ -12,12 +12,12 @@ public abstract class AbstractVineModel extends GeoModel<AbstractVineEntity> {
     public void setCustomAnimations(AbstractVineEntity entity, long uniqueID, AnimationState<AbstractVineEntity> customPredicate) {
         super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-        CoreGeoBone everything = this.getAnimationProcessor().getBone("everything");
+        CoreGeoBone everything = getAnimationProcessor().getBone("everything");
 
         everything.setHidden(entity.tickCount <= entity.getAnimationTransitionTime());
 
         for (int i = 1; i < 26; i++) {
-            CoreGeoBone part = this.getAnimationProcessor().getBone("part" + i);
+            CoreGeoBone part = getAnimationProcessor().getBone("part" + i);
             int partsToShow = 26 - entity.getLengthInSegments();
             if (part != null) {
                 part.setHidden(i < partsToShow);

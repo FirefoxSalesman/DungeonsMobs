@@ -207,8 +207,8 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 			++attackTimer;
 		}
 		setDeltaMovement(SquallGolemEntity.this.getDeltaMovement().x,
-				SquallGolemEntity.this.getDeltaMovement().y - 2.5,
-				SquallGolemEntity.this.getDeltaMovement().z);
+				getDeltaMovement().y - 2.5,
+				getDeltaMovement().z);
 		handleLeafCollision();
 		handleSteppingOnBlocks();
 	}
@@ -498,7 +498,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			float f = SquallGolemEntity.this.getBbWidth() - 0.1F;
+			float f = getBbWidth() - 0.1F;
 			return f * 1.8F * f * 1.8F + p_179512_1_.getBbWidth();
 		}
 	}
@@ -509,12 +509,12 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		}
 
 		public boolean canUse() {
-			return !SquallGolemEntity.this.getActivate();
+			return !getActivate();
 		}
 
 		@Override
 		public void tick() {
-			SquallGolemEntity.this.setDeltaMovement(0, SquallGolemEntity.this.getDeltaMovement().y, 0);
+			setDeltaMovement(0, getDeltaMovement().y, 0);
 		}
 	}
 
@@ -536,12 +536,12 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		@Override
 		public void start() {
 			setAttackID(GOLEM_ACTIVATE);
-			SquallGolemEntity.this.playSound(ModSoundEvents.SQUALL_GOLEM_OPEN.get(), 1.0F, 1F);
+			playSound(ModSoundEvents.SQUALL_GOLEM_OPEN.get(), 1.0F, 1F);
 		}
 
 		@Override
 		public void tick() {
-			SquallGolemEntity.this.setDeltaMovement(0, SquallGolemEntity.this.getDeltaMovement().y, 0);
+			setDeltaMovement(0, getDeltaMovement().y, 0);
 		}
 
 		@Override
@@ -568,12 +568,12 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		@Override
 		public void start() {
 			setAttackID(GOLEM_DEACTIVATE);
-			SquallGolemEntity.this.playSound(ModSoundEvents.SQUALL_GOLEM_OFF.get(), 1.0F, 1F);
+			playSound(ModSoundEvents.SQUALL_GOLEM_OFF.get(), 1.0F, 1F);
 		}
 
 		@Override
 		public void tick() {
-			SquallGolemEntity.this.setDeltaMovement(0, SquallGolemEntity.this.getDeltaMovement().y, 0);
+			setDeltaMovement(0, getDeltaMovement().y, 0);
 		}
 
 		@Override
@@ -589,7 +589,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 		@Override
 		public boolean canUse() {
-			return attackID == STOMP_ATTACK && (SquallGolemEntity.this.cd <= 0);
+			return attackID == STOMP_ATTACK && (cd <= 0);
 		}
 
 		@Override
@@ -600,8 +600,8 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 		@Override
 		public void start() {
-			if (SquallGolemEntity.this.getTarget() != null)
-				SquallGolemEntity.this.getLookControl().setLookAt(SquallGolemEntity.this.getTarget(),
+			if (getTarget() != null)
+				getLookControl().setLookAt(getTarget(),
 						30, 30);
 			setMeleeAttacking(true);
 			setAttackID(STOMP_ATTACK);
@@ -609,17 +609,17 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 
 		@Override
 		public void tick() {
-			SquallGolemEntity.this.setDeltaMovement(0, SquallGolemEntity.this.getDeltaMovement().y, 0);
-			LivingEntity target = SquallGolemEntity.this.getTarget();
-			if (SquallGolemEntity.this.attackTimer < 15 && target != null) {
-				SquallGolemEntity.this.lookAt(target, 15.0F, 15.0F);
+			setDeltaMovement(0, getDeltaMovement().y, 0);
+			LivingEntity target = getTarget();
+			if (attackTimer < 15 && target != null) {
+				lookAt(target, 15.0F, 15.0F);
 			} else {
-				SquallGolemEntity.this.setYRot(SquallGolemEntity.this.yRotO);
+				setYRot(yRotO);
 			}
-			if (SquallGolemEntity.this.attackTimer == 12) {
-				SquallGolemEntity.this.playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
+			if (attackTimer == 12) {
+				playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
 			}
-			if (SquallGolemEntity.this.attackTimer == 30) {
+			if (attackTimer == 30) {
 				AreaAttack(5, 5, 5, 5, 60, 1.0F);
 			}
 		}
@@ -628,10 +628,10 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 			for (LivingEntity entityHit : level().getEntitiesOfClass(LivingEntity.class,
 					getBoundingBox().inflate(X, Y, Z))) {
 				float entityHitAngle = (float) ((Math.atan2(
-						entityHit.getZ() - SquallGolemEntity.this.getZ(),
-						entityHit.getX() - SquallGolemEntity.this.getX()) * (180 / Math.PI)
+						entityHit.getZ() - getZ(),
+						entityHit.getX() - getX()) * (180 / Math.PI)
 						- 90) % 360);
-				float entityAttackingAngle = SquallGolemEntity.this.yBodyRot % 360;
+				float entityAttackingAngle = yBodyRot % 360;
 				if (entityHitAngle < 0) {
 					entityHitAngle += 360;
 				}
@@ -640,10 +640,10 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				}
 				float entityRelativeAngle = entityHitAngle - entityAttackingAngle;
 				float entityHitDistance = (float) Math.sqrt((entityHit.getZ()
-						- SquallGolemEntity.this.getZ())
-						* (entityHit.getZ() - SquallGolemEntity.this.getZ())
-						+ (entityHit.getX() - SquallGolemEntity.this.getX())
-								* (entityHit.getX() - SquallGolemEntity.this.getX()));
+						- getZ())
+						* (entityHit.getZ() - getZ())
+						+ (entityHit.getX() - getX())
+								* (entityHit.getX() - getX()));
 				if (entityHitDistance <= range
 						&& (entityRelativeAngle <= arc / 2 && entityRelativeAngle >= -arc / 2)
 						|| (entityRelativeAngle >= 360 - arc / 2
@@ -654,8 +654,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 										Attributes.ATTACK_DAMAGE) * damage);
 
 						SquallGolemEntity v = SquallGolemEntity.this;
-						float attackKnockback = (float) SquallGolemEntity.this
-								.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+						float attackKnockback = (float) getAttributeValue(Attributes.ATTACK_KNOCKBACK);
 						double ratioX = Mth.sin(v.getYRot() * ((float) Math.PI / 180F));
 						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
 						double knockbackReduction = 0.35D;
@@ -673,7 +672,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 		public void stop() {
 			setMeleeAttacking(false);
 			setAttackID(0);
-			SquallGolemEntity.this.cd = 25;
+			cd = 25;
 		}
 
 		private void forceKnockback(LivingEntity attackTarget, float strength, double ratioX, double ratioZ,

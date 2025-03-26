@@ -29,8 +29,8 @@ public class PoisonQuillVineModel extends AbstractVineModel {
 			AnimationState<AbstractVineEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("head");
-		CoreGeoBone headRotator = this.getAnimationProcessor().getBone("headRotator");
+		CoreGeoBone head = getAnimationProcessor().getBone("head");
+		CoreGeoBone headRotator = getAnimationProcessor().getBone("headRotator");
 
 		EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
 		if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {

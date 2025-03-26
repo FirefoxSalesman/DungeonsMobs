@@ -97,26 +97,26 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 
 	public LeapleafEntity(EntityType<? extends LeapleafEntity> type, Level world) {
 		super(type, world);
-		this.xpReward = 20;
+		xpReward = 20;
 		setMaxUpStep(1.0F);
 	}
 
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new LeapleafEntity.RemainStationaryGoal());
-		this.goalSelector.addGoal(1, new LeapleafEntity.StrafeGoal(this));
-		this.goalSelector.addGoal(2, new LeapleafEntity.LeapGoal(this));
-		this.goalSelector.addGoal(3, new LeapleafEntity.PrepareLeapGoal(this));
-		this.goalSelector.addGoal(4, new LeapleafEntity.BasicAttackGoal(this));
-		this.goalSelector.addGoal(5, new ApproachTargetGoal(this, 0, 1.2D, true));
-		this.goalSelector.addGoal(6, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		goalSelector.addGoal(0, new LeapleafEntity.RemainStationaryGoal());
+		goalSelector.addGoal(1, new LeapleafEntity.StrafeGoal(this));
+		goalSelector.addGoal(2, new LeapleafEntity.LeapGoal(this));
+		goalSelector.addGoal(3, new LeapleafEntity.PrepareLeapGoal(this));
+		goalSelector.addGoal(4, new LeapleafEntity.BasicAttackGoal(this));
+		goalSelector.addGoal(5, new ApproachTargetGoal(this, 0, 1.2D, true));
+		goalSelector.addGoal(6, new LookAtTargetGoal(this));
+		goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
+		goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		targetSelector.addGoal(0, new HurtByTargetGoal(this));
+		targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -126,42 +126,42 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	}
 
 	public boolean shouldBeStationary() {
-		return this.restTick > 0;
+		return restTick > 0;
 	}
 
 	@Override
 	public void playAmbientSound() {
-		SoundEvent soundeventVocal = this.getAmbientSound();
-		SoundEvent soundeventFoley = this.getAmbientSoundFoley();
-		this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(),
-				this.getSoundVolume(), this.getVoicePitch());
+		SoundEvent soundeventVocal = getAmbientSound();
+		SoundEvent soundeventFoley = getAmbientSoundFoley();
+		playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(),
+				getSoundVolume(), getVoicePitch());
 	}
 
 	@Override
-	protected void playHurtSound(DamageSource p_184581_1_) {
-		this.ambientSoundTime = -this.getAmbientSoundInterval();
-		SoundEvent soundeventVocal = this.getHurtSound(p_184581_1_);
-		SoundEvent soundeventFoley = this.getHurtSoundFoley(p_184581_1_);
-		this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(),
-				this.getSoundVolume(), this.getVoicePitch());
+	protected void playHurtSound(DamageSource pDamageSource) {
+		ambientSoundTime = -getAmbientSoundInterval();
+		SoundEvent soundeventVocal = getHurtSound(pDamageSource);
+		SoundEvent soundeventFoley = getHurtSoundFoley(pDamageSource);
+		playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(),
+				getSoundVolume(), getVoicePitch());
 	}
 
 	@Override
-	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(this.getStepSound(), 0.5F, 1.0F);
-		this.playSound(this.getStepSoundFoley(), 0.5F, 1.0F);
+	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
+		playSound(getStepSound(), 0.5F, 1.0F);
+		playSound(getStepSoundFoley(), 0.5F, 1.0F);
 	}
 
 	public void playSound(SoundEvent vocalSound, SoundEvent foleySound, float vocalVolume, float vocalPitch,
 			float foleyVolume, float foleyPitch) {
-		if (!this.isSilent()) {
+		if (!isSilent()) {
 			if (vocalSound != null) {
-				this.level().playSound(null, this.getX(), this.getY(), this.getZ(), vocalSound,
-						this.getSoundSource(), vocalVolume, vocalPitch);
+				level().playSound(null, getX(), getY(), getZ(), vocalSound,
+						getSoundSource(), vocalVolume, vocalPitch);
 			}
 			if (foleySound != null) {
-				this.level().playSound(null, this.getX(), this.getY(), this.getZ(), foleySound,
-						this.getSoundSource(), foleyVolume, foleyPitch);
+				level().playSound(null, getX(), getY(), getZ(), foleySound,
+						getSoundSource(), foleyVolume, foleyPitch);
 			}
 		}
 	}
@@ -205,46 +205,46 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(TIMES_LEAPT, 0);
-		this.entityData.define(CAN_LEAP, false);
-		this.entityData.define(LEAPING, false);
+		entityData.define(TIMES_LEAPT, 0);
+		entityData.define(CAN_LEAP, false);
+		entityData.define(LEAPING, false);
 	}
 
 	public int getTimesLeapt() {
-		return this.entityData.get(TIMES_LEAPT);
+		return entityData.get(TIMES_LEAPT);
 	}
 
 	public void setTimesLeapt(int attached) {
-		this.entityData.set(TIMES_LEAPT, attached);
+		entityData.set(TIMES_LEAPT, attached);
 	}
 
 	public boolean canLeap() {
-		return this.entityData.get(CAN_LEAP);
+		return entityData.get(CAN_LEAP);
 	}
 
 	public void setCanLeap(boolean attached) {
-		this.entityData.set(CAN_LEAP, attached);
+		entityData.set(CAN_LEAP, attached);
 	}
 
 	public boolean isLeaping() {
-		return this.entityData.get(LEAPING);
+		return entityData.get(LEAPING);
 	}
 
 	public void setLeaping(boolean attached) {
-		this.entityData.set(LEAPING, attached);
+		entityData.set(LEAPING, attached);
 	}
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.attackAnimationTick = attackAnimationLength;
+			attackAnimationTick = attackAnimationLength;
 		} else if (p_28844_ == 8) {
-			this.prepareLeapAnimationTick = prepareLeapAnimationLength;
+			prepareLeapAnimationTick = prepareLeapAnimationLength;
 		} else if (p_28844_ == 9) {
-			this.leapAnimationTick = leapAnimationLength;
+			leapAnimationTick = leapAnimationLength;
 		} else if (p_28844_ == 11) {
-			this.smashAnimationTick = smashAnimationLength;
+			smashAnimationTick = smashAnimationLength;
 		} else if (p_28844_ == 7) {
-			this.restTick = restLength;
+			restTick = restLength;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
@@ -252,19 +252,19 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 
-		AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
 
-		if (!this.level().isClientSide && this.canLeap()
-				&& (this.getTarget() == null || this.getTarget().isDeadOrDying())) {
-			this.restTick = this.restLength;
-			this.level().broadcastEntityEvent(this, (byte) 7);
-			this.setCanLeap(false);
-			this.setTimesLeapt(0);
+		if (!level().isClientSide && canLeap()
+				&& (getTarget() == null || getTarget().isDeadOrDying())) {
+			restTick = restLength;
+			level().broadcastEntityEvent(this, (byte) 7);
+			setCanLeap(false);
+			setTimesLeapt(0);
 		}
 
-		if (this.canLeap()) {
+		if (canLeap()) {
 			if (!modifiableattributeinstance.hasModifier(SPEED_MODIFIER_CHARGING)) {
 				modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER_CHARGING);
 			}
@@ -272,53 +272,53 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_CHARGING);
 		}
 
-		if (this.getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
-				&& this.random.nextInt(3) == 0) {
-			int i = Mth.floor(this.getX());
-			int j = Mth.floor(this.getY() - (double) 0.2F);
-			int k = Mth.floor(this.getZ());
+		if (getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F
+				&& random.nextInt(3) == 0) {
+			int i = Mth.floor(getX());
+			int j = Mth.floor(getY() - (double) 0.2F);
+			int k = Mth.floor(getZ());
 			BlockPos pos = new BlockPos(i, j, k);
-			BlockState blockstate = this.level().getBlockState(pos);
+			BlockState blockstate = level().getBlockState(pos);
 			if (!blockstate.isAir()) {
-				this.level().addParticle(ModParticleTypes.DUST.get(),
-						this.getX() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						this.getY() + 0.1D,
-						this.getZ() + ((double) this.random.nextFloat() - 0.5D)
-								* (double) this.getBbWidth(),
-						this.random.nextFloat() * 0.5, this.random.nextGaussian() * 1,
-						this.random.nextGaussian() * 1);
+				level().addParticle(ModParticleTypes.DUST.get(),
+						getX() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						getY() + 0.1D,
+						getZ() + ((double) random.nextFloat() - 0.5D)
+								* (double) getBbWidth(),
+						random.nextFloat() * 0.5, random.nextGaussian() * 1,
+						random.nextGaussian() * 1);
 			}
 		}
 
-		if (this.restTick > 0) {
-			this.restTick--;
+		if (restTick > 0) {
+			restTick--;
 		}
 
-		if (this.strafeTick > 0) {
-			this.strafeTick--;
+		if (strafeTick > 0) {
+			strafeTick--;
 		}
 
-		if (this.leapCooldown > 0) {
-			this.leapCooldown--;
+		if (leapCooldown > 0) {
+			leapCooldown--;
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.attackAnimationTick > 0) {
-			this.attackAnimationTick--;
+		if (attackAnimationTick > 0) {
+			attackAnimationTick--;
 		}
 
-		if (this.prepareLeapAnimationTick > 0) {
-			this.prepareLeapAnimationTick--;
+		if (prepareLeapAnimationTick > 0) {
+			prepareLeapAnimationTick--;
 		}
 
-		if (this.leapAnimationTick > 0) {
-			this.leapAnimationTick--;
+		if (leapAnimationTick > 0) {
+			leapAnimationTick--;
 		}
 
-		if (this.smashAnimationTick > 0) {
-			this.smashAnimationTick--;
+		if (smashAnimationTick > 0) {
+			smashAnimationTick--;
 		}
 	}
 
@@ -333,18 +333,18 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.smashAnimationTick > 0) {
+		if (smashAnimationTick > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_smash", LoopType.LOOP));
-		} else if (this.leapAnimationTick > 0) {
+		} else if (leapAnimationTick > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_leap", LoopType.LOOP));
-		} else if (this.prepareLeapAnimationTick > 0) {
+		} else if (prepareLeapAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("leapleaf_prepare_leap", LoopType.LOOP));
-		} else if (this.attackAnimationTick > 0) {
+		} else if (attackAnimationTick > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_attack", LoopType.LOOP));
-		} else if (this.restTick > 0) {
+		} else if (restTick > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_rest", LoopType.LOOP));
-		} else if (this.isLeaping()) {
+		} else if (isLeaping()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("leapleaf_leaping", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
@@ -360,11 +360,11 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		return factory;
 	}
 
-	public boolean isAlliedTo(Entity p_184191_1_) {
-		if (super.isAlliedTo(p_184191_1_)) {
+	public boolean isAlliedTo(Entity pEntity) {
+		if (super.isAlliedTo(pEntity)) {
 			return true;
-		} else if (p_184191_1_ instanceof LivingEntity && p_184191_1_.getType().is(EntityTags.PLANT_MOBS)) {
-			return this.getTeam() == null && p_184191_1_.getTeam() == null;
+		} else if (pEntity instanceof LivingEntity && pEntity.getType().is(EntityTags.PLANT_MOBS)) {
+			return getTeam() == null && pEntity.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -377,9 +377,9 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public LivingEntity target;
 
 		public BasicAttackGoal(LeapleafEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -440,9 +440,9 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public LivingEntity target;
 
 		public PrepareLeapGoal(LeapleafEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -500,9 +500,9 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public int leapTime;
 
 		public LeapGoal(LeapleafEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -548,14 +548,14 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 				mob.setDeltaMovement(d0 * 0.15D, 0.75 + Mth.clamp(d1 * 0.05D, 0, 10), d2 * 0.15D);
 				mob.setLeaping(true);
 				mob.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());
-				this.leapTime = 0;
+				leapTime = 0;
 			}
 
 			if (mob.isLeaping()) {
-				this.leapTime++;
+				leapTime++;
 			}
 
-			if (mob.isLeaping() && mob.onGround() && this.leapTime > 10) {
+			if (mob.isLeaping() && mob.onGround() && leapTime > 10) {
 				mob.playSound(ModSoundEvents.LEAPLEAF_LAND.get(), 2.0F, 1.0F);
 				mob.setLeaping(false);
 				mob.smashAnimationTick = mob.smashAnimationLength;
@@ -585,7 +585,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		@Override
 		public void stop() {
 			super.stop();
-			this.leapTime = 0;
+			leapTime = 0;
 			mob.setCanLeap(false);
 			mob.setLeaping(false);
 			mob.setTimesLeapt(mob.getTimesLeapt() + 1);
@@ -621,9 +621,9 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		private boolean strafingLeft;
 
 		public StrafeGoal(LeapleafEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -655,7 +655,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 				mob.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());
 
 				if (mob.random.nextInt(30) == 0) {
-					this.strafingLeft = !this.strafingLeft;
+					strafingLeft = !strafingLeft;
 				}
 
 				if (mob.distanceTo(target) < 4) {
@@ -663,7 +663,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 							PositionUtils.getOffsetMotion(mob, 0, 0, -0.1, mob.yBodyRot)));
 				}
 
-				if (this.strafingLeft) {
+				if (strafingLeft) {
 					mob.setDeltaMovement(mob.getDeltaMovement().add(
 							PositionUtils.getOffsetMotion(mob, 0.05, 0, 0, mob.yBodyRot)));
 				} else {
@@ -678,12 +678,12 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	class RemainStationaryGoal extends Goal {
 
 		public RemainStationaryGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
 		}
 
 		@Override
 		public boolean canUse() {
-			return LeapleafEntity.this.shouldBeStationary();
+			return shouldBeStationary();
 		}
 	}
 

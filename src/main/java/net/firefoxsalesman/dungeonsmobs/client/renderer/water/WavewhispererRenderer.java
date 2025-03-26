@@ -25,7 +25,7 @@ public class WavewhispererRenderer extends WhispererRenderer {
     @Override
     protected void applyRotations(WhispererEntity entityLiving, PoseStack matrixStackIn, float ageInTicks,
                                   float rotationYaw, float partialTicks) {
-        if (this.isShaking(entityLiving)) {
+        if (isShaking(entityLiving)) {
             rotationYaw += (float) (Math.cos((double) entityLiving.tickCount * 3.25D) * Math.PI * (double) 0.4F);
         }
         super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);

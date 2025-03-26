@@ -13,11 +13,11 @@ public class DustParticle extends TextureSheetParticle {
                            SpriteSet spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
-        this.quadSize *= 2.5F;
-        this.lifetime = 20 + this.random.nextInt(40);
-        this.hasPhysics = true;
+        quadSize *= 2.5F;
+        lifetime = 20 + random.nextInt(40);
+        hasPhysics = true;
 
-        this.pickSprite(spriteSet);
+        pickSprite(spriteSet);
     }
 
     public ParticleRenderType getRenderType() {
@@ -27,14 +27,14 @@ public class DustParticle extends TextureSheetParticle {
     @Override
     public void tick() {
         super.tick();
-        this.xd = this.xd * 0.95F;
-        this.yd = this.yd * 0.75F;
-        this.zd = this.zd * 0.95F;
+        xd = xd * 0.95F;
+        yd = yd * 0.75F;
+        zd = zd * 0.95F;
         fadeOut();
     }
 
     private void fadeOut() {
-        this.alpha = (-(1 / (float) lifetime) * age + 1);
+        alpha = (-(1 / (float) lifetime) * age + 1);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -42,13 +42,13 @@ public class DustParticle extends TextureSheetParticle {
         private final SpriteSet sprites;
 
         public Factory(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
+            sprites = spriteSet;
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new DustParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new DustParticle(level, x, y, z, sprites, dx, dy, dz);
         }
     }
 }

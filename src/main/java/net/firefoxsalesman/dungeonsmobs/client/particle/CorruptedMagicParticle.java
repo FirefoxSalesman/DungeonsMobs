@@ -13,11 +13,11 @@ public class CorruptedMagicParticle extends TextureSheetParticle {
                                      SpriteSet spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
-        this.quadSize *= 1.25F;
-        this.lifetime = 15;
-        this.hasPhysics = false;
+        quadSize *= 1.25F;
+        lifetime = 15;
+        hasPhysics = false;
 
-        this.pickSprite(spriteSet);
+        pickSprite(spriteSet);
     }
 
     public ParticleRenderType getRenderType() {
@@ -26,8 +26,8 @@ public class CorruptedMagicParticle extends TextureSheetParticle {
 
     @Override
     public void tick() {
-        if (this.age++ >= this.lifetime) {
-            this.remove();
+        if (age++ >= lifetime) {
+            remove();
         }
         fadeOut();
     }
@@ -38,7 +38,7 @@ public class CorruptedMagicParticle extends TextureSheetParticle {
     }
 
     private void fadeOut() {
-        this.alpha = (-(1 / (float) lifetime) * age + 1);
+        alpha = (-(1 / (float) lifetime) * age + 1);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -46,13 +46,13 @@ public class CorruptedMagicParticle extends TextureSheetParticle {
         private final SpriteSet sprites;
 
         public Factory(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
+            sprites = spriteSet;
         }
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new CorruptedMagicParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new CorruptedMagicParticle(level, x, y, z, sprites, dx, dy, dz);
         }
     }
 }

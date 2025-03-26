@@ -39,7 +39,7 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
     public int retractAnimationTick;
 
     private final Predicate<Entity> SHOULD_BURST_FOR = (entity) -> {
-        return this.shouldBurstFor(entity);
+        return shouldBurstFor(entity);
     };
 
     public VinePartEntity[] subEntities = new VinePartEntity[27];
@@ -50,7 +50,7 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
         for (int i = 0; i < adjustedLength; i++) {
             VinePartEntity newPart = new VinePartEntity(this, 26 - i);
-            this.subEntities[i] = newPart;
+            subEntities[i] = newPart;
         }
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
     protected void movePart(VinePartEntity part, double dX, double dY, double dZ) {
         Vec3 lastPos = new Vec3(part.getX(), part.getY(), part.getZ());
 
-        part.setPos(this.getX() + dX, this.getY() + dY, this.getZ() + dZ);
+        part.setPos(getX() + dX, getY() + dY, getZ() + dZ);
 
         part.xo = lastPos.x;
         part.yo = lastPos.y;
@@ -103,125 +103,125 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
         if (super.isAlliedTo(p_184191_1_)) {
             return true;
         } else if (p_184191_1_ instanceof LivingEntity && p_184191_1_.getType().is(EntityTags.PLANT_MOBS)) {
-            return this.getTeam() == null && p_184191_1_.getTeam() == null;
+            return getTeam() == null && p_184191_1_.getTeam() == null;
         } else {
             return false;
         }
     }
 
     protected void tickDeath() {
-        ++this.deathTime;
-        if (this.deathTime == this.getRetractAnimationLength()) {
-            this.remove(RemovalReason.KILLED);
+        ++deathTime;
+        if (deathTime == getRetractAnimationLength()) {
+            remove(RemovalReason.KILLED);
         }
     }
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(LENGTH, 0);
-        this.entityData.define(VANISHES, false);
-        this.entityData.define(STAY_TIME, 0);
-        this.entityData.define(ALWAYS_OUT, false);
-        this.entityData.define(SHOULD_RETRACT, false);
-        this.entityData.define(DETECTION_DISTANCE, 0.0F);
-        this.entityData.define(OUT, false);
+        entityData.define(LENGTH, 0);
+        entityData.define(VANISHES, false);
+        entityData.define(STAY_TIME, 0);
+        entityData.define(ALWAYS_OUT, false);
+        entityData.define(SHOULD_RETRACT, false);
+        entityData.define(DETECTION_DISTANCE, 0.0F);
+        entityData.define(OUT, false);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setLengthInSegments(compound.getInt("Length"));
-        this.setVanishes(compound.getBoolean("Vanishes"));
-        this.setStayTime(compound.getInt("StayTime"));
-        this.setAlwaysOut(compound.getBoolean("AlwaysOut"));
-        this.setShouldRetract(compound.getBoolean("ShouldRetract"));
-        this.setDetectionDistance(compound.getFloat("DetectionDistance"));
-        this.setOut(compound.getBoolean("Out"));
+        setLengthInSegments(compound.getInt("Length"));
+        setVanishes(compound.getBoolean("Vanishes"));
+        setStayTime(compound.getInt("StayTime"));
+        setAlwaysOut(compound.getBoolean("AlwaysOut"));
+        setShouldRetract(compound.getBoolean("ShouldRetract"));
+        setDetectionDistance(compound.getFloat("DetectionDistance"));
+        setOut(compound.getBoolean("Out"));
     }
 
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("Length", this.getLengthInSegments());
-        compound.putBoolean("Vanishes", this.getVanishes());
-        compound.putInt("StayTime", this.getStayTime());
-        compound.putBoolean("AlwaysOut", this.getAlwaysOut());
-        compound.putBoolean("ShouldRetract", this.getShouldRetract());
-        compound.putFloat("DetectionDistance", this.getDetectionDistance());
-        compound.putBoolean("Out", this.isOut());
+        compound.putInt("Length", getLengthInSegments());
+        compound.putBoolean("Vanishes", getVanishes());
+        compound.putInt("StayTime", getStayTime());
+        compound.putBoolean("AlwaysOut", getAlwaysOut());
+        compound.putBoolean("ShouldRetract", getShouldRetract());
+        compound.putFloat("DetectionDistance", getDetectionDistance());
+        compound.putBoolean("Out", isOut());
     }
 
     public int getLengthInSegments() {
-        return Mth.clamp(this.entityData.get(LENGTH), 1, 26);
+        return Mth.clamp(entityData.get(LENGTH), 1, 26);
     }
 
     public float getLengthInPixels() {
-        return this.getLengthInSegments() * 22;
+        return getLengthInSegments() * 22;
     }
 
     public float getLengthInBlocks() {
-        return this.getLengthInPixels() / 16;
+        return getLengthInPixels() / 16;
     }
 
     public void setLengthInSegments(int setTo) {
-        this.entityData.set(LENGTH, setTo);
+        entityData.set(LENGTH, setTo);
     }
 
     public void setLengthInPixels(int setTo) {
-        this.setLengthInSegments(setTo / 22);
+        setLengthInSegments(setTo / 22);
     }
 
     public void setLengthInBlocks(float setTo) {
-        this.setLengthInPixels(Math.round(setTo * 16));
+        setLengthInPixels(Math.round(setTo * 16));
     }
 
     public boolean getVanishes() {
-        return this.entityData.get(VANISHES);
+        return entityData.get(VANISHES);
     }
 
     public void setVanishes(boolean setTo) {
-        this.entityData.set(VANISHES, setTo);
+        entityData.set(VANISHES, setTo);
     }
 
     public int getStayTime() {
-        return this.entityData.get(STAY_TIME);
+        return entityData.get(STAY_TIME);
     }
 
     public void setStayTime(int setTo) {
-        this.entityData.set(STAY_TIME, setTo);
+        entityData.set(STAY_TIME, setTo);
     }
 
     public boolean getAlwaysOut() {
-        return this.entityData.get(ALWAYS_OUT);
+        return entityData.get(ALWAYS_OUT);
     }
 
     public void setAlwaysOut(boolean setTo) {
-        this.entityData.set(ALWAYS_OUT, setTo);
+        entityData.set(ALWAYS_OUT, setTo);
     }
 
     public boolean getShouldRetract() {
-        return this.entityData.get(SHOULD_RETRACT);
+        return entityData.get(SHOULD_RETRACT);
     }
 
     public void setShouldRetract(boolean setTo) {
-        this.entityData.set(SHOULD_RETRACT, setTo);
+        entityData.set(SHOULD_RETRACT, setTo);
     }
 
     public float getDetectionDistance() {
-        return this.entityData.get(DETECTION_DISTANCE);
+        return entityData.get(DETECTION_DISTANCE);
     }
 
     public void setDetectionDistance(float setTo) {
-        this.entityData.set(DETECTION_DISTANCE, setTo);
+        entityData.set(DETECTION_DISTANCE, setTo);
     }
 
     public boolean getOut() {
-        return this.entityData.get(OUT);
+        return entityData.get(OUT);
     }
 
     public void setOut(boolean setTo) {
-        this.entityData.set(OUT, setTo);
+        entityData.set(OUT, setTo);
     }
 
     public abstract int getBurstAnimationLength();
@@ -234,38 +234,38 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
     @Override
     public void playAmbientSound() {
-        SoundEvent soundeventVocal = this.getAmbientSound();
-        SoundEvent soundeventFoley = this.getAmbientSoundFoley();
-        this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(), this.getSoundVolume(), this.getVoicePitch());
+        SoundEvent soundeventVocal = getAmbientSound();
+        SoundEvent soundeventFoley = getAmbientSoundFoley();
+        playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(), getSoundVolume(), getVoicePitch());
     }
 
     @Override
-    protected void playHurtSound(DamageSource p_184581_1_) {
-        this.ambientSoundTime = -this.getAmbientSoundInterval();
-        SoundEvent soundeventVocal = this.getHurtSound(p_184581_1_);
-        SoundEvent soundeventFoley = this.getHurtSoundFoley(p_184581_1_);
-        this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(), this.getSoundVolume(), this.getVoicePitch());
+    protected void playHurtSound(DamageSource pDamageSource) {
+        ambientSoundTime = -getAmbientSoundInterval();
+        SoundEvent soundeventVocal = getHurtSound(pDamageSource);
+        SoundEvent soundeventFoley = getHurtSoundFoley(pDamageSource);
+        playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(), getSoundVolume(), getVoicePitch());
     }
 
     public void playBurstSound() {
-        SoundEvent soundeventVocal = this.getBurstSound();
-        SoundEvent soundeventFoley = this.getBurstSoundFoley();
-        this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(), this.getSoundVolume(), this.getVoicePitch());
+        SoundEvent soundeventVocal = getBurstSound();
+        SoundEvent soundeventFoley = getBurstSoundFoley();
+        playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(), getSoundVolume(), getVoicePitch());
     }
 
     public void playRetractSound() {
-        SoundEvent soundeventVocal = this.getRetractSound();
-        SoundEvent soundeventFoley = this.getRetractSoundFoley();
-        this.playSound(soundeventVocal, soundeventFoley, this.getSoundVolume(), this.getVoicePitch(), this.getSoundVolume(), this.getVoicePitch());
+        SoundEvent soundeventVocal = getRetractSound();
+        SoundEvent soundeventFoley = getRetractSoundFoley();
+        playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(), getSoundVolume(), getVoicePitch());
     }
 
     public void playSound(SoundEvent vocalSound, SoundEvent foleySound, float vocalVolume, float vocalPitch, float foleyVolume, float foleyPitch) {
-        if (!this.isSilent()) {
+        if (!isSilent()) {
             if (vocalSound != null) {
-                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), vocalSound, this.getSoundSource(), vocalVolume, vocalPitch);
+                level().playSound(null, getX(), getY(), getZ(), vocalSound, getSoundSource(), vocalVolume, vocalPitch);
             }
             if (foleySound != null) {
-                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), foleySound, this.getSoundSource(), foleyVolume, foleyPitch);
+                level().playSound(null, getX(), getY(), getZ(), foleySound, getSoundSource(), foleyVolume, foleyPitch);
             }
         }
     }
@@ -284,21 +284,21 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
     @Override
     protected float getSoundVolume() {
-        return super.getSoundVolume() + ((float) (this.getLengthInSegments() * 0.5));
+        return super.getSoundVolume() + ((float) (getLengthInSegments() * 0.5));
     }
 
     public abstract int getAnimationTransitionTime();
 
     public boolean isOut() {
-        return this.getOut();
+        return getOut();
     }
 
     public boolean canBurst() {
-        return !this.isOut() && this.retractAnimationTick <= 0 && this.burstAnimationTick <= 0;
+        return !isOut() && retractAnimationTick <= 0 && burstAnimationTick <= 0;
     }
 
     public boolean canRetract() {
-        return this.isOut() && !this.getAlwaysOut() && this.retractAnimationTick <= 0 && this.burstAnimationTick <= 0;
+        return isOut() && !getAlwaysOut() && retractAnimationTick <= 0 && burstAnimationTick <= 0;
     }
 
     public boolean shouldBurstFor(Entity entity) {
@@ -329,9 +329,9 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
         return false;
     }
 
-    public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (p_70097_1_ == damageSources().fellOutOfWorld() || (this.isOut() && p_70097_1_ != damageSources().inWall())) {
-            return super.hurt(p_70097_1_, p_70097_2_);
+    public boolean hurt(DamageSource pDamageSource, float p_70097_2_) {
+        if (pDamageSource == damageSources().fellOutOfWorld() || (isOut() && pDamageSource != damageSources().inWall())) {
+            return super.hurt(pDamageSource, p_70097_2_);
         } else {
             return false;
         }
@@ -359,9 +359,9 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
     @Override
     public void handleEntityEvent(byte p_70103_1_) {
         if (p_70103_1_ == 4) {
-            this.burstAnimationTick = this.getBurstAnimationLength();
+            burstAnimationTick = getBurstAnimationLength();
         } else if (p_70103_1_ == 11) {
-            this.retractAnimationTick = this.getRetractAnimationLength();
+            retractAnimationTick = getRetractAnimationLength();
         } else {
             super.handleEntityEvent(p_70103_1_);
         }
@@ -369,15 +369,15 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
     @Override
     public EntityDimensions getDimensions(Pose p_213305_1_) {
-        return !this.isOut() ? EntityDimensions.scalable(1.0F, 0.1F) : EntityDimensions.scalable(1.5F, this.getLengthInBlocks() + this.getExtraHitboxY());
+        return !isOut() ? EntityDimensions.scalable(1.0F, 0.1F) : EntityDimensions.scalable(1.5F, getLengthInBlocks() + getExtraHitboxY());
     }
 
     public void refreshDimensions() {
-        double d0 = this.getX();
-        double d1 = this.getY();
-        double d2 = this.getZ();
+        double d0 = getX();
+        double d1 = getY();
+        double d2 = getZ();
         super.refreshDimensions();
-        this.setPos(d0, d1, d2);
+        setPos(d0, d1, d2);
     }
 
     public abstract void spawnAreaDamage();
@@ -391,93 +391,93 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
     public abstract int wrongHabitatDieChance();
 
     public boolean isInWrongHabitat() {
-        return ((this.isKelp() && !this.isInWaterOrBubble()) || (!this.isKelp() && this.isInWaterOrBubble()));
+        return ((isKelp() && !isInWaterOrBubble()) || (!isKelp() && isInWaterOrBubble()));
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_213386_1_, DifficultyInstance p_213386_2_,
                                         MobSpawnType p_213386_3_, SpawnGroupData p_213386_4_, CompoundTag p_213386_5_) {
-        this.setDefaultFeatures();
+        setDefaultFeatures();
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
     }
 
     @Override
     public void baseTick() {
         super.baseTick();
-        this.refreshDimensions();
+        refreshDimensions();
 
-        this.tickDownAnimTimers();
+        tickDownAnimTimers();
 
-        this.lifeTime++;
+        lifeTime++;
 
-        int nearbyEntities = this.level().getEntities(this, this.getBoundingBox().inflate(this.getDetectionDistance()), SHOULD_BURST_FOR).size();
+        int nearbyEntities = level().getEntities(this, getBoundingBox().inflate(getDetectionDistance()), SHOULD_BURST_FOR).size();
 
-        if (!this.level().isClientSide) {
+        if (!level().isClientSide) {
 
-            if (this.isInWrongHabitat() && this.random.nextInt(this.wrongHabitatDieChance()) == 0 && this.shouldDieInWrongHabitat() && this.isOut()) {
-                this.kill();
+            if (isInWrongHabitat() && random.nextInt(wrongHabitatDieChance()) == 0 && shouldDieInWrongHabitat() && isOut()) {
+                kill();
             }
 
-            if (this.burstAnimationTick == 1) {
-                this.setOut(true);
-            } else if (this.retractAnimationTick == 1) {
-                this.setOut(false);
+            if (burstAnimationTick == 1) {
+                setOut(true);
+            } else if (retractAnimationTick == 1) {
+                setOut(false);
             }
 
-            if (this.getAlwaysOut() && this.canBurst()) {
-                this.burst();
+            if (getAlwaysOut() && canBurst()) {
+                burst();
             }
 
             if (nearbyEntities > 0) {
-                if (this.canBurst()) {
-                    this.burst();
+                if (canBurst()) {
+                    burst();
                 }
             } else {
-                if (this.canRetract() && this.getShouldRetract()) {
-                    this.retract();
+                if (canRetract() && getShouldRetract()) {
+                    retract();
                 }
             }
 
-            if (this.getVanishes() && this.lifeTime > this.getStayTime()) {
-                if (this.retractAnimationTick <= 0) {
-                    this.retract();
+            if (getVanishes() && lifeTime > getStayTime()) {
+                if (retractAnimationTick <= 0) {
+                    retract();
                 }
-                if (this.retractAnimationTick == 1) {
-                    this.remove(RemovalReason.DISCARDED);
+                if (retractAnimationTick == 1) {
+                    remove(RemovalReason.DISCARDED);
                 }
             }
         }
     }
 
     public void burst() {
-        this.spawnAreaDamage();
-        this.playBurstSound();
-        this.burstAnimationTick = this.getBurstAnimationLength();
-        this.level().broadcastEntityEvent(this, (byte) 4);
+        spawnAreaDamage();
+        playBurstSound();
+        burstAnimationTick = getBurstAnimationLength();
+        level().broadcastEntityEvent(this, (byte) 4);
     }
 
     public void retract() {
-        this.spawnAreaDamage();
-        this.playRetractSound();
-        this.retractAnimationTick = this.getRetractAnimationLength();
-        this.level().broadcastEntityEvent(this, (byte) 11);
+        spawnAreaDamage();
+        playRetractSound();
+        retractAnimationTick = getRetractAnimationLength();
+        level().broadcastEntityEvent(this, (byte) 11);
     }
 
     public void tickDownAnimTimers() {
-        if (this.burstAnimationTick > 0) {
-            this.burstAnimationTick--;
+        if (burstAnimationTick > 0) {
+            burstAnimationTick--;
         }
 
-        if (this.retractAnimationTick > 0) {
-            this.retractAnimationTick--;
+        if (retractAnimationTick > 0) {
+            retractAnimationTick--;
         }
     }
 
     @Override
     public void setId(int p_145769_1_) {
         super.setId(p_145769_1_);
-        for (int i = 0; i < this.subEntities.length; ++i) // Forge: Fix MC-158205: Set part ids to successors of parent mob id
-            this.subEntities[i].setId(p_145769_1_ + i + 1);
+        for (int i = 0; i < subEntities.length; ++i) // Forge: Fix MC-158205: Set part ids to successors of parent mob id
+            subEntities[i].setId(p_145769_1_ + i + 1);
     }
 
 }

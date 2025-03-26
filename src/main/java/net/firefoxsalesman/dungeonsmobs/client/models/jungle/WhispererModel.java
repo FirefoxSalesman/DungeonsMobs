@@ -35,13 +35,13 @@ public class WhispererModel<T extends WhispererEntity> extends GeoModel<T> {
 	public void setCustomAnimations(T entity, long uniqueID, AnimationState<T> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("jaw");
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone head = getAnimationProcessor().getBone("jaw");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 
 		cape.setHidden(true);
 
-		CoreGeoBone leftHand = this.getAnimationProcessor().getBone("bipedHandLeft");
-		CoreGeoBone rightHand = this.getAnimationProcessor().getBone("bipedHandRight");
+		CoreGeoBone leftHand = getAnimationProcessor().getBone("bipedHandLeft");
+		CoreGeoBone rightHand = getAnimationProcessor().getBone("bipedHandRight");
 
 		if (entity.tickCount % 1 == 0 && rightHand instanceof CoreGeoBone && leftHand instanceof CoreGeoBone
 				&& entity.isSpellcasting()) {
