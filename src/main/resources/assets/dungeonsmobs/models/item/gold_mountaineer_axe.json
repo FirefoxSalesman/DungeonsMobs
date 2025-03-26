@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "dungeonsmobs:item/gold_mountaineer_axe"
+  }
+}

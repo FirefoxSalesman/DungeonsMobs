@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
+import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
 import net.minecraft.world.entity.EntityType;
@@ -42,6 +43,7 @@ public class DungeonsMobs {
 
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.register(modEventBus);
+		ModItems.register(modEventBus);
 		ModParticleTypes.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
@@ -52,6 +54,11 @@ public class DungeonsMobs {
 	}
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+			for (RegistryObject<Item> i : ModItems.ITEMS.getEntries()) {
+				event.accept(i);
+			}
+		}
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			for (RegistryObject<Item> i : ModEntities.SPAWN_EGGS.getEntries()) {
 				event.accept(i);

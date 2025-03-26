@@ -66,6 +66,13 @@
   "block.dungeonsmobs.wraith_fire": "Wraith Fire",
   "item.dungeonsmobs.wraith_fire_charge": "Wraith Fire Charge",
 
+  "item.dungeonsmobs.mountaineer_axe": "Ice Pick",
+  "lore.dungeonsmobs.mountaineer_axe": "The main tool of the emerald fevered mountaineers, though it's mainly a tool used for climbing, it as practical as the pickaxe to escavate tunnels and as mighty as the axe to puncture your enemies.",
+  "item.dungeonsmobs.gold_mountaineer_axe": "Sturdy Ice Pick",
+  "lore.dungeonsmobs.gold_mountaineer_axe": "Made from the sturdiest iron the mountains can offer, no rock will stop your ascension to the summit.",
+  "item.dungeonsmobs.diamond_mountaineer_axe": "Reinforced Ice Pick",
+  "lore.dungeonsmobs.diamond_mountaineer_axe": "The dream of all mountaineers, only the illagers skilled or lucky enough to mine and sell the rare emeralds of the mountain can afford this tool.",
+
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
   "subtitles.entity.wraith.death": "Wraith dies",
