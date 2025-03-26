@@ -5,11 +5,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
-public class WavewhispererRenderer extends WhispererRenderer {
+public class WavewhispererRenderer extends WhispererRenderer<WaveWhispererEntity> {
 
     private static final ResourceLocation WAVEWHISPERER_TEXTURE = new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ocean/wavewhisperer.png");
 
@@ -23,7 +24,7 @@ public class WavewhispererRenderer extends WhispererRenderer {
     }
 
     @Override
-    protected void applyRotations(WhispererEntity entityLiving, PoseStack matrixStackIn, float ageInTicks,
+    protected void applyRotations(WaveWhispererEntity entityLiving, PoseStack matrixStackIn, float ageInTicks,
                                   float rotationYaw, float partialTicks) {
         if (isShaking(entityLiving)) {
             rotationYaw += (float) (Math.cos((double) entityLiving.tickCount * 3.25D) * Math.PI * (double) 0.4F);
@@ -32,7 +33,7 @@ public class WavewhispererRenderer extends WhispererRenderer {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(WhispererEntity entity) {
+    public ResourceLocation getTextureLocation(WaveWhispererEntity entity) {
         return WAVEWHISPERER_TEXTURE;
     }
 }

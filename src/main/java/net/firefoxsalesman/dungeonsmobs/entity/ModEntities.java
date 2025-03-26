@@ -14,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
@@ -166,8 +167,8 @@ public class ModEntities {
 			0x2b9477, 0xc436cd);
 
 	// WATER
-	public static final RegistryObject<EntityType<WhispererEntity>> WAVEWHISPERER = registerEntity("wavewhisperer",
-			() -> EntityType.Builder.of(WhispererEntity::new, MobCategory.MONSTER)
+	public static final RegistryObject<EntityType<WaveWhispererEntity>> WAVEWHISPERER = registerEntity("wavewhisperer",
+			() -> EntityType.Builder.of(WaveWhispererEntity::new, MobCategory.MONSTER)
 					.sized(0.8F, 2.25F)
 					.clientTrackingRange(10)
 					.build(new ResourceLocation(MOD_ID, "wavewhisperer").toString()),

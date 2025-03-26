@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.models.jungle;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
-import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.jungle.AbstractWhispererEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,7 +14,7 @@ import software.bernie.geckolib.core.molang.MolangParser;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class WhispererModel<T extends WhispererEntity> extends GeoModel<T> {
+public class WhispererModel<T extends AbstractWhispererEntity> extends GeoModel<T> {
 
 	@Override
 	public ResourceLocation getAnimationResource(T entity) {
@@ -79,7 +79,7 @@ public class WhispererModel<T extends WhispererEntity> extends GeoModel<T> {
 	}
 
 	@Override
-	public void applyMolangQueries(WhispererEntity animatable, double currentTick) {
+	public void applyMolangQueries(AbstractWhispererEntity animatable, double currentTick) {
 		LivingEntity livingEntity = (LivingEntity) animatable;
 		Vec3 velocity = livingEntity.getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
