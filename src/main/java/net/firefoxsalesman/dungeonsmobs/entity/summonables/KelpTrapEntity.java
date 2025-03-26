@@ -49,17 +49,17 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.ensnareAnimationTick > 0) {
+		if (ensnareAnimationTick > 0) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("kelp_trap_ensnare", LoopType.LOOP));
-		} else if (this.spawnAnimationTick > 0) {
+		} else if (spawnAnimationTick > 0) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("kelp_trap_spawn", LoopType.LOOP));
-		} else if (this.decayAnimationTick > 0) {
+		} else if (decayAnimationTick > 0) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 		} else {
-			if (this.isPulling()) {
+			if (isPulling()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("kelp_trap_idle_pulling", LoopType.LOOP));
 			} else {
@@ -92,53 +92,53 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(PULLING, true);
+		entityData.define(PULLING, true);
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-		this.setPulling(p_70037_1_.getBoolean("Pulling"));
+		setPulling(p_70037_1_.getBoolean("Pulling"));
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
-		p_213281_1_.putBoolean("Pulling", this.isPulling());
+		p_213281_1_.putBoolean("Pulling", isPulling());
 	}
 
 	public boolean isPulling() {
-		return this.entityData.get(PULLING);
+		return entityData.get(PULLING);
 	}
 
 	public void setPulling(boolean attached) {
-		this.entityData.set(PULLING, attached);
+		entityData.set(PULLING, attached);
 	}
 
 	@Override
 	public void baseTick() {
-		if (!this.level().isClientSide && this.lifeTime == 0) {
-			this.setPulling(true);
+		if (!level().isClientSide && lifeTime == 0) {
+			setPulling(true);
 		}
 
-		if (this.bubbleAudioInterval > 0) {
-			this.bubbleAudioInterval--;
+		if (bubbleAudioInterval > 0) {
+			bubbleAudioInterval--;
 		}
 
-		if (!this.level().isClientSide && this.isPulling()) {
-			List<Entity> list = this.level().getEntities(this,
-					this.getBoundingBox().inflate(0, this.waterBlocksAbove(), 0), Entity::isAlive);
-			for (int i = 0; i < this.waterBlocksAbove(); i++) {
-				((ServerLevel) this.level()).sendParticles(ParticleTypes.CURRENT_DOWN,
-						this.getRandomX(0.25), this.getY() + i + 0.8D,
-						this.getRandomZ(0.25) - 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+		if (!level().isClientSide && isPulling()) {
+			List<Entity> list = level().getEntities(this,
+					getBoundingBox().inflate(0, waterBlocksAbove(), 0), Entity::isAlive);
+			for (int i = 0; i < waterBlocksAbove(); i++) {
+				((ServerLevel) level()).sendParticles(ParticleTypes.CURRENT_DOWN,
+						getRandomX(0.25), getY() + i + 0.8D,
+						getRandomZ(0.25) - 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
 			}
 			if (!list.isEmpty()) {
 				for (Entity entity : list) {
-					if (entity.getY() > this.getY() && (!(entity instanceof LivingEntity)
-							|| this.canTrapEntity(((LivingEntity) entity)))) {
-						if (this.bubbleAudioInterval <= 0) {
-							this.playSound(SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_INSIDE,
+					if (entity.getY() > getY() && (!(entity instanceof LivingEntity)
+							|| canTrapEntity(((LivingEntity) entity)))) {
+						if (bubbleAudioInterval <= 0) {
+							playSound(SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_INSIDE,
 									1.25F, 1.0F);
-							this.bubbleAudioInterval = 40;
+							bubbleAudioInterval = 40;
 						}
 						entity.push(0, -0.1, 0);
 						entity.hurtMarked = true;
@@ -153,8 +153,8 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	@Override
 	public void tickDownAnimTimers() {
 		super.tickDownAnimTimers();
-		if (this.ensnareAnimationTick > 0) {
-			this.ensnareAnimationTick--;
+		if (ensnareAnimationTick > 0) {
+			ensnareAnimationTick--;
 		}
 	}
 
@@ -162,7 +162,7 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 		double waterBlocksAbove = 0;
 		for (int i = 0; i < 256; i++) {
 			waterBlocksAbove = i;
-			if (!this.level().getFluidState(this.blockPosition().above(i)).is(FluidTags.WATER)) {
+			if (!level().getFluidState(blockPosition().above(i)).is(FluidTags.WATER)) {
 				return waterBlocksAbove;
 			}
 		}
@@ -171,45 +171,45 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 
 	@Override
 	public void increaseLifeTime() {
-		if (!this.level().isClientSide) {
-			if (this.isTrappingMob) {
-				this.trappedMobTime++;
+		if (!level().isClientSide) {
+			if (isTrappingMob) {
+				trappedMobTime++;
 
-				if (this.isPulling()) {
-					if (this.ensnareAnimationTick <= 0) {
-						this.setPulling(false);
-						this.ensnareAnimationTick = this.ensnareAnimationLength;
-						this.level().broadcastEntityEvent(this, (byte) 3);
+				if (isPulling()) {
+					if (ensnareAnimationTick <= 0) {
+						setPulling(false);
+						ensnareAnimationTick = ensnareAnimationLength;
+						level().broadcastEntityEvent(this, (byte) 3);
 					}
 				}
 			} else {
-				this.lifeTime++;
+				lifeTime++;
 			}
 
-			if (this.trappedMobTime == this.timeToDecay()) {
-				this.decayAnimationTick = this.getDecayAnimationLength();
-				this.level().broadcastEntityEvent(this, (byte) 2);
+			if (trappedMobTime == timeToDecay()) {
+				decayAnimationTick = getDecayAnimationLength();
+				level().broadcastEntityEvent(this, (byte) 2);
 			}
 
-			if (this.isPulling()) {
-				if (this.lifeTime == 200) {
-					this.ensnareAnimationTick = this.ensnareAnimationLength;
-					this.level().broadcastEntityEvent(this, (byte) 3);
+			if (isPulling()) {
+				if (lifeTime == 200) {
+					ensnareAnimationTick = ensnareAnimationLength;
+					level().broadcastEntityEvent(this, (byte) 3);
 				}
 
-				if (this.lifeTime == 200 + this.ensnareAnimationLength) {
-					this.decayAnimationTick = this.getDecayAnimationLength();
-					this.level().broadcastEntityEvent(this, (byte) 2);
+				if (lifeTime == 200 + ensnareAnimationLength) {
+					decayAnimationTick = getDecayAnimationLength();
+					level().broadcastEntityEvent(this, (byte) 2);
 				}
 			} else {
-				if (this.trappedMobTime == 100) {
-					this.decayAnimationTick = this.getDecayAnimationLength();
-					this.level().broadcastEntityEvent(this, (byte) 2);
+				if (trappedMobTime == 100) {
+					decayAnimationTick = getDecayAnimationLength();
+					level().broadcastEntityEvent(this, (byte) 2);
 				}
 			}
 
-			if (this.decayAnimationTick == 2) {
-				this.remove(RemovalReason.DISCARDED);
+			if (decayAnimationTick == 2) {
+				remove(RemovalReason.DISCARDED);
 			}
 		}
 	}
@@ -221,7 +221,7 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	@Override
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 3) {
-			this.ensnareAnimationTick = this.ensnareAnimationLength;
+			ensnareAnimationTick = ensnareAnimationLength;
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}

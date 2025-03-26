@@ -45,41 +45,41 @@ public class WraithFireEntity extends Entity implements GeoBlockEntity {
 	public void baseTick() {
 		super.baseTick();
 
-		this.lifeTime++;
+		lifeTime++;
 
 		textureChange++;
 
-		this.setYBodyRot(0);
+		setYBodyRot(0);
 
-		if (this.lifeTime == 1) {
-			this.playSound(ModSoundEvents.WRAITH_FIRE.get(), 1.25F, this.random.nextFloat() * 0.7F + 0.3F);
+		if (lifeTime == 1) {
+			playSound(ModSoundEvents.WRAITH_FIRE.get(), 1.25F, random.nextFloat() * 0.7F + 0.3F);
 		}
 
-		if (this.random.nextInt(24) == 0 && !this.isSilent()) {
-			level().playLocalSound(this.getX() + 0.5D, this.getY() + 0.5D, this.getZ() + 0.5D,
-					SoundEvents.FIRE_AMBIENT, this.getSoundSource(), 1.0F + this.random.nextFloat(),
-					this.random.nextFloat() * 0.7F + 0.3F, false);
+		if (random.nextInt(24) == 0 && !isSilent()) {
+			level().playLocalSound(getX() + 0.5D, getY() + 0.5D, getZ() + 0.5D,
+					SoundEvents.FIRE_AMBIENT, getSoundSource(), 1.0F + random.nextFloat(),
+					random.nextFloat() * 0.7F + 0.3F, false);
 		}
 
 		double particleOffsetAmount = 1.25;
 
-		if (this.isBurning()) {
+		if (isBurning()) {
 			for (double x = -particleOffsetAmount; x < particleOffsetAmount * 2; x = x
 					+ particleOffsetAmount) {
 				for (double z = -particleOffsetAmount; z < particleOffsetAmount * 2; z = z
 						+ particleOffsetAmount) {
-					if (this.random.nextInt(10) == 0) {
-						level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + x,
-								this.getY(), this.getZ() + z,
-								this.random.nextGaussian() * 0.01, 0.1,
-								this.random.nextGaussian() * 0.01);
+					if (random.nextInt(10) == 0) {
+						level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, getX() + x,
+								getY(), getZ() + z,
+								random.nextGaussian() * 0.01, 0.1,
+								random.nextGaussian() * 0.01);
 					}
 
-					if (this.random.nextInt(5) == 0) {
-						level().addParticle(ParticleTypes.SMOKE, this.getX() + x,
-								this.getY(), this.getZ() + z,
-								this.random.nextGaussian() * 0.01, 0.15,
-								this.random.nextGaussian() * 0.01);
+					if (random.nextInt(5) == 0) {
+						level().addParticle(ParticleTypes.SMOKE, getX() + x,
+								getY(), getZ() + z,
+								random.nextGaussian() * 0.01, 0.15,
+								random.nextGaussian() * 0.01);
 					}
 				}
 			}
@@ -87,20 +87,20 @@ public class WraithFireEntity extends Entity implements GeoBlockEntity {
 
 		if (!level().isClientSide) {
 
-			if (this.isOnFire()) {
-				this.remove(RemovalReason.DISCARDED);
-				this.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
+			if (isOnFire()) {
+				remove(RemovalReason.DISCARDED);
+				playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
 			}
 
-			if (this.lifeTime >= 82) {
-				this.remove(RemovalReason.DISCARDED);
+			if (lifeTime >= 82) {
+				remove(RemovalReason.DISCARDED);
 			}
 
-			if (this.isBurning()) {
-				List<Entity> list = level().getEntities(this, this.getBoundingBox(), ALIVE);
+			if (isBurning()) {
+				List<Entity> list = level().getEntities(this, getBoundingBox(), ALIVE);
 				if (!list.isEmpty()) {
 					for (Entity entity : list) {
-						if (entity instanceof LivingEntity && this.canHarmEntity(entity)) {
+						if (entity instanceof LivingEntity && canHarmEntity(entity)) {
 							entity.hurt(damageSources().freeze(), 4.0F);
 						}
 					}
@@ -110,7 +110,7 @@ public class WraithFireEntity extends Entity implements GeoBlockEntity {
 	}
 
 	public boolean isBurning() {
-		return this.lifeTime >= 20 && this.lifeTime <= 70;
+		return lifeTime >= 20 && lifeTime <= 70;
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class WraithFireEntity extends Entity implements GeoBlockEntity {
 
 	public boolean canHarmEntity(Entity target) {
 		boolean canFreeze = target.canFreeze();
-		return this.owner != null && this.owner instanceof Mob mob ? mob.getTarget() == target & canFreeze
+		return owner != null && owner instanceof Mob mob ? mob.getTarget() == target & canFreeze
 				: canFreeze;
 	}
 }

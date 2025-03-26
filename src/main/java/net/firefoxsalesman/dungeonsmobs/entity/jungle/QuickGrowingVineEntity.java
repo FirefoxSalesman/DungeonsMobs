@@ -23,8 +23,8 @@ public class QuickGrowingVineEntity extends AbstractVineEntity {
 
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public QuickGrowingVineEntity(EntityType<? extends QuickGrowingVineEntity> p_i50147_1_, Level p_i50147_2_) {
-		super(p_i50147_1_, p_i50147_2_);
+	public QuickGrowingVineEntity(EntityType<? extends QuickGrowingVineEntity> pEntity, Level pLevel) {
+		super(pEntity, pLevel);
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -35,7 +35,7 @@ public class QuickGrowingVineEntity extends AbstractVineEntity {
 	@Override
 	public void registerControllers(ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<GeoAnimatable>(this, "controller",
-				this.getAnimationTransitionTime(), this::predicate));
+				getAnimationTransitionTime(), this::predicate));
 	}
 
 	@Override
@@ -44,17 +44,17 @@ public class QuickGrowingVineEntity extends AbstractVineEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.deathTime > 0) {
+		if (deathTime > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_retract", LoopType.LOOP));
-		} else if (this.burstAnimationTick > 0) {
+		} else if (burstAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_burst", LoopType.LOOP));
-		} else if (this.retractAnimationTick > 0) {
+		} else if (retractAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_retract", LoopType.LOOP));
 		} else {
-			if (this.isOut() || this.burstAnimationTick > 0) {
+			if (isOut() || burstAnimationTick > 0) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("quick_growing_vine_idle", LoopType.LOOP));
 			} else {
@@ -137,20 +137,20 @@ public class QuickGrowingVineEntity extends AbstractVineEntity {
 
 	@Override
 	public void spawnAreaDamage() {
-		AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(this.level(), this.position(), this,
+		AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(level(), position(), this,
 				2.5F,
 				damageSources().mobAttack(this), 0.0F, 1.25F, 0.25F, 0.25F, 5, false, false, 0.75, 0.25,
 				false, 0, 1);
-		this.level().addFreshEntity(areaDamage);
+		level().addFreshEntity(areaDamage);
 	}
 
 	@Override
 	public void setDefaultFeatures() {
-		this.setLengthInSegments(2 + this.random.nextInt(3));
-		this.setVanishes(false);
-		this.setAlwaysOut(false);
-		this.setShouldRetract(true);
-		this.setDetectionDistance(5);
+		setLengthInSegments(2 + random.nextInt(3));
+		setVanishes(false);
+		setAlwaysOut(false);
+		setShouldRetract(true);
+		setDetectionDistance(5);
 	}
 
 }

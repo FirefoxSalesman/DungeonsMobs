@@ -47,16 +47,16 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 		super(p_i50147_1_, p_i50147_2_);
 	}
 
-	public PoisonQuillEntity(Level p_i1794_1_, LivingEntity p_i1794_2_, double p_i1794_3_, double p_i1794_5_,
+	public PoisonQuillEntity(Level pLevel, LivingEntity pEntity, double p_i1794_3_, double p_i1794_5_,
 			double p_i1794_7_) {
-		super(ModEntities.POISON_QUILL.get(), p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, p_i1794_1_);
+		super(ModEntities.POISON_QUILL.get(), pEntity, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public PoisonQuillEntity(Level p_i1795_1_, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
+	public PoisonQuillEntity(Level pLevel, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_,
 			double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
 		super(ModEntities.POISON_QUILL.get(), p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_,
-				p_i1795_12_, p_i1795_1_);
+				p_i1795_12_, pLevel);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 
 	@Override
 	public boolean slowedDownInWater() {
-		return !this.isKelp();
+		return !isKelp();
 	}
 
 	@Override
@@ -108,20 +108,20 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 
 	@Override
 	public void playImpactSound() {
-		this.playSound(ModSoundEvents.JUNGLE_ZOMBIE_STEP.get(), 0.75F, 1.0F + (this.random.nextFloat() * 0.5F));
+		playSound(ModSoundEvents.JUNGLE_ZOMBIE_STEP.get(), 0.75F, 1.0F + (random.nextFloat() * 0.5F));
 	}
 
 	public void onHitEntity(Entity entity) {
-		if (!this.level().isClientSide) {
+		if (!level().isClientSide) {
 			super.onHitEntity(entity);
 			boolean flag;
 			flag = entity.hurt(damageSources().mobProjectile(this,
-					(LivingEntity) MoreObjects.firstNonNull(this.getOwner(), this)), 5.0F);
+					(LivingEntity) MoreObjects.firstNonNull(getOwner(), this)), 5.0F);
 			if (entity instanceof LivingEntity) {
 				int i = 0;
-				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+				if (level().getDifficulty() == Difficulty.NORMAL) {
 					i = 8;
-				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+				} else if (level().getDifficulty() == Difficulty.HARD) {
 					i = 16;
 				}
 
@@ -131,26 +131,26 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 				}
 			}
 			if (flag) {
-				if (entity.isAlive() && this.getOwner() != null
-						&& this.getOwner() instanceof LivingEntity) {
-					this.doEnchantDamageEffects((LivingEntity) this.getOwner(), entity);
+				if (entity.isAlive() && getOwner() != null
+						&& getOwner() instanceof LivingEntity) {
+					doEnchantDamageEffects((LivingEntity) getOwner(), entity);
 				}
 			}
 
-			this.remove(RemovalReason.DISCARDED);
+			remove(RemovalReason.DISCARDED);
 		}
 	}
 
 	protected void defineSynchedData() {
-		this.entityData.define(KELP, false);
+		entityData.define(KELP, false);
 	}
 
 	public boolean isKelp() {
-		return this.entityData.get(KELP);
+		return entityData.get(KELP);
 	}
 
 	public void setKelp(boolean p_82343_1_) {
-		this.entityData.set(KELP, p_82343_1_);
+		entityData.set(KELP, p_82343_1_);
 	}
 
 	public boolean isPickable() {

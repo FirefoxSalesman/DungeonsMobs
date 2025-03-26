@@ -33,25 +33,25 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(TRAP_TYPE, 0);
+		entityData.define(TRAP_TYPE, 0);
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-		this.setTrapType(p_70037_1_.getInt("TrapType"));
+		setTrapType(p_70037_1_.getInt("TrapType"));
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
-		p_213281_1_.putInt("TrapType", this.getTrapType());
+		p_213281_1_.putInt("TrapType", getTrapType());
 	}
 
 	public int getTrapType() {
-		return Mth.clamp(this.entityData.get(TRAP_TYPE), 0, 1);
+		return Mth.clamp(entityData.get(TRAP_TYPE), 0, 1);
 	}
 
 	public void setTrapType(int attached) {
-		this.entityData.set(TRAP_TYPE, attached);
+		entityData.set(TRAP_TYPE, attached);
 	}
 
 	@Override
@@ -60,22 +60,22 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.getTrapType() == 0) {
-			if (this.spawnAnimationTick > 0) {
+		if (getTrapType() == 0) {
+			if (spawnAnimationTick > 0) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("web_trap_spawn", LoopType.LOOP));
-			} else if (this.decayAnimationTick > 0) {
+			} else if (decayAnimationTick > 0) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 			} else {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_idle", LoopType.LOOP));
 			}
-		} else if (this.getTrapType() == 1) {
-			if (this.spawnAnimationTick > 0) {
+		} else if (getTrapType() == 1) {
+			if (spawnAnimationTick > 0) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_spawn", LoopType.LOOP));
-			} else if (this.decayAnimationTick > 0) {
+			} else if (decayAnimationTick > 0) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 			} else {
@@ -95,7 +95,7 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 
 	@Override
 	public int getSpawnAnimationLength() {
-		return this.getTrapType() == 1 ? 8 : 7;
+		return getTrapType() == 1 ? 8 : 7;
 	}
 
 	@Override
@@ -105,9 +105,9 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 
 	@Override
 	public boolean canTrapEntity(LivingEntity entity) {
-		if (this.getTrapType() == 0) {
+		if (getTrapType() == 0) {
 			return super.canTrapEntity(entity) && entity.getMobType() != MobType.ARTHROPOD;
-		} else if (this.getTrapType() == 1) {
+		} else if (getTrapType() == 1) {
 			return super.canTrapEntity(entity) && !entity.getType().is(EntityTags.PLANT_MOBS);
 		} else {
 			return super.canTrapEntity(entity);

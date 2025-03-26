@@ -14,11 +14,11 @@ public class VinePartEntity extends PartEntity<AbstractVineEntity> {
 
 	public int segmentNumber;
 
-	public VinePartEntity(AbstractVineEntity p_i50232_1_, int segmentNumber) {
-		super(p_i50232_1_);
-		this.parentMob = p_i50232_1_;
+	public VinePartEntity(AbstractVineEntity pEntity, int segmentNumber) {
+		super(pEntity);
+		parentMob = pEntity;
 		this.segmentNumber = segmentNumber;
-		this.refreshDimensions();
+		refreshDimensions();
 	}
 
 	protected void defineSynchedData() {
@@ -38,16 +38,16 @@ public class VinePartEntity extends PartEntity<AbstractVineEntity> {
 		if (damageSource.getEntity() != null && damageSource.getEntity().getType().is(EntityTags.PLANT_MOBS)) {
 			return false;
 		} else {
-			return !this.isInvulnerableTo(damageSource) && this.parentMob.hurt(damageSource, amount);
+			return !isInvulnerableTo(damageSource) && parentMob.hurt(damageSource, amount);
 		}
 	}
 
 	public void refreshDimensions() {
-		double d0 = this.getX();
-		double d1 = this.getY();
-		double d2 = this.getZ();
+		double d0 = getX();
+		double d1 = getY();
+		double d2 = getZ();
 		super.refreshDimensions();
-		this.setPos(d0, d1, d2);
+		setPos(d0, d1, d2);
 	}
 
 	public boolean isPoisonQuill() {
@@ -62,41 +62,41 @@ public class VinePartEntity extends PartEntity<AbstractVineEntity> {
 	public EntityDimensions getSizeForSegment() {
 		EntityDimensions size = EntityDimensions.scalable(0, 0);
 
-		if (this.segmentNumber < 27 - parentMob.getLengthInSegments()) {
+		if (segmentNumber < 27 - parentMob.getLengthInSegments()) {
 			return size;
 		}
 
-		if (this.segmentNumber == 26) {
-			size = EntityDimensions.scalable(0.25F, this.isPoisonQuill() ? 1.625F : 1.375F);
-		} else if (this.segmentNumber == 25) {
-			size = EntityDimensions.scalable(0.5F, this.isPoisonQuill() ? 2.0F : 1.375F);
-		} else if (this.segmentNumber >= 23 && this.segmentNumber <= 24) {
+		if (segmentNumber == 26) {
+			size = EntityDimensions.scalable(0.25F, isPoisonQuill() ? 1.625F : 1.375F);
+		} else if (segmentNumber == 25) {
+			size = EntityDimensions.scalable(0.5F, isPoisonQuill() ? 2.0F : 1.375F);
+		} else if (segmentNumber >= 23 && segmentNumber <= 24) {
 			size = EntityDimensions.scalable(0.75F,
-					this.isPoisonQuill() && this.segmentNumber == 24 ? 2.0F : 1.375F);
-		} else if (this.segmentNumber >= 20 && this.segmentNumber <= 22) {
+					isPoisonQuill() && segmentNumber == 24 ? 2.0F : 1.375F);
+		} else if (segmentNumber >= 20 && segmentNumber <= 22) {
 			size = EntityDimensions.scalable(1.0F, 1.375F);
-		} else if (this.segmentNumber >= 16 && this.segmentNumber <= 19) {
+		} else if (segmentNumber >= 16 && segmentNumber <= 19) {
 			size = EntityDimensions.scalable(1.25F, 1.375F);
-		} else if (this.segmentNumber >= 11 && this.segmentNumber <= 15) {
+		} else if (segmentNumber >= 11 && segmentNumber <= 15) {
 			size = EntityDimensions.scalable(1.5F, 1.375F);
-		} else if (this.segmentNumber >= 5 && this.segmentNumber <= 10) {
+		} else if (segmentNumber >= 5 && segmentNumber <= 10) {
 			size = EntityDimensions.scalable(1.75F, 1.375F);
-		} else if (this.segmentNumber >= 1 && this.segmentNumber <= 4) {
+		} else if (segmentNumber >= 1 && segmentNumber <= 4) {
 			size = EntityDimensions.scalable(2.0F, 1.375F);
 		}
 		return size;
 	}
 
 	public float getYOffsetForSegment() {
-		float extraHeight = this.isPoisonQuill() && this.segmentNumber > 24
-				? (0.625F * (-24 + this.segmentNumber))
+		float extraHeight = isPoisonQuill() && segmentNumber > 24
+				? (0.625F * (-24 + segmentNumber))
 				: 0.0F;
-		return ((1.375F * (this.segmentNumber - 1)) - (1.375F * 26) + this.parentMob.getLengthInBlocks())
+		return ((1.375F * (segmentNumber - 1)) - (1.375F * 26) + parentMob.getLengthInBlocks())
 				+ extraHeight;
 	}
 
-	public EntityDimensions getDimensions(Pose p_213305_1_) {
-		return this.getSizeForSegment();
+	public EntityDimensions getDimensions(Pose pose) {
+		return getSizeForSegment();
 	}
 
 	@Override

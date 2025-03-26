@@ -39,14 +39,14 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 
 	public boolean delayedSpawnParticles;
 
-	public CobwebProjectileEntity(EntityType<? extends CobwebProjectileEntity> p_i50162_1_, Level p_i50162_2_) {
-		super(p_i50162_1_, p_i50162_2_);
+	public CobwebProjectileEntity(EntityType<? extends CobwebProjectileEntity> pEntity, Level pLevel) {
+		super(pEntity, pLevel);
 	}
 
 	public CobwebProjectileEntity(Level pLevel, LivingEntity pEntity) {
 		this(ModEntities.COBWEB_PROJECTILE.get(), pLevel);
 		super.setOwner(pEntity);
-		this.setPos(pEntity.getX() - (double) (pEntity.getBbWidth() + 1.0F) * 0.5D
+		setPos(pEntity.getX() - (double) (pEntity.getBbWidth() + 1.0F) * 0.5D
 				* (double) Mth.sin(pEntity.yBodyRot * ((float) Math.PI / 180F)),
 				pEntity.getEyeY() - (double) 0.1F,
 				pEntity.getZ() + (double) (pEntity.getBbWidth() + 1.0F) * 0.5D
@@ -57,7 +57,7 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 	public CobwebProjectileEntity(Level pLevel, double p_i47274_2_, double p_i47274_4_, double p_i47274_6_,
 			double p_i47274_8_, double p_i47274_10_, double p_i47274_12_) {
 		this(ModEntities.COBWEB_PROJECTILE.get(), pLevel);
-		this.setPos(p_i47274_2_, p_i47274_4_, p_i47274_6_);
+		setPos(p_i47274_2_, p_i47274_4_, p_i47274_6_);
 
 		for (int i = 0; i < 7; ++i) {
 			double d0 = 0.4D + 0.1D * (double) i;
@@ -65,73 +65,73 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 					p_i47274_8_ * d0, p_i47274_10_, p_i47274_12_ * d0);
 		}
 
-		this.setDeltaMovement(p_i47274_8_, p_i47274_10_, p_i47274_12_);
+		setDeltaMovement(p_i47274_8_, p_i47274_10_, p_i47274_12_);
 	}
 
 	public void tick() {
 		super.tick();
 
-		if (this.delayedSpawnParticles) {
-			this.delayedSpawnParticles = false;
-			this.createSpawnParticles();
+		if (delayedSpawnParticles) {
+			delayedSpawnParticles = false;
+			createSpawnParticles();
 		}
 
-		Vec3 vector3d = this.getDeltaMovement();
+		Vec3 vector3d = getDeltaMovement();
 		HitResult raytraceresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
 		if (raytraceresult != null && raytraceresult.getType() != HitResult.Type.MISS
 				&& !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this,
 						raytraceresult)) {
-			this.onHit(raytraceresult);
+			onHit(raytraceresult);
 		}
 
-		double d0 = this.getX() + vector3d.x;
-		double d1 = this.getY() + vector3d.y;
-		double d2 = this.getZ() + vector3d.z;
-		this.updateRotation();
+		double d0 = getX() + vector3d.x;
+		double d1 = getY() + vector3d.y;
+		double d2 = getZ() + vector3d.z;
+		updateRotation();
 		float f = 0.99F;
 		float f1 = 0.06F;
-		if (this.level().getBlockStates(this.getBoundingBox())
+		if (level().getBlockStates(getBoundingBox())
 				.noneMatch(BlockBehaviour.BlockStateBase::isAir)) {
-			this.remove(RemovalReason.DISCARDED);
-		} else if (this.isInWaterOrBubble()) {
-			this.remove(RemovalReason.DISCARDED);
+			remove(RemovalReason.DISCARDED);
+		} else if (isInWaterOrBubble()) {
+			remove(RemovalReason.DISCARDED);
 		} else {
-			this.setDeltaMovement(vector3d.scale(f));
-			if (!this.isNoGravity()) {
-				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -f1, 0.0D));
+			setDeltaMovement(vector3d.scale(f));
+			if (!isNoGravity()) {
+				setDeltaMovement(getDeltaMovement().add(0.0D, -f1, 0.0D));
 			}
 
-			this.setPos(d0, d1, d2);
+			setPos(d0, d1, d2);
 		}
 	}
 
-	protected void onHitEntity(EntityHitResult p_213868_1_) {
-		super.onHitEntity(p_213868_1_);
-		Entity entity = this.getOwner();
-		if (p_213868_1_.getEntity() instanceof LivingEntity
-				&& ((LivingEntity) p_213868_1_.getEntity()).getMobType() == MobType.ARTHROPOD) {
+	protected void onHitEntity(EntityHitResult hitResult) {
+		super.onHitEntity(hitResult);
+		Entity entity = getOwner();
+		if (hitResult.getEntity() instanceof LivingEntity
+				&& ((LivingEntity) hitResult.getEntity()).getMobType() == MobType.ARTHROPOD) {
 
 		} else {
 			if (entity instanceof LivingEntity) {
-				p_213868_1_.getEntity()
+				hitResult.getEntity()
 						.hurt(damageSources().mobProjectile(this, (LivingEntity) entity), 1.0F);
 			}
 
-			if (!this.level().isClientSide) {
-				this.spawnTrap(p_213868_1_.getEntity().getX(), p_213868_1_.getEntity().getY(),
-						p_213868_1_.getEntity().getZ());
+			if (!level().isClientSide) {
+				spawnTrap(hitResult.getEntity().getX(), hitResult.getEntity().getY(),
+						hitResult.getEntity().getZ());
 
-				this.remove(RemovalReason.DISCARDED);
+				remove(RemovalReason.DISCARDED);
 			}
 		}
 	}
 
 	public void createSpawnParticles() {
-		if (!this.level().isClientSide) {
-			this.level().broadcastEntityEvent(this, (byte) 1);
+		if (!level().isClientSide) {
+			level().broadcastEntityEvent(this, (byte) 1);
 		} else {
 			for (int i = 0; i < 5; i++) {
-				this.level().addParticle(ParticleTypes.POOF, this.getX(), this.getY(), this.getZ(),
+				level().addParticle(ParticleTypes.POOF, getX(), getY(), getZ(),
 						0.0D, 0.0D, 0.0D);
 			}
 		}
@@ -141,7 +141,7 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 1) {
 			for (int i = 0; i < 5; i++) {
-				this.level().addParticle(ParticleTypes.POOF, this.getX(), this.getY(), this.getZ(),
+				level().addParticle(ParticleTypes.POOF, getX(), getY(), getZ(),
 						0.0D,
 						0.0D, 0.0D);
 			}
@@ -152,22 +152,22 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 
 	protected void onHitBlock(BlockHitResult p_230299_1_) {
 		super.onHitBlock(p_230299_1_);
-		if (!this.level().isClientSide) {
-			this.spawnTrap(this.getX(), this.getY(), this.getZ());
+		if (!level().isClientSide) {
+			spawnTrap(getX(), getY(), getZ());
 
-			this.remove(RemovalReason.DISCARDED);
+			remove(RemovalReason.DISCARDED);
 		}
 
 	}
 
 	public void spawnTrap(double x, double y, double z) {
-		SimpleTrapEntity trap = ModEntities.SIMPLE_TRAP.get().create(this.level());
+		SimpleTrapEntity trap = ModEntities.SIMPLE_TRAP.get().create(level());
 		trap.moveTo(x, y, z);
-		trap.owner = this.getOwner();
+		trap.owner = getOwner();
 
-		this.level().addFreshEntity(trap);
+		level().addFreshEntity(trap);
 
-		this.playSound(ModSoundEvents.SPIDER_WEB_IMPACT.get(), 1.0F, 1.0F);
+		playSound(ModSoundEvents.SPIDER_WEB_IMPACT.get(), 1.0F, 1.0F);
 	}
 
 	protected void defineSynchedData() {

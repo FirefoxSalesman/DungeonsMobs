@@ -20,7 +20,7 @@ import java.util.List;
 
 public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 
-	public int spawnAnimationTick = this.getSpawnAnimationLength();
+	public int spawnAnimationTick = getSpawnAnimationLength();
 	public int decayAnimationTick;
 
 	public int lifeTime;
@@ -39,47 +39,47 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
-		this.increaseLifeTime();
-		this.performBasicTrapFunctions();
+		tickDownAnimTimers();
+		increaseLifeTime();
+		performBasicTrapFunctions();
 	}
 
 	public void increaseLifeTime() {
-		this.lifeTime++;
+		lifeTime++;
 
-		if (!this.level().isClientSide) {
-			if (this.lifeTime == this.timeToDecay()) {
-				this.decayAnimationTick = this.getDecayAnimationLength();
-				this.level().broadcastEntityEvent(this, (byte) 2);
+		if (!level().isClientSide) {
+			if (lifeTime == timeToDecay()) {
+				decayAnimationTick = getDecayAnimationLength();
+				level().broadcastEntityEvent(this, (byte) 2);
 			}
 
-			if (this.decayAnimationTick == 2) {
-				this.remove(RemovalReason.DISCARDED);
+			if (decayAnimationTick == 2) {
+				remove(RemovalReason.DISCARDED);
 			}
 		}
 	}
 
 	public void performBasicTrapFunctions() {
-		if (!this.level().isClientSide) {
+		if (!level().isClientSide) {
 			boolean isTrapping = false;
-			if (this.canTrap()) {
-				List<Entity> list = this.level().getEntities(this, this.getBoundingBox(),
+			if (canTrap()) {
+				List<Entity> list = level().getEntities(this, getBoundingBox(),
 						Entity::isAlive);
 				if (!list.isEmpty()) {
 					for (Entity entity : list) {
 						if (entity instanceof LivingEntity
-								&& this.canTrapEntity(((LivingEntity) entity))) {
+								&& canTrapEntity(((LivingEntity) entity))) {
 							if (!trappedEntities.contains(entity)) {
 								trappedEntities.add(entity);
 								trappedEntityPositions.add(entity.position());
 							}
 
-							if (this.owner != null && this.owner instanceof Mob
-									&& ((Mob) this.owner).getTarget() != null
-									&& ((Mob) this.owner).getTarget().isAlive()
-									&& ((Mob) this.owner).getTarget() == entity
-									&& this.owner instanceof ITrapsTarget) {
-								((ITrapsTarget) this.owner).setTargetTrapped(true,
+							if (owner != null && owner instanceof Mob
+									&& ((Mob) owner).getTarget() != null
+									&& ((Mob) owner).getTarget().isAlive()
+									&& ((Mob) owner).getTarget() == entity
+									&& owner instanceof ITrapsTarget) {
+								((ITrapsTarget) owner).setTargetTrapped(true,
 										true);
 							}
 
@@ -93,13 +93,13 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 				int entityIndex = trappedEntities.indexOf(entity);
 				Vec3 entityTrappedPosition = trappedEntityPositions.get(entityIndex);
 				entity.fallDistance = 0;
-				if (this.distanceBetweenVector3ds(entity.position(), entityTrappedPosition) > 0.5) {
+				if (distanceBetweenVector3ds(entity.position(), entityTrappedPosition) > 0.5) {
 					entity.teleportTo(entityTrappedPosition.x, entityTrappedPosition.y,
 							entityTrappedPosition.z);
 				}
 			}
 
-			this.isTrappingMob = isTrapping;
+			isTrappingMob = isTrapping;
 		}
 	}
 
@@ -111,12 +111,12 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.spawnAnimationTick > 0) {
-			this.spawnAnimationTick--;
+		if (spawnAnimationTick > 0) {
+			spawnAnimationTick--;
 		}
 
-		if (this.decayAnimationTick > 0) {
-			this.decayAnimationTick--;
+		if (decayAnimationTick > 0) {
+			decayAnimationTick--;
 		}
 	}
 
@@ -129,7 +129,7 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	}
 
 	public boolean canTrap() {
-		return this.spawnAnimationTick <= 0;
+		return spawnAnimationTick <= 0;
 	}
 
 	public boolean canTrapEntity(LivingEntity entity) {
@@ -139,9 +139,9 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	@Override
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 1) {
-			this.spawnAnimationTick = this.getSpawnAnimationLength();
+			spawnAnimationTick = getSpawnAnimationLength();
 		} else if (p_70103_1_ == 2) {
-			this.decayAnimationTick = this.getDecayAnimationLength();
+			decayAnimationTick = getDecayAnimationLength();
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}
