@@ -2353,6 +2353,182 @@
       }
     ]
   },
+
+  "entity.endersent.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt6",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt7",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/hurt8",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/death3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/step4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/step5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/step6",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.idle_smash": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.idle_smash",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/idle_smash1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle_smash2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle_smash3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/idle_smash4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/attack1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/attack3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/attack4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.endersent.teleport": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.endersent.teleport",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/endersent/teleport1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/teleport2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/teleport3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/endersent/teleport4",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.spider.prepare_shoot": {
     "category": "entity",
     "subtitle": "subtitles.entity.spider.prepare_shoot",

@@ -7,6 +7,7 @@ import com.google.common.base.Supplier;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
@@ -180,6 +181,13 @@ public class ModEntities {
 			0x87a964, 0xc06fe5);
 
 	// ENDER
+	public static final RegistryObject<EntityType<EndersentEntity>> ENDERSENT = registerEntity("endersent",
+			() -> EntityType.Builder.of(EndersentEntity::new, MobCategory.MONSTER)
+					.sized(0.8F, 5.6F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "endersent").toString()),
+			1447446, 0);
+
 	public static final RegistryObject<EntityType<BlastlingEntity>> BLASTLING = registerEntity("blastling",
 			() -> EntityType.Builder.of(BlastlingEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 2.4F)

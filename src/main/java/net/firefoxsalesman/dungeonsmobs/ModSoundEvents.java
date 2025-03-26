@@ -81,6 +81,17 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> WATCHLING_ATTACK = registerSoundEvents(
 			"entity.watchling.attack");
 
+	public static final RegistryObject<SoundEvent> ENDERSENT_STEP = registerSoundEvents("entity.endersent.step");
+	public static final RegistryObject<SoundEvent> ENDERSENT_IDLE = registerSoundEvents("entity.endersent.idle");
+	public static final RegistryObject<SoundEvent> ENDERSENT_HURT = registerSoundEvents("entity.endersent.hurt");
+	public static final RegistryObject<SoundEvent> ENDERSENT_DEATH = registerSoundEvents("entity.endersent.death");
+	public static final RegistryObject<SoundEvent> ENDERSENT_ATTACK = registerSoundEvents(
+			"entity.endersent.attack");
+	public static final RegistryObject<SoundEvent> ENDERSENT_IDLE_SMASH = registerSoundEvents(
+			"entity.endersent.idle_smash");
+	public static final RegistryObject<SoundEvent> ENDERSENT_TELEPORT = registerSoundEvents(
+			"entity.endersent.teleport");
+
 	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
 			"entity.icy_creeper.explode");
 

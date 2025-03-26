@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.EmptyRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.BlastlingRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.EndersentRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
@@ -76,6 +77,7 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.ENDERSENT.get(), EndersentRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.SNARELING.get(), SnarelingRenderer::new);

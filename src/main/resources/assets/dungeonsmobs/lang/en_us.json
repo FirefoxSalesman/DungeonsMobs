@@ -36,6 +36,8 @@
   "entity.dungeonsmobs.squall_golem": "Squall Golem",
   "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
+  "entity.dungeonsmobs.endersent": "Endersent",
+  "item.dungeonsmobs.endersent_spawn_egg": "Endersent Spawn Egg",
   "entity.dungeonsmobs.blastling": "Blastling",
   "item.dungeonsmobs.blastling_spawn_egg": "Blastling Spawn Egg",
   "entity.dungeonsmobs.watchling": "Watchling",
@@ -128,6 +130,13 @@
   "subtitles.entity.snareling.pre_shoot": "Snareling readies shot",
   "subtitles.entity.snareling.shoot": "Snareling shoots",
   "subtitles.entity.snareling.glob_land": "Snareling glob lands",
+  
+  "subtitles.entity.endersent.idle": "Endersent moans",
+  "subtitles.entity.endersent.hurt": "Endersent hurts",
+  "subtitles.entity.endersent.death": "Endersent dies",
+  "subtitles.entity.endersent.step": "Endersent steps",
+  "subtitles.entity.endersent.idle_smash": "Endersent smashes",
+  "subtitles.entity.endersent.attack": "Endersent smashes",
   
   "subtitles.entity.blastling.idle": "Blastling mutters",
   "subtitles.entity.blastling.hurt": "Blastling hurts",
