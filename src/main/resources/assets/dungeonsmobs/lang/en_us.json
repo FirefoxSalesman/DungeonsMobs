@@ -66,6 +66,9 @@
   "block.dungeonsmobs.wraith_fire": "Wraith Fire",
   "item.dungeonsmobs.wraith_fire_charge": "Wraith Fire Charge",
 
+  "item.dungeonsmobs.wooden_ladle": "Wooden Ladle",
+  "lore.dungeonsmobs.wooden_ladle": "Even a wooden ustensil can become a deadly weapon in the hands of someone that will hit again and again and again and again ...",
+
   "item.dungeonsmobs.mountaineer_axe": "Ice Pick",
   "lore.dungeonsmobs.mountaineer_axe": "The main tool of the emerald fevered mountaineers, though it's mainly a tool used for climbing, it as practical as the pickaxe to escavate tunnels and as mighty as the axe to puncture your enemies.",
   "item.dungeonsmobs.gold_mountaineer_axe": "Sturdy Ice Pick",

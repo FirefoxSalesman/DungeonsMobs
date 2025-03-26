@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,10 +16,8 @@ import java.util.Collection;
 public class ModItems {
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 	// SPATULA
-	// public static final RegistryObject<Item> WOODEN_LADLE =
-	// ITEMS.register("wooden_ladle",
-	// () -> new WoodenLadleItem(Tiers.WOOD, 0.5F, (2.0F - 4.0F), new
-	// Item.Properties().tab(DungeonsMobs.DUNGEONS_MOBS_ITEMS)));
+	public static final RegistryObject<Item> WOODEN_LADLE = ITEMS.register("wooden_ladle",
+			() -> new ShovelItem(Tiers.WOOD, 0.5F, (2.0F - 4.0F), new Item.Properties()));
 
 	// MOUNTAINEER AXES
 	public static final RegistryObject<Item> MOUNTAINEER_AXE = ITEMS.register("mountaineer_axe",
