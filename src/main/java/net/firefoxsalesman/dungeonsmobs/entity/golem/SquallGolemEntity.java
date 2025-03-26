@@ -620,7 +620,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
 			}
 			if (attackTimer == 30) {
-				AreaAttack(5, 5, 5, 5, 60, 1.0F);
+				AreaAttack(6, 6, 6, 6, 100, 1.0F);
 			}
 		}
 
@@ -654,11 +654,13 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 										Attributes.ATTACK_DAMAGE) * damage);
 
 						SquallGolemEntity v = SquallGolemEntity.this;
-						float attackKnockback = (float) getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+						float attackKnockback = (float) getAttributeValue(
+								Attributes.ATTACK_KNOCKBACK);
 						double ratioX = Mth.sin(v.getYRot() * ((float) Math.PI / 180F));
 						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
 						double knockbackReduction = 0.35D;
-						entityHit.hurt(damageSources().mobAttack(SquallGolemEntity.this), damage);
+						entityHit.hurt(damageSources().mobAttack(SquallGolemEntity.this),
+								damage);
 						forceKnockback(entityHit, attackKnockback * 0.8F, ratioX, ratioZ,
 								knockbackReduction);
 						entityHit.setDeltaMovement(
