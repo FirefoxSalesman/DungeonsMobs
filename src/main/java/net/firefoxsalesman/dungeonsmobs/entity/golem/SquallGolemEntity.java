@@ -620,7 +620,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
 			}
 			if (attackTimer == 30) {
-				AreaAttack(6, 6, 6, 6, 100, 1.0F);
+				AreaAttack(4, 4, 4, 4, 360, 1.0F);
 			}
 		}
 
