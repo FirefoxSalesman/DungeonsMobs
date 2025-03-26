@@ -10,8 +10,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
+import java.util.Collection;
+
 public class ModItems {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
+	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 	// SPATULA
 	// public static final RegistryObject<Item> WOODEN_LADLE =
 	// ITEMS.register("wooden_ladle",
@@ -43,5 +45,9 @@ public class ModItems {
 
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
+	}
+
+	public static Collection<RegistryObject<Item>> getEntries() {
+		return ITEMS.getEntries();
 	}
 }

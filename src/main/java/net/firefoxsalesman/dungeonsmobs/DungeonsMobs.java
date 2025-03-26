@@ -55,12 +55,12 @@ public class DungeonsMobs {
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-			for (RegistryObject<Item> i : ModItems.ITEMS.getEntries()) {
+			for (RegistryObject<Item> i : ModItems.getEntries()) {
 				event.accept(i);
 			}
 		}
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-			for (RegistryObject<Item> i : ModEntities.SPAWN_EGGS.getEntries()) {
+			for (RegistryObject<Item> i : ModEntities.getEntries()) {
 				event.accept(i);
 			}
 		}

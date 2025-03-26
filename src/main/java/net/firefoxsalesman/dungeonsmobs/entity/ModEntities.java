@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.google.common.base.Supplier;
@@ -49,7 +50,7 @@ import net.minecraftforge.registries.RegistryObject;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class ModEntities {
-	public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS,
+	private static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			MOD_ID);
 	public static final List<String> ENTITY_IDS = new ObjectArrayList<>();
 
@@ -167,7 +168,8 @@ public class ModEntities {
 			0x2b9477, 0xc436cd);
 
 	// WATER
-	public static final RegistryObject<EntityType<WaveWhispererEntity>> WAVEWHISPERER = registerEntity("wavewhisperer",
+	public static final RegistryObject<EntityType<WaveWhispererEntity>> WAVEWHISPERER = registerEntity(
+			"wavewhisperer",
 			() -> EntityType.Builder.of(WaveWhispererEntity::new, MobCategory.MONSTER)
 					.sized(0.8F, 2.25F)
 					.clientTrackingRange(10)
@@ -315,5 +317,9 @@ public class ModEntities {
 		RegistryObject<EntityType<T>> entityType = ENTITY_TYPES.register(key, sup);
 
 		return entityType;
+	}
+
+	public static Collection<RegistryObject<Item>> getEntries() {
+		return SPAWN_EGGS.getEntries();
 	}
 }
