@@ -9,7 +9,7 @@ public class LookAtTargetGoal extends Goal {
     protected final Mob mob;
 
     public LookAtTargetGoal(Mob mob) {
-        this.setFlags(EnumSet.of(Goal.Flag.LOOK));
+        setFlags(EnumSet.of(Goal.Flag.LOOK));
         this.mob = mob;
     }
 
@@ -28,7 +28,7 @@ public class LookAtTargetGoal extends Goal {
 
     public void tick() {
         if (mob.getTarget() != null && mob.getTarget().isAlive()) {
-            this.mob.getLookControl().setLookAt(mob.getTarget().getX(), mob.getTarget().getEyeY(), mob.getTarget().getZ());
+            mob.getLookControl().setLookAt(mob.getTarget().getX(), mob.getTarget().getEyeY(), mob.getTarget().getZ());
         }
     }
 }

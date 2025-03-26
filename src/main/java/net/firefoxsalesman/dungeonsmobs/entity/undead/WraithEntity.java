@@ -58,38 +58,38 @@ public class WraithEntity extends Monster implements GeoEntity {
 
 	public WraithEntity(EntityType<? extends WraithEntity> type, Level world) {
 		super(type, world);
-		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+		setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
 	}
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new RestrictSunGoal(this));
-		this.goalSelector.addGoal(2, new FleeSunGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new WraithEntity.TeleportGoal(this));
-		this.goalSelector.addGoal(4, new WraithEntity.SummonFireAttackGoal(this));
-		this.goalSelector.addGoal(5, new ApproachTargetGoal(this, 8, 1.2D, true));
-		this.goalSelector.addGoal(6, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(2,
+		goalSelector.addGoal(1, new RestrictSunGoal(this));
+		goalSelector.addGoal(2, new FleeSunGoal(this, 1.0D));
+		goalSelector.addGoal(3, new WraithEntity.TeleportGoal(this));
+		goalSelector.addGoal(4, new WraithEntity.SummonFireAttackGoal(this));
+		goalSelector.addGoal(5, new ApproachTargetGoal(this, 8, 1.2D, true));
+		goalSelector.addGoal(6, new LookAtTargetGoal(this));
+		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		goalSelector.addGoal(9, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+		targetSelector.addGoal(1, new HurtByTargetGoal(this));
+		targetSelector.addGoal(2,
 				new NearestAttackableTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(300));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true)
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true)
 				.setUnseenMemoryTicks(300));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
 				Turtle.BABY_ON_LAND_SELECTOR).setUnseenMemoryTicks(300));
 	}
 
 	public boolean isSpellcasting() {
-		return this.summonFireAttackAnimationTick > 0;
+		return summonFireAttackAnimationTick > 0;
 	}
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.teleportAnimationTick = teleportAnimationLength;
+			teleportAnimationTick = teleportAnimationLength;
 		} else if (p_28844_ == 11) {
-			this.summonFireAttackAnimationTick = summonFireAttackAnimationLength;
+			summonFireAttackAnimationTick = summonFireAttackAnimationLength;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
@@ -103,7 +103,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 			return true;
 		} else if (entityIn instanceof LivingEntity
 				&& ((LivingEntity) entityIn).getMobType() == MobType.UNDEAD) {
-			return this.getTeam() == null && entityIn.getTeam() == null;
+			return getTeam() == null && entityIn.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -121,39 +121,39 @@ public class WraithEntity extends Monster implements GeoEntity {
 		tickDownAnimTimers();
 
 		if (teleportAnimationTick > 0) {
-			level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getRandomX(1), this.getY(),
-					this.getRandomZ(1), this.random.nextGaussian() * 0.01, 0.1,
-					this.random.nextGaussian() * 0.01);
+			level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, getRandomX(1), getY(),
+					getRandomZ(1), random.nextGaussian() * 0.01, 0.1,
+					random.nextGaussian() * 0.01);
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.summonFireAttackAnimationTick > 0) {
-			this.summonFireAttackAnimationTick--;
+		if (summonFireAttackAnimationTick > 0) {
+			summonFireAttackAnimationTick--;
 		}
 
-		if (this.teleportAnimationTick > 0) {
-			this.teleportAnimationTick--;
+		if (teleportAnimationTick > 0) {
+			teleportAnimationTick--;
 		}
 	}
 
 	public void aiStep() {
 
-		if (!onGround() && this.getDeltaMovement().y < 0.0D) {
-			this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, 0.75D, 1.0D));
+		if (!onGround() && getDeltaMovement().y < 0.0D) {
+			setDeltaMovement(getDeltaMovement().multiply(1.0D, 0.75D, 1.0D));
 		}
 
-		if (this.isAlive()) {
-			boolean flag = this.isSunSensitive() && this.isSunBurnTick();
+		if (isAlive()) {
+			boolean flag = isSunSensitive() && isSunBurnTick();
 			if (flag) {
-				ItemStack itemstack = this.getItemBySlot(EquipmentSlot.HEAD);
+				ItemStack itemstack = getItemBySlot(EquipmentSlot.HEAD);
 				if (!itemstack.isEmpty()) {
 					if (itemstack.isDamageableItem()) {
 						itemstack.setDamageValue(
-								itemstack.getDamageValue() + this.random.nextInt(2));
+								itemstack.getDamageValue() + random.nextInt(2));
 						if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
-							this.broadcastBreakEvent(EquipmentSlot.HEAD);
-							this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+							broadcastBreakEvent(EquipmentSlot.HEAD);
+							setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
 						}
 					}
 
@@ -161,7 +161,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 				}
 
 				if (flag) {
-					this.setSecondsOnFire(8);
+					setSecondsOnFire(8);
 				}
 			}
 		}
@@ -199,7 +199,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(this.getStepSound(), 0.5F, 1.0F);
+		playSound(getStepSound(), 0.5F, 1.0F);
 	}
 
 	@Override
@@ -213,9 +213,9 @@ public class WraithEntity extends Monster implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.summonFireAttackAnimationTick > 0) {
+		if (summonFireAttackAnimationTick > 0) {
 			event.getController().setAnimation(RawAnimation.begin().then("wraith_attack", LoopType.LOOP));
-		} else if (this.teleportAnimationTick > 10) {
+		} else if (teleportAnimationTick > 10) {
 			event.getController().setAnimation(RawAnimation.begin().then("wraith_teleport", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimation(RawAnimation.begin().then("wraith_fly", LoopType.LOOP));
@@ -246,16 +246,16 @@ public class WraithEntity extends Monster implements GeoEntity {
 			if (event.isCanceled()) {
 				return false;
 			} else {
-				Vec3 vec3 = this.position();
-				boolean randomTeleport = this.randomTeleport(event.getTargetX(), event.getTargetY(),
+				Vec3 vec3 = position();
+				boolean randomTeleport = randomTeleport(event.getTargetX(), event.getTargetY(),
 						event.getTargetZ(), true);
 				if (randomTeleport) {
 					level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(this));
-					if (!this.isSilent()) {
-						level().playSound((Player) null, this.xo, this.yo, this.zo,
+					if (!isSilent()) {
+						level().playSound((Player) null, xo, yo, zo,
 								ModSoundEvents.WRAITH_TELEPORT.get(),
-								this.getSoundSource(), 1.0F, 1.0F);
-						this.playSound(ModSoundEvents.WRAITH_TELEPORT.get(), 1.0F, 1.0F);
+								getSoundSource(), 1.0F, 1.0F);
+						playSound(ModSoundEvents.WRAITH_TELEPORT.get(), 1.0F, 1.0F);
 					}
 				}
 
@@ -276,9 +276,9 @@ public class WraithEntity extends Monster implements GeoEntity {
 		public LivingEntity target;
 
 		public TeleportGoal(WraithEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -323,11 +323,11 @@ public class WraithEntity extends Monster implements GeoEntity {
 
 			if (target != null && mob.teleportAnimationTick == mob.teleportAnimationActionPoint) {
 				if (mob.distanceTo(target) >= TARGET_TOO_FAR) {
-					this.tryTeleport(TELEPORT_TO_RANGE, this.target.getX(), this.target.getY(),
-							this.target.getZ());
+					tryTeleport(TELEPORT_TO_RANGE, target.getX(), target.getY(),
+							target.getZ());
 				} else {
-					this.tryTeleport(TELEPORT_AWAY_RANGE, this.target.getX(), this.target.getY(),
-							this.target.getZ());
+					tryTeleport(TELEPORT_AWAY_RANGE, target.getX(), target.getY(),
+							target.getZ());
 				}
 			}
 		}
@@ -356,7 +356,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 		public int nextUseTime = 0;
 
 		public SummonFireAttackGoal(WraithEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
 			this.target = mob.getTarget();
 		}
@@ -374,7 +374,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 		public boolean canUse() {
 			target = mob.getTarget();
 
-			return target != null && mob.tickCount >= this.nextUseTime && mob.distanceTo(target) <= 14
+			return target != null && mob.tickCount >= nextUseTime && mob.distanceTo(target) <= 14
 					&& mob.hasLineOfSight(target) && animationsUseable();
 		}
 
@@ -413,7 +413,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 		@Override
 		public void stop() {
 			super.stop();
-			this.nextUseTime = mob.tickCount + 60 + mob.random.nextInt(60);
+			nextUseTime = mob.tickCount + 60 + mob.random.nextInt(60);
 		}
 
 		public boolean animationsUseable() {

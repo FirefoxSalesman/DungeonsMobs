@@ -13,7 +13,7 @@ public class ApproachTargetGoal extends MeleeAttackGoal {
 
     public ApproachTargetGoal(PathfinderMob attackingMob, double distanceToApproachTo, double moveSpeed, boolean shouldFollowUnseenTarget) {
         super(attackingMob, moveSpeed, shouldFollowUnseenTarget);
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        setFlags(EnumSet.of(Goal.Flag.MOVE));
         this.distanceToApproachTo = distanceToApproachTo;
     }
 
@@ -23,11 +23,11 @@ public class ApproachTargetGoal extends MeleeAttackGoal {
     }
 
     public boolean canUse() {
-        return super.canUse() && (this.mob.distanceTo(this.mob.getTarget()) >= distanceToApproachTo || !this.mob.hasLineOfSight(this.mob.getTarget()));
+        return super.canUse() && (mob.distanceTo(mob.getTarget()) >= distanceToApproachTo || !mob.hasLineOfSight(mob.getTarget()));
     }
 
     public boolean canContinueToUse() {
-        return super.canContinueToUse() && (this.mob.distanceTo(this.mob.getTarget()) >= distanceToApproachTo || !this.mob.hasLineOfSight(this.mob.getTarget()));
+        return super.canContinueToUse() && (mob.distanceTo(mob.getTarget()) >= distanceToApproachTo || !mob.hasLineOfSight(mob.getTarget()));
     }
 
     protected double getAttackReachSqr(LivingEntity p_179512_1_) {
@@ -36,6 +36,6 @@ public class ApproachTargetGoal extends MeleeAttackGoal {
 
     @Override
     protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-        this.resetAttackCooldown();
+        resetAttackCooldown();
     }
 }

@@ -9,30 +9,30 @@ public class RangedWebAttackGoal<T extends Mob & IWebShooter> extends SimpleRang
 
     public RangedWebAttackGoal(T attacker, double movespeed, int maxAttackTime, float maxAttackDistanceIn) {
         super(attacker, (is) -> true, IWebShooter::shootWeb, movespeed, maxAttackTime, maxAttackDistanceIn);
-        this.webShooter = attacker;
+        webShooter = attacker;
     }
 
     @Override
     public boolean canUse() {
-        LivingEntity target = this.webShooter.getTarget();
-        return super.canUse() && target != null && !this.webShooter.isTargetTrapped();
+        LivingEntity target = webShooter.getTarget();
+        return super.canUse() && target != null && !webShooter.isTargetTrapped();
     }
 
     @Override
     public boolean canContinueToUse() {
-        LivingEntity target = this.webShooter.getTarget();
-        return super.canContinueToUse() && target != null && !this.webShooter.isTargetTrapped();
+        LivingEntity target = webShooter.getTarget();
+        return super.canContinueToUse() && target != null && !webShooter.isTargetTrapped();
     }
 
     @Override
     public void start() {
         super.start();
-        this.webShooter.setWebShooting(true);
+        webShooter.setWebShooting(true);
     }
 
     @Override
     public void stop() {
         super.stop();
-        this.webShooter.setWebShooting(false);
+        webShooter.setWebShooting(false);
     }
 }

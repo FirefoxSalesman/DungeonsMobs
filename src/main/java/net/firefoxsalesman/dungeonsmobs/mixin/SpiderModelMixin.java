@@ -24,9 +24,9 @@ public class SpiderModelMixin {
 
     @Inject(at = @At("RETURN"), method = "<init>")
     private void init(CallbackInfo callbackInfo) {
-        this.originalBodyRotateAngleX = getBody1().xRot;
-        this.originalBodyRotationPointY = getBody1().y;
-        this.originalBodyRotationPointZ = getBody1().z;
+        originalBodyRotateAngleX = getBody1().xRot;
+        originalBodyRotationPointY = getBody1().y;
+        originalBodyRotationPointZ = getBody1().z;
     }
 
     private ModelPart getBody1() {
@@ -44,7 +44,7 @@ public class SpiderModelMixin {
                 getBody1().y = originalBodyRotationPointY - 5;
                 getBody1().z = originalBodyRotationPointZ - 2;
             } else {
-                getBody1().xRot = this.originalBodyRotateAngleX;
+                getBody1().xRot = originalBodyRotateAngleX;
                 getBody1().y = originalBodyRotationPointY;
                 getBody1().z = originalBodyRotationPointZ;
             }

@@ -23,12 +23,12 @@ public class SimpleRangedAttackGoal<T extends Mob> extends Goal {
     protected final float attackRadius;
     protected final float attackRadiusSqr;
 
-    public SimpleRangedAttackGoal(T p_i1649_1_, Predicate<ItemStack> weaponPredicate, BiConsumer<T, LivingEntity> performRangedAttack, double speedModifier, int attackInterval, float attackRadius) {
-        this(p_i1649_1_, weaponPredicate, performRangedAttack, speedModifier, attackInterval, attackInterval, attackRadius);
+    public SimpleRangedAttackGoal(T mob, Predicate<ItemStack> weaponPredicate, BiConsumer<T, LivingEntity> performRangedAttack, double speedModifier, int attackInterval, float attackRadius) {
+        this(mob, weaponPredicate, performRangedAttack, speedModifier, attackInterval, attackInterval, attackRadius);
     }
 
-    public SimpleRangedAttackGoal(T p_i1650_1_, Predicate<ItemStack> weaponPredicate, BiConsumer<T, LivingEntity> performRangedAttack, double speedModifier, int attackIntervalMin, int attackIntervalMax, float attackRadius) {
-        this.mob = p_i1650_1_;
+    public SimpleRangedAttackGoal(T mob, Predicate<ItemStack> weaponPredicate, BiConsumer<T, LivingEntity> performRangedAttack, double speedModifier, int attackIntervalMin, int attackIntervalMax, float attackRadius) {
+        this.mob = mob;
         this.weaponPredicate = weaponPredicate;
         this.performRangedAttack = performRangedAttack;
         this.speedModifier = speedModifier;
@@ -36,16 +36,16 @@ public class SimpleRangedAttackGoal<T extends Mob> extends Goal {
         this.attackIntervalMax = attackIntervalMax;
         this.attackRadius = attackRadius;
         this.attackRadiusSqr = attackRadius * attackRadius;
-        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     public boolean canUse() {
-        if (!this.mob.isHolding(this.weaponPredicate)) {
+        if (!mob.isHolding(weaponPredicate)) {
             return false;
         }
-        LivingEntity livingentity = this.mob.getTarget();
+        LivingEntity livingentity = mob.getTarget();
         if (livingentity != null && livingentity.isAlive()) {
-            this.target = livingentity;
+            target = livingentity;
             return true;
         } else {
             return false;
@@ -53,16 +53,16 @@ public class SimpleRangedAttackGoal<T extends Mob> extends Goal {
     }
 
     public boolean canContinueToUse() {
-        if (!this.mob.isHolding(this.weaponPredicate)) {
+        if (!mob.isHolding(weaponPredicate)) {
             return false;
         }
-        return this.canUse() || !this.mob.getNavigation().isDone();
+        return canUse() || !mob.getNavigation().isDone();
     }
 
     public void stop() {
-        this.target = null;
-        this.seeTime = 0;
-        this.attackTime = -1;
+        target = null;
+        seeTime = 0;
+        attackTime = -1;
     }
 
     public boolean requiresUpdateEveryTick() {
@@ -70,33 +70,31 @@ public class SimpleRangedAttackGoal<T extends Mob> extends Goal {
     }
 
     public void tick() {
-        double d0 = this.mob.distanceToSqr(this.target.getX(), this.target.getY(), this.target.getZ());
-        boolean flag = this.mob.getSensing().hasLineOfSight(this.target);
+        double d0 = mob.distanceToSqr(target.getX(), target.getY(), target.getZ());
+        boolean flag = mob.getSensing().hasLineOfSight(target);
         if (flag) {
-            ++this.seeTime;
+            ++seeTime;
         } else {
-            this.seeTime = 0;
+            seeTime = 0;
         }
 
-        if (!(d0 > (double) this.attackRadiusSqr) && this.seeTime >= 5) {
-            this.mob.getNavigation().stop();
+        if (!(d0 > (double) attackRadiusSqr) && seeTime >= 5) {
+            mob.getNavigation().stop();
         } else {
-            this.mob.getNavigation().moveTo(this.target, this.speedModifier);
+            mob.getNavigation().moveTo(target, speedModifier);
         }
 
-        this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
-        if (--this.attackTime == 0) {
+        mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
+        if (--attackTime == 0) {
             if (!flag) {
                 return;
             }
 
-            float f = Mth.sqrt((float) d0) / this.attackRadius;
-            float lvt_5_1_ = Mth.clamp(f, 0.1F, 1.0F);
-            this.performRangedAttack.accept(this.mob, this.target);
-            this.attackTime = Mth.floor(f * (float)(this.attackIntervalMax - this.attackIntervalMin) + (float)this.attackIntervalMin);
-        } else if (this.attackTime < 0) {
-            float f2 = Mth.sqrt((float) d0) / this.attackRadius;
-            this.attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double)this.attackRadius, (double)this.attackIntervalMin, (double)this.attackIntervalMax));
+            float f = Mth.sqrt((float) d0) / attackRadius;
+            performRangedAttack.accept(mob, target);
+            attackTime = Mth.floor(f * (float) (attackIntervalMax - attackIntervalMin) + (float) attackIntervalMin);
+        } else if (attackTime < 0) {
+            attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double) attackRadius, (double) attackIntervalMin, (double) attackIntervalMax));
         }
 
     }

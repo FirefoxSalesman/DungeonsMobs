@@ -39,40 +39,36 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 
 	@Inject(at = @At("TAIL"), method = "registerGoals")
 	private void registerGoals(CallbackInfo callbackInfo) {
-		((GoalSelectorAccessor) this.goalSelector)
+		((GoalSelectorAccessor) goalSelector)
 				.getAvailableGoals()
 				.stream()
 				.filter(pg -> pg.getPriority() == 4 && pg.getGoal() instanceof MeleeAttackGoal)
 				.findFirst()
 				.ifPresent(pg -> {
-					this.meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
-					// DungeonsMobs.LOGGER.debug("Found and stored melee attack goal for Spider {}",
-					// this);
+					meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
 				});
-		((GoalSelectorAccessor) this.goalSelector)
+		((GoalSelectorAccessor) goalSelector)
 				.getAvailableGoals()
 				.stream()
 				.filter(pg -> pg.getPriority() == 3 && pg.getGoal() instanceof LeapAtTargetGoal)
 				.findFirst()
 				.ifPresent(pg -> {
-					this.leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
-					// DungeonsMobs.LOGGER.debug("Found and stored leap at target goal for Spider
-					// {}", this);
+					leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
 				});
 
-		this.rangedWebAttackGoal = new RangedWebAttackGoal<>(this, 1.0D, 60, 20.0F);
+		rangedWebAttackGoal = new RangedWebAttackGoal<>(this, 1.0D, 60, 20.0F);
 	}
 
 	@Inject(at = @At("RETURN"), method = "defineSynchedData")
 	private void registerData(CallbackInfo callbackInfo) {
-		this.entityData.define(WEBSHOOTING, false);
+		entityData.define(WEBSHOOTING, false);
 	}
 
 	@Override
 	protected void customServerAiStep() {
 		super.customServerAiStep();
-		if (this.getType() != EntityType.CAVE_SPIDER) {
-			this.reassessAttackGoals();
+		if (getType() != EntityType.CAVE_SPIDER) {
+			reassessAttackGoals();
 		}
 	}
 
@@ -82,24 +78,22 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 	 * a custom Goal that doesn't extend it
 	 */
 	private void reassessAttackGoals() {
-		LivingEntity target = this.getTarget();
-		if (this.meleeAttackGoal != null
-				&& this.rangedWebAttackGoal != null
+		LivingEntity target = getTarget();
+		if (meleeAttackGoal != null
+				&& rangedWebAttackGoal != null
 				&& target != null) {
-			if (!this.isTargetTrapped()) {
-				// DungeonsMobs.LOGGER.debug("Changing Spider {} to ranged AI!", this);
-				this.goalSelector.removeGoal(this.meleeAttackGoal);
-				if (this.leapAtTargetGoal != null) {
-					this.goalSelector.removeGoal(this.leapAtTargetGoal);
+			if (!isTargetTrapped()) {
+				goalSelector.removeGoal(meleeAttackGoal);
+				if (leapAtTargetGoal != null) {
+					goalSelector.removeGoal(leapAtTargetGoal);
 				}
-				this.goalSelector.addGoal(4, this.rangedWebAttackGoal);
+				goalSelector.addGoal(4, rangedWebAttackGoal);
 			} else {
-				// DungeonsMobs.LOGGER.debug("Changing Spider {} to melee AI!", this);
-				this.goalSelector.removeGoal(this.rangedWebAttackGoal);
-				if (this.leapAtTargetGoal != null) {
-					this.goalSelector.addGoal(3, this.leapAtTargetGoal);
+				goalSelector.removeGoal(rangedWebAttackGoal);
+				if (leapAtTargetGoal != null) {
+					goalSelector.addGoal(3, leapAtTargetGoal);
 				}
-				this.goalSelector.addGoal(4, this.meleeAttackGoal);
+				goalSelector.addGoal(4, meleeAttackGoal);
 			}
 		}
 	}
@@ -107,8 +101,8 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		if (this.targetTrappedCounter > 0) {
-			this.targetTrappedCounter--;
+		if (targetTrappedCounter > 0) {
+			targetTrappedCounter--;
 		}
 	}
 
@@ -118,39 +112,39 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 				.ignoreInvisibilityTesting();
 
 		if (notifyOthers) {
-			List<Spider> spiders = this.level().getNearbyEntities(Spider.class, spiderTargeting, this,
-					this.getBoundingBox().inflate(10.0D));
+			List<Spider> spiders = level().getNearbyEntities(Spider.class, spiderTargeting, this,
+					getBoundingBox().inflate(10.0D));
 
 			for (Spider spider : spiders) {
-				if (spider instanceof ITrapsTarget && this.getTarget() != null
+				if (spider instanceof ITrapsTarget && getTarget() != null
 						&& spider.getTarget() != null
-						&& spider.getTarget() == this.getTarget()) {
+						&& spider.getTarget() == getTarget()) {
 					((ITrapsTarget) spider).setTargetTrapped(trapped, false);
 				}
 			}
 		}
 
 		if (trapped) {
-			this.targetTrappedCounter = 20;
+			targetTrappedCounter = 20;
 		} else {
-			this.targetTrappedCounter = 0;
+			targetTrappedCounter = 0;
 		}
 	}
 
 	@Override
 	public boolean isTargetTrapped() {
-		return this.targetTrappedCounter > 0;
+		return targetTrappedCounter > 0;
 	}
 
 	@Override
 	public void setWebShooting(boolean webShooting) {
-		this.playSound(ModSoundEvents.SPIDER_PREPARE_SHOOT.get(), this.getSoundVolume(), this.getVoicePitch());
-		this.entityData.set(WEBSHOOTING, webShooting);
+		playSound(ModSoundEvents.SPIDER_PREPARE_SHOOT.get(), getSoundVolume(), getVoicePitch());
+		entityData.set(WEBSHOOTING, webShooting);
 	}
 
 	@Override
 	public boolean isWebShooting() {
-		return this.entityData.get(WEBSHOOTING);
+		return entityData.get(WEBSHOOTING);
 	}
 
 }

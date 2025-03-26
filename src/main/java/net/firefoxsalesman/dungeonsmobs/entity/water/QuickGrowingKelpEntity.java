@@ -46,16 +46,16 @@ public class QuickGrowingKelpEntity extends QuickGrowingVineEntity {
 
 	@Override
 	public void spawnAreaDamage() {
-		AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(this.level(), this.position(), this,
+		AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(level(), position(), this,
 				2.5F, damageSources().mobAttack(this), 0.0F, 1.25F, 0.25F, 0.25F, 0, false, false, 0.75,
 				0.25, false, 0, 2);
-		this.level().addFreshEntity(areaDamage);
+		level().addFreshEntity(areaDamage);
 	}
 
 	@Override
 	public void setDefaultFeatures() {
 		super.setDefaultFeatures();
-		this.setLengthInSegments(4 + this.random.nextInt(9));
+		setLengthInSegments(4 + random.nextInt(9));
 	}
 
 }
