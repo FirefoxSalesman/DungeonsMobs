@@ -6,9 +6,13 @@
   "refmap": "mixins.dungeonsmobs.refmap.json",
   "mixins": [
     "AbstractArrowEntityMixin",
+    "ArmorItemAccessor",
     "CropsBlockMixin",
+    "CrossbowItemInvoker",
     "GoalSelectorAccessor",
-    "SpiderEntityMixin"
+    "ItemAccessor",
+    "SpiderEntityMixin",
+    "TieredItemAccessor"
   ],
   "client": [
     "SpiderModelMixin"
