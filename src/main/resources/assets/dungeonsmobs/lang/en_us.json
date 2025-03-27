@@ -76,6 +76,12 @@
   "item.dungeonsmobs.diamond_mountaineer_axe": "Reinforced Ice Pick",
   "lore.dungeonsmobs.diamond_mountaineer_axe": "The dream of all mountaineers, only the illagers skilled or lucky enough to mine and sell the rare emeralds of the mountain can afford this tool.",
 
+  "item.dungeonsmobs.mountaineer_helmet": "Mountaineering Hood",
+  "item.dungeonsmobs.mountaineer_chestplate": "Mountaineering Jacket",
+  "item.dungeonsmobs.mountaineer_leggings": "Mountaineering Pants",
+  "item.dungeonsmobs.mountaineer_boots": "Mountaineering Boots",
+  "lore.dungeonsmobs.mountaineer_armor": "Warm and rugged attire weaved by the illagers of the mountains and tundras.",
+
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
   "subtitles.entity.wraith.death": "Wraith dies",
