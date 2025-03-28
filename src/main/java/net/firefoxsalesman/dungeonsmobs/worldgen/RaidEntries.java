@@ -14,6 +14,9 @@ public class RaidEntries {
 		 * RAVAGER(EntityType.RAVAGER, new int[]{0, 0, 0, 1, 0, 1, 0, 2});
 		 */
 
+		Raid.RaiderType.create("mountaineer", ModEntities.MOUNTAINEER.get(),
+				new int[] { 0, 0, 2, 0, 1, 4, 2, 5 });
+
 		Raid.RaiderType.create("squall_golem", ModEntities.SQUALL_GOLEM.get(),
 				new int[] { 0, 0, 0, 1, 0, 1, 0, 2 });
 

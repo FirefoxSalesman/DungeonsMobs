@@ -17,6 +17,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.AbstractIllager;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.LightLayer;
@@ -74,6 +75,10 @@ public class EntitySpawnPlacement {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				IcyCreeperEntity::canIcyCreeperSpawn);
 
+		SpawnPlacements.register(ModEntities.MOUNTAINEER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 		SpawnPlacements.register(ModEntities.SQUALL_GOLEM.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -155,5 +160,10 @@ public class EntitySpawnPlacement {
 			MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
 		return Monster.checkMonsterSpawnRules(entityType, world, spawnReason, blockPos, rand)
 				&& world.getSeaLevel() <= blockPos.getY();
+	}
+
+	public static boolean canIllagerSpawn(EntityType<? extends AbstractIllager> entityType,
+			ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos blockPos, RandomSource rand) {
+		return Monster.checkMonsterSpawnRules(entityType, world, spawnReason, blockPos, rand);
 	}
 }
