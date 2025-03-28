@@ -24,6 +24,15 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends Dynam
 		super(renderManager, modelProvider);
 		addRenderLayer(new ItemArmorGeoLayer<>(this) {
 			@Override
+			protected void prepModelPartForRender(PoseStack poseStack, GeoBone bone, ModelPart sourcePart) {
+				super.prepModelPartForRender(poseStack, bone, sourcePart);
+				// TODO: If you're having issues with helmet rendering, this is why.
+				if (bone.getName().equals("armorBipedHead")) {
+					poseStack.translate(0, 0.125, 0); // 1y is 1 cube up, we want 2/16
+				}
+			}
+
+			@Override
 			protected ModelPart getModelPartForBone(GeoBone bone, EquipmentSlot slot, ItemStack stack,
 					T animatable,
 					HumanoidModel<?> baseModel) {
