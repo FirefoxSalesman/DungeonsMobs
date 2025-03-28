@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
+import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
@@ -33,6 +34,8 @@ public class ModItems {
 	// Armour
 	public static final ArmorSet MOUNTAINEER_ARMOR = registerArmorSet("mountaineer_armor", "mountaineer_helmet",
 			"mountaineer_chestplate", "mountaineer_leggings", "mountaineer_boots");
+	public static final ArmorSet MAGE_ARMOR = registerArmorSetMage("mage_armor", "mage_helmet", "mage_chestplate",
+			"mage_leggings", "mage_boots");
 
 	// SPATULA
 	public static final RegistryObject<Item> WOODEN_LADLE = ITEMS.register("wooden_ladle",
@@ -91,5 +94,28 @@ public class ModItems {
 		RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
 		ARMORS.put(GeneralHelper.modLoc(armorId), register);
 		return register;
+	}
+
+	private static ArmorSet registerArmorSetMage(String armorSetId, String helmetId, String chestId, String legsId,
+			String bootsId) {
+		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
+				"animations/armor/cloaked_armor.animation.json");
+		return new ArmorSet(
+				armorSet,
+				registerArmor(helmetId,
+						() -> new MageArmorGear(Type.HELMET, ARMOR_PROPERTIES, armorSet,
+								modelLocation, textureLocation, animationFileLocation)),
+				registerArmor(chestId,
+						() -> new MageArmorGear(Type.CHESTPLATE, ARMOR_PROPERTIES, armorSet,
+								modelLocation, textureLocation, animationFileLocation)),
+				registerArmor(legsId,
+						() -> new MageArmorGear(Type.LEGGINGS, ARMOR_PROPERTIES, armorSet,
+								modelLocation, textureLocation, animationFileLocation)),
+				registerArmor(bootsId, () -> new MageArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
+						armorSet, modelLocation, textureLocation, animationFileLocation)));
 	}
 }

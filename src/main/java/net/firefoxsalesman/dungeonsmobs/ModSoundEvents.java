@@ -18,6 +18,18 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> WRAITH_FLY = registerSoundEvents("entity.wraith.fly");
 	public static final RegistryObject<SoundEvent> WRAITH_TELEPORT = registerSoundEvents("entity.wraith.teleport");
 
+	public static final RegistryObject<SoundEvent> ENCHANTER_IDLE = registerSoundEvents("entity.enchanter.idle");
+	public static final RegistryObject<SoundEvent> ENCHANTER_HURT = registerSoundEvents("entity.enchanter.hurt");
+	public static final RegistryObject<SoundEvent> ENCHANTER_DEATH = registerSoundEvents("entity.enchanter.death");
+	public static final RegistryObject<SoundEvent> ENCHANTER_PRE_ATTACK = registerSoundEvents(
+			"entity.enchanter.pre_attack");
+	public static final RegistryObject<SoundEvent> ENCHANTER_ATTACK = registerSoundEvents(
+			"entity.enchanter.attack");
+	public static final RegistryObject<SoundEvent> ENCHANTER_SPELL = registerSoundEvents("entity.enchanter.spell");
+	public static final RegistryObject<SoundEvent> ENCHANTER_BEAM = registerSoundEvents("entity.enchanter.beam");
+	public static final RegistryObject<SoundEvent> ENCHANTER_BEAM_LOOP = registerSoundEvents(
+			"entity.enchanter.beam_loop");
+
 	public static final RegistryObject<SoundEvent> GEOMANCER_BOMB_SPAWN = registerSoundEvents(
 			"entity.geomancer.bomb_spawn");
 
@@ -115,6 +127,9 @@ public class ModSoundEvents {
 			"entity.sunken_skeleton.step");
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
 			"entity.sunken_skeleton.shoot");
+
+	public static final RegistryObject<SoundEvent> ILLUSIONER_DEATH = registerSoundEvents(
+			"entity.illusioner.death");
 
 	public static final RegistryObject<SoundEvent> MOUNTAINEER_IDLE = registerSoundEvents(
 			"entity.mountaineer.idle");
@@ -272,6 +287,8 @@ public class ModSoundEvents {
 			"entity.necromancer.shoot");
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(
 			"entity.necromancer.orb_impact");
+	public static final RegistryObject<SoundEvent> NECROMANCER_PREPARE_SUMMON = registerSoundEvents(
+			"entity.necromancer.prepare_summon");
 
 	public static final RegistryObject<SoundEvent> SPIDER_PREPARE_SHOOT = registerSoundEvents(
 			"entity.spider.prepare_shoot");

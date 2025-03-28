@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
@@ -20,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.CobwebProjectileRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
@@ -27,6 +29,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
@@ -35,6 +38,8 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntityType;
@@ -59,6 +64,11 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 
+		event.registerEntityRenderer(ModEntities.MAGE.get(),
+				manager -> new DefaultIllagerRenderer<MageEntity>(manager, new MageModel<MageEntity>()));
+		event.registerEntityRenderer(ModEntities.MAGE_CLONE.get(),
+				manager -> new DefaultIllagerRenderer<MageCloneEntity>(manager, new MageModel<MageCloneEntity>()));
+
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.WHISPERER.get(), WhispererRenderer::new);
@@ -67,6 +77,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.QUICK_GROWING_VINE.get(), QuickGrowingVineRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.POISON_QUILL.get(), PoisonQuillRenderer::new);
+		event.registerEntityRenderer(ModEntities.MAGE_MISSILE.get(), MageMissileRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ICY_CREEPER.get(), IcyCreeperRenderer::new);
 
@@ -97,6 +108,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.COBWEB_PROJECTILE.get(), CobwebProjectileRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.AREA_DAMAGE.get(), EmptyRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.SUMMON_SPOT.get(), SummonSpotRenderer::new);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
