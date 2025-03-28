@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
@@ -13,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.EndersentRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
@@ -53,6 +55,9 @@ public class ClientEvents {
 		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
+				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 

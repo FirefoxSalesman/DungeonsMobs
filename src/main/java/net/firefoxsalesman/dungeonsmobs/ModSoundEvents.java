@@ -116,6 +116,13 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
 			"entity.sunken_skeleton.shoot");
 
+	public static final RegistryObject<SoundEvent> MOUNTAINEER_IDLE = registerSoundEvents(
+			"entity.mountaineer.idle");
+	public static final RegistryObject<SoundEvent> MOUNTAINEER_HURT = registerSoundEvents(
+			"entity.mountaineer.hurt");
+	public static final RegistryObject<SoundEvent> MOUNTAINEER_DEATH = registerSoundEvents(
+			"entity.mountaineer.death");
+
 	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_IDLE = registerSoundEvents(
 			"entity.redstone_golem.idle");
 	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_HURT = registerSoundEvents(

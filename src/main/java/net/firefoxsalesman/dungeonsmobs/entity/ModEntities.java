@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
@@ -82,6 +83,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "mossy_skeleton").toString()),
 			0xd6d7c6, 0x4a5d18);
+	// ILLAGER
+	public static final RegistryObject<EntityType<MountaineerEntity>> MOUNTAINEER = registerEntity("mountaineer",
+			() -> EntityType.Builder.<MountaineerEntity>of(MountaineerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "mountaineer").toString()),
+			0x715039, 0xe6e4d4);
+
 	// CREEPER
 
 	public static final RegistryObject<EntityType<IcyCreeperEntity>> ICY_CREEPER = registerEntity("icy_creeper",

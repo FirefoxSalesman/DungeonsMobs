@@ -122,6 +122,77 @@
     ]
   },
 
+  "entity.mountaineer.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mountaineer.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mountaineer/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/idle3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/idle4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mountaineer.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mountaineer.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mountaineer/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/hurt4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/hurt5",
+	"stream": true
+      }
+    ]
+  },
+  "entity.mountaineer.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.mountaineer.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/mountaineer/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/death3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/mountaineer/death4",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.redstone_golem.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.redstone_golem.idle",
