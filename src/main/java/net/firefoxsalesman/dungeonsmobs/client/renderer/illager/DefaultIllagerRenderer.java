@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,11 +11,14 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
+import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 
 public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends DynamicGeoEntityRenderer<T> {
@@ -22,6 +26,56 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends Dynam
 
 	public DefaultIllagerRenderer(EntityRendererProvider.Context renderManager, GeoModel<T> modelProvider) {
 		super(renderManager, modelProvider);
+		addRenderLayer(new BlockAndItemGeoLayer<>(this) {
+			@Override
+			protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack,
+					T animatable, MultiBufferSource bufferSource, float partialTick,
+					int packedLight, int packedOverlay) {
+
+				if (stack == animatable.getMainHandItem()) {
+					poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
+
+					if (stack.getItem() instanceof ShieldItem)
+						poseStack.translate(0, 0.125, -0.25);
+				} else if (stack == animatable.getOffhandItem()) {
+					poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
+
+					if (stack.getItem() instanceof ShieldItem) {
+						poseStack.translate(0, 0.125, 0.25);
+						poseStack.mulPose(Axis.YP.rotationDegrees(180));
+					}
+				}
+				super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick,
+						packedLight, packedOverlay);
+			}
+
+			@Override
+			protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack,
+					T animatable) {
+				switch (bone.getName()) {
+					case "bipedHandLeft":
+						return ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+					case "bipedHandRight":
+						return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
+					default:
+						return ItemDisplayContext.NONE;
+				}
+			}
+
+			@Override
+			protected ItemStack getStackForBone(GeoBone bone, T animatable) {
+				switch (bone.getName()) {
+					case "bipedHandLeft":
+						return animatable.isLeftHanded() ? animatable.getMainHandItem()
+								: animatable.getOffhandItem();
+					case "bipedHandRight":
+						return animatable.isLeftHanded() ? animatable.getOffhandItem()
+								: animatable.getMainHandItem();
+					default:
+						return null;
+				}
+			}
+		});
 		addRenderLayer(new ItemArmorGeoLayer<>(this) {
 			@Override
 			protected void prepModelPartForRender(PoseStack poseStack, GeoBone bone, ModelPart sourcePart) {
