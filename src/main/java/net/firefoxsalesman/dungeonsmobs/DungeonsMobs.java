@@ -35,7 +35,6 @@ public class DungeonsMobs {
 
 	public DungeonsMobs() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onLoadComplete);
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
@@ -83,10 +82,5 @@ public class DungeonsMobs {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 		}
-	}
-
-	private void onLoadComplete(final FMLLoadCompleteEvent event) {
-	    // ((EntityAccessor) EntityType.HUSK)
-		// 		.setDimensions(new EntityDimensions(0.6F * 1.2F, 1.95F * 1.2F, false));
 	}
 }
