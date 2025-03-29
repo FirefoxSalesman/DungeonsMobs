@@ -8,7 +8,6 @@ import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -87,6 +86,7 @@ public class DungeonsMobs {
 	}
 
 	private void onLoadComplete(final FMLLoadCompleteEvent event) {
-		EntityType.HUSK.getDimensions().scale(0.6F * 1.2F, 1.95F * 1.2F);
+	    // ((EntityAccessor) EntityType.HUSK)
+		// 		.setDimensions(new EntityDimensions(0.6F * 1.2F, 1.95F * 1.2F, false));
 	}
 }
