@@ -49,6 +49,7 @@ public class MageModel<T extends AbstractIllager & GeoAnimatable> extends GeoMod
 			Mob mobEntity = (Mob) entity;
 			cape.setHidden(mobEntity.getItemBySlot(EquipmentSlot.CHEST)
 					.getItem() != ((SpawnArmoredMob) entity).getArmorSet().getChest().get());
+			// cape.setHidden(true);
 		}
 
 		EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);

@@ -84,6 +84,9 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends Dynam
 				if (bone.getName().equals("armorBipedHead")) {
 					poseStack.translate(0, 0.125, 0); // 1y is 1 cube up, we want 2/16
 				}
+				if (bone.getName().equals("armorBipedBody")) {
+					poseStack.scale(1.0F, 1.0F, 0.8F); 
+				}
 			}
 
 			@Override
