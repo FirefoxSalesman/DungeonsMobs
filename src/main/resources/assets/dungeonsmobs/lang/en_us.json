@@ -11,6 +11,9 @@
   "item.dungeonsmobs.mountaineer_spawn_egg": "Mountaineer Spawn Egg",
   "entity.dungeonsmobs.armored_mountaineer": "Armored Mountaineer",
   "item.dungeonsmobs.armored_mountaineer_spawn_egg": "Armored Mountaineer Spawn Egg",
+  "entity.dungeonsmobs.mage": "Mage",
+  "entity.dungeonsmobs.mage_clone": "Mage",
+  "item.dungeonsmobs.mage_spawn_egg": "Mage Spawn Egg",
 
   "entity.dungeonsmobs.icy_creeper": "Icy Creeper",
   "item.dungeonsmobs.icy_creeper_spawn_egg": "Icy Creeper Spawn Egg",
@@ -74,6 +77,12 @@
   "item.dungeonsmobs.wooden_ladle": "Wooden Ladle",
   "lore.dungeonsmobs.wooden_ladle": "Even a wooden ustensil can become a deadly weapon in the hands of someone that will hit again and again and again and again ...",
 
+  "item.dungeonsmobs.mage_helmet": "Mage Hood",
+  "item.dungeonsmobs.mage_chestplate": "Mage Cloak",
+  "item.dungeonsmobs.mage_leggings": "Mage Pants",
+  "item.dungeonsmobs.mage_boots": "Mage Boots",
+  "lore.dungeonsmobs.mage_armor": "Jack of all spells, master of none, those purple robes are worn by the versatile mages, well versed in all of the woodland mansions schools of sorcery, from evocation to illusion.",
+  
   "item.dungeonsmobs.mountaineer_axe": "Ice Pick",
   "lore.dungeonsmobs.mountaineer_axe": "The main tool of the emerald fevered mountaineers, though it's mainly a tool used for climbing, it as practical as the pickaxe to escavate tunnels and as mighty as the axe to puncture your enemies.",
   "item.dungeonsmobs.gold_mountaineer_axe": "Sturdy Ice Pick",
@@ -94,6 +103,14 @@
   "subtitles.entity.wraith.fire": "Wraith summons fire",
   "subtitles.entity.wraith.fly": "Wraith glides",
   "subtitles.entity.wraith.teleport": "Wraith teleports",
+
+  "subtitles.entity.enchanter.idle": "Enchanter grumbles",
+  "subtitles.entity.enchanter.hurt": "Enchanter hurts",
+  "subtitles.entity.enchanter.death": "Enchanter dies",
+  "subtitles.entity.enchanter.pre_attack": "Enchanter raises book",
+  "subtitles.entity.enchanter.attack": "Enchanter attacks",
+  "subtitles.entity.enchanter.spell": "Enchanter prepares enchant",
+  "subtitles.entity.enchanter.beam": "Enchanter enchants",
 
   "subtitles.entity.redstone_golem.idle": "Redstone Golem breathes",
   "subtitles.entity.redstone_golem.hurt": "Redstone Golem hurts",
@@ -189,6 +206,9 @@
   "subtitles.entity.mossy_skeleton.death": "Mossy Skeleton dies",
   "subtitles.entity.mossy_skeleton.shoot": "Mossy Skeleton shoots",
   "subtitles.entity.mossy_skeleton.step": "Footsteps",
+
+  "subtitles.entity.illusioner.death": "Illusioner dies",
+  "subtitles.entity.illusioner.clone_arrow_hit": "Odd Arrow hits",
 
   "subtitles.entity.mountaineer.idle": "Mountaineer mutters",
   "subtitles.entity.mountaineer.hurt": "Mountaineer hurts",
