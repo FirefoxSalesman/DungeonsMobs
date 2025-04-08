@@ -32,6 +32,8 @@ public class ModItems {
 	public static final Item.Properties ARMOR_PROPERTIES = new Item.Properties();
 
 	// Armour
+	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", "chef_chestplate", null,
+			null);
 	public static final ArmorSet MOUNTAINEER_ARMOR = registerArmorSet("mountaineer_armor", "mountaineer_helmet",
 			"mountaineer_chestplate", "mountaineer_leggings", "mountaineer_boots");
 	public static final ArmorSet MAGE_ARMOR = registerArmorSetMage("mage_armor", "mage_helmet", "mage_chestplate",

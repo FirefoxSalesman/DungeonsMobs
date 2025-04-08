@@ -96,6 +96,10 @@
   "item.dungeonsmobs.mountaineer_boots": "Mountaineering Boots",
   "lore.dungeonsmobs.mountaineer_armor": "Warm and rugged attire weaved by the illagers of the mountains and tundras.",
 
+  "item.dungeonsmobs.chef_helmet": "Chef Hat",
+  "item.dungeonsmobs.chef_chestplate": "Chef Apron",
+  "lore.dungeonsmobs.chef_armor": "More than ruthless barbarians, the vindicator chefs are the summit of Highblock Castle's curial culture, apllying their slicing skills to cooking rather than slaying innocent villagers.",
+
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
   "subtitles.entity.wraith.death": "Wraith dies",
