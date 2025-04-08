@@ -83,6 +83,12 @@
   "item.dungeonsmobs.mage_boots": "Mage Boots",
   "lore.dungeonsmobs.mage_armor": "Jack of all spells, master of none, those purple robes are worn by the versatile mages, well versed in all of the woodland mansions schools of sorcery, from evocation to illusion.",
   
+  "item.dungeonsmobs.royal_guard_helmet": "Royal Guard Helmet",
+  "item.dungeonsmobs.royal_guard_chestplate": "Royal Guard Chestplate",
+  "item.dungeonsmobs.royal_guard_leggings": "Royal Guard Kneepads",
+  "item.dungeonsmobs.royal_guard_boots": "Royal Guard Sabatons",
+  "lore.dungeonsmobs.royal_guard_armor": "Ornate armour offered to the distinguished Guard of the Archillager, forged in the darkest depths of the Fiery Forge.",
+  
   "item.dungeonsmobs.mountaineer_axe": "Ice Pick",
   "lore.dungeonsmobs.mountaineer_axe": "The main tool of the emerald fevered mountaineers, though it's mainly a tool used for climbing, it as practical as the pickaxe to escavate tunnels and as mighty as the axe to puncture your enemies.",
   "item.dungeonsmobs.gold_mountaineer_axe": "Sturdy Ice Pick",
@@ -99,6 +105,10 @@
   "item.dungeonsmobs.chef_helmet": "Chef Hat",
   "item.dungeonsmobs.chef_chestplate": "Chef Apron",
   "lore.dungeonsmobs.chef_armor": "More than ruthless barbarians, the vindicator chefs are the summit of Highblock Castle's curial culture, apllying their slicing skills to cooking rather than slaying innocent villagers.",
+  "item.dungeonsmobs.vanguard_helmet": "Vanguard Helmet",
+  "item.dungeonsmobs.vanguard_chestplate": "Vanguard Chestplate",
+  "item.dungeonsmobs.vanguard_leggings": "Vanguard Leggings",
+  "lore.dungeonsmobs.vanguard_armor": "Ancient suit of armour worn by the undying Guard of a sorcerous sovereign whose name was lost in the sands of time.",
 
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
