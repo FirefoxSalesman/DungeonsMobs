@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
@@ -13,7 +13,7 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 
-public class ItemLayer<T extends LivingEntity & GeoAnimatable> extends BlockAndItemGeoLayer<T> {
+public class ItemLayer<T extends Mob & GeoAnimatable> extends BlockAndItemGeoLayer<T> {
 	public ItemLayer(GeoRenderer<T> renderer) {
 		super(renderer);
 	}
@@ -47,6 +47,20 @@ public class ItemLayer<T extends LivingEntity & GeoAnimatable> extends BlockAndI
 				return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
 			default:
 				return ItemDisplayContext.NONE;
+		}
+	}
+
+	@Override
+	protected ItemStack getStackForBone(GeoBone bone, T animatable) {
+		switch (bone.getName()) {
+			case "bipedHandLeft":
+				return animatable.isLeftHanded() ? animatable.getMainHandItem()
+						: animatable.getOffhandItem();
+			case "bipedHandRight":
+				return animatable.isLeftHanded() ? animatable.getOffhandItem()
+						: animatable.getMainHandItem();
+			default:
+				return null;
 		}
 	}
 }

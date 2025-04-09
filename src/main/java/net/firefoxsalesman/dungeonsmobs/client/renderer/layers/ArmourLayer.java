@@ -3,14 +3,14 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 
-public class ArmourLayer<T extends LivingEntity & GeoAnimatable> extends ItemArmorGeoLayer<T> {
+public class ArmourLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLayer<T> {
 	public ArmourLayer(GeoRenderer<T> geoRenderer) {
 		super(geoRenderer);
 	}
@@ -57,6 +57,34 @@ public class ArmourLayer<T extends LivingEntity & GeoAnimatable> extends ItemArm
 				return chestplateStack;
 			case "armorBipedHead":
 				return helmetStack;
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	protected EquipmentSlot getEquipmentSlotForBone(GeoBone bone, ItemStack stack, T animatable) {
+		switch (bone.getName()) {
+			case "armorBipedLeftFoot":
+			case "armorBipedRightFoot":
+				return EquipmentSlot.FEET;
+			case "armorBipedLeftLeg":
+			case "armorBipedRightLeg":
+				return EquipmentSlot.LEGS;
+			case "armorBipedRightHand":
+				return !animatable.isLeftHanded() ? EquipmentSlot.MAINHAND
+						: EquipmentSlot.OFFHAND;
+			case "armorBipedLeftHand":
+				return animatable.isLeftHanded() ? EquipmentSlot.MAINHAND
+						: EquipmentSlot.OFFHAND;
+			case "armorBipedRightArm":
+			case "armorBipedLeftArm":
+			case "armorIllagerRightArm":
+			case "armorIllagerLeftArm":
+			case "armorBipedBody":
+				return EquipmentSlot.CHEST;
+			case "armorBipedHead":
+				return EquipmentSlot.HEAD;
 			default:
 				return null;
 		}
