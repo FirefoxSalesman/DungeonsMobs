@@ -2,6 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
+import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
+import net.firefoxsalesman.dungeonsmobs.items.shield.VanguardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
@@ -30,6 +32,13 @@ public class ModItems {
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
 	public static final Item.Properties ARMOR_PROPERTIES = new Item.Properties();
+	public static final RegistryObject<Item> ROYAL_GUARD_SHIELD = ITEMS.register("royal_guard_shield",
+			() -> new RoyalGuardShieldItem(
+					new Item.Properties().durability(336)));
+
+	public static final RegistryObject<Item> VANGUARD_SHIELD = ITEMS.register("vanguard_shield",
+			() -> new VanguardShieldItem(
+					new Item.Properties().durability(336)));
 
 	// Armour
 	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", "chef_chestplate", null,

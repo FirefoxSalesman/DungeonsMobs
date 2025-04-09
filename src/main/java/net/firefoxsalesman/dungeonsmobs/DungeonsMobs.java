@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs;
 
 import com.mojang.logging.LogUtils;
 
+import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
@@ -19,7 +20,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -35,6 +35,8 @@ public class DungeonsMobs {
 
 	public DungeonsMobs() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
@@ -73,6 +75,11 @@ public class DungeonsMobs {
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
+	}
+
+	private void doClientStuff(final FMLClientSetupEvent event) {
+		// ITEM MODEL PROPERTIES
+		event.enqueueWork(ModItemModelProperties::registerProperties);
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
