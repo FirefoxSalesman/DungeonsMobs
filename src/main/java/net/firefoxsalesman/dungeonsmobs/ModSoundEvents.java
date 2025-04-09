@@ -104,6 +104,17 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> ENDERSENT_TELEPORT = registerSoundEvents(
 			"entity.endersent.teleport");
 
+	public static final RegistryObject<SoundEvent> SKELETON_VANGUARD_ATTACK = registerSoundEvents(
+			"entity.skeleton_vanguard.attack");
+	public static final RegistryObject<SoundEvent> SKELETON_VANGUARD_IDLE = registerSoundEvents(
+			"entity.skeleton_vanguard.idle");
+	public static final RegistryObject<SoundEvent> SKELETON_VANGUARD_HURT = registerSoundEvents(
+			"entity.skeleton_vanguard.hurt");
+	public static final RegistryObject<SoundEvent> SKELETON_VANGUARD_DEATH = registerSoundEvents(
+			"entity.skeleton_vanguard.death");
+	public static final RegistryObject<SoundEvent> SKELETON_VANGUARD_STEP = registerSoundEvents(
+			"entity.skeleton_vanguard.step");
+
 	public static final RegistryObject<SoundEvent> ICY_CREEPER_EXPLODE = registerSoundEvents(
 			"entity.icy_creeper.explode");
 

@@ -36,6 +36,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
@@ -87,6 +88,16 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "mossy_skeleton").toString()),
 			0xd6d7c6, 0x4a5d18);
+
+	public static final RegistryObject<EntityType<SkeletonVanguardEntity>> SKELETON_VANGUARD = registerEntity(
+			"skeleton_vanguard",
+			() -> EntityType.Builder
+					.<SkeletonVanguardEntity>of(SkeletonVanguardEntity::new, MobCategory.MONSTER)
+					.sized(0.6F * 1.1F, 1.99F * 1.1F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "skeleton_vanguard").toString()),
+			0x493615, 0xe8b42f);
+
 	// ILLAGER
 	public static final RegistryObject<EntityType<MageEntity>> MAGE = registerEntity("mage",
 			() -> EntityType.Builder.of(MageEntity::new, MobCategory.MONSTER)

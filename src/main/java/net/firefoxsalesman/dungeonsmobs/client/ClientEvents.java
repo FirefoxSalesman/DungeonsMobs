@@ -33,6 +33,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.SkeletonVanguardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
@@ -60,14 +61,17 @@ public class ClientEvents {
 		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
+		event.registerEntityRenderer(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 
 		event.registerEntityRenderer(ModEntities.MAGE.get(),
-				manager -> new DefaultIllagerRenderer<MageEntity>(manager, new MageModel<MageEntity>()));
+				manager -> new DefaultIllagerRenderer<MageEntity>(manager,
+						new MageModel<MageEntity>()));
 		event.registerEntityRenderer(ModEntities.MAGE_CLONE.get(),
-				manager -> new DefaultIllagerRenderer<MageCloneEntity>(manager, new MageModel<MageCloneEntity>()));
+				manager -> new DefaultIllagerRenderer<MageCloneEntity>(manager,
+						new MageModel<MageCloneEntity>()));
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 

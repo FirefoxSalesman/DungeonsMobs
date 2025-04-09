@@ -19,6 +19,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
@@ -35,6 +36,7 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.FROZEN_ZOMBIE.get(), FrozenZombieEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.MOSSY_SKELETON.get(), MossySkeletonEntity.setCustomAttributes().build());
+		event.put(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.MOUNTAINEER.get(), MountaineerEntity.setCustomAttributes().build());
 
