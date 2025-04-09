@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
@@ -63,6 +64,9 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
 		event.registerEntityRenderer(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.ROYAL_GUARD.get(),
+				manager -> new DefaultIllagerRenderer<>(manager, new RoyalGuardModel(),
+						0.9375F * 1.2F));
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 

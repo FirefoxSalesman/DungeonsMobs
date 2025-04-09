@@ -48,6 +48,11 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> SQUALL_GOLEM_WALK = registerSoundEvents(
 			"entity.squall_golem.walk");
 
+	public static final RegistryObject<SoundEvent> ROYAL_GUARD_ATTACK = registerSoundEvents(
+			"entity.royal_guard.attack");
+	public static final RegistryObject<SoundEvent> ROYAL_GUARD_STEP = registerSoundEvents(
+			"entity.royal_guard.step");
+
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_IDLE = registerSoundEvents(
 			"entity.jungle_zombie.idle");
 	public static final RegistryObject<SoundEvent> JUNGLE_ZOMBIE_HURT = registerSoundEvents(

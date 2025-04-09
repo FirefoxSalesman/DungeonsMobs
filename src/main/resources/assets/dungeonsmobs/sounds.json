@@ -1379,6 +1379,55 @@
     ]
   },
 
+  "entity.royal_guard.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.royal_guard.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/royal_guard/attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/attack3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/attack1",
+	"stream": true
+      }
+    ]
+  },
+  "entity.royal_guard.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.royal_guard.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/royal_guard/step6",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.skeleton_vanguard.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.skeleton_vanguard.idle",

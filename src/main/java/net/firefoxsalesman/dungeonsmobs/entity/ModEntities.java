@@ -15,6 +15,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
@@ -99,6 +100,13 @@ public class ModEntities {
 			0x493615, 0xe8b42f);
 
 	// ILLAGER
+	public static final RegistryObject<EntityType<RoyalGuardEntity>> ROYAL_GUARD = registerEntity("royal_guard",
+			() -> EntityType.Builder.<RoyalGuardEntity>of(RoyalGuardEntity::new, MobCategory.MONSTER)
+					.sized(0.6F * 1.2F, 1.95F * 1.2F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "royal_guard").toString()),
+			0x676767, 0x014675);
+
 	public static final RegistryObject<EntityType<MageEntity>> MAGE = registerEntity("mage",
 			() -> EntityType.Builder.of(MageEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F)
