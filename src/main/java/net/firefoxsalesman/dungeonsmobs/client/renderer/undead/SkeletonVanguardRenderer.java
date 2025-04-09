@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SkeletonVanguardModel;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmourLayer;
@@ -26,7 +27,8 @@ public class SkeletonVanguardRenderer extends GeoEntityRenderer<SkeletonVanguard
 					float partialTick,
 					int packedLight, int packedOverlay) {
 				if (stack == animatable.getMainHandItem() && !(stack.getItem() instanceof ShieldItem)) {
-					poseStack.translate(0, -.4, .2);
+					poseStack.translate(0, .4, -.4);
+					poseStack.mulPose(Axis.XP.rotationDegrees(180));
 				}
 				super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick,
 						packedLight, packedOverlay);
