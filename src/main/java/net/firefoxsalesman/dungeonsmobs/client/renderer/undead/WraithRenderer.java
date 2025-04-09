@@ -25,15 +25,6 @@ public class WraithRenderer extends GeoEntityRenderer<WraithEntity> {
 	}
 
 	@Override
-	protected void applyRotations(WraithEntity entityLiving, PoseStack matrixStackIn, float ageInTicks,
-			float rotationYaw, float partialTicks) {
-		float scaleFactor = 1.0F;
-		matrixStackIn.scale(scaleFactor, scaleFactor, scaleFactor);
-		super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
-
-	}
-
-	@Override
 	public void renderRecursively(PoseStack poseStack, WraithEntity animatable, GeoBone bone, RenderType renderType,
 			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
 			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
@@ -48,5 +39,4 @@ public class WraithRenderer extends GeoEntityRenderer<WraithEntity> {
 	protected boolean isArmorBone(CoreGeoBone bone) {
 		return bone.getName().startsWith("armor");
 	}
-
 }

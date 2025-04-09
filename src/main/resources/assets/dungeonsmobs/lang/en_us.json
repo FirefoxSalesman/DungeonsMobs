@@ -6,6 +6,8 @@
   
   "entity.dungeonsmobs.mossy_skeleton": "Mossy Skeleton",
   "item.dungeonsmobs.mossy_skeleton_spawn_egg": "Mossy Skeleton Spawn Egg",
+  "entity.dungeonsmobs.skeleton_vanguard": "Skeleton Vanguard",
+  "item.dungeonsmobs.skeleton_vanguard_spawn_egg": "Skeleton Vanguard Spawn Egg",
 
   "entity.dungeonsmobs.mountaineer": "Mountaineer",
   "item.dungeonsmobs.mountaineer_spawn_egg": "Mountaineer Spawn Egg",
@@ -109,6 +111,9 @@
   "item.dungeonsmobs.vanguard_chestplate": "Vanguard Chestplate",
   "item.dungeonsmobs.vanguard_leggings": "Vanguard Leggings",
   "lore.dungeonsmobs.vanguard_armor": "Ancient suit of armour worn by the undying Guard of a sorcerous sovereign whose name was lost in the sands of time.",
+
+  "item.dungeonsmobs.vanguard_shield": "Vanguard Shield",
+  "lore.dungeonsmobs.vanguard_shield": "The passage of ages has not made this shield any brittle, it is said the shield walls formed by the undying vanguard of the nameless kingdom were unbreakable.",
 
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
