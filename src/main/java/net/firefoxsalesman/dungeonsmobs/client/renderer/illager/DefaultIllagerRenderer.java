@@ -26,7 +26,8 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends GeoEn
 					T animatable, MultiBufferSource bufferSource, float partialTick,
 					int packedLight, int packedOverlay) {
 				if (stack == animatable.getOffhandItem() && stack.getItem() instanceof ShieldItem) {
-					poseStack.translate(0, 1.2, 0);
+					if (!animatable.isBlocking())
+						poseStack.translate(0, 1.2, 0);
 				}
 				super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick,
 						packedLight, packedOverlay);
@@ -36,7 +37,7 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends GeoEn
 			@Override
 			protected void prepModelPartForRender(PoseStack poseStack, GeoBone bone, ModelPart sourcePart) {
 				super.prepModelPartForRender(poseStack, bone, sourcePart);
-				//: If you're having issues with helmet rendering, this is why.
+				// : If you're having issues with helmet rendering, this is why.
 				if (bone.getName().equals("armorBipedHead")) {
 					poseStack.translate(0, 0.125, 0); // 1y is 1 cube up, we want 2/16
 				}

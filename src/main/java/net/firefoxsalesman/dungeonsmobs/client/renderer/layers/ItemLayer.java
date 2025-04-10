@@ -30,7 +30,11 @@ public class ItemLayer<T extends Mob & GeoAnimatable> extends BlockAndItemGeoLay
 			poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
 
 			if (stack.getItem() instanceof ShieldItem) {
-				poseStack.translate(0, 0.125, 0.25);
+				if (!animatable.isBlocking()) {
+					poseStack.translate(0, 0.125, 0.25);
+				} else {
+					poseStack.translate(.9, .75, .5);
+				}
 				poseStack.mulPose(Axis.YP.rotationDegrees(180));
 			}
 		}
