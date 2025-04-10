@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -25,7 +26,7 @@ public class CustomZombieRenderer extends ZombieRenderer {
 
 	@Override
 	protected void scale(Zombie zombieEntity, PoseStack matrixStack, float v) {
-		if (zombieEntity instanceof Husk) {
+		if (zombieEntity instanceof Husk && DungeonsMobsConfig.COMMON.ENABLE_STRONGER_HUSKS.get()) {
 			float scaleFactor = 1.2F;
 			matrixStack.scale(scaleFactor, scaleFactor, scaleFactor);
 		}

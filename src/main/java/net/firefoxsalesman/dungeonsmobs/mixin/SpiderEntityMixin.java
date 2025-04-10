@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.mixin;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.goals.RangedWebAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.ITrapsTarget;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IWebShooter;
@@ -67,7 +68,7 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 	@Override
 	protected void customServerAiStep() {
 		super.customServerAiStep();
-		if (getType() != EntityType.CAVE_SPIDER) {
+		if (DungeonsMobsConfig.COMMON.ENABLE_RANGED_SPIDERS.get() && getType() != EntityType.CAVE_SPIDER) {
 			reassessAttackGoals();
 		}
 	}

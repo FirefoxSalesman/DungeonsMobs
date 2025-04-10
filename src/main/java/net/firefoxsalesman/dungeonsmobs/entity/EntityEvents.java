@@ -26,6 +26,8 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.mod.ModEffects.ENSNARED;
 import static net.minecraft.world.entity.EntityType.HUSK;
 
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
+
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class EntityEvents {
 
@@ -33,7 +35,8 @@ public class EntityEvents {
 	public static void changeAttributes(EntityJoinLevelEvent event) {
 		// Tougher Husks
 		if (event.getEntity().getType().equals(HUSK)
-				&& event.getEntity() instanceof LivingEntity livingEntity) {
+				&& event.getEntity() instanceof LivingEntity livingEntity
+				&& DungeonsMobsConfig.COMMON.ENABLE_STRONGER_HUSKS.get()) {
 			AttributeInstance attribute = livingEntity.getAttribute(Attributes.ARMOR);
 			if (attribute != null) {
 				attribute.setBaseValue(10.0D);
