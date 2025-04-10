@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "dungeons_mobs:squall_golem"
+    "dungeonsmobs:redstone_golem",
+    "dungeonsmobs:mountaineer",
+    "dungeonsmobs:royal_guard",
+    "dungeonsmobs:squall_golem"
   ]
 }

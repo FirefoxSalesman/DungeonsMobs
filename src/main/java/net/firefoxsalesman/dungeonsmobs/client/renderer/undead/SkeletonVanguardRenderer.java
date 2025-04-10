@@ -37,7 +37,8 @@ public class SkeletonVanguardRenderer extends GeoEntityRenderer<SkeletonVanguard
 			@Override
 			public void translateBlockingShield(PoseStack stack) {
 				stack.mulPose(Axis.ZP.rotationDegrees(90));
-				stack.mulPose(Axis.YP.rotationDegrees(180));
+				stack.mulPose(Axis.YP.rotationDegrees(-45));
+				stack.mulPose(Axis.XP.rotationDegrees(180));
 			}
 		});
 		addRenderLayer(new ArmourLayer<>(this));
