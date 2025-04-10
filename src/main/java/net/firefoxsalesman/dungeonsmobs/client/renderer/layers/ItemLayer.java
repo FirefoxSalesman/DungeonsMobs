@@ -33,7 +33,7 @@ public class ItemLayer<T extends Mob & GeoAnimatable> extends BlockAndItemGeoLay
 				if (!animatable.isBlocking()) {
 					poseStack.translate(0, 0.125, 0.25);
 				} else {
-					poseStack.translate(.9, .75, .5);
+				    translateBlockingShield(poseStack);
 				}
 				poseStack.mulPose(Axis.YP.rotationDegrees(180));
 			}
@@ -66,5 +66,8 @@ public class ItemLayer<T extends Mob & GeoAnimatable> extends BlockAndItemGeoLay
 			default:
 				return null;
 		}
+	}
+
+	public void translateBlockingShield(PoseStack stack) {
 	}
 }

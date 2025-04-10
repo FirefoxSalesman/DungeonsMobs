@@ -33,6 +33,12 @@ public class SkeletonVanguardRenderer extends GeoEntityRenderer<SkeletonVanguard
 				super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick,
 						packedLight, packedOverlay);
 			}
+
+			@Override
+			public void translateBlockingShield(PoseStack stack) {
+				stack.mulPose(Axis.ZP.rotationDegrees(90));
+				stack.mulPose(Axis.YP.rotationDegrees(180));
+			}
 		});
 		addRenderLayer(new ArmourLayer<>(this));
 	}

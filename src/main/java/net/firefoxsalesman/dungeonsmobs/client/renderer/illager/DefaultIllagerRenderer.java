@@ -32,6 +32,11 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends GeoEn
 				super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick,
 						packedLight, packedOverlay);
 			}
+
+			@Override
+			public void translateBlockingShield(PoseStack stack) {
+				stack.translate(.9, .75, .5);
+			}
 		});
 		addRenderLayer(new ArmourLayer<>(this) {
 			@Override
