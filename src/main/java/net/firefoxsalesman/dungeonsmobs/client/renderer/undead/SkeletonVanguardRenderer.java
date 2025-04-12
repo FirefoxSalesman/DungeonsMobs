@@ -39,6 +39,7 @@ public class SkeletonVanguardRenderer extends GeoEntityRenderer<SkeletonVanguard
 				stack.mulPose(Axis.ZP.rotationDegrees(90));
 				stack.mulPose(Axis.YP.rotationDegrees(-45));
 				stack.mulPose(Axis.XP.rotationDegrees(180));
+				stack.translate(.25, .25, .5);
 			}
 		});
 		addRenderLayer(new ArmourLayer<>(this));
