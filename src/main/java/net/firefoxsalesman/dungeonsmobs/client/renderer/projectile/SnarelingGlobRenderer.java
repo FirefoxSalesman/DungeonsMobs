@@ -38,6 +38,7 @@ public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
         stack.translate(0.0D, 0.15F, 0.0D);
         stack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_225623_3_, glob.yRotO, glob.getYRot())));
         stack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_225623_3_, glob.xRotO, glob.getXRot())));
+	stack.mulPose(Axis.XP.rotationDegrees(180));
         this.model.setupAnim(glob, p_225623_3_, 0.0F, -0.1F, 0.0F, 0.0F);
         VertexConsumer ivertexbuilder = BufferSource.getBuffer(this.model.renderType(LLAMA_SPIT_LOCATION));
         model.renderToBuffer(stack, ivertexbuilder, p_225623_6_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
