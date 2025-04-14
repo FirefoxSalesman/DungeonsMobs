@@ -293,4 +293,7 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 		}
 	}
 
+	@Override
+	public void checkDespawn() {
+	}
 }
