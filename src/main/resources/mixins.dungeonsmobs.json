@@ -9,10 +9,12 @@
     "ArmorItemAccessor",
     "CropsBlockMixin",
     "CrossbowItemInvoker",
+    "CowEntityMixin",
     "EntityAccessor",
     "GoalSelectorAccessor",
     "HuskAccessor",
     "ItemAccessor",
+    "MooshroomEntityMixin",
     "SpiderEntityMixin",
     "TieredItemAccessor"
   ],
