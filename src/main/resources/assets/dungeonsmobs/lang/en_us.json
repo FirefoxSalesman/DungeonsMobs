@@ -69,6 +69,7 @@
   "item.dungeonsmobs.wraith_spawn_egg": "Wraith Spawn Egg",
 
   "entity.dungeonsmobs.wraith_fireball": "Wraith Fireball",
+  "entity.dungeonsmobs.blue_nethershrooom": "Blue Nethershroom",
 
   "entity.dungeonsmobs.redstone_mine": "Redstone Mine",
 
@@ -77,6 +78,8 @@
 
   "block.dungeonsmobs.wraith_fire": "Wraith Fire",
   "item.dungeonsmobs.wraith_fire_charge": "Wraith Fire Charge",
+  "item.dungeonsmobs.blue_nethershroom": "Blue Nethershroom",
+  "lore.dungeonsmobs.blue_nethershroom": "Venomous fungi of the warped forests, it detonates when detecting a nearby threat, not unlike a certain creature from the overworld.",
 
   "item.dungeonsmobs.wooden_ladle": "Wooden Ladle",
   "lore.dungeonsmobs.wooden_ladle": "Even a wooden ustensil can become a deadly weapon in the hands of someone that will hit again and again and again and again ...",

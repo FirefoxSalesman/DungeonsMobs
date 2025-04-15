@@ -21,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.BlueNethershroomRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.CobwebProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
@@ -114,6 +115,7 @@ public class ClientEvents {
 				(manager) -> new OrbProjectileRenderer(manager, 0xFFFF93F7, false));
 		event.registerEntityRenderer(ModEntities.SNARELING_GLOB.get(), SnarelingGlobRenderer::new);
 		event.registerEntityRenderer(ModEntities.COBWEB_PROJECTILE.get(), CobwebProjectileRenderer::new);
+		event.registerEntityRenderer(ModEntities.BLUE_NETHERSHROOM.get(), BlueNethershroomRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.AREA_DAMAGE.get(), EmptyRenderer::new);
 

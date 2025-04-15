@@ -22,6 +22,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlueNethershroomEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
@@ -258,6 +259,15 @@ public class ModEntities {
 			0x161616, 0xdbe64e);
 
 	// PROJECTILES
+	public static final RegistryObject<EntityType<BlueNethershroomEntity>> BLUE_NETHERSHROOM = registerEntityWithoutEgg(
+			"blue_nethershroom",
+			() -> EntityType.Builder
+					.<BlueNethershroomEntity>of(BlueNethershroomEntity::new, MobCategory.MISC)
+					.sized(0.25F, 0.25F)
+					.clientTrackingRange(4)
+					.updateInterval(10)
+					.build(new ResourceLocation(MOD_ID, "blue_nethershroom").toString()));
+
 	public static final RegistryObject<EntityType<RedstoneMineEntity>> REDSTONE_MINE = registerEntityWithoutEgg(
 			"redstone_mine",
 			() -> EntityType.Builder.<RedstoneMineEntity>of(RedstoneMineEntity::new, MobCategory.MISC)

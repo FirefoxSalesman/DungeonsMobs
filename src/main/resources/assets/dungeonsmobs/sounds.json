@@ -1245,6 +1245,44 @@
     ]
   },
 
+  "entity.fungus_thrower.throw": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.fungus_thrower.throw",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/throw1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/throw2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/throw3",
+	"stream": true
+      }
+    ]
+  },
+
+  "entity.fungus_thrower.fungus_land": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.fungus_thrower.fungus_land",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/fungus_land1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/fungus_land2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/fungus_thrower/fungus_land3",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.geomancer.bomb_spawn": {
     "category": "entity",
     "subtitle": "subtitles.entity.geomancer.bomb_spawn",

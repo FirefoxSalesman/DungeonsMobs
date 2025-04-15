@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
+import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
@@ -78,6 +79,10 @@ public class ModItems {
 			String bootsId) {
 		return registerArmorSet(armorSetId, helmetId, chestId, legsId, bootsId, false);
 	}
+
+	// ARTIFACTS
+	public static final RegistryObject<Item> BLUE_NETHERSHROOM = ITEMS.register("blue_nethershroom",
+			() -> new BlueNethershroomItem(new Item.Properties().stacksTo(16)));
 
 	private static ArmorSet registerArmorSet(String armorSetId, String helmetId, String chestId, String legsId,
 			String bootsId, boolean animated) {

@@ -299,6 +299,11 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> POISON_QUILL_VINE_SHOOT = registerSoundEvents(
 			"entity.poison_quill_vine.shoot");
 
+	public static final RegistryObject<SoundEvent> FUNGUS_THROWER_THROW = registerSoundEvents(
+			"entity.fungus_thrower.throw");
+	public static final RegistryObject<SoundEvent> FUNGUS_THROWER_FUNGUS_LAND = registerSoundEvents(
+			"entity.fungus_thrower.fungus_land");
+
 	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
 			"entity.necromancer.shoot");
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(
