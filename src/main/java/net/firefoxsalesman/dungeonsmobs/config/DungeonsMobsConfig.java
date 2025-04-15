@@ -9,6 +9,7 @@ public class DungeonsMobsConfig {
     public static class Common {
         public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_STRONGER_HUSKS;
         public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RANGED_SPIDERS;
+        public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HOSTILE_MOOSHROOMS;
         public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_TAB;
 
         public Common(ForgeConfigSpec.Builder builder) {
@@ -19,6 +20,9 @@ public class DungeonsMobsConfig {
             ENABLE_RANGED_SPIDERS = builder
                     .comment("Enables Spiders and Cave Spiders shooting webs as a ranged attack like they do in Minecraft Dungeons. [true / false]")
                     .define("enableRangedSpiders", true);
+	    ENABLE_HOSTILE_MOOSHROOMS = builder
+                .comment("Makes Mooshrooms hostile, like in Minecraft Dungeons. [true / false]")
+                .define("enableHostileMooshrooms", true);
             builder.pop();
 
         }

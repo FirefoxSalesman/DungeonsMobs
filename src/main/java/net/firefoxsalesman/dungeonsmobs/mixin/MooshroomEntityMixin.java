@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.mixin;
 
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.GoalUtils;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.At;
 
+
 @Mixin(MushroomCow.class)
 public abstract class MooshroomEntityMixin extends Cow {
 
@@ -31,7 +33,9 @@ public abstract class MooshroomEntityMixin extends Cow {
 
 	@Inject(at = @At("RETURN"), method = "<init>")
 	private void init(CallbackInfo callbackInfo) {
-		alterGoals();
+		if (DungeonsMobsConfig.COMMON.ENABLE_HOSTILE_MOOSHROOMS.get()) {
+			alterGoals();
+		}
 	}
 
 	private void alterGoals() {
@@ -50,5 +54,5 @@ public abstract class MooshroomEntityMixin extends Cow {
 		goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	}
-    
+
 }
