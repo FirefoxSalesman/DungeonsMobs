@@ -1,6 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
+import net.firefoxsalesman.dungeonsmobs.items.CustomArmorMaterial;
+import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.ArmorItem.Type;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -42,6 +45,18 @@ public class ModItems {
 					new Item.Properties().durability(336)));
 
 	// Armour
+	public static final RegistryObject<Item> NETHERITE_PIGLIN_HELMET = ITEMS.register("netherite_piglin_helmet",
+			() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE, Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> CRACKED_NETHERITE_PIGLIN_HELMET = ITEMS
+			.register("cracked_netherite_piglin_helmet",
+					() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE,
+							Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> GOLD_PIGLIN_HELMET = ITEMS.register("gold_piglin_helmet",
+			() -> new PiglinHelmetItem(ArmorMaterials.GOLD, Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> CRACKED_GOLD_PIGLIN_HELMET = ITEMS.register(
+			"cracked_gold_piglin_helmet",
+			() -> new PiglinHelmetItem(ArmorMaterials.GOLD, Type.HELMET, new Item.Properties()));
+
 	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", "chef_chestplate", null,
 			null);
 	public static final ArmorSet ROYAL_GUARD_ARMOR = registerArmorSet("royal_guard_armor", "royal_guard_helmet",
@@ -80,7 +95,7 @@ public class ModItems {
 		return registerArmorSet(armorSetId, helmetId, chestId, legsId, bootsId, false);
 	}
 
-	// ARTIFACTS
+	// PROJECTILES
 	public static final RegistryObject<Item> BLUE_NETHERSHROOM = ITEMS.register("blue_nethershroom",
 			() -> new BlueNethershroomItem(new Item.Properties().stacksTo(16)));
 

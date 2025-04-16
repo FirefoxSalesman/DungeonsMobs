@@ -25,6 +25,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -58,6 +60,9 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.POISON_QUILL_VINE.get(), PoisonQuillVineEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.SQUALL_GOLEM.get(), SquallGolemEntity.setCustomAttributes().build());
+
+		event.put(ModEntities.FUNGUS_THROWER.get(), Piglin.createAttributes().build());
+		event.put(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(), ZombifiedPiglin.createAttributes().build());
 
 		event.put(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonEntity.setCustomAttributes().build());
 		event.put(ModEntities.WAVEWHISPERER.get(), WhispererEntity.setCustomAttributes().build());

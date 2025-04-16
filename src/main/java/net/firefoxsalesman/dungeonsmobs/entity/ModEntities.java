@@ -21,6 +21,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.piglin.FungusThrowerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.piglin.ZombifiedFungusThrowerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlueNethershroomEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
@@ -162,6 +164,22 @@ public class ModEntities {
 					.build(new ResourceLocation(MOD_ID, "squall_golem").toString()),
 			0x828f8f, 0xffd426);
 
+	// PIGLIN
+	public static final RegistryObject<EntityType<FungusThrowerEntity>> FUNGUS_THROWER = registerEntity(
+			"fungus_thrower", () -> EntityType.Builder.of(FungusThrowerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "fungus_thrower").toString()),
+			10051392, 0x336baf);
+
+	public static final RegistryObject<EntityType<ZombifiedFungusThrowerEntity>> ZOMBIFIED_FUNGUS_THROWER = registerEntity(
+			"zombified_fungus_thrower",
+			() -> EntityType.Builder.of(ZombifiedFungusThrowerEntity::new, MobCategory.MONSTER)
+					.fireImmune()
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "zombified_fungus_thrower").toString()),
+			15373203, 0x336baf);
 	// JUNGLE
 	public static final RegistryObject<EntityType<WhispererEntity>> WHISPERER = registerEntity("whisperer",
 			() -> EntityType.Builder.of(WhispererEntity::new, MobCategory.MONSTER)

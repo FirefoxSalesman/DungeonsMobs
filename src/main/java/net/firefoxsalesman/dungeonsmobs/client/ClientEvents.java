@@ -21,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.piglin.CustomPiglinRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.BlueNethershroomRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.CobwebProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRenderer;
@@ -45,6 +46,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.api.distmarker.Dist;
@@ -101,6 +103,23 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
+
+		event.registerEntityRenderer(EntityType.PIGLIN,
+				manager -> new CustomPiglinRenderer(manager, ModelLayers.PIGLIN,
+						ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false,
+						false));
+		event.registerEntityRenderer(ModEntities.FUNGUS_THROWER.get(),
+				manager -> new CustomPiglinRenderer(manager, ModelLayers.PIGLIN,
+						ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false,
+						true));
+		event.registerEntityRenderer(EntityType.ZOMBIFIED_PIGLIN,
+				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
+						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
+						ModelLayers.ZOMBIFIED_PIGLIN_OUTER_ARMOR, true, false));
+		event.registerEntityRenderer(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(),
+				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
+						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
+						ModelLayers.ZOMBIFIED_PIGLIN_OUTER_ARMOR, true, true));
 
 		event.registerEntityRenderer(ModEntities.ENDERSENT.get(), EndersentRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);
