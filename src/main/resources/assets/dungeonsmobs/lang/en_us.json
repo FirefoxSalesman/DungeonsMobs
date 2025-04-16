@@ -48,6 +48,15 @@
   "entity.dungeonsmobs.squall_golem": "Squall Golem",
   "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
+  "entity.dungeonsmobs.armored_piglin": "Armored Piglin",
+  "item.dungeonsmobs.armored_piglin_spawn_egg": "Armored Piglin Spawn Egg",
+  "entity.dungeonsmobs.fungus_thrower": "Fungus Thrower",
+  "item.dungeonsmobs.fungus_thrower_spawn_egg": "Fungus Thrower Spawn Egg",
+  "entity.dungeonsmobs.zombified_armored_piglin": "Zombified Armored Piglin",
+  "item.dungeonsmobs.zombified_armored_piglin_spawn_egg": "Zombified Armored Piglin Spawn Egg",
+  "entity.dungeonsmobs.zombified_fungus_thrower": "Zombified Fungus Thrower",
+  "item.dungeonsmobs.zombified_fungus_thrower_spawn_egg": "Zombified Fungus Thrower Spawn Egg",
+
   "entity.dungeonsmobs.endersent": "Endersent",
   "item.dungeonsmobs.endersent_spawn_egg": "Endersent Spawn Egg",
   "entity.dungeonsmobs.blastling": "Blastling",
@@ -116,6 +125,16 @@
   "item.dungeonsmobs.vanguard_chestplate": "Vanguard Chestplate",
   "item.dungeonsmobs.vanguard_leggings": "Vanguard Leggings",
   "lore.dungeonsmobs.vanguard_armor": "Ancient suit of armour worn by the undying Guard of a sorcerous sovereign whose name was lost in the sands of time.",
+
+  "item.dungeonsmobs.netherite_piglin_helmet": "Netherite Piglin Helmet",
+  "lore.dungeonsmobs.netherite_piglin_helmet": "Pitch-black helmet forged with pure netherite, worn by the piglin warriors inhabiting the ruins of once mighty bastions.",
+  "item.dungeonsmobs.cracked_netherite_piglin_helmet": "Cracked Netherite Piglin Helmet",
+  "item.dungeonsmobs.gold_piglin_helmet": "Golden Piglin Helmet",
+  "item.dungeonsmobs.cracked_gold_piglin_helmet": "Cracked Golden Piglin Helmet",
+
+  "item.dungeonsmobs.fungus_thrower_helmet": "Fungus Thrower Headband",
+  "item.dungeonsmobs.fungus_thrower_chestplate": "Fungus Thrower Pack",
+  "lore.dungeonsmobs.fungus_thrower_armor": "In piglin clan's culture, purple is considered the color of the cunning, only delicately crafted sacks can contain the deadly fungi of the warped forests.",
 
   "item.dungeonsmobs.royal_guard_shield": "Royal Guard Shield",
   "lore.dungeonsmobs.royal_guard_shield": " Proudly displaying the yellow cross of the archillager, this shield represents the defensive duty of the Royal Guard, the mighty bulwark of the Archillager.",
@@ -257,6 +276,9 @@
   "subtitles.entity.mountaineer.hurt": "Mountaineer hurts",
   "subtitles.entity.mountaineer.death": "Mountaineer dies",
 
+  "subtitles.entity.fungus_thrower.throw": "Fungus thrown",
+  "subtitles.entity.fungus_thrower.fungus_land": "Fungus explodes",
+  
   "subtitles.entity.wavewhisperer.idle": "Wavewhisperer mumbles",
   "subtitles.entity.wavewhisperer.hurt": "Wavewhisperer hurts",
   "subtitles.entity.wavewhisperer.death": "Wavewhisperer dies",
