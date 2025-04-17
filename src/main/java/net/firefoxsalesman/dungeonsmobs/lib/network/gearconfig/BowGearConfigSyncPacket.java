@@ -27,7 +27,7 @@ public class BowGearConfigSyncPacket {
     }
 
     public void encode(FriendlyByteBuf buffer) {
-        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, this.data).result().orElse(new CompoundTag())));
+        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, data).result().orElse(new CompoundTag())));
     }
 
     public static BowGearConfigSyncPacket decode(FriendlyByteBuf buffer) {
@@ -41,7 +41,7 @@ public class BowGearConfigSyncPacket {
     }
 
     private void handlePacketOnMainThread() {
-        BowGearConfigRegistry.BOW_GEAR_CONFIGS.setData(this.data);
+        BowGearConfigRegistry.BOW_GEAR_CONFIGS.setData(data);
         reloadAllItems();
     }
 }

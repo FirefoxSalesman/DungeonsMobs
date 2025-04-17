@@ -61,9 +61,9 @@ public class DungeonsArmorMaterial implements ArmorMaterial {
 		this.repairItemResourceLocation = repairItemResourceLocation;
 		if (ITEMS.containsKey(repairItemResourceLocation)) {
 			Item item = ITEMS.getValue(repairItemResourceLocation);
-			this.repairItem = new LazyLoadedValue<>(() -> Ingredient.of(item));
+			repairItem = new LazyLoadedValue<>(() -> Ingredient.of(item));
 		} else {
-			this.repairItem = new LazyLoadedValue<>(() -> Ingredient.of(Items.IRON_INGOT));
+			repairItem = new LazyLoadedValue<>(() -> Ingredient.of(Items.IRON_INGOT));
 		}
 		this.damageReductionAmounts = damageReductionAmounts;
 		this.toughness = toughness;
@@ -73,33 +73,33 @@ public class DungeonsArmorMaterial implements ArmorMaterial {
 
 	@Override
 	public int getEnchantmentValue() {
-		return this.enchantability;
+		return enchantability;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
 	public Ingredient getRepairIngredient() {
-		return this.repairItem.get();
+		return repairItem.get();
 	}
 
 	@Override
 	public SoundEvent getEquipSound() {
-		return this.equipSound;
+		return equipSound;
 	}
 
 	@Override
 	public float getToughness() {
-		return this.toughness;
+		return toughness;
 	}
 
 	// getKnockbackResistance
 	@Override
 	public float getKnockbackResistance() {
-		return this.knockbackResistance;
+		return knockbackResistance;
 	}
 
 	public ArmorMaterialBaseType getBaseType() {
@@ -108,11 +108,11 @@ public class DungeonsArmorMaterial implements ArmorMaterial {
 
 	@Override
 	public int getDurabilityForType(Type pType) {
-		return BASE_DURABILITY_ARRAY[pType.getSlot().getIndex()] * this.durability;
+		return BASE_DURABILITY_ARRAY[pType.getSlot().getIndex()] * durability;
 	}
 
 	@Override
 	public int getDefenseForType(Type pType) {
-		return this.damageReductionAmounts.get(pType.getSlot().getIndex());
+		return damageReductionAmounts.get(pType.getSlot().getIndex());
 	}
 }

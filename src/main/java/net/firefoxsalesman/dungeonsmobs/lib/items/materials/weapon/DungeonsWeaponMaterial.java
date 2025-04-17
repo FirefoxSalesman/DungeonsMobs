@@ -44,9 +44,9 @@ public class DungeonsWeaponMaterial implements Tier {
         this.repairItemResourceLocation = repairItemResourceLocation;
         if (ITEMS.containsKey(repairItemResourceLocation)) {
             Item item = ITEMS.getValue(repairItemResourceLocation);
-            this.repairItem = Ingredient.of(item);
+            repairItem = Ingredient.of(item);
         } else {
-            this.repairItem = Ingredient.of(Items.IRON_INGOT);
+            repairItem = Ingredient.of(Items.IRON_INGOT);
         }
         this.attackSpeed = attackSpeed;
         this.attackDamageBonus = attackDamageBonus;

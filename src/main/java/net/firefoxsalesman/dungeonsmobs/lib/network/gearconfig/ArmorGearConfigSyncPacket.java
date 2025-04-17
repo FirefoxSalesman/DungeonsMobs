@@ -27,7 +27,7 @@ public class ArmorGearConfigSyncPacket {
     }
 
     public void encode(FriendlyByteBuf buffer) {
-        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, this.data).result().orElse(new CompoundTag())));
+        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, data).result().orElse(new CompoundTag())));
     }
 
     public static ArmorGearConfigSyncPacket decode(FriendlyByteBuf buffer) {
@@ -41,7 +41,7 @@ public class ArmorGearConfigSyncPacket {
     }
 
     private void handlePacketOnMainThread() {
-        ArmorGearConfigRegistry.ARMOR_GEAR_CONFIGS.setData(this.data);
+        ArmorGearConfigRegistry.ARMOR_GEAR_CONFIGS.setData(data);
         reloadAllItems();
     }
 }

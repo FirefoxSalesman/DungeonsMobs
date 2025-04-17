@@ -27,7 +27,7 @@ public class MeleeGearConfigSyncPacket {
     }
 
     public void encode(FriendlyByteBuf buffer) {
-        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, this.data).result().orElse(new CompoundTag())));
+        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, data).result().orElse(new CompoundTag())));
     }
 
     public static MeleeGearConfigSyncPacket decode(FriendlyByteBuf buffer) {
@@ -41,7 +41,7 @@ public class MeleeGearConfigSyncPacket {
     }
 
     private void handlePacketOnMainThread() {
-        MeleeGearConfigRegistry.MELEE_GEAR_CONFIGS.setData(this.data);
+        MeleeGearConfigRegistry.MELEE_GEAR_CONFIGS.setData(data);
         reloadAllItems();
     }
 }

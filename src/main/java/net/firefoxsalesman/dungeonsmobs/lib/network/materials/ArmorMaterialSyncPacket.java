@@ -29,7 +29,7 @@ public class ArmorMaterialSyncPacket {
 	}
 
 	public void encode(FriendlyByteBuf buffer) {
-		buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, this.data).result()
+		buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, data).result()
 				.orElse(new CompoundTag())));
 	}
 
@@ -45,7 +45,7 @@ public class ArmorMaterialSyncPacket {
 	}
 
 	private void handlePacketOnMainThread() {
-		DungeonsArmorMaterials.ARMOR_MATERIALS.setData(this.data);
+		DungeonsArmorMaterials.ARMOR_MATERIALS.setData(data);
 		reloadAllItems();
 	}
 }
