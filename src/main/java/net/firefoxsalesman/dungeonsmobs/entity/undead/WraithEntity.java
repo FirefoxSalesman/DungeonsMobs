@@ -358,7 +358,7 @@ public class WraithEntity extends Monster implements GeoEntity {
 		public SummonFireAttackGoal(WraithEntity mob) {
 			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override

@@ -56,19 +56,19 @@ public class BlueNethershroomEntity extends ThrowableItemProjectile {
 
 	protected void onHit(HitResult rtr) {
 		super.onHit(rtr);
-		ItemStack itemstack = this.getItem();
+		ItemStack itemstack = getItem();
 		List<MobEffectInstance> list = PotionUtils.getMobEffects(itemstack);
 		if (!list.isEmpty()) {
-			if (!this.level().isClientSide) {
+			if (!level().isClientSide) {
 				Entity target = null;
 				if (rtr instanceof EntityHitResult entityHitResult) {
 					target = entityHitResult.getEntity();
 				}
-				this.makeAreaOfEffectCloud(target, itemstack);
-				this.discard();
-				BlockPos blockPos = this.blockPosition();
+				makeAreaOfEffectCloud(target, itemstack);
+				discard();
+				BlockPos blockPos = blockPosition();
 				Vec3 vec3 = Vec3.atBottomCenterOf(blockPos);
-				this.level().playSound(null, vec3.x + 0.5D, vec3.y() + 0.5D, vec3.z() + 0.5D,
+				level().playSound(null, vec3.x + 0.5D, vec3.y() + 0.5D, vec3.z() + 0.5D,
 						ModSoundEvents.FUNGUS_THROWER_FUNGUS_LAND.get(), SoundSource.NEUTRAL,
 						1.0F, level().random.nextFloat() * 0.1F + 0.9F);
 			}
@@ -76,11 +76,11 @@ public class BlueNethershroomEntity extends ThrowableItemProjectile {
 	}
 
 	private void makeAreaOfEffectCloud(@Nullable Entity target, ItemStack itemStack) {
-		AreaEffectCloud aoeCloud = new AreaEffectCloud(this.level(),
-				target != null ? target.getX() : this.getX(),
-				target != null ? target.getY() : this.getY(),
-				target != null ? target.getZ() : this.getZ());
-		Entity owner = this.getOwner();
+		AreaEffectCloud aoeCloud = new AreaEffectCloud(level(),
+				target != null ? target.getX() : getX(),
+				target != null ? target.getY() : getY(),
+				target != null ? target.getZ() : getZ());
+		Entity owner = getOwner();
 		if (owner instanceof LivingEntity) {
 			aoeCloud.setOwner((LivingEntity) owner);
 		}
@@ -94,7 +94,7 @@ public class BlueNethershroomEntity extends ThrowableItemProjectile {
 			aoeCloud.addEffect(new MobEffectInstance(customEffects));
 		}
 
-		this.level().addFreshEntity(aoeCloud);
+		level().addFreshEntity(aoeCloud);
 	}
 
 	@Override

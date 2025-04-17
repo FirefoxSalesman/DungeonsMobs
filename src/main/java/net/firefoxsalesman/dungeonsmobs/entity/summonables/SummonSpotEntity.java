@@ -50,50 +50,50 @@ public class SummonSpotEntity extends Entity implements GeoEntity {
 	public void baseTick() {
 		super.baseTick();
 
-		this.lifeTime++;
+		lifeTime++;
 
-		if (!level().isClientSide && this.lifeTime == this.getSummonTime() && this.summonedEntity != null) {
-			summonedEntity.moveTo(this.blockPosition(), 0.0F, 0.0F);
-			summonedEntity.setYBodyRot(this.random.nextInt(360));
+		if (!level().isClientSide && lifeTime == getSummonTime() && summonedEntity != null) {
+			summonedEntity.moveTo(blockPosition(), 0.0F, 0.0F);
+			summonedEntity.setYBodyRot(random.nextInt(360));
 			((ServerLevel) level()).addFreshEntityWithPassengers(summonedEntity);
 		}
 
-		if (!level().isClientSide && this.lifeTime >= this.getDespawnTime()) {
-			this.remove(RemovalReason.DISCARDED);
+		if (!level().isClientSide && lifeTime >= getDespawnTime()) {
+			remove(RemovalReason.DISCARDED);
 		}
 	}
 
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(SUMMON_TYPE, 0);
+		entityData.define(SUMMON_TYPE, 0);
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-		this.setSummonType(p_70037_1_.getInt("SummonType"));
+		setSummonType(p_70037_1_.getInt("SummonType"));
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
-		p_213281_1_.putInt("SummonType", this.getSummonType());
+		p_213281_1_.putInt("SummonType", getSummonType());
 	}
 
 	public int getSummonType() {
-		return Mth.clamp(this.entityData.get(SUMMON_TYPE), 0, 3);
+		return Mth.clamp(entityData.get(SUMMON_TYPE), 0, 3);
 	}
 
 	public void setSummonType(int attached) {
-		this.entityData.set(SUMMON_TYPE, attached);
+		entityData.set(SUMMON_TYPE, attached);
 	}
 
 	public int getDespawnTime() {
-		if (this.getSummonType() == 0) {
+		if (getSummonType() == 0) {
 			return 18;
-		} else if (this.getSummonType() == 1) {
+		} else if (getSummonType() == 1) {
 			return 18;
-		} else if (this.getSummonType() == 2) {
+		} else if (getSummonType() == 2) {
 			return 18;
-		} else if (this.getSummonType() == 3) {
+		} else if (getSummonType() == 3) {
 			return 18;
 		} else {
 			return 2;
@@ -101,13 +101,13 @@ public class SummonSpotEntity extends Entity implements GeoEntity {
 	}
 
 	public int getSummonTime() {
-		if (this.getSummonType() == 0) {
+		if (getSummonType() == 0) {
 			return 10;
-		} else if (this.getSummonType() == 1) {
+		} else if (getSummonType() == 1) {
 			return 10;
-		} else if (this.getSummonType() == 2) {
+		} else if (getSummonType() == 2) {
 			return 10;
-		} else if (this.getSummonType() == 3) {
+		} else if (getSummonType() == 3) {
 			return 10;
 		} else {
 			return 1;
@@ -120,16 +120,16 @@ public class SummonSpotEntity extends Entity implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.getSummonType() == 0) {
+		if (getSummonType() == 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("illusioner_summon_spot_summon", LoopType.LOOP));
-		} else if (this.getSummonType() == 1) {
+		} else if (getSummonType() == 1) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("wildfire_summon_spot_summon", LoopType.LOOP));
-		} else if (this.getSummonType() == 2) {
+		} else if (getSummonType() == 2) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("illusioner_summon_spot_summon", LoopType.LOOP));
-		} else if (this.getSummonType() == 3) {
+		} else if (getSummonType() == 3) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("illusioner_summon_spot_summon", LoopType.LOOP));
 		} else {

@@ -89,12 +89,12 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 	public RoyalGuardEntity(Level world) {
 		super(ModEntities.ROYAL_GUARD.get(), world);
-		this.shieldCooldownTime = 0;
+		shieldCooldownTime = 0;
 	}
 
 	public RoyalGuardEntity(EntityType<? extends RoyalGuardEntity> p_i50189_1_, Level p_i50189_2_) {
 		super(p_i50189_1_, p_i50189_2_);
-		this.shieldCooldownTime = 0;
+		shieldCooldownTime = 0;
 	}
 
 	@Override
@@ -105,20 +105,20 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new UseShieldGoal(this, 7.5D, 60, 160, 15, 100, false));
-		this.goalSelector.addGoal(1, new RoyalGuardEntity.BasicAttackGoal(this));
-		this.goalSelector.addGoal(2, new ApproachTargetGoal(this, 0, 1.0D, true));
-		this.goalSelector.addGoal(3, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(1, new AbstractIllager.RaiderOpenDoorGoal(this));
-		this.goalSelector.addGoal(3, new Raider.HoldGroundAttackGoal(this, 10.0F));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-		this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6D));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(0, new UseShieldGoal(this, 7.5D, 60, 160, 15, 100, false));
+		goalSelector.addGoal(1, new RoyalGuardEntity.BasicAttackGoal(this));
+		goalSelector.addGoal(2, new ApproachTargetGoal(this, 0, 1.0D, true));
+		goalSelector.addGoal(3, new LookAtTargetGoal(this));
+		goalSelector.addGoal(1, new AbstractIllager.RaiderOpenDoorGoal(this));
+		goalSelector.addGoal(3, new Raider.HoldGroundAttackGoal(this, 10.0F));
+		targetSelector.addGoal(1, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
+		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6D));
+		goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 	}
 
 	@Nullable
@@ -128,9 +128,9 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 		SpawnGroupData ilivingentitydata = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_,
 				p_213386_4_,
 				p_213386_5_);
-		((GroundPathNavigation) this.getNavigation()).setCanOpenDoors(true);
-		this.populateDefaultEquipmentSlots(this.getRandom(), p_213386_2_);
-		this.populateDefaultEquipmentEnchantments(this.getRandom(), p_213386_2_);
+		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
+		populateDefaultEquipmentSlots(getRandom(), p_213386_2_);
+		populateDefaultEquipmentEnchantments(getRandom(), p_213386_2_);
 		return ilivingentitydata;
 	}
 
@@ -165,9 +165,9 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 	public void baseTick() {
 		super.baseTick();
-		AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
 
-		if (this.isBlocking()) {
+		if (isBlocking()) {
 			if (!modifiableattributeinstance.hasModifier(SPEED_MODIFIER_BLOCKING)) {
 				modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER_BLOCKING);
 			}
@@ -175,12 +175,12 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_BLOCKING);
 		}
 
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.attackAnimationTick > 0) {
-			this.attackAnimationTick--;
+		if (attackAnimationTick > 0) {
+			attackAnimationTick--;
 		}
 	}
 
@@ -190,10 +190,10 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.attackAnimationTick > 0) {
+		if (attackAnimationTick > 0) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("royal_guard_attack", LoopType.LOOP));
-		} else if (this.isBlocking()) {
+		} else if (isBlocking()) {
 			if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 				event.getController().setAnimation(RawAnimation.begin()
 						.then("royal_guard_new_walk_blocking", LoopType.LOOP));
@@ -205,7 +205,7 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 			event.getController().setAnimation(
 					RawAnimation.begin().then("royal_guard_new_walk", LoopType.LOOP));
 		} else {
-			if (this.isCelebrating()) {
+			if (isCelebrating()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("royal_guard_celebrate", LoopType.LOOP));
 			} else {
@@ -218,7 +218,7 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 	@Override
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(ModSoundEvents.ROYAL_GUARD_STEP.get(), 0.5F, 1.0F);
+		playSound(ModSoundEvents.ROYAL_GUARD_STEP.get(), 0.5F, 1.0F);
 	}
 
 	@Override
@@ -240,11 +240,11 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeons_gear", "mace"));
 
 			ItemStack mace = new ItemStack(MACE);
-			if (this.getCurrentRaid() == null) {
+			if (getCurrentRaid() == null) {
 				SpawnEquipmentHelper.equipMainhand(mace, this);
 			}
 		} else {
-			if (this.getCurrentRaid() == null) {
+			if (getCurrentRaid() == null) {
 				SpawnEquipmentHelper.equipMainhand(Items.IRON_AXE.getDefaultInstance(), this);
 			}
 		}
@@ -259,7 +259,7 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 			mainhandWeapon = new ItemStack(MACE);
 		}
-		Raid raid = this.getCurrentRaid();
+		Raid raid = getCurrentRaid();
 		int enchantmentLevel = 1;
 		if (raid != null && waveAmount > raid.getNumGroups(Difficulty.NORMAL)) {
 			enchantmentLevel = 2;
@@ -267,7 +267,7 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 		boolean applyEnchant = false;
 		if (raid != null) {
-			applyEnchant = this.random.nextFloat() <= raid.getEnchantOdds();
+			applyEnchant = random.nextFloat() <= raid.getEnchantOdds();
 		}
 		if (applyEnchant) {
 			Map<Enchantment, Integer> enchantmentIntegerMap = Maps.newHashMap();
@@ -292,16 +292,16 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.shieldCooldownTime > 0) {
-			this.shieldCooldownTime--;
-		} else if (this.shieldCooldownTime < 0) {
-			this.shieldCooldownTime = 0;
+		if (shieldCooldownTime > 0) {
+			shieldCooldownTime--;
+		} else if (shieldCooldownTime < 0) {
+			shieldCooldownTime = 0;
 		}
 	}
 
 	@Override
 	public int getShieldCooldownTime() {
-		return this.shieldCooldownTime;
+		return shieldCooldownTime;
 	}
 
 	@Override
@@ -311,7 +311,7 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 	@Override
 	public boolean isShieldDisabled() {
-		return this.shieldCooldownTime > 0;
+		return shieldCooldownTime > 0;
 	}
 
 	@Override
@@ -320,19 +320,19 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 		if (guaranteeDisable) {
 			f += 0.75F;
 		}
-		if (this.random.nextFloat() < f) {
-			this.shieldCooldownTime = 100;
-			this.stopUsingItem();
-			this.level().broadcastEntityEvent(this, (byte) 30);
+		if (random.nextFloat() < f) {
+			shieldCooldownTime = 100;
+			stopUsingItem();
+			level().broadcastEntityEvent(this, (byte) 30);
 		}
 	}
 
 	@Override
 	protected void playHurtSound(DamageSource damageSource) {
-		if (this.shieldCooldownTime == 100) {
-			this.playSound(SoundEvents.SHIELD_BREAK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
-		} else if (this.isBlocking()) {
-			this.playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
+		if (shieldCooldownTime == 100) {
+			playSound(SoundEvents.SHIELD_BREAK, 1.0F, 0.8F + level().random.nextFloat() * 0.4F);
+		} else if (isBlocking()) {
+			playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + level().random.nextFloat() * 0.4F);
 		} else {
 			super.playHurtSound(damageSource);
 		}
@@ -341,31 +341,31 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	@Override
 	public void blockUsingShield(LivingEntity livingEntity) {
 		super.blockUsingShield(livingEntity);
-		if (livingEntity.getMainHandItem().canDisableShield(this.useItem, this, livingEntity)) {
-			this.disableShield(true);
+		if (livingEntity.getMainHandItem().canDisableShield(useItem, this, livingEntity)) {
+			disableShield(true);
 		}
 	}
 
 	@Override
 	protected void hurtCurrentlyUsedShield(float amount) {
-		if (this.useItem.canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) {
+		if (useItem.canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) {
 			if (amount >= 3.0F) {
 				int i = 1 + Mth.floor(amount);
-				InteractionHand hand = this.getUsedItemHand();
-				this.useItem.hurtAndBreak(i, this, (royalGuardEntity) -> {
+				InteractionHand hand = getUsedItemHand();
+				useItem.hurtAndBreak(i, this, (royalGuardEntity) -> {
 					royalGuardEntity.broadcastBreakEvent(hand);
 					// Forge would have called onPlayerDestroyItem here
 				});
-				if (this.useItem.isEmpty()) {
+				if (useItem.isEmpty()) {
 					if (hand == InteractionHand.MAIN_HAND) {
-						this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+						setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 					} else {
 						this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
 					}
 
-					this.useItem = ItemStack.EMPTY;
-					this.playSound(SoundEvents.SHIELD_BREAK, 0.8F,
-							0.8F + this.level().random.nextFloat() * 0.4F);
+					useItem = ItemStack.EMPTY;
+					playSound(SoundEvents.SHIELD_BREAK, 0.8F,
+							0.8F + level().random.nextFloat() * 0.4F);
 				}
 			}
 		}
@@ -383,9 +383,9 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 		public LivingEntity target;
 
 		public BasicAttackGoal(RoyalGuardEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override

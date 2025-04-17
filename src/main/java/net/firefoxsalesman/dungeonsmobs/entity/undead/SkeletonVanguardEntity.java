@@ -79,24 +79,24 @@ public class SkeletonVanguardEntity extends Skeleton
 
 	public SkeletonVanguardEntity(EntityType<? extends SkeletonVanguardEntity> p_i48555_1_, Level p_i48555_2_) {
 		super(p_i48555_1_, p_i48555_2_);
-		this.shieldCooldownTime = 0;
+		shieldCooldownTime = 0;
 	}
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new UseShieldGoal(this, 10D, 60, 120, 10, 60, true));
-		this.goalSelector.addGoal(1,
+		goalSelector.addGoal(0, new UseShieldGoal(this, 10D, 60, 120, 10, 60, true));
+		goalSelector.addGoal(1,
 				new BasicModdedAttackGoal<>(this, ModSoundEvents.SKELETON_VANGUARD_ATTACK.get(), 20));
-		this.goalSelector.addGoal(2, new ApproachTargetGoal(this, 0, 1.0D, true));
-		this.goalSelector.addGoal(3, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Wolf.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
+		goalSelector.addGoal(2, new ApproachTargetGoal(this, 0, 1.0D, true));
+		goalSelector.addGoal(3, new LookAtTargetGoal(this));
+		goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+		targetSelector.addGoal(0, new HurtByTargetGoal(this));
+		targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Wolf.class, true));
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false,
 				Turtle.BABY_ON_LAND_SELECTOR));
 	}
 
@@ -150,7 +150,7 @@ public class SkeletonVanguardEntity extends Skeleton
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.attackAnimationTick = attackAnimationLength;
+			attackAnimationTick = attackAnimationLength;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
@@ -158,9 +158,9 @@ public class SkeletonVanguardEntity extends Skeleton
 
 	public void baseTick() {
 		super.baseTick();
-		AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
 
-		if (this.isBlocking()) {
+		if (isBlocking()) {
 			if (!modifiableattributeinstance.hasModifier(SPEED_MODIFIER_BLOCKING)) {
 				modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER_BLOCKING);
 			}
@@ -168,7 +168,7 @@ public class SkeletonVanguardEntity extends Skeleton
 			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_BLOCKING);
 		}
 
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 	}
 
 	@Override
@@ -192,8 +192,8 @@ public class SkeletonVanguardEntity extends Skeleton
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.attackAnimationTick > 0) {
-			this.attackAnimationTick--;
+		if (attackAnimationTick > 0) {
+			attackAnimationTick--;
 		}
 	}
 
@@ -203,10 +203,10 @@ public class SkeletonVanguardEntity extends Skeleton
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.attackAnimationTick > 0) {
+		if (attackAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("skeleton_vanguard_attack", LoopType.LOOP));
-		} else if (this.isBlocking()) {
+		} else if (isBlocking()) {
 			if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 				event.getController()
 						.setAnimation(RawAnimation.begin().then(
@@ -236,19 +236,19 @@ public class SkeletonVanguardEntity extends Skeleton
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.shieldCooldownTime > 0) {
-			this.shieldCooldownTime--;
-		} else if (this.shieldCooldownTime < 0) {
-			this.shieldCooldownTime = 0;
+		if (shieldCooldownTime > 0) {
+			shieldCooldownTime--;
+		} else if (shieldCooldownTime < 0) {
+			shieldCooldownTime = 0;
 		}
 	}
 
 	@Override
 	protected void playHurtSound(DamageSource damageSource) {
-		if (this.shieldCooldownTime == 100) {
-			this.playSound(SoundEvents.SHIELD_BREAK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
-		} else if (this.isBlocking()) {
-			this.playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
+		if (shieldCooldownTime == 100) {
+			playSound(SoundEvents.SHIELD_BREAK, 1.0F, 0.8F + level().random.nextFloat() * 0.4F);
+		} else if (isBlocking()) {
+			playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + level().random.nextFloat() * 0.4F);
 		} else {
 			super.playHurtSound(damageSource);
 		}
@@ -257,31 +257,31 @@ public class SkeletonVanguardEntity extends Skeleton
 	@Override
 	public void blockUsingShield(LivingEntity livingEntity) {
 		super.blockUsingShield(livingEntity);
-		if (livingEntity.getMainHandItem().canDisableShield(this.useItem, this, livingEntity)) {
-			this.disableShield(true);
+		if (livingEntity.getMainHandItem().canDisableShield(useItem, this, livingEntity)) {
+			disableShield(true);
 		}
 	}
 
 	@Override
 	protected void hurtCurrentlyUsedShield(float amount) {
-		if (this.useItem.canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) {
+		if (useItem.canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) {
 			if (amount >= 3.0F) {
 				int i = 1 + Mth.floor(amount);
-				InteractionHand hand = this.getUsedItemHand();
-				this.useItem.hurtAndBreak(i, this, (skeletonVanguardEntity) -> {
+				InteractionHand hand = getUsedItemHand();
+				useItem.hurtAndBreak(i, this, (skeletonVanguardEntity) -> {
 					skeletonVanguardEntity.broadcastBreakEvent(hand);
 					// Forge would have called onPlayerDestroyItem here
 				});
-				if (this.useItem.isEmpty()) {
+				if (useItem.isEmpty()) {
 					if (hand == InteractionHand.MAIN_HAND) {
-						this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+						setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 					} else {
-						this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+						setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
 					}
 
-					this.useItem = ItemStack.EMPTY;
-					this.playSound(SoundEvents.SHIELD_BREAK, 1.0F,
-							0.8F + this.level().random.nextFloat() * 0.4F);
+					useItem = ItemStack.EMPTY;
+					playSound(SoundEvents.SHIELD_BREAK, 1.0F,
+							0.8F + level().random.nextFloat() * 0.4F);
 				}
 			}
 		}
@@ -289,7 +289,7 @@ public class SkeletonVanguardEntity extends Skeleton
 
 	@Override
 	public int getShieldCooldownTime() {
-		return this.shieldCooldownTime;
+		return shieldCooldownTime;
 	}
 
 	@Override
@@ -303,17 +303,17 @@ public class SkeletonVanguardEntity extends Skeleton
 		if (guaranteeDisable) {
 			f += 0.75F;
 		}
-		if (this.random.nextFloat() < f) {
-			this.playSound(SoundEvents.SHIELD_BREAK, 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
-			this.shieldCooldownTime = 100;
-			this.stopUsingItem();
-			this.level().broadcastEntityEvent(this, (byte) 30);
+		if (random.nextFloat() < f) {
+			playSound(SoundEvents.SHIELD_BREAK, 0.8F, 0.8F + level().random.nextFloat() * 0.4F);
+			shieldCooldownTime = 100;
+			stopUsingItem();
+			level().broadcastEntityEvent(this, (byte) 30);
 		}
 	}
 
 	@Override
 	public boolean isShieldDisabled() {
-		return this.shieldCooldownTime > 0;
+		return shieldCooldownTime > 0;
 	}
 
 	@Override

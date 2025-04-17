@@ -101,24 +101,24 @@ public class MageMissileEntity extends StraightMovingProjectileEntity implements
 
 	@Override
 	public void playImpactSound() {
-		this.playSound(ModSoundEvents.NECROMANCER_ORB_IMPACT.get(), 0.75F, 2.0F);
+		playSound(ModSoundEvents.NECROMANCER_ORB_IMPACT.get(), 0.75F, 2.0F);
 	}
 
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		if (this.lifeTime >= 10 && this.lifeTime <= 20 && this.getOwner() != null
-				&& this.getOwner() instanceof Mob && ((Mob) this.getOwner()).getTarget() != null) {
-			Mob mob = ((Mob) this.getOwner());
+		if (lifeTime >= 10 && lifeTime <= 20 && getOwner() != null
+				&& getOwner() instanceof Mob && ((Mob) getOwner()).getTarget() != null) {
+			Mob mob = ((Mob) getOwner());
 			LivingEntity target = mob.getTarget();
-			double d1 = target.getX() - this.getX();
-			double d2 = (target.getY() - 2) - this.getY();
-			double d3 = target.getZ() - this.getZ();
+			double d1 = target.getX() - getX();
+			double d2 = (target.getY() - 2) - getY();
+			double d3 = target.getZ() - getZ();
 			double d0 = Mth.sqrt((float) (d1 * d1 + d2 * d2 + d3 * d3));
 			if (d0 != 0.0D) {
-				this.xPower = d1 / d0 * 0.1D;
-				this.yPower = d2 / d0 * 0.1D;
-				this.zPower = d3 / d0 * 0.1D;
+				xPower = d1 / d0 * 0.1D;
+				yPower = d2 / d0 * 0.1D;
+				zPower = d3 / d0 * 0.1D;
 			}
 		}
 	}
@@ -127,7 +127,7 @@ public class MageMissileEntity extends StraightMovingProjectileEntity implements
 		if (!level().isClientSide) {
 			super.onHitEntity(entity);
 			boolean flag;
-			flag = entity.hurt(damageSources().indirectMagic(this, this.getOwner()), 2.5F);
+			flag = entity.hurt(damageSources().indirectMagic(this, getOwner()), 2.5F);
 			if (entity instanceof LivingEntity) {
 				int i = 0;
 				if (level().getDifficulty() == Difficulty.NORMAL) {
@@ -142,13 +142,13 @@ public class MageMissileEntity extends StraightMovingProjectileEntity implements
 				}
 			}
 			if (flag) {
-				if (entity.isAlive() && this.getOwner() != null
-						&& this.getOwner() instanceof LivingEntity) {
-					this.doEnchantDamageEffects((LivingEntity) this.getOwner(), entity);
+				if (entity.isAlive() && getOwner() != null
+						&& getOwner() instanceof LivingEntity) {
+					doEnchantDamageEffects((LivingEntity) getOwner(), entity);
 				}
 			}
 
-			this.remove(RemovalReason.DISCARDED);
+			remove(RemovalReason.DISCARDED);
 		}
 	}
 

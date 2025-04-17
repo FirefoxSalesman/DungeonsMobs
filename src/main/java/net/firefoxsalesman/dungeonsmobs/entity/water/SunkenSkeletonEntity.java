@@ -49,14 +49,14 @@ public class SunkenSkeletonEntity extends AbstractSkeleton implements CrossbowAt
 
 		@Override
 		public boolean canUse() {
-			return super.canUse() && SunkenSkeletonEntity.this.okTarget(SunkenSkeletonEntity.this,
-					SunkenSkeletonEntity.this.getTarget());
+			return super.canUse() && okTarget(SunkenSkeletonEntity.this,
+					getTarget());
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && SunkenSkeletonEntity.this.okTarget(SunkenSkeletonEntity.this,
-					SunkenSkeletonEntity.this.getTarget());
+			return super.canContinueToUse() && okTarget(SunkenSkeletonEntity.this,
+					getTarget());
 		}
 	};
 	private final RangedCrossbowAttackGoal<SunkenSkeletonEntity> crossbowGoal = new RangedCrossbowAttackGoal<>(this,
