@@ -20,7 +20,7 @@ public class IcyCreeperRenderer extends MobRenderer<IcyCreeperEntity, CreeperMod
 
     public IcyCreeperRenderer(EntityRendererProvider.Context p_i46186_1_) {
         super(p_i46186_1_, new CreeperModel<>(p_i46186_1_.bakeLayer(ModelLayers.CREEPER)), 0.5F);
-        this.addLayer(new IcyCreeperChargeLayer(this, new CreeperModel<>(p_i46186_1_.bakeLayer(ModelLayers.CREEPER_ARMOR))));
+        addLayer(new IcyCreeperChargeLayer(this, new CreeperModel<>(p_i46186_1_.bakeLayer(ModelLayers.CREEPER_ARMOR))));
     }
 
     protected void scale(IcyCreeperEntity creeper, PoseStack p_225620_2_, float p_225620_3_) {

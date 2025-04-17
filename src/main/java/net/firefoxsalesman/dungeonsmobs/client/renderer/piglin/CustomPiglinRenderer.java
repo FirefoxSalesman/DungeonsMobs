@@ -27,7 +27,7 @@ public class CustomPiglinRenderer extends PiglinRenderer {
     public CustomPiglinRenderer(EntityRendererProvider.Context rendererContext, ModelLayerLocation p_174345_, ModelLayerLocation p_174346_, ModelLayerLocation p_174347_, boolean isZombified, boolean isFungusThrower) {
         super(rendererContext, p_174345_, p_174346_, p_174347_, isZombified);
         if (isFungusThrower) {
-            this.addLayer(new FungusSackLayer<>(this, new FungusSackModel<Mob>(rendererContext.bakeLayer(ModModelLayers.FUNGUS_SACK))));
+            addLayer(new FungusSackLayer<>(this, new FungusSackModel<Mob>(rendererContext.bakeLayer(ModModelLayers.FUNGUS_SACK))));
         }
     }
 
@@ -44,10 +44,10 @@ public class CustomPiglinRenderer extends PiglinRenderer {
             return super.getTextureLocation(mobEntity);
         }
 
-        String skinVariantName = this.getSkinVariantName(mobEntity);
+        String skinVariantName = getSkinVariantName(mobEntity);
         return RESOURCE_LOCATION_MAP
                 .computeIfAbsent(mobEntity.getType(), type -> new HashMap<>())
-                .computeIfAbsent(skinVariantName, s -> new ResourceLocation(DungeonsMobs.MOD_ID, this.getPath(skinVariantName)));
+                .computeIfAbsent(skinVariantName, s -> new ResourceLocation(DungeonsMobs.MOD_ID, getPath(skinVariantName)));
     }
 
     private String getPath(String skinVariantName) {

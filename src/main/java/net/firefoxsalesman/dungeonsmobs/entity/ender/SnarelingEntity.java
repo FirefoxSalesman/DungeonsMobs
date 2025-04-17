@@ -15,7 +15,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -163,7 +162,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		}
 
 		public boolean canContinueToUse() {
-			return SnarelingEntity.this.getShootTime() <= 0 && super.canContinueToUse();
+			return getShootTime() <= 0 && super.canContinueToUse();
 		}
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
@@ -172,7 +171,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 
 		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
 			double d0 = getAttackReachSqr(p_190102_1_);
-			if (p_190102_2_ <= d0 && isTimeToAttack() && SnarelingEntity.this.getShootTime() <= 0) {
+			if (p_190102_2_ <= d0 && isTimeToAttack() && getShootTime() <= 0) {
 				resetAttackCooldown();
 				mob.doHurtTarget(p_190102_1_);
 			} else if (p_190102_2_ <= d0 * 1.5D) {
@@ -181,7 +180,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 				}
 
 				if (getTicksUntilNextAttack() <= 30) {
-					SnarelingEntity.this.setAttacking(30);
+					setAttacking(30);
 				}
 			} else {
 				resetAttackCooldown();
@@ -199,7 +198,6 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		protected final PathNavigation pathNav;
 		protected final Predicate<LivingEntity> avoidPredicate;
 		protected final Predicate<LivingEntity> predicateOnAvoidEntity;
-		private final TargetingConditions avoidEntityTargeting;
 
 		public AvoidEntityGoal(PathfinderMob mob, float p_i46404_3_, double p_i46404_4_,
 				double p_i46404_6_) {
@@ -217,10 +215,8 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 			this.walkSpeedModifier = walkSpeedModifier;
 			this.sprintSpeedModifier = sprintSpeedModifier;
 			this.predicateOnAvoidEntity = predicateOnAvoidEntity;
-			this.pathNav = mob.getNavigation();
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-			this.avoidEntityTargeting = TargetingConditions.forCombat().range(maxDist)
-					.selector(predicateOnAvoidEntity.and(avoidPredicate));
+			pathNav = mob.getNavigation();
+			setFlags(EnumSet.of(Goal.Flag.MOVE));
 		}
 
 		public AvoidEntityGoal(PathfinderMob mob, float p_i48860_3_, double p_i48860_4_,
@@ -231,7 +227,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		}
 
 		public boolean canUse() {
-			toAvoid = SnarelingEntity.this.getTarget();
+			toAvoid = getTarget();
 			if (toAvoid == null || mob.distanceTo(toAvoid) > maxDist) {
 				return false;
 			} else {
@@ -243,9 +239,9 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 					return false;
 				} else {
 					path = pathNav.createPath(vector3d.x, vector3d.y, vector3d.z, 0);
-					return SnarelingEntity.this.getTarget() != null
-							&& SnarelingEntity.this.getTarget().isAlive()
-							&& !SnarelingEntity.this.getTarget()
+					return getTarget() != null
+							&& getTarget().isAlive()
+							&& !getTarget()
 									.hasEffect(ModEffects.ENSNARED.get())
 							&& path != null;
 				}
@@ -253,8 +249,8 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		}
 
 		public boolean canContinueToUse() {
-			return SnarelingEntity.this.getTarget() != null && SnarelingEntity.this.getTarget().isAlive()
-					&& !SnarelingEntity.this.getTarget().hasEffect(ModEffects.ENSNARED.get())
+			return getTarget() != null && getTarget().isAlive()
+					&& !getTarget().hasEffect(ModEffects.ENSNARED.get())
 					&& !pathNav.isDone();
 		}
 
@@ -267,7 +263,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 		}
 
 		public void tick() {
-			SnarelingEntity.this.setShootTime(0);
+			setShootTime(0);
 			if (mob.distanceToSqr(toAvoid) < 49.0D) {
 				mob.getNavigation().setSpeedModifier(sprintSpeedModifier);
 			} else {
