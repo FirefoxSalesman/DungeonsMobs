@@ -77,48 +77,48 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new MageEntity.RemainStationaryGoal());
-		this.goalSelector.addGoal(1, new MageEntity.CreateIllusionsGoal(this));
-		this.goalSelector.addGoal(2, new MageEntity.LevitateTargetAttackGoal(this));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, AbstractVillager.class, 5.0F, 1.2D, 1.15D));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 5.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, IronGolem.class, 5.0F, 1.3D, 1.15D));
-		this.goalSelector.addGoal(4, new ApproachTargetGoal(this, 14, 1.0D, true));
-		this.goalSelector.addGoal(5, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
-		this.targetSelector.addGoal(2, (new NearestAttackableTargetGoal<>(this, Player.class, true))
+		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(0, new MageEntity.RemainStationaryGoal());
+		goalSelector.addGoal(1, new MageEntity.CreateIllusionsGoal(this));
+		goalSelector.addGoal(2, new MageEntity.LevitateTargetAttackGoal(this));
+		goalSelector.addGoal(3, new AvoidEntityGoal<>(this, AbstractVillager.class, 5.0F, 1.2D, 1.15D));
+		goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 5.0F, 1.2D, 1.2D));
+		goalSelector.addGoal(3, new AvoidEntityGoal<>(this, IronGolem.class, 5.0F, 1.3D, 1.15D));
+		goalSelector.addGoal(4, new ApproachTargetGoal(this, 14, 1.0D, true));
+		goalSelector.addGoal(5, new LookAtTargetGoal(this));
+		goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
+		goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		targetSelector.addGoal(1, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
+		targetSelector.addGoal(2, (new NearestAttackableTargetGoal<>(this, Player.class, true))
 				.setUnseenMemoryTicks(600));
-		this.targetSelector.addGoal(3, (new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false))
+		targetSelector.addGoal(3, (new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false))
 				.setUnseenMemoryTicks(600));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, false)
+		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, false)
 				.setUnseenMemoryTicks(600));
 	}
 
 	public boolean shouldBeStationary() {
-		return this.appearAnimationTick > 0 || this.appearDelay > 0;
+		return appearAnimationTick > 0 || appearDelay > 0;
 	}
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.attackAnimationTick = attackAnimationLength;
+			attackAnimationTick = attackAnimationLength;
 		} else if (p_28844_ == 6) {
-			this.appearDelay = 11;
+			appearDelay = 11;
 		} else if (p_28844_ == 7) {
 			for (int i = 0; i < 20; ++i) {
-				double d0 = this.random.nextGaussian() * 0.02D;
-				double d1 = this.random.nextGaussian() * 0.02D;
-				double d2 = this.random.nextGaussian() * 0.02D;
-				level().addParticle(ParticleTypes.POOF, this.getRandomX(1.0D), this.getRandomY(),
-						this.getRandomZ(1.0D), d0, d1, d2);
+				double d0 = random.nextGaussian() * 0.02D;
+				double d1 = random.nextGaussian() * 0.02D;
+				double d2 = random.nextGaussian() * 0.02D;
+				level().addParticle(ParticleTypes.POOF, getRandomX(1.0D), getRandomY(),
+						getRandomZ(1.0D), d0, d1, d2);
 			}
 		} else if (p_28844_ == 8) {
-			this.vanishAnimationTick = vanishAnimationLength;
+			vanishAnimationTick = vanishAnimationLength;
 		} else if (p_28844_ == 9) {
-			this.appearAnimationTick = appearAnimationLength;
+			appearAnimationTick = appearAnimationLength;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
@@ -126,29 +126,29 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 
-		if (this.appearDelay > 0) {
-			this.appearDelay--;
+		if (appearDelay > 0) {
+			appearDelay--;
 		}
 
-		if (!level().isClientSide && this.appearDelay == 1) {
-			this.appearAnimationTick = appearAnimationLength;
+		if (!level().isClientSide && appearDelay == 1) {
+			appearAnimationTick = appearAnimationLength;
 			level().broadcastEntityEvent(this, (byte) 9);
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.attackAnimationTick > 0) {
-			this.attackAnimationTick--;
+		if (attackAnimationTick > 0) {
+			attackAnimationTick--;
 		}
 
-		if (this.vanishAnimationTick > 0) {
-			this.vanishAnimationTick--;
+		if (vanishAnimationTick > 0) {
+			vanishAnimationTick--;
 		}
 
-		if (this.appearAnimationTick > 0) {
-			this.appearAnimationTick--;
+		if (appearAnimationTick > 0) {
+			appearAnimationTick--;
 		}
 	}
 
@@ -158,20 +158,20 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.appearAnimationTick > 0) {
+		if (appearAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_appear", LoopType.LOOP));
-		} else if (this.vanishAnimationTick > 0) {
+		} else if (vanishAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_vanish", LoopType.LOOP));
-		} else if (this.attackAnimationTick > 0) {
+		} else if (attackAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_throw", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_walk", LoopType.LOOP));
 		} else {
-			if (this.isCelebrating()) {
+			if (isCelebrating()) {
 				event.getController().setAnimation(RawAnimation.begin().then("mage_celebrate",
 						LoopType.LOOP));
 			} else {
@@ -200,8 +200,8 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 			@Nullable CompoundTag p_213386_5_) {
 		SpawnGroupData iLivingEntityData = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_,
 				p_213386_4_, p_213386_5_);
-		this.populateDefaultEquipmentSlots(this.getRandom(), p_213386_2_);
-		this.populateDefaultEquipmentEnchantments(this.getRandom(), p_213386_2_);
+		populateDefaultEquipmentSlots(getRandom(), p_213386_2_);
+		populateDefaultEquipmentEnchantments(getRandom(), p_213386_2_);
 		return iLivingEntityData;
 	}
 
@@ -218,7 +218,7 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 			return true;
 		} else if (entityIn instanceof LivingEntity
 				&& ((LivingEntity) entityIn).getMobType() == MobType.ILLAGER) {
-			return this.getTeam() == null && entityIn.getTeam() == null;
+			return getTeam() == null && entityIn.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -266,9 +266,9 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 		};
 
 		public CreateIllusionsGoal(MageEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -287,7 +287,7 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 			int nearbyClones = mob.level().getEntities(mob, mob.getBoundingBox().inflate(30.0D), MAGE_CLONE)
 					.size();
 
-			return target != null && mob.tickCount >= this.nextUseTime && mob.random.nextInt(10) == 0
+			return target != null && mob.tickCount >= nextUseTime && mob.random.nextInt(10) == 0
 					&& mob.hasLineOfSight(target) && nearbyClones <= 0 && animationsUseable();
 		}
 
@@ -388,7 +388,7 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 		@Override
 		public void stop() {
 			super.stop();
-			this.nextUseTime = mob.tickCount + 60;
+			nextUseTime = mob.tickCount + 60;
 		}
 
 	}
@@ -403,9 +403,9 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 		public boolean slammedTarget = false;
 
 		public LevitateTargetAttackGoal(MageEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -421,7 +421,7 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 		public boolean canUse() {
 			target = mob.getTarget();
 
-			return target != null && !mob.shouldBeStationary() && mob.tickCount >= this.nextUseTime
+			return target != null && !mob.shouldBeStationary() && mob.tickCount >= nextUseTime
 					&& mob.distanceTo(target) <= 16 && mob.hasLineOfSight(target)
 					&& animationsUseable();
 		}
@@ -433,7 +433,7 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 
 		@Override
 		public void start() {
-			this.slammedTarget = false;
+			slammedTarget = false;
 			mob.playSound(ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(), 1.0F, mob.getVoicePitch());
 			mob.attackAnimationTick = mob.attackAnimationLength;
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
@@ -462,11 +462,11 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 								target.getDeltaMovement().z * 0.5);
 					}
 				} else {
-					if (!this.slammedTarget) {
+					if (!slammedTarget) {
 						target.fallDistance = 0;
 						target.push(0, -0.5, 0);
 						if (target.verticalCollision) {
-							this.slammedTarget = true;
+							slammedTarget = true;
 							target.hurt(damageSources().flyIntoWall(), 10.0F);
 						}
 					}
@@ -477,8 +477,8 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 		@Override
 		public void stop() {
 			super.stop();
-			this.slammedTarget = false;
-			this.nextUseTime = mob.tickCount + 80 + mob.random.nextInt(120);
+			slammedTarget = false;
+			nextUseTime = mob.tickCount + 80 + mob.random.nextInt(120);
 		}
 
 		public boolean animationsUseable() {
@@ -490,12 +490,12 @@ public class MageEntity extends AbstractIllager implements GeoEntity, SpawnArmor
 	class RemainStationaryGoal extends Goal {
 
 		public RemainStationaryGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
 		}
 
 		@Override
 		public boolean canUse() {
-			return MageEntity.this.shouldBeStationary();
+			return shouldBeStationary();
 		}
 	}
 }

@@ -72,9 +72,9 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		GoalUtils.removeGoal(this.goalSelector, MeleeAttackGoal.class);
-		this.goalSelector.addGoal(4, new BasicModdedAttackGoal<>(this, null, 20));
-		this.goalSelector.addGoal(5, new ApproachTargetGoal(this, 0, 1.0D, true));
+		GoalUtils.removeGoal(goalSelector, MeleeAttackGoal.class);
+		goalSelector.addGoal(4, new BasicModdedAttackGoal<>(this, null, 20));
+		goalSelector.addGoal(5, new ApproachTargetGoal(this, 0, 1.0D, true));
 	}
 
 	protected PathNavigation createNavigation(Level p_175447_1_) {
@@ -83,34 +83,34 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_FLAGS_ID, (byte) 0);
+		entityData.define(DATA_FLAGS_ID, (byte) 0);
 	}
 
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide) {
-			this.setClimbing(this.horizontalCollision);
+			setClimbing(horizontalCollision);
 		}
 
 	}
 
 	public boolean onClimbable() {
-		return this.isClimbing();
+		return isClimbing();
 	}
 
 	public boolean isClimbing() {
-		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+		return (entityData.get(DATA_FLAGS_ID) & 1) != 0;
 	}
 
 	public void setClimbing(boolean p_70839_1_) {
-		byte b0 = this.entityData.get(DATA_FLAGS_ID);
+		byte b0 = entityData.get(DATA_FLAGS_ID);
 		if (p_70839_1_) {
 			b0 = (byte) (b0 | 1);
 		} else {
 			b0 = (byte) (b0 & -2);
 		}
 
-		this.entityData.set(DATA_FLAGS_ID, b0);
+		entityData.set(DATA_FLAGS_ID, b0);
 	}
 
 	protected float getSoundVolume() {
@@ -153,14 +153,14 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 		SpawnGroupData iLivingEntityData = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_,
 				p_213386_4_,
 				p_213386_5_);
-		this.populateDefaultEquipmentSlots(this.getRandom(), p_213386_2_);
-		this.populateDefaultEquipmentEnchantments(this.getRandom(), p_213386_2_);
+		populateDefaultEquipmentSlots(getRandom(), p_213386_2_);
+		populateDefaultEquipmentEnchantments(getRandom(), p_213386_2_);
 		return iLivingEntityData;
 	}
 
 	public void applyRaidBuffs(int waveNumber, boolean bool) {
 		ItemStack itemStack = new ItemStack(ModItems.MOUNTAINEER_AXE.get());
-		Raid raid = this.getCurrentRaid();
+		Raid raid = getCurrentRaid();
 		int i = 1;
 		if (raid != null && waveNumber > raid.getNumGroups(Difficulty.NORMAL)) {
 			i = 2;
@@ -168,7 +168,7 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 
 		boolean flag = false;
 		if (raid != null) {
-			flag = this.random.nextFloat() <= raid.getEnchantOdds();
+			flag = random.nextFloat() <= raid.getEnchantOdds();
 		}
 		if (flag) {
 			Map<Enchantment, Integer> map = Maps.newHashMap();
@@ -202,7 +202,7 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.attackAnimationTick = attackAnimationLength;
+			attackAnimationTick = attackAnimationLength;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
@@ -231,12 +231,12 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.attackAnimationTick > 0) {
-			this.attackAnimationTick--;
+		if (attackAnimationTick > 0) {
+			attackAnimationTick--;
 		}
 	}
 
@@ -247,24 +247,21 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		String animation = "animation.vindicator";
-		// if (false) {
-		// animation += "_mcd";
-		// }
 		String handSide = "_right";
-		if (this.isLeftHanded()) {
+		if (isLeftHanded()) {
 			handSide = "_left";
 		}
-		if (this.getMainHandItem().isEmpty()) {
+		if (getMainHandItem().isEmpty()) {
 			handSide += "_both";
 		}
 		String crossed = "";
-		if (IllagerArmsUtil.armorHasCrossedArms(this, this.getItemBySlot(EquipmentSlot.CHEST))) {
+		if (IllagerArmsUtil.armorHasCrossedArms(this, getItemBySlot(EquipmentSlot.CHEST))) {
 			crossed = "_crossed";
 		}
-		if (this.attackAnimationTick > 0) {
+		if (attackAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then(animation + ".attack" + handSide, LoopType.LOOP));
-		} else if (this.isAggressive()
+		} else if (isAggressive()
 				&& !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimation(RawAnimation.begin()
 					.then(animation + ".run" + handSide, LoopType.LOOP));
@@ -272,7 +269,7 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 			event.getController().setAnimation(RawAnimation.begin()
 					.then(animation + ".walk" + crossed, LoopType.LOOP));
 		} else {
-			if (this.isCelebrating()) {
+			if (isCelebrating()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then(animation + ".win", LoopType.LOOP));
 			} else {

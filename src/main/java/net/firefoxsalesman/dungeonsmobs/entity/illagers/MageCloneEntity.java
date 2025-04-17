@@ -63,43 +63,43 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 
 	public MageCloneEntity(EntityType<? extends MageCloneEntity> type, Level world) {
 		super(type, world);
-		this.xpReward = 0;
+		xpReward = 0;
 	}
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new MageCloneEntity.RemainStationaryGoal());
-		this.goalSelector.addGoal(1, new MageCloneEntity.ShootAttackGoal(this));
-		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, AbstractVillager.class, 5.0F, 1.2D, 1.15D));
-		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 5.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, IronGolem.class, 5.0F, 1.3D, 1.15D));
-		this.goalSelector.addGoal(3, new ApproachTargetGoal(this, 14, 1.0D, true));
-		this.goalSelector.addGoal(4, new LookAtTargetGoal(this));
-		this.goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.targetSelector.addGoal(1, new MageCloneEntity.CopyOwnerTargetGoal(this));
+		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(0, new MageCloneEntity.RemainStationaryGoal());
+		goalSelector.addGoal(1, new MageCloneEntity.ShootAttackGoal(this));
+		goalSelector.addGoal(2, new AvoidEntityGoal<>(this, AbstractVillager.class, 5.0F, 1.2D, 1.15D));
+		goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 5.0F, 1.2D, 1.2D));
+		goalSelector.addGoal(2, new AvoidEntityGoal<>(this, IronGolem.class, 5.0F, 1.3D, 1.15D));
+		goalSelector.addGoal(3, new ApproachTargetGoal(this, 14, 1.0D, true));
+		goalSelector.addGoal(4, new LookAtTargetGoal(this));
+		goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
+		goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		targetSelector.addGoal(1, new MageCloneEntity.CopyOwnerTargetGoal(this));
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 
-		this.entityData.define(DELAYED_APPEAR, false);
+		entityData.define(DELAYED_APPEAR, false);
 	}
 
 	public boolean hasDelayedAppear() {
-		return this.entityData.get(DELAYED_APPEAR);
+		return entityData.get(DELAYED_APPEAR);
 	}
 
 	public void setDelayedAppear(boolean attached) {
-		this.entityData.set(DELAYED_APPEAR, attached);
+		entityData.set(DELAYED_APPEAR, attached);
 	}
 
 	@Override
 	public boolean hurt(DamageSource damageSource, float p_70097_2_) {
-		if (damageSource.getEntity() != null && this.isAlliedTo(damageSource.getEntity())
+		if (damageSource.getEntity() != null && isAlliedTo(damageSource.getEntity())
 				&& damageSource != damageSources().fellOutOfWorld()) {
 			return false;
 		} else {
@@ -108,31 +108,31 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 	}
 
 	public Mob getOwner() {
-		return this.owner;
+		return owner;
 	}
 
 	public void setOwner(Mob p_190658_1_) {
-		this.owner = p_190658_1_;
+		owner = p_190658_1_;
 	}
 
 	@Override
 	protected void tickDeath() {
-		++this.deathTime;
-		if (this.deathTime == 1) {
-			this.remove(RemovalReason.DISCARDED);
+		++deathTime;
+		if (deathTime == 1) {
+			remove(RemovalReason.DISCARDED);
 			for (int i = 0; i < 20; ++i) {
-				double d0 = this.random.nextGaussian() * 0.02D;
-				double d1 = this.random.nextGaussian() * 0.02D;
-				double d2 = this.random.nextGaussian() * 0.02D;
-				level().addParticle(ParticleTypes.POOF, this.getRandomX(1.0D), this.getRandomY(),
-						this.getRandomZ(1.0D), d0, d1, d2);
+				double d0 = random.nextGaussian() * 0.02D;
+				double d1 = random.nextGaussian() * 0.02D;
+				double d2 = random.nextGaussian() * 0.02D;
+				level().addParticle(ParticleTypes.POOF, getRandomX(1.0D), getRandomY(),
+						getRandomZ(1.0D), d0, d1, d2);
 			}
 		}
 
 	}
 
 	public boolean shouldBeStationary() {
-		return this.appearAnimationTick > 0;
+		return appearAnimationTick > 0;
 	}
 
 	@Override
@@ -147,16 +147,16 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.shootAnimationTick = shootAnimationLength;
+			shootAnimationTick = shootAnimationLength;
 		} else if (p_28844_ == 8) {
-			this.appearAnimationTick = appearAnimationLength;
+			appearAnimationTick = appearAnimationLength;
 		} else if (p_28844_ == 11) {
 			for (int i = 0; i < 20; ++i) {
-				double d0 = this.random.nextGaussian() * 0.02D;
-				double d1 = this.random.nextGaussian() * 0.02D;
-				double d2 = this.random.nextGaussian() * 0.02D;
-				level().addParticle(ParticleTypes.POOF, this.getRandomX(1.0D), this.getRandomY(),
-						this.getRandomZ(1.0D), d0, d1, d2);
+				double d0 = random.nextGaussian() * 0.02D;
+				double d1 = random.nextGaussian() * 0.02D;
+				double d2 = random.nextGaussian() * 0.02D;
+				level().addParticle(ParticleTypes.POOF, getRandomX(1.0D), getRandomY(),
+						getRandomZ(1.0D), d0, d1, d2);
 			}
 		} else {
 			super.handleEntityEvent(p_28844_);
@@ -165,44 +165,44 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
+		tickDownAnimTimers();
 
-		this.lifeTime++;
+		lifeTime++;
 
-		if (!level().isClientSide && this.hasDelayedAppear()) {
-			this.appearAnimationTick = this.appearAnimationLength;
+		if (!level().isClientSide && hasDelayedAppear()) {
+			appearAnimationTick = appearAnimationLength;
 			level().broadcastEntityEvent(this, (byte) 8);
-			this.setDelayedAppear(false);
+			setDelayedAppear(false);
 		}
 
-		int lifeTimeByDifficulty = level().getCurrentDifficultyAt(this.blockPosition()).getDifficulty()
+		int lifeTimeByDifficulty = level().getCurrentDifficultyAt(blockPosition()).getDifficulty()
 				.getId();
 
-		if (!level().isClientSide && (this.hurtTime > 0
-				|| ((this.lifeTime >= lifeTimeByDifficulty * 100) || this.getOwner() != null
-						&& (this.getOwner().isDeadOrDying() || this.getOwner().hurtTime > 0
-								|| this.getOwner().getTarget() == null)))) {
-			if (this.hurtTime > 0) {
-				this.playSound(this.getDeathSound(), this.getSoundVolume(), this.getVoicePitch());
+		if (!level().isClientSide && (hurtTime > 0
+				|| ((lifeTime >= lifeTimeByDifficulty * 100) || getOwner() != null
+						&& (getOwner().isDeadOrDying() || getOwner().hurtTime > 0
+								|| getOwner().getTarget() == null)))) {
+			if (hurtTime > 0) {
+				playSound(getDeathSound(), getSoundVolume(), getVoicePitch());
 			} else {
-				this.playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, this.getSoundVolume(), 1.0F);
+				playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, getSoundVolume(), 1.0F);
 			}
-			this.remove(RemovalReason.DISCARDED);
+			remove(RemovalReason.DISCARDED);
 			level().broadcastEntityEvent(this, (byte) 11);
 		}
 
-		if (!level().isClientSide() && this.getOwner() != null) {
-			this.setHealth(this.getOwner().getHealth());
+		if (!level().isClientSide() && getOwner() != null) {
+			setHealth(getOwner().getHealth());
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.shootAnimationTick > 0) {
-			this.shootAnimationTick--;
+		if (shootAnimationTick > 0) {
+			shootAnimationTick--;
 		}
 
-		if (this.appearAnimationTick > 0) {
-			this.appearAnimationTick--;
+		if (appearAnimationTick > 0) {
+			appearAnimationTick--;
 		}
 	}
 
@@ -212,17 +212,17 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.appearAnimationTick > 0) {
+		if (appearAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_appear", LoopType.LOOP));
-		} else if (this.shootAnimationTick > 0) {
+		} else if (shootAnimationTick > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_shoot", LoopType.LOOP));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("mage_walk", LoopType.LOOP));
 		} else {
-			if (this.isCelebrating()) {
+			if (isCelebrating()) {
 				event.getController().setAnimation(RawAnimation.begin().then("mage_celebrate",
 						LoopType.LOOP));
 			} else {
@@ -246,7 +246,7 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 			return true;
 		} else if (entityIn instanceof LivingEntity
 				&& ((LivingEntity) entityIn).getMobType() == MobType.ILLAGER) {
-			return this.getTeam() == null && entityIn.getTeam() == null;
+			return getTeam() == null && entityIn.getTeam() == null;
 		} else {
 			return false;
 		}
@@ -287,9 +287,9 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		public LivingEntity target;
 
 		public ShootAttackGoal(MageCloneEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 			this.mob = mob;
-			this.target = mob.getTarget();
+			target = mob.getTarget();
 		}
 
 		@Override
@@ -324,7 +324,7 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		public void tick() {
 			target = mob.getTarget();
 
-			this.mob.getNavigation().stop();
+			mob.getNavigation().stop();
 
 			if (target != null && mob.shootAnimationTick == mob.shootAnimationActionPoint) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0.3, 1.5, 0.5, mob.yBodyRot);
@@ -355,13 +355,13 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		}
 
 		public boolean canUse() {
-			return MageCloneEntity.this.owner != null && MageCloneEntity.this.owner.getTarget() != null
-					&& this.canAttack(MageCloneEntity.this.owner.getTarget(),
-							this.copyOwnerTargeting);
+			return owner != null && owner.getTarget() != null
+					&& canAttack(owner.getTarget(),
+							copyOwnerTargeting);
 		}
 
 		public void start() {
-			MageCloneEntity.this.setTarget(MageCloneEntity.this.owner.getTarget());
+			setTarget(owner.getTarget());
 			super.start();
 		}
 	}
@@ -369,12 +369,12 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 	class RemainStationaryGoal extends Goal {
 
 		public RemainStationaryGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.TARGET, Goal.Flag.JUMP));
 		}
 
 		@Override
 		public boolean canUse() {
-			return MageCloneEntity.this.shouldBeStationary();
+			return shouldBeStationary();
 		}
 	}
 
