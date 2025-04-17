@@ -59,18 +59,18 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
                 builder.put(attribute, new AttributeModifier(uuid, "Weapon modifier", attributeModifier.getAmount(), attributeModifier.getOperation()));
             }
         });
-        this.defaultModifiers = builder.build();
+        defaultModifiers = builder.build();
         ((ItemAccessor) this).setMaxDamage(crossbowGearConfig.getDurability());
     }
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+        return pEquipmentSlot == EquipmentSlot.MAINHAND ? defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
     }
 
 
     public float getDefaultChargeTime() {
-        return this.crossbowGearConfig.getDefaultChargeTime();
+        return crossbowGearConfig.getDefaultChargeTime();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
             CrossbowItemInvoker crossbowItemInvoker = (CrossbowItemInvoker) this;
             SoundEvent quickChargeSoundEvent = crossbowItemInvoker.callGetStartSound(quickChargeLevel);
             SoundEvent loadingMiddleSoundEvent = quickChargeLevel == 0 ? SoundEvents.CROSSBOW_LOADING_MIDDLE : null;
-            float chargeTime = (float) (stack.getUseDuration() - timeLeft) / this.getCrossbowChargeTime(livingEntity, stack);
+            float chargeTime = (float) (stack.getUseDuration() - timeLeft) / getCrossbowChargeTime(livingEntity, stack);
             if (chargeTime < 0.2F) {
                 crossbowItemInvoker.setStartSoundPlayed(false);
                 crossbowItemInvoker.setMidLoadSoundPlayed(false);
@@ -103,7 +103,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
     @Override
     public void releaseUsing(ItemStack stack, Level worldIn, LivingEntity livingEntity, int timeLeft) {
         float chargeTime = getCrossbowChargeTime(livingEntity, stack) + 3 - timeLeft;
-        float getCharge = this.getCrossbowCharge(livingEntity, chargeTime, stack);
+        float getCharge = getCrossbowCharge(livingEntity, chargeTime, stack);
         // Call to CrossbowItem.tryLoadProjectiles must be in-line as it modifies NBT without the previous checks
         // Do not refactor as a variable preceding this if statement
         if (getCharge >= 1.0F && !isCharged(stack) && CrossbowItemInvoker.callTryLoadProjectiles(livingEntity, stack)) {
@@ -115,7 +115,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
     }
 
     public float getCrossbowCharge(LivingEntity livingEntity, float useTime, ItemStack stack) {
-        float crossbowChargeTime = this.getCrossbowChargeTime(livingEntity, stack);
+        float crossbowChargeTime = getCrossbowChargeTime(livingEntity, stack);
         float charge = useTime / crossbowChargeTime;
         if (charge > 1.0F) {
             charge = 1.0F;
@@ -127,7 +127,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
     public float getCrossbowChargeTime(@Nullable LivingEntity livingEntity, ItemStack stack) {
         int quickChargeLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         float minTime = 1;
-        CrossbowEvent.ChargeTime event = new CrossbowEvent.ChargeTime(livingEntity, stack, this.getDefaultChargeTime());
+        CrossbowEvent.ChargeTime event = new CrossbowEvent.ChargeTime(livingEntity, stack, getDefaultChargeTime());
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
         return Math.max(event.getChargeTime() - 5 * quickChargeLevel, minTime);
     }
@@ -149,7 +149,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
 
     @Override
     public boolean isUnique() {
-        return this.crossbowGearConfig.isUnique();
+        return crossbowGearConfig.isUnique();
     }
 
     public BowGearConfig getGearConfig() {

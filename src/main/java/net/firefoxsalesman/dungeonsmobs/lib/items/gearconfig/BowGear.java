@@ -50,17 +50,17 @@ public class BowGear extends BowItem implements IRangedWeapon, IReloadableGear, 
                 builder.put(attribute, new AttributeModifier(uuid, "Weapon modifier", attributeModifier.getAmount(), attributeModifier.getOperation()));
             }
         });
-        this.defaultModifiers = builder.build();
+        defaultModifiers = builder.build();
         ((ItemAccessor) this).setMaxDamage(bowGearConfig.getDurability());
     }
 
     public float getDefaultChargeTime() {
-        return this.bowGearConfig.getDefaultChargeTime();
+        return bowGearConfig.getDefaultChargeTime();
     }
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+        return pEquipmentSlot == EquipmentSlot.MAINHAND ? defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
     }
 
     @Override

@@ -55,7 +55,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
     public void reload() {
         meleeGearConfig = MeleeGearConfigRegistry.getConfig(ForgeRegistries.ITEMS.getKey(this));
         ((TieredItemAccessor) this).setTier(meleeGearConfig.getWeaponMaterial());
-        ((ItemAccessor) this).setMaxDamage(this.getTier().getUses());
+        ((ItemAccessor) this).setMaxDamage(getTier().getUses());
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         meleeGearConfig.getAttributes().forEach(attributeModifier -> {
             Attribute attribute = ATTRIBUTES.getValue(attributeModifier.getAttributeResourceLocation());
@@ -63,14 +63,14 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
                 UUID uuid = randomUUID();
                 if (ATTACK_DAMAGE.equals(attribute)) {
                     uuid = BASE_ATTACK_DAMAGE_UUID;
-                    this.attackDamage = (float) attributeModifier.getAmount() + this.getTier().getAttackDamageBonus();
+                    attackDamage = (float) attributeModifier.getAmount() + getTier().getAttackDamageBonus();
                 } else if (ATTACK_SPEED.equals(attribute)) {
                     uuid = BASE_ATTACK_SPEED_UUID;
                 }
                 builder.put(attribute, new AttributeModifier(uuid, "Weapon modifier", attributeModifier.getAmount(), attributeModifier.getOperation()));
             }
         });
-        this.defaultModifiers = builder.build();
+        defaultModifiers = builder.build();
     }
 
     public MeleeGearConfig getGearConfig() {
@@ -79,7 +79,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
 
     @Override
     public int getComboLength(ItemStack stack, LivingEntity attacker) {
-        return this.getGearConfig().getComboLength();
+        return getGearConfig().getComboLength();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+        return pEquipmentSlot == EquipmentSlot.MAINHAND ? defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -101,7 +101,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
 
     @Override
     public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
-        return this.getGearConfig().isDisablesShield();
+        return getGearConfig().isDisablesShield();
     }
 
     @Override
@@ -111,7 +111,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
     }
 
     public float getDamage() {
-        return this.attackDamage;
+        return attackDamage;
     }
 
     public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {

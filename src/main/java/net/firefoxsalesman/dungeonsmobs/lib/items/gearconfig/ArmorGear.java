@@ -76,7 +76,7 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 
 	@Override
 	public void reload() {
-		armorGearConfig = ArmorGearConfigRegistry.getConfig(this.armorSet);
+		armorGearConfig = ArmorGearConfigRegistry.getConfig(armorSet);
 		if (armorGearConfig == ArmorGearConfig.DEFAULT) {
 			armorGearConfig = ArmorGearConfigRegistry.getConfig(ForgeRegistries.ITEMS.getKey(this));
 		}
@@ -92,10 +92,10 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 				material.getDefenseForType(getType()), AttributeModifier.Operation.ADDITION));
 		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(primaryUuid, "Armor toughness",
 				material.getToughness(), AttributeModifier.Operation.ADDITION));
-		if (this.knockbackResistance > 0) {
+		if (knockbackResistance > 0) {
 			builder.put(Attributes.KNOCKBACK_RESISTANCE,
 					new AttributeModifier(primaryUuid, "Armor knockback resistance",
-							this.knockbackResistance,
+							knockbackResistance,
 							AttributeModifier.Operation.ADDITION));
 		}
 		armorGearConfig.getAttributes().forEach(attributeModifier -> {
@@ -106,7 +106,7 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 						attributeModifier.getAmount(), attributeModifier.getOperation()));
 			}
 		});
-		this.defaultModifiers = builder.build();
+		defaultModifiers = builder.build();
 	}
 
 	public ArmorGearConfig getGearConfig() {
@@ -120,7 +120,7 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 
 	@Override
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-		return pEquipmentSlot == getType().getSlot() ? this.defaultModifiers
+		return pEquipmentSlot == getType().getSlot() ? defaultModifiers
 				: super.getDefaultAttributeModifiers(pEquipmentSlot);
 	}
 
@@ -152,7 +152,7 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return this.factory;
+		return factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -181,11 +181,6 @@ public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUn
 			@Override
 			public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack,
 					EquipmentSlot armorSlot, HumanoidModel<?> _default) {
-				// return (HumanoidModel<?>) GeoArmorRenderer.getRenderer(ArmorGear.class,
-				// entityLiving)
-				// .applyEntityStats(_default)
-				// .setCurrentItem(entityLiving, itemStack, armorSlot)
-				// .applySlot(armorSlot);
 				// TODO: If your armour isn't rendering this is probably the issue
 				if (renderer == null) {
 					renderer = new ArmorGearRenderer<>();
