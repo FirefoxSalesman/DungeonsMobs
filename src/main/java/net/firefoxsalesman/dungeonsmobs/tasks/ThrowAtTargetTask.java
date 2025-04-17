@@ -27,26 +27,26 @@ public class ThrowAtTargetTask<E extends Mob> extends Behavior<E> {
 
     protected boolean checkExtraStartConditions(ServerLevel serverWorld, E thrower) {
         LivingEntity attackTarget = getAttackTarget(thrower);
-        return thrower.isHolding(this.throwItemPredicate) && BehaviorUtils.canSee(thrower, attackTarget) && BehaviorUtils.isWithinAttackRange(thrower, attackTarget, 0);
+        return thrower.isHolding(throwItemPredicate) && BehaviorUtils.canSee(thrower, attackTarget) && BehaviorUtils.isWithinAttackRange(thrower, attackTarget, 0);
     }
 
     protected boolean canStillUse(ServerLevel serverWorld, E thrower, long gameTime) {
-        return thrower.getBrain().hasMemoryValue(MemoryModuleType.ATTACK_TARGET) && this.checkExtraStartConditions(serverWorld, thrower);
+        return thrower.getBrain().hasMemoryValue(MemoryModuleType.ATTACK_TARGET) && checkExtraStartConditions(serverWorld, thrower);
     }
 
     protected void tick(ServerLevel serverWorld, E thrower, long gameTime) {
         LivingEntity attackTarget = getAttackTarget(thrower);
-        this.lookAtTarget(thrower, attackTarget);
-        this.throwAttack(thrower, attackTarget);
+        lookAtTarget(thrower, attackTarget);
+        throwAttack(thrower, attackTarget);
     }
 
     private void throwAttack(E thrower, LivingEntity attackTarget) {
-        if (this.attackDelay > 0) {
-            --this.attackDelay;
+        if (attackDelay > 0) {
+            --attackDelay;
         }
-        if (this.attackDelay <= 0) {
-            this.performRangedAttack.accept(thrower, attackTarget);
-            this.attackDelay = 50 + thrower.getRandom().nextInt(20); // average delay of 60 ticks
+        if (attackDelay <= 0) {
+            performRangedAttack.accept(thrower, attackTarget);
+            attackDelay = 50 + thrower.getRandom().nextInt(20); // average delay of 60 ticks
         }
     }
 

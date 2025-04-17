@@ -29,7 +29,7 @@ public class WeaponMaterialSyncPacket {
     }
 
     public void encode(FriendlyByteBuf buffer) {
-        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, this.data).result().orElse(new CompoundTag())));
+        buffer.writeNbt((CompoundTag) (MAPPER.encodeStart(NbtOps.INSTANCE, data).result().orElse(new CompoundTag())));
     }
 
     public static WeaponMaterialSyncPacket decode(FriendlyByteBuf buffer) {
@@ -43,7 +43,7 @@ public class WeaponMaterialSyncPacket {
     }
 
     private void handlePacketOnMainThread() {
-        WeaponMaterials.WEAPON_MATERIALS.setData(this.data);
+        WeaponMaterials.WEAPON_MATERIALS.setData(data);
         reloadAllItems();
     }
 }

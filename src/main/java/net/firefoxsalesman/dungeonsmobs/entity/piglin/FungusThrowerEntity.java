@@ -35,8 +35,8 @@ public class FungusThrowerEntity extends Piglin {
         super(entityType, world);
     }
 
-    public static boolean checkFungusThrowerSpawnRules(EntityType<? extends Piglin> p_234418_0_, LevelAccessor p_234418_1_, MobSpawnType p_234418_2_, BlockPos p_234418_3_, RandomSource p_234418_4_) {
-        return !p_234418_1_.getBlockState(p_234418_3_.below()).is(BlockTags.WART_BLOCKS);
+    public static boolean checkFungusThrowerSpawnRules(EntityType<? extends Piglin> pEntityType, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource randomSource) {
+        return !levelAccessor.getBlockState(pos.below()).is(BlockTags.WART_BLOCKS);
     }
 
     @Override
