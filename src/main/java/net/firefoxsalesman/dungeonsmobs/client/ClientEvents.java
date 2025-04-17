@@ -104,18 +104,10 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
 
-		event.registerEntityRenderer(EntityType.PIGLIN,
-				manager -> new CustomPiglinRenderer(manager, ModelLayers.PIGLIN,
-						ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false,
-						false));
 		event.registerEntityRenderer(ModEntities.FUNGUS_THROWER.get(),
 				manager -> new CustomPiglinRenderer(manager, ModelLayers.PIGLIN,
 						ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false,
 						true));
-		event.registerEntityRenderer(EntityType.ZOMBIFIED_PIGLIN,
-				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
-						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
-						ModelLayers.ZOMBIFIED_PIGLIN_OUTER_ARMOR, true, false));
 		event.registerEntityRenderer(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(),
 				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
 						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
