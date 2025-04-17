@@ -8,7 +8,7 @@ import com.mojang.datafixers.util.Pair;
 import net.firefoxsalesman.dungeonsmobs.mixin.BrainAccessor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.Brain;
-import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 import net.minecraft.world.entity.schedule.Activity;
 
 public class BrainHelper {
@@ -21,11 +21,11 @@ public class BrainHelper {
     }
     */
 
-    public static <E extends LivingEntity> ImmutableList<? extends Pair<Integer, ? extends Behavior<? super E>>> createPriorityPairs(int priorityStart, ImmutableList<? extends Behavior<? super E>> tasks) {
+    public static <E extends LivingEntity> ImmutableList<? extends Pair<Integer, ? extends BehaviorControl<? super E>>> createPriorityPairs(int priorityStart, ImmutableList<? extends BehaviorControl<? super E>> tasks) {
         int priorityIndex = priorityStart;
-        ImmutableList.Builder<Pair<Integer, ? extends Behavior<? super E>>> priorityPairs = ImmutableList.builder();
+        ImmutableList.Builder<Pair<Integer, ? extends BehaviorControl<? super E>>> priorityPairs = ImmutableList.builder();
 
-        for (Behavior<? super E> task : tasks) {
+        for (BehaviorControl<? super E> task : tasks) {
             priorityPairs.add(Pair.of(priorityIndex++, task));
         }
 
@@ -53,10 +53,10 @@ public class BrainHelper {
     }
      */
 
-    public static <E extends LivingEntity> void addPrioritizedBehaviors(Activity activity, ImmutableList<? extends Pair<Integer, ? extends Behavior<? super E>>> prioritizedTasks, Brain<E> brain) {
+    public static <E extends LivingEntity> void addPrioritizedBehaviors(Activity activity, ImmutableList<? extends Pair<Integer, ? extends BehaviorControl<? super E>>> prioritizedTasks, Brain<E> brain) {
         BrainAccessor<E> brainAccessor = castToAccessor(brain);
 
-        for (Pair<Integer, ? extends Behavior<? super E>> pair : prioritizedTasks) {
+        for (Pair<Integer, ? extends BehaviorControl<? super E>> pair : prioritizedTasks) {
             brainAccessor.getAvailableBehaviorsByPriority()
                     .computeIfAbsent(pair.getFirst(), (p) -> Maps.newHashMap())
                     .computeIfAbsent(activity, (a) -> Sets.newLinkedHashSet())

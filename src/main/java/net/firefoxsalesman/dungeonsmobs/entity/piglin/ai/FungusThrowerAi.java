@@ -13,7 +13,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.Brain;
-import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.BackUpIfTooClose;
+import net.minecraft.world.entity.ai.behavior.BehaviorControl;
+import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.Item;
@@ -30,16 +32,15 @@ public class FungusThrowerAi {
 
 	public static <E extends FungusThrowerEntity> void addFungusThrowerTasks(Brain<E> brain) {
 
-		ImmutableList<? extends Behavior<? super E>> additionalFightTasks = ImmutableList.of(
-				// TODO: Make fungus thrower back up
-				// new RunIf<>(FungusThrowerAi::hasBlueNethershroom, BackUpIfTooClose.create(6,
-				// 0.75F)),
+		ImmutableList<? extends BehaviorControl<? super E>> additionalFightTasks = ImmutableList.of(
+				BehaviorBuilder.triggerIf(FungusThrowerAi::hasBlueNethershroom,
+						BackUpIfTooClose.create(6, 0.75F)),
 				new ThrowAtTargetTask<>(FUNGUS_ITEM_STACK_PREDICATE,
 						FungusThrowerAi::performFungusThrow));
 
 		int priorityStart = 7; // Number of fight tasks piglins start with - would like to find a way to
 					// dynamically get this from the brain
-		ImmutableList<? extends Pair<Integer, ? extends Behavior<? super E>>> prioritizedFightTasks = BrainHelper
+		ImmutableList<? extends Pair<Integer, ? extends BehaviorControl<? super E>>> prioritizedFightTasks = BrainHelper
 				.createPriorityPairs(priorityStart, additionalFightTasks);
 
 		BrainHelper.addPrioritizedBehaviors(Activity.FIGHT, prioritizedFightTasks, brain);
@@ -73,5 +74,9 @@ public class FungusThrowerAi {
 
 	public static boolean isBlueNethershroom(ItemStack itemStack) {
 		return FUNGUS_ITEM_PREDICATE.test(itemStack.getItem());
+	}
+
+	private static boolean hasBlueNethershroom(LivingEntity living) {
+		return living.isHolding(FUNGUS_ITEM_STACK_PREDICATE);
 	}
 }
