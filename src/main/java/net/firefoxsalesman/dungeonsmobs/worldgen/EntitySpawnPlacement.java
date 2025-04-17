@@ -2,6 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.piglin.FungusThrowerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.piglin.ZombifiedFungusThrowerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
@@ -97,6 +99,16 @@ public class EntitySpawnPlacement {
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
 				EntitySpawnPlacement::canJungleMobSpawn);
+
+		// Piglin
+		SpawnPlacements.register(ModEntities.FUNGUS_THROWER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				FungusThrowerEntity::checkFungusThrowerSpawnRules);
+		SpawnPlacements.register(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				ZombifiedFungusThrowerEntity::checkZombifiedFungusThrowerSpawnRules);
 
 		// Ocean
 		SpawnPlacements.register(ModEntities.WAVEWHISPERER.get(),
