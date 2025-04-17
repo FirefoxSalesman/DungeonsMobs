@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.Convertible;
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.ConvertibleHelper;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.minecraft.tags.FluidTags;
@@ -104,6 +105,9 @@ public class MobEvents {
 	@SubscribeEvent
 	public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
 		if (event.getExplosion().getExploder() instanceof IcyCreeperEntity) {
+			if (!DungeonsMobsConfig.COMMON.ENABLE_ICY_CREEPER_GRIEFING.get()) {
+				event.getAffectedBlocks().clear();
+			}
 			List<Entity> entityList = event.getAffectedEntities();
 			for (Entity entity : entityList) {
 				if (entity instanceof LivingEntity) {
