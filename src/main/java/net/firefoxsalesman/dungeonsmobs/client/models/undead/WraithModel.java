@@ -32,13 +32,13 @@ public class WraithModel extends GeoModel<WraithEntity> {
 			AnimationState<WraithEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHead");
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone head = getAnimationProcessor().getBone("bipedHead");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 
 		cape.setHidden(true);
 
-		CoreGeoBone leftHand = this.getAnimationProcessor().getBone("bipedHandLeft");
-		CoreGeoBone rightHand = this.getAnimationProcessor().getBone("bipedHandRight");
+		CoreGeoBone leftHand = getAnimationProcessor().getBone("bipedHandLeft");
+		CoreGeoBone rightHand = getAnimationProcessor().getBone("bipedHandRight");
 
 		if (entity.tickCount % 2 == 0 && rightHand instanceof CoreGeoBone && leftHand instanceof CoreGeoBone
 				&& entity.isSpellcasting()) {

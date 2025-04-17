@@ -21,7 +21,7 @@ public class VanguardShieldModel extends Model {
 
     public VanguardShieldModel(ModelPart modelPart) {
         super(RenderType::entitySolid);
-        this.root = modelPart;
+        root = modelPart;
     }
 
     public static LayerDefinition createLayer() {
@@ -41,10 +41,10 @@ public class VanguardShieldModel extends Model {
     }
 
     public ModelPart getRoot() {
-        return this.root;
+        return root;
     }
 
     public void renderToBuffer(PoseStack p_103703_, VertexConsumer p_103704_, int p_103705_, int p_103706_, float p_103707_, float p_103708_, float p_103709_, float p_103710_) {
-        this.root.render(p_103703_, p_103704_, p_103705_, p_103706_, p_103707_, p_103708_, p_103709_, p_103710_);
+        root.render(p_103703_, p_103704_, p_103705_, p_103706_, p_103707_, p_103708_, p_103709_, p_103710_);
     }
 }

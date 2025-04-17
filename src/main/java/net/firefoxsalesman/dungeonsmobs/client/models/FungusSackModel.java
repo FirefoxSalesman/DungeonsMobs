@@ -16,8 +16,8 @@ import net.minecraft.world.entity.LivingEntity;
 public class FungusSackModel<T extends LivingEntity> extends AgeableListModel<T> {
     private final ModelPart root;
 
-    public FungusSackModel(ModelPart p_170955_) {
-        this.root = p_170955_;
+    public FungusSackModel(ModelPart root) {
+        this.root = root;
     }
 
 
@@ -30,9 +30,9 @@ public class FungusSackModel<T extends LivingEntity> extends AgeableListModel<T>
 
     @Override
     public void setupAnim(T wearer, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-        this.root.y = 4.3611F;
+        root.y = 4.3611F;
         if (wearer.isCrouching()) {
-            this.root.y += 3.0F;
+            root.y += 3.0F;
         }
     }
 
@@ -43,7 +43,7 @@ public class FungusSackModel<T extends LivingEntity> extends AgeableListModel<T>
 
     @Override
     protected Iterable<ModelPart> bodyParts() {
-        return ImmutableList.of(this.root);
+        return ImmutableList.of(root);
     }
 
     public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {

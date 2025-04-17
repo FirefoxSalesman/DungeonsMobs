@@ -15,7 +15,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -40,8 +39,8 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 
 	public float flameTicks;
 
-	public BlastlingEntity(EntityType<? extends BlastlingEntity> p_i50210_1_, Level p_i50210_2_) {
-		super(p_i50210_1_, p_i50210_2_);
+	public BlastlingEntity(EntityType<? extends BlastlingEntity> entity, Level level) {
+		super(entity, level);
 	}
 
 	protected void registerGoals() {
@@ -188,7 +187,6 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		protected final PathNavigation pathNav;
 		protected final Predicate<LivingEntity> avoidPredicate;
 		protected final Predicate<LivingEntity> predicateOnAvoidEntity;
-		private final TargetingConditions avoidEntityTargeting;
 
 		public AvoidEntityGoal(PathfinderMob p_i46404_1_, float p_i46404_3_, double p_i46404_4_,
 				double p_i46404_6_) {
@@ -199,17 +197,15 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 
 		public AvoidEntityGoal(PathfinderMob mob, Predicate<LivingEntity> avoidPredicate,
 				float maxDist, double walkSpeedModifier, double sprintSpeedModifier,
-				Predicate<LivingEntity> predicateOnAvoidEntity) {
-			this.mob = mob;
-			this.avoidPredicate = avoidPredicate;
-			this.maxDist = maxDist;
-			this.walkSpeedModifier = walkSpeedModifier;
-			this.sprintSpeedModifier = sprintSpeedModifier;
-			this.predicateOnAvoidEntity = predicateOnAvoidEntity;
-			this.pathNav = mob.getNavigation();
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-			this.avoidEntityTargeting = TargetingConditions.forCombat().range(maxDist)
-					.selector(predicateOnAvoidEntity.and(avoidPredicate));
+		    Predicate<LivingEntity> predicateOnAvoidEntity) {
+		    this.mob = mob;
+		    this.avoidPredicate = avoidPredicate;
+		    this.maxDist = maxDist;
+		    this.walkSpeedModifier = walkSpeedModifier;
+		    this.sprintSpeedModifier = sprintSpeedModifier;
+		    this.predicateOnAvoidEntity = predicateOnAvoidEntity;
+		    pathNav = mob.getNavigation();
+		    setFlags(EnumSet.of(Goal.Flag.MOVE));
 		}
 
 		public AvoidEntityGoal(PathfinderMob mob, float p_i48860_3_, double p_i48860_4_,
@@ -220,7 +216,7 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		}
 
 		public boolean canUse() {
-			toAvoid = BlastlingEntity.this.getTarget();
+			toAvoid = getTarget();
 			if (toAvoid == null || mob.distanceTo(toAvoid) > maxDist) {
 				return false;
 			} else {
@@ -232,15 +228,15 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 					return false;
 				} else {
 					path = pathNav.createPath(vector3d.x, vector3d.y, vector3d.z, 0);
-					return BlastlingEntity.this.getTarget() != null
-							&& BlastlingEntity.this.getTarget().isAlive()
+					return getTarget() != null
+							&& getTarget().isAlive()
 							&& path != null;
 				}
 			}
 		}
 
 		public boolean canContinueToUse() {
-			return BlastlingEntity.this.getTarget() != null && BlastlingEntity.this.getTarget().isAlive()
+			return getTarget() != null && getTarget().isAlive()
 					&& !pathNav.isDone();
 		}
 
@@ -253,7 +249,7 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		}
 
 		public void tick() {
-			BlastlingEntity.this.setShootTime(0);
+			setShootTime(0);
 			if (mob.distanceToSqr(toAvoid) < 49.0D) {
 				mob.getNavigation().setSpeedModifier(sprintSpeedModifier);
 			} else {

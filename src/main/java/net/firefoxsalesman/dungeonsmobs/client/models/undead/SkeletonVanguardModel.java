@@ -36,8 +36,8 @@ public class SkeletonVanguardModel extends GeoModel<SkeletonVanguardEntity> {
 			AnimationState<SkeletonVanguardEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHead");
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone head = getAnimationProcessor().getBone("bipedHead");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 
 		cape.setHidden(true);
 

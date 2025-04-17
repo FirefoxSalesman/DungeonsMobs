@@ -286,7 +286,7 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		public void tick() {
 			super.tick();
 
-			AbstractEnderlingEntity.this.setRunning(10);
+			setRunning(10);
 		}
 
 		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
@@ -300,7 +300,7 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 				}
 
 				if (getTicksUntilNextAttack() <= 30) {
-					AbstractEnderlingEntity.this.setAttacking(30);
+					setAttacking(30);
 				}
 			} else {
 				resetAttackCooldown();
@@ -314,8 +314,8 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 		protected LivingEntity target;
 		protected TargetingConditions targetConditions;
 
-		public EnderlingTargetGoal(Mob p_i50313_1_, Class<T> p_i50313_2_, boolean p_i50313_3_) {
-			this(p_i50313_1_, p_i50313_2_, p_i50313_3_, false);
+		public EnderlingTargetGoal(Mob pMob, Class<T> p_i50313_2_, boolean p_i50313_3_) {
+			this(pMob, p_i50313_2_, p_i50313_3_, false);
 		}
 
 		public EnderlingTargetGoal(Mob mob, Class<T> p_i50314_2_, boolean p_i50314_3_,
@@ -382,8 +382,8 @@ public abstract class AbstractEnderlingEntity extends Monster implements GeoEnti
 				@Nullable Predicate<LivingEntity> p_i241912_2_) {
 			super(enderman, Player.class, 10, false, false, p_i241912_2_);
 			this.enderman = enderman;
-			this.startAggroTargetConditions = TargetingConditions.forCombat()
-					.range(this.getFollowDistance())
+			startAggroTargetConditions = TargetingConditions.forCombat()
+					.range(getFollowDistance())
 					.selector((p_220790_1_) -> {
 						return enderman.isLookingAtMe((Player) p_220790_1_);
 					});
