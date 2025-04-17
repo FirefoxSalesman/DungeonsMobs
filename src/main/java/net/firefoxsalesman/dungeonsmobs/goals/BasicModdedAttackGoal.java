@@ -24,9 +24,9 @@ public class BasicModdedAttackGoal<T extends Mob & GeoAnimatable & AnimatableMel
 	public BasicModdedAttackGoal(T mob, SoundEvent soundEvent, int cooldown) {
 		this.soundEvent = soundEvent;
 		this.cooldown = cooldown;
-		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Flag.JUMP));
+		setFlags(EnumSet.of(Goal.Flag.MOVE, Flag.JUMP));
 		this.mob = mob;
-		this.target = mob.getTarget();
+		target = mob.getTarget();
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class BasicModdedAttackGoal<T extends Mob & GeoAnimatable & AnimatableMel
 	@Override
 	public boolean canUse() {
 		long i = mob.level().getGameTime();
-		if (i - this.lastUseTime < cooldown) {
+		if (i - lastUseTime < cooldown) {
 			return false;
 		} else {
 			target = mob.getTarget();
@@ -100,7 +100,7 @@ public class BasicModdedAttackGoal<T extends Mob & GeoAnimatable & AnimatableMel
 	}
 
 	public double getAttackReachSqr(LivingEntity p_179512_1_) {
-		return this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + p_179512_1_.getBbWidth();
+		return mob.getBbWidth() * 2.0F * mob.getBbWidth() * 2.0F + p_179512_1_.getBbWidth();
 	}
 
 }

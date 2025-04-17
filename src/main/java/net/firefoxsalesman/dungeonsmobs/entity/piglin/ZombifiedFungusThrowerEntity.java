@@ -34,7 +34,7 @@ public class ZombifiedFungusThrowerEntity extends ZombifiedPiglin {
     @Override
     protected void addBehaviourGoals() {
         super.addBehaviourGoals();
-        this.goalSelector.addGoal(2, new SimpleRangedAttackGoal<>(this, FungusThrowerAi.FUNGUS_ITEM_STACK_PREDICATE, FungusThrowerAi::performFungusThrow, 0.75D, 60, 6.0F));
+        goalSelector.addGoal(2, new SimpleRangedAttackGoal<>(this, FungusThrowerAi.FUNGUS_ITEM_STACK_PREDICATE, FungusThrowerAi::performFungusThrow, 0.75D, 60, 6.0F));
     }
 
     @Override

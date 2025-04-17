@@ -24,9 +24,9 @@ public class UseShieldGoal extends Goal {
     public LivingEntity target;
 
     public UseShieldGoal(PathfinderMob attackingMob, double blockDistance, int blockDuration, int maxBlockDuration, int stopChanceAfterDurationEnds, int blockChance, boolean guaranteedBlockIfTargetNotVisible) {
-        this.blockDuration = maxBlockDuration;
-        this.mob = attackingMob;
-        this.target = attackingMob.getTarget();
+        blockDuration = maxBlockDuration;
+        mob = attackingMob;
+        target = attackingMob.getTarget();
         this.blockChance = blockChance;
         this.maxBlockDuration = maxBlockDuration;
         this.stopChanceAfterDurationEnds = stopChanceAfterDurationEnds;
@@ -54,7 +54,7 @@ public class UseShieldGoal extends Goal {
     @Override
     public boolean canUse() {
         target = mob.getTarget();
-        return target != null && !isShieldDisabled(mob) && shouldBlockForTarget(target) && (((mob.getRandom().nextInt(this.blockChance) == 0 && mob.distanceTo(target) <= blockDistance && mob.hasLineOfSight(target) && mob.getOffhandItem().canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) || mob.isBlocking()) || (guaranteedBlockIfTargetNotVisible && !mob.hasLineOfSight(target)));
+        return target != null && !isShieldDisabled(mob) && shouldBlockForTarget(target) && (((mob.getRandom().nextInt(blockChance) == 0 && mob.distanceTo(target) <= blockDistance && mob.hasLineOfSight(target) && mob.getOffhandItem().canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) || mob.isBlocking()) || (guaranteedBlockIfTargetNotVisible && !mob.hasLineOfSight(target)));
     }
 
     @Override
@@ -70,17 +70,17 @@ public class UseShieldGoal extends Goal {
     @Override
     public void tick() {
         target = mob.getTarget();
-        this.blockingFor++;
+        blockingFor++;
 
-        if ((this.blockingFor >= this.blockDuration && mob.getRandom().nextInt(this.stopChanceAfterDurationEnds) == 0) || this.blockingFor >= this.maxBlockDuration) {
-            this.stop();
+        if ((blockingFor >= blockDuration && mob.getRandom().nextInt(stopChanceAfterDurationEnds) == 0) || blockingFor >= maxBlockDuration) {
+            stop();
         }
     }
 
     @Override
     public void stop() {
         mob.stopUsingItem();
-        this.blockingFor = 0;
+        blockingFor = 0;
     }
 
 }

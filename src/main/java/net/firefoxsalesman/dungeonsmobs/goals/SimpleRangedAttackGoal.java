@@ -35,7 +35,7 @@ public class SimpleRangedAttackGoal<T extends Mob> extends Goal {
         this.attackIntervalMin = attackIntervalMin;
         this.attackIntervalMax = attackIntervalMax;
         this.attackRadius = attackRadius;
-        this.attackRadiusSqr = attackRadius * attackRadius;
+        attackRadiusSqr = attackRadius * attackRadius;
         setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 

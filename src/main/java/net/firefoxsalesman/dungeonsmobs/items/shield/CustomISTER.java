@@ -53,19 +53,19 @@ public class CustomISTER extends BlockEntityWithoutLevelRenderer {
 					: LOCATION_ROYAL_GUARD_SHIELD_NO_PATTERN;
 			VertexConsumer ivertexbuilder = rendermaterial.sprite()
 					.wrap(ItemRenderer.getFoilBufferDirect(buffer,
-							this.royalGuardShieldModel
+							royalGuardShieldModel
 									.renderType(rendermaterial.atlasLocation()),
 							true, stack.hasFoil()));
-			this.royalGuardShieldModel.handle().render(matrixStack, ivertexbuilder, combinedLight,
+			royalGuardShieldModel.handle().render(matrixStack, ivertexbuilder, combinedLight,
 					combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			if (flag) {
 				List<Pair<Holder<BannerPattern>, DyeColor>> list = BannerBlockEntity.createPatterns(
 						ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
 				BannerRenderer.renderPatterns(matrixStack, buffer, combinedLight, combinedOverlay,
-						this.royalGuardShieldModel.plate(), rendermaterial, false, list,
+						royalGuardShieldModel.plate(), rendermaterial, false, list,
 						stack.hasFoil());
 			} else {
-				this.royalGuardShieldModel.plate().render(matrixStack, ivertexbuilder, combinedLight,
+				royalGuardShieldModel.plate().render(matrixStack, ivertexbuilder, combinedLight,
 						combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			}
 
@@ -76,12 +76,10 @@ public class CustomISTER extends BlockEntityWithoutLevelRenderer {
 			Material rendermaterial = LOCATION_VANGUARD_SHIELD;
 			VertexConsumer ivertexbuilder = rendermaterial.sprite()
 					.wrap(ItemRenderer.getFoilBufferDirect(buffer,
-							this.royalGuardShieldModel
+							royalGuardShieldModel
 									.renderType(rendermaterial.atlasLocation()),
 							true, stack.hasFoil()));
-			// this.modelVanguardShield.getHandle().render(matrixStack, ivertexbuilder,
-			// combinedLight, combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
-			this.modelVanguardShield.getRoot().render(matrixStack, ivertexbuilder, combinedLight,
+			modelVanguardShield.getRoot().render(matrixStack, ivertexbuilder, combinedLight,
 					combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 
 			matrixStack.popPose();

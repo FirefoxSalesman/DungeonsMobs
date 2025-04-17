@@ -60,7 +60,7 @@ public class FungusThrowerEntity extends Piglin {
             ((ISmartCrossbowUser) this).setCrossbowUser(false);
         }
         if (spawnReason != MobSpawnType.STRUCTURE) {
-            if (this.isAdult()) {
+            if (isAdult()) {
                 SpawnEquipmentHelper.equipMainhand(ModItems.BLUE_NETHERSHROOM.get().getDefaultInstance(), this);
             }
         }
@@ -97,7 +97,7 @@ public class FungusThrowerEntity extends Piglin {
         } else if (!takeReplacement && keepCurrent) {
             return canReplaceCurrentItem;
         } else {
-            return (!this.isAdult() || !FungusThrowerAi.isBlueNethershroom(replacement) || !(FungusThrowerAi.isBlueNethershroom(current))) && canReplaceCurrentItem;
+            return (!isAdult() || !FungusThrowerAi.isBlueNethershroom(replacement) || !(FungusThrowerAi.isBlueNethershroom(current))) && canReplaceCurrentItem;
         }
     }
 

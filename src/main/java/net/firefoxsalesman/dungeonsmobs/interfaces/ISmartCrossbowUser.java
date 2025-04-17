@@ -9,11 +9,11 @@ public interface ISmartCrossbowUser {
     void setCrossbowUser(boolean crossbowUser);
 
     default void writeCrossbowUserNBT(CompoundTag compoundNBT) {
-        compoundNBT.putBoolean("CrossbowUser", this.isCrossbowUser());
+        compoundNBT.putBoolean("CrossbowUser", isCrossbowUser());
     }
 
     default void readCrossbowUserNBT(CompoundTag compoundNBT) {
-        this.setCrossbowUser(compoundNBT.getBoolean("CrossbowUser"));
+        setCrossbowUser(compoundNBT.getBoolean("CrossbowUser"));
     }
 
     boolean _isChargingCrossbow();
