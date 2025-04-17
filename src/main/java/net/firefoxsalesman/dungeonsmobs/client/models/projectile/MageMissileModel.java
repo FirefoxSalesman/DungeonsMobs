@@ -29,7 +29,7 @@ public class MageMissileModel extends GeoModel<MageMissileEntity> {
 	@Override
 	public void setCustomAnimations(MageMissileEntity entity, long uniqueID, AnimationState<MageMissileEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
-		CoreGeoBone everything = this.getAnimationProcessor().getBone("everything");
+		CoreGeoBone everything = getAnimationProcessor().getBone("everything");
 
 		everything.setRotY(-1.5708F);
 	}

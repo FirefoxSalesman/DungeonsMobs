@@ -39,12 +39,12 @@ public class MageModel<T extends AbstractIllager & GeoAnimatable> extends GeoMod
 	public void setCustomAnimations(T entity, long uniqueID, AnimationState<T> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHead");
-		CoreGeoBone illagerArms = this.getAnimationProcessor().getBone("illagerArms");
+		CoreGeoBone head = getAnimationProcessor().getBone("bipedHead");
+		CoreGeoBone illagerArms = getAnimationProcessor().getBone("illagerArms");
 
 		illagerArms.setHidden(true);
 
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 		if (entity instanceof SpawnArmoredMob && entity instanceof Mob) {
 			Mob mobEntity = (Mob) entity;
 			cape.setHidden(mobEntity.getItemBySlot(EquipmentSlot.CHEST)

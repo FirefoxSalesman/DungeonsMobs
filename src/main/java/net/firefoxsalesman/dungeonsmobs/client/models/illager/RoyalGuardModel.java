@@ -36,9 +36,9 @@ public class RoyalGuardModel extends GeoModel<RoyalGuardEntity> {
 			AnimationState<RoyalGuardEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHeadBaseRotator");
-		CoreGeoBone illagerArms = this.getAnimationProcessor().getBone("illagerArms");
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone head = getAnimationProcessor().getBone("bipedHeadBaseRotator");
+		CoreGeoBone illagerArms = getAnimationProcessor().getBone("illagerArms");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 
 		illagerArms.setHidden(true);
 		cape.setHidden(true);

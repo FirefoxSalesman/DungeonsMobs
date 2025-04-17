@@ -39,7 +39,7 @@ public class WhispererRenderer<T extends AbstractWhispererEntity> extends GeoEnt
 			RenderType renderType,
 			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
 			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		if (this.isArmorBone(bone)) {
+		if (isArmorBone(bone)) {
 			bone.setHidden(true);
 		}
 		super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,

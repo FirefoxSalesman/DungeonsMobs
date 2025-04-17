@@ -26,10 +26,10 @@ public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
 
     public SnarelingGlobRenderer(EntityRendererProvider.Context renderContext) {
         super(renderContext);
-        this.model = new SnarelingGlobModel<>(renderContext.bakeLayer(SNARELING_GLOB));
+        model = new SnarelingGlobModel<>(renderContext.bakeLayer(SNARELING_GLOB));
     }
 
-    protected int getBlockLightLevel(SnarelingGlobEntity p_225624_1_, BlockPos p_225624_2_) {
+    protected int getBlockLightLevel(SnarelingGlobEntity glob, BlockPos pos) {
         return 10;
     }
 
@@ -39,8 +39,8 @@ public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
         stack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_225623_3_, glob.yRotO, glob.getYRot())));
         stack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_225623_3_, glob.xRotO, glob.getXRot())));
 	stack.mulPose(Axis.XP.rotationDegrees(180));
-        this.model.setupAnim(glob, p_225623_3_, 0.0F, -0.1F, 0.0F, 0.0F);
-        VertexConsumer ivertexbuilder = BufferSource.getBuffer(this.model.renderType(LLAMA_SPIT_LOCATION));
+        model.setupAnim(glob, p_225623_3_, 0.0F, -0.1F, 0.0F, 0.0F);
+        VertexConsumer ivertexbuilder = BufferSource.getBuffer(model.renderType(LLAMA_SPIT_LOCATION));
         model.renderToBuffer(stack, ivertexbuilder, p_225623_6_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         stack.popPose();
         super.render(glob, p_225623_2_, p_225623_3_, stack, BufferSource, p_225623_6_);

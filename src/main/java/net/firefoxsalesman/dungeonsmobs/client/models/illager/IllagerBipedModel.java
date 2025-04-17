@@ -22,14 +22,14 @@ import net.minecraft.world.item.UseAnim;
 import static net.firefoxsalesman.dungeonsmobs.entity.illagers.IllagerArmsUtil.armorHasCrossedArms;
 
 public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<T> {
-    public ModelPart nose = this.head.getChild("nose");
-    public ModelPart jacket = this.body.getChild("jacket");
+    public ModelPart nose = head.getChild("nose");
+    public ModelPart jacket = body.getChild("jacket");
     public ModelPart arms;
 
     public IllagerBipedModel(ModelPart part) {
         super(part);
-        this.arms = part.getChild("arms");
-        this.hat.visible = false;
+        arms = part.getChild("arms");
+        hat.visible = false;
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -72,19 +72,19 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
 
     @Override
     protected Iterable<ModelPart> bodyParts() {
-        return Iterables.concat(super.bodyParts(), ImmutableList.of(this.arms, this.jacket));
+        return Iterables.concat(super.bodyParts(), ImmutableList.of(arms, jacket));
     }
 
     @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-        this.rightArmPose = HumanoidModel.ArmPose.EMPTY;
-        this.leftArmPose = HumanoidModel.ArmPose.EMPTY;
+        rightArmPose = HumanoidModel.ArmPose.EMPTY;
+        leftArmPose = HumanoidModel.ArmPose.EMPTY;
         if (entityIn.getMainArm() == HumanoidArm.RIGHT) {
-            this.giveModelRightArmPoses(InteractionHand.MAIN_HAND, entityIn);
-            this.giveModelLeftArmPoses(InteractionHand.OFF_HAND, entityIn);
+            giveModelRightArmPoses(InteractionHand.MAIN_HAND, entityIn);
+            giveModelLeftArmPoses(InteractionHand.OFF_HAND, entityIn);
         } else {
-            this.giveModelRightArmPoses(InteractionHand.OFF_HAND, entityIn);
-            this.giveModelLeftArmPoses(InteractionHand.MAIN_HAND, entityIn);
+            giveModelRightArmPoses(InteractionHand.OFF_HAND, entityIn);
+            giveModelLeftArmPoses(InteractionHand.MAIN_HAND, entityIn);
         }
         super.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTick);
     }
@@ -96,27 +96,27 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
             switch (useaction) {
                 case BLOCK:
                     if (entityIn.isBlocking()) {
-                        this.rightArmPose = HumanoidModel.ArmPose.BLOCK;
+                        rightArmPose = HumanoidModel.ArmPose.BLOCK;
                     } else {
-                        this.rightArmPose = HumanoidModel.ArmPose.ITEM;
+                        rightArmPose = HumanoidModel.ArmPose.ITEM;
                     }
                     break;
                 case CROSSBOW:
-                    this.rightArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
+                    rightArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
                     if (entityIn.isUsingItem()) {
-                        this.rightArmPose = HumanoidModel.ArmPose.CROSSBOW_CHARGE;
+                        rightArmPose = HumanoidModel.ArmPose.CROSSBOW_CHARGE;
                     }
                     break;
                 case BOW:
-                    this.rightArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
+                    rightArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
                     break;
                 case SPEAR:
-                    this.leftArmPose = ArmPose.THROW_SPEAR;
+                    leftArmPose = ArmPose.THROW_SPEAR;
                     break;
                 default:
-                    this.rightArmPose = HumanoidModel.ArmPose.EMPTY;
+                    rightArmPose = HumanoidModel.ArmPose.EMPTY;
                     if (!itemstack.isEmpty()) {
-                        this.rightArmPose = HumanoidModel.ArmPose.ITEM;
+                        rightArmPose = HumanoidModel.ArmPose.ITEM;
                     }
                     break;
             }
@@ -130,27 +130,27 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
             switch (useaction) {
                 case BLOCK:
                     if (entityIn.isBlocking()) {
-                        this.leftArmPose = HumanoidModel.ArmPose.BLOCK;
+                        leftArmPose = HumanoidModel.ArmPose.BLOCK;
                     } else {
-                        this.leftArmPose = HumanoidModel.ArmPose.ITEM;
+                        leftArmPose = HumanoidModel.ArmPose.ITEM;
                     }
                     break;
                 case CROSSBOW:
-                    this.leftArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
+                    leftArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
                     if (entityIn.isUsingItem()) {
-                        this.leftArmPose = HumanoidModel.ArmPose.CROSSBOW_CHARGE;
+                        leftArmPose = HumanoidModel.ArmPose.CROSSBOW_CHARGE;
                     }
                     break;
                 case BOW:
-                    this.leftArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
+                    leftArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
                     break;
                 case SPEAR:
-                    this.leftArmPose = ArmPose.THROW_SPEAR;
+                    leftArmPose = ArmPose.THROW_SPEAR;
                     break;
                 default:
-                    this.leftArmPose = HumanoidModel.ArmPose.EMPTY;
+                    leftArmPose = HumanoidModel.ArmPose.EMPTY;
                     if (!itemstack.isEmpty()) {
-                        this.leftArmPose = HumanoidModel.ArmPose.ITEM;
+                        leftArmPose = HumanoidModel.ArmPose.ITEM;
                     }
                     break;
             }
@@ -161,16 +161,16 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         AbstractIllager.IllagerArmPose armpose = entityIn.getArmPose();
-        this.arms.y = 3.0F;
-        this.arms.z = -1.0F;
-        this.arms.xRot = -0.75F;
-        this.jacket.copyFrom(body);
+        arms.y = 3.0F;
+        arms.z = -1.0F;
+        arms.xRot = -0.75F;
+        jacket.copyFrom(body);
         boolean isWearingChestplateOrLeggings = entityIn.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ArmorItem || entityIn.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ArmorItem;
-        this.jacket.visible = !isWearingChestplateOrLeggings;
+        jacket.visible = !isWearingChestplateOrLeggings;
         boolean flag = armpose == AbstractIllager.IllagerArmPose.CROSSED && armorHasCrossedArms(entityIn, entityIn.getItemBySlot(EquipmentSlot.CHEST));
-        this.arms.visible = flag;
-        this.leftArm.visible = !flag;
-        this.rightArm.visible = !flag;
+        arms.visible = flag;
+        leftArm.visible = !flag;
+        rightArm.visible = !flag;
 
         float f = 1.0F;
         if (flag) {
@@ -184,38 +184,38 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
         }
 
         if (flag) {
-            this.leftArm.y = 3.0F;
-            this.leftArm.z = -1.0F;
-            this.leftArm.xRot = -0.75F;
-            this.rightArm.y = 3.0F;
-            this.rightArm.z = -1.0F;
-            this.rightArm.xRot = -0.75F;
+            leftArm.y = 3.0F;
+            leftArm.z = -1.0F;
+            leftArm.xRot = -0.75F;
+            rightArm.y = 3.0F;
+            rightArm.z = -1.0F;
+            rightArm.xRot = -0.75F;
         }
 
-        if (this.riding) {
-            this.rightArm.xRot = (-(float) Math.PI / 5F);
-            this.rightArm.yRot = 0.0F;
-            this.rightArm.zRot = 0.0F;
-            this.leftArm.xRot = (-(float) Math.PI / 5F);
-            this.leftArm.yRot = 0.0F;
-            this.leftArm.zRot = 0.0F;
-            this.leftLeg.xRot = -1.4137167F;
-            this.leftLeg.yRot = ((float) Math.PI / 10F);
-            this.leftLeg.zRot = 0.07853982F;
-            this.rightLeg.xRot = -1.4137167F;
-            this.rightLeg.yRot = (-(float) Math.PI / 10F);
-            this.rightLeg.zRot = -0.07853982F;
+        if (riding) {
+            rightArm.xRot = (-(float) Math.PI / 5F);
+            rightArm.yRot = 0.0F;
+            rightArm.zRot = 0.0F;
+            leftArm.xRot = (-(float) Math.PI / 5F);
+            leftArm.yRot = 0.0F;
+            leftArm.zRot = 0.0F;
+            leftLeg.xRot = -1.4137167F;
+            leftLeg.yRot = ((float) Math.PI / 10F);
+            leftLeg.zRot = 0.07853982F;
+            rightLeg.xRot = -1.4137167F;
+            rightLeg.yRot = (-(float) Math.PI / 10F);
+            rightLeg.zRot = -0.07853982F;
         } else {
-            this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-            this.leftLeg.yRot = 0.0F;
-            this.leftLeg.zRot = 0.0F;
-            this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount * 0.5F;
-            this.rightLeg.yRot = 0.0F;
-            this.rightLeg.zRot = 0.0F;
+            leftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
+            leftLeg.yRot = 0.0F;
+            leftLeg.zRot = 0.0F;
+            rightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount * 0.5F;
+            rightLeg.yRot = 0.0F;
+            rightLeg.zRot = 0.0F;
         }
         if (entityIn instanceof MountaineerEntity && ((MountaineerEntity) entityIn).isClimbing()) {
-            this.rightArm.xRot = -1.8849558F + Mth.sin(ageInTicks * 0.35F) * 0.5F;
-            this.leftArm.xRot = -1.8849558F - Mth.sin(ageInTicks * 0.35F) * 0.5F;
+            rightArm.xRot = -1.8849558F + Mth.sin(ageInTicks * 0.35F) * 0.5F;
+            leftArm.xRot = -1.8849558F - Mth.sin(ageInTicks * 0.35F) * 0.5F;
         } else {
             switch (armpose) {
                 case ATTACKING:
@@ -223,39 +223,32 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
                             && !(entityIn.getMainHandItem().getItem() instanceof ProjectileWeaponItem)
                             && !(entityIn.isBlocking())) {
                         // raises arm with weapon, moves left arm back and forth while attacking
-                        AnimationUtils.swingWeaponDown(this.rightArm, this.leftArm, entityIn, this.attackTime, ageInTicks);
+                        AnimationUtils.swingWeaponDown(rightArm, leftArm, entityIn, attackTime, ageInTicks);
                     }
-	                /*
-	                else if(!entityIn.getHeldItemMainhand().isEmpty()
-	                        && !(entityIn.getHeldItemMainhand().getItem() instanceof ShootableItem)){
-	                    ModelUtils.readyWeaponWhileBlocking(this.bipedRightArm, this.bipedLeftArm, entityIn, this.swingProgress, ageInTicks);
-	                }
-	
-	                 */
                     break;
                 case CELEBRATING:
-                    this.rightArm.z = 0.0F;
-                    this.rightArm.x = -5.0F;
-                    this.rightArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.05F;
-                    this.rightArm.zRot = 2.670354F;
-                    this.rightArm.yRot = 0.0F;
-                    this.leftArm.z = 0.0F;
-                    this.leftArm.x = 5.0F;
-                    this.leftArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.05F;
-                    this.leftArm.zRot = -2.3561945F;
-                    this.leftArm.yRot = 0.0F;
+                    rightArm.z = 0.0F;
+                    rightArm.x = -5.0F;
+                    rightArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.05F;
+                    rightArm.zRot = 2.670354F;
+                    rightArm.yRot = 0.0F;
+                    leftArm.z = 0.0F;
+                    leftArm.x = 5.0F;
+                    leftArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.05F;
+                    leftArm.zRot = -2.3561945F;
+                    leftArm.yRot = 0.0F;
                     break;
                 case SPELLCASTING:
-                    this.rightArm.z = 0.0F;
-                    this.rightArm.x = -5.0F;
-                    this.leftArm.z = 0.0F;
-                    this.leftArm.x = 5.0F;
-                    this.rightArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.25F;
-                    this.leftArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.25F;
-                    this.rightArm.zRot = 2.3561945F;
-                    this.leftArm.zRot = -2.3561945F;
-                    this.rightArm.yRot = 0.0F;
-                    this.leftArm.yRot = 0.0F;
+                    rightArm.z = 0.0F;
+                    rightArm.x = -5.0F;
+                    leftArm.z = 0.0F;
+                    leftArm.x = 5.0F;
+                    rightArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.25F;
+                    leftArm.xRot = Mth.cos(ageInTicks * 0.6662F) * 0.25F;
+                    rightArm.zRot = 2.3561945F;
+                    leftArm.zRot = -2.3561945F;
+                    rightArm.yRot = 0.0F;
+                    leftArm.yRot = 0.0F;
                     break;
                 default:
                     break;
@@ -263,9 +256,9 @@ public class IllagerBipedModel<T extends AbstractIllager> extends HumanoidModel<
         }
     }
 
-    public void copyPropertiesTo(IllagerBipedModel<T> p_217148_1_) {
-        super.copyPropertiesTo(p_217148_1_);
-        p_217148_1_.arms.copyFrom(this.arms);
-        p_217148_1_.jacket.copyFrom(this.jacket);
+    public void copyPropertiesTo(IllagerBipedModel<T> model) {
+        super.copyPropertiesTo(model);
+        model.arms.copyFrom(arms);
+        model.jacket.copyFrom(jacket);
     }
 }

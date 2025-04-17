@@ -38,12 +38,12 @@ public class MountaineerModel extends GeoModel<MountaineerEntity> {
 			AnimationState<MountaineerEntity> customPredicate) {
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHead");
-		CoreGeoBone illagerArms = this.getAnimationProcessor().getBone("illagerArms");
+		CoreGeoBone head = getAnimationProcessor().getBone("bipedHead");
+		CoreGeoBone illagerArms = getAnimationProcessor().getBone("illagerArms");
 
 		illagerArms.setHidden(true);
 
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
+		CoreGeoBone cape = getAnimationProcessor().getBone("bipedCape");
 		cape.setHidden(entity.getItemBySlot(EquipmentSlot.CHEST).getItem() != entity.getArmorSet().getChest()
 				.get());
 
