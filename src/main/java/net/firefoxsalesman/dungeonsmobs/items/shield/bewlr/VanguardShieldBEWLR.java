@@ -36,11 +36,9 @@ public class VanguardShieldBEWLR extends BlockEntityWithoutLevelRenderer {
 		Material rendermaterial = LOCATION_VANGUARD_SHIELD;
 		VertexConsumer ivertexbuilder = rendermaterial.sprite()
 				.wrap(ItemRenderer.getFoilBufferDirect(buffer,
-						this.modelVanguardShield.renderType(rendermaterial.atlasLocation()),
+						modelVanguardShield.renderType(rendermaterial.atlasLocation()),
 						true, stack.hasFoil()));
-		// this.modelVanguardShield.getHandle().render(matrixStack, ivertexbuilder,
-		// combinedLight, combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
-		this.modelVanguardShield.getRoot().render(matrixStack, ivertexbuilder, combinedLight, combinedOverlay,
+		modelVanguardShield.getRoot().render(matrixStack, ivertexbuilder, combinedLight, combinedOverlay,
 				1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStack.popPose();

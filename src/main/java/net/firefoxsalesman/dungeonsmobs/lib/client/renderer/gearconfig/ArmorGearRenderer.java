@@ -34,7 +34,7 @@ public class ArmorGearRenderer<T extends ArmorGear> extends GeoArmorRenderer<T> 
 			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
 			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		poseStack.pushPose();
-		this.prepMatrixForBone(poseStack, bone);
+		prepMatrixForBone(poseStack, bone);
 		renderCubesOfBone(poseStack, bone, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		// renderChildBones(bone, poseStack, buffer, packedLight, packedOverlay, red,
 		// green, blue, alpha);
@@ -72,8 +72,7 @@ public class ArmorGearRenderer<T extends ArmorGear> extends GeoArmorRenderer<T> 
 				if (getCurrentEntity() instanceof SpawnArmoredMob
 						&& ((SpawnArmoredMob) getCurrentEntity())
 								.getArmorSet()
-								.getRegistryName() == this.getAnimatable()
-										.getArmorSet()) {
+								.getRegistryName() == getAnimatable().getArmorSet()) {
 					renderCube(poseStack, cube, buffer, packedLight,
 							LivingEntityRenderer.getOverlayCoords(
 									(LivingEntity) getCurrentEntity(), 0.0F),

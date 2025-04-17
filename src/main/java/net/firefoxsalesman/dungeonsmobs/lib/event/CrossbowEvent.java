@@ -53,7 +53,7 @@ public abstract class CrossbowEvent extends LivingEvent {
 
         public Velocity(LivingEntity entity, ItemStack itemStack, float velocity) {
             super(entity, itemStack);
-            this.originalVelocity = velocity;
+            originalVelocity = velocity;
             this.velocity = velocity;
         }
 

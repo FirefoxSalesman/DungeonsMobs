@@ -30,6 +30,6 @@ public class DefaultsCodecJsonDataManager<T> extends CodecJsonDataManager<T> {
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> jsons, ResourceManager resourceManager, ProfilerFiller profiler) {
         super.apply(jsons, resourceManager, profiler);
-        defaults.forEach((resourceLocation, t) -> this.data.putIfAbsent(resourceLocation, t));
+        defaults.forEach((resourceLocation, t) -> data.putIfAbsent(resourceLocation, t));
     }
 }

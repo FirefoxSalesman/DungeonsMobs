@@ -52,27 +52,27 @@ public enum CustomArmorMaterial implements ArmorMaterial {
 	}
 
 	public int getEnchantmentValue() {
-		return this.enchantmentValue;
+		return enchantmentValue;
 	}
 
 	public SoundEvent getEquipSound() {
-		return this.sound;
+		return sound;
 	}
 
 	public Ingredient getRepairIngredient() {
-		return this.repairIngredient.get();
+		return repairIngredient.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public float getToughness() {
-		return this.toughness;
+		return toughness;
 	}
 
 	public float getKnockbackResistance() {
-		return this.knockbackResistance;
+		return knockbackResistance;
 	}
 }

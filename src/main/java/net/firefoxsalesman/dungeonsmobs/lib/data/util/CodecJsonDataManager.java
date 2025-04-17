@@ -106,7 +106,7 @@ public class CodecJsonDataManager<T> extends SimpleJsonResourceReloadListener {
      * @return The data entries
      */
     public Map<ResourceLocation, T> getData() {
-        return this.data;
+        return data;
     }
 
     public void setData(Map<ResourceLocation, T> data) {
@@ -115,7 +115,7 @@ public class CodecJsonDataManager<T> extends SimpleJsonResourceReloadListener {
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> jsons, ResourceManager resourceManager, ProfilerFiller profiler) {
-        LOGGER.info("Beginning loading of data for data loader: {}", this.folderName);
+        LOGGER.info("Beginning loading of data for data loader: {}", folderName);
         Map<ResourceLocation, T> newMap = new HashMap<>();
 
         for (Entry<ResourceLocation, JsonElement> entry : jsons.entrySet()) {
@@ -123,14 +123,14 @@ public class CodecJsonDataManager<T> extends SimpleJsonResourceReloadListener {
             JsonElement element = entry.getValue();
             // if we fail to parse json, log an error and continue
             // if we succeeded, add the resulting T to the map
-            this.codec.decode(JsonOps.INSTANCE, element)
+            codec.decode(JsonOps.INSTANCE, element)
                     .get()
                     .ifLeft(result -> newMap.put(key, result.getFirst()))
                     .ifRight(partial -> LOGGER.error("Failed to parse data json for {} due to: {}", key, partial.message()));
         }
 
-        this.data = newMap;
-        LOGGER.info("Data loader for {} loaded {} jsons", this.folderName, this.data.size());
+        data = newMap;
+        LOGGER.info("Data loader for {} loaded {} jsons", folderName, data.size());
     }
 
     /**
@@ -144,7 +144,7 @@ public class CodecJsonDataManager<T> extends SimpleJsonResourceReloadListener {
      */
     public <PACKET> CodecJsonDataManager<T> subscribeAsSyncable(final SimpleChannel channel,
                                                                 final Function<Map<ResourceLocation, T>, PACKET> packetFactory) {
-        MinecraftForge.EVENT_BUS.addListener(this.getDatapackSyncListener(channel, packetFactory));
+        MinecraftForge.EVENT_BUS.addListener(getDatapackSyncListener(channel, packetFactory));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class CodecJsonDataManager<T> extends SimpleJsonResourceReloadListener {
                                                                            final Function<Map<ResourceLocation, T>, PACKET> packetFactory) {
         return event -> {
             ServerPlayer player = event.getPlayer();
-            PACKET packet = packetFactory.apply(this.data);
+            PACKET packet = packetFactory.apply(data);
             PacketTarget target = player == null
                     ? PacketDistributor.ALL.noArg()
                     : PacketDistributor.PLAYER.with(() -> player);

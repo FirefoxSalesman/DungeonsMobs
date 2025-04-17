@@ -94,7 +94,7 @@ public class BuiltInEnchantments implements INBTSerializable<CompoundTag> {
     }
 
     public boolean hasBuiltInEnchantment() {
-        return !this.enchantments.isEmpty();
+        return !enchantments.isEmpty();
     }
 
     public boolean hasBuiltInEnchantment(Enchantment enchantment) {
@@ -116,7 +116,7 @@ public class BuiltInEnchantments implements INBTSerializable<CompoundTag> {
         }
         CompoundTag tag = new CompoundTag();
         ListTag listnbt = new ListTag();
-        this.getAllBuiltInEnchantmentInstancesPerSource().forEach((resourceLocation, enchantmentInstances) -> {
+        getAllBuiltInEnchantmentInstancesPerSource().forEach((resourceLocation, enchantmentInstances) -> {
             CompoundTag compoundnbt = new CompoundTag();
             compoundnbt.putString(SOURCE_KEY, String.valueOf(resourceLocation));
             ListTag enchantmentListnbt = new ListTag();
@@ -129,7 +129,7 @@ public class BuiltInEnchantments implements INBTSerializable<CompoundTag> {
             compoundnbt.put(ENCHANTMENT_DATA_KEY, enchantmentListnbt);
             listnbt.add(compoundnbt);
         });
-        if(!this.enchantments.isEmpty()) {
+        if(!enchantments.isEmpty()) {
             tag.put(ENCHANTS_KEY, listnbt);
         }
         return tag;
@@ -144,7 +144,7 @@ public class BuiltInEnchantments implements INBTSerializable<CompoundTag> {
                 ResourceLocation resourcelocation = ResourceLocation.tryParse(compoundnbt.getString(SOURCE_KEY));
                 Map<Enchantment, Integer> enchantmentIntegerMap = EnchantmentHelper.deserializeEnchantments(compoundnbt.getList(ENCHANTMENT_DATA_KEY, 10));
                 List<EnchantmentInstance> enchantmentInstanceList = enchantmentIntegerMap.entrySet().stream().map(entry -> new EnchantmentInstance(entry.getKey(), entry.getValue())).collect(Collectors.toList());
-                this.setBuiltInEnchantments(resourcelocation, enchantmentInstanceList);
+                setBuiltInEnchantments(resourcelocation, enchantmentInstanceList);
             }
         }
     }

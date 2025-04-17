@@ -29,17 +29,17 @@ public class AttacherBuiltInEnchantments {
 
         @Override
         public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
-            return LibCapabilities.BUILT_IN_ENCHANTMENTS_CAPABILITY.orEmpty(cap, this.optionalData);
+            return LibCapabilities.BUILT_IN_ENCHANTMENTS_CAPABILITY.orEmpty(cap, optionalData);
         }
 
         @Override
         public CompoundTag serializeNBT() {
-            return this.backend.serializeNBT();
+            return backend.serializeNBT();
         }
 
         @Override
         public void deserializeNBT(CompoundTag nbt) {
-            this.backend.deserializeNBT(nbt);
+            backend.deserializeNBT(nbt);
         }
     }
 
