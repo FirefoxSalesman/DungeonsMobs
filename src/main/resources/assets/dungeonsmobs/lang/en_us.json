@@ -308,5 +308,12 @@
 
   "subtitles.entity.spider.prepare_shoot": "Spider calls",
   "subtitles.entity.spider.shoot": "Spider shoots",
-  "subtitles.entity.spider.web_impact": "Spider Web hits"
+  "subtitles.entity.spider.web_impact": "Spider Web hits",
+  
+  "curios.identifier.artifact": "Artifact",
+  "item.modifiers.artifact": "When In Artifact Slot:",
+  "key.dungeons_libraries.curiosintegration.category": "Dungeons Gear Curios",
+  "key.dungeons_libraries.curiosintegration.description_slot1": "Artifact Slot 1",
+  "key.dungeons_libraries.curiosintegration.description_slot2": "Artifact Slot 2",
+  "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3"
 }
