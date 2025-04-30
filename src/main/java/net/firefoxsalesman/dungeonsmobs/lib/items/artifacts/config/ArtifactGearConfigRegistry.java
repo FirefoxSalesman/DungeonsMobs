@@ -1,9 +1,7 @@
-package net.firefoxsalesman.dungeonsmobs.lib.items.artifacts;
+package net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config;
 
 import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
@@ -27,9 +25,5 @@ public class ArtifactGearConfigRegistry {
 
 	public static ArtifactGearConfigSyncPacket toPacket(Map<ResourceLocation, ArtifactGearConfig> map) {
 		return new ArtifactGearConfigSyncPacket(map);
-	}
-
-	public static void subscribe() {
-		ARTIFACT_GEAR_CONFIGS.subscribeAsSyncable(NetworkHandler.INSTANCE, ArtifactGearConfigRegistry::toPacket);
 	}
 }

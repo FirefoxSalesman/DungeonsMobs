@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.network;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArmorGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
@@ -62,11 +63,11 @@ public class NetworkHandler {
 				.encoder(CuriosArtifactStartMessage::encode).decoder(CuriosArtifactStartMessage::decode)
 				.consumerMainThread(CuriosArtifactStartMessage.CuriosArtifactHandler::handle)
 				.add();
-		// INSTANCE.messageBuilder(CuriosArtifactStopMessage.class,
-		// incrementAndGetPacketCounter())
-		// .encoder(CuriosArtifactStopMessage::encode).decoder(CuriosArtifactStopMessage::decode)
-		// .consumerMainThread(CuriosArtifactStopMessage::handle)
-		// .add();
+		INSTANCE.messageBuilder(CuriosArtifactStopMessage.class,
+				incrementAndGetPacketCounter())
+				.encoder(CuriosArtifactStopMessage::encode).decoder(CuriosArtifactStopMessage::decode)
+				.consumerMainThread(CuriosArtifactStopMessage::handle)
+				.add();
 		// INSTANCE.messageBuilder(EliteMobMessage.class,
 		// incrementAndGetPacketCounter())
 		// .encoder(EliteMobMessage::encode).decoder(EliteMobMessage::decode)

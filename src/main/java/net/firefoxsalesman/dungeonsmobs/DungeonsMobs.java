@@ -7,7 +7,9 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
+import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGearConfigRegistry;
@@ -63,6 +65,9 @@ public class DungeonsMobs {
 		CrossbowGearConfigRegistry.subscribe();
 		WeaponMaterials.subscribe();
 		DungeonsArmorMaterials.subscribe();
+		ArtifactGearConfigRegistry.subscribe();
+
+		LibCapabilities.setupCapabilities();
 
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
@@ -80,16 +85,10 @@ public class DungeonsMobs {
 	}
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-			for (RegistryObject<Item> i : ModItems.getEntries()) {
-				event.accept(i);
-			}
-		}
-		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-			for (RegistryObject<Item> i : ModEntities.getEntries()) {
-				event.accept(i);
-			}
-		}
+		if (event.getTabKey() == CreativeModeTabs.COMBAT)
+			ModItems.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
+		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
+			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
