@@ -6,8 +6,17 @@ import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGearConfigRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGearConfigRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGearConfigRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGearConfigRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.materials.armor.DungeonsArmorMaterials;
+import net.firefoxsalesman.dungeonsmobs.lib.items.materials.weapon.WeaponMaterials;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
+import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -43,6 +52,18 @@ public class DungeonsMobs {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		ItemTagWrappers.init();
+		AttributeRegistry.register(modEventBus);
+		DungeonsArmorMaterials.setupVanillaMaterials();
+		WeaponMaterials.setupVanillaMaterials();
+
+		ArmorGearConfigRegistry.subscribe();
+		MeleeGearConfigRegistry.subscribe();
+		BowGearConfigRegistry.subscribe();
+		CrossbowGearConfigRegistry.subscribe();
+		WeaponMaterials.subscribe();
+		DungeonsArmorMaterials.subscribe();
+
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
 
@@ -72,6 +93,7 @@ public class DungeonsMobs {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
+		event.enqueueWork(NetworkHandler::init);
 		event.enqueueWork(EntitySpawnPlacement::createPlacementTypes);
 		event.enqueueWork(EntitySpawnPlacement::initSpawnPlacements);
 		event.enqueueWork(RaidEntries::initWaveMemberEntries);
