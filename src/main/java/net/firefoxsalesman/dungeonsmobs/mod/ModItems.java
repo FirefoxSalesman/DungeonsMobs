@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mod;
 import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
 import net.firefoxsalesman.dungeonsmobs.items.CustomArmorMaterial;
 import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
+import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
@@ -35,6 +36,8 @@ public class ModItems {
 	public static final Map<ResourceLocation, RegistryObject<Item>> ARMORS = new HashMap<>();
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
+	public static final Map<ResourceLocation, RegistryObject<Item>> ARTIFACTS = new HashMap<>();
+
 	public static final Item.Properties ARMOR_PROPERTIES = new Item.Properties();
 	public static final RegistryObject<Item> ROYAL_GUARD_SHIELD = ITEMS.register("royal_guard_shield",
 			() -> new RoyalGuardShieldItem(
@@ -46,7 +49,8 @@ public class ModItems {
 
 	// Armour
 	public static final RegistryObject<Item> NETHERITE_PIGLIN_HELMET = ITEMS.register("netherite_piglin_helmet",
-			() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE, Type.HELMET, new Item.Properties()));
+			() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE, Type.HELMET,
+					new Item.Properties()));
 	public static final RegistryObject<Item> CRACKED_NETHERITE_PIGLIN_HELMET = ITEMS
 			.register("cracked_netherite_piglin_helmet",
 					() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE,
@@ -81,6 +85,10 @@ public class ModItems {
 
 	public static final RegistryObject<Item> DIAMOND_MOUNTAINEER_AXE = ITEMS.register("diamond_mountaineer_axe",
 			() -> new MountaineerAxeItem(Tiers.DIAMOND, 1, (1.2F - 4.0F), new Item.Properties()));
+
+	// ARTIFACTS
+	public static final RegistryObject<Item> WINDCALLER_STAFF = registerArtifact("windcaller_staff",
+			() -> new WindcallerStaffItem(new Item.Properties()));
 
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
@@ -152,5 +160,11 @@ public class ModItems {
 								modelLocation, textureLocation, animationFileLocation)),
 				registerArmor(bootsId, () -> new MageArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
 						armorSet, modelLocation, textureLocation, animationFileLocation)));
+	}
+
+	private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier) {
+		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
+		ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
+		return register;
 	}
 }

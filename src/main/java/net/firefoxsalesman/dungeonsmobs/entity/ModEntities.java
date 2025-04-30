@@ -30,12 +30,14 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
@@ -294,6 +296,23 @@ public class ModEntities {
 					.clientTrackingRange(6)
 					.updateInterval(2)
 					.build(new ResourceLocation(MOD_ID, "redstone_mine").toString()));
+
+	public static final RegistryObject<EntityType<WindcallerTornadoEntity>> TORNADO = registerEntityWithoutEgg(
+			"tornado",
+			() -> EntityType.Builder
+					.<WindcallerTornadoEntity>of(WindcallerTornadoEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(3.25F, 6F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(MOD_ID, "tornado").toString()));
+
+	public static final RegistryObject<EntityType<WindcallerBlastProjectileEntity>> WINDCALLER_BLAST_PROJECTILE = ENTITY_TYPES
+			.register("windcaller_blast_projectile", () -> EntityType.Builder
+					.<WindcallerBlastProjectileEntity>of(WindcallerBlastProjectileEntity::new,
+							MobCategory.MISC)
+					.fireImmune()
+					.sized(2F, 2F)
+					.build(new ResourceLocation(MOD_ID, "windcaller_blast_projectile").toString()));
 
 	public static final RegistryObject<EntityType<NecromancerOrbEntity>> NECROMANCER_ORB = ENTITY_TYPES.register(
 			"necromancer_orb",

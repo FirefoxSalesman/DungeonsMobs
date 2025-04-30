@@ -33,6 +33,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRen
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WindcallerTornadoRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
@@ -119,6 +120,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.SNARELING.get(), SnarelingRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_MINE.get(), RedstoneMineRenderer::new);
+		event.registerEntityRenderer(ModEntities.TORNADO.get(), WindcallerTornadoRenderer::new);
+		event.registerEntityRenderer(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), EmptyRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.WRAITH_FIRE.get(), WraithFireRenderer::new);
 

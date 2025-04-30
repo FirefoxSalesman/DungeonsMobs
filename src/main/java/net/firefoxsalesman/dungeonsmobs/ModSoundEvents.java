@@ -311,6 +311,9 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> NECROMANCER_PREPARE_SUMMON = registerSoundEvents(
 			"entity.necromancer.prepare_summon");
 
+	public static final RegistryObject<SoundEvent> WINDCALLER_BLAST_WIND = registerSoundEvents(
+			"entity.windcaller.blast_wind");
+
 	public static final RegistryObject<SoundEvent> SPIDER_PREPARE_SHOOT = registerSoundEvents(
 			"entity.spider.prepare_shoot");
 	public static final RegistryObject<SoundEvent> SPIDER_SHOOT = registerSoundEvents("entity.spider.shoot");
