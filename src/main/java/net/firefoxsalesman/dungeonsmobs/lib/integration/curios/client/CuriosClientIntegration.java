@@ -13,7 +13,7 @@ import static net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.Cur
 @Mod.EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CuriosClientIntegration {
 
-    public static final ResourceLocation CURIOS_ICON_TEXTURE = new ResourceLocation(MOD_ID, "icon/empty_artifact_slot");
+    public static final ResourceLocation CURIOS_ICON_TEXTURE = new ResourceLocation(MOD_ID, "slot/empty_artifact_slot");
 
     // @SubscribeEvent
     // public static void onTextureStitchedPre(TextureStitchEvent.Pre event) {
