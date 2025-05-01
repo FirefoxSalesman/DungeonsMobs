@@ -11,6 +11,8 @@
 
   "entity.dungeonsmobs.royal_guard": "Royal Guard",
   "item.dungeonsmobs.royal_guard_spawn_egg": "Royal Guard Spawn Egg",
+  "entity.dungeonsmobs.windcaller": "Windcaller",
+  "item.dungeonsmobs.windcaller_spawn_egg": "Windcaller Spawn Egg",
   "entity.dungeonsmobs.mountaineer": "Mountaineer",
   "item.dungeonsmobs.mountaineer_spawn_egg": "Mountaineer Spawn Egg",
   "entity.dungeonsmobs.armored_mountaineer": "Armored Mountaineer",
@@ -276,6 +278,15 @@
   "subtitles.entity.mossy_skeleton.death": "Mossy Skeleton dies",
   "subtitles.entity.mossy_skeleton.shoot": "Mossy Skeleton shoots",
   "subtitles.entity.mossy_skeleton.step": "Footsteps",
+
+  "subtitles.entity.windcaller.idle": "Windcaller mumbles",
+  "subtitles.entity.windcaller.hurt": "Windcaller hurts",
+  "subtitles.entity.windcaller.death": "Windcaller dies",
+  "subtitles.entity.windcaller.blast_vocal": "Windcaller shouts",
+  "subtitles.entity.windcaller.blast_wind": "Wind blasts",
+  "subtitles.entity.windcaller.lift_vocal": "Windcaller calls",
+  "subtitles.entity.windcaller.lift_wind": "Wind swirls",
+  "subtitles.entity.windcaller.fly_loop": "Windcaller hovers",
 
   "subtitles.entity.illusioner.death": "Illusioner dies",
   "subtitles.entity.illusioner.clone_arrow_hit": "Odd Arrow hits",

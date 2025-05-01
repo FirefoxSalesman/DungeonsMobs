@@ -16,6 +16,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.WindcallerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
@@ -124,6 +125,13 @@ public class ModEntities {
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "mage_clone").toString()));
+
+	public static final RegistryObject<EntityType<WindcallerEntity>> WINDCALLER = registerEntity("windcaller",
+			() -> EntityType.Builder.<WindcallerEntity>of(WindcallerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "windcaller").toString()),
+			0x348179, 0xdc6c46);
 
 	public static final RegistryObject<EntityType<MountaineerEntity>> MOUNTAINEER = registerEntity("mountaineer",
 			() -> EntityType.Builder.<MountaineerEntity>of(MountaineerEntity::new, MobCategory.MONSTER)

@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.WindcallerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
@@ -44,6 +45,7 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.ROYAL_GUARD.get(), RoyalGuardEntity.setCustomAttributes().build());
 		event.put(ModEntities.MOUNTAINEER.get(), MountaineerEntity.setCustomAttributes().build());
 
+		event.put(ModEntities.WINDCALLER.get(), WindcallerEntity.setCustomAttributes().build());
 		event.put(ModEntities.MAGE.get(), MageEntity.setCustomAttributes().build());
 		event.put(ModEntities.MAGE_CLONE.get(), MageCloneEntity.setCustomAttributes().build());
 

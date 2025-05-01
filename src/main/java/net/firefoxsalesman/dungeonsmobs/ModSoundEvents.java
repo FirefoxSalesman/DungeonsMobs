@@ -311,8 +311,20 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> NECROMANCER_PREPARE_SUMMON = registerSoundEvents(
 			"entity.necromancer.prepare_summon");
 
+	public static final RegistryObject<SoundEvent> WINDCALLER_IDLE = registerSoundEvents("entity.windcaller.idle");
+	public static final RegistryObject<SoundEvent> WINDCALLER_HURT = registerSoundEvents("entity.windcaller.hurt");
+	public static final RegistryObject<SoundEvent> WINDCALLER_DEATH = registerSoundEvents(
+			"entity.windcaller.death");
+	public static final RegistryObject<SoundEvent> WINDCALLER_LIFT_WIND = registerSoundEvents(
+			"entity.windcaller.lift_wind");
 	public static final RegistryObject<SoundEvent> WINDCALLER_BLAST_WIND = registerSoundEvents(
 			"entity.windcaller.blast_wind");
+	public static final RegistryObject<SoundEvent> WINDCALLER_LIFT_VOCAL = registerSoundEvents(
+			"entity.windcaller.lift_vocal");
+	public static final RegistryObject<SoundEvent> WINDCALLER_BLAST_VOCAL = registerSoundEvents(
+			"entity.windcaller.blast_vocal");
+	public static final RegistryObject<SoundEvent> WINDCALLER_FLY_LOOP = registerSoundEvents(
+			"entity.windcaller.fly_loop");
 
 	public static final RegistryObject<SoundEvent> SPIDER_PREPARE_SHOOT = registerSoundEvents(
 			"entity.spider.prepare_shoot");

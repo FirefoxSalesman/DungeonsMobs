@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.WindcallerModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
@@ -80,6 +81,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.MAGE_CLONE.get(),
 				manager -> new DefaultIllagerRenderer<MageCloneEntity>(manager,
 						new MageModel<MageCloneEntity>()));
+		event.registerEntityRenderer(ModEntities.WINDCALLER.get(),
+				manager -> new DefaultIllagerRenderer<>(manager, new WindcallerModel()));
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 
