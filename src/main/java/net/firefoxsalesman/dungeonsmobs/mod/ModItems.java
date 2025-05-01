@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
+import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.items.shield.VanguardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
@@ -67,6 +68,8 @@ public class ModItems {
 			"royal_guard_chestplate", "royal_guard_leggings", "royal_guard_boots");
 	public static final ArmorSet VANGUARD_ARMOR = registerArmorSet("vanguard_armor", "vanguard_helmet",
 			"vanguard_chestplate", "vanguard_leggings", null);
+	public static final ArmorSet WINDCALLER_ARMOR = registerArmorSetWindcaller("windcaller_armor",
+			"windcaller_helmet", "windcaller_chestplate", null, null);
 	public static final ArmorSet MOUNTAINEER_ARMOR = registerArmorSet("mountaineer_armor", "mountaineer_helmet",
 			"mountaineer_chestplate", "mountaineer_leggings", "mountaineer_boots");
 	public static final ArmorSet MAGE_ARMOR = registerArmorSetMage("mage_armor", "mage_helmet", "mage_chestplate",
@@ -160,6 +163,34 @@ public class ModItems {
 								modelLocation, textureLocation, animationFileLocation)),
 				registerArmor(bootsId, () -> new MageArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
 						armorSet, modelLocation, textureLocation, animationFileLocation)));
+	}
+
+	private static ArmorSet registerArmorSetWindcaller(String armorSetId, String helmetId, String chestId,
+			String legsId, String bootsId) {
+		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
+				"animations/armor/cloaked_armor.animation.json");
+		return new ArmorSet(
+				armorSet,
+				registerArmor(helmetId,
+						() -> new WindcallerArmorGear(Type.HELMET, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(chestId,
+						() -> new WindcallerArmorGear(Type.CHESTPLATE, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(legsId,
+						() -> new WindcallerArmorGear(Type.LEGGINGS, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(bootsId,
+						() -> new WindcallerArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)));
 	}
 
 	private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier) {
