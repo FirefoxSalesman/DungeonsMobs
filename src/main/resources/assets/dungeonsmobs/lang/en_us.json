@@ -317,6 +317,10 @@
   "subtitles.entity.spider.prepare_shoot": "Spider calls",
   "subtitles.entity.spider.shoot": "Spider shoots",
   "subtitles.entity.spider.web_impact": "Spider Web hits",
+
+  "artifact.dungeons_libraries.base": "Using the Artifact will move it into a free Artifact Curios Slot.",
+  "artifact.dungeons_libraries.duration": "%d Seconds Duration",
+  "artifact.dungeons_libraries.cooldown": "%d Seconds Cooldown",
   
   "curios.identifier.artifact": "Artifact",
   "item.modifiers.artifact": "When In Artifact Slot:",
