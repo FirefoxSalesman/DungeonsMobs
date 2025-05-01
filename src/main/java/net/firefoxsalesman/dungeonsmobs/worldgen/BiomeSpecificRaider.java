@@ -16,7 +16,10 @@ public enum BiomeSpecificRaider {
 			ModEntities.MOUNTAINEER.get(),
 			EntityType.VINDICATOR,
 			BiomeTags.MOUNTAINEEER_RAIDS_IN),
-
+	WINDCALLER(
+			ModEntities.WINDCALLER.get(),
+			EntityType.EVOKER,
+			BiomeTags.WINDCALLER_RAIDS_IN)
 	/*
 	 * ,
 	 * ILLUSIONER(

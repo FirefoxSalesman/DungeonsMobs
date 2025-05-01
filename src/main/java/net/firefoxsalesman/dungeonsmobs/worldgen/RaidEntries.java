@@ -22,6 +22,8 @@ public class RaidEntries {
 
 		Raid.RaiderType.create("mage", ModEntities.MAGE.get(), new int[] { 0, 0, 1, 0, 0, 1, 0, 2 });
 
+		Raid.RaiderType.create("windcaller", ModEntities.WINDCALLER.get(),
+				new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });
 		Raid.RaiderType.create("squall_golem", ModEntities.SQUALL_GOLEM.get(),
 				new int[] { 0, 0, 0, 1, 0, 1, 0, 2 });
 
