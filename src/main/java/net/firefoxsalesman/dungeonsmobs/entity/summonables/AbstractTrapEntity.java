@@ -89,13 +89,37 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 				}
 			}
 
-			for (Entity entity : trappedEntities) {
-				int entityIndex = trappedEntities.indexOf(entity);
-				Vec3 entityTrappedPosition = trappedEntityPositions.get(entityIndex);
+			for (int i = 0; i < trappedEntities.size(); i++) {
+				Entity entity = trappedEntities.get(i);
+				Vec3 trappedPos = trappedEntityPositions.get(i);
+
+				if (!entity.isAlive()) {
+					trappedEntities.remove(i);
+					trappedEntityPositions.remove(i);
+					i--; // Adjust index due to removal
+					continue;
+				}
+
+				Vec3 currentPos = entity.position();
+				Vec3 toTarget = trappedPos.subtract(currentPos);
+				double distance = toTarget.length();
+
+				// Threshold: If they escape too far (e.g., Ender Pearl), stop trapping
+				if (distance > 1.0) {
+					trappedEntities.remove(i);
+					trappedEntityPositions.remove(i);
+					i--;
+					continue;
+				}
+
 				entity.fallDistance = 0;
-				if (distanceBetweenVector3ds(entity.position(), entityTrappedPosition) > 0.5) {
-					entity.teleportTo(entityTrappedPosition.x, entityTrappedPosition.y,
-							entityTrappedPosition.z);
+
+				if (distance > 0.1) {
+					Vec3 pullVec = toTarget.normalize().scale(0.1);
+					entity.setDeltaMovement(pullVec);
+					entity.hurtMarked = true; // Ensure motion is synced to client
+				} else {
+					entity.setDeltaMovement(Vec3.ZERO);
 				}
 			}
 
