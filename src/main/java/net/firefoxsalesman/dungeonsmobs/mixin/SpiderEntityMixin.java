@@ -83,18 +83,29 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 		if (meleeAttackGoal != null
 				&& rangedWebAttackGoal != null
 				&& target != null) {
-			if (!isTargetTrapped()) {
+
+			double distanceSq = this.distanceToSqr(target);
+			boolean closeEnoughForMelee = distanceSq <= 3.5D * 3.5D; // square of melee distance
+
+			if (!isTargetTrapped() && !closeEnoughForMelee) {
+				// Use ranged
 				goalSelector.removeGoal(meleeAttackGoal);
 				if (leapAtTargetGoal != null) {
 					goalSelector.removeGoal(leapAtTargetGoal);
 				}
-				goalSelector.addGoal(4, rangedWebAttackGoal);
+				if (!goalSelector.getAvailableGoals().contains(rangedWebAttackGoal)) {
+					goalSelector.addGoal(4, rangedWebAttackGoal);
+				}
 			} else {
+				// Use melee
 				goalSelector.removeGoal(rangedWebAttackGoal);
-				if (leapAtTargetGoal != null) {
+				if (leapAtTargetGoal != null
+						&& !goalSelector.getAvailableGoals().contains(leapAtTargetGoal)) {
 					goalSelector.addGoal(3, leapAtTargetGoal);
 				}
-				goalSelector.addGoal(4, meleeAttackGoal);
+				if (!goalSelector.getAvailableGoals().contains(meleeAttackGoal)) {
+					goalSelector.addGoal(4, meleeAttackGoal);
+				}
 			}
 		}
 	}
