@@ -35,6 +35,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjec
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
@@ -295,6 +297,24 @@ public class ModEntities {
 					.clientTrackingRange(4)
 					.updateInterval(10)
 					.build(new ResourceLocation(MOD_ID, "blue_nethershroom").toString()));
+
+	public static final RegistryObject<EntityType<GeomancerWallEntity>> GEOMANCER_WALL = registerEntityWithoutEgg(
+			"geomancer_wall",
+			() -> EntityType.Builder.<GeomancerWallEntity>of(GeomancerWallEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(6)
+					.updateInterval(2)
+					.build(new ResourceLocation(MOD_ID, "geomancer_wall").toString()));
+
+	public static final RegistryObject<EntityType<GeomancerBombEntity>> GEOMANCER_BOMB = registerEntityWithoutEgg(
+			"geomancer_bomb",
+			() -> EntityType.Builder.<GeomancerBombEntity>of(GeomancerBombEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(1.0F, 2.5F)
+					.clientTrackingRange(6)
+					.updateInterval(2)
+					.build(new ResourceLocation(MOD_ID, "geomancer_bomb").toString()));
 
 	public static final RegistryObject<EntityType<RedstoneMineEntity>> REDSTONE_MINE = registerEntityWithoutEgg(
 			"redstone_mine",

@@ -82,7 +82,10 @@
   "entity.dungeonsmobs.wraith_fireball": "Wraith Fireball",
   "entity.dungeonsmobs.blue_nethershrooom": "Blue Nethershroom",
 
+  "entity.dungeonsmobs.geomancer_wall": "Geomancer Wall",
+  "entity.dungeonsmobs.geomancer_bomb": "Geomancer Bomb",
   "entity.dungeonsmobs.redstone_mine": "Redstone Mine",
+  "entity.dungeonsmobs.tornado": "Tornado",
 
   "entity.dungeonsmobs.redstone_golem": "Redstone Golem",
   "item.dungeonsmobs.redstone_golem_spawn_egg": "Redstone Golem Spawn Egg",
@@ -117,6 +120,9 @@
   "item.dungeonsmobs.windcaller_staff": "Windcaller Staff",
   "lore.dungeonsmobs.windcaller_staff": "The sound produced by the contact of the gale with the peculiar shape of the jade staff allows its wielder to determine the direction of the wind.",
   "ability.dungeonsmobs.windcaller_staff": "Shoots a gust of wind that pushes back enemies.",
+  "item.dungeonsmobs.geomancer_staff": "Geomancer Staff",
+  "lore.dungeonsmobs.geomancer_staff": "In appearance a simple walking stick, the geomancers use this staff to send tremors down the ground, releasing its explosive power.",
+  "ability.dungeonsmobs.geomancer_staff": "Summons pillars that block the path of enemies, with a small chance to summon an explosion pillar.",
 
   "item.dungeonsmobs.mountaineer_helmet": "Mountaineering Hood",
   "item.dungeonsmobs.mountaineer_chestplate": "Mountaineering Jacket",
@@ -227,6 +233,15 @@
   "subtitles.entity.poison_quill_vine.open": "Poison-Quill Vine opens",
   "subtitles.entity.poison_quill_vine.close": "Poison-Quill Vine closes",
   "subtitles.entity.poison_quill_vine.shoot": "Poison-Quill Vine shoots",
+
+  "subtitles.entity.geomancer.idle": "Geomancer cackles",
+  "subtitles.entity.geomancer.hurt": "Geomancer hurts",
+  "subtitles.entity.geomancer.death": "Geomancer dies",
+  "subtitles.entity.geomancer.pre_attack": "Geomancer prepares geomancy",
+  "subtitles.entity.geomancer.attack": "Geomancer summons pillars",
+  "subtitles.entity.geomancer.wall_spawn": "Geomancer Wall emerges",
+  "subtitles.entity.geomancer.wall_despawn": "Geomancer Wall vanishes",
+  "subtitles.entity.geomancer.bomb_spawn": "Geomancer Bomb emerges",  
 
   "subtitles.entity.squall_golem.idle": "Squall Golem creaks",
   "subtitles.entity.squall_golem.hurt": "Squall Golem hurts",

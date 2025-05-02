@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fire_side",
+  "textures": {
+    "fire": "dungeonsmobs:block/corrupted_pyre_0"
+  }
+}

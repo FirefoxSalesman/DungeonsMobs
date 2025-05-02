@@ -18,6 +18,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
@@ -62,6 +64,9 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.POISON_QUILL_VINE.get(), PoisonQuillVineEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.SQUALL_GOLEM.get(), SquallGolemEntity.setCustomAttributes().build());
+
+		event.put(ModEntities.GEOMANCER_WALL.get(), GeomancerWallEntity.setCustomAttributes().build());
+		event.put(ModEntities.GEOMANCER_BOMB.get(), GeomancerBombEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.FUNGUS_THROWER.get(), Piglin.createAttributes().build());
 		event.put(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(), ZombifiedPiglin.createAttributes().build());

@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
 import net.firefoxsalesman.dungeonsmobs.items.CustomArmorMaterial;
+import net.firefoxsalesman.dungeonsmobs.items.GeomancerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
@@ -94,6 +95,8 @@ public class ModItems {
 	// ARTIFACTS
 	public static final RegistryObject<Item> WINDCALLER_STAFF = registerArtifact("windcaller_staff",
 			() -> new WindcallerStaffItem(new Item.Properties()));
+	public static final RegistryObject<Item> GEOMANCER_STAFF = registerArtifact("geomancer_staff",
+			() -> new GeomancerStaffItem(new Item.Properties()));
 
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);

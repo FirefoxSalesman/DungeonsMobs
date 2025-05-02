@@ -31,6 +31,8 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerBombRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerWallRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
@@ -133,6 +135,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.SNARELING_GLOB.get(), SnarelingGlobRenderer::new);
 		event.registerEntityRenderer(ModEntities.COBWEB_PROJECTILE.get(), CobwebProjectileRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLUE_NETHERSHROOM.get(), BlueNethershroomRenderer::new);
+		event.registerEntityRenderer(ModEntities.GEOMANCER_WALL.get(), GeomancerWallRenderer::new);
+		event.registerEntityRenderer(ModEntities.GEOMANCER_BOMB.get(), GeomancerBombRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.AREA_DAMAGE.get(), EmptyRenderer::new);
 

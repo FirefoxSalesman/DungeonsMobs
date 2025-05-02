@@ -30,6 +30,17 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> ENCHANTER_BEAM_LOOP = registerSoundEvents(
 			"entity.enchanter.beam_loop");
 
+	public static final RegistryObject<SoundEvent> GEOMANCER_IDLE = registerSoundEvents("entity.geomancer.idle");
+	public static final RegistryObject<SoundEvent> GEOMANCER_HURT = registerSoundEvents("entity.geomancer.hurt");
+	public static final RegistryObject<SoundEvent> GEOMANCER_DEATH = registerSoundEvents("entity.geomancer.death");
+	public static final RegistryObject<SoundEvent> GEOMANCER_PRE_ATTACK = registerSoundEvents(
+			"entity.geomancer.pre_attack");
+	public static final RegistryObject<SoundEvent> GEOMANCER_ATTACK = registerSoundEvents(
+			"entity.geomancer.attack");
+	public static final RegistryObject<SoundEvent> GEOMANCER_WALL_SPAWN = registerSoundEvents(
+			"entity.geomancer.wall_spawn");
+	public static final RegistryObject<SoundEvent> GEOMANCER_WALL_DESPAWN = registerSoundEvents(
+			"entity.geomancer.wall_despawn");
 	public static final RegistryObject<SoundEvent> GEOMANCER_BOMB_SPAWN = registerSoundEvents(
 			"entity.geomancer.bomb_spawn");
 
