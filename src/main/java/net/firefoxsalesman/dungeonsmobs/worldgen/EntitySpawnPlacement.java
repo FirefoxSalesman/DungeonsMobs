@@ -77,6 +77,16 @@ public class EntitySpawnPlacement {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				IcyCreeperEntity::canIcyCreeperSpawn);
 
+		SpawnPlacements.register(ModEntities.SKELETON_VANGUARD.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
+
+		// Illager
+		SpawnPlacements.register(ModEntities.ROYAL_GUARD.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 		SpawnPlacements.register(ModEntities.MOUNTAINEER.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -85,12 +95,17 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				EntitySpawnPlacement::canRaiderSpawn);
+		SpawnPlacements.register(ModEntities.WINDCALLER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 
 		SpawnPlacements.register(ModEntities.REDSTONE_GOLEM.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
 
+		// Jungle
 		SpawnPlacements.register(ModEntities.WHISPERER.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
