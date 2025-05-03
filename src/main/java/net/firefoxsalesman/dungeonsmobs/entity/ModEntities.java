@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
@@ -127,6 +128,13 @@ public class ModEntities {
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "mage_clone").toString()));
+
+	public static final RegistryObject<EntityType<GeomancerEntity>> GEOMANCER = registerEntity("geomancer",
+			() -> EntityType.Builder.of(GeomancerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "geomancer").toString()),
+			0x373b3b, 0x8b5ea3);
 
 	public static final RegistryObject<EntityType<WindcallerEntity>> WINDCALLER = registerEntity("windcaller",
 			() -> EntityType.Builder.<WindcallerEntity>of(WindcallerEntity::new, MobCategory.MONSTER)

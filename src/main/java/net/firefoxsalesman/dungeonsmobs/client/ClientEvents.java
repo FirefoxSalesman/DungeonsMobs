@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
@@ -76,6 +77,9 @@ public class ClientEvents {
 						0.9375F * 1.2F));
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
+
+		event.registerEntityRenderer(ModEntities.GEOMANCER.get(),
+				manager -> new DefaultIllagerRenderer<>(manager, new GeomancerModel()));
 
 		event.registerEntityRenderer(ModEntities.MAGE.get(),
 				manager -> new DefaultIllagerRenderer<MageEntity>(manager,
