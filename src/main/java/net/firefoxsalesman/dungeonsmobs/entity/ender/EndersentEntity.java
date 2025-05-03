@@ -2,7 +2,6 @@ package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -12,7 +11,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -27,7 +25,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animation.Animation.LoopType;
 import software.bernie.geckolib.core.animation.AnimationState;
@@ -58,7 +55,7 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
 		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(1.0D));
-		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
+		// goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
@@ -79,26 +76,26 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 
 	public void setTeleporting(int p_189794_1_) {
 
-		if (p_189794_1_ == 15) {
-			if (getTarget() != null) {
-				setPos(getTarget().getX() - 5 + random.nextInt(10),
-						getTarget().getY(),
-						getTarget().getZ() - 5 + random.nextInt(10));
-				level().playSound(null, xo, yo, zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
-						1.0F);
-				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
-			} else {
-				setPos(getX() - 20 + random.nextInt(40), getY(),
-						getZ() - 20 + random.nextInt(40));
-				level().playSound(null, xo, yo, zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
-						1.0F);
-				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
-			}
-		}
+		// if (p_189794_1_ == 15) {
+		// 	if (getTarget() != null) {
+		// 		setPos(getTarget().getX() - 5 + random.nextInt(10),
+		// 				getTarget().getY(),
+		// 				getTarget().getZ() - 5 + random.nextInt(10));
+		// 		level().playSound(null, xo, yo, zo,
+		// 				ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
+		// 				1.0F);
+		// 		playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+		// 	} else {
+		// 		setPos(getX() - 20 + random.nextInt(40), getY(),
+		// 				getZ() - 20 + random.nextInt(40));
+		// 		level().playSound(null, xo, yo, zo,
+		// 				ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
+		// 				1.0F);
+		// 		playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+		// 	}
+		// }
 
-		entityData.set(TELEPORTING, p_189794_1_);
+		// entityData.set(TELEPORTING, p_189794_1_);
 	}
 
 	@Override
@@ -212,46 +209,51 @@ public class EndersentEntity extends AbstractEnderlingEntity {
 	}
 
 	protected boolean teleport() {
-		if (!level().isClientSide() && isAlive()) {
-			double d0 = getX() + (random.nextDouble() - 0.5D) * 32.0D;
-			double d1 = getY() + (double) (random.nextInt(8) - 4);
-			double d2 = getZ() + (random.nextDouble() - 0.5D) * 32.0D;
-			return teleport(d0, d1, d2);
-		} else {
-			return false;
-		}
+		// if (!level().isClientSide() && isAlive()) {
+		// double d0 = getX() + (random.nextDouble() - 0.5D) * 32.0D;
+		// double d1 = getY() + (double) (random.nextInt(8) - 4);
+		// double d2 = getZ() + (random.nextDouble() - 0.5D) * 32.0D;
+		// return teleport(d0, d1, d2);
+		// } else {
+		// return false;
+		// }
+		return false;
 	}
 
 	protected boolean teleport(double p_70825_1_, double p_70825_3_, double p_70825_5_) {
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos(p_70825_1_, p_70825_3_,
-				p_70825_5_);
+		return false;
+		// BlockPos.MutableBlockPos blockpos$mutable = new
+		// BlockPos.MutableBlockPos(p_70825_1_, p_70825_3_,
+		// p_70825_5_);
 
-		while (blockpos$mutable.getY() > 0
-				&& !level().getBlockState(blockpos$mutable).blocksMotion()) {
-			blockpos$mutable.move(Direction.DOWN);
-		}
+		// while (blockpos$mutable.getY() > 0
+		// && !level().getBlockState(blockpos$mutable).blocksMotion()) {
+		// blockpos$mutable.move(Direction.DOWN);
+		// }
 
-		BlockState blockstate = level().getBlockState(blockpos$mutable);
-		boolean flag = blockstate.blocksMotion();
-		boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
-		if (flag && !flag1) {
-			EntityTeleportEvent.EnderEntity event = net.minecraftforge.event.ForgeEventFactory
-					.onEnderTeleport(this, p_70825_1_, p_70825_3_, p_70825_5_);
-			if (event.isCanceled())
-				return false;
-			boolean flag2 = randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
-					true);
-			if (flag2 && !isSilent()) {
-				level().playSound(null, xo, yo, zo,
-						ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
-						1.0F);
-				playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
-			}
+		// BlockState blockstate = level().getBlockState(blockpos$mutable);
+		// boolean flag = blockstate.blocksMotion();
+		// boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
+		// if (flag && !flag1) {
+		// EntityTeleportEvent.EnderEntity event =
+		// net.minecraftforge.event.ForgeEventFactory
+		// .onEnderTeleport(this, p_70825_1_, p_70825_3_, p_70825_5_);
+		// if (event.isCanceled())
+		// return false;
+		// boolean flag2 = randomTeleport(event.getTargetX(), event.getTargetY(),
+		// event.getTargetZ(),
+		// true);
+		// if (flag2 && !isSilent()) {
+		// level().playSound(null, xo, yo, zo,
+		// ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
+		// 1.0F);
+		// playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+		// }
 
-			return flag2;
-		} else {
-			return false;
-		}
+		// return flag2;
+		// } else {
+		// return false;
+		// }
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
