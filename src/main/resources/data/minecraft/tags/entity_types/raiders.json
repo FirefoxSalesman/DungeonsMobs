@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "dungeonsmobs:geomancer",
     "dungeonsmobs:redstone_golem",
     "dungeonsmobs:mountaineer",
     "dungeonsmobs:windcaller",
