@@ -11,6 +11,8 @@
 
   "entity.dungeonsmobs.royal_guard": "Royal Guard",
   "item.dungeonsmobs.royal_guard_spawn_egg": "Royal Guard Spawn Egg",
+  "entity.dungeonsmobs.geomancer": "Geomancer",
+  "item.dungeonsmobs.geomancer_spawn_egg": "Geomancer Spawn Egg",
   "entity.dungeonsmobs.windcaller": "Windcaller",
   "item.dungeonsmobs.windcaller_spawn_egg": "Windcaller Spawn Egg",
   "entity.dungeonsmobs.mountaineer": "Mountaineer",

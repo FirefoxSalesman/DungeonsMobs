@@ -91,6 +91,10 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				EntitySpawnPlacement::canIllagerSpawn);
+		SpawnPlacements.register(ModEntities.GEOMANCER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 		SpawnPlacements.register(ModEntities.SQUALL_GOLEM.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
