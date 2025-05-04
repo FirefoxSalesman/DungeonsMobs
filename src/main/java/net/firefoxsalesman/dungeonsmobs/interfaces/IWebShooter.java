@@ -14,16 +14,22 @@ public interface IWebShooter extends ITrapsTarget {
 
 	void setWebShooting(boolean webShooting);
 
+	// Web Shooting has been modified for more control over range
 	static void shootWeb(Mob webShooter, LivingEntity target) {
 		Vec3 pos = PositionUtils.getOffsetPos(webShooter, 0.0, 1.0, -0.75, webShooter.yBodyRot);
 
 		CobwebProjectileEntity projectile = new CobwebProjectileEntity(webShooter.level(), webShooter);
 		projectile.setPos(pos.x, pos.y, pos.z);
-		double d0 = target.getX() - pos.x;
-		double d1 = target.getY(0.3333333333333333D) - pos.y;
-		double d2 = target.getZ() - pos.z;
-		float f = Mth.sqrt((float) (d0 * d0 + d2 * d2)) * 0.2F;
-		projectile.shoot(d0, d1 + (double) f, d2, 1.0F, 5.0F);
+		double aimX = target.getX() - pos.x;
+		double aimY = target.getY(0.3333333333333333D) - pos.y;
+		double aimZ = target.getZ() - pos.z;
+		float f = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ)) * 0.2F;
+
+		float horizontalDistance = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ));
+		float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F);  // Clamp velocity for longer shots
+		float inaccuracy = 2.0F;
+		projectile.shoot(aimX, aimY + (double) f, aimZ, velocity, inaccuracy);
+
 		if (!webShooter.isSilent()) {
 			webShooter.playSound(ModSoundEvents.SPIDER_SHOOT.get(), 1.0F, 1.0F);
 		}
