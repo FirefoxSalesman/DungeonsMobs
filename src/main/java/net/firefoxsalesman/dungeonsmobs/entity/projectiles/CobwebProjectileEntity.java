@@ -107,24 +107,43 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		Entity entity = getOwner();
-		if (hitResult.getEntity() instanceof LivingEntity
-				&& ((LivingEntity) hitResult.getEntity()).getMobType() == MobType.ARTHROPOD) {
-
-		} else {
-			if (entity instanceof LivingEntity) {
-				hitResult.getEntity()
-						.hurt(damageSources().mobProjectile(this, (LivingEntity) entity), 1.0F);
-			}
-
-			if (!level().isClientSide) {
-				spawnTrap(hitResult.getEntity().getX(), hitResult.getEntity().getY(),
-						hitResult.getEntity().getZ());
-
-				remove(RemovalReason.DISCARDED);
-			}
+		Entity shooter = getOwner();
+		Entity hitEnt = hitResult.getEntity();
+	
+		if (hitEnt instanceof LivingEntity &&
+			((LivingEntity) hitEnt).getMobType() == MobType.ARTHROPOD) {
+			return;
 		}
-	}
+
+		if (shooter instanceof LivingEntity) {
+			hitEnt.hurt(damageSources().mobProjectile(this, (LivingEntity) shooter), 1.0F);
+		}
+	
+		if (!level().isClientSide) {
+			// Capture the spawn coordinates
+			double trapX = hitEnt.getX();
+			double trapY = hitEnt.getY();
+			double trapZ = hitEnt.getZ();
+	
+			// Spawn the trap at that location
+			spawnTrap(trapX, trapY, trapZ);
+	
+			// Immediately teleport the target into the trap center
+			if (hitEnt instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+				// For players, use the connection teleport to avoid rubber-banding
+				serverPlayer.connection.teleport(trapX, trapY, trapZ,
+						serverPlayer.getYRot(), serverPlayer.getXRot());
+			} else {
+				// For mobs and other entities
+				hitEnt.teleportTo(trapX, trapY, trapZ);
+			}
+	
+			// Zero out any velocity so they don’t drift out
+			hitEnt.setDeltaMovement(0, 0, 0);
+	
+			remove(RemovalReason.DISCARDED);
+		}
+	}	
 
 	public void createSpawnParticles() {
 		if (!level().isClientSide) {
