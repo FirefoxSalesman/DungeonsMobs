@@ -30,6 +30,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 
 public class EndersentEntity extends VanillaEnderlingEntity {
+	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
+			EntityDataSerializers.BOOLEAN);
+
+	public final AnimationState attackAnimationState = new AnimationState();
+	private int attackAnimationTimeout = 0;
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
@@ -53,7 +58,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
-		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(1.0D));
+		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(EndersentEntity.this, 1.0D));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
@@ -63,9 +68,18 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		targetSelector.addGoal(1, new VanillaEnderlingEntity.FindPlayerGoal(this, null));
 	}
 
+	public void setAttacking(boolean attacking) {
+		entityData.set(ATTACKING, attacking);
+	}
+
+	public Boolean isAttackingBool() {
+		return entityData.get(ATTACKING);
+	}
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		entityData.define(TELEPORTING, 0);
+		entityData.define(ATTACKING, false);
 	}
 
 	public int isTeleporting() {
@@ -146,6 +160,14 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return ModSoundEvents.ENDERSENT_STEP.get();
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
 	public void baseTick() {
 		super.baseTick();
 
@@ -186,10 +208,34 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return false;
 	}
 
-	class AttackGoal extends MeleeAttackGoal {
+	private void setupAnimationStates() {
+		// if (idleAnimationTimeout <= 0) {
+		// idleAnimationTimeout = random.nextInt(40) + 80;
+		// idleAnimationState.start(tickCount);
+		// } else {
+		// idleAnimationTimeout--;
+		// }
 
-		public AttackGoal(double speed) {
-			super(EndersentEntity.this, speed, true);
+		if (isAttackingBool() && attackAnimationTimeout <= 0) {
+			attackAnimationTimeout = 27;
+			attackAnimationState.start(tickCount);
+			idleAnimationState.stop();
+		} else {
+			attackAnimationTimeout--;
+		}
+
+		// if (!isAttackingBool()) {
+		// attackAnimationState.stop();
+		// }
+	}
+
+	class AttackGoal extends MeleeAttackGoal {
+		private final EndersentEntity entity;
+		private boolean waiting = false;
+
+		public AttackGoal(EndersentEntity mob, double speed) {
+			super(mob, speed, true);
+			entity = mob;
 		}
 
 		public boolean canContinueToUse() {
@@ -204,26 +250,20 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 			super.tick();
 
 			setRunning(10);
-			if (level().isClientSide) {
-				setupAnimationStates();
-			}
 		}
 
-		private void setupAnimationStates() {
-			if (idleAnimationTimeout <= 0) {
-				idleAnimationTimeout = random.nextInt(40) + 80;
-				idleAnimationState.start(tickCount);
-			} else {
-				idleAnimationTimeout--;
-			}
-		}
-
-		protected void checkAndPerformAttack(LivingEntity pEntity, double p_190102_2_) {
+		protected void checkAndPerformAttack(LivingEntity pEntity, double pDistToEnemySqr) {
 			double d0 = getAttackReachSqr(pEntity);
-			if (p_190102_2_ <= d0 && isTimeToAttack()) {
+			if (pDistToEnemySqr <= d0 && isTimeToAttack()) {
 				resetAttackCooldown();
-				mob.doHurtTarget(pEntity);
-			} else if (p_190102_2_ <= d0 * 1.5D) {
+				entity.setAttacking(true);
+				if (waiting) {
+					mob.doHurtTarget(pEntity);
+					waiting = false;
+				} else {
+					waiting = true;
+				}
+			} else if (pDistToEnemySqr <= d0 * 1.5D) {
 				if (isTimeToAttack()) {
 					resetAttackCooldown();
 				}
@@ -232,9 +272,17 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 					setAttacking(30);
 				}
 			} else {
+				entity.setAttacking(false);
 				resetAttackCooldown();
 			}
 		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			entity.setAttacking(false);
+		}
+
 	}
 
 	@Override
