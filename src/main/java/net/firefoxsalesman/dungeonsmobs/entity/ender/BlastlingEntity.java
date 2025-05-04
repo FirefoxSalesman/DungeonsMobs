@@ -33,7 +33,13 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAttackMob {
+	private int volleyCooldown = 0;
+	private int shotsFiredInVolley = 0;
+	private boolean shootingActive = false;
+	private boolean isShootingVolley = false;
 
+	public int maxVolleyShots = 4; // Note - There are 2 bullets per shot (default: 4 (which means 8 bullets))
+	
 	public static final EntityDataAccessor<Integer> SHOOT_TIME = SynchedEntityData.defineId(BlastlingEntity.class,
 			EntityDataSerializers.INT);
 
@@ -88,25 +94,52 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		return ModSoundEvents.BLASTLING_STEP.get();
 	}
 
+	@Override
 	public void baseTick() {
 		super.baseTick();
-
-		flameTicks = flameTicks + 0.25F;
-
-		if (getTarget() != null && getShootTime() <= 2) {
+		flameTicks += 0.25F;
+	
+		LivingEntity target = getTarget();
+	
+		if (!isShootingVolley && target != null && target.isAlive() && volleyCooldown <= 0) {
+			// Start a new volley
+			isShootingVolley = true;
+			shotsFiredInVolley = 0;
 			setShootTime(15);
 		}
-
-		if (getShootTime() > 0) {
-			setShootTime(getShootTime() - 1);
+	
+		if (isShootingVolley) {
+			if (getShootTime() > 0) {
+				setShootTime(getShootTime() - 1);
+	
+				if (getShootTime() == 2 || getShootTime() == 8) {
+					LivingEntity currentTarget = getTarget();
+					if (currentTarget != null && currentTarget.isAlive()) {
+						shoot(getShootTime() == 2, currentTarget);
+					}
+				}
+			}
+	
+			if (getShootTime() <= 0) {
+				shotsFiredInVolley++;
+	
+				if (shotsFiredInVolley < maxVolleyShots) {
+					setShootTime(15);
+				} else {
+					// Volley complete
+					isShootingVolley = false;
+					volleyCooldown = 40 + random.nextInt(20);
+					shotsFiredInVolley = 0;
+					setShootTime(0);  // Force reset
+				}
+			}
+		} else {
+			// Countdown cooldown even if target is gone
+			if (volleyCooldown > 0) {
+				volleyCooldown--;
+			}
 		}
-
-		if (!level().isClientSide && (getShootTime() == 2 || getShootTime() == 8)
-				&& getTarget() != null && getTarget().isAlive()) {
-
-			shoot(getShootTime() == 2, getTarget());
-		}
-	}
+	}	
 
 	private void shoot(boolean leftArm, LivingEntity p_82216_2_) {
 		readyShoot(leftArm, p_82216_2_.getX(),
@@ -161,21 +194,18 @@ public class BlastlingEntity extends AbstractEnderlingEntity implements RangedAt
 		entityData.set(SHOOT_TIME, p_189794_1_);
 	}
 
-    protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-	if (getShootTime() > 0) {
-	    event.getController()
-		.setAnimation(RawAnimation.begin().then("blastling_shoot", LoopType.LOOP));
-	} else {
-	    if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-		event.getController().setAnimation(
-		    RawAnimation.begin().then("blastling_walk", LoopType.LOOP));
-	    } else {
-		event.getController().setAnimation(
-		    RawAnimation.begin().then("blastling_idle", LoopType.LOOP));
-	    }
+	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		if (shootingActive || getShootTime() > 0) { 
+			event.getController().setAnimation(RawAnimation.begin().then("blastling_shoot", LoopType.LOOP));
+		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
+			event.getController().setAnimation(RawAnimation.begin().then("blastling_walk", LoopType.LOOP));
+		} else {
+			event.getController().setAnimation(RawAnimation.begin().then("blastling_idle", LoopType.LOOP));
+		}
+		return PlayState.CONTINUE;
 	}
-	return PlayState.CONTINUE;
-    }
+	
+	
 
 	public class AvoidEntityGoal<T extends LivingEntity> extends Goal {
 		protected final PathfinderMob mob;
