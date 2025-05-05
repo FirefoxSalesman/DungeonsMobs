@@ -22,7 +22,8 @@ public class EndersentRenderer extends MobRenderer<EndersentEntity, EndersentMod
 		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/endersent.png");
 	}
 
-	protected void setupRotations(EndersentEntity pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks, float pRotationYaw,
+	protected void setupRotations(EndersentEntity pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks,
+			float pRotationYaw,
 			float pPartialTicks) {
 		if (this.isShaking(pEntityLiving)) {
 			pRotationYaw += (float) (Math.cos((double) pEntityLiving.tickCount * 3.25D) * Math.PI
