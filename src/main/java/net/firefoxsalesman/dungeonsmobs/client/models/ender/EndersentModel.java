@@ -142,9 +142,10 @@ public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel
 			float headPitch) {
 		root().getAllParts().forEach(ModelPart::resetPose);
 		applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
-		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 2f, .25f);
+		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 2f, 1f);
 		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks, 1f);
 		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks, 1f);
+		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch, float ageInTicks) {

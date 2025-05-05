@@ -1,6 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
+import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -9,14 +13,20 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -24,10 +34,16 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
 
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
 
 public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
@@ -38,6 +54,13 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
+
+	public final AnimationState deathAnimationState = new AnimationState();
+
+	public int summonAnimationTick;
+	public final int summonAnimationLength = 22;
+
+	public int appearDelay = 0;
 
 	public static final EntityDataAccessor<Integer> TELEPORTING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.INT);
@@ -59,6 +82,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
 		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(EndersentEntity.this, 1.0D));
+		goalSelector.addGoal(3, new EndersentEntity.CreateWatchlingGoal(this));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
@@ -101,6 +125,10 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	@Override
 	protected void tickDeath() {
+		// TODO: stop endersent from falling & turning red on death
+		if (deathTime == 0) {
+			deathAnimationState.start(deathTime);
+		}
 		++deathTime;
 		if (deathTime == 100) {
 			remove(RemovalReason.KILLED);
@@ -209,24 +237,18 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	}
 
 	private void setupAnimationStates() {
-		// if (idleAnimationTimeout <= 0) {
-		// idleAnimationTimeout = random.nextInt(40) + 80;
-		// idleAnimationState.start(tickCount);
-		// } else {
-		// idleAnimationTimeout--;
-		// }
-
 		if (isAttackingBool() && attackAnimationTimeout <= 0) {
 			attackAnimationTimeout = 27;
 			attackAnimationState.start(tickCount);
-			idleAnimationState.stop();
 		} else {
 			attackAnimationTimeout--;
+			// if (idleAnimationTimeout <= 0) {
+			// idleAnimationTimeout = random.nextInt(40) + 80;
+			// idleAnimationState.start(tickCount);
+			// } else {
+			// idleAnimationTimeout--;
+			// }
 		}
-
-		// if (!isAttackingBool()) {
-		// attackAnimationState.stop();
-		// }
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
@@ -287,5 +309,149 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	@Override
 	public void checkDespawn() {
+	}
+
+	public boolean shouldBeStationary() {
+		return summonAnimationTick > 0 || appearDelay > 0;
+	}
+
+	class CreateWatchlingGoal extends Goal {
+		public EndersentEntity mob;
+		@Nullable
+		public LivingEntity target;
+
+		public int nextUseTime;
+
+		private final Predicate<Entity> WATCHLING = (p_33346_) -> {
+			return p_33346_ instanceof WatchlingEntity
+					&& ((WatchlingEntity) p_33346_).getOwner().isPresent()
+					&& ((WatchlingEntity) p_33346_).getOwner().get() == mob;
+		};
+
+		public CreateWatchlingGoal(EndersentEntity mob) {
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+			this.mob = mob;
+			target = mob.getTarget();
+		}
+
+		@Override
+		public boolean isInterruptable() {
+			return mob.shouldBeStationary();
+		}
+
+		public boolean requiresUpdateEveryTick() {
+			return true;
+		}
+
+		@Override
+		public boolean canUse() {
+			target = mob.getTarget();
+
+			int nearbyClones = mob.level().getEntities(mob, mob.getBoundingBox().inflate(30.0D), WATCHLING)
+					.size();
+
+			return target != null && mob.tickCount >= nextUseTime && mob.random.nextInt(10) == 0
+					&& mob.hasLineOfSight(target) && nearbyClones <= 0 && animationsUseable();
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return target != null && !animationsUseable();
+		}
+
+		@Override
+		public void start() {
+			mob.playSound(SoundEvents.ILLUSIONER_PREPARE_MIRROR, 1.0F, 1.0F);
+			mob.summonAnimationTick = mob.summonAnimationLength;
+			mob.level().broadcastEntityEvent(mob, (byte) 8);
+		}
+
+		@Override
+		public void tick() {
+			target = mob.getTarget();
+
+			mob.getNavigation().stop();
+
+			if (target != null) {
+				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
+			}
+
+			if (target != null && mob.summonAnimationTick == 1) {
+				SummonSpotEntity summonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
+				summonSpot.moveTo(target.blockPosition().offset((int) -12.5 + mob.random.nextInt(25), 0,
+						(int) -12.5 + mob.random.nextInt(25)), 0.0F, 0.0F);
+				summonSpot.setSummonType(3);
+				((ServerLevel) mob.level()).addFreshEntityWithPassengers(summonSpot);
+				PositionUtils.moveToCorrectHeight(summonSpot);
+
+				mob.level().broadcastEntityEvent(mob, (byte) 7);
+				mob.moveTo(summonSpot.blockPosition(), 0.0F, 0.0F);
+				mob.setYBodyRot(mob.random.nextInt(360));
+				mob.lookAt(EntityAnchorArgument.Anchor.EYES,
+						new Vec3(mob.getX(), mob.getEyeY(), mob.getZ()));
+				mob.appearDelay = 11;
+				mob.level().broadcastEntityEvent(mob, (byte) 6);
+				mob.playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, 1.0F, 1.0F);
+				PositionUtils.moveToCorrectHeight(mob);
+
+				if (target instanceof Mob) {
+					((Mob) target).setTarget(null);
+					target.setLastHurtByMob(null);
+					if (target instanceof NeutralMob) {
+						((NeutralMob) target).stopBeingAngry();
+						((NeutralMob) target).setLastHurtByMob(null);
+						((NeutralMob) target).setTarget(null);
+						((NeutralMob) target).setPersistentAngerTarget(null);
+					}
+				}
+
+				int clonesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
+						.getDifficulty().getId();
+
+				for (int i = 0; i < clonesByDifficulty * 4; i++) {
+					SummonSpotEntity cloneSummonSpot = ModEntities.SUMMON_SPOT.get()
+							.create(mob.level());
+					cloneSummonSpot.moveTo(
+							target.blockPosition().offset(
+									(int) -12.5 + mob.random.nextInt(25), 0,
+									(int) -12.5 + mob.random.nextInt(25)),
+							0.0F, 0.0F);
+					cloneSummonSpot.setSummonType(3);
+					cloneSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
+					((ServerLevel) mob.level()).addFreshEntityWithPassengers(cloneSummonSpot);
+					PositionUtils.moveToCorrectHeight(cloneSummonSpot);
+
+					WatchlingEntity clone = ModEntities.WATCHLING.get().create(mob.level());
+					clone.finalizeSpawn(((ServerLevel) mob.level()),
+							mob.level().getCurrentDifficultyAt(
+									cloneSummonSpot.blockPosition()),
+							MobSpawnType.MOB_SUMMONED, null, null);
+					clone.setOwner(mob);
+					clone.setHealth(mob.getHealth());
+					for (EquipmentSlot equipmentslottype : EquipmentSlot.values()) {
+						ItemStack itemstack = mob.getItemBySlot(equipmentslottype);
+						if (!itemstack.isEmpty()) {
+							clone.setItemSlot(equipmentslottype, itemstack.copy());
+							clone.setDropChance(equipmentslottype, 0.0F);
+						}
+					}
+					clone.lookAt(EntityAnchorArgument.Anchor.EYES,
+							new Vec3(mob.getX(), mob.getEyeY(), mob.getZ()));
+					cloneSummonSpot.summonedEntity = clone;
+					cloneSummonSpot.playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, 1.0F, 1.0F);
+				}
+			}
+		}
+
+		public boolean animationsUseable() {
+			return mob.summonAnimationTick <= 0;
+		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			nextUseTime = mob.tickCount + 60;
+		}
+
 	}
 }
