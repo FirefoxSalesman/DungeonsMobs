@@ -22,7 +22,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -34,7 +33,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -57,6 +55,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	public final AnimationState deathAnimationState = new AnimationState();
 
+	public final AnimationState summonAnimationState = new AnimationState();
 	public int summonAnimationTick;
 	public final int summonAnimationLength = 22;
 
@@ -81,8 +80,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
+		goalSelector.addGoal(1, new EndersentEntity.CreateWatchlingGoal(this));
 		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(EndersentEntity.this, 1.0D));
-		goalSelector.addGoal(3, new EndersentEntity.CreateWatchlingGoal(this));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
@@ -194,6 +193,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		if (level().isClientSide) {
 			setupAnimationStates();
 		}
+		summonAnimationTick--;
 	}
 
 	public void baseTick() {
@@ -361,9 +361,9 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		@Override
 		public void start() {
-			mob.playSound(SoundEvents.ILLUSIONER_PREPARE_MIRROR, 1.0F, 1.0F);
 			mob.summonAnimationTick = mob.summonAnimationLength;
 			mob.level().broadcastEntityEvent(mob, (byte) 8);
+			summonAnimationState.start(tickCount);
 		}
 
 		@Override
@@ -408,7 +408,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 				int clonesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
 						.getDifficulty().getId();
 
-				for (int i = 0; i < clonesByDifficulty * 4; i++) {
+				for (int i = 0; i < clonesByDifficulty * 2; i++) {
 					SummonSpotEntity cloneSummonSpot = ModEntities.SUMMON_SPOT.get()
 							.create(mob.level());
 					cloneSummonSpot.moveTo(
@@ -427,18 +427,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 									cloneSummonSpot.blockPosition()),
 							MobSpawnType.MOB_SUMMONED, null, null);
 					clone.setOwner(mob);
-					clone.setHealth(mob.getHealth());
-					for (EquipmentSlot equipmentslottype : EquipmentSlot.values()) {
-						ItemStack itemstack = mob.getItemBySlot(equipmentslottype);
-						if (!itemstack.isEmpty()) {
-							clone.setItemSlot(equipmentslottype, itemstack.copy());
-							clone.setDropChance(equipmentslottype, 0.0F);
-						}
-					}
-					clone.lookAt(EntityAnchorArgument.Anchor.EYES,
-							new Vec3(mob.getX(), mob.getEyeY(), mob.getZ()));
 					cloneSummonSpot.summonedEntity = clone;
-					cloneSummonSpot.playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, 1.0F, 1.0F);
 				}
 			}
 		}
