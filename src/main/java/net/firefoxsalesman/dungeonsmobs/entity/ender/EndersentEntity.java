@@ -376,14 +376,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 				PositionUtils.moveToCorrectHeight(summonSpot);
 
 				mob.level().broadcastEntityEvent(mob, (byte) 7);
-				mob.moveTo(summonSpot.blockPosition(), 0.0F, 0.0F);
-				mob.setYBodyRot(mob.random.nextInt(360));
-				mob.lookAt(EntityAnchorArgument.Anchor.EYES,
-						new Vec3(mob.getX(), mob.getEyeY(), mob.getZ()));
-				mob.appearDelay = 11;
-				mob.level().broadcastEntityEvent(mob, (byte) 6);
-				mob.playSound(SoundEvents.ILLUSIONER_MIRROR_MOVE, 1.0F, 1.0F);
-				PositionUtils.moveToCorrectHeight(mob);
 
 				if (target instanceof Mob) {
 					((Mob) target).setTarget(null);
