@@ -86,6 +86,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
 				.setAlertOthers().setUnseenMemoryTicks(500));
+		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
+				.setAlertOthers().setUnseenMemoryTicks(500));
 		targetSelector.addGoal(1,
 				new NearestAttackableTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
 		targetSelector.addGoal(1, new VanillaEnderlingEntity.FindPlayerGoal(this, null));
@@ -127,6 +129,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		// TODO: stop endersent from falling & turning red on death
 		if (deathTime == 0) {
 			deathAnimationState.start(deathTime);
+			cancelIdleAnimation();
 		}
 		++deathTime;
 		if (deathTime == 100) {
@@ -236,18 +239,24 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return false;
 	}
 
+	private void cancelIdleAnimation() {
+		idleAnimationState.stop();
+		idleAnimationTimeout = 0;
+	}
+
 	private void setupAnimationStates() {
 		if (isAttackingBool() && attackAnimationTimeout <= 0) {
-			attackAnimationTimeout = 27;
+			attackAnimationTimeout = 95;
 			attackAnimationState.start(tickCount);
+			cancelIdleAnimation();
 		} else {
 			attackAnimationTimeout--;
-			// if (idleAnimationTimeout <= 0) {
-			// idleAnimationTimeout = random.nextInt(40) + 80;
-			// idleAnimationState.start(tickCount);
-			// } else {
-			// idleAnimationTimeout--;
-			// }
+			if (idleAnimationTimeout <= 0) {
+				idleAnimationTimeout = random.nextInt(40) + 95;
+				idleAnimationState.start(tickCount);
+			} else {
+				idleAnimationTimeout--;
+			}
 		}
 	}
 
@@ -368,6 +377,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		@Override
 		public void tick() {
+			cancelIdleAnimation();
 			target = mob.getTarget();
 
 			mob.getNavigation().stop();

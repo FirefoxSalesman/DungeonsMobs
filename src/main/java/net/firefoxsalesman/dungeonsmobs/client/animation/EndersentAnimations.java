@@ -14,12 +14,6 @@ import net.minecraft.client.animation.KeyframeAnimations;
  */
 public class EndersentAnimations {
 	public static final AnimationDefinition IDLE = AnimationDefinition.Builder.withLength(4.72F).looping()
-		.addAnimation("rightLeg", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(-12.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-		))
-		.addAnimation("leftLeg", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(7.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-		))
 		.addAnimation("upperBody", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
 			new Keyframe(0.0F, KeyframeAnimations.degreeVec(60.0F, 0.0F, -2.5F), AnimationChannel.Interpolations.LINEAR),
 			new Keyframe(0.04F, KeyframeAnimations.degreeVec(59.9057F, 0.0048F, -3.1713F), AnimationChannel.Interpolations.LINEAR),
