@@ -50,9 +50,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTimeout = 0;
 
-	public final AnimationState idleAnimationState = new AnimationState();
-	private int idleAnimationTimeout = 0;
-
 	public final AnimationState deathAnimationState = new AnimationState();
 
 	public final AnimationState summonAnimationState = new AnimationState();
@@ -83,7 +80,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		goalSelector.addGoal(1, new EndersentEntity.CreateWatchlingGoal(this));
 		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(EndersentEntity.this, 1.0D));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
 				.setAlertOthers().setUnseenMemoryTicks(500));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
@@ -126,10 +122,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	@Override
 	protected void tickDeath() {
-		// TODO: stop endersent from falling & turning red on death
 		if (deathTime == 0) {
 			deathAnimationState.start(deathTime);
-			cancelIdleAnimation();
 		}
 		++deathTime;
 		if (deathTime == 100) {
@@ -239,24 +233,12 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return false;
 	}
 
-	private void cancelIdleAnimation() {
-		idleAnimationState.stop();
-		idleAnimationTimeout = 0;
-	}
-
 	private void setupAnimationStates() {
 		if (isAttackingBool() && attackAnimationTimeout <= 0) {
 			attackAnimationTimeout = 95;
 			attackAnimationState.start(tickCount);
-			cancelIdleAnimation();
 		} else {
 			attackAnimationTimeout--;
-			if (idleAnimationTimeout <= 0) {
-				idleAnimationTimeout = random.nextInt(40) + 95;
-				idleAnimationState.start(tickCount);
-			} else {
-				idleAnimationTimeout--;
-			}
 		}
 	}
 
@@ -377,7 +359,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		@Override
 		public void tick() {
-			cancelIdleAnimation();
 			target = mob.getTarget();
 
 			mob.getNavigation().stop();
