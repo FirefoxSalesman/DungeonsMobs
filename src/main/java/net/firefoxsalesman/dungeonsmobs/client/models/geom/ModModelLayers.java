@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.models.geom;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.FungusSackModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.armor.VanguardShieldModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.ender.EndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IllagerBipedModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.SnarelingGlobModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
@@ -23,6 +24,10 @@ public class ModModelLayers {
 
 	public static ModelLayerLocation VANGUARD_SHIELD = makeModelLayerLocation("vanguard_shield_model");
 	public static ModelLayerLocation FUNGUS_SACK = makeModelLayerLocation("fungus_sack_model");
+	public static final ModelLayerLocation ENDERSENT_BODY = makeModelLayerLocation("endersent");
+	// public static final ModelLayerLocation ENDERSENT_BODY = new
+	// ModelLayerLocation(
+	// new ResourceLocation(MOD_ID, "endersent"), "main");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
 		return new ModelLayerLocation(new ResourceLocation(MOD_ID + name),
@@ -36,5 +41,6 @@ public class ModModelLayers {
 		event.registerLayerDefinition(SNARELING_GLOB, SnarelingGlobModel::createLayer);
 		event.registerLayerDefinition(BIPED_ILLAGER_MODEL, IllagerBipedModel::createBodyLayer);
 		event.registerLayerDefinition(VANGUARD_SHIELD, VanguardShieldModel::createLayer);
+		event.registerLayerDefinition(ENDERSENT_BODY, EndersentModel::createBodyLayer);
 	}
 }
