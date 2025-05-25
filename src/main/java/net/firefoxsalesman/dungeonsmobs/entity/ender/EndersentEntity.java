@@ -4,7 +4,6 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +15,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
@@ -35,7 +33,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
@@ -369,9 +366,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 			if (target != null && mob.summonAnimationTick == 1) {
 				SummonSpotEntity summonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
-				summonSpot.moveTo(target.blockPosition().offset((int) -12.5 + mob.random.nextInt(25), 0,
-						(int) -12.5 + mob.random.nextInt(25)), 0.0F, 0.0F);
-				summonSpot.setSummonType(3);
+				doSummonSpot(summonSpot);
 				((ServerLevel) mob.level()).addFreshEntityWithPassengers(summonSpot);
 				PositionUtils.moveToCorrectHeight(summonSpot);
 
@@ -394,12 +389,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 				for (int i = 0; i < clonesByDifficulty * 2; i++) {
 					SummonSpotEntity cloneSummonSpot = ModEntities.SUMMON_SPOT.get()
 							.create(mob.level());
-					cloneSummonSpot.moveTo(
-							target.blockPosition().offset(
-									(int) -12.5 + mob.random.nextInt(25), 0,
-									(int) -12.5 + mob.random.nextInt(25)),
-							0.0F, 0.0F);
-					cloneSummonSpot.setSummonType(3);
+					doSummonSpot(cloneSummonSpot);
 					cloneSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
 					((ServerLevel) mob.level()).addFreshEntityWithPassengers(cloneSummonSpot);
 					PositionUtils.moveToCorrectHeight(cloneSummonSpot);
@@ -413,6 +403,12 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 					cloneSummonSpot.summonedEntity = clone;
 				}
 			}
+		}
+
+		private void doSummonSpot(SummonSpotEntity spot) {
+			spot.moveTo(mob.blockPosition().offset((int) -2.5 + mob.random.nextInt(5), 0,
+					(int) -2.5 + mob.random.nextInt(5)), 0.0F, 0.0F);
+			spot.setSummonType(3);
 		}
 
 		public boolean animationsUseable() {
