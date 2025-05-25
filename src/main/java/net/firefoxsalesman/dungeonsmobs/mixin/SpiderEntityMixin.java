@@ -33,6 +33,7 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 	private MeleeAttackGoal meleeAttackGoal;
 
 	public int targetTrappedCounter = 0;
+	public int rangedTimer = 0;
 
 	protected SpiderEntityMixin(EntityType<? extends Monster> type, Level worldIn) {
 		super(type, worldIn);
@@ -77,34 +78,33 @@ public abstract class SpiderEntityMixin extends Monster implements IWebShooter {
 	 * We check for leapAtTargetGoal not being null on a case-by-case basis since
 	 * we want compatibility with Spiders 2.0 which changes the LeapAtTargetGoal to
 	 * a custom Goal that doesn't extend it
+	 * 
+	 * Added an additional range check for when the spider uses its ranged attacks
+	 * Spiders will now move closer to the target when out of range and melee attack if too close
 	 */
+
 	private void reassessAttackGoals() {
 		LivingEntity target = getTarget();
-		if (meleeAttackGoal != null
-				&& rangedWebAttackGoal != null
-				&& target != null) {
-
+		if (meleeAttackGoal != null && rangedWebAttackGoal != null && target != null) {
+	
 			double distanceSq = this.distanceToSqr(target);
-			boolean closeEnoughForMelee = distanceSq <= 3.5D * 3.5D; // square of melee distance
-
-			if (!isTargetTrapped() && !closeEnoughForMelee) {
-				// Use ranged
-				goalSelector.removeGoal(meleeAttackGoal);
-				if (leapAtTargetGoal != null) {
-					goalSelector.removeGoal(leapAtTargetGoal);
-				}
-				if (!goalSelector.getAvailableGoals().contains(rangedWebAttackGoal)) {
-					goalSelector.addGoal(4, rangedWebAttackGoal);
-				}
-			} else {
-				// Use melee
+			double meleeRangeSq = 3.0D * 3.0D;
+			double rangedRangeSq = 9.0D * 9.0D;
+	
+			if (distanceSq <= meleeRangeSq || isTargetTrapped()) {
+				// Use melee if very close
 				goalSelector.removeGoal(rangedWebAttackGoal);
-				if (leapAtTargetGoal != null
-						&& !goalSelector.getAvailableGoals().contains(leapAtTargetGoal)) {
-					goalSelector.addGoal(3, leapAtTargetGoal);
-				}
 				if (!goalSelector.getAvailableGoals().contains(meleeAttackGoal)) {
 					goalSelector.addGoal(4, meleeAttackGoal);
+				}
+			} else {
+				// Use ranged attack
+				rangedTimer++;
+				if (rangedTimer >= 50){
+					goalSelector.removeGoal(meleeAttackGoal);
+					if (!goalSelector.getAvailableGoals().contains(rangedWebAttackGoal)) {
+						goalSelector.addGoal(4, rangedWebAttackGoal);
+					}
 				}
 			}
 		}
