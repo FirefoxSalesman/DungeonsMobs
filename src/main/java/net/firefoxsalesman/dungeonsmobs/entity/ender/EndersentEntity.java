@@ -28,7 +28,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -79,13 +78,11 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		goalSelector.addGoal(1, new EndersentEntity.CreateWatchlingGoal(this));
 		goalSelector.addGoal(2, new EndersentEntity.AttackGoal(EndersentEntity.this, 1.0D));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		targetSelector.addGoal(1, new VanillaEnderlingEntity.FindPlayerGoal(this, null));
 		targetSelector.addGoal(2, new HurtByTargetGoal(this, VanillaEnderlingEntity.class)
 				.setAlertOthers().setUnseenMemoryTicks(500));
-		targetSelector.addGoal(2, new HurtByTargetGoal(this, AbstractEnderlingEntity.class)
-				.setAlertOthers().setUnseenMemoryTicks(500));
 		targetSelector.addGoal(1,
-				new NearestAttackableTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
-		targetSelector.addGoal(1, new VanillaEnderlingEntity.FindPlayerGoal(this, null));
+				new EnderlingTargetGoal<>(this, Player.class, true).setUnseenMemoryTicks(500));
 	}
 
 	public void setAttacking(boolean attacking) {
@@ -110,13 +107,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		if (teleporting == 15 && getTarget() != null) {
 			teleport(getTarget().getX() - 5 + random.nextInt(10), getTarget().getY(),
 					getTarget().getZ() - 5 + random.nextInt(10));
-			// setPos(getTarget().getX() - 5 + random.nextInt(10),
-			// getTarget().getY(),
-			// getTarget().getZ() - 5 + random.nextInt(10));
-			// level().playSound(null, xo, yo, zo,
-			// ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
-			// 1.0F);
-			// playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
 			entityData.set(TELEPORTING, teleporting);
 		}
 	}
@@ -228,6 +218,15 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	protected boolean teleport() {
 		return false;
+	}
+
+	@Override
+	protected boolean teleport(double x, double y, double z) {
+		boolean result = super.teleport(x, y, z);
+		if (result) {
+			teleportAnimationState.start(tickCount);
+		}
+		return result;
 	}
 
 	@Override
