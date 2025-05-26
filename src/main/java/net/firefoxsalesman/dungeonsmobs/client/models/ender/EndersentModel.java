@@ -146,6 +146,7 @@ public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel
 		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks, 1f);
 		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks, 1f);
 		animate(entity.summonAnimationState, EndersentAnimations.SUMMON_WATCHLINGS, ageInTicks, 1f);
+		animate(entity.teleportAnimationState, EndersentAnimations.TELEPORT, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch, float ageInTicks) {

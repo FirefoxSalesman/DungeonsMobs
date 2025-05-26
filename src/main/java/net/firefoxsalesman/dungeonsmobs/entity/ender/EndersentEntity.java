@@ -53,6 +53,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	public int summonAnimationTick;
 	public final int summonAnimationLength = 22;
 
+	public final AnimationState teleportAnimationState = new AnimationState();
+
 	public int appearDelay = 0;
 
 	public static final EntityDataAccessor<Integer> TELEPORTING = SynchedEntityData.defineId(EndersentEntity.class,
@@ -104,16 +106,18 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return entityData.get(TELEPORTING);
 	}
 
-	public void setTeleporting(int p_189794_1_) {
-		if (p_189794_1_ == 15 && getTarget() != null) {
-			setPos(getTarget().getX() - 5 + random.nextInt(10),
-					getTarget().getY(),
+	public void setTeleporting(int teleporting) {
+		if (teleporting == 15 && getTarget() != null) {
+			teleport(getTarget().getX() - 5 + random.nextInt(10), getTarget().getY(),
 					getTarget().getZ() - 5 + random.nextInt(10));
-			level().playSound(null, xo, yo, zo,
-					ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
-					1.0F);
-			playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
-			entityData.set(TELEPORTING, p_189794_1_);
+			// setPos(getTarget().getX() - 5 + random.nextInt(10),
+			// getTarget().getY(),
+			// getTarget().getZ() - 5 + random.nextInt(10));
+			// level().playSound(null, xo, yo, zo,
+			// ModSoundEvents.ENDERSENT_TELEPORT.get(), getSoundSource(), 1.0F,
+			// 1.0F);
+			// playSound(ModSoundEvents.ENDERSENT_TELEPORT.get(), 1.0F, 1.0F);
+			entityData.set(TELEPORTING, teleporting);
 		}
 	}
 
@@ -199,7 +203,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		if (random.nextInt(500) == 0 && getTarget() == null) {
 			setTeleporting(50);
-		} else if (random.nextInt(200) == 0 && getTarget() != null) {
+		} else if (random.nextInt(20) == 0 && getTarget() != null) {
 			setTeleporting(50);
 		}
 
@@ -226,8 +230,9 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return false;
 	}
 
-	protected boolean teleport(double p_70825_1_, double p_70825_3_, double p_70825_5_) {
-		return false;
+	@Override
+	protected SoundEvent getTeleportSound() {
+		return ModSoundEvents.ENDERSENT_TELEPORT.get();
 	}
 
 	private void setupAnimationStates() {

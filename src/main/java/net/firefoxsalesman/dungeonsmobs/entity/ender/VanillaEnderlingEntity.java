@@ -189,9 +189,9 @@ public abstract class VanillaEnderlingEntity extends Monster {
 		}
 	}
 
-	private boolean teleportTowards(Entity p_70816_1_) {
-		Vec3 vector3d = new Vec3(getX() - p_70816_1_.getX(), getY(0.5D) - p_70816_1_.getEyeY(),
-				getZ() - p_70816_1_.getZ());
+	private boolean teleportTowards(Entity target) {
+		Vec3 vector3d = new Vec3(getX() - target.getX(), getY(0.5D) - target.getEyeY(),
+				getZ() - target.getZ());
 		vector3d = vector3d.normalize();
 		double d0 = 16.0D;
 		double d1 = getX() + (random.nextDouble() - 0.5D) * 8.0D - vector3d.x * 16.0D;
@@ -200,12 +200,10 @@ public abstract class VanillaEnderlingEntity extends Monster {
 		return teleport(d1, d2, d3);
 	}
 
-	protected boolean teleport(double p_70825_1_, double p_70825_3_, double p_70825_5_) {
-		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos(p_70825_1_, p_70825_3_,
-				p_70825_5_);
+	protected boolean teleport(double x, double y, double z) {
+		BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos(x, y, z);
 
-		while (blockpos$mutable.getY() > 0
-				&& !level().getBlockState(blockpos$mutable).blocksMotion()) {
+		while (blockpos$mutable.getY() > 0 && !level().getBlockState(blockpos$mutable).blocksMotion()) {
 			blockpos$mutable.move(Direction.DOWN);
 		}
 
@@ -214,20 +212,24 @@ public abstract class VanillaEnderlingEntity extends Monster {
 		boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
 		if (flag && !flag1) {
 			EntityTeleportEvent.EnderEntity event = net.minecraftforge.event.ForgeEventFactory
-					.onEnderTeleport(this, p_70825_1_, p_70825_3_, p_70825_5_);
+					.onEnderTeleport(this, x, y, z);
 			if (event.isCanceled())
 				return false;
 			boolean flag2 = randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(),
 					true);
 			if (!isSilent()) {
-				level().playSound(null, xo, yo, zo, SoundEvents.ENDERMAN_TELEPORT,
+				level().playSound(null, xo, yo, zo, getTeleportSound(),
 						getSoundSource(), 1.0F, 1.0F);
-				playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+				playSound(getTeleportSound(), 1.0F, 1.0F);
 			}
 			return flag2;
 		} else {
 			return false;
 		}
+	}
+
+	protected SoundEvent getTeleportSound() {
+		return SoundEvents.ENDERMAN_TELEPORT;
 	}
 
 	protected SoundEvent getAmbientSound() {
