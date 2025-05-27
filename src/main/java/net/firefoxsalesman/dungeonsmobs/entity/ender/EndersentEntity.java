@@ -43,6 +43,9 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
+	public final AnimationState idleAnimationState = new AnimationState();
+	private int idleAnimationTimeout = 0;
+
 	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTimeout = 0;
 
@@ -241,6 +244,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		} else {
 			attackAnimationTimeout--;
 		}
+		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null, tickCount);
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
