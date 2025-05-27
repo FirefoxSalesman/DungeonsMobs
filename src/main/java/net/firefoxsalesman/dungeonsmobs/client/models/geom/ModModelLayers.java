@@ -25,9 +25,6 @@ public class ModModelLayers {
 	public static ModelLayerLocation VANGUARD_SHIELD = makeModelLayerLocation("vanguard_shield_model");
 	public static ModelLayerLocation FUNGUS_SACK = makeModelLayerLocation("fungus_sack_model");
 	public static final ModelLayerLocation ENDERSENT_BODY = makeModelLayerLocation("endersent");
-	// public static final ModelLayerLocation ENDERSENT_BODY = new
-	// ModelLayerLocation(
-	// new ResourceLocation(MOD_ID, "endersent"), "main");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
 		return new ModelLayerLocation(new ResourceLocation(MOD_ID + name),
