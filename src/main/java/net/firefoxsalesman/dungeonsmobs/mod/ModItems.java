@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.items.GeomancerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
+import net.firefoxsalesman.dungeonsmobs.items.armor.IceologerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
@@ -67,6 +68,8 @@ public class ModItems {
 			null);
 	public static final ArmorSet GEOMANCER_ARMOR = registerArmorSet("geomancer_armor", "geomancer_helmet",
 			"geomancer_chestplate", null, null);
+	public static final ArmorSet ICEOLOGER_ARMOR = registerArmorSetIceologer("iceologer_armor", "iceologer_helmet",
+			"iceologer_chestplate", "iceologer_leggings", "iceologer_boots");
 	public static final ArmorSet ROYAL_GUARD_ARMOR = registerArmorSet("royal_guard_armor", "royal_guard_helmet",
 			"royal_guard_chestplate", "royal_guard_leggings", "royal_guard_boots");
 	public static final ArmorSet VANGUARD_ARMOR = registerArmorSet("vanguard_armor", "vanguard_helmet",
@@ -194,6 +197,32 @@ public class ModItems {
 								animationFileLocation)),
 				registerArmor(bootsId,
 						() -> new WindcallerArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)));
+	}
+
+	private static ArmorSet registerArmorSetIceologer(String armorSetId, String helmetId, String chestId,
+			String legsId, String bootsId) {
+		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
+				"animations/armor/cloaked_armor.animation.json");
+		return new ArmorSet(
+				armorSet,
+				registerArmor(helmetId,
+						() -> new IceologerArmorGear(Type.HELMET, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(chestId,
+						() -> new IceologerArmorGear(Type.CHESTPLATE, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(legsId, () -> new IceologerArmorGear(Type.LEGGINGS, ARMOR_PROPERTIES,
+						armorSet, modelLocation, textureLocation, animationFileLocation)),
+				registerArmor(bootsId,
+						() -> new IceologerArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
 								armorSet, modelLocation, textureLocation,
 								animationFileLocation)));
 	}
