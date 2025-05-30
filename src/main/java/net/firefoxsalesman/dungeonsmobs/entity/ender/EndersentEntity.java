@@ -426,7 +426,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		@Override
 		public void stop() {
 			super.stop();
-			nextUseTime = mob.tickCount + 60;
+			nextUseTime = mob.tickCount + 600;
 		}
 
 	}
