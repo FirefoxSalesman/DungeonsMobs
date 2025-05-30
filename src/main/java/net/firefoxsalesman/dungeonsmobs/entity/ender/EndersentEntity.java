@@ -244,7 +244,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		} else {
 			attackAnimationTimeout--;
 		}
-		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null, tickCount);
+		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null && isAlive(), tickCount);
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
