@@ -7,8 +7,10 @@ import net.firefoxsalesman.dungeonsmobs.client.models.summonables.SummonSpotMode
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 
 public class SummonSpotRenderer extends ProjectileRenderer<SummonSpotEntity> {
@@ -32,5 +34,11 @@ public class SummonSpotRenderer extends ProjectileRenderer<SummonSpotEntity> {
 	@Override
 	protected int getBlockLightLevel(SummonSpotEntity entity, BlockPos position) {
 		return 15;
+	}
+
+	@Override
+	public RenderType getRenderType(SummonSpotEntity animatable, ResourceLocation texture,
+			MultiBufferSource bufferSource, float partialTick) {
+		return RenderType.entityTranslucent(getTextureLocation(animatable));
 	}
 }
