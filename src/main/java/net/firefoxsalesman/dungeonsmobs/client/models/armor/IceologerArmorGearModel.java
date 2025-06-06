@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.armor;
 
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.gearconfig.ArmorGearModel;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.minecraft.util.Mth;
@@ -27,9 +28,7 @@ public class IceologerArmorGearModel<T extends ArmorGear> extends ArmorGearModel
 
 		CoreGeoBone cloak = this.getAnimationProcessor().getBone("armorCloak");
 
-		// TODO: uncomment this after adding the iceologer
-		// cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof
-		// IceologerEntity);
+		cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof IceologerEntity);
 	}
 
 	@Override
