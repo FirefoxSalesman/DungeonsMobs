@@ -16,16 +16,17 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCapabilities {
 
-    public static final Capability<Convertible> CONVERTIBLE_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
-    });
+	public static final Capability<Convertible> CONVERTIBLE_CAPABILITY = CapabilityManager
+			.get(new CapabilityToken<>() {
+			});
 
-    public static void setupCapabilities() {
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        forgeBus.addGenericListener(Entity.class, AttacherConvertible::attach);
-    }
+	public static void setupCapabilities() {
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addGenericListener(Entity.class, AttacherConvertible::attach);
+	}
 
-    @SubscribeEvent
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.register(Convertible.class);
-    }
+	@SubscribeEvent
+	public static void registerCaps(RegisterCapabilitiesEvent event) {
+		event.register(Convertible.class);
+	}
 }

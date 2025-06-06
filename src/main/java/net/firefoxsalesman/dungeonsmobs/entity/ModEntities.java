@@ -38,6 +38,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
@@ -438,6 +439,14 @@ public class ModEntities {
 					.clientTrackingRange(4)
 					.updateInterval(2)
 					.build(new ResourceLocation(MOD_ID, "snareling_glob").toString()));
+
+	public static final RegistryObject<EntityType<IceCloudEntity>> ICE_CLOUD = registerEntityWithoutEgg("ice_cloud",
+			() -> EntityType.Builder.<IceCloudEntity>of(IceCloudEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(2.0F, 1.0F)
+					.clientTrackingRange(6)
+					.updateInterval(1)
+					.build(new ResourceLocation(MOD_ID, "ice_cloud").toString()));
 
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);

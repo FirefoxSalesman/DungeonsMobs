@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mod;
 import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
 import net.firefoxsalesman.dungeonsmobs.items.CustomArmorMaterial;
 import net.firefoxsalesman.dungeonsmobs.items.GeomancerStaffItem;
+import net.firefoxsalesman.dungeonsmobs.items.IceWandItem;
 import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
@@ -100,6 +101,8 @@ public class ModItems {
 			() -> new WindcallerStaffItem(new Item.Properties()));
 	public static final RegistryObject<Item> GEOMANCER_STAFF = registerArtifact("geomancer_staff",
 			() -> new GeomancerStaffItem(new Item.Properties()));
+	public static final RegistryObject<Item> ICE_WAND = registerArtifact("ice_wand",
+			() -> new IceWandItem(new Item.Properties()));
 
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);

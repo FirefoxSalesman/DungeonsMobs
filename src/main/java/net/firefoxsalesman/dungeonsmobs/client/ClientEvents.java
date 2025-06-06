@@ -34,6 +34,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerBombRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerWallRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.IceCloudRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
@@ -128,6 +129,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.SNARELING.get(), SnarelingRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.ICE_CLOUD.get(), IceCloudRenderer::new);
 		event.registerEntityRenderer(ModEntities.REDSTONE_MINE.get(), RedstoneMineRenderer::new);
 		event.registerEntityRenderer(ModEntities.TORNADO.get(), WindcallerTornadoRenderer::new);
 		event.registerEntityRenderer(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), EmptyRenderer::new);

@@ -18,7 +18,10 @@
     "MooshroomEntityMixin",
     "PiglinAccessor",
     "SpiderEntityMixin",
-    "TieredItemAccessor"
+    "TieredItemAccessor",
+    "MobInvoker",
+    "NearestAttackableTargetGoalAccessor",
+    "TargetingConditionsAccessor"
   ],
   "client": [
     "SpiderModelMixin"

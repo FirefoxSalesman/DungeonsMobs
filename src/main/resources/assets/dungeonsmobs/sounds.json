@@ -1601,6 +1601,47 @@
     ]
   },
 
+  "entity.ice_chunk.idle_loop": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.ice_chunk.idle_loop",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/ice_chunk/idle_loop",
+	"stream": true
+      }
+    ]
+  },
+  "entity.ice_chunk.summoned": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.ice_chunk.summoned",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/ice_chunk/summoned",
+	"stream": true
+      }
+    ]
+  },
+  "entity.ice_chunk.fall": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.ice_chunk.fall",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/ice_chunk/fall",
+	"stream": true
+      }
+    ]
+  },
+  "entity.ice_chunk.land": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.ice_chunk.land",
+    "sounds": [
+      {
+	"name": "dungeons_mobs:entities/ice_chunk/land",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.skeleton_vanguard.idle": {
     "category": "entity",
     "subtitle": "subtitles.entity.skeleton_vanguard.idle",

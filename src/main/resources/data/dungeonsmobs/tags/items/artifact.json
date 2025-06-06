@@ -1,6 +1,7 @@
 {
   "values": [
-    "geomancer:windcaller_staff",
+    "dungeonsmobs:geomancer_staff",
+    "dungeonsmobs:ice_wand",
     "dungeonsmobs:windcaller_staff"
   ]
 }
