@@ -120,6 +120,11 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> ENDERSENT_TELEPORT = registerSoundEvents(
 			"entity.endersent.teleport");
 
+	public static final RegistryObject<SoundEvent> ICEOLOGER_ATTACK = registerSoundEvents(
+			"entity.iceologer.attack");
+	public static final RegistryObject<SoundEvent> ICEOLOGER_IDLE = registerSoundEvents("entity.iceologer.idle");
+	public static final RegistryObject<SoundEvent> ICEOLOGER_HURT = registerSoundEvents("entity.iceologer.hurt");
+	public static final RegistryObject<SoundEvent> ICEOLOGER_DEATH = registerSoundEvents("entity.iceologer.death");
 	public static final RegistryObject<SoundEvent> ICE_CHUNK_IDLE_LOOP = registerSoundEvents(
 			"entity.ice_chunk.idle_loop");
 	public static final RegistryObject<SoundEvent> ICE_CHUNK_SUMMONED = registerSoundEvents(

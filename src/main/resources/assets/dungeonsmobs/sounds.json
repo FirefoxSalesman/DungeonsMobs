@@ -1601,12 +1601,85 @@
     ]
   },
 
+  "entity.iceologer.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.iceologer.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/iceologer/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.iceologer.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.iceologer.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/iceologer/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/hurt3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.iceologer.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.iceologer.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/iceologer/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/death3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.iceologer.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.iceologer.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/iceologer/attack1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/iceologer/attack3",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.ice_chunk.idle_loop": {
     "category": "entity",
     "subtitle": "subtitles.entity.ice_chunk.idle_loop",
     "sounds": [
       {
-	"name": "dungeons_mobs:entities/ice_chunk/idle_loop",
+	"name": "dungeonsmobs:entities/ice_chunk/idle_loop",
 	"stream": true
       }
     ]
@@ -1616,7 +1689,7 @@
     "subtitle": "subtitles.entity.ice_chunk.summoned",
     "sounds": [
       {
-	"name": "dungeons_mobs:entities/ice_chunk/summoned",
+	"name": "dungeonsmobs:entities/ice_chunk/summoned",
 	"stream": true
       }
     ]
@@ -1626,7 +1699,7 @@
     "subtitle": "subtitles.entity.ice_chunk.fall",
     "sounds": [
       {
-	"name": "dungeons_mobs:entities/ice_chunk/fall",
+	"name": "dungeonsmobs:entities/ice_chunk/fall",
 	"stream": true
       }
     ]
@@ -1636,7 +1709,7 @@
     "subtitle": "subtitles.entity.ice_chunk.land",
     "sounds": [
       {
-	"name": "dungeons_mobs:entities/ice_chunk/land",
+	"name": "dungeonsmobs:entities/ice_chunk/land",
 	"stream": true
       }
     ]

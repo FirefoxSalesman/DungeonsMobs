@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
@@ -116,6 +117,13 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "royal_guard").toString()),
 			0x676767, 0x014675);
+
+	public static final RegistryObject<EntityType<IceologerEntity>> ICEOLOGER = registerEntity("iceologer",
+			() -> EntityType.Builder.<IceologerEntity>of(IceologerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "iceologer").toString()),
+			0x173873, 0xb6c6ca);
 
 	public static final RegistryObject<EntityType<MageEntity>> MAGE = registerEntity("mage",
 			() -> EntityType.Builder.of(MageEntity::new, MobCategory.MONSTER)

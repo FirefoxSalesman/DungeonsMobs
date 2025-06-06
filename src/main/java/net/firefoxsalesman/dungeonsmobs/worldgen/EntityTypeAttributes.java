@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
@@ -48,6 +49,7 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.ROYAL_GUARD.get(), RoyalGuardEntity.setCustomAttributes().build());
 		event.put(ModEntities.MOUNTAINEER.get(), MountaineerEntity.setCustomAttributes().build());
 
+		event.put(ModEntities.ICEOLOGER.get(), IceologerEntity.setCustomAttributes().build());
 		event.put(ModEntities.GEOMANCER.get(), GeomancerEntity.setCustomAttributes().build());
 		event.put(ModEntities.WINDCALLER.get(), WindcallerEntity.setCustomAttributes().build());
 		event.put(ModEntities.MAGE.get(), MageEntity.setCustomAttributes().build());
