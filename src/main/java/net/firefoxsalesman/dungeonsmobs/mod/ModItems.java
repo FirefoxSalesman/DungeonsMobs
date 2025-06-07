@@ -71,6 +71,8 @@ public class ModItems {
 			"geomancer_chestplate", null, null);
 	public static final ArmorSet ICEOLOGER_ARMOR = registerArmorSetIceologer("iceologer_armor", "iceologer_helmet",
 			"iceologer_chestplate", "iceologer_leggings", "iceologer_boots");
+	public static final ArmorSet NETHERPLATE_ARMOR = registerArmorSet("netherplate_armor", "netherplate_helmet",
+			null, null, null);
 	public static final ArmorSet ROYAL_GUARD_ARMOR = registerArmorSet("royal_guard_armor", "royal_guard_helmet",
 			"royal_guard_chestplate", "royal_guard_leggings", "royal_guard_boots");
 	public static final ArmorSet VANGUARD_ARMOR = registerArmorSet("vanguard_armor", "vanguard_helmet",
