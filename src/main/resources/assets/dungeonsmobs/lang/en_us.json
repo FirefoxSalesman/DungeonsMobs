@@ -11,6 +11,8 @@
 
   "entity.dungeonsmobs.royal_guard": "Royal Guard",
   "item.dungeonsmobs.royal_guard_spawn_egg": "Royal Guard Spawn Egg",
+  "entity.dungeonsmobs.iceologer": "Iceologer",
+  "item.dungeonsmobs.iceologer_spawn_egg": "Iceologer Spawn Egg",
   "entity.dungeonsmobs.geomancer": "Geomancer",
   "item.dungeonsmobs.geomancer_spawn_egg": "Geomancer Spawn Egg",
   "entity.dungeonsmobs.windcaller": "Windcaller",
@@ -280,6 +282,11 @@
   "subtitles.entity.endersent.step": "Endersent steps",
   "subtitles.entity.endersent.idle_smash": "Endersent smashes",
   "subtitles.entity.endersent.attack": "Endersent smashes",
+
+  "subtitles.entity.iceologer.idle": "Iceologer grumbles",
+  "subtitles.entity.iceologer.hurt": "Iceologer hurts",
+  "subtitles.entity.iceologer.death": "Iceologer dies",
+  "subtitles.entity.iceologer.attack": "Iceologer attacks",
 
   "subtitles.entity.ice_chunk.idle_loop": "Ice Chunk crackles",
   "subtitles.entity.ice_chunk.summoned": "Ice Chunk appears",
