@@ -36,6 +36,11 @@ public class RaidEntries {
 			Raid.RaiderType.create("mage", ModEntities.MAGE.get(), new int[] { 0, 0, 1, 0, 0, 1, 0, 2 });
 		}
 
+		if (DungeonsMobsConfig.COMMON.ENABLE_ICEOLOGERS_IN_RAIDS.get()) {
+			Raid.RaiderType.create("iceologer", ModEntities.ICEOLOGER.get(),
+					new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });
+		}
+
 		if (DungeonsMobsConfig.COMMON.ENABLE_WINDCALLERS_IN_RAIDS.get()) {
 			Raid.RaiderType.create("windcaller", ModEntities.WINDCALLER.get(),
 					new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });

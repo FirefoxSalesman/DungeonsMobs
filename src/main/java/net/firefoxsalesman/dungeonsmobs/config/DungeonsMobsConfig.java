@@ -12,6 +12,7 @@ public class DungeonsMobsConfig {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ROYAL_GUARDS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEOMANCERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAGES_IN_RAIDS;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICEOLOGERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WINDCALLERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SQUALL_GOLEMS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REDSTONE_GOLEMS_IN_RAIDS;
@@ -36,6 +37,9 @@ public class DungeonsMobsConfig {
 			ENABLE_MAGES_IN_RAIDS = builder
 					.comment("Enable the addition of Mages to raids. [true / false]")
 					.define("enableMagesInRaids", false);
+			ENABLE_ICEOLOGERS_IN_RAIDS = builder
+					.comment("Enable the addition of Iceologers to raids. [true / false]")
+					.define("enableIceologersInRaids", false);
 			ENABLE_WINDCALLERS_IN_RAIDS = builder
 					.comment("Enable the addition of Windcallers to raids. [true / false]")
 					.define("enableWindcallersInRaids", false);
