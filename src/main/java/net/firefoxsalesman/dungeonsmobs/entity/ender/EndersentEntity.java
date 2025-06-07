@@ -34,10 +34,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.EnumSet;
-
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
+
+import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
 public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
@@ -61,9 +62,12 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	public static final EntityDataAccessor<Integer> TELEPORTING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.INT);
-	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
-			BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(true)
-			.setPlayBossMusic(true);
+	private final ServerBossEvent bossEvent = COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()
+			? (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
+					BossEvent.BossBarColor.PURPLE,
+					BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(true)
+					.setPlayBossMusic(true)
+			: null;
 
 	public EndersentEntity(EntityType<? extends EndersentEntity> p_i50210_1_, Level p_i50210_2_) {
 		super(p_i50210_1_, p_i50210_2_);
@@ -136,7 +140,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	public void readAdditionalSaveData(CompoundTag p_70037_1_) {
 		super.readAdditionalSaveData(p_70037_1_);
-		if (hasCustomName()) {
+		if (hasCustomName() && COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
 			bossEvent.setName(getDisplayName());
 		}
 
@@ -144,7 +148,9 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	public void setCustomName(@Nullable Component p_200203_1_) {
 		super.setCustomName(p_200203_1_);
-		bossEvent.setName(getDisplayName());
+		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
+			bossEvent.setName(getDisplayName());
+		}
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -206,17 +212,23 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 			getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2F);
 		}
 
-		bossEvent.setProgress(getHealth() / getMaxHealth());
+		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
+			bossEvent.setProgress(getHealth() / getMaxHealth());
+		}
 	}
 
 	public void startSeenByPlayer(ServerPlayer player) {
 		super.startSeenByPlayer(player);
-		bossEvent.addPlayer(player);
+		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
+			bossEvent.addPlayer(player);
+		}
 	}
 
 	public void stopSeenByPlayer(ServerPlayer player) {
 		super.stopSeenByPlayer(player);
-		bossEvent.removePlayer(player);
+		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
+			bossEvent.removePlayer(player);
+		}
 	}
 
 	protected boolean teleport() {
@@ -244,7 +256,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		} else {
 			attackAnimationTimeout--;
 		}
-		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null && isAlive(), tickCount);
+		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null && isAlive(),
+				tickCount);
 	}
 
 	class AttackGoal extends MeleeAttackGoal {

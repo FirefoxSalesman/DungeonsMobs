@@ -7,6 +7,7 @@ public class DungeonsMobsConfig {
 
 	public static class Common {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICY_CREEPER_GRIEFING;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENDERSENT_BOSS_BAR;
 
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAINEERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ROYAL_GUARDS_IN_RAIDS;
@@ -58,6 +59,11 @@ public class DungeonsMobsConfig {
 							+
 							"If you prefer their explosions to not damage the environment, disable this feature. [true / false]")
 					.define("enablyIcyCreeperGriefing", true);
+			ENABLE_ENDERSENT_BOSS_BAR = builder
+					.comment("Enable the Endersent's bossbar & fog to appear\n"
+							+
+							"Off by default, since it spoils stronghold locations. [true / false]")
+					.define("enableEndersentBossBar", false);
 
 			// VANILLA MOB CONFIGURATION
 			builder.comment("Vanilla Mob Configuration").push("vanilla_mob_configuration");
