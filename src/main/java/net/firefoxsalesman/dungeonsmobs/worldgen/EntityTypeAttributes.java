@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
@@ -85,5 +86,7 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.BLASTLING.get(), BlastlingEntity.setCustomAttributes().build());
 		event.put(ModEntities.WATCHLING.get(), WatchlingEntity.setCustomAttributes().build());
 		event.put(ModEntities.SNARELING.get(), SnarelingEntity.setCustomAttributes().build());
+
+		event.put(ModEntities.WILDFIRE.get(), WildfireEntity.setCustomAttributes().build());
 	}
 }

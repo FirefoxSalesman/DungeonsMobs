@@ -167,6 +167,20 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_SHOOT = registerSoundEvents(
 			"entity.sunken_skeleton.shoot");
 
+	public static final RegistryObject<SoundEvent> WILDFIRE_IDLE = registerSoundEvents("entity.wildfire.idle");
+	public static final RegistryObject<SoundEvent> WILDFIRE_IDLE_LOOP = registerSoundEvents(
+			"entity.wildfire.idle_loop");
+	public static final RegistryObject<SoundEvent> WILDFIRE_HURT = registerSoundEvents("entity.wildfire.hurt");
+	public static final RegistryObject<SoundEvent> WILDFIRE_DEATH = registerSoundEvents("entity.wildfire.death");
+	public static final RegistryObject<SoundEvent> WILDFIRE_MOVE = registerSoundEvents("entity.wildfire.move");
+	public static final RegistryObject<SoundEvent> WILDFIRE_SHOOT = registerSoundEvents("entity.wildfire.shoot");
+	public static final RegistryObject<SoundEvent> WILDFIRE_PROJECTILE_HIT = registerSoundEvents(
+			"entity.wildfire.projectile_hit");
+	public static final RegistryObject<SoundEvent> WILDFIRE_SHOCKWAVE = registerSoundEvents(
+			"entity.wildfire.shockwave");
+	public static final RegistryObject<SoundEvent> WILDFIRE_SHIELD_BREAK = registerSoundEvents(
+			"entity.wildfire.shield_break");
+
 	public static final RegistryObject<SoundEvent> ILLUSIONER_DEATH = registerSoundEvents(
 			"entity.illusioner.death");
 
@@ -333,6 +347,8 @@ public class ModSoundEvents {
 			"entity.necromancer.orb_impact");
 	public static final RegistryObject<SoundEvent> NECROMANCER_PREPARE_SUMMON = registerSoundEvents(
 			"entity.necromancer.prepare_summon");
+	public static final RegistryObject<SoundEvent> NECROMANCER_SUMMON = registerSoundEvents(
+			"entity.necromancer.summon");
 
 	public static final RegistryObject<SoundEvent> WINDCALLER_IDLE = registerSoundEvents("entity.windcaller.idle");
 	public static final RegistryObject<SoundEvent> WINDCALLER_HURT = registerSoundEvents("entity.windcaller.hurt");

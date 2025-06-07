@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.common.base.Supplier;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
@@ -304,6 +305,16 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "snareling").toString()),
 			0x161616, 0xdbe64e);
+
+	// BLAZES
+
+	public static final RegistryObject<EntityType<WildfireEntity>> WILDFIRE = registerEntity("wildfire",
+			() -> EntityType.Builder.of(WildfireEntity::new, MobCategory.MONSTER)
+					.fireImmune()
+					.sized(0.9F, 2.25F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(MOD_ID, "wildfire").toString()),
+			0x8b3401, 0xffd528);
 
 	// PROJECTILES
 	public static final RegistryObject<EntityType<BlueNethershroomEntity>> BLUE_NETHERSHROOM = registerEntityWithoutEgg(

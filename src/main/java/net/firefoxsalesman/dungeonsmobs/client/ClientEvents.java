@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.EmptyRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.blaze.WildfireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.BlastlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.EndersentRenderer;
@@ -131,6 +132,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.SNARELING.get(), SnarelingRenderer::new);
+
+		event.registerEntityRenderer(ModEntities.WILDFIRE.get(), WildfireRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ICE_CLOUD.get(), IceCloudRenderer::new);
 		event.registerEntityRenderer(ModEntities.REDSTONE_MINE.get(), RedstoneMineRenderer::new);
