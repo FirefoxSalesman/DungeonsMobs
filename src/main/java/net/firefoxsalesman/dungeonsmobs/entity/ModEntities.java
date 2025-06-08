@@ -30,6 +30,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.piglin.ZombifiedFungusThrowerEnti
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlastlingBulletEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlueNethershroomEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.DrownedNecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
@@ -52,6 +53,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
@@ -271,6 +273,13 @@ public class ModEntities {
 					.build(new ResourceLocation(MOD_ID, "wavewhisperer").toString()),
 			0x48a867, 0x69ebff);
 
+	public static final RegistryObject<EntityType<DrownedNecromancerEntity>> DROWNED_NECROMANCER = registerEntity(
+			"drowned_necromancer",
+			() -> EntityType.Builder.of(DrownedNecromancerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F * 1.5F, 1.95F * 1.5F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "drowned_necromancer").toString()),
+			9433559, 0x274d72);
 	public static final RegistryObject<EntityType<SunkenSkeletonEntity>> SUNKEN_SKELETON = registerEntity(
 			"sunken_skeleton", () -> EntityType.Builder.of(SunkenSkeletonEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.99F)
@@ -386,6 +395,15 @@ public class ModEntities {
 					.updateInterval(1)
 					.build(new ResourceLocation(MOD_ID, "necromancer_orb")
 							.toString()));
+
+	public static final RegistryObject<EntityType<DrownedNecromancerOrbEntity>> DROWNED_NECROMANCER_ORB = ENTITY_TYPES
+			.register("drowned_necromancer_orb", () -> EntityType.Builder
+					.<DrownedNecromancerOrbEntity>of(DrownedNecromancerOrbEntity::new,
+							MobCategory.MISC)
+					.fireImmune()
+					.sized(0.5F, 0.5F)
+					.updateInterval(1)
+					.build(new ResourceLocation(MOD_ID, "drowned_necromancer_orb").toString()));
 
 	public static final RegistryObject<EntityType<PoisonQuillEntity>> POISON_QUILL = ENTITY_TYPES.register(
 			"poison_quill",

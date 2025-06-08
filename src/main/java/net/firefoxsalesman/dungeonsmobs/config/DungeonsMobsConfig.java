@@ -1,11 +1,18 @@
 package net.firefoxsalesman.dungeonsmobs.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.List;
+
 import org.apache.commons.lang3.tuple.Pair;
+
+import com.google.common.collect.Lists;
 
 public class DungeonsMobsConfig {
 
 	public static class Common {
+		public static ForgeConfigSpec.ConfigValue<List<? extends String>> DROWNED_NECROMANCER_MOB_SUMMONS;
+
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICY_CREEPER_GRIEFING;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENDERSENT_BOSS_BAR;
 
@@ -24,6 +31,21 @@ public class DungeonsMobsConfig {
 		public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ITEM_TAB;
 
 		public Common(ForgeConfigSpec.Builder builder) {
+			// MOB CONFIGURATION
+			builder.comment("Mob Configuration").push("mob_configuration");
+			DROWNED_NECROMANCER_MOB_SUMMONS = builder
+					.comment("Add mobs (preferably undead and aquatic) that the Drowned Necromancer can summon. \n"
+							+ "To do so, enter the namespace ID of the mob, like \"minecraft:drowned\".\n"
+							+
+							"If this list is empty, drowned will be summoned instead.\n" +
+							"If a mob chosen from this list cannot be spawned, a drowned will be summoned instead.")
+					.defineList("drownedNecromancerMobSummons", Lists.newArrayList(
+							"minecraft:drowned",
+							"dungeonsmobs:sunken_skeleton"),
+							(itemRaw) -> itemRaw instanceof String);
+
+			builder.pop();
+
 			// RAID CONFIGURATION
 			builder.comment("Raid Configuration").push("raid_configuration");
 			ENABLE_MOUNTAINEERS_IN_RAIDS = builder

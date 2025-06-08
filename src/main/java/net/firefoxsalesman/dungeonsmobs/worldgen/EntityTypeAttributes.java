@@ -28,6 +28,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
@@ -76,6 +77,8 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.FUNGUS_THROWER.get(), Piglin.createAttributes().build());
 		event.put(ModEntities.ZOMBIFIED_FUNGUS_THROWER.get(), ZombifiedPiglin.createAttributes().build());
 
+		event.put(ModEntities.DROWNED_NECROMANCER.get(),
+				DrownedNecromancerEntity.setCustomAttributes().build());
 		event.put(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonEntity.setCustomAttributes().build());
 		event.put(ModEntities.WAVEWHISPERER.get(), WhispererEntity.setCustomAttributes().build());
 		event.put(ModEntities.QUICK_GROWING_KELP.get(),

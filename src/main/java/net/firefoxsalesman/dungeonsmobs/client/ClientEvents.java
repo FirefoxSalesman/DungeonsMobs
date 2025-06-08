@@ -28,6 +28,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer
 import net.firefoxsalesman.dungeonsmobs.client.renderer.piglin.CustomPiglinRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.BlueNethershroomRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.CobwebProjectileRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.DrownedNecromancerOrbRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRenderer;
@@ -47,6 +48,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRen
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.SkeletonVanguardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.water.DrownedNecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
@@ -116,6 +118,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.WAVEWHISPERER.get(), WavewhispererRenderer::new);
 		event.registerEntityRenderer(ModEntities.POISON_ANEMONE.get(), PoisonAnemoneRenderer::new);
 		event.registerEntityRenderer(ModEntities.QUICK_GROWING_KELP.get(), QuickGrowingKelpRenderer::new);
+		event.registerEntityRenderer(ModEntities.DROWNED_NECROMANCER.get(), DrownedNecromancerRenderer::new);
 		event.registerEntityRenderer(ModEntities.SUNKEN_SKELETON.get(), SunkenSkeletonRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.SQUALL_GOLEM.get(), SquallGolemRenderer::new);
@@ -128,6 +131,10 @@ public class ClientEvents {
 				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
 						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
 						ModelLayers.ZOMBIFIED_PIGLIN_OUTER_ARMOR, true, true));
+
+		event.registerEntityRenderer(ModEntities.NECROMANCER_ORB.get(), OrbProjectileRenderer::new);
+		event.registerEntityRenderer(ModEntities.DROWNED_NECROMANCER_ORB.get(),
+				DrownedNecromancerOrbRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.TRIDENT_STORM.get(), TridentStormRenderer::new);
 
