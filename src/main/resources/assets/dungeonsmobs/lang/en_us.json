@@ -149,6 +149,11 @@
   "item.dungeonsmobs.mountaineer_boots": "Mountaineering Boots",
   "lore.dungeonsmobs.mountaineer_armor": "Warm and rugged attire weaved by the illagers of the mountains and tundras.",
 
+  "item.dungeonsmobs.drowned_necromancer_helmet": "Drowned Necromancer Crown",
+  "item.dungeonsmobs.drowned_necromancer_chestplate": "Drowned Necromancer Cloak",
+  "item.dungeonsmobs.drowned_necromancer_leggings": "Drowned Necromancer Belt",
+  "lore.dungeonsmobs.drowned_necromancer_armor": "Ceremonial attire of the masters of the storm and the drowned, relics of a sunken realm, it is rumored they still worship a primeval one-eyed god of the abyss.",
+
   "item.dungeonsmobs.windcaller_helmet": "Wind Wig",
   "item.dungeonsmobs.windcaller_chestplate": "Windcaller Robes",
   "lore.dungeonsmobs.windcaller_armor": "Jade Kasaya worn by the the windcallers of the Gale Sanctum, the tall wig of the monks is integral to their communion with the wind.",

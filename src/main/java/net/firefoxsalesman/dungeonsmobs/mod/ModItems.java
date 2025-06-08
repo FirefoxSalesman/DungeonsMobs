@@ -8,6 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.NecromancerTridentItem;
+import net.firefoxsalesman.dungeonsmobs.items.armor.DrownedNecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.IceologerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
@@ -68,6 +69,9 @@ public class ModItems {
 
 	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", "chef_chestplate", null,
 			null);
+	public static final ArmorSet DROWNED_NECROMANCER_ARMOR = registerArmorSetDrownedNecromancer(
+			"drowned_necromancer_armor", "drowned_necromancer_helmet", "drowned_necromancer_chestplate",
+			"drowned_necromancer_leggings", null);
 	public static final ArmorSet GEOMANCER_ARMOR = registerArmorSet("geomancer_armor", "geomancer_helmet",
 			"geomancer_chestplate", null, null);
 	public static final ArmorSet ICEOLOGER_ARMOR = registerArmorSetIceologer("iceologer_armor", "iceologer_helmet",
@@ -233,6 +237,31 @@ public class ModItems {
 						() -> new IceologerArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
 								armorSet, modelLocation, textureLocation,
 								animationFileLocation)));
+	}
+
+	private static ArmorSet registerArmorSetDrownedNecromancer(String armorSetId, String helmetId, String chestId,
+			String legsId, String bootsId) {
+		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
+				"animations/armor/cloaked_armor.animation.json");
+		return new ArmorSet(
+				armorSet,
+				registerArmor(helmetId,
+						() -> new DrownedNecromancerArmorGear(Type.HELMET,
+								ARMOR_PROPERTIES, armorSet, modelLocation,
+								textureLocation, animationFileLocation)),
+				registerArmor(chestId,
+						() -> new DrownedNecromancerArmorGear(Type.CHESTPLATE,
+								ARMOR_PROPERTIES, armorSet, modelLocation,
+								textureLocation, animationFileLocation)),
+				registerArmor(legsId,
+						() -> new DrownedNecromancerArmorGear(Type.LEGGINGS,
+								ARMOR_PROPERTIES, armorSet, modelLocation,
+								textureLocation, animationFileLocation)),
+				null);
 	}
 
 	private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier) {
