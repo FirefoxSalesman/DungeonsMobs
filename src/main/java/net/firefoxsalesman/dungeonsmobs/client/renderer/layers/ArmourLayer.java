@@ -19,6 +19,8 @@ public class ArmourLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLaye
 	protected ModelPart getModelPartForBone(GeoBone bone, EquipmentSlot slot, ItemStack stack, T animatable,
 			HumanoidModel<?> baseModel) {
 		switch (bone.getName()) {
+			case "armorHead":
+				return baseModel.head;
 			case "armorBipedLeftFoot":
 			case "armorBipedLeftLeg":
 				return baseModel.leftLeg;
@@ -55,6 +57,8 @@ public class ArmourLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLaye
 			case "armorIllagerRightArm":
 			case "armorIllagerLeftArm":
 				return chestplateStack;
+			case "armorHead":
+				return helmetStack;
 			case "armorBipedHead":
 				return helmetStack;
 			default:
@@ -84,6 +88,8 @@ public class ArmourLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLaye
 			case "armorBipedBody":
 				return EquipmentSlot.CHEST;
 			case "armorBipedHead":
+				return EquipmentSlot.HEAD;
+			case "armorHead":
 				return EquipmentSlot.HEAD;
 			default:
 				return null;

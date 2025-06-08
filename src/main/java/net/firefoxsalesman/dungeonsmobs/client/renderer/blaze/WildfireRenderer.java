@@ -5,8 +5,10 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.blaze.WildfireModel;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmourLayer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -21,6 +23,7 @@ public class WildfireRenderer extends GeoEntityRenderer<WildfireEntity> {
 		addRenderLayer(new PulsatingGlowLayer<>(this,
 				new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/blaze/wildfire.png"), 0.1F,
 				1.0F, 0.25F));
+		addRenderLayer(new ArmourLayer<>(this));
 	}
 
 	@Override
