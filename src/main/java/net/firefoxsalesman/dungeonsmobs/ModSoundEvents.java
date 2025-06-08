@@ -156,6 +156,32 @@ public class ModSoundEvents {
 			"entity.mossy_skeleton.shoot");
 	public static final RegistryObject<SoundEvent> MOSSY_SKELETON_STEP = registerSoundEvents(
 			"entity.mossy_skeleton.step");
+
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_IDLE = registerSoundEvents(
+			"entity.drowned_necromancer.idle");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_HURT = registerSoundEvents(
+			"entity.drowned_necromancer.hurt");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_DEATH = registerSoundEvents(
+			"entity.drowned_necromancer.death");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_SWIM = registerSoundEvents(
+			"entity.drowned_necromancer.swim");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_ATTACK = registerSoundEvents(
+			"entity.drowned_necromancer.attack");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_STRONG_ATTACK = registerSoundEvents(
+			"entity.drowned_necromancer.strong_attack");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_SHOOT = registerSoundEvents(
+			"entity.drowned_necromancer.shoot");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_SUMMON = registerSoundEvents(
+			"entity.drowned_necromancer.summon");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_STEAM_MISSILE = registerSoundEvents(
+			"entity.drowned_necromancer.steam_missile");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_STEAM_MISSILE_IMPACT = registerSoundEvents(
+			"entity.drowned_necromancer.steam_missile_impact");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_PREPARE_TRIDENT_STORM = registerSoundEvents(
+			"entity.drowned_necromancer.prepare_trident_storm");
+	public static final RegistryObject<SoundEvent> DROWNED_NECROMANCER_TRIDENT_STORM_HIT = registerSoundEvents(
+			"entity.drowned_necromancer.trident_storm_hit");
+
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_IDLE = registerSoundEvents(
 			"entity.sunken_skeleton.idle");
 	public static final RegistryObject<SoundEvent> SUNKEN_SKELETON_HURT = registerSoundEvents(

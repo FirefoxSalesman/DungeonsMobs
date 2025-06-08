@@ -44,6 +44,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.summonables.TridentStormEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
@@ -369,6 +370,13 @@ public class ModEntities {
 					.fireImmune()
 					.sized(2F, 2F)
 					.build(new ResourceLocation(MOD_ID, "windcaller_blast_projectile").toString()));
+
+	public static final RegistryObject<EntityType<TridentStormEntity>> TRIDENT_STORM = registerEntityWithoutEgg(
+			"trident_storm", () -> EntityType.Builder.of(TridentStormEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(2F, 32F)
+					.clientTrackingRange(10)
+					.build(new ResourceLocation(MOD_ID, "trident_storm").toString()));
 
 	public static final RegistryObject<EntityType<NecromancerOrbEntity>> NECROMANCER_ORB = ENTITY_TYPES.register(
 			"necromancer_orb",

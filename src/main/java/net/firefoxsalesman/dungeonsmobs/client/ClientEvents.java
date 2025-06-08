@@ -40,6 +40,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.IceCloudRend
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.TridentStormRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WindcallerTornadoRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
@@ -127,6 +128,8 @@ public class ClientEvents {
 				manager -> new CustomPiglinRenderer(manager, ModelLayers.ZOMBIFIED_PIGLIN,
 						ModelLayers.ZOMBIFIED_PIGLIN_INNER_ARMOR,
 						ModelLayers.ZOMBIFIED_PIGLIN_OUTER_ARMOR, true, true));
+
+		event.registerEntityRenderer(ModEntities.TRIDENT_STORM.get(), TridentStormRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ENDERSENT.get(), EndersentRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);

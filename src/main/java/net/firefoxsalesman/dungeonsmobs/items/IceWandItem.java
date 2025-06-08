@@ -27,7 +27,6 @@ public class IceWandItem extends ArtifactItem {
         return freezeEntity(stack, playerIn, target);
     }
 
-    // todo something seems to be wrong here
     @Override
     public InteractionResultHolder<ItemStack> procArtifact(ArtifactUseContext c) {
         Player playerIn = c.getPlayer();

@@ -2600,6 +2600,251 @@
       }
     ]
   },
+
+  "entity.drowned_necromancer.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/hurt3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/death2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/death3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.swim": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.swim",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/swim1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/swim2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/swim3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/attack1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/attack3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/attack4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.strong_attack": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.strong_attack",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/strong_attack1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/strong_attack2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/strong_attack3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/strong_attack4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/shoot1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/shoot2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/shoot3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/shoot4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.summon": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.summon",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/summon1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/summon2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/summon3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.steam_missile": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.steam_missile",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.steam_missile_impact": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.steam_missile_impact",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile_impact1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile_impact2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile_impact3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/steam_missile_impact4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.prepare_trident_storm": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.prepare_trident_storm",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/prepare_trident_storm1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/prepare_trident_storm2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/prepare_trident_storm3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/prepare_trident_storm4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.drowned_necromancer.trident_storm_hit": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.drowned_necromancer.trident_storm_hit",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/trident_storm_hit1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/trident_storm_hit2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/trident_storm_hit3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/drowned_necromancer/trident_storm_hit4",
+	"stream": true
+      }
+    ]
+  },
   
   "entity.sunken_skeleton.idle": {
     "category": "entity",
