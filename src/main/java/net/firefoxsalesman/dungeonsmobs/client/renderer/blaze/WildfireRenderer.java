@@ -8,7 +8,6 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmourLayer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -49,15 +48,14 @@ public class WildfireRenderer extends GeoEntityRenderer<WildfireEntity> {
 
 	@Override
 	public void renderRecursively(PoseStack poseStack, WildfireEntity animatable, GeoBone bone,
-			RenderType renderType,
-			MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
-			int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+			RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer,
+			boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red,
+			float green, float blue, float alpha) {
 		if (this.isArmorBone(bone)) {
 			bone.setHidden(true);
 		}
 		super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-				partialTick,
-				packedLight, packedOverlay, red, green, blue, alpha);
+				partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	protected boolean isArmorBone(GeoBone bone) {
