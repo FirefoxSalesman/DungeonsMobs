@@ -15,6 +15,9 @@
   "item.dungeonsmobs.iceologer_spawn_egg": "Iceologer Spawn Egg",
   "entity.dungeonsmobs.geomancer": "Geomancer",
   "item.dungeonsmobs.geomancer_spawn_egg": "Geomancer Spawn Egg",
+  "item.dungeonsmobs.necromancer_trident": "Necromancer Trident",
+  "lore.dungeonsmobs.necromancer_trident": "Ceremonial Trident of the the mage-priests of the Abyssal Monument, gleams with the azure glint of a sunken star, this staff grants power over the storm and the dead.",
+  "ability.dungeonsmobs.necromancer_trident": "Calls down 8 tridents around the target that causes a thunderbolt where they land.",
   "entity.dungeonsmobs.windcaller": "Windcaller",
   "item.dungeonsmobs.windcaller_spawn_egg": "Windcaller Spawn Egg",
   "entity.dungeonsmobs.mountaineer": "Mountaineer",
@@ -82,6 +85,12 @@
 
   "death.ice_chunk": "%1$s was crushed by an Ice Chunk",
   "death.attack.ice_chunk": "%1$s was crushed by an Ice Chunk from %2$s",
+
+  "death.summoned_trident_storm": "%1$s was struck by an electrically charged trident",
+  "death.attack.summoned_trident_storm": "%1$s was struck by an electrically charged trident summoned by %2$s",
+  
+  "death.trident_storm": "%1$s was struck by an electrically charged trident",
+  "death.attack.trident_storm": "%1$s was struck by an electrically charged trident",
 
   "entity.dungeonsmobs.wraith": "Wraith",
   "item.dungeonsmobs.wraith_spawn_egg": "Wraith Spawn Egg",
@@ -366,6 +375,19 @@
   "subtitles.entity.poison_anemone.death": "Poison Anemone dies",
   "subtitles.entity.poison_anemone.close": "Poison Anemone closes",
   "subtitles.entity.poison_anemone.shoot": "Poison Anemone shoots",
+
+  "subtitles.entity.drowned_necromancer.idle": "Drowned Necromancer groans",
+  "subtitles.entity.drowned_necromancer.hurt": "Drowned Necromancer hurts",
+  "subtitles.entity.drowned_necromancer.death": "Drowned Necromancer dies",
+  "subtitles.entity.drowned_necromancer.swim": "Drowned Necromancer swims",
+  "subtitles.entity.drowned_necromancer.attack": "Drowned Necromancer shoots",
+  "subtitles.entity.drowned_necromancer.strong_attack": "Drowned Necromancer prepares summon",
+  "subtitles.entity.drowned_necromancer.shoot": "Drowned Necromancer shoots",
+  "subtitles.entity.drowned_necromancer.summon": "Drowned Necromancer summons",
+  "subtitles.entity.drowned_necromancer.steam_missile": "Steam Missile launches",
+  "subtitles.entity.drowned_necromancer.steam_missile_impact": "Steam Missile hits",
+  "subtitles.entity.drowned_necromancer.prepare_trident_storm": "Trident Storm rumbles",
+  "subtitles.entity.drowned_necromancer.trident_storm_hit": "Trident Storm strikes",
   
   "subtitles.entity.sunken_skeleton.idle": "Sunken Skeleton bubbles",
   "subtitles.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
