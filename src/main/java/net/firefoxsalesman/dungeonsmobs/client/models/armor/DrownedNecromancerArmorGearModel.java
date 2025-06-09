@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.armor;
 
+import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.items.armor.DrownedNecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.gearconfig.ArmorGearModel;
 import net.minecraft.util.Mth;
@@ -27,16 +28,18 @@ public class DrownedNecromancerArmorGearModel<T extends DrownedNecromancerArmorG
 
 		CoreGeoBone cloak = this.getAnimationProcessor().getBone("armorCloak");
 
-		// TODO uncomment this after adding drowned necromancer
-		// cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof
-		// DrownedNecromancerEntity);
-		cloak.setHidden(this.getWearer() != null);
+		cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof DrownedNecromancerEntity);
+
+		this.getAnimationProcessor().getBone("armorHood").setHidden(true);
 	}
 
 	@Override
 	public void applyMolangQueries(T animatable, double animTime) {
-		Vec3 velocity = wearer.getDeltaMovement();
-		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		MolangParser.INSTANCE.setValue("query.ground_speed", () -> groundSpeed * 13);
+		if (wearer != null) {
+			Vec3 velocity = wearer.getDeltaMovement();
+			float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
+			MolangParser.INSTANCE.setValue("query.ground_speed", () -> groundSpeed * 13);
+
+		}
 	}
 }

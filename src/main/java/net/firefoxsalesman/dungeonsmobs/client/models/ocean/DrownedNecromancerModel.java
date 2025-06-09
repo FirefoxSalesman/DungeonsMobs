@@ -8,7 +8,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,7 +25,6 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 
 @OnlyIn(Dist.CLIENT)
 public class DrownedNecromancerModel extends GeoModel<DrownedNecromancerEntity> {
-
 	@Override
 	public ResourceLocation getAnimationResource(DrownedNecromancerEntity entity) {
 		return new ResourceLocation(MOD_ID, "animations/drowned_necromancer.animation.json");
@@ -74,11 +72,8 @@ public class DrownedNecromancerModel extends GeoModel<DrownedNecromancerEntity> 
 
 	@Override
 	public void applyMolangQueries(DrownedNecromancerEntity animatable, double animTime) {
-		super.applyMolangQueries(animatable, animTime);
-
-		LivingEntity livingEntity = (LivingEntity) animatable;
-		Vec3 velocity = livingEntity.getDeltaMovement();
-		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		MolangParser.INSTANCE.setValue("query.ground_speed", () -> groundSpeed * 20);
+			Vec3 velocity = animatable.getDeltaMovement();
+			float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
+			MolangParser.INSTANCE.setValue("query.ground_speed", () -> groundSpeed * 20);
 	}
 }

@@ -60,9 +60,7 @@ public class DrownedNecromancerArmorGearRenderer extends ArmorGearRenderer<Drown
 			MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight,
 			int packedOverlay, float red, float green, float blue, float alpha) {
 		GeoModel<DrownedNecromancerArmorGear> geoModelProvider = getGeoModel();
-		// if (geoModelProvider instanceof DrownedNecromancerArmorGearModel) {
-		// TODO copy drowned necromancer condition
-		if (getCurrentEntity() != null) {
+		if (getCurrentEntity() != null && geoModelProvider instanceof DrownedNecromancerArmorGearModel) {
 			((DrownedNecromancerArmorGearModel<DrownedNecromancerArmorGear>) geoModelProvider)
 					.setWearer((LivingEntity) getCurrentEntity());
 		}

@@ -4,6 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerModel;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmourLayer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ItemLayer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -22,6 +24,8 @@ public class DrownedNecromancerRenderer extends GeoEntityRenderer<DrownedNecroma
 		addRenderLayer(new PulsatingGlowLayer<>(this,
 				new ResourceLocation(MOD_ID, "textures/entity/ocean/drowned_necromancer_eyes.png"),
 				0.2F, 0.5F, 1.0F));
+		addRenderLayer(new ItemLayer<>(this));
+		addRenderLayer(new ArmourLayer<>(this));
 	}
 
 	@Override
@@ -46,7 +50,7 @@ public class DrownedNecromancerRenderer extends GeoEntityRenderer<DrownedNecroma
 			float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 			float alpha) {
 		if (this.isArmorBone(bone)) {
-		    bone.setHidden(true);
+			bone.setHidden(true);
 		}
 		super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
 				partialTick,
