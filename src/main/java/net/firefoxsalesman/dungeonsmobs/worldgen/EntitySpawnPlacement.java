@@ -95,6 +95,10 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				EntitySpawnPlacement::canIllagerSpawn);
+		SpawnPlacements.register(ModEntities.ICEOLOGER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 		SpawnPlacements.register(ModEntities.SQUALL_GOLEM.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -131,6 +135,10 @@ public class EntitySpawnPlacement {
 
 		// Ocean
 		SpawnPlacements.register(ModEntities.WAVEWHISPERER.get(),
+				SpawnPlacements.Type.IN_WATER,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::checkAquaticMobSpawnRules);
+		SpawnPlacements.register(ModEntities.DROWNED_NECROMANCER.get(),
 				SpawnPlacements.Type.IN_WATER,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				EntitySpawnPlacement::checkAquaticMobSpawnRules);
