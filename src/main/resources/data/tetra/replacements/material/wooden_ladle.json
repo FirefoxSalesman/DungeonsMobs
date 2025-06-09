@@ -1,0 +1,12 @@
+[
+  {
+    "predicate":{
+      "items":["dungeonsmobs:wooden_ladle"]
+    },
+    "item": "tetra:modular_single",
+    "modules": {
+      "single/head": [ "single/basic_shovel", "basic_shovel/oak" ],
+      "single/handle": [ "single/light_handle", "basic_handle/stick" ]
+    }
+  }
+]
