@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.items.IceWandItem;
 import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
+import net.firefoxsalesman.dungeonsmobs.items.NecromancerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.NecromancerTridentItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.DrownedNecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.IceologerArmorGear;
@@ -108,6 +109,8 @@ public class ModItems {
 			() -> new WindcallerStaffItem(new Item.Properties()));
 	public static final RegistryObject<Item> GEOMANCER_STAFF = registerArtifact("geomancer_staff",
 			() -> new GeomancerStaffItem(new Item.Properties()));
+	public static final RegistryObject<Item> NECROMANCER_STAFF = registerArtifact("necromancer_staff",
+            () -> new NecromancerStaffItem(new Item.Properties()));
 	public static final RegistryObject<Item> NECROMANCER_TRIDENT = registerArtifact("necromancer_trident",
 			() -> new NecromancerTridentItem(new Item.Properties()));
 	public static final RegistryObject<Item> ICE_WAND = registerArtifact("ice_wand",

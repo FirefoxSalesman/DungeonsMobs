@@ -35,7 +35,6 @@
             ncurses
             patchelf
             zlib
-            jdt-language-server
             jetbrains.idea-community-bin
           ];
 
