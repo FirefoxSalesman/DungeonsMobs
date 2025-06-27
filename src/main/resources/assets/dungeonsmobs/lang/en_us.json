@@ -8,6 +8,8 @@
   "item.dungeonsmobs.mossy_skeleton_spawn_egg": "Mossy Skeleton Spawn Egg",
   "entity.dungeonsmobs.skeleton_vanguard": "Skeleton Vanguard",
   "item.dungeonsmobs.skeleton_vanguard_spawn_egg": "Skeleton Vanguard Spawn Egg",
+  "entity.dungeonsmobs.necromancer": "Necromancer",
+  "item.dungeonsmobs.necromancer_spawn_egg": "Necromancer Spawn Egg",
 
   "entity.dungeonsmobs.royal_guard": "Royal Guard",
   "item.dungeonsmobs.royal_guard_spawn_egg": "Royal Guard Spawn Egg",
@@ -353,6 +355,16 @@
   "subtitles.entity.mossy_skeleton.death": "Mossy Skeleton dies",
   "subtitles.entity.mossy_skeleton.shoot": "Mossy Skeleton shoots",
   "subtitles.entity.mossy_skeleton.step": "Footsteps",
+
+  "subtitles.entity.necromancer.idle": "Necromancer rattles",
+  "subtitles.entity.necromancer.laugh": "Necromancer cackles",
+  "subtitles.entity.necromancer.hurt": "Necromancer hurts",
+  "subtitles.entity.necromancer.death": "Necromancer dies",
+  "subtitles.entity.necromancer.shoot": "Necromancer shoots",
+  "subtitles.entity.necromancer.orb_impact": "Necromancer orb impacts",
+  "subtitles.entity.necromancer.step": "Footsteps",
+  "subtitles.entity.necromancer.prepare_summon": "Necromancer prepares summon",
+  "subtitles.entity.necromancer.summon": "Necromancer summons mob",
 
   "subtitles.entity.windcaller.idle": "Windcaller mumbles",
   "subtitles.entity.windcaller.hurt": "Windcaller hurts",

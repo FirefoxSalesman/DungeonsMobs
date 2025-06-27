@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.armor;
 
+import net.firefoxsalesman.dungeonsmobs.entity.undead.NecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.items.armor.NecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.gearconfig.ArmorGearModel;
 import net.minecraft.util.Mth;
@@ -26,10 +27,9 @@ public class NecromancerArmorGearModel<T extends NecromancerArmorGear> extends A
 		super.setCustomAnimations(entity, uniqueID, customPredicate);
 
 		CoreGeoBone cloak = this.getAnimationProcessor().getBone("armorCloak");
-
-		// TODO Don't forget to uncomment this
-		// cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof
-		// NecromancerEntity);
+		cloak.setHidden(this.getWearer() != null && this.getWearer() instanceof NecromancerEntity);
+		
+		this.getAnimationProcessor().getBone("armorHood").setHidden(true);
 	}
 
 	@Override
