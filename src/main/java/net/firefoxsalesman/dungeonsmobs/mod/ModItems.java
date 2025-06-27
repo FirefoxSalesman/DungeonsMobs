@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.items.NecromancerTridentItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.DrownedNecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.IceologerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.MageArmorGear;
+import net.firefoxsalesman.dungeonsmobs.items.armor.NecromancerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.items.shield.VanguardShieldItem;
@@ -79,6 +80,9 @@ public class ModItems {
 			"iceologer_chestplate", "iceologer_leggings", "iceologer_boots");
 	public static final ArmorSet NETHERPLATE_ARMOR = registerArmorSet("netherplate_armor", "netherplate_helmet",
 			null, null, null);
+	public static final ArmorSet NECROMANCER_ARMOR = registerArmorSetNecromancerArmor("necromancer_armor",
+			"necromancer_helmet", "necromancer_chestplate", "necromancer_leggings", null);
+
 	public static final ArmorSet ROYAL_GUARD_ARMOR = registerArmorSet("royal_guard_armor", "royal_guard_helmet",
 			"royal_guard_chestplate", "royal_guard_leggings", "royal_guard_boots");
 	public static final ArmorSet VANGUARD_ARMOR = registerArmorSet("vanguard_armor", "vanguard_helmet",
@@ -110,7 +114,7 @@ public class ModItems {
 	public static final RegistryObject<Item> GEOMANCER_STAFF = registerArtifact("geomancer_staff",
 			() -> new GeomancerStaffItem(new Item.Properties()));
 	public static final RegistryObject<Item> NECROMANCER_STAFF = registerArtifact("necromancer_staff",
-            () -> new NecromancerStaffItem(new Item.Properties()));
+			() -> new NecromancerStaffItem(new Item.Properties()));
 	public static final RegistryObject<Item> NECROMANCER_TRIDENT = registerArtifact("necromancer_trident",
 			() -> new NecromancerTridentItem(new Item.Properties()));
 	public static final RegistryObject<Item> ICE_WAND = registerArtifact("ice_wand",
@@ -264,6 +268,31 @@ public class ModItems {
 						() -> new DrownedNecromancerArmorGear(Type.LEGGINGS,
 								ARMOR_PROPERTIES, armorSet, modelLocation,
 								textureLocation, animationFileLocation)),
+				null);
+	}
+
+	private static ArmorSet registerArmorSetNecromancerArmor(String armorSetId, String helmetId, String chestId,
+			String legsId, String bootsId) {
+		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
+				"animations/armor/cloaked_armor.animation.json");
+		return new ArmorSet(
+				armorSet,
+				registerArmor(helmetId,
+						() -> new NecromancerArmorGear(Type.HELMET, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(chestId,
+						() -> new NecromancerArmorGear(Type.CHESTPLATE, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(legsId,
+						() -> new NecromancerArmorGear(Type.LEGGINGS, ARMOR_PROPERTIES,
+								armorSet, modelLocation, textureLocation,
+								animationFileLocation)),
 				null);
 	}
 
