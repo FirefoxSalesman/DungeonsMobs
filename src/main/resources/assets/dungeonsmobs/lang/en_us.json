@@ -28,6 +28,9 @@
   "entity.dungeonsmobs.mage_clone": "Mage",
   "item.dungeonsmobs.mage_spawn_egg": "Mage Spawn Egg",
 
+  "entity.dungeonsmobs.wildfire": "Wildfire",
+  "item.dungeonsmobs.wildfire_spawn_egg": "Wildfire Spawn Egg",
+
   "entity.dungeonsmobs.icy_creeper": "Icy Creeper",
   "item.dungeonsmobs.icy_creeper_spawn_egg": "Icy Creeper Spawn Egg",
 
@@ -405,6 +408,15 @@
   "subtitles.entity.sunken_skeleton.step": "Sunken Skeleton swims",
   "subtitles.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots",
 
+  "subtitles.entity.wildfire.idle": "Wildfire groans",
+  "subtitles.entity.wildfire.hurt": "Wildfire hurts",
+  "subtitles.entity.wildfire.death": "Wildfire dies",
+  "subtitles.entity.wildfire.move": "Wildfire hovers",
+  "subtitles.entity.wildfire.shoot": "Wildfire shoots",
+  "subtitles.entity.wildfire.projectile_hit": "Wildfire projectile hits",
+  "subtitles.entity.wildfire.shockwave": "Wildfire slams",
+  "subtitles.entity.wildfire.shield_break": "Wildfire shield crumbles",
+
   "subtitles.entity.spider.prepare_shoot": "Spider calls",
   "subtitles.entity.spider.shoot": "Spider shoots",
   "subtitles.entity.spider.web_impact": "Spider Web hits",
@@ -413,6 +425,8 @@
   "artifact.dungeons_libraries.duration": "%d Seconds Duration",
   "artifact.dungeons_libraries.cooldown": "%d Seconds Cooldown",
   
+  "attribute.name.generic.dungeons_libraries.summon_cap": "Summon Cap",
+
   "curios.identifier.artifact": "Artifact",
   "item.modifiers.artifact": "When In Artifact Slot:",
   "key.dungeons_libraries.curiosintegration.category": "Dungeons Gear Curios",
