@@ -26,6 +26,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.NecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
@@ -47,6 +48,7 @@ public class EntityTypeAttributes {
 
 		event.put(ModEntities.MOSSY_SKELETON.get(), MossySkeletonEntity.setCustomAttributes().build());
 		event.put(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardEntity.setCustomAttributes().build());
+		event.put(ModEntities.NECROMANCER.get(), NecromancerEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.ROYAL_GUARD.get(), RoyalGuardEntity.setCustomAttributes().build());
 		event.put(ModEntities.MOUNTAINEER.get(), MountaineerEntity.setCustomAttributes().build());

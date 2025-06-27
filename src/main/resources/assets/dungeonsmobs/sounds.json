@@ -2093,6 +2093,74 @@
     ]
   },
 
+  "entity.necromancer.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/idle1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/idle2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/idle3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.laugh": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.laugh",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/boney_laugh1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/boney_laugh2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/hurt1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/hurt2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/hurt3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/hurt4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/death1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/death2",
+	"stream": true
+      }
+    ]
+  },
   "entity.necromancer.shoot": {
     "category": "entity",
     "subtitle": "subtitles.entity.necromancer.shoot",
@@ -2125,6 +2193,38 @@
       },
       {
 	"name": "dungeonsmobs:entities/necromancer/arrow_impact_normal4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/step1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/step2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/step3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/necromancer/step4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.necromancer.prepare_summon": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.necromancer.prepare_summon",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/necromancer/prepare_summon2",
 	"stream": true
       }
     ]

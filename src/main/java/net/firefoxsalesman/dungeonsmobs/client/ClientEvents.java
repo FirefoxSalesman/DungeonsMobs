@@ -46,6 +46,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WindcallerTo
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.NecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.SkeletonVanguardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.DrownedNecromancerRenderer;
@@ -76,6 +77,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
+		event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
 		event.registerEntityRenderer(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ROYAL_GUARD.get(),

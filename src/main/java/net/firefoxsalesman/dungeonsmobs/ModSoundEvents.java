@@ -367,10 +367,20 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> FUNGUS_THROWER_FUNGUS_LAND = registerSoundEvents(
 			"entity.fungus_thrower.fungus_land");
 
+	public static final RegistryObject<SoundEvent> NECROMANCER_IDLE = registerSoundEvents(
+			"entity.necromancer.idle");
+	public static final RegistryObject<SoundEvent> NECROMANCER_LAUGH = registerSoundEvents(
+			"entity.necromancer.laugh");
+	public static final RegistryObject<SoundEvent> NECROMANCER_HURT = registerSoundEvents(
+			"entity.necromancer.hurt");
+	public static final RegistryObject<SoundEvent> NECROMANCER_DEATH = registerSoundEvents(
+			"entity.necromancer.death");
 	public static final RegistryObject<SoundEvent> NECROMANCER_SHOOT = registerSoundEvents(
 			"entity.necromancer.shoot");
 	public static final RegistryObject<SoundEvent> NECROMANCER_ORB_IMPACT = registerSoundEvents(
 			"entity.necromancer.orb_impact");
+	public static final RegistryObject<SoundEvent> NECROMANCER_STEP = registerSoundEvents(
+			"entity.necromancer.step");
 	public static final RegistryObject<SoundEvent> NECROMANCER_PREPARE_SUMMON = registerSoundEvents(
 			"entity.necromancer.prepare_summon");
 	public static final RegistryObject<SoundEvent> NECROMANCER_SUMMON = registerSoundEvents(

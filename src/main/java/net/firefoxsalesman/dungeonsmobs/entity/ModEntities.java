@@ -51,6 +51,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.undead.NecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
@@ -113,6 +114,13 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "skeleton_vanguard").toString()),
 			0x493615, 0xe8b42f);
+
+	public static final RegistryObject<EntityType<NecromancerEntity>> NECROMANCER = registerEntity("necromancer",
+			() -> EntityType.Builder.<NecromancerEntity>of(NecromancerEntity::new, MobCategory.MONSTER)
+					.sized(0.6F * 1.3F, 1.99F * 1.3F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "necromancer").toString()),
+			0x3f243d, 0x0b9cbb);
 
 	// ILLAGER
 	public static final RegistryObject<EntityType<RoyalGuardEntity>> ROYAL_GUARD = registerEntity("royal_guard",

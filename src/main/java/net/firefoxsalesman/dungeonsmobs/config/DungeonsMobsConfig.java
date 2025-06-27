@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 public class DungeonsMobsConfig {
 
 	public static class Common {
+		public static ForgeConfigSpec.ConfigValue<List<? extends String>> NECROMANCER_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> DROWNED_NECROMANCER_MOB_SUMMONS;
 
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICY_CREEPER_GRIEFING;
@@ -33,6 +34,16 @@ public class DungeonsMobsConfig {
 		public Common(ForgeConfigSpec.Builder builder) {
 			// MOB CONFIGURATION
 			builder.comment("Mob Configuration").push("mob_configuration");
+			NECROMANCER_MOB_SUMMONS = builder
+					.comment("Add mobs (preferably undead) that the Necromancer can summon. \n"
+							+ "To do so, enter the namespace ID of the mob, like \"minecraft:zombie\".\n"
+							+
+							"If this list is empty, zombies will be summoned instead.\n" +
+							"If a mob chosen from this list cannot be spawned, a zombie will be summoned instead.")
+					.defineList("necromancerMobSummons", Lists.newArrayList(
+							"minecraft:zombie",
+							"minecraft:skeleton"),
+							(itemRaw) -> itemRaw instanceof String);
 			DROWNED_NECROMANCER_MOB_SUMMONS = builder
 					.comment("Add mobs (preferably undead and aquatic) that the Drowned Necromancer can summon. \n"
 							+ "To do so, enter the namespace ID of the mob, like \"minecraft:drowned\".\n"
