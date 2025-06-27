@@ -82,6 +82,11 @@ public class EntitySpawnPlacement {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
 
+		SpawnPlacements.register(ModEntities.NECROMANCER.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
+
 		// Illager
 		SpawnPlacements.register(ModEntities.ROYAL_GUARD.get(),
 				SpawnPlacements.Type.ON_GROUND,
