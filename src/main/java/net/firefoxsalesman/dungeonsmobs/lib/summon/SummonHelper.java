@@ -30,7 +30,6 @@ public class SummonHelper {
 
 	private static boolean canSummonMob(LivingEntity leader, Entity beeEntity, Leader leaderCap) {
 		AttributeInstance summonCapAttribute = leader.getAttribute(SUMMON_CAP.get());
-		// TODO for reasons I can't understand, summon cap is null
 		if (summonCapAttribute == null)
 			return false;
 		return leaderCap.getSummonedMobsCost() + SummonConfigRegistry
