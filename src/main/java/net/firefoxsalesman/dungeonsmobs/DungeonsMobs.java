@@ -18,6 +18,7 @@ import net.firefoxsalesman.dungeonsmobs.lib.items.materials.armor.DungeonsArmorM
 import net.firefoxsalesman.dungeonsmobs.lib.items.materials.weapon.WeaponMaterials;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
+import net.firefoxsalesman.dungeonsmobs.mod.ModStructureModifiers;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
@@ -79,6 +80,7 @@ public class DungeonsMobs {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
+		ModStructureModifiers.STRUCTURE_MODIFIER_SERIALIZERS.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
