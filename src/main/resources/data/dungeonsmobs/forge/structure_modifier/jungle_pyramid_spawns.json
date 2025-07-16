@@ -1,6 +1,6 @@
 {
   "type": "dungeonsmobs:add_spawns",
-  "structures": "minecraft:jungle_pyramid",
+  "structures": "#dungeonsmobs:jungle_temples",
   "spawners": [
     {
       "type": "dungeonsmobs:whisperer",

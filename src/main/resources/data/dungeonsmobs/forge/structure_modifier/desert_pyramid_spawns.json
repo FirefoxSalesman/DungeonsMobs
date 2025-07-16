@@ -1,6 +1,6 @@
 {
   "type": "dungeonsmobs:add_spawns",
-  "structures": "minecraft:desert_pyramid",
+  "structures": "#dungeonsmobs:desert_temples",
   "spawners": {
     "type": "dungeonsmobs:skeleton_vanguard",
     "weight": 1,
