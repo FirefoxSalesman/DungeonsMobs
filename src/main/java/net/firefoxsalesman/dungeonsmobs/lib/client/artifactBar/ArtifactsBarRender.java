@@ -63,7 +63,9 @@ public class ArtifactsBarRender {
 						event.getGuiGraphics());
 			});
 
-			// RenderSystem.setShaderTexture(0, GuiGraphics.GUI_ICONS_LOCATION);
+			// The resource location should point to wherever Gui.GUI_ICONS_LOCATION points
+			// to. (We can't call it because it's protected)
+			RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/icons.png"));
 		}
 
 	}
@@ -76,14 +78,14 @@ public class ArtifactsBarRender {
 			if (noArtifactEquipped(stacks))
 				return;
 			int slots = stacks.getSlots();
-			renderSlotBg(poseStack, mc, x, y, slots);
+			renderSlotBg(poseStack, mc, x, y, slots, graphics);
 			for (int slot = 0; slot < slots; slot++) {
 				ItemStack artifact = stacks.getStackInSlot(slot);
 				if (!artifact.isEmpty() && artifact.getItem() instanceof ArtifactItem) {
 					int xPos = x + slot * 20 + 3;
 					int yPos = y + 3;
 					renderSlot(poseStack, mc, xPos, yPos, renderPlayer, artifact,
-							graphics.bufferSource());
+							graphics.bufferSource(), graphics);
 				}
 				renderSlotKeybind(poseStack, mc, x, y, slot, graphics);
 			}
@@ -102,7 +104,7 @@ public class ArtifactsBarRender {
 	}
 
 	private static void renderSlot(PoseStack posestack, Minecraft mc, int xPos, int yPos, Player renderPlayer,
-			ItemStack artifactStack, MultiBufferSource bufferSource) {
+			ItemStack artifactStack, MultiBufferSource bufferSource, GuiGraphics graphics) {
 		if (!artifactStack.isEmpty()) {
 			float f = (float) artifactStack.getPopTime() - 0;
 			if (f > 0.0F) {
@@ -114,8 +116,7 @@ public class ArtifactsBarRender {
 				RenderSystem.applyModelViewMatrix();
 			}
 
-			// Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(renderPlayer,
-			// artifactStack, xPos, yPos, 1);
+			graphics.renderItem(artifactStack, xPos, yPos);
 			BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(artifactStack, mc.level,
 					renderPlayer, 1);
 			Minecraft.getInstance().getItemRenderer().render(artifactStack, ItemDisplayContext.GUI, false,
@@ -124,12 +125,12 @@ public class ArtifactsBarRender {
 				posestack.popPose();
 			}
 
-			// Minecraft.getInstance().getItemRenderer().renderGuiItemDecorations(Minecraft.getInstance().font,
-			// artifactStack, xPos, yPos);
+			graphics.renderItemDecorations(Minecraft.getInstance().font, artifactStack, xPos, yPos);
 		}
 	}
 
-	private static void renderSlotBg(PoseStack poseStack, Minecraft mc, int xPos, int yPos, int slots) {
+	private static void renderSlotBg(PoseStack poseStack, Minecraft mc, int xPos, int yPos, int slots,
+			GuiGraphics graphics) {
 		RenderSystem.setShaderTexture(0, ARTIFACT_BAR_RESOURCE);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
@@ -158,8 +159,6 @@ public class ArtifactsBarRender {
 	}
 
 	private static String getString(KeyMapping keyMapping) {
-		// return keyMapping.getKeyModifier().getCombinedName(keyMapping.getKey(), () ->
-		// keyMapping.getKey().getDisplayName()).getString();
 		return keyMapping.getKey().getDisplayName().getString();
 	}
 
