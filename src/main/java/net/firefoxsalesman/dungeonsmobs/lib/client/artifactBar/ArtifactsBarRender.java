@@ -2,7 +2,6 @@ package net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.lib.client.CuriosKeyBindings;
 import net.firefoxsalesman.dungeonsmobs.lib.client.gui.elementconfig.GuiElementConfig;
@@ -59,7 +58,7 @@ public class ArtifactsBarRender {
 			int y = guiElementConfig.getYPosition(scaledHeight);
 
 			CuriosApi.getCuriosHelper().getCuriosHandler(renderPlayer).ifPresent(iCuriosItemHandler -> {
-				renderBar(event.getGuiGraphics().pose(), mc, renderPlayer, x, y, iCuriosItemHandler,
+				renderBar(mc, renderPlayer, x, y, iCuriosItemHandler,
 						event.getGuiGraphics());
 			});
 
@@ -70,7 +69,7 @@ public class ArtifactsBarRender {
 
 	}
 
-	private static void renderBar(PoseStack poseStack, Minecraft mc, Player renderPlayer, int x, int y,
+	private static void renderBar(Minecraft mc, Player renderPlayer, int x, int y,
 			ICuriosItemHandler iCuriosItemHandler, GuiGraphics graphics) {
 		Optional<ICurioStacksHandler> artifactStackHandler = iCuriosItemHandler.getStacksHandler("artifact");
 		if (artifactStackHandler.isPresent()) {
@@ -78,16 +77,16 @@ public class ArtifactsBarRender {
 			if (noArtifactEquipped(stacks))
 				return;
 			int slots = stacks.getSlots();
-			renderSlotBg(poseStack, mc, x, y, slots, graphics);
+			renderSlotBg(mc, x, y, slots, graphics);
 			for (int slot = 0; slot < slots; slot++) {
 				ItemStack artifact = stacks.getStackInSlot(slot);
 				if (!artifact.isEmpty() && artifact.getItem() instanceof ArtifactItem) {
 					int xPos = x + slot * 20 + 3;
 					int yPos = y + 3;
-					renderSlot(poseStack, mc, xPos, yPos, renderPlayer, artifact,
-							graphics.bufferSource(), graphics);
+					renderSlot(mc, xPos, yPos, renderPlayer, artifact, graphics.bufferSource(),
+							graphics);
 				}
-				renderSlotKeybind(poseStack, mc, x, y, slot, graphics);
+				renderSlotKeybind(mc, x, y, slot, graphics);
 			}
 		}
 	}
@@ -103,16 +102,16 @@ public class ArtifactsBarRender {
 		return true;
 	}
 
-	private static void renderSlot(PoseStack posestack, Minecraft mc, int xPos, int yPos, Player renderPlayer,
-			ItemStack artifactStack, MultiBufferSource bufferSource, GuiGraphics graphics) {
+	private static void renderSlot(Minecraft mc, int xPos, int yPos, Player renderPlayer, ItemStack artifactStack,
+			MultiBufferSource bufferSource, GuiGraphics graphics) {
 		if (!artifactStack.isEmpty()) {
 			float f = (float) artifactStack.getPopTime() - 0;
 			if (f > 0.0F) {
 				float f1 = 1.0F + f / 5.0F;
-				posestack.pushPose();
-				posestack.translate((float) (xPos + 8), (float) (yPos + 12), 0.0F);
-				posestack.scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
-				posestack.translate((float) (-(xPos + 8)), (float) (-(yPos + 12)), 0.0F);
+				graphics.pose().pushPose();
+				graphics.pose().translate((float) (xPos + 8), (float) (yPos + 12), 0.0F);
+				graphics.pose().scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
+				graphics.pose().translate((float) (-(xPos + 8)), (float) (-(yPos + 12)), 0.0F);
 				RenderSystem.applyModelViewMatrix();
 			}
 
@@ -120,17 +119,16 @@ public class ArtifactsBarRender {
 			BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(artifactStack, mc.level,
 					renderPlayer, 1);
 			Minecraft.getInstance().getItemRenderer().render(artifactStack, ItemDisplayContext.GUI, false,
-					posestack, bufferSource, 1, 1, model);
+					graphics.pose(), bufferSource, 1, 1, model);
 			if (f > 0.0F) {
-				posestack.popPose();
+				graphics.pose().popPose();
 			}
 
 			graphics.renderItemDecorations(Minecraft.getInstance().font, artifactStack, xPos, yPos);
 		}
 	}
 
-	private static void renderSlotBg(PoseStack poseStack, Minecraft mc, int xPos, int yPos, int slots,
-			GuiGraphics graphics) {
+	private static void renderSlotBg(Minecraft mc, int xPos, int yPos, int slots, GuiGraphics graphics) {
 		RenderSystem.setShaderTexture(0, ARTIFACT_BAR_RESOURCE);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
@@ -139,7 +137,7 @@ public class ArtifactsBarRender {
 		RenderSystem.disableBlend();
 	}
 
-	private static void renderSlotKeybind(PoseStack poseStack, Minecraft mc, int x, int y, int slot,
+	private static void renderSlotKeybind(Minecraft mc, int x, int y, int slot,
 			GuiGraphics graphics) {
 		String keybind = "";
 		if (slot == 0) {

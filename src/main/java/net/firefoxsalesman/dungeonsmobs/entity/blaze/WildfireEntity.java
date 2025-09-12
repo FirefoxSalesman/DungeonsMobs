@@ -48,16 +48,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Scoreboard;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -67,7 +57,7 @@ import java.util.function.Predicate;
 import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
 import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
 
-public class WildfireEntity extends Monster implements GeoEntity, SpawnArmoredMob {
+public class WildfireEntity extends Monster implements SpawnArmoredMob {
 
 	private static final EntityDataAccessor<Integer> SHIELDS = SynchedEntityData.defineId(WildfireEntity.class,
 			EntityDataSerializers.INT);
@@ -90,7 +80,12 @@ public class WildfireEntity extends Monster implements GeoEntity, SpawnArmoredMo
 	public int regenerateShieldTick;
 	public int regenerateShieldTime = 150;
 	public float individualShieldHealth = 15.0F;
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+
+	public final AnimationState idleAnimationState = new AnimationState();
+	private int idleAnimatinTimeout = 0;
+	public final AnimationState shootAnimationState = new AnimationState();
+	public final AnimationState summonAnimationState = new AnimationState();
+	public final AnimationState shockwaveAnimationState = new AnimationState();
 
 	public WildfireEntity(EntityType<? extends WildfireEntity> type, Level world) {
 		super(type, world);
@@ -105,6 +100,24 @@ public class WildfireEntity extends Monster implements GeoEntity, SpawnArmoredMo
 		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.2D)
 				.add(Attributes.FOLLOW_RANGE, 24D).add(Attributes.MAX_HEALTH, 50.0D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(SUMMON_CAP.get(), 6D);
+	}
+
+	private void setupAnimationStates() {
+		if (idleAnimatinTimeout <= 0) {
+			idleAnimatinTimeout = 20;
+			idleAnimationState.start(tickCount);
+		} else {
+			idleAnimatinTimeout--;
+		}
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+
+		if (this.level().isClientSide) {
+			setupAnimationStates();
+		}
 	}
 
 	protected void registerGoals() {
@@ -360,30 +373,6 @@ public class WildfireEntity extends Monster implements GeoEntity, SpawnArmoredMo
 		if (this.summonAnimationTick > 0) {
 			this.summonAnimationTick--;
 		}
-	}
-
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.shockwaveAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("wildfire_shockwave", LoopType.LOOP));
-		} else if (this.summonAnimationTick > 0) {
-			event.getController().setAnimation(RawAnimation.begin().then("wildfire_summon", LoopType.LOOP));
-		} else if (this.shootAnimationTick > 0) {
-			event.getController().setAnimation(RawAnimation.begin().then("wildfire_shoot", LoopType.LOOP));
-		} else {
-			event.getController().setAnimation(RawAnimation.begin().then("wildfire_idle", LoopType.LOOP));
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
 	}
 
 	@Override
