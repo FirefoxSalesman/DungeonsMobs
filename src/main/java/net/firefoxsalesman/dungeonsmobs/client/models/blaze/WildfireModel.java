@@ -112,8 +112,5 @@ public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T
 		root().getAllParts().forEach(ModelPart::resetPose);
 		applyHeadRotation(pEntity, pNetHeadYaw, pHeadPitch, pAgeInTicks);
 		animate(pEntity.idleAnimationState, WildfireAnimations.wildfire_idle, pAgeInTicks, 1f);
-		animate(pEntity.shootAnimationState, WildfireAnimations.wildfire_shoot, pAgeInTicks, 1f);
-		animate(pEntity.summonAnimationState, WildfireAnimations.wildfire_summon, pAgeInTicks, 1f);
-		animate(pEntity.shockwaveAnimationState, WildfireAnimations.wildfire_shockwave, pAgeInTicks, 1f);
 	}
 }

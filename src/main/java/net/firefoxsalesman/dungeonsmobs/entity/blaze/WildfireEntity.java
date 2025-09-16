@@ -82,10 +82,7 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 	public float individualShieldHealth = 15.0F;
 
 	public final AnimationState idleAnimationState = new AnimationState();
-	private int idleAnimatinTimeout = 0;
-	public final AnimationState shootAnimationState = new AnimationState();
-	public final AnimationState summonAnimationState = new AnimationState();
-	public final AnimationState shockwaveAnimationState = new AnimationState();
+	private int idleAnimationTimeout = 0;
 
 	public WildfireEntity(EntityType<? extends WildfireEntity> type, Level world) {
 		super(type, world);
@@ -103,11 +100,11 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 	}
 
 	private void setupAnimationStates() {
-		if (idleAnimatinTimeout <= 0) {
-			idleAnimatinTimeout = 20;
+		if (idleAnimationTimeout <= 0) {
+			idleAnimationTimeout = 20;
 			idleAnimationState.start(tickCount);
 		} else {
-			idleAnimatinTimeout--;
+			idleAnimationTimeout--;
 		}
 	}
 
