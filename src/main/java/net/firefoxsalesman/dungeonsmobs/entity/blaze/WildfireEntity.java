@@ -40,6 +40,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -84,6 +86,10 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
 
+	public final AnimationState shootAnimationState = new AnimationState();
+	public final AnimationState shockwaveAnimationState = new AnimationState();
+	public final AnimationState summonAnimationState = new AnimationState();
+
 	public WildfireEntity(EntityType<? extends WildfireEntity> type, Level world) {
 		super(type, world);
 		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
@@ -105,6 +111,18 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 			idleAnimationState.start(tickCount);
 		} else {
 			idleAnimationTimeout--;
+		}
+
+		if (this.shootAnimationTick > 0) {
+			this.shootAnimationState.start(this.tickCount - this.shootAnimationTick);
+		}
+
+		if (this.shockwaveAnimationTick > 0) {
+			this.shockwaveAnimationState.start(this.tickCount - this.shockwaveAnimationTick);
+		}
+
+		if (this.summonAnimationTick > 0) {
+			this.summonAnimationState.start(this.tickCount - this.summonAnimationTick);
 		}
 	}
 
