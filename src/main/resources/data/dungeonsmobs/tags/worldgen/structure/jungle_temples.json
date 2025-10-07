@@ -4,6 +4,10 @@
     {
       "id": "betterjungletemples:jungle_temple",
       "required": false
+    },
+    {
+      "id": "dungeonnowloading:temple_of_duality",
+      "required": false
     }
   ]
 }
