@@ -16,15 +16,15 @@ import net.minecraft.util.Mth;
 // Paste this class into your mod and generate all required imports
 
 public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T> {
-	private final ModelPart everything;
-	private final ModelPart head;
-	private final ModelPart armorHead;
-	private final ModelPart rod;
-	private final ModelPart shields;
-	private final ModelPart shield2;
-	private final ModelPart shield1;
-	private final ModelPart shield3;
-	private final ModelPart shield4;
+	public final ModelPart everything;
+	public final ModelPart head;
+	public final ModelPart armorHead;
+	public final ModelPart rod;
+	public final ModelPart shields;
+	public final ModelPart shield2;
+	public final ModelPart shield1;
+	public final ModelPart shield3;
+	public final ModelPart shield4;
 
 	public WildfireModel(ModelPart root) {
 		this.everything = root.getChild("everything");
@@ -115,5 +115,16 @@ public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T
 		animate(pEntity.shootAnimationState, WildfireAnimations.wildfire_shoot, pAgeInTicks, 1f);
 		animate(pEntity.shockwaveAnimationState, WildfireAnimations.wildfire_shockwave, pAgeInTicks, 1f);
 		animate(pEntity.summonAnimationState, WildfireAnimations.wildfire_summon, pAgeInTicks, 1f);
+	}
+
+	public void setAllVisible(boolean pVisible) {
+		this.head.visible = pVisible;
+		this.armorHead.visible = pVisible;
+		this.rod.visible = pVisible;
+		this.shields.visible = pVisible;
+		this.shield1.visible = pVisible;
+		this.shield2.visible = pVisible;
+		this.shield3.visible = pVisible;
+		this.shield4.visible = pVisible;
 	}
 }
