@@ -137,6 +137,11 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				ZombifiedFungusThrowerEntity::checkZombifiedFungusThrowerSpawnRules);
+		// Blaze
+		SpawnPlacements.register(ModEntities.WILDFIRE.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkAnyLightMonsterSpawnRules);
 
 		// Ocean
 		SpawnPlacements.register(ModEntities.WAVEWHISPERER.get(),

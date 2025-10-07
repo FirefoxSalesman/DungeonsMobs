@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:fortress",
+    {
+      "id": "betterfortresses:fortress",
+      "required": false
+    },
+    {
+      "id": "nova_structures:nether_keep",
+      "required": false
+    }
+  ]
+}

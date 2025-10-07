@@ -1,0 +1,10 @@
+{
+  "type": "dungeonsmobs:add_spawns",
+  "structures": "#dungeonsmobs:nether_fortresses",
+  "spawners": {
+    "type": "dungeonsmobs:wildfire",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}
