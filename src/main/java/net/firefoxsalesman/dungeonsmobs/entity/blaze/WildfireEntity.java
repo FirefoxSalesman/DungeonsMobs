@@ -56,9 +56,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
 
-public class WildfireEntity extends Monster implements SpawnArmoredMob {
+public class WildfireEntity extends Monster {
 
 	private static final EntityDataAccessor<Integer> SHIELDS = SynchedEntityData.defineId(WildfireEntity.class,
 			EntityDataSerializers.INT);
@@ -177,12 +176,6 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 		this.populateDefaultEquipmentSlots(this.getRandom(), p_213386_2_);
 		this.populateDefaultEquipmentEnchantments(this.getRandom(), p_213386_2_);
 		return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
-	}
-
-	@Override
-	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance p_180481_1_) {
-		super.populateDefaultEquipmentSlots(random, p_180481_1_);
-		equipArmorSet(ModItems.NETHERPLATE_ARMOR, this);
 	}
 
 	public int getShields() {
@@ -387,11 +380,6 @@ public class WildfireEntity extends Monster implements SpawnArmoredMob {
 		if (this.summonAnimationTick > 0) {
 			this.summonAnimationTick--;
 		}
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.NETHERPLATE_ARMOR;
 	}
 
 	class SummonBlazesGoal extends Goal {
