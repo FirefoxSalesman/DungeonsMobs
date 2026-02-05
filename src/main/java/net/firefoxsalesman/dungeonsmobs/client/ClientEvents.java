@@ -55,6 +55,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar.ArtifactsBarRender;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
@@ -63,12 +64,19 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
+	@SubscribeEvent
+	public static void registerGUI(final RegisterGuiOverlaysEvent event) {
+		event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "artifacts_bar", ArtifactsBarRender.OVERLAY);
+	}
+
 	@SubscribeEvent
 	public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(ModEntities.JUNGLE_ZOMBIE.get(), CustomZombieRenderer::new);

@@ -18,6 +18,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,12 +32,41 @@ import java.util.Optional;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MOD_ID)
+// @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MOD_ID)
 public class ArtifactsBarRender {
+	public static final IGuiOverlay OVERLAY = ArtifactsBarRender::drawHUD;
 	private static final ResourceLocation ARTIFACT_BAR_RESOURCE = new ResourceLocation(MOD_ID,
 			"textures/gui/artifact_bar.png");
 
-	@SubscribeEvent
+	public static void drawHUD(ForgeGui gui, GuiGraphics guiGraphics, float partialTicks, int screenWidth,
+			int screenHeight) {
+		if (Minecraft.getInstance().getCameraEntity() instanceof Player renderPlayer) {
+			if (renderPlayer == null)
+				return;
+			GuiElementConfig guiElementConfig = GuiElementConfigRegistry
+					.getConfig(new ResourceLocation(MOD_ID, "artifact_bar"));
+
+			if (guiElementConfig.isHidden())
+				return;
+
+			Window sr = Minecraft.getInstance().getWindow();
+			int scaledWidth = sr.getGuiScaledWidth();
+			int scaledHeight = sr.getGuiScaledHeight();
+
+			int x = guiElementConfig.getXPosition(scaledWidth);
+			int y = guiElementConfig.getYPosition(scaledHeight);
+
+			CuriosApi.getCuriosHelper().getCuriosHandler(renderPlayer).ifPresent(iCuriosItemHandler -> {
+				guiGraphics.blit(ARTIFACT_BAR_RESOURCE, x, y, 0, 0, 62, 22, 62, 22);
+			});
+
+			// The resource location should point to wherever Gui.GUI_ICONS_LOCATION points
+			// to. (We can't call it because it's protected)
+			RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/icons.png"));
+		}
+	}
+
+	// @SubscribeEvent
 	public static void displayArtifactBar(RenderGuiOverlayEvent.Post event) {
 		final Minecraft mc = Minecraft.getInstance();
 		// if(mc != null &&
