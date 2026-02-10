@@ -5,12 +5,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
-import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -27,30 +23,20 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
+public class IceologerEntity extends AbstractIllager {
 
-public class IceologerEntity extends AbstractIllager implements GeoEntity, SpawnArmoredMob {
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState celebrateAnimationState = new AnimationState();
+	public int celebrationAnimationTick = 0;
 
+	public final AnimationState summonAnimationState = new AnimationState();
 	public int summonAnimationTick;
 	public int summonAnimationLength = 60;
 	public int summonAnimationActionPoint = 40;
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public IceologerEntity(Level world) {
 		super(ModEntities.ICEOLOGER.get(), world);
@@ -106,37 +92,24 @@ public class IceologerEntity extends AbstractIllager implements GeoEntity, Spawn
 	}
 
 	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.summonAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("iceologer_summon", LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(RawAnimation.begin().then("iceologer_walk", LoopType.LOOP));
-		} else {
-			if (this.isCelebrating()) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("iceologer_celebrate", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("iceologer_idle", LoopType.LOOP));
-			}
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
 		}
-		return PlayState.CONTINUE;
 	}
 
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
-	}
-
-	@Override
-	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance p_180481_1_) {
-		super.populateDefaultEquipmentSlots(random, p_180481_1_);
-		equipArmorSet(ModItems.ICEOLOGER_ARMOR, this);
+	private void setupAnimationStates() {
+		if (isCelebrating() && celebrationAnimationTick <= 0) {
+			celebrationAnimationTick = 35;
+			celebrateAnimationState.start(tickCount);
+		} else {
+			celebrationAnimationTick--;
+		}
+		summonAnimationState.animateWhen(summonAnimationTick > 0, tickCount);
+		idleAnimationState.animateWhen(
+				!walkAnimation.isMoving() && isAlive() && summonAnimationTick <= 0 && !isCelebrating(),
+				tickCount);
 	}
 
 	@Nullable
@@ -192,11 +165,6 @@ public class IceologerEntity extends AbstractIllager implements GeoEntity, Spawn
 	@Override
 	public SoundEvent getCelebrateSound() {
 		return ModSoundEvents.ICEOLOGER_ATTACK.get();
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.ICEOLOGER_ARMOR;
 	}
 
 	class SummonIceChunkGoal extends Goal {
