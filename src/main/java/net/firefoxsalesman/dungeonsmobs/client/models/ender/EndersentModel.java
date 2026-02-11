@@ -8,14 +8,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.EndersentAnimations;
+import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.util.Mth;
 
-public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel<T> {
+public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart humanoid;
@@ -32,6 +31,7 @@ public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel
 	private final ModelPart eye;
 
 	public EndersentModel(ModelPart root) {
+		super(EndersentAnimations.WALK);
 		this.humanoid = root.getChild("humanoid");
 		this.leftLeg = this.humanoid.getChild("leftLeg");
 		this.rightLeg = this.humanoid.getChild("rightLeg");
@@ -140,21 +140,12 @@ public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
-		root().getAllParts().forEach(ModelPart::resetPose);
-		applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
-		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 3f, 2f);
+		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks, 1f);
 		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks, 1f);
 		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks, 1f);
 		animate(entity.summonAnimationState, EndersentAnimations.SUMMON_WATCHLINGS, ageInTicks, 1f);
 		animate(entity.teleportAnimationState, EndersentAnimations.TELEPORT, ageInTicks, 1f);
-	}
-
-	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch, float ageInTicks) {
-		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
-		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
-		head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		head.xRot = headPitch * ((float) Math.PI / 180F);
 	}
 
 	@Override
@@ -166,5 +157,10 @@ public class EndersentModel<T extends EndersentEntity> extends HierarchicalModel
 	@Override
 	public ModelPart root() {
 		return humanoid;
+	}
+
+	@Override
+	public ModelPart getHead() {
+		return head;
 	}
 }

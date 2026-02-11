@@ -1,7 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
@@ -20,6 +19,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GeomancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
@@ -95,9 +95,7 @@ public class ClientEvents {
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 
 		event.registerEntityRenderer(ModEntities.ICEOLOGER.get(), IceologerRenderer::new);
-		event.registerEntityRenderer(ModEntities.GEOMANCER.get(),
-				manager -> new DefaultIllagerRenderer<>(manager, new GeomancerModel()));
-
+		event.registerEntityRenderer(ModEntities.GEOMANCER.get(), GeomancerRenderer::new);
 		event.registerEntityRenderer(ModEntities.MAGE.get(),
 				manager -> new DefaultIllagerRenderer<MageEntity>(manager,
 						new MageModel<MageEntity>()));

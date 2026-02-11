@@ -100,8 +100,6 @@ public class ModItems {
 	public static final ArmorSet DROWNED_NECROMANCER_ARMOR = registerArmorSetDrownedNecromancer(
 			"drowned_necromancer_armor", "drowned_necromancer_helmet", "drowned_necromancer_chestplate",
 			"drowned_necromancer_leggings", null);
-	public static final ArmorSet GEOMANCER_ARMOR = registerArmorSet("geomancer_armor", "geomancer_helmet",
-			"geomancer_chestplate", null, null);
 	public static final ArmorSet NECROMANCER_ARMOR = registerArmorSetNecromancerArmor("necromancer_armor",
 			"necromancer_helmet", "necromancer_chestplate", "necromancer_leggings", null);
 

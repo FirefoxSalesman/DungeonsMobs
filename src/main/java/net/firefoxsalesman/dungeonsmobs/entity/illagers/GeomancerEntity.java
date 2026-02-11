@@ -32,25 +32,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
+public class GeomancerEntity extends SpellcasterIllager {
 
-public class GeomancerEntity extends SpellcasterIllager implements GeoEntity, SpawnArmoredMob {
+	public final AnimationState idleAnimationState = new AnimationState();
 
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+	public final AnimationState celebrationAnimationState = new AnimationState();
+	public int celebrationAnimationTick = 0;
+
+	public final AnimationState summonAnimationState = new AnimationState();
 
 	public int summonBombsAttackAnimationTick;
 	public int summonBombsAttackAnimationLength = 35;
@@ -118,6 +110,30 @@ public class GeomancerEntity extends SpellcasterIllager implements GeoEntity, Sp
 		this.tickDownAnimTimers();
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		if (isCelebrating() && celebrationAnimationTick <= 0) {
+			celebrationAnimationTick = 35;
+			celebrationAnimationState.start(tickCount);
+		} else {
+			celebrationAnimationTick--;
+		}
+		summonAnimationState.animateWhen(isSummoning(),
+				tickCount);
+		idleAnimationState.animateWhen(!isSummoning() && !walkAnimation.isMoving() && isAlive(), tickCount);
+	}
+
+	private boolean isSummoning() {
+		return summonWallsAnimationTick > 0 || summonBombsAttackAnimationTick > 0;
+	}
+
 	public void tickDownAnimTimers() {
 		if (this.summonWallsAnimationTick >= 0) {
 			this.summonWallsAnimationTick--;
@@ -128,55 +144,12 @@ public class GeomancerEntity extends SpellcasterIllager implements GeoEntity, Sp
 		}
 	}
 
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.summonBombsAttackAnimationTick > 0) {
-			event.getController().setAnimation(RawAnimation.begin().then("geomancer_attack",
-					LoopType.LOOP));
-		} else if (this.summonWallsAnimationTick > 0) {
-			event.getController().setAnimation(RawAnimation.begin().then("geomancer_summon",
-					LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("geomancer_walk", LoopType.LOOP));
-		} else {
-			if (this.isCelebrating()) {
-				event.getController().setAnimation(RawAnimation.begin()
-						.then("geomancer_celebrate", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(RawAnimation.begin().then("geomancer_idle",
-						LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
-	}
-
-	@Override
-	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
-		SpawnEquipmentHelper.equipMainhand(ModItems.GEOMANCER_STAFF.get().getDefaultInstance(), this);
-		equipArmorSet(ModItems.GEOMANCER_ARMOR, this);
-	}
-
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn,
 			MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		this.populateDefaultEquipmentSlots(this.getRandom(), difficultyIn);
 		this.populateDefaultEquipmentEnchantments(this.getRandom(), difficultyIn);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.GEOMANCER_ARMOR;
 	}
 
 	/**

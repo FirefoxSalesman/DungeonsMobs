@@ -1,12 +1,13 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.IceologerAnimations;
+import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
-import net.minecraft.client.model.HierarchicalModel;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -17,7 +18,7 @@ import net.minecraft.util.Mth;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class IceologerModel<T extends IceologerEntity> extends HierarchicalModel<T> {
+public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart root;
@@ -49,6 +50,7 @@ public class IceologerModel<T extends IceologerEntity> extends HierarchicalModel
 	private final ModelPart armourRightLeg;
 
 	public IceologerModel(ModelPart root) {
+		super(IceologerAnimations.WALK);
 		this.root = root.getChild("root");
 		this.bipedBody = this.root.getChild("bipedBody");
 		this.illagerArms = this.bipedBody.getChild("illagerArms");
@@ -237,21 +239,17 @@ public class IceologerModel<T extends IceologerEntity> extends HierarchicalModel
 		return root;
 	}
 
-	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch, float ageInTicks) {
-		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
-		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
-		bipedHead.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		bipedHead.xRot = headPitch * ((float) Math.PI / 180F);
-	}
-
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
-		root().getAllParts().forEach(ModelPart::resetPose);
-		applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
-		animateWalk(IceologerAnimations.WALK, limbSwing, limbSwingAmount, 3f, 2f);
+		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		animate(entity.idleAnimationState, IceologerAnimations.IDLE, ageInTicks, 1f);
 		animate(entity.summonAnimationState, IceologerAnimations.SUMMON, ageInTicks, 1f);
 		animate(entity.celebrateAnimationState, IceologerAnimations.CELEBRATE, ageInTicks, 1f);
+	}
+
+	@Override
+	public ModelPart getHead() {
+		return bipedHead;
 	}
 }
