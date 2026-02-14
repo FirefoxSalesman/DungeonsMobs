@@ -295,8 +295,12 @@ public class GeomancerModel<T extends GeomancerEntity> extends ConvenientModel<T
 
 	@Override
 	public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
-		ModelPart hand = pSide == HumanoidArm.RIGHT ? bipedArmRight : bipedArmLeft;
-		hand.translateAndRotate(pPoseStack);
-		pPoseStack.translate(.125, .1875, .5);
+		root.translateAndRotate(pPoseStack);
+		bipedBody.translateAndRotate(pPoseStack);
+		bipedArms.translateAndRotate(pPoseStack);
+		ModelPart arm = pSide == HumanoidArm.RIGHT ? bipedArmRight : bipedArmLeft;
+		arm.translateAndRotate(pPoseStack);
+		// ModelPart hand = pSide == HumanoidArm.RIGHT ? bipedHandRight : bipedHandLeft;
+		// hand.translateAndRotate(pPoseStack);
 	}
 }

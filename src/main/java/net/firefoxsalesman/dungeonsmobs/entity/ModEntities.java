@@ -19,6 +19,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.WindcallerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
@@ -128,6 +129,14 @@ public class ModEntities {
 					.sized(0.6F * 1.2F, 1.95F * 1.2F)
 					.clientTrackingRange(8)
 					.build(new ResourceLocation(MOD_ID, "royal_guard").toString()),
+			0x676767, 0x014675);
+
+	public static final RegistryObject<EntityType<VindicatorChefEntity>> VINDICATOR_CHEF = registerEntity(
+			"vindicator_chef",
+			() -> EntityType.Builder
+					.<VindicatorChefEntity>of(VindicatorChefEntity::new, MobCategory.MONSTER)
+					.sized(0.6F, 1.95F).clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "vindicator_chef").toString()),
 			0x676767, 0x014675);
 
 	public static final RegistryObject<EntityType<IceologerEntity>> ICEOLOGER = registerEntity("iceologer",

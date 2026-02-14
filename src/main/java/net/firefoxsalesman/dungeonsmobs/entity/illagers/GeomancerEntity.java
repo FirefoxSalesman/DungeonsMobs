@@ -7,8 +7,6 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.ConstructEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.AvoidBaseEntityGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
 import net.minecraft.Util;
@@ -205,6 +203,11 @@ public class GeomancerEntity extends SpellcasterIllager {
 		return illagerArmPose;
 	}
 
+	@Override
+	protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
+		SpawnEquipmentHelper.equipMainhand(ModItems.GEOMANCER_STAFF.get().getDefaultInstance(), this);
+	}
+
 	class SummonPillarsGoal extends Goal {
 		public GeomancerEntity mob;
 		@Nullable
@@ -309,6 +312,7 @@ public class GeomancerEntity extends SpellcasterIllager {
 		public boolean animationsNotUseable() {
 			return mob.summonWallsAnimationTick > 0 || mob.summonBombsAttackAnimationTick > 0;
 		}
+
 	}
 
 }

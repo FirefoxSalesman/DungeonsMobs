@@ -1,22 +1,21 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
-import net.firefoxsalesman.dungeonsmobs.client.animation.IceologerAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.firefoxsalesman.dungeonsmobs.client.animation.VindicatorChefAnimations;
+import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
+import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
 // Made with Blockbench 5.0.7
-
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
+import net.minecraft.world.entity.HumanoidArm;
 
-public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T> {
+public class VindicatorChefModel<T extends VindicatorChefEntity> extends ConvenientModel<T> implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart root;
@@ -47,12 +46,14 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 	private final ModelPart armorBipedRightFoot;
 	private final ModelPart armourRightLeg;
 
-	public IceologerModel(ModelPart root) {
-		super(IceologerAnimations.WALK);
+	public VindicatorChefModel(ModelPart root) {
+		super(VindicatorChefAnimations.WALK);
 		this.root = root.getChild("root");
 		this.bipedBody = this.root.getChild("bipedBody");
 		this.illagerArms = this.bipedBody.getChild("illagerArms");
 		this.hands = this.illagerArms.getChild("hands");
+		this.armourIllagerRightArm2 = this.illagerArms.getChild("armourIllagerRightArm2");
+		this.armorIllagerLeftArm2 = this.illagerArms.getChild("armorIllagerLeftArm2");
 		this.armourBody = this.bipedBody.getChild("armourBody");
 		this.bipedCape = this.bipedBody.getChild("bipedCape");
 		this.bipedArms = this.bipedBody.getChild("bipedArms");
@@ -62,8 +63,6 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 		this.bipedArmLeft = this.bipedArms.getChild("bipedArmLeft");
 		this.bipedHandLeft = this.bipedArmLeft.getChild("bipedHandLeft");
 		this.armorBipedLeftArm = this.bipedArmLeft.getChild("armorBipedLeftArm");
-		this.armourIllagerRightArm2 = this.bipedArmRight.getChild("armourIllagerRightArm2");
-		this.armorIllagerLeftArm2 = this.bipedArmLeft.getChild("armorIllagerLeftArm2");
 		this.bipedPotionSlot = this.bipedBody.getChild("bipedPotionSlot");
 		this.bipedHeadBaseRotator = this.bipedBody.getChild("bipedHeadBaseRotator");
 		this.bipedHead = this.bipedHeadBaseRotator.getChild("bipedHead");
@@ -101,17 +100,29 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 		PartDefinition hands = illagerArms.addOrReplaceChild("hands", CubeListBuilder.create(),
 				PartPose.offsetAndRotation(0.0F, 7.0F, -2.0F, 0.7418F, 0.0F, 0.0F));
 
+		PartDefinition armourIllagerRightArm2 = illagerArms.addOrReplaceChild(
+				"armourIllagerRightArm2", CubeListBuilder.create().texOffs(44, 48).addBox(-4.0F, -2.0F,
+						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
+				PartPose.offset(-4.0F, 0.0F, 0.0F));
+
+		PartDefinition armorIllagerLeftArm2 = illagerArms.addOrReplaceChild("armorIllagerLeftArm2",
+				CubeListBuilder.create().texOffs(44, 48).mirror()
+						.addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
+								new CubeDeformation(1.0F))
+						.mirror(false),
+				PartPose.offset(4.0F, 0.0F, 0.0F));
+
 		PartDefinition armourBody = bipedBody.addOrReplaceChild("armourBody", CubeListBuilder.create()
 				.texOffs(76, 48)
 				.addBox(-4.0F, -12.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(1.75F))
 				.texOffs(16, 48)
-				.addBox(-4.0F, -12.0F, -3.0F, 8.0F, 10.0F, 6.0F, new CubeDeformation(0.75F))
-				.texOffs(68, 30).addBox(-4.0F, -1.25F, -3.0F, 8.0F, 9.0F, 6.0F,
-						new CubeDeformation(0.75F)),
+				.addBox(-4.0F, -12.0F, -3.0F, 8.0F, 10.0F, 6.0F, new CubeDeformation(0.4F))
+				.texOffs(68, 32).addBox(-4.0F, -1.25F, -3.0F, 8.0F, 9.0F, 6.0F,
+						new CubeDeformation(0.4F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition bipedCape = bipedBody.addOrReplaceChild(
-				"bipedCape", CubeListBuilder.create().texOffs(96, 30).addBox(-5.0F, 0.0F, 0.0F, 10.0F,
+				"bipedCape", CubeListBuilder.create().texOffs(96, 32).addBox(-5.0F, 0.0F, 0.0F, 10.0F,
 						16.0F, 1.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(0.0F, -12.0F, 3.0F));
 
@@ -130,7 +141,7 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 
 		PartDefinition armorBipedRightArm = bipedArmRight.addOrReplaceChild(
 				"armorBipedRightArm", CubeListBuilder.create().texOffs(44, 48).addBox(-4.0F, -2.0F,
-						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
+						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition bipedArmLeft = bipedArms.addOrReplaceChild(
@@ -141,22 +152,10 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 		PartDefinition bipedHandLeft = bipedArmLeft.addOrReplaceChild("bipedHandLeft", CubeListBuilder.create(),
 				PartPose.offset(2.0F, 11.0F, 0.0F));
 
-		PartDefinition armourIllagerRightArm2 = bipedArmRight.addOrReplaceChild(
-				"armourIllagerRightArm2", CubeListBuilder.create().texOffs(44, 48).addBox(-4.0F, -2.0F,
-						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition armorIllagerLeftArm2 = bipedArmLeft.addOrReplaceChild("armorIllagerLeftArm2",
-				CubeListBuilder.create().texOffs(44, 48).mirror()
-						.addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(1.0F))
-						.mirror(false),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
 		PartDefinition armorBipedLeftArm = bipedArmLeft.addOrReplaceChild("armorBipedLeftArm",
 				CubeListBuilder.create().texOffs(44, 48).mirror()
 						.addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(0.5F))
+								new CubeDeformation(1.0F))
 						.mirror(false),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -180,8 +179,8 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 						PartPose.offset(0.0F, -2.0F, 0.0F));
 
 		PartDefinition armorBipedHead = bipedHead.addOrReplaceChild(
-				"armorBipedHead", CubeListBuilder.create().texOffs(0, 30).addBox(-4.0F, -8.0F, -4.0F,
-						8.0F, 10.0F, 8.0F, new CubeDeformation(0.5F)),
+				"armorBipedHead", CubeListBuilder.create().texOffs(0, 32).addBox(-4.0F, -8.0F, -4.0F,
+						8.0F, 8.0F, 8.0F, new CubeDeformation(1.0F)),
 				PartPose.offset(0.0F, -2.0F, 0.0F));
 
 		PartDefinition bipedLegs = root.addOrReplaceChild("bipedLegs", CubeListBuilder.create(),
@@ -227,9 +226,23 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 	}
 
 	@Override
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+			float headPitch) {
+		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		animate(entity.idleAnimationState, VindicatorChefAnimations.IDLE, ageInTicks, 1f);
+		animate(entity.celebrateAnimationState, VindicatorChefAnimations.CELEBRATE, ageInTicks, 1f);
+	}
+
+	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
 			int packedOverlay, float red, float green, float blue, float alpha) {
+		illagerArms.skipDraw = true;
 		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	@Override
+	public ModelPart getHead() {
+		return bipedHead;
 	}
 
 	@Override
@@ -238,16 +251,14 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.idleAnimationState, IceologerAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.summonAnimationState, IceologerAnimations.SUMMON, ageInTicks, 1f);
-		animate(entity.celebrateAnimationState, IceologerAnimations.CELEBRATE, ageInTicks, 1f);
-	}
-
-	@Override
-	public ModelPart getHead() {
-		return bipedHead;
+	public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
+		root.translateAndRotate(pPoseStack);
+		bipedBody.translateAndRotate(pPoseStack);
+		bipedArms.translateAndRotate(pPoseStack);
+		ModelPart arm = pSide == HumanoidArm.RIGHT ? bipedArmRight : bipedArmLeft;
+		arm.translateAndRotate(pPoseStack);
+		ModelPart hand = pSide == HumanoidArm.RIGHT ? bipedHandRight : bipedHandLeft;
+		// hand.translateAndRotate(pPoseStack);
+		// pPoseStack.translate(0, -.5, 0);
 	}
 }

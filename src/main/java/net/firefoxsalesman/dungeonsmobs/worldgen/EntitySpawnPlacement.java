@@ -100,6 +100,10 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				EntitySpawnPlacement::canIllagerSpawn);
+		SpawnPlacements.register(ModEntities.VINDICATOR_CHEF.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				EntitySpawnPlacement::canIllagerSpawn);
 		SpawnPlacements.register(ModEntities.ICEOLOGER.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,

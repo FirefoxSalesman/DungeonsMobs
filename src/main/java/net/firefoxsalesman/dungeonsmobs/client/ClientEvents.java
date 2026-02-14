@@ -21,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRendere
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GeomancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.VindicatorChefRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.QuickGrowingVineRenderer;
@@ -94,6 +95,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 
+		event.registerEntityRenderer(ModEntities.VINDICATOR_CHEF.get(), VindicatorChefRenderer::new);
 		event.registerEntityRenderer(ModEntities.ICEOLOGER.get(), IceologerRenderer::new);
 		event.registerEntityRenderer(ModEntities.GEOMANCER.get(), GeomancerRenderer::new);
 		event.registerEntityRenderer(ModEntities.MAGE.get(),

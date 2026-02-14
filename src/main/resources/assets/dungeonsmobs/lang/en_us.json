@@ -64,6 +64,9 @@
   "entity.dungeonsmobs.squall_golem": "Squall Golem",
   "item.dungeonsmobs.squall_golem_spawn_egg": "Squall Golem Spawn Egg",
 
+  "item.dungeonsmobs.vindicator_chef_spawn_egg": "Vindicator Chef Spawn Egg",
+  "entity.dungeonsmobs.vindicator_chef": "Vindicator Chef",
+
   "entity.dungeonsmobs.armored_piglin": "Armored Piglin",
   "item.dungeonsmobs.armored_piglin_spawn_egg": "Armored Piglin Spawn Egg",
   "entity.dungeonsmobs.fungus_thrower": "Fungus Thrower",
