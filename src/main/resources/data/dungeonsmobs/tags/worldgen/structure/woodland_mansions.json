@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:mansion",
+    {
+      "id": "biomemakeover:mansion",
+      "required": false
+    },
+    {
+      "id": "dungeonnowloading:temple_of_duality",
+      "required": false
+    }
+  ]
+}

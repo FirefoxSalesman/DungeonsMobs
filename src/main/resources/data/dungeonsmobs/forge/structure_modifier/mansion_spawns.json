@@ -1,0 +1,10 @@
+{
+  "type": "dungeonsmobs:add_spawns",
+  "structures": "#dungeonsmobs:woodland_mansions",
+  "spawners": {
+    "type": "dungeonsmobs:vindicator_chef",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 5
+  }
+}
