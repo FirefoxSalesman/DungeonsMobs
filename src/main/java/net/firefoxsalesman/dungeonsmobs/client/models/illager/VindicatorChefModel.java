@@ -231,6 +231,7 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		animate(entity.idleAnimationState, VindicatorChefAnimations.IDLE, ageInTicks, 1f);
 		animate(entity.celebrateAnimationState, VindicatorChefAnimations.CELEBRATE, ageInTicks, 1f);
+		animate(entity.attackAnimationState, VindicatorChefAnimations.FAST_ATTACK, ageInTicks, 1f);
 	}
 
 	@Override
