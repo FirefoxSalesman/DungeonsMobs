@@ -236,8 +236,8 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
 		equipArmorSet(ModItems.ROYAL_GUARD_ARMOR, this);
 
-		if (ModList.get().isLoaded("dungeons_gear")) {
-			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeons_gear", "mace"));
+		if (ModList.get().isLoaded("dungeonsmobs")) {
+			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsmobs", "mace"));
 
 			ItemStack mace = new ItemStack(MACE);
 			if (getCurrentRaid() == null) {
@@ -254,8 +254,8 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (ModList.get().isLoaded("dungeons_gear")) {
-			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeons_gear", "mace"));
+		if (ModList.get().isLoaded("dungeonsmobs")) {
+			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsmobs", "mace"));
 
 			mainhandWeapon = new ItemStack(MACE);
 		}

@@ -457,5 +457,29 @@
   "key.dungeons_libraries.curiosintegration.category": "Dungeons Gear Curios",
   "key.dungeons_libraries.curiosintegration.description_slot1": "Artifact Slot 1",
   "key.dungeons_libraries.curiosintegration.description_slot2": "Artifact Slot 2",
-  "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3"
+  "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3",
+
+  "lore.dungeonsmobs.fang_of_frost": "These lauded daggers of the northern mountains are known to freeze their foes to solid ice.",
+  "item.dungeonsmobs.moon_dagger": "Moon Dagger",
+  "lore.dungeonsmobs.moon_dagger": "These curved blades shine like the crescent moon on a dark night.",
+  "item.dungeonsmobs.dagger": "Dagger",
+  "lore.dungeonsmobs.dagger": "Daggers are the weapon of cravens - or so folks say.",
+  "item.dungeonsmobs.shear_dagger": "Shear Daggers",
+  "lore.dungeonsmobs.shear_dagger": "Even the simplest of farmers can wield these Shear Daggers with savage results.",
+  
+  "item.dungeonsmobs.nightmares_bite": "Nightmare's Bite",
+  "lore.dungeonsmobs.nightmares_bite": "The twin blades of Nightmare's Bite drip with deadly venom, still potent after all these years.",
+  "item.dungeonsmobs.the_last_laugh": "The Last Laugh",
+  "lore.dungeonsmobs.the_last_laugh": "Strange, distorted laughter seems to whisper from these menacing looking sickles.",
+  "item.dungeonsmobs.sickle": "Sickle",
+  "lore.dungeonsmobs.sickle": "A ceremonial weapon that hails from the same region as the Desert Temple.",
+
+  "item.dungeonsmobs.gauntlet": "Gauntlet",
+  "lore.dungeonsmobs.gauntlet": "Gauntlets call back to an ancient style of hand to hand combat.",
+  "item.dungeonsmobs.fighters_binding": "Fighter's Binding",
+  "lore.dungeonsmobs.fighters_binding": "Made in the wilds beyond the mountains, these gauntlets have been worn by warriors for centuries.",
+  "item.dungeonsmobs.mauler": "Mauler",
+  "lore.dungeonsmobs.mauler": "These claw-like weapons, wielded by ancient Illager soldiers, are savage in battle.",
+  "item.dungeonsmobs.soul_fist": "Soul Fist",
+  "lore.dungeonsmobs.soul_fist": "Soul Fists are gauntlets clad with great gemstones, each containing a powerful soul."
 }

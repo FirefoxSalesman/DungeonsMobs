@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
@@ -81,14 +82,19 @@ public class DungeonsMobs {
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
 		ModStructureModifiers.STRUCTURE_MODIFIER_SERIALIZERS.register(modEventBus);
+
+		// Dungeon gear init
+		ItemInit.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
 	}
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.COMBAT)
+		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
 			ModItems.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
+			ItemInit.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
+		}
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
 	}
