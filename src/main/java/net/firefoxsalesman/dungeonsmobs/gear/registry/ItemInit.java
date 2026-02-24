@@ -26,9 +26,8 @@ public class ItemInit {
 	// DPS 9.6 (19.2), crits once per 2.5 (1.25) seconds
 	public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
-	// public static final RegistryObject<Item> FANG_OF_FROST =
-	// registerMeleeWeapon("fang_of_frost",
-	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> FANG_OF_FROST = registerMeleeWeapon("fang_of_frost",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 	// public static final RegistryObject<Item> MOON_DAGGER =
 	// registerMeleeWeapon("moon_dagger",
 	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));

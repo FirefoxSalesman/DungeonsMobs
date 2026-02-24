@@ -21,7 +21,8 @@
     "TieredItemAccessor",
     "MobInvoker",
     "NearestAttackableTargetGoalAccessor",
-    "TargetingConditionsAccessor"
+    "TargetingConditionsAccessor",
+    "EnchantmentHelperMixin"
   ],
   "client": [
     "SpiderModelMixin"

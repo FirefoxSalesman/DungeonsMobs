@@ -6,6 +6,10 @@ import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.gear.CommonProxy;
+import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
+import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
@@ -31,6 +35,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -48,6 +53,7 @@ public class DungeonsMobs {
 	public static final String MOD_ID = "dungeonsmobs";
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
+	public static CommonProxy PROXY;
 
 	public DungeonsMobs() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsMobsConfig.COMMON_SPEC,
@@ -84,7 +90,10 @@ public class DungeonsMobs {
 		ModStructureModifiers.STRUCTURE_MODIFIER_SERIALIZERS.register(modEventBus);
 
 		// Dungeon gear init
+		new DungeonsGearConfig();
+		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 		ItemInit.register(modEventBus);
+		EnchantmentInit.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

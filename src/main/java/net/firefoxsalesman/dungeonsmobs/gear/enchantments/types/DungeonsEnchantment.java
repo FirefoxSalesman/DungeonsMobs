@@ -1,0 +1,58 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.types;
+
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+
+import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
+
+public class DungeonsEnchantment extends Enchantment {
+	protected DungeonsEnchantment(Rarity rarityIn, EnchantmentCategory typeIn, EquipmentSlot[] slots) {
+		super(rarityIn, typeIn, slots);
+	}
+
+	@Override
+	public boolean isTradeable() {
+		return ModEnchantmentHelper.isNotBlacklistedEnchant(this)
+				&& DungeonsGearConfig.ENABLE_ENCHANTMENT_TRADES.get()
+				&& super.isTradeable();
+	}
+
+	@Override
+	public boolean isDiscoverable() {
+		return ModEnchantmentHelper.isNotBlacklistedEnchant(this)
+				&& DungeonsGearConfig.ENABLE_ENCHANTMENT_LOOT.get()
+				&& super.isDiscoverable();
+	}
+
+	@Override
+	public boolean canEnchant(ItemStack stack) {
+		return ModEnchantmentHelper.isNotBlacklistedEnchant(this)
+				&& (DungeonsGearConfig.ENABLE_ENCHANTS_ON_NON_DUNGEONS_GEAR.get() || MOD_ID
+						.equals(ForgeRegistries.ITEMS.getKey(stack.getItem()).getNamespace()))
+				&& super.canEnchant(stack);
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack) {
+		return ModEnchantmentHelper.isNotBlacklistedEnchant(this)
+				&& super.canApplyAtEnchantingTable(stack)
+				&& (DungeonsGearConfig.ENABLE_ENCHANTS_ON_NON_DUNGEONS_GEAR.get() || MOD_ID
+						.equals(ForgeRegistries.ITEMS.getKey(stack.getItem()).getNamespace()));
+	}
+
+	@Override
+	public boolean isAllowedOnBooks() {
+		return ModEnchantmentHelper.isNotBlacklistedEnchant(this);
+	}
+
+	@Override
+	public boolean isTreasureOnly() {
+		return ModEnchantmentHelper.isTreasureEnchant(this);
+	}
+}

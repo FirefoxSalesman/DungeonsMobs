@@ -459,6 +459,10 @@
   "key.dungeons_libraries.curiosintegration.description_slot2": "Artifact Slot 2",
   "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3",
 
+  "enchantment.dungeonsmobs.freezing": "Freezing",
+  "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
+
+  "item.dungeonsmobs.fang_of_frost": "Fang of Frost",
   "lore.dungeonsmobs.fang_of_frost": "These lauded daggers of the northern mountains are known to freeze their foes to solid ice.",
   "item.dungeonsmobs.moon_dagger": "Moon Dagger",
   "lore.dungeonsmobs.moon_dagger": "These curved blades shine like the crescent moon on a dark night.",
