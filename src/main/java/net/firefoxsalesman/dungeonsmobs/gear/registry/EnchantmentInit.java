@@ -9,12 +9,15 @@ import net.minecraftforge.registries.RegistryObject;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
 			.create(ForgeRegistries.ENCHANTMENTS, MOD_ID);
 	public static RegistryObject<FreezingEnchantment> FREEZING = ENCHANTMENTS.register("freezing",
 			() -> new FreezingEnchantment());
+	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
+			() -> new ProspectorEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

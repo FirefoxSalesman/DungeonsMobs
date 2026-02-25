@@ -461,6 +461,8 @@
 
   "enchantment.dungeonsmobs.freezing": "Freezing",
   "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
+  "enchantment.dungeonsmobs.prospector": "Prospector",
+  "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
 
   "item.dungeonsmobs.fang_of_frost": "Fang of Frost",
   "lore.dungeonsmobs.fang_of_frost": "These lauded daggers of the northern mountains are known to freeze their foes to solid ice.",
