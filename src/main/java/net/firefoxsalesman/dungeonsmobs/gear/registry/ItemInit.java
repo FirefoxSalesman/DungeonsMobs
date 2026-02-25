@@ -47,9 +47,8 @@ public class ItemInit {
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 	public static final RegistryObject<Item> FIGHTERS_BINDING = registerMeleeWeapon("fighters_binding",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
-	// public static final RegistryObject<Item> MAULER =
-	// registerMeleeWeapon("mauler",
-	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> MAULER = registerMeleeWeapon("mauler",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 	// public static final RegistryObject<Item> SOUL_FIST =
 	// registerMeleeWeapon("soul_fist",
 	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
