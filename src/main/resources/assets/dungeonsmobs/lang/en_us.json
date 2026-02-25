@@ -461,6 +461,8 @@
 
   "enchantment.dungeonsmobs.freezing": "Freezing",
   "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
+  "enchantment.dungeonsmobs.busy_bee": "Busy Bee",
+  "enchantment.dungeonsmobs.busy_bee.desc": "Chance to summon a bee after defeating a mob.",
   "enchantment.dungeonsmobs.prospector": "Prospector",
   "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
   "enchantment.dungeonsmobs.rampaging": "Rampaging",
