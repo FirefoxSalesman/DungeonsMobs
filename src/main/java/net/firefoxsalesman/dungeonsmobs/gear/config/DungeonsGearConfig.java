@@ -25,8 +25,8 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double> BUSY_BEE_CHANCE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// TUMBLE_BEE_CHANCE_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> RAMPAGING_CHANCE;
-	// public static ForgeConfigSpec.ConfigValue<Integer> RAMPAGING_DURATION;
+	public static ForgeConfigSpec.ConfigValue<Double> RAMPAGING_CHANCE;
+	public static ForgeConfigSpec.ConfigValue<Integer> RAMPAGING_DURATION;
 	// public static ForgeConfigSpec.ConfigValue<Integer> RUSHDOWN_DURATION;
 	// public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DURATION;
 	// public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DISTANCE;
@@ -147,14 +147,12 @@ public class DungeonsGearConfig {
 		// .comment("The decimal chance per level added for a tumble bee to spawn
 		// [0.0-1.0, default: 0.1]")
 		// .defineInRange("tumbleBeeChancePerLevel", 0.1, 0, 1.0);
-		// RAMPAGING_CHANCE = builder
-		// .comment("The decimal chance for rampaging to trigger [0.0-1.0, default:
-		// 0.1]")
-		// .defineInRange("rampagingChance", 0.2, 0, 1.0);
-		// RAMPAGING_DURATION = builder
-		// .comment("The duration in ticks (20ticks = 1 second) per level added for
-		// rampaging. [0-10000, default: 100]")
-		// .defineInRange("rampagingDuration", 100, 0, 10000);
+		RAMPAGING_CHANCE = builder
+				.comment("The decimal chance for rampaging to trigger [0.0-1.0, default: 0.1]")
+				.defineInRange("rampagingChance", 0.2, 0, 1.0);
+		RAMPAGING_DURATION = builder.comment(
+				"The duration in ticks (20ticks = 1 second) per level added for rampaging. [0-10000, default: 100]")
+				.defineInRange("rampagingDuration", 100, 0, 10000);
 		// RUSHDOWN_DURATION = builder
 		// .comment("The duration in ticks (20ticks = 1 second) per level added for
 		// rushdown. [0-10000, default: 20]")

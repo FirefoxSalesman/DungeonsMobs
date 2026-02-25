@@ -10,6 +10,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -18,6 +19,8 @@ public class EnchantmentInit {
 			() -> new FreezingEnchantment());
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
 			() -> new ProspectorEnchantment());
+	public static RegistryObject<RampagingEnchantment> RAMPAGING = ENCHANTMENTS.register("rampaging",
+			() -> new RampagingEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
