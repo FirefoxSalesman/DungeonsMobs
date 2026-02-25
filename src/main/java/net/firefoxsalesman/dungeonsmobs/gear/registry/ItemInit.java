@@ -40,9 +40,8 @@ public class ItemInit {
 	// public static final RegistryObject<Item> NIGHTMARES_BITE =
 	// registerMeleeWeapon("nightmares_bite",
 	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
-	// public static final RegistryObject<Item> THE_LAST_LAUGH =
-	// registerMeleeWeapon("the_last_laugh",
-	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> THE_LAST_LAUGH = registerMeleeWeapon("the_last_laugh",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 	// DPS 9.6/8 (19.2/16), crits once per 2.92/1 (1.46/0.5) seconds
 	public static final RegistryObject<Item> GAUNTLET = registerMeleeWeapon("gauntlet",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
