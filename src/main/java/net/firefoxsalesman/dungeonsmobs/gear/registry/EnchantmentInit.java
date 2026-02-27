@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantme
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RadianceEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
 
 public class EnchantmentInit {
@@ -25,6 +26,8 @@ public class EnchantmentInit {
 			() -> new ChainsEnchantment());
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
 			() -> new ProspectorEnchantment());
+	public static RegistryObject<RadianceEnchantment> RADIANCE = ENCHANTMENTS.register("radiance",
+			() -> new RadianceEnchantment());
 	public static RegistryObject<RampagingEnchantment> RAMPAGING = ENCHANTMENTS.register("rampaging",
 			() -> new RampagingEnchantment());
 

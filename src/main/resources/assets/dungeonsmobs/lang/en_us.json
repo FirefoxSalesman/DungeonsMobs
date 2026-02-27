@@ -467,6 +467,8 @@
   "enchantment.dungeonsmobs.chains.desc": "Has a 30% chance to chain a cluster of mobs together and keep them bound for a short time.",
   "enchantment.dungeonsmobs.prospector": "Prospector",
   "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
+  "enchantment.dungeonsmobs.radiance": "Radiance",
+  "enchantment.dungeonsmobs.radiance.desc": "Has a 20% chance to spawn a circular area that heals all allies within it.",
   "enchantment.dungeonsmobs.rampaging": "Rampaging",
   "enchantment.dungeonsmobs.rampaging.desc": "After defeating a mob, there is a small chance to increase your attack speed by 50% for a short time.",
 
