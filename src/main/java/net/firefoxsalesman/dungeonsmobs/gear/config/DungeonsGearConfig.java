@@ -33,9 +33,8 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double> LEECHING_BASE_MULTIPLIER;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// LEECHING_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_BASE_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// COMMITTED_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_BASE_MULTIPLIER;
+	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_MULTIPLIER_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer> DYNAMO_MAX_STACKS;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// DYNAMO_DAMAGE_MULTIPLIER_PER_STACK;
@@ -177,14 +176,12 @@ public class DungeonsGearConfig {
 		// .comment("Multiplier per level applied to the damage. " +
 		// "damage * (1 + (configValue*Stacks)) [0.0-5.0, default: 0.1]")
 		// .defineInRange("dynamoDamageMultiplierPerStack", 0.1, 0, 5.0);
-		// COMMITTED_BASE_MULTIPLIER = builder
-		// .comment("The decimal base multiplier on the damage for max damage committed.
-		// [0.0-5.0, default: 1.25]")
-		// .defineInRange("committedBaseMultiplier", 1.25, 0, 5.0);
-		// COMMITTED_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for max damage committed
-		// [0.0-5.0, default: 0.25]")
-		// .defineInRange("committedMultiplierPerLevel", 0.25, 0, 5.0);
+		COMMITTED_BASE_MULTIPLIER = builder.comment(
+				"The decimal base multiplier on the damage for max damage committed. [0.0-5.0, default: 1.25]")
+				.defineInRange("committedBaseMultiplier", 1.25, 0, 5.0);
+		COMMITTED_MULTIPLIER_PER_LEVEL = builder.comment(
+				"The multiplier increase per level for max damage committed [0.0-5.0, default: 0.25]")
+				.defineInRange("committedMultiplierPerLevel", 0.25, 0, 5.0);
 		FREEZING_DURATION = builder
 				.comment("The duration in ticks (20ticks = 1 second) for freezing. [0-10000, default: 60]")
 				.defineInRange("freezingDuration", 60, 0, 10000);

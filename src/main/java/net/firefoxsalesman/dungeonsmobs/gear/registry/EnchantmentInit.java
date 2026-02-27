@@ -10,6 +10,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CommittedEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ExplodingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
@@ -28,6 +29,8 @@ public class EnchantmentInit {
 			() -> new BusyBeeEnchantment());
 	public static RegistryObject<ChainsEnchantment> CHAINS = ENCHANTMENTS.register("chains",
 			() -> new ChainsEnchantment());
+	public static RegistryObject<CommittedEnchantment> COMMITTED = ENCHANTMENTS.register("committed",
+			() -> new CommittedEnchantment());
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
 			() -> new ProspectorEnchantment());
 	public static RegistryObject<RadianceEnchantment> RADIANCE = ENCHANTMENTS.register("radiance",
