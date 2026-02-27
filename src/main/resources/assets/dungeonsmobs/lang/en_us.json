@@ -471,6 +471,8 @@
   "enchantment.dungeonsmobs.radiance.desc": "Has a 20% chance to spawn a circular area that heals all allies within it.",
   "enchantment.dungeonsmobs.rampaging": "Rampaging",
   "enchantment.dungeonsmobs.rampaging.desc": "After defeating a mob, there is a small chance to increase your attack speed by 50% for a short time.",
+  "enchantment.dungeonsmobs.rushdown": "Rushdown",
+  "enchantment.dungeonsmobs.rushdown.desc": "After defeating a mob, increase your speed by 100% for a short time.",
 
   "item.dungeonsmobs.fang_of_frost": "Fang of Frost",
   "lore.dungeonsmobs.fang_of_frost": "These lauded daggers of the northern mountains are known to freeze their foes to solid ice.",

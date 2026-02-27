@@ -14,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantm
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RadianceEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RushdownEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -30,6 +31,8 @@ public class EnchantmentInit {
 			() -> new RadianceEnchantment());
 	public static RegistryObject<RampagingEnchantment> RAMPAGING = ENCHANTMENTS.register("rampaging",
 			() -> new RampagingEnchantment());
+	public static RegistryObject<RushdownEnchantment> RUSHDOWN = ENCHANTMENTS.register("rushdown",
+			() -> new RushdownEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
