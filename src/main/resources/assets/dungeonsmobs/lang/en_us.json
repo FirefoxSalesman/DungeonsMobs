@@ -469,6 +469,8 @@
   "enchantment.dungeonsmobs.committed.desc": "Deal increased damage against already wounded enemies.",
   "enchantment.dungeonsmobs.exploding": "Exploding",
   "enchantment.dungeonsmobs.exploding.desc": "Mobs explode after they are defeated.",
+  "enchantment.dungeonsmobs.illagers_bane": "Illager's Bane",
+  "enchantment.dungeonsmobs.illagers_bane.desc": "Attacks deal extra damage to Illagers.",
   "enchantment.dungeonsmobs.prospector": "Prospector",
   "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
   "enchantment.dungeonsmobs.radiance": "Radiance",
