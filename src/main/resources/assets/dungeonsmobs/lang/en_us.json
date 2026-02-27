@@ -497,5 +497,12 @@
   "item.dungeonsmobs.mauler": "Mauler",
   "lore.dungeonsmobs.mauler": "These claw-like weapons, wielded by ancient Illager soldiers, are savage in battle.",
   "item.dungeonsmobs.soul_fist": "Soul Fist",
-  "lore.dungeonsmobs.soul_fist": "Soul Fists are gauntlets clad with great gemstones, each containing a powerful soul."
+  "lore.dungeonsmobs.soul_fist": "Soul Fists are gauntlets clad with great gemstones, each containing a powerful soul.",
+  
+  "item.dungeonsmobs.flail": "Flail",
+  "lore.dungeonsmobs.flail": "This ancient weapon inflicts grave blunt damage to those who cannot evade the deadly metal ball.",
+  "item.dungeonsmobs.suns_grace": "Sun's Grace",
+  "lore.dungeonsmobs.suns_grace": "This mace, engraved with secret healing runes, grants powerful restorative powers.",
+  "item.dungeonsmobs.mace": "Mace",
+  "lore.dungeonsmobs.mace": "The Mace is a brutal tool of war and what it lacks in finesse; it makes up for in power."
 }

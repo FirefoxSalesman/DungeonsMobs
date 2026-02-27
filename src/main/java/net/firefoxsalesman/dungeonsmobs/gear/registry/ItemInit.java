@@ -53,6 +53,14 @@ public class ItemInit {
 	// registerMeleeWeapon("soul_fist",
 	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 
+	// DPS 9.8, crits once per 2.1 seconds, disables shields
+	public static final RegistryObject<Item> MACE = registerMeleeWeapon("mace",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> FLAIL = registerMeleeWeapon("flail",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> SUNS_GRACE = registerMeleeWeapon("suns_grace",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);
