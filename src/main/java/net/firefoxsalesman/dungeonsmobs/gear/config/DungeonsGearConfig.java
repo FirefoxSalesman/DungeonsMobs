@@ -76,8 +76,7 @@ public class DungeonsGearConfig {
 	// RECKLESS_ATTACK_DAMAGE_BASE_MULTIPLIER;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// RECKLESS_ATTACK_DAMAGE_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// EXPLODING_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> EXPLODING_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> PROSPECTOR_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> POISON_CLOUD_CHANCE;
 	// public static ForgeConfigSpec.ConfigValue<Double> DODGE_CHANCE_PER_LEVEL;
@@ -276,10 +275,9 @@ public class DungeonsGearConfig {
 		// .comment("The multiplier increase per level for reckless [-5.0-5.0, default:
 		// 0.2]")
 		// .defineInRange("recklessAttackDamageMultiplierPerLevel", 0.2, -5.0, 5.0);
-		// EXPLODING_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for exploding [-5.0-5.0, default:
-		// 0.2]")
-		// .defineInRange("explodingMultiplierPerLevel", 0.2, -5.0, 5.0);
+		EXPLODING_MULTIPLIER_PER_LEVEL = builder
+				.comment("The multiplier increase per level for exploding [-5.0-5.0, default: 0.2]")
+				.defineInRange("explodingMultiplierPerLevel", 0.2, -5.0, 5.0);
 		PROSPECTOR_CHANCE_PER_LEVEL = builder
 				.comment("The chance per level for prospector to trigger [-5.0-5.0, default: 0.25]")
 				.defineInRange("prospectorChancePerLevel", 0.25, -5.0, 5.0);

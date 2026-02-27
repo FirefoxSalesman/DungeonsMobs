@@ -465,6 +465,8 @@
   "enchantment.dungeonsmobs.busy_bee.desc": "Chance to summon a bee after defeating a mob.",
   "enchantment.dungeonsmobs.chains": "Chains",
   "enchantment.dungeonsmobs.chains.desc": "Has a 30% chance to chain a cluster of mobs together and keep them bound for a short time.",
+  "enchantment.dungeonsmobs.exploding": "Exploding",
+  "enchantment.dungeonsmobs.exploding.desc": "Mobs explode after they are defeated.",
   "enchantment.dungeonsmobs.prospector": "Prospector",
   "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
   "enchantment.dungeonsmobs.radiance": "Radiance",
