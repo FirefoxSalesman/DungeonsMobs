@@ -82,7 +82,7 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// VOID_DODGE_CHANCE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double> BEEHIVE_CHANCE_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> STUNNING_CHANCE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> STUNNING_CHANCE_PER_LEVEL;
 
 	private static CommentedFileConfig cfg;
 
@@ -292,10 +292,9 @@ public class DungeonsGearConfig {
 		// .comment("The chance per level for beehive to trigger [-5.0-5.0, default:
 		// 0.25]")
 		// .defineInRange("beehiveChancePerLevel", 0.1, -5.0, 5.0);
-		// STUNNING_CHANCE_PER_LEVEL = builder
-		// .comment("The chance per level for Stunning to trigger [-5.0-5.0, default:
-		// 0.25]")
-		// .defineInRange("stunningChancePerLevel", 0.1, -5.0, 5.0);
+		STUNNING_CHANCE_PER_LEVEL = builder
+				.comment("The chance per level for Stunning to trigger [-5.0-5.0, default: 0.25]")
+				.defineInRange("stunningChancePerLevel", 0.1, -5.0, 5.0);
 		builder.pop();
 	}
 }

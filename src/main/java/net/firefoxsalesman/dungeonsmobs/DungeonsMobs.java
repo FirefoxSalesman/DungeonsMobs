@@ -11,6 +11,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
@@ -93,6 +94,7 @@ public class DungeonsMobs {
 		new DungeonsGearConfig();
 		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 		ItemInit.register(modEventBus);
+		MobEffectInit.register(modEventBus);
 		EnchantmentInit.register(modEventBus);
 	}
 
