@@ -14,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CommittedEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ExplodingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.IllagersBaneEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.LeechingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RadianceEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
@@ -34,6 +35,8 @@ public class EnchantmentInit {
 			() -> new ExplodingEnchantment());
 	public static RegistryObject<IllagersBaneEnchantment> ILLAGERS_BANE = ENCHANTMENTS.register("illagers_bane",
 			() -> new IllagersBaneEnchantment());
+	public static RegistryObject<LeechingEnchantment> LEECHING = ENCHANTMENTS.register("leeching",
+			() -> new LeechingEnchantment());
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
 			() -> new ProspectorEnchantment());
 	public static RegistryObject<RadianceEnchantment> RADIANCE = ENCHANTMENTS.register("radiance",

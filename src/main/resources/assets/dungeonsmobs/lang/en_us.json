@@ -471,6 +471,8 @@
   "enchantment.dungeonsmobs.exploding.desc": "Mobs explode after they are defeated.",
   "enchantment.dungeonsmobs.illagers_bane": "Illager's Bane",
   "enchantment.dungeonsmobs.illagers_bane.desc": "Attacks deal extra damage to Illagers.",
+  "enchantment.dungeonsmobs.leeching": "Leeching",
+  "enchantment.dungeonsmobs.leeching.desc": "Defeating a mob heals you a small portion of the mob's max health.",
   "enchantment.dungeonsmobs.prospector": "Prospector",
   "enchantment.dungeonsmobs.prospector.desc": "Finds more emeralds and gold on fallen enemies.",
   "enchantment.dungeonsmobs.radiance": "Radiance",
