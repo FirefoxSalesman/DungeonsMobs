@@ -44,8 +44,8 @@ public class DungeonsGearConfig {
 	// SOUL_SIPHON_SOULS_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> CHAINS_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> RADIANCE_CHANCE;
-	// public static ForgeConfigSpec.ConfigValue<Double> THUNDERING_CHANCE;
-	// public static ForgeConfigSpec.ConfigValue<Integer> THUNDERING_BASE_DAMAGE;
+	public static ForgeConfigSpec.ConfigValue<Double> THUNDERING_CHANCE;
+	public static ForgeConfigSpec.ConfigValue<Integer> THUNDERING_BASE_DAMAGE;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_BASE_MULTIPLIER;
@@ -197,13 +197,11 @@ public class DungeonsGearConfig {
 				.defineInRange("chainsChance", 0.3, 0, 1.0);
 		RADIANCE_CHANCE = builder.comment("The decimal chance for Radiance to trigger [0.0-1.0, default: 0.2]")
 				.defineInRange("radianceChance", 0.2, 0, 1.0);
-		// THUNDERING_CHANCE = builder
-		// .comment("The decimal chance for Thundering to trigger [0.0-1.0, default:
-		// 0.3]")
-		// .defineInRange("thunderingChance", 0.3, 0, 1.0);
-		// THUNDERING_BASE_DAMAGE = builder
-		// .comment("The base damage for Thundering [0-10000, default: 5]")
-		// .defineInRange("thunderingBaseDamage", 5, 0, 10000);
+		THUNDERING_CHANCE = builder
+				.comment("The decimal chance for Thundering to trigger [0.0-1.0, default: 0.3]")
+				.defineInRange("thunderingChance", 0.3, 0, 1.0);
+		THUNDERING_BASE_DAMAGE = builder.comment("The base damage for Thundering [0-10000, default: 5]")
+				.defineInRange("thunderingBaseDamage", 5, 0, 10000);
 		// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL = builder
 		// .comment("Multiplier per level damage to healing conversion. [0.0-5.0,
 		// default: 0.25]")

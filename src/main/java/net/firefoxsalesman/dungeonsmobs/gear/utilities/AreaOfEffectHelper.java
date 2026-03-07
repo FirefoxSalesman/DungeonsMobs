@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
+import net.firefoxsalesman.dungeonsmobs.gear.registry.DamageSourceInit;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -11,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -26,26 +29,26 @@ public class AreaOfEffectHelper {
 	public static final double PULL_IN_SPEED_FACTOR = 0.15;
 	public static final Random RANDOM = new Random();
 
-	// public static boolean applyElementalEffectsToNearbyEnemies(Player playerIn,
-	// int limit, float distance) {
-	// applyToNearbyEntities(playerIn, distance, limit,
-	// getCanApplyToEnemyPredicate(playerIn),
-	// (LivingEntity nearbyEntity) -> {
-	// int randomEffectId = RANDOM.nextInt(4);
-	// switch (randomEffectId) {
-	// case 1:
-	// electrify(playerIn, nearbyEntity, 5);
-	// break;
-	// case 2:
-	// freezeEnemy(0, nearbyEntity, 8);
-	// break;
-	// case 3:
-	// nearbyEntity.setSecondsOnFire(8);
-	// break;
-	// }
-	// });
-	// return true;
-	// }
+	public static boolean applyElementalEffectsToNearbyEnemies(Player playerIn,
+			int limit, float distance) {
+		applyToNearbyEntities(playerIn, distance, limit,
+				getCanApplyToEnemyPredicate(playerIn),
+				(LivingEntity nearbyEntity) -> {
+					int randomEffectId = RANDOM.nextInt(4);
+					switch (randomEffectId) {
+						case 1:
+							electrify(playerIn, nearbyEntity, 5);
+							break;
+						case 2:
+							freezeEnemy(0, nearbyEntity, 8);
+							break;
+						case 3:
+							nearbyEntity.setSecondsOnFire(8);
+							break;
+					}
+				});
+		return true;
+	}
 
 	public static void pullInNearbyEntities(LivingEntity attacker, LivingEntity target, float distance,
 			SimpleParticleType particleType) {
@@ -262,15 +265,11 @@ public class AreaOfEffectHelper {
 		}
 	}
 
-	// public static void electrify(LivingEntity attacker, LivingEntity victim,
-	// float damageAmount) {
-	// createVisualLightningBoltOnEntity(victim);
-	// ElectricShockDamageSource lightning = (ElectricShockDamageSource) new
-	// ElectricShockDamageSource(
-	// attacker).setMagic().bypassArmor();
-	// PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
-	// victim.hurt(lightning, damageAmount);
-	// }
+	public static void electrify(LivingEntity attacker, LivingEntity victim, float damageAmount) {
+		createVisualLightningBoltOnEntity(victim);
+		PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
+		victim.hurt(DamageSourceInit.ELECTRIC_SHOCK, damageAmount);
+	}
 
 	public static void levitate(int amplifier, LivingEntity nearbyEntity, int durationInSeconds) {
 		MobEffectInstance levitation = new MobEffectInstance(MobEffects.LEVITATION, durationInSeconds * 20,
@@ -278,14 +277,11 @@ public class AreaOfEffectHelper {
 		nearbyEntity.addEffect(levitation);
 	}
 
-	// public static void electrifyNearbyEnemies(LivingEntity attacker, float
-	// distance, float damageAmount,
-	// int limit) {
-	// applyToNearbyEntities(attacker, distance, limit,
-	// getCanApplyToEnemyPredicate(attacker),
-	// (LivingEntity nearbyEntity) -> electrify(attacker, nearbyEntity,
-	// damageAmount));
-	// }
+	public static void electrifyNearbyEnemies(LivingEntity attacker, float distance, float damageAmount,
+			int limit) {
+		applyToNearbyEntities(attacker, distance, limit, getCanApplyToEnemyPredicate(attacker),
+				(LivingEntity nearbyEntity) -> electrify(attacker, nearbyEntity, damageAmount));
+	}
 
 	public static void levitateNearbyEnemies(LivingEntity attacker, float distance, int limit, int amplifier,
 			int durationInSeconds) {
@@ -294,18 +290,17 @@ public class AreaOfEffectHelper {
 				(LivingEntity nearbyEntity) -> levitate(amplifier, nearbyEntity, durationInSeconds));
 	}
 
-	// public static void electrifyNearbyEnemies(AbstractArrow arrow, float
-	// distance, float damageAmount, int limit) {
-	// Level world = arrow.getCommandSenderWorld();
-	// Entity shooter = arrow.getOwner();
-	// if (shooter instanceof LivingEntity) {
-	// LivingEntity livingShooter = (LivingEntity) shooter;
-	// applyToNearbyEntities(arrow, world, distance, limit,
-	// getCanApplyToEnemyPredicate(livingShooter),
-	// (LivingEntity nearbyEntity) -> electrify(livingShooter, nearbyEntity,
-	// damageAmount));
-	// }
-	// }
+	public static void electrifyNearbyEnemies(AbstractArrow arrow, float distance, float damageAmount, int limit) {
+		Level world = arrow.getCommandSenderWorld();
+		Entity shooter = arrow.getOwner();
+		if (shooter instanceof LivingEntity) {
+			LivingEntity livingShooter = (LivingEntity) shooter;
+			applyToNearbyEntities(arrow, world, distance, limit,
+					getCanApplyToEnemyPredicate(livingShooter),
+					(LivingEntity nearbyEntity) -> electrify(livingShooter, nearbyEntity,
+							damageAmount));
+		}
+	}
 
 	public static void poisonAndSlowNearbyEnemies(Level worldIn, Player playerIn, int distance) {
 		applyToNearbyEntities(playerIn, worldIn, distance,
