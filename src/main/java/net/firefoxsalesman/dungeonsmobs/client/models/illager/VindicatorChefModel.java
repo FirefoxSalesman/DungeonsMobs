@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.firefoxsalesman.dungeonsmobs.client.animation.VindicatorChefAnimations;
 import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
+import net.firefoxsalesman.dungeonsmobs.interfaces.IArmorWearer;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,7 +16,8 @@ import net.minecraft.client.model.geom.builders.*;
 // Paste this class into your mod and generate all required imports
 import net.minecraft.world.entity.HumanoidArm;
 
-public class VindicatorChefModel<T extends VindicatorChefEntity> extends ConvenientModel<T> implements ArmedModel {
+public class VindicatorChefModel<T extends VindicatorChefEntity> extends ConvenientModel<T>
+		implements ArmedModel, IArmorWearer {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart root;
@@ -261,5 +263,61 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 		ModelPart hand = pSide == HumanoidArm.RIGHT ? bipedHandRight : bipedHandLeft;
 		// hand.translateAndRotate(pPoseStack);
 		// pPoseStack.translate(0, -.5, 0);
+	}
+
+	@Override
+	public void setAllVisible(boolean visible) {
+		root.visible = visible;
+		bipedBody.visible = visible;
+		illagerArms.visible = visible;
+		hands.visible = visible;
+		armourIllagerRightArm2.visible = visible;
+		armorIllagerLeftArm2.visible = visible;
+		armourBody.visible = visible;
+		bipedCape.visible = visible;
+		bipedArms.visible = visible;
+		bipedArmRight.visible = visible;
+		bipedHandRight.visible = visible;
+		armorBipedRightArm.visible = visible;
+		bipedArmLeft.visible = visible;
+		bipedHandLeft.visible = visible;
+		armorBipedLeftArm.visible = visible;
+		bipedPotionSlot.visible = visible;
+		bipedHeadBaseRotator.visible = visible;
+		bipedHead.visible = visible;
+		nose.visible = visible;
+		armorBipedHead.visible = visible;
+		bipedLegs.visible = visible;
+		bipedLegLeft.visible = visible;
+		armorBipedLeftFoot.visible = visible;
+		armorBipedLeftLeg.visible = visible;
+		bipedLegRight.visible = visible;
+		armorBipedRightFoot.visible = visible;
+		armourRightLeg.visible = visible;
+	}
+
+	@Override
+	public ModelPart getBody() {
+		return bipedBody;
+	}
+
+	@Override
+	public ModelPart getLeftArm() {
+		return bipedArmLeft;
+	}
+
+	@Override
+	public ModelPart getRightArm() {
+		return bipedArmRight;
+	}
+
+	@Override
+	public ModelPart getLeftLeg() {
+		return bipedLegLeft;
+	}
+
+	@Override
+	public ModelPart getRightLeg() {
+		return bipedLegRight;
 	}
 }

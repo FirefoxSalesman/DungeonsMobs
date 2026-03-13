@@ -2,9 +2,12 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.VindicatorChefModel;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.VanillaArmorLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
+import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
@@ -14,7 +17,11 @@ public class VindicatorChefRenderer
 	public VindicatorChefRenderer(Context pContext) {
 		super(pContext, new VindicatorChefModel<>(pContext.bakeLayer(ModModelLayers.VINDICATOR_CHEF_BODY)),
 				0.5f);
+		addLayer(new CustomHeadLayer<>(this, pContext.getModelSet(), pContext.getItemInHandRenderer()));
+		addLayer(new ElytraLayer<>(this, pContext.getModelSet()));
 		addLayer(new ItemInHandLayer<>(this, pContext.getItemInHandRenderer()));
+		addLayer(new VanillaArmorLayer<VindicatorChefEntity, VindicatorChefModel<VindicatorChefEntity>, VindicatorChefModel<VindicatorChefEntity>>(
+				this, getModel(), getModel(), pContext.getModelManager()));
 	}
 
 	@Override
