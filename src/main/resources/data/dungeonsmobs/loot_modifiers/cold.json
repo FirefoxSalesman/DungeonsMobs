@@ -7,7 +7,55 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/igloo_chest"
-        }
+        },
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/icy"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/snow"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/snowy"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/giant_tree_taiga_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/icy_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/snowy_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/taiga_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/snowy_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/icy_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/giant_tree_taiga_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/bigger_dungeon/stray"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/snowy_temple/common"
+	}
       ]
     }
   ],

@@ -6,22 +6,22 @@
         {
           "type": "item",
           "name": "dungeonsmobs:dagger",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:gauntlet",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:fighters_binding",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:mace",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
@@ -35,7 +35,7 @@
         },
 	{
           "type": "empty",
-          "weight": 6
+          "weight": 10
         }
       ]
     }

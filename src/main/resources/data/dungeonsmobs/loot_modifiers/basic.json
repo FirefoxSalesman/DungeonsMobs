@@ -27,7 +27,307 @@
 	{
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/village/village_tannery"
-        }
+        },
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/birch"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/crimson"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/savanna"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/stone"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/dark_forest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/swamp"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/taiga"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/bastions"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/badlands"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/dark_forest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/mushroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/swamp"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/igloos/grassy_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/igloos/stone_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/birch"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/oak"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/savanna"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/taiga"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/birch_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/oak_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/mushroom_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/flower_forest_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruin/land_hot/large"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruin/land_hot/small"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruin/land_warm/large"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruin/land_warm/small"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/armoury"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/crypt"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/mess"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/prison_lg"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/trap"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:skeleton_dungeon/chests/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:skeleton_dungeon/chests/middle"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:small_dungeon/chests/loot_piles"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:spider_dungeon/chests/egg_room"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:zombie_dungeon/chests/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:zombie_dungeon/chests/special"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:zombie_dungeon/chests/tombstone"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/stage_1"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/stage_2"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/stage_3"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/stage_4"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/stage_5"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeoncrawl:chests/forge"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/lightning_dragon_roost"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/fire_dragon_female_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/ice_dragon_male_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/ice_dragon_roost"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/lightning_dragon_female_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/fire_dragon_male_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/myrmex_loot_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/ice_dragon_female_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/fire_dragon_roost"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/lightning_dragon_male_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/mausoleum_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/cyclops_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/graveyard"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "iceandfire:chest/hydra_cave"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "totw_reworked:ocean_tower_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "totw_reworked:tower_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "towers_of_the_wild:chests/tower/ocean/ocean_tower_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "towers_of_the_wild:chests/tower/regular/tower_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/castle"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/castle_ruin"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/forge"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/player_house"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/spawner_dungeon"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/witch_hut"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/soul_prison/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/tower/vex"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/vanilla_dungeon"
+	}
       ]
     }
   ],
