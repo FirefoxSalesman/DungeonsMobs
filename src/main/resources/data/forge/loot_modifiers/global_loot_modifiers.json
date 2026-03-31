@@ -2,6 +2,7 @@
   "replace": false,
   "entries": [
     "dungeonsmobs:basic",
-    "dungeonsmobs:cold"
+    "dungeonsmobs:cold",
+    "dungeonsmobs:desert"
   ]
 }

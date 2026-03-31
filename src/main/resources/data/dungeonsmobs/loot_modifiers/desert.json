@@ -1,0 +1,51 @@
+{
+  "type": "dungeonsmobs:loottable",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/desert_pyramid"
+        },
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/desert"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/desert"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mansion/desert"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/badlands_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/desert_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/badlands_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "valhelsia_structures:chests/desert_house"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/bigger_dungeon/husk"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/leviathan/common"
+	}
+      ]
+    }
+  ],
+  "table": "dungeonsmobs:chests/desert"
+}
