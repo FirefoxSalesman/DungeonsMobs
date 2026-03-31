@@ -1,0 +1,18 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "dungeonsmobs:fang_of_frost",
+          "weight": 1 
+        },
+	{
+          "type": "empty",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

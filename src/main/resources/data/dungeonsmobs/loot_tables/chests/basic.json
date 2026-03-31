@@ -32,6 +32,10 @@
           "type": "item",
           "name": "dungeonsmobs:suns_grace",
           "weight": 1 
+        },
+	{
+          "type": "empty",
+          "weight": 6
         }
       ]
     }

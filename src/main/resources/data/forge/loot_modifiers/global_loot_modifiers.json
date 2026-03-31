@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "dungeonsmobs:basic"
+    "dungeonsmobs:basic",
+    "dungeonsmobs:cold"
   ]
 }
