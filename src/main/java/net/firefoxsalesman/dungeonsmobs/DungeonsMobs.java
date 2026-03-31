@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.gear.CommonProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
+import net.firefoxsalesman.dungeonsmobs.gear.loot.ModLootModifiers;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
@@ -96,6 +97,7 @@ public class DungeonsMobs {
 		ItemInit.register(modEventBus);
 		MobEffectInit.register(modEventBus);
 		EnchantmentInit.register(modEventBus);
+		ModLootModifiers.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

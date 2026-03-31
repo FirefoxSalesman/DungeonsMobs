@@ -1,0 +1,39 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "dungeonsmobs:dagger",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:gauntlet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:fighters_binding",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mace",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:flail",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:suns_grace",
+          "weight": 1 
+        }
+      ]
+    }
+  ]
+}
