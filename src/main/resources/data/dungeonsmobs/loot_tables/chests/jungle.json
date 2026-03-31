@@ -5,17 +5,12 @@
       "entries": [
         {
           "type": "item",
-          "name": "dungeonsmobs:sickle",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:the_last_laugh",
+          "name": "dungeonsmobs:mauler",
           "weight": 1 
         },
 	{
           "type": "empty",
-          "weight": 3
+          "weight": 1
         }
       ]
     }

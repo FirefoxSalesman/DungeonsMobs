@@ -3,6 +3,7 @@
   "entries": [
     "dungeonsmobs:basic",
     "dungeonsmobs:cold",
-    "dungeonsmobs:desert"
+    "dungeonsmobs:desert",
+    "dungeonsmobs:jungle"
   ]
 }
