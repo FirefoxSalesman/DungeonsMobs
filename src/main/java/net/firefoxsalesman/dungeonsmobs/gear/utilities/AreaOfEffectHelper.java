@@ -268,7 +268,7 @@ public class AreaOfEffectHelper {
 	public static void electrify(LivingEntity attacker, LivingEntity victim, float damageAmount) {
 		createVisualLightningBoltOnEntity(victim);
 		PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
-		victim.hurt(DamageSourceInit.ELECTRIC_SHOCK, damageAmount);
+		victim.hurt(new DamageSource(DamageSourceInit.ELECTRIC_SHOCK, attacker), damageAmount);
 	}
 
 	public static void levitate(int amplifier, LivingEntity nearbyEntity, int durationInSeconds) {

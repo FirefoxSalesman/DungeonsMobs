@@ -459,6 +459,8 @@
   "key.dungeons_libraries.curiosintegration.description_slot2": "Artifact Slot 2",
   "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3",
 
+  "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
+  "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",
   "enchantment.dungeonsmobs.freezing": "Freezing",
   "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
   "enchantment.dungeonsmobs.busy_bee": "Busy Bee",

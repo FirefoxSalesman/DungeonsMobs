@@ -15,6 +15,7 @@
     "GoalSelectorAccessor",
     "HuskAccessor",
     "ItemAccessor",
+    "LivingEntityAccessor",
     "MooshroomEntityMixin",
     "PiglinAccessor",
     "SpiderEntityMixin",

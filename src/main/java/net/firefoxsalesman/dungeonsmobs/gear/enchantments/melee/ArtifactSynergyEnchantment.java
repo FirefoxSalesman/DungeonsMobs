@@ -1,0 +1,67 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee;
+
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import static net.firefoxsalesman.dungeonsmobs.gear.utilities.DamageSourceHelper.isSource;
+
+import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
+import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.DamageSourceInit;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.PlayerAttackHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.event.ArtifactEvent;
+
+@Mod.EventBusSubscriber(modid = MOD_ID)
+public class ArtifactSynergyEnchantment extends DungeonsEnchantment {
+
+	public ArtifactSynergyEnchantment() {
+		super(Rarity.RARE, ModEnchantmentTypes.MELEE, new EquipmentSlot[] {
+				EquipmentSlot.MAINHAND });
+	}
+
+	public int getMaxLevel() {
+		return 3;
+	}
+
+	@SubscribeEvent
+	public static void onArtifactSynergyAttack(LivingDamageEvent event) {
+		if (PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource()))
+			return;
+		if (isSource(event.getSource(), DamageSourceInit.OFFHAND))
+			return;
+		if (!(event.getSource().getEntity() instanceof LivingEntity))
+			return;
+		LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
+		ItemStack mainhand = attacker.getMainHandItem();
+		Combo comboCap = ComboHelper.getComboCapability(attacker);
+
+		if (comboCap.hasArtifactSynergy() && !attacker.level().isClientSide) {
+			comboCap.setArtifactSynergy(false);
+			int artifactSynergyLevel = EnchantmentHelper
+					.getItemEnchantmentLevel(EnchantmentInit.ARTIFACT_SYNERGY.get(), mainhand);
+			if (artifactSynergyLevel > 0) {
+				float damageMultiplier = 1.2F + artifactSynergyLevel * 0.2F;
+				float currentDamage = event.getAmount();
+				event.setAmount(currentDamage * damageMultiplier);
+			}
+
+		}
+	}
+
+	@SubscribeEvent
+	public static void onArtifactTriggered(ArtifactEvent.Activated event) {
+		Combo comboCap = ComboHelper.getComboCapability(event.getEntity());
+		if (!comboCap.hasArtifactSynergy()) {
+			comboCap.setArtifactSynergy(true);
+		}
+	}
+}

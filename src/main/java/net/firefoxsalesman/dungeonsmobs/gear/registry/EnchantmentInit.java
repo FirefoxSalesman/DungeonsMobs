@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CommittedEnchantment;
@@ -25,6 +26,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ThunderingEnchan
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
 			.create(ForgeRegistries.ENCHANTMENTS, MOD_ID);
+	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
+			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
 	public static RegistryObject<FreezingEnchantment> FREEZING = ENCHANTMENTS.register("freezing",
 			() -> new FreezingEnchantment());
 	public static RegistryObject<BusyBeeEnchantment> BUSY_BEE = ENCHANTMENTS.register("busy_bee",
