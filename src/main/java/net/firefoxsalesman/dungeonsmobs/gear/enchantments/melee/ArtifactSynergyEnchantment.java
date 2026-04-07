@@ -9,8 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-import static net.firefoxsalesman.dungeonsmobs.gear.utilities.DamageSourceHelper.isSource;
-
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
@@ -36,7 +34,7 @@ public class ArtifactSynergyEnchantment extends DungeonsEnchantment {
 	public static void onArtifactSynergyAttack(LivingDamageEvent event) {
 		if (PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource()))
 			return;
-		if (isSource(event.getSource(), DamageSourceInit.OFFHAND))
+		if (event.getSource().is(DamageSourceInit.OFFHAND))
 			return;
 		if (!(event.getSource().getEntity() instanceof LivingEntity))
 			return;

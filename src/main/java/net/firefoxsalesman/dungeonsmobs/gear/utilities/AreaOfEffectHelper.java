@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
-import net.firefoxsalesman.dungeonsmobs.gear.registry.DamageSourceInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -268,7 +267,8 @@ public class AreaOfEffectHelper {
 	public static void electrify(LivingEntity attacker, LivingEntity victim, float damageAmount) {
 		createVisualLightningBoltOnEntity(victim);
 		PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
-		victim.hurt(new DamageSource(DamageSourceInit.ELECTRIC_SHOCK, attacker), damageAmount);
+		victim.hurt(attacker.damageSources().lightningBolt(),
+				damageAmount);
 	}
 
 	public static void levitate(int amplifier, LivingEntity nearbyEntity, int durationInSeconds) {

@@ -44,7 +44,8 @@ public class BlastlingBulletEntity extends NecromancerOrbEntity {
 			Entity entity1 = getOwner();
 			if (entity1 instanceof LivingEntity && !(entity instanceof AbstractEnderlingEntity)) {
 				LivingEntity livingentity = (LivingEntity) entity1;
-				entity.hurt(level().damageSources().mobProjectile(this, livingentity), 4.0F);
+				entity.hurt(damageSources().mobProjectile(this, livingentity),
+						4.0F);
 			}
 
 		}
