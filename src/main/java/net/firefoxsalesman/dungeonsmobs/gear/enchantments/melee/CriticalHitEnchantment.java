@@ -1,0 +1,69 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee;
+
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.DamageEnchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.AOEDamageEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DamageBoostEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
+
+//ToDo: WTF IS UP WITH COMBOWEAPONS? Why so different?
+@Mod.EventBusSubscriber(modid = MOD_ID)
+public class CriticalHitEnchantment extends DamageBoostEnchantment {
+
+	public CriticalHitEnchantment() {
+		super(Enchantment.Rarity.RARE, ModEnchantmentTypes.MELEE, new EquipmentSlot[] {
+				EquipmentSlot.MAINHAND });
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void onVanillaNonCriticalHit(CriticalHitEvent event) {
+		if (event.getEntity() != null && !event.isVanillaCritical()) {
+			Player attacker = event.getEntity();
+			ItemStack mainhand = attacker.getMainHandItem();
+			boolean success = false;
+			if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.CRITICAL_HIT.get())) {
+				int criticalHitLevel = EnchantmentHelper
+						.getItemEnchantmentLevel(EnchantmentInit.CRITICAL_HIT.get(), mainhand);
+				float criticalHitChance;
+				criticalHitChance = 0.05F + criticalHitLevel * 0.05F;
+				float criticalHitRand = attacker.getRandom().nextFloat();
+				if (criticalHitRand <= criticalHitChance) {
+					success = true;
+				}
+			}
+			if (success) {
+				event.setResult(Event.Result.ALLOW);
+				float newDamageModifier = event.getDamageModifier() == event.getOldDamageModifier()
+						? event.getDamageModifier() + 1.5F
+						: event.getDamageModifier() * 3.0F;
+				event.setDamageModifier(newDamageModifier);
+			}
+		}
+	}
+
+	@Override
+	public int getMaxLevel() {
+		return 3;
+	}
+
+	@Override
+	public boolean checkCompatibility(Enchantment enchantment) {
+		return !(enchantment instanceof DamageEnchantment)
+				&& !(enchantment instanceof DamageBoostEnchantment)
+				&& !(enchantment instanceof AOEDamageEnchantment);
+	}
+}

@@ -469,6 +469,8 @@
   "enchantment.dungeonsmobs.chains.desc": "Has a 30% chance to chain a cluster of mobs together and keep them bound for a short time.",
   "enchantment.dungeonsmobs.committed": "Committed",
   "enchantment.dungeonsmobs.committed.desc": "Deal increased damage against already wounded enemies.",
+  "enchantment.dungeonsmobs.critical_hit": "Critical Hit",
+  "enchantment.dungeonsmobs.critical_hit.desc": "Gives you a chance to inflict non-standard critical hits.",
   "enchantment.dungeonsmobs.exploding": "Exploding",
   "enchantment.dungeonsmobs.exploding.desc": "Mobs explode after they are defeated.",
   "enchantment.dungeonsmobs.illagers_bane": "Illager's Bane",
