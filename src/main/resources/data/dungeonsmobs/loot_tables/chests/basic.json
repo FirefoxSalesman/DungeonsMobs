@@ -5,6 +5,11 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:rapier",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:dagger",
           "weight": 2 
         },
@@ -35,7 +40,7 @@
         },
 	{
           "type": "empty",
-          "weight": 10
+          "weight": 12
         }
       ]
     }

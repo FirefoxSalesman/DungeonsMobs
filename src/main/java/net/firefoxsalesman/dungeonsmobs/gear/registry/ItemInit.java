@@ -53,6 +53,24 @@ public class ItemInit {
 	// registerMeleeWeapon("soul_fist",
 	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 
+	// DPS 8, crits once per 3.5 seconds
+	public static final RegistryObject<Item> RAPIER = registerMeleeWeapon("rapier",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	// public static final RegistryObject<Item> BEE_STINGER =
+	// registerMeleeWeapon("bee_stinger",
+	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> FREEZING_FOIL = registerMeleeWeapon("freezing_foil",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+
+	// DPS 9.1, crits once per 1.53 seconds
+	// public static final RegistryObject<Item> SOUL_SCYTHE =
+	// registerMeleeWeapon("soul_scythe",
+	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES), DESERT);
+	public static final RegistryObject<Item> FROST_SCYTHE = registerMeleeWeapon("frost_scythe",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> JAILORS_SCYTHE = registerMeleeWeapon("jailors_scythe",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+
 	// DPS 9.8, crits once per 2.1 seconds, disables shields
 	public static final RegistryObject<Item> MACE = registerMeleeWeapon("mace",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));

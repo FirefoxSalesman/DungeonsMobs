@@ -5,12 +5,22 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:frost_scythe",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:freezing_foil",
+          "weight": 1 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:fang_of_frost",
           "weight": 1 
         },
 	{
           "type": "empty",
-          "weight": 1
+          "weight": 3
         }
       ]
     }

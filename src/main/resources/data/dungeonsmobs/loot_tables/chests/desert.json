@@ -14,8 +14,13 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:jailors_scythe",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 3
+          "weight": 4
         }
       ]
     }

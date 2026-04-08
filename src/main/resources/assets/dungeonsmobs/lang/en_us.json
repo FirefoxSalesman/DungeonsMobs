@@ -516,6 +516,13 @@
   "item.dungeonsmobs.sickle": "Sickle",
   "lore.dungeonsmobs.sickle": "A ceremonial weapon that hails from the same region as the Desert Temple.",
 
+  "item.dungeonsmobs.frost_scythe": "Frost Scythe",
+  "lore.dungeonsmobs.frost_scythe": "The Frost Scythe is an indestructible blade that is freezing to the touch and never seems to melt.",
+  "item.dungeonsmobs.jailors_scythe": "Jailor's Scythe",
+  "lore.dungeonsmobs.jailors_scythe": "This scythe belonged to the terror of Highblock Keep, the Jailor.",
+  "item.dungeonsmobs.soul_scythe": "Soul Scythe",
+  "lore.dungeonsmobs.soul_scythe": "A cruel reaper of souls, the Soul Scythe is unsentimental in its work.",
+
   "item.dungeonsmobs.gauntlet": "Gauntlet",
   "lore.dungeonsmobs.gauntlet": "Gauntlets call back to an ancient style of hand to hand combat.",
   "item.dungeonsmobs.fighters_binding": "Fighter's Binding",
@@ -530,5 +537,12 @@
   "item.dungeonsmobs.suns_grace": "Sun's Grace",
   "lore.dungeonsmobs.suns_grace": "This mace, engraved with secret healing runes, grants powerful restorative powers.",
   "item.dungeonsmobs.mace": "Mace",
-  "lore.dungeonsmobs.mace": "The Mace is a brutal tool of war and what it lacks in finesse; it makes up for in power."
+  "lore.dungeonsmobs.mace": "The Mace is a brutal tool of war and what it lacks in finesse; it makes up for in power.",
+
+  "item.dungeonsmobs.rapier": "Rapier",
+  "lore.dungeonsmobs.rapier": "The rapier, a nimble and narrow blade, strikes with quick ferocity.",
+  "item.dungeonsmobs.bee_stinger": "Bee Stinger",
+  "lore.dungeonsmobs.bee_stinger": "The Bee Stinger, a swift blade inspired by a bee's barb, can draw friendly bees into the fray to fight alongside you.",
+  "item.dungeonsmobs.freezing_foil": "Freezing Foil",
+  "lore.dungeonsmobs.freezing_foil": "This needle-like blade is cold to the touch and makes quick work of any cut."
 }
