@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantme
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CommittedEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CriticalHitEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.EchoEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ExplodingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.IllagersBaneEnchantment;
@@ -39,6 +40,7 @@ public class EnchantmentInit {
 			() -> new CommittedEnchantment());
 	public static RegistryObject<CriticalHitEnchantment> CRITICAL_HIT = ENCHANTMENTS.register("critical_hit",
 			() -> new CriticalHitEnchantment());
+	public static RegistryObject<EchoEnchantment> ECHO = ENCHANTMENTS.register("echo", () -> new EchoEnchantment());
 	public static RegistryObject<ExplodingEnchantment> EXPLODING = ENCHANTMENTS.register("exploding",
 			() -> new ExplodingEnchantment());
 	public static RegistryObject<IllagersBaneEnchantment> ILLAGERS_BANE = ENCHANTMENTS.register("illagers_bane",

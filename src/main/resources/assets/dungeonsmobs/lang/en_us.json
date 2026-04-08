@@ -471,6 +471,8 @@
   "enchantment.dungeonsmobs.committed.desc": "Deal increased damage against already wounded enemies.",
   "enchantment.dungeonsmobs.critical_hit": "Critical Hit",
   "enchantment.dungeonsmobs.critical_hit.desc": "Gives you a chance to inflict non-standard critical hits.",
+  "enchantment.dungeonsmobs.echo": "Echo",
+  "enchantment.dungeonsmobs.echo.desc": "Every few seconds, your will attack twice.",
   "enchantment.dungeonsmobs.exploding": "Exploding",
   "enchantment.dungeonsmobs.exploding.desc": "Mobs explode after they are defeated.",
   "enchantment.dungeonsmobs.illagers_bane": "Illager's Bane",
