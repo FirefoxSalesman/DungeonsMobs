@@ -5,6 +5,11 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:battlestaff",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:sickle",
           "weight": 2 
         },
@@ -16,6 +21,16 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:jailors_scythe",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:battlestaff_of_terror",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:growing_staff",
           "weight": 1 
         },
 	{

@@ -39,6 +39,16 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:hawkbrand",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:sinister_sword",
+          "weight": 1 
+        },
+	{
           "type": "empty",
           "weight": 12
         }

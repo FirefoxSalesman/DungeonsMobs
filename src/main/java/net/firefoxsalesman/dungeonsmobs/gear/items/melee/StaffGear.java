@@ -1,0 +1,41 @@
+package net.firefoxsalesman.dungeonsmobs.gear.items.melee;
+
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+
+public class StaffGear extends MeleeGear {
+
+	public StaffGear(Properties properties) {
+		super(properties);
+	}
+
+	@Override
+	public boolean shouldProcSpecialEffects(ItemStack stack, LivingEntity attacker, int combo) {
+		combo -= 1;
+		combo %= 10;
+		return combo == 3 || combo == 6 || combo == 8 || combo == 0;
+	}
+
+	@Override
+	public float damageMultiplier(ItemStack stack, LivingEntity attacker, int combo) {
+		float additional = 0;
+		switch (combo % 10) {
+			case 3:
+				additional = 0.2f;
+				break;
+			case 6:
+				additional = 0.4f;
+				break;
+			case 8:
+				additional = 0.6f;
+				break;
+			case 0:
+				additional = 0.8f;
+				break;
+
+		}
+		return 1 + additional;
+	}
+
+}
