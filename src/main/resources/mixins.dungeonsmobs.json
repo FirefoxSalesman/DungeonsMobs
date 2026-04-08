@@ -23,7 +23,8 @@
     "MobInvoker",
     "NearestAttackableTargetGoalAccessor",
     "TargetingConditionsAccessor",
-    "EnchantmentHelperMixin"
+    "EnchantmentHelperMixin",
+    "AxeItemAccessor"
   ],
   "client": [
     "SpiderModelMixin"

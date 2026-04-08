@@ -517,6 +517,18 @@
   "lore.dungeonsmobs.dagger": "Daggers are the weapon of cravens - or so folks say.",
   "item.dungeonsmobs.shear_dagger": "Shear Daggers",
   "lore.dungeonsmobs.shear_dagger": "Even the simplest of farmers can wield these Shear Daggers with savage results.",
+
+  "item.dungeonsmobs.cursed_axe": "Cursed Axe",
+  "lore.dungeonsmobs.cursed_axe": "This cursed, poisonous axe leaves their victims sick for years with just a single scratch.",
+  "item.dungeonsmobs.whirlwind": "Whirlwind",
+  "lore.dungeonsmobs.whirlwind": "Whirlwind, forged during an epic windstorm, is a double-bladed axe that levitates slightly.",
+  "item.dungeonsmobs.double_axe": "Double Axe",
+  "lore.dungeonsmobs.double_axe": "A devastating weapon fit for barbaric fighters.",
+
+  "item.dungeonsmobs.firebrand": "Firebrand",
+  "lore.dungeonsmobs.firebrand": "Crafted in the blackest depths of the Fiery Forge and enchanted with fiery powers.",
+  "item.dungeonsmobs.highland_axe": "Highland Axe",
+  "lore.dungeonsmobs.highland_axe": "Expertly crafted and a polished weapon of war, the Highland Axe also makes a daring backscratcher.",
   
   "item.dungeonsmobs.nightmares_bite": "Nightmare's Bite",
   "lore.dungeonsmobs.nightmares_bite": "The twin blades of Nightmare's Bite drip with deadly venom, still potent after all these years.",

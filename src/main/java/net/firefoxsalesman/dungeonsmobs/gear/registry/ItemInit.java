@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.registry;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -24,6 +25,7 @@ public class ItemInit {
 	public static final Map<ResourceLocation, RegistryObject<Item>> MELEE_WEAPONS = new HashMap<>();
 	private static Supplier<Item> meleeSupplier = () -> new MeleeGear(MELEE_WEAPON_PROPERTIES);
 	private static Supplier<Item> staffSupplier = () -> new StaffGear(MELEE_WEAPON_PROPERTIES);
+	private static Supplier<Item> axeSupplier = () -> new AxeGear(MELEE_WEAPON_PROPERTIES);
 
 	// DPS 9.6 (19.2), crits once per 2.5 (1.25) seconds
 	public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger", meleeSupplier);
@@ -78,6 +80,15 @@ public class ItemInit {
 	public static final RegistryObject<Item> BATTLESTAFF_OF_TERROR = registerMeleeWeapon("battlestaff_of_terror",
 			staffSupplier);
 	public static final RegistryObject<Item> GROWING_STAFF = registerMeleeWeapon("growing_staff", staffSupplier);
+
+	// DPS 10, crits once per 3 seconds, disables shields
+	public static final RegistryObject<Item> FIREBRAND = registerMeleeWeapon("firebrand", axeSupplier);
+	public static final RegistryObject<Item> HIGHLAND_AXE = registerMeleeWeapon("highland_axe", axeSupplier);
+
+	// DPS 9, crits once per 1.1 seconds, disables shields
+	public static final RegistryObject<Item> DOUBLE_AXE = registerMeleeWeapon("double_axe", axeSupplier);
+	public static final RegistryObject<Item> CURSED_AXE = registerMeleeWeapon("cursed_axe", axeSupplier);
+	public static final RegistryObject<Item> WHIRLWIND = registerMeleeWeapon("whirlwind", axeSupplier);
 
 	// DPS 9.8, crits once per 2.1 seconds, disables shields
 	public static final RegistryObject<Item> MACE = registerMeleeWeapon("mace", meleeSupplier);
