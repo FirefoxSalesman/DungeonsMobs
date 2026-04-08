@@ -16,8 +16,10 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.CriticalHitEncha
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.EchoEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ExplodingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.FreezingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.GuardingStrikeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.IllagersBaneEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.LeechingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.PainCycleEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ProspectorEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RadianceEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
@@ -43,10 +45,14 @@ public class EnchantmentInit {
 	public static RegistryObject<EchoEnchantment> ECHO = ENCHANTMENTS.register("echo", () -> new EchoEnchantment());
 	public static RegistryObject<ExplodingEnchantment> EXPLODING = ENCHANTMENTS.register("exploding",
 			() -> new ExplodingEnchantment());
+	public static RegistryObject<GuardingStrikeEnchantment> GUARDING_STRIKE = ENCHANTMENTS
+			.register("guarding_strike", () -> new GuardingStrikeEnchantment());
 	public static RegistryObject<IllagersBaneEnchantment> ILLAGERS_BANE = ENCHANTMENTS.register("illagers_bane",
 			() -> new IllagersBaneEnchantment());
 	public static RegistryObject<LeechingEnchantment> LEECHING = ENCHANTMENTS.register("leeching",
 			() -> new LeechingEnchantment());
+	public static RegistryObject<PainCycleEnchantment> PAIN_CYCLE = ENCHANTMENTS.register("pain_cycle",
+			() -> new PainCycleEnchantment());
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
 			() -> new ProspectorEnchantment());
 	public static RegistryObject<RadianceEnchantment> RADIANCE = ENCHANTMENTS.register("radiance",

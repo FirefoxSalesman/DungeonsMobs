@@ -1,0 +1,50 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee;
+
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.AOEDamageEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.PlayerAttackHelper;
+
+@Mod.EventBusSubscriber(modid = MOD_ID)
+public class GuardingStrikeEnchantment extends AOEDamageEnchantment {
+
+	public GuardingStrikeEnchantment() {
+		super(Rarity.RARE, ModEnchantmentTypes.MELEE, new EquipmentSlot[] {
+				EquipmentSlot.MAINHAND });
+	}
+
+	public int getMaxLevel() {
+		return 3;
+	}
+
+	@SubscribeEvent
+	public static void onGuardingStrikeKill(LivingDeathEvent event) {
+		if (PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource()))
+			return;
+		if (event.getSource().getEntity() instanceof LivingEntity) {
+			LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
+			ItemStack mainhand = attacker.getMainHandItem();
+			int guardingStrikeLevel = EnchantmentHelper
+					.getItemEnchantmentLevel(EnchantmentInit.GUARDING_STRIKE.get(), mainhand);
+			if (guardingStrikeLevel > 0) {
+				int duration = 20 + 20 * guardingStrikeLevel;
+				MobEffectInstance shield = new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration,
+						2);
+				attacker.addEffect(shield);
+			}
+		}
+	}
+
+}
