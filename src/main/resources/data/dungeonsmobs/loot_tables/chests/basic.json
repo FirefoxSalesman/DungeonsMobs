@@ -5,6 +5,16 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:claymore",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:katana",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:double_axe",
           "weight": 2 
         },
@@ -74,8 +84,28 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:dark_katana",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:masters_katana",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:broadsword",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heartstealer",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 14
+          "weight": 18
         }
       ]
     }

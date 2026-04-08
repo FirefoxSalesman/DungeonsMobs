@@ -95,6 +95,36 @@ public class ItemInit {
 	public static final RegistryObject<Item> FLAIL = registerMeleeWeapon("flail", meleeSupplier);
 	public static final RegistryObject<Item> SUNS_GRACE = registerMeleeWeapon("suns_grace", meleeSupplier);
 
+	// DPS 8.8, crits once per 0.9 seconds, disables shields
+	// public static final RegistryObject<Item> GREAT_HAMMER =
+	// registerMeleeWeapon("great_hammer", meleeSupplier);
+	// public static final RegistryObject<Item> HAMMER_OF_GRAVITY =
+	// registerMeleeWeapon("hammer_of_gravity",
+	// meleeSupplier);
+	// public static final RegistryObject<Item> STORMLANDER =
+	// registerMeleeWeapon("stormlander", meleeSupplier);
+
+	// DPS 11.2, crits once per 2.1 seconds
+	public static final RegistryObject<Item> KATANA = registerMeleeWeapon("katana", meleeSupplier);
+	public static final RegistryObject<Item> DARK_KATANA = registerMeleeWeapon("dark_katana", meleeSupplier);
+	public static final RegistryObject<Item> MASTERS_KATANA = registerMeleeWeapon("masters_katana", meleeSupplier);
+
+	// DPS 7.2, crits once per 1.25 seconds
+	// public static final RegistryObject<Item> SOUL_KNIFE =
+	// registerMeleeWeapon("soul_knife", meleeSupplier);
+	// public static final RegistryObject<Item> ETERNAL_KNIFE =
+	// registerMeleeWeapon("eternal_knife", meleeSupplier);
+	// public static final RegistryObject<Item> TRUTHSEEKER =
+	// registerMeleeWeapon("truthseeker", meleeSupplier);
+
+	// DPS 9.6, crits once per 3.3 seconds
+	public static final RegistryObject<Item> CLAYMORE = registerMeleeWeapon("claymore", meleeSupplier);
+	public static final RegistryObject<Item> BROADSWORD = registerMeleeWeapon("broadsword", meleeSupplier);
+	public static final RegistryObject<Item> HEARTSTEALER = registerMeleeWeapon("heartstealer", meleeSupplier);
+	// public static final RegistryObject<Item> GREAT_AXEBLADE =
+	// registerMeleeWeapon("great_axeblade", meleeSupplier);
+	public static final RegistryObject<Item> FROST_SLAYER = registerMeleeWeapon("frost_slayer", meleeSupplier);
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);

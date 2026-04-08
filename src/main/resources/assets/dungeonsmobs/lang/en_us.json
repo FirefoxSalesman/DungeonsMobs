@@ -500,6 +500,17 @@
   "enchantment.dungeonsmobs.weakening": "Weakening",
   "enchantment.dungeonsmobs.weakening.desc": "Your attacks decrease the attack damage of nearby enemies for five seconds.",
 
+  "item.dungeonsmobs.broadsword": "Broadsword",
+  "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
+  "item.dungeonsmobs.heartstealer": "Heartstealer",
+  "lore.dungeonsmobs.heartstealer": "Gifted to one of the Arch-Illager's most distinguished generals upon their conquest of the Squid Coast - this runeblade is infused with dark witchcraft.",
+  "item.dungeonsmobs.great_axeblade": "Great Axeblade",
+  "lore.dungeonsmobs.great_axeblade": "A lucky blacksmith turned a workshop blunder into a battlefield wonder, fusing two weapons into something new.",
+  "item.dungeonsmobs.claymore": "Claymore",
+  "lore.dungeonsmobs.claymore": "A massive sword that seems impossibly heavy yet rests easily in a just warrior's hands.",
+  "item.dungeonsmobs.frost_slayer": "Frost Slayer",
+  "lore.dungeonsmobs.frost_slayer": "The legendary Frost Slayer returns to the battlefield only in the darkest and coldest days of winter.",
+
   "item.dungeonsmobs.dancers_sword": "Dancer's Sword",
   "lore.dungeonsmobs.dancers_sword": "Warriors who view battle as a dance with death prefer double-bladed swords.",
   "item.dungeonsmobs.nameless_blade": "Nameless Blade",
@@ -564,6 +575,13 @@
   "lore.dungeonsmobs.mauler": "These claw-like weapons, wielded by ancient Illager soldiers, are savage in battle.",
   "item.dungeonsmobs.soul_fist": "Soul Fist",
   "lore.dungeonsmobs.soul_fist": "Soul Fists are gauntlets clad with great gemstones, each containing a powerful soul.",
+
+  "item.dungeonsmobs.dark_katana": "Dark Katana",
+  "lore.dungeonsmobs.dark_katana": "A blade that will not rest until the battle has been won.",
+  "item.dungeonsmobs.masters_katana": "Master's Katana",
+  "lore.dungeonsmobs.masters_katana": "The Master's Katana has existed throughout the ages, appearing to heroes at the right moment.",
+  "item.dungeonsmobs.katana": "Katana",
+  "lore.dungeonsmobs.katana": "A blade fit for expert warriors and fighters, its blade is crafted to inflict precision damage.",
   
   "item.dungeonsmobs.flail": "Flail",
   "lore.dungeonsmobs.flail": "This ancient weapon inflicts grave blunt damage to those who cannot evade the deadly metal ball.",
