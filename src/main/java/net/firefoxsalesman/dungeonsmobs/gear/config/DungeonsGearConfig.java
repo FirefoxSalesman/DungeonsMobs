@@ -27,12 +27,8 @@ public class DungeonsGearConfig {
 	// TUMBLE_BEE_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> RAMPAGING_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Integer> RAMPAGING_DURATION;
-	// public static ForgeConfigSpec.ConfigValue<Integer> RUSHDOWN_DURATION;
-	// public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DURATION;
-	// public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DISTANCE;
-	// public static ForgeConfigSpec.ConfigValue<Double> LEECHING_BASE_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// LEECHING_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DURATION;
+	public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DISTANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_BASE_MULTIPLIER;
 	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_MULTIPLIER_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer> DYNAMO_MAX_STACKS;
@@ -149,26 +145,12 @@ public class DungeonsGearConfig {
 		RAMPAGING_DURATION = builder.comment(
 				"The duration in ticks (20ticks = 1 second) per level added for rampaging. [0-10000, default: 100]")
 				.defineInRange("rampagingDuration", 100, 0, 10000);
-		// RUSHDOWN_DURATION = builder
-		// .comment("The duration in ticks (20ticks = 1 second) per level added for
-		// rushdown. [0-10000, default: 20]")
-		// .defineInRange("rushdownDuration", 20, 0, 10000);
-		// WEAKENING_DURATION = builder
-		// .comment("The duration in ticks (20ticks = 1 second) for weakening. [0-10000,
-		// default: 100]")
-		// .defineInRange("weakeningDuration", 100, 0, 10000);
-		// WEAKENING_DISTANCE = builder
-		// .comment("The application distance in blocks for weakening. [0-10000,
-		// default: 5]")
-		// .defineInRange("weakeningDistance", 5, 0, 10000);
-		// LEECHING_BASE_MULTIPLIER = builder
-		// .comment("The decimal base multiplier on the victim's max health for leeching
-		// [0.0-5.0, default: 0.2]")
-		// .defineInRange("leechingBaseMultiplier", 0.2, 0, 5.0);
-		// LEECHING_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for leeching [0.0-5.0, default:
-		// 0.2]")
-		// .defineInRange("leechingMultiplierPerLevel", 0.2, 0, 5.0);
+		WEAKENING_DURATION = builder.comment(
+				"The duration in ticks (20ticks = 1 second) for weakening. [0-10000, default: 100]")
+				.defineInRange("weakeningDuration", 100, 0, 10000);
+		WEAKENING_DISTANCE = builder
+				.comment("The application distance in blocks for weakening. [0-10000, default: 5]")
+				.defineInRange("weakeningDistance", 5, 0, 10000);
 		// DYNAMO_MAX_STACKS = builder
 		// .comment("The max stacks for dynamo. [0-10000, default: 20]")
 		// .defineInRange("dynamoMaxStacks", 20, 0, 10000);
