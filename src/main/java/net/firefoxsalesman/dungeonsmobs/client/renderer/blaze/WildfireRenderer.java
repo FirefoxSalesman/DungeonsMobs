@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class WildfireRenderer extends MobRenderer<WildfireEntity, WildfireModel<WildfireEntity>> {
 	public WildfireRenderer(Context pContext) {
-		super(pContext, new WildfireModel<>(pContext.bakeLayer(ModModelLayers.WILDFIRE_BODY)), 2);
+		super(pContext, new WildfireModel<>(pContext.bakeLayer(ModModelLayers.WILDFIRE_BODY)), 1);
 	}
 
 	@Override

@@ -7,10 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
-import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -23,7 +20,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -256,12 +252,13 @@ public class WildfireEntity extends Monster {
 	}
 
 	@Override
-	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-		if (this.getShields() > 0 && p_70097_1_ != damageSources().outOfBorder()
-				&& p_70097_1_ != damageSources().drown()) {
+	public boolean hurt(DamageSource damageSource, float p_70097_2_) {
+		if (this.getShields() > 0 && damageSource != damageSources().outOfBorder()
+				&& damageSource != damageSources().drown()) {
 
-			if (p_70097_1_.getEntity() != null && p_70097_1_.getEntity() instanceof LivingEntity) {
-				this.setLastHurtByMob(((LivingEntity) p_70097_1_.getEntity()));
+			if (damageSource.getEntity() != null && damageSource.getEntity() instanceof LivingEntity
+					&& !(damageSource.getEntity() instanceof Blaze)) {
+				this.setLastHurtByMob(((LivingEntity) damageSource.getEntity()));
 			}
 
 			this.setShieldHealth(this.getShieldHealth() - p_70097_2_);
@@ -272,12 +269,12 @@ public class WildfireEntity extends Monster {
 					this.getShieldHealth() <= individualShieldHealth * 0 && this.getShields() > 0) {
 				this.breakShield();
 			} else {
-				this.playHurtSound(p_70097_1_);
+				this.playHurtSound(damageSource);
 			}
 
 			return false;
 		} else {
-			return super.hurt(p_70097_1_, p_70097_2_);
+			return super.hurt(damageSource, p_70097_2_);
 		}
 	}
 
