@@ -500,6 +500,15 @@
   "enchantment.dungeonsmobs.weakening": "Weakening",
   "enchantment.dungeonsmobs.weakening.desc": "Your attacks decrease the attack damage of nearby enemies for five seconds.",
 
+  "item.dungeonsmobs.dancers_sword": "Dancer's Sword",
+  "lore.dungeonsmobs.dancers_sword": "Warriors who view battle as a dance with death prefer double-bladed swords.",
+  "item.dungeonsmobs.nameless_blade": "Nameless Blade",
+  "lore.dungeonsmobs.nameless_blade": "This deadly blade's story was lost to the endless sands of time.",
+  "item.dungeonsmobs.cutlass": "Cutlass",
+  "lore.dungeonsmobs.cutlass": "This curved blade, wielded by the warriors of the Squid Coast, requires a steady hand in battle.",
+  "item.dungeonsmobs.sparkler": "Sparkler",
+  "lore.dungeonsmobs.sparkler": "The Sparkler lights up the party as it cuts through the darkness.",
+
   "item.dungeonsmobs.fang_of_frost": "Fang of Frost",
   "lore.dungeonsmobs.fang_of_frost": "These lauded daggers of the northern mountains are known to freeze their foes to solid ice.",
   "item.dungeonsmobs.moon_dagger": "Moon Dagger",

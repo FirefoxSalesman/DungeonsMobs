@@ -1,0 +1,33 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "dungeonsmobs:cutlass",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:dancers_sword",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:nameless_blade",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:sparkler",
+          "weight": 1 
+        },
+	{
+          "type": "empty",
+          "weight": 5
+        }
+      ]
+    }
+  ]
+}

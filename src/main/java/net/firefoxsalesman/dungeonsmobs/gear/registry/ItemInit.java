@@ -71,6 +71,16 @@ public class ItemInit {
 	public static final RegistryObject<Item> JAILORS_SCYTHE = registerMeleeWeapon("jailors_scythe",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
 
+	// DPS 7.2, crits once per 1.11 seconds
+	public static final RegistryObject<Item> CUTLASS = registerMeleeWeapon("cutlass",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> DANCERS_SWORD = registerMeleeWeapon("dancers_sword",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> NAMELESS_BLADE = registerMeleeWeapon("nameless_blade",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> SPARKLER = registerMeleeWeapon("sparkler",
+			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+
 	// DPS 9.8, crits once per 2.1 seconds, disables shields
 	public static final RegistryObject<Item> MACE = registerMeleeWeapon("mace",
 			() -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
