@@ -156,6 +156,13 @@ public class ItemInit {
 	public static final RegistryObject<Item> BONECLUB = registerMeleeWeapon("boneclub", meleeSupplier);
 	public static final RegistryObject<Item> BONE_CUDGEL = registerMeleeWeapon("bone_cudgel", meleeSupplier);
 
+	// DPS 8, crits once per 1.25 seconds
+	// public static final RegistryObject<Item> ANCHOR =
+	// registerMeleeWeapon("anchor", meleeSupplier);
+	// public static final RegistryObject<Item> ENCRUSTED_ANCHOR =
+	// registerMeleeWeapon("encrusted_anchor",
+	// meleeSupplier);
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);

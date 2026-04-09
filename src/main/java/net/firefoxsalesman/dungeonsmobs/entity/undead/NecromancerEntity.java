@@ -9,8 +9,6 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
@@ -38,39 +36,29 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.registries.ForgeRegistries;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
+public class NecromancerEntity extends Skeleton {
 
-public class NecromancerEntity extends Skeleton implements GeoEntity, SpawnArmoredMob {
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState summonAnimationState = new AnimationState();
+	public final AnimationState shootAnimationState = new AnimationState();
 
-	public int shootAnimationTick;
-	public int shootAnimationLength = 20;
-	public int shootAnimationActionPoint = 7;
-	public int summonAnimationTick;
-	public int summonAnimationLength = 45;
-	public int summonAnimationActionPoint1 = summonAnimationLength - 20;
-	public int summonAnimationActionPoint2 = summonAnimationLength - 23;
-	public int summonAnimationActionPoint3 = summonAnimationLength - 26;
-	public int summonAnimationActionPoint4 = summonAnimationLength - 32;
-	public int summonAnimationActionPoint5 = summonAnimationLength - 38;
-	public int specialAnimationTick;
-	public int specialAnimationLength = 48;
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+	private int shootAnimationTick;
+	private int shootAnimationLength = 20;
+	private int shootAnimationActionPoint = 7;
+	private int summonAnimationTick;
+	private int summonAnimationLength = 45;
+	private int summonAnimationActionPoint1 = summonAnimationLength - 20;
+	private int summonAnimationActionPoint2 = summonAnimationLength - 23;
+	private int summonAnimationActionPoint3 = summonAnimationLength - 26;
+	private int summonAnimationActionPoint4 = summonAnimationLength - 32;
+	private int summonAnimationActionPoint5 = summonAnimationLength - 38;
+	private int specialAnimationTick;
+	private int specialAnimationLength = 48;
 
 	public NecromancerEntity(Level worldIn) {
 		super(ModEntities.NECROMANCER.get(), worldIn);
@@ -106,7 +94,11 @@ public class NecromancerEntity extends Skeleton implements GeoEntity, SpawnArmor
 	}
 
 	public boolean isSpellcasting() {
-		return this.shootAnimationTick > 0 || this.summonAnimationTick > 0;
+		return isShooting() || isSummoning();
+	}
+
+	private boolean isShooting() {
+		return shootAnimationTick > 0;
 	}
 
 	@Override
@@ -140,7 +132,6 @@ public class NecromancerEntity extends Skeleton implements GeoEntity, SpawnArmor
 
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
 		SpawnEquipmentHelper.equipMainhand(ModItems.NECROMANCER_STAFF.get().getDefaultInstance(), this);
-		equipArmorSet(ModItems.NECROMANCER_ARMOR, this);
 	}
 
 	@Nullable
@@ -186,6 +177,26 @@ public class NecromancerEntity extends Skeleton implements GeoEntity, SpawnArmor
 		}
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		summonAnimationState.animateWhen(isSummoning(), tickCount);
+		shootAnimationState.animateWhen(isShooting() && !isSummoning(), tickCount);
+		idleAnimationState.animateWhen(
+				!isSpellcasting() && !walkAnimation.isMoving() && isAlive() && summonAnimationTick <= 0,
+				tickCount);
+	}
+
+	private boolean isSummoning() {
+		return summonAnimationTick > 0;
+	}
+
 	public void baseTick() {
 		super.baseTick();
 		this.tickDownAnimTimers();
@@ -217,43 +228,6 @@ public class NecromancerEntity extends Skeleton implements GeoEntity, SpawnArmor
 		if (this.summonAnimationTick > 0) {
 			this.summonAnimationTick--;
 		}
-	}
-
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.summonAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("necromancer_summon", LoopType.LOOP));
-		} else if (this.shootAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("necromancer_shoot", LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("necromancer_walk", LoopType.LOOP));
-		} else {
-			if (this.specialAnimationTick > 0) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("necromancer_rare_idle", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("necromancer_idle", LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.NECROMANCER_ARMOR;
 	}
 
 	class SummonGoal extends Goal {
