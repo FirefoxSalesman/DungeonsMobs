@@ -116,6 +116,10 @@ public class GeomancerEntity extends SpellcasterIllager {
 		}
 	}
 
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
@@ -125,7 +129,7 @@ public class GeomancerEntity extends SpellcasterIllager {
 		}
 		summonAnimationState.animateWhen(isSummoning(),
 				tickCount);
-		idleAnimationState.animateWhen(!isSummoning() && !walkAnimation.isMoving() && isAlive(), tickCount);
+		idleAnimationState.animateWhen(!isSummoning() && !isMoving() && isAlive(), tickCount);
 	}
 
 	private boolean isSummoning() {

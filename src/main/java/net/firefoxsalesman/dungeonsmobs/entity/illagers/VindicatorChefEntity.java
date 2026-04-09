@@ -111,6 +111,10 @@ public class VindicatorChefEntity extends Vindicator implements SpawnArmoredMob 
 		}
 	}
 
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	private void setupAnimationStates() {
 		if (isAttacking() && attackAnimationTimeout <= 0) {
 			attackAnimationTimeout = 5;
@@ -125,7 +129,7 @@ public class VindicatorChefEntity extends Vindicator implements SpawnArmoredMob 
 			celebrationAnimationTick--;
 		}
 		idleAnimationState.animateWhen(
-				!walkAnimation.isMoving() && isAlive() && !isCelebrating() && isAttacking(),
+				!isMoving() && isAlive() && !isCelebrating() && isAttacking(),
 				tickCount);
 	}
 

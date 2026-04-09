@@ -99,6 +99,10 @@ public class IceologerEntity extends AbstractIllager {
 		}
 	}
 
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
@@ -108,7 +112,7 @@ public class IceologerEntity extends AbstractIllager {
 		}
 		summonAnimationState.animateWhen(summonAnimationTick > 0, tickCount);
 		idleAnimationState.animateWhen(
-				!walkAnimation.isMoving() && isAlive() && summonAnimationTick <= 0 && !isCelebrating(),
+				!isMoving() && isAlive() && summonAnimationTick <= 0 && !isCelebrating(),
 				tickCount);
 	}
 

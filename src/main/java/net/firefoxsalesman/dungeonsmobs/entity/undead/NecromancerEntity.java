@@ -185,11 +185,15 @@ public class NecromancerEntity extends Skeleton {
 		}
 	}
 
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	private void setupAnimationStates() {
 		summonAnimationState.animateWhen(isSummoning(), tickCount);
 		shootAnimationState.animateWhen(isShooting() && !isSummoning(), tickCount);
 		idleAnimationState.animateWhen(
-				!isSpellcasting() && !walkAnimation.isMoving() && isAlive() && summonAnimationTick <= 0,
+				!isSpellcasting() && !isMoving() && isAlive() && summonAnimationTick <= 0,
 				tickCount);
 	}
 
