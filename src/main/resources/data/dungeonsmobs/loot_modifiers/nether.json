@@ -1,0 +1,195 @@
+{
+  "type": "dungeonsmobs:loottable",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/bastion_bridge"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/bastion_other"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/bastion_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/nether_bridge"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/ruined_portal"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/nether"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/mineshaft/warped"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/cities/nether"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/dungeon/nether"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/crimson_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/nether_brick_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/outpost/warped_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/pyramid/nether_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruin/nether"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruined_portal/large_portal_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/ruined_portal/small_portal_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/crimson/map_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/crimson/supply_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/crimson/treasure_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/warped/map_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/warped/supply_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/warped/treasure_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/shipwreck/nether_bricks/treasure_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/stronghold/nether_storage_room"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/stronghold/nether_hallway"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/stronghold/nether_library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_basalt_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_crimson_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_soul_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_warped_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_warped_trapped_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/temple/nether_wasteland_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/village/village_crimson_tanner"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/village/village_crimson_weaponsmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/village/village_warped_tanner"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "repurposed_structures:chests/village/village_warped_weaponsmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/mess"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/armoury"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/crypt"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/prison_lg"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/trap"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/nether/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterdungeons:skeleton_dungeon/chests/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "dungeons_plus:chests/warped_garden/common"
+	}
+      ]
+    }
+  ],
+  "table": "dungeonsmobs:chests/nether"
+}

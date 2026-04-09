@@ -6,26 +6,41 @@
         {
           "type": "item",
           "name": "dungeonsmobs:frost_scythe",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:freezing_foil",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:fang_of_frost",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_slayer",
-          "weight": 1 
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:tempest_knife",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:resolute_tempest_knife",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:chill_gale_knife",
+          "weight": 1
         },
 	{
           "type": "empty",
-          "weight": 3
+          "weight": 12
         }
       ]
     }

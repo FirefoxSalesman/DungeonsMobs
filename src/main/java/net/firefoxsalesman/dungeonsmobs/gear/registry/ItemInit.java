@@ -125,6 +125,37 @@ public class ItemInit {
 	// registerMeleeWeapon("great_axeblade", meleeSupplier);
 	public static final RegistryObject<Item> FROST_SLAYER = registerMeleeWeapon("frost_slayer", meleeSupplier);
 
+	// DPS 8.4, crits once per 2.14 seconds, +2 reach
+	// public static final RegistryObject<Item> SPEAR = registerMeleeWeapon("spear",
+	// meleeSupplier);
+	// public static final RegistryObject<Item> FORTUNE_SPEAR =
+	// registerMeleeWeapon("fortune_spear", meleeSupplier);
+	// public static final RegistryObject<Item> WHISPERING_SPEAR =
+	// registerMeleeWeapon("whispering_spear",
+	// meleeSupplier);
+
+	// DPS 9.6, crits once per 2.5 seconds, +2 reach
+	// public static final RegistryObject<Item> GLAIVE =
+	// registerMeleeWeapon("glaive",
+	// meleeSupplier);
+	// public static final RegistryObject<Item> GRAVE_BANE =
+	// registerMeleeWeapon("grave_bane",
+	// meleeSupplier);
+	// public static final RegistryObject<Item> VENOM_GLAIVE =
+	// registerMeleeWeapon("venom_glaive",
+	// meleeSupplier);
+
+	// DPS 7.2, crits once per 1.25 seconds
+	public static final RegistryObject<Item> TEMPEST_KNIFE = registerMeleeWeapon("tempest_knife", meleeSupplier);
+	public static final RegistryObject<Item> RESOLUTE_TEMPEST_KNIFE = registerMeleeWeapon("resolute_tempest_knife",
+			meleeSupplier);
+	public static final RegistryObject<Item> CHILL_GALE_KNIFE = registerMeleeWeapon("chill_gale_knife",
+			meleeSupplier);
+
+	// DPS 10.4, crits once per 2.5 seconds
+	public static final RegistryObject<Item> BONECLUB = registerMeleeWeapon("boneclub", meleeSupplier);
+	public static final RegistryObject<Item> BONE_CUDGEL = registerMeleeWeapon("bone_cudgel", meleeSupplier);
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);

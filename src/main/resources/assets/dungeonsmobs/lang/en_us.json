@@ -561,6 +561,18 @@
   "lore.dungeonsmobs.battlestaff_of_terror": "This staff overwhelms its target in battle to explosive effect.",
   "item.dungeonsmobs.growing_staff": "Growing Staff",
   "lore.dungeonsmobs.growing_staff": "A staff that grows and shifts as it attacks, the Growing Staff is unpredictable and powerful.",
+  
+  "item.dungeonsmobs.tempest_knife": "Tempest Knife",
+  "lore.dungeonsmobs.tempest_knife": "This knife slices through enemies like the wind that cuts between the mountaintops.",
+  "item.dungeonsmobs.resolute_tempest_knife": "Resolute Tempest Knife",
+  "lore.dungeonsmobs.resolute_tempest_knife": "Passed down by nomads who roam the mountain peaks, this knife has been used in countless battles.",
+  "item.dungeonsmobs.chill_gale_knife": "Chill Gale Knife",
+  "lore.dungeonsmobs.chill_gale_knife": "Crafted from the never-melting ice atop the mountain peaks, this knife is forever icy to the touch.",
+
+  "item.dungeonsmobs.boneclub": "Boneclub",
+  "lore.dungeonsmobs.boneclub": "Those who wield a Bone Club prefer a less-subtle approach to problem-solving.",
+  "item.dungeonsmobs.bone_cudgel": "Bone Cudgel",
+  "lore.dungeonsmobs.bone_cudgel": "The Bone Cudgel is old enough to be considered an ancient treasure, but still menacing even by modern standards.",
 
   "item.dungeonsmobs.hawkbrand": "Hawkbrand",
   "lore.dungeonsmobs.hawkbrand": "The Hawkbrand is the legendary sword of proven warriors.",
