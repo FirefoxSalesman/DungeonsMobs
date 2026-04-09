@@ -8,6 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IceologerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IllagerBipedModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.VindicatorChefModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.SnarelingGlobModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.NecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
@@ -35,6 +36,8 @@ public class ModModelLayers {
 	public static final ModelLayerLocation ICEOLOGER_BODY = makeModelLayerLocation("iceologer_model");
 	public static final ModelLayerLocation GEOMANCER_BODY = makeModelLayerLocation("geomancer_model");
 	public static final ModelLayerLocation NECROMANCER_BODY = makeModelLayerLocation("necromancer_model");
+	public static final ModelLayerLocation DROWNED_NECROMANCER_BODY = makeModelLayerLocation(
+			"drowned_necromancer_model");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
 		return new ModelLayerLocation(new ResourceLocation(MOD_ID + name),
@@ -48,6 +51,7 @@ public class ModModelLayers {
 		event.registerLayerDefinition(SNARELING_GLOB, SnarelingGlobModel::createLayer);
 		event.registerLayerDefinition(BIPED_ILLAGER_MODEL, IllagerBipedModel::createBodyLayer);
 		event.registerLayerDefinition(VANGUARD_SHIELD, VanguardShieldModel::createLayer);
+		event.registerLayerDefinition(DROWNED_NECROMANCER_BODY, DrownedNecromancerModel::createBodyLayer);
 		event.registerLayerDefinition(NECROMANCER_BODY, NecromancerModel::createBodyLayer);
 		event.registerLayerDefinition(GEOMANCER_BODY, GeomancerModel::createBodyLayer);
 		event.registerLayerDefinition(VINDICATOR_CHEF_BODY, VindicatorChefModel::createBodyLayer);

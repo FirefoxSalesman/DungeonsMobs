@@ -1,5 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.client.models;
 
+import java.util.Optional;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.HierarchicalModel;
@@ -9,10 +14,14 @@ import net.minecraft.world.entity.Entity;
 
 public abstract class ConvenientModel<T extends Entity> extends HierarchicalModel<T> implements HeadedModel {
 
-	private AnimationDefinition walkAnimation;
+	private Optional<AnimationDefinition> walkAnimation;
 
 	public ConvenientModel(AnimationDefinition walkAnimation) {
-		this.walkAnimation = walkAnimation;
+		this.walkAnimation = Optional.ofNullable(walkAnimation);
+	}
+
+	public ConvenientModel() {
+		this.walkAnimation = Optional.empty();
 	}
 
 	@Override
@@ -20,7 +29,14 @@ public abstract class ConvenientModel<T extends Entity> extends HierarchicalMode
 			float headPitch) {
 		root().getAllParts().forEach(ModelPart::resetPose);
 		applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
-		animateWalk(walkAnimation, limbSwing, limbSwingAmount, 3f, 2f);
+		if (walkAnimation.isPresent())
+			animateWalk(walkAnimation.get(), limbSwing, limbSwingAmount, 3f, 2f);
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
+			int packedOverlay, float red, float green, float blue, float alpha) {
+		root().render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch,

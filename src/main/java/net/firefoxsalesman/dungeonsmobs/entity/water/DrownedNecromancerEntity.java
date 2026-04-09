@@ -11,8 +11,6 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.TridentStormEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
@@ -44,25 +42,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.registries.ForgeRegistries;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
-
-public class DrownedNecromancerEntity extends Drowned implements GeoEntity, SpawnArmoredMob {
+public class DrownedNecromancerEntity extends Drowned {
 
 	public int landShootAnimationTick;
 	public int landShootAnimationLength = 20;
@@ -87,7 +72,18 @@ public class DrownedNecromancerEntity extends Drowned implements GeoEntity, Spaw
 	public int shootAnimationActionPoint = 23;
 	public int tridentStormAnimationTick;
 	public int tridentStormAnimationLength = 45;
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+
+	public final AnimationState swimAnimationState = new AnimationState();
+	public final AnimationState walkAnimationState = new AnimationState();
+	public final AnimationState waterIdleAnimationState = new AnimationState();
+	public final AnimationState landIdleAnimationState = new AnimationState();
+	public final AnimationState waterSummonAnimationState = new AnimationState();
+	public final AnimationState landSummonAnimationState = new AnimationState();
+	public final AnimationState shootAnimationState = new AnimationState();
+	public final AnimationState landShootAnimationState = new AnimationState();
+	public final AnimationState waterShootAnimationState = new AnimationState();
+	public final AnimationState waterTridentStormAnimationState = new AnimationState();
+	public final AnimationState landTridentStormAnimationState = new AnimationState();
 
 	public DrownedNecromancerEntity(EntityType<? extends DrownedNecromancerEntity> type, Level worldIn) {
 		super(type, worldIn);
@@ -124,10 +120,13 @@ public class DrownedNecromancerEntity extends Drowned implements GeoEntity, Spaw
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
 	}
 
+	private boolean isSummoning() {
+		return isSummoningInWater() || isSummoningOnLand();
+	}
+
 	public boolean isSpellcasting() {
-		return this.shootAnimationTick > 0 || this.rainShootAnimationTick > 0 || this.landShootAnimationTick > 0
-				|| this.tridentStormAnimationTick > 0 || this.rainTridentStormAnimationTick > 0
-				|| this.summonAnimationTick > 0 || this.landSummonAnimationTick > 0;
+		return isShootingGeneric() || isUsingTridentStormOnLand() || isUsingTridentStormInWater()
+				|| isSummoning();
 	}
 
 	/**
@@ -149,37 +148,102 @@ public class DrownedNecromancerEntity extends Drowned implements GeoEntity, Spaw
 		return 2.4F;
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		animate(walkAnimationState, isMoving() && !isInWater());
+		animate(swimAnimationState, isMoving() && isInWater());
+		animate(waterSummonAnimationState, isSummoningInWater() && !isMoving());
+		animate(landSummonAnimationState, isSummoningOnLand() && !isSummoningInWater() && !isMoving());
+		animate(shootAnimationState, isShooting() && !isSummoning() && !isMoving());
+		animate(landShootAnimationState, isShootingOnLand() && !isShooting() && !isSummoning() && !isMoving());
+		animate(waterShootAnimationState, isShootingInWater() && !isShootingOnLand() && !isShooting()
+				&& !isSummoning() && !isMoving());
+		animate(waterTridentStormAnimationState,
+				isUsingTridentStormInWater() && !isShootingGeneric() && !isSummoning() && !isMoving());
+		animate(landTridentStormAnimationState,
+				isUsingTridentStormOnLand() && !isShootingGeneric() && !isSummoning() && !isMoving());
+		animate(waterIdleAnimationState, !isSpellcasting() && !isMoving() && isAlive() && isInWater());
+		animate(landIdleAnimationState, !isSpellcasting() && !isMoving() && isAlive() && !isInWater());
+	}
+
+	private void animate(AnimationState state, boolean condition) {
+		state.animateWhen(condition, tickCount);
+	}
+
+	private boolean isShootingGeneric() {
+		return isShootingInWater() || isShootingOnLand() || isShooting();
+	}
+
+	private boolean isShootingInWater() {
+		return rainShootAnimationTick > 0;
+	}
+
+	private boolean isShootingOnLand() {
+		return landShootAnimationTick > 0;
+	}
+
+	private boolean isShooting() {
+		return shootAnimationTick > 0;
+	}
+
+	private boolean isUsingTridentStormOnLand() {
+		return tridentStormAnimationTick > 0;
+	}
+
+	private boolean isUsingTridentStormInWater() {
+		return rainTridentStormAnimationTick > 0;
+	}
+
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	public void baseTick() {
 		super.baseTick();
 		this.tickDownAnimTimers();
 	}
 
+	private boolean isSummoningOnLand() {
+		return landSummonAnimationTick > 0;
+	}
+
+	private boolean isSummoningInWater() {
+		return summonAnimationTick > 0;
+	}
+
 	public void tickDownAnimTimers() {
-		if (this.landShootAnimationTick > 0) {
+		if (isShootingOnLand()) {
 			this.landShootAnimationTick--;
 		}
 
-		if (this.landSummonAnimationTick > 0) {
+		if (isSummoningOnLand()) {
 			this.landSummonAnimationTick--;
 		}
 
-		if (this.rainTridentStormAnimationTick > 0) {
+		if (isUsingTridentStormInWater()) {
 			this.rainTridentStormAnimationTick--;
 		}
 
-		if (this.rainShootAnimationTick > 0) {
+		if (isShootingInWater()) {
 			this.rainShootAnimationTick--;
 		}
 
-		if (this.summonAnimationTick > 0) {
+		if (isSummoningInWater()) {
 			this.summonAnimationTick--;
 		}
 
-		if (this.shootAnimationTick > 0) {
+		if (isShooting()) {
 			this.shootAnimationTick--;
 		}
 
-		if (this.tridentStormAnimationTick > 0) {
+		if (isUsingTridentStormOnLand()) {
 			this.tridentStormAnimationTick--;
 		}
 	}
@@ -245,70 +309,12 @@ public class DrownedNecromancerEntity extends Drowned implements GeoEntity, Spaw
 
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
 		SpawnEquipmentHelper.equipMainhand(ModItems.NECROMANCER_TRIDENT.get().getDefaultInstance(), this);
-		equipArmorSet(ModItems.DROWNED_NECROMANCER_ARMOR, this);
-	}
-
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.tridentStormAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("drowned_necromancer_trident_storm", LoopType.LOOP));
-		} else if (this.rainTridentStormAnimationTick > 0) {
-			event.getController().setAnimation(RawAnimation.begin()
-					.then("drowned_necromancer_trident_storm_land", LoopType.LOOP));
-		} else if (this.summonAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("drowned_necromancer_summon", LoopType.LOOP));
-		} else if (this.landSummonAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("necromancer_summon", LoopType.LOOP));
-		} else if (this.shootAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("drowned_necromancer_shoot", LoopType.LOOP));
-		} else if (this.rainShootAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("drowned_necromancer_shoot_land", LoopType.LOOP));
-		} else if (this.landShootAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("necromancer_shoot", LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			if (this.isInWater()) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("drowned_necromancer_swim", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("necromancer_walk", LoopType.LOOP));
-			}
-		} else {
-			if (this.isInWater()) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("drowned_necromancer_idle", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("necromancer_idle", LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
 	}
 
 	private boolean isInRain() {
 		BlockPos blockpos = this.blockPosition();
 		return level().isRainingAt(blockpos) || level().isRainingAt(
 				new BlockPos(blockpos.getX(), (int) this.getBoundingBox().maxY, blockpos.getZ()));
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.DROWNED_NECROMANCER_ARMOR;
 	}
 
 	static class SwimUpGoal extends Goal {

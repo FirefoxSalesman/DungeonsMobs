@@ -237,13 +237,6 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		illagerArms.skipDraw = true;
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
-
-	@Override
 	public ModelPart getHead() {
 		return bipedHead;
 	}

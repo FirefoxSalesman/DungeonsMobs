@@ -1,79 +1,145 @@
-package net.firefoxsalesman.dungeonsmobs.client.models.ocean;// Made with Blockbench 3.8.4
+package net.firefoxsalesman.dungeonsmobs.client.models.ocean;
 
-// Exported for Minecraft version 1.15 - 1.16
+import com.mojang.blaze3d.vertex.PoseStack;
+
+import net.firefoxsalesman.dungeonsmobs.client.animation.DrownedNecromancerAnimations;
+import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
+import net.minecraft.client.model.ArmedModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.world.entity.HumanoidArm;
+
+// Made with Blockbench 5.1.1
+
+// Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.molang.MolangParser;
-import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
+public class DrownedNecromancerModel<T extends DrownedNecromancerEntity> extends ConvenientModel<T>
+		implements ArmedModel {
+	// This layer location should be baked with EntityRendererProvider.Context in
+	// the entity renderer and passed into this model's constructor
+	private final ModelPart everything;
+	private final ModelPart body;
+	private final ModelPart Cape;
+	private final ModelPart left_arm;
+	private final ModelPart right_arm;
+	private final ModelPart rightHand;
+	private final ModelPart head;
+	private final ModelPart left_leg;
+	private final ModelPart right_leg;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+	public DrownedNecromancerModel(ModelPart root) {
+		super();
+		this.everything = root.getChild("everything");
+		this.body = this.everything.getChild("body");
+		this.Cape = this.body.getChild("Cape");
+		this.left_arm = this.body.getChild("left_arm");
+		this.right_arm = this.body.getChild("right_arm");
+		this.rightHand = this.right_arm.getChild("rightHand");
+		this.head = this.body.getChild("head");
+		this.left_leg = this.everything.getChild("left_leg");
+		this.right_leg = this.everything.getChild("right_leg");
+	}
 
-import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
 
-@OnlyIn(Dist.CLIENT)
-public class DrownedNecromancerModel extends GeoModel<DrownedNecromancerEntity> {
-	@Override
-	public ResourceLocation getAnimationResource(DrownedNecromancerEntity entity) {
-		return new ResourceLocation(MOD_ID, "animations/drowned_necromancer.animation.json");
+		PartDefinition everything = partdefinition.addOrReplaceChild("everything", CubeListBuilder.create(),
+				PartPose.offset(0.0F, 22.0F, 0.0F));
+
+		PartDefinition body = everything.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16)
+				.addBox(-4.0F, -12.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(16, 32).addBox(-4.0F, -12.0F, -2.0F, 8.0F, 12.0F, 4.0F,
+						new CubeDeformation(0.25F)),
+				PartPose.offset(0.0F, -10.0F, 0.0F));
+
+		PartDefinition Cape = body.addOrReplaceChild("Cape",
+				CubeListBuilder.create().texOffs(99, 0).addBox(-7.5F, -0.5F, -5.5F, 14.0F, 23.0F, 5.0F,
+						new CubeDeformation(0.0F)),
+				PartPose.offsetAndRotation(0.5F, -12.0F, 3.0F, 0.1309F, 0.0F, 0.0F));
+
+		PartDefinition left_arm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(40, 32)
+				.mirror().addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F))
+				.mirror(false)
+				.texOffs(96, 44)
+				.addBox(-1.0F, -3.0F, -3.0F, 5.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(32, 48)
+				.addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 0).addBox(1.0F, 11.0F, 0.0F, 0.0F, 0.0F, 0.0F, new CubeDeformation(0.0F)),
+				PartPose.offset(5.0F, -10.0F, 0.0F));
+
+		PartDefinition right_arm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(48, 48)
+				.addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F))
+				.texOffs(96, 44).mirror()
+				.addBox(-4.0F, -3.0F, -3.0F, 5.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(40, 16)
+				.addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 0).addBox(-1.0F, 11.0F, 0.0F, 0.0F, 0.0F, 0.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 0).addBox(-2.0F, 9.0F, -10.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)),
+				PartPose.offset(-5.0F, -10.0F, 0.0F));
+
+		PartDefinition rightHand = right_arm.addOrReplaceChild("rightHand", CubeListBuilder.create(),
+				PartPose.offset(-1.0F, 11.0F, 0.0F));
+
+		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(82, 28)
+				.addBox(-5.0F, -10.0F, -4.25F, 10.0F, 5.0F, 10.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 0).addBox(-4.0F, -8.0F, -3.25F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(32, 0).addBox(-4.0F, -8.0F, -3.25F, 8.0F, 8.0F, 8.0F,
+						new CubeDeformation(0.25F)),
+				PartPose.offset(0.0F, -12.0F, -0.75F));
+
+		PartDefinition left_leg = everything.addOrReplaceChild("left_leg", CubeListBuilder.create()
+				.texOffs(0, 32).mirror()
+				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)).mirror(false)
+				.texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F,
+						new CubeDeformation(0.0F)),
+				PartPose.offset(2.0F, -10.0F, 0.0F));
+
+		PartDefinition right_leg = everything.addOrReplaceChild("right_leg", CubeListBuilder.create()
+				.texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F,
+						new CubeDeformation(0.25F)),
+				PartPose.offset(-2.0F, -10.0F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 137, 64);
 	}
 
 	@Override
-	public ResourceLocation getModelResource(DrownedNecromancerEntity entity) {
-		return new ResourceLocation(MOD_ID, "geo/drowned_necromancer.geo.json");
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+			float headPitch) {
+		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		animate(entity.walkAnimationState, DrownedNecromancerAnimations.WALK, ageInTicks, 1f);
+		animate(entity.swimAnimationState, DrownedNecromancerAnimations.SWIM, ageInTicks, 1f);
+		animate(entity.waterIdleAnimationState, DrownedNecromancerAnimations.WATER_IDLE, ageInTicks, 1f);
+		animate(entity.landIdleAnimationState, DrownedNecromancerAnimations.LAND_IDLE, ageInTicks, 1f);
+		animate(entity.waterSummonAnimationState, DrownedNecromancerAnimations.WATER_SUMMON, ageInTicks, 1f);
+		animate(entity.landSummonAnimationState, DrownedNecromancerAnimations.LAND_SUMMON, ageInTicks,
+				1f);
+		animate(entity.shootAnimationState, DrownedNecromancerAnimations.SHOOT, ageInTicks, 1f);
+		animate(entity.waterShootAnimationState, DrownedNecromancerAnimations.SHOOT_RAIN, ageInTicks, 1f);
+		animate(entity.landShootAnimationState, DrownedNecromancerAnimations.SHOOT_LAND, ageInTicks, 1f);
+		animate(entity.waterTridentStormAnimationState, DrownedNecromancerAnimations.TRIDENT_STORM, ageInTicks, 1f);
+		animate(entity.landTridentStormAnimationState, DrownedNecromancerAnimations.TRIDENT_STORM_LAND, ageInTicks, 1f);
 	}
 
 	@Override
-	public ResourceLocation getTextureResource(DrownedNecromancerEntity entity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/ocean/drowned_necromancer.png");
+	public ModelPart getHead() {
+		return head;
 	}
 
 	@Override
-	public void setCustomAnimations(DrownedNecromancerEntity entity, long uniqueID,
-			AnimationState<DrownedNecromancerEntity> customPredicate) {
-		super.setCustomAnimations(entity, uniqueID, customPredicate);
-
-		CoreGeoBone head = this.getAnimationProcessor().getBone("bipedHead");
-		CoreGeoBone cape = this.getAnimationProcessor().getBone("bipedCape");
-
-		CoreGeoBone particles = this.getAnimationProcessor().getBone("staffParticles");
-
-		if (particles instanceof GeoBone && entity.isSpellcasting()) {
-			GeoBone particleBone = ((GeoBone) particles);
-			entity.level().addParticle(
-					entity.isInWaterOrBubble() ? ParticleTypes.BUBBLE_COLUMN_UP
-							: ModParticleTypes.NECROMANCY.get(),
-					particleBone.getWorldPosition().x, particleBone.getWorldPosition().y,
-					particleBone.getWorldPosition().z, 0, 0, 0);
-		}
-
-		cape.setHidden(entity.getItemBySlot(EquipmentSlot.CHEST).getItem() != entity.getArmorSet().getChest()
-				.get());
-
-		EntityModelData extraData = customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
-
-		if (extraData.headPitch() != 0 || extraData.netHeadYaw() != 0) {
-			head.setRotX(head.getRotX() + (extraData.headPitch() * ((float) Math.PI / 180F)));
-			head.setRotY(head.getRotY() + (extraData.netHeadYaw() * ((float) Math.PI / 180F)));
-		}
+	public ModelPart root() {
+		return everything;
 	}
 
 	@Override
-	public void applyMolangQueries(DrownedNecromancerEntity animatable, double animTime) {
-			Vec3 velocity = animatable.getDeltaMovement();
-			float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-			MolangParser.INSTANCE.setValue("query.ground_speed", () -> groundSpeed * 20);
+	public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
+		everything.translateAndRotate(pPoseStack);
+		body.translateAndRotate(pPoseStack);
+		ModelPart arm = pSide == HumanoidArm.RIGHT ? right_arm : left_arm;
+		arm.translateAndRotate(pPoseStack);
 	}
 }

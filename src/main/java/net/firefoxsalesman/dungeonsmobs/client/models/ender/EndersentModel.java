@@ -149,12 +149,6 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		humanoid.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
-
-	@Override
 	public ModelPart root() {
 		return humanoid;
 	}

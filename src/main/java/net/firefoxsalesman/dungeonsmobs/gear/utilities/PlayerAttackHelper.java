@@ -102,7 +102,7 @@ public class PlayerAttackHelper {
 
 	public static boolean isProbablyNotMeleeDamage(DamageSource damageSource) {
 		Entity e = damageSource.getEntity();
-		if (e == null) {
+		if (e == null || !(e instanceof LivingEntity)) {
 			return false;
 		}
 		DamageSources ds = e.damageSources();

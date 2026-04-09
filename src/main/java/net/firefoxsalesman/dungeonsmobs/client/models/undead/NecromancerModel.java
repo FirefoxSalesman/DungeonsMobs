@@ -130,12 +130,6 @@ public class NecromancerModel<T extends NecromancerEntity> extends ConvenientMod
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		everything.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
-
-	@Override
 	public ModelPart getHead() {
 		return head;
 	}

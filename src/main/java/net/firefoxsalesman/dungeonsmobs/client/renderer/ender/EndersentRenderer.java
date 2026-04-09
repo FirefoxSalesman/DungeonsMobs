@@ -6,7 +6,7 @@ import com.mojang.math.Axis;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.EndersentEyeLayer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GenericEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Pose;
 public class EndersentRenderer extends MobRenderer<EndersentEntity, EndersentModel<EndersentEntity>> {
 	public EndersentRenderer(Context pContext) {
 		super(pContext, new EndersentModel<>(pContext.bakeLayer(ModModelLayers.ENDERSENT_BODY)), 2);
-		addLayer(new EndersentEyeLayer<>(this));
+		addLayer(new GenericEyeLayer<>(this, "textures/entity/ender/endersent_eyes.png"));
 	}
 
 	@Override
