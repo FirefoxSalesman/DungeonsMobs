@@ -25,6 +25,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RadianceEnchantm
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RampagingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.RushdownEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ShockwaveEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.SoulSiphonEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.StunningEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ThunderingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.WeakeningEnchantment;
@@ -71,6 +72,8 @@ public class EnchantmentInit {
 			() -> new RushdownEnchantment());
 	public static RegistryObject<ShockwaveEnchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave",
 			() -> new ShockwaveEnchantment());
+	public static RegistryObject<SoulSiphonEnchantment> SOUL_SIPHON = ENCHANTMENTS.register("soul_siphon",
+			() -> new SoulSiphonEnchantment());
 	public static RegistryObject<StunningEnchantment> STUNNING = ENCHANTMENTS.register("stunning",
 			() -> new StunningEnchantment());
 	public static RegistryObject<ThunderingEnchantment> THUNDERING = ENCHANTMENTS.register("thundering",

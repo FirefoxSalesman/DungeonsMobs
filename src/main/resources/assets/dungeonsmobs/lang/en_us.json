@@ -497,6 +497,8 @@
   "enchantment.dungeonsmobs.rushdown.desc": "After defeating a mob, increase your speed by 100% for a short time.",
   "enchantment.dungeonsmobs.shockwave": "Shockwave",
   "enchantment.dungeonsmobs.shockwave.desc": "A critical hit launches a shockwave, damaging enemies.",
+  "enchantment.dungeonsmobs.soul_siphon": "Soul Siphon",
+  "enchantment.dungeonsmobs.soul_siphon.desc": "When you hit an enemy, gain a 10% chance to grant you a bunch of extra souls.",
   "enchantment.dungeonsmobs.stunning": "Stunning",
   "enchantment.dungeonsmobs.stunning.desc": "Chance to temporarily stun enemies.",
   "enchantment.dungeonsmobs.thundering": "Thundering",

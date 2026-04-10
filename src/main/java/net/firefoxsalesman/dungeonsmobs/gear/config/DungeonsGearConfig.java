@@ -35,9 +35,8 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// DYNAMO_DAMAGE_MULTIPLIER_PER_STACK;
 	public static ForgeConfigSpec.ConfigValue<Integer> FREEZING_DURATION;
-	// public static ForgeConfigSpec.ConfigValue<Double> SOUL_SIPHON_CHANCE;
-	// public static ForgeConfigSpec.ConfigValue<Integer>
-	// SOUL_SIPHON_SOULS_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> SOUL_SIPHON_CHANCE;
+	public static ForgeConfigSpec.ConfigValue<Integer> SOUL_SIPHON_SOULS_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> CHAINS_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> RADIANCE_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> THUNDERING_CHANCE;
@@ -167,14 +166,12 @@ public class DungeonsGearConfig {
 		FREEZING_DURATION = builder
 				.comment("The duration in ticks (20ticks = 1 second) for freezing. [0-10000, default: 60]")
 				.defineInRange("freezingDuration", 60, 0, 10000);
-		// SOUL_SIPHON_CHANCE = builder
-		// .comment("The decimal chance for Soul Siphon to trigger [0.0-1.0, default:
-		// 0.05]")
-		// .defineInRange("soulSiphonChance", 0.05, 0, 1.0);
-		// SOUL_SIPHON_SOULS_PER_LEVEL = builder
-		// .comment("The amount of souls per trigger of Soul Siphon. " +
-		// "Each souls will give a value based on Soul Gathering. [0-100, default: 2]")
-		// .defineInRange("soulSiphonSoulsPerLevel", 2, 0, 100);
+		SOUL_SIPHON_CHANCE = builder
+				.comment("The decimal chance for Soul Siphon to trigger [0.0-1.0, default: 0.05]")
+				.defineInRange("soulSiphonChance", 0.05, 0, 1.0);
+		SOUL_SIPHON_SOULS_PER_LEVEL = builder.comment("The amount of souls per trigger of Soul Siphon. "
+				+ "Each souls will give a value based on Soul Gathering. [0-100, default: 2]")
+				.defineInRange("soulSiphonSoulsPerLevel", 2, 0, 100);
 		CHAINS_CHANCE = builder.comment("The decimal chance for Chains to trigger [0.0-1.0, default: 0.3]")
 				.defineInRange("chainsChance", 0.3, 0, 1.0);
 		RADIANCE_CHANCE = builder.comment("The decimal chance for Radiance to trigger [0.0-1.0, default: 0.2]")

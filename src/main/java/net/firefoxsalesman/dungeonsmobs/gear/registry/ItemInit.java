@@ -105,8 +105,7 @@ public class ItemInit {
 
 	// DPS 7.2, crits once per 1.25 seconds
 	public static final RegistryObject<Item> SOUL_KNIFE = registerMeleeWeapon("soul_knife", meleeSupplier);
-	// public static final RegistryObject<Item> ETERNAL_KNIFE =
-	// registerMeleeWeapon("eternal_knife", meleeSupplier);
+	public static final RegistryObject<Item> ETERNAL_KNIFE = registerMeleeWeapon("eternal_knife", meleeSupplier);
 	public static final RegistryObject<Item> TRUTHSEEKER = registerMeleeWeapon("truthseeker", meleeSupplier);
 
 	// DPS 9.6, crits once per 3.3 seconds
