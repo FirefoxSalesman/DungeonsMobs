@@ -218,19 +218,16 @@ public class AreaOfEffectHelper {
 		PROXY.spawnParticles(nearbyEntity, ParticleTypes.ITEM_SNOWBALL);
 	}
 
-	// public static void causeExplosionAttackAtPos(LivingEntity attacker, boolean
-	// inGround, BlockPos blockPos,
-	// float damageAmount, float distance) {
-	// Level world = attacker.getCommandSenderWorld();
-	// DamageSource explosion = DamageSource.explosion(attacker);
-	// BlockPos origin = blockPos;
-	// if (inGround) {
-	// origin = origin.above();
-	// }
-	// applyToNearbyEntitiesAtPos(origin, world, distance,
-	// getCanApplyToEnemyPredicate(attacker),
-	// (LivingEntity nearbyEntity) -> nearbyEntity.hurt(explosion, damageAmount));
-	// }
+	public static void causeExplosionAttackAtPos(LivingEntity attacker, boolean inGround, BlockPos blockPos,
+			float damageAmount, float distance) {
+		Level world = attacker.getCommandSenderWorld();
+		DamageSource explosion = attacker.damageSources().explosion(attacker, null);
+		BlockPos origin = blockPos;
+		if (inGround)
+			origin = origin.above();
+		applyToNearbyEntitiesAtPos(origin, world, distance, getCanApplyToEnemyPredicate(attacker),
+				(LivingEntity nearbyEntity) -> nearbyEntity.hurt(explosion, damageAmount));
+	}
 
 	public static void causeSwirlingAttack(Player attacker, LivingEntity target, float damageAmount,
 			float distance) {

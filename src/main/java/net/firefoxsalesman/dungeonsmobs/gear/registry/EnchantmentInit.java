@@ -33,6 +33,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.EnigmaRes
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ExplodingShotEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -41,6 +42,8 @@ public class EnchantmentInit {
 			.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
 	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
 			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
+	public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot",
+			() -> new ExplodingShotEnchantment());
 	public static RegistryObject<FreezingEnchantment> FREEZING = ENCHANTMENTS.register("freezing",
 			() -> new FreezingEnchantment());
 	public static RegistryObject<BusyBeeEnchantment> BUSY_BEE = ENCHANTMENTS.register("busy_bee",

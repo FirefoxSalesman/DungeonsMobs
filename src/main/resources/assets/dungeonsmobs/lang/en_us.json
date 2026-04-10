@@ -514,6 +514,8 @@
   "enchantment.dungeonsmobs.burst_bowstring.desc": "Shoots nearby mobs when you roll, costing one arrow per roll. Projectiles deal 40% of a charged shot's damage.",
   "enchantment.dungeonsmobs.chain_reaction": "Chain Reaction",
   "enchantment.dungeonsmobs.chain_reaction.desc": "Has a chance to fire four arrows in all directions on impact.",
+  "enchantment.dungeonsmobs.exploding_shot": "Exploding Shot",
+  "enchantment.dungeonsmobs.exploding_shot.desc": "Causes an explosion at the arrow's impact point.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",

@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.lib.utils;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.EnchantedProjectile;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.EnchantedProjectileHelper;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -86,5 +87,9 @@ public class ArrowHelper {
 	public static int enchantmentTagToLevel(Projectile projectileEntity, Enchantment enchantment) {
 		EnchantedProjectile cap = EnchantedProjectileHelper.getEnchantedProjectileCapability(projectileEntity);
 		return cap.getEnchantmentLevel(enchantment);
+	}
+
+	public static boolean wasHitByArrow(DamageSource source) {
+		return source.isIndirect() && source.getDirectEntity() instanceof AbstractArrow;
 	}
 }

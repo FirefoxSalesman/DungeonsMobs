@@ -29,37 +29,36 @@ public class ChainReactionEnchantment extends DungeonsEnchantment {
 	@SubscribeEvent
 	public static void onChainReactionDamage(LivingDamageEvent event) {
 		DamageSource source = event.getSource();
-		if (source.isIndirect()) {
-			if (source.getDirectEntity() instanceof AbstractArrow) {
-				AbstractArrow arrowEntity = (AbstractArrow) source.getDirectEntity();
+		if (ArrowHelper.wasHitByArrow(source)) {
+			AbstractArrow arrowEntity = (AbstractArrow) source.getDirectEntity();
 
-				LivingEntity victim = event.getEntity();
-				if (source.getEntity() instanceof LivingEntity) {
-					if (!(source.getEntity() instanceof LivingEntity))
-						return;
-					LivingEntity attacker = (LivingEntity) source.getEntity();
-					int chainReactionLevel = ArrowHelper.enchantmentTagToLevel(arrowEntity,
-							EnchantmentInit.CHAIN_REACTION.get());
-					if (chainReactionLevel > 0) {
-						float chainReactionChance = chainReactionLevel * 0.1f;
-						float chainReactionRand = attacker.getRandom().nextFloat();
-						if (chainReactionRand <= chainReactionChance) {
-							ProjectileEffectHelper.fireChainReactionProjectiles(
-									victim.getCommandSenderWorld(), attacker,
-									victim, 3.15F, 1.0F, arrowEntity);
-						}
+			LivingEntity victim = event.getEntity();
+			if (source.getEntity() instanceof LivingEntity) {
+				if (!(source.getEntity() instanceof LivingEntity))
+					return;
+				LivingEntity attacker = (LivingEntity) source.getEntity();
+				int chainReactionLevel = ArrowHelper.enchantmentTagToLevel(arrowEntity,
+						EnchantmentInit.CHAIN_REACTION.get());
+				if (chainReactionLevel > 0) {
+					float chainReactionChance = chainReactionLevel * 0.1f;
+					float chainReactionRand = attacker.getRandom().nextFloat();
+					if (chainReactionRand <= chainReactionChance) {
+						ProjectileEffectHelper.fireChainReactionProjectiles(
+								victim.getCommandSenderWorld(), attacker,
+								victim, 3.15F, 1.0F, arrowEntity);
 					}
-					if (arrowEntity.getTags().contains(INTRINSIC_CHAIN_REACTION_TAG)) {
-						float chainReactionRand = attacker.getRandom().nextFloat();
-						if (chainReactionRand <= 0.1F) {
-							ProjectileEffectHelper.fireChainReactionProjectiles(
-									victim.getCommandSenderWorld(), attacker,
-									victim, 3.15F, 1.0F, arrowEntity);
-						}
+				}
+				if (arrowEntity.getTags().contains(INTRINSIC_CHAIN_REACTION_TAG)) {
+					float chainReactionRand = attacker.getRandom().nextFloat();
+					if (chainReactionRand <= 0.1F) {
+						ProjectileEffectHelper.fireChainReactionProjectiles(
+								victim.getCommandSenderWorld(), attacker,
+								victim, 3.15F, 1.0F, arrowEntity);
 					}
 				}
 			}
 		}
+
 	}
 
 	public int getMaxLevel() {
