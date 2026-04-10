@@ -17,6 +17,8 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.AttacherArtifactUsage;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.builtinenchantments.AttacherBuiltInEnchantments;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.builtinenchantments.BuiltInEnchantments;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.AttacherEnchantedProjectile;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.EnchantedProjectile;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.AttacherFollower;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.AttacherLeader;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
@@ -42,6 +44,9 @@ public class LibCapabilities {
 	public static final Capability<SoulCaster> SOUL_CASTER_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});
+	public static final Capability<EnchantedProjectile> ENCHANTED_PROJECTILE_CAPABILITY = CapabilityManager
+			.get(new CapabilityToken<>() {
+			});
 	public static final Capability<PlayerRewards> PLAYER_REWARDS_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});
@@ -53,6 +58,7 @@ public class LibCapabilities {
 		forgeBus.addGenericListener(Entity.class, AttacherLeader::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherFollower::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherSoulCaster::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherEnchantedProjectile::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherPlayerRewards::attach);
 	}
 

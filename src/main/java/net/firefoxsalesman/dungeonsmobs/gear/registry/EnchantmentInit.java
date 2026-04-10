@@ -31,6 +31,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.WeakeningEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.EnigmaResonatorEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -80,6 +81,8 @@ public class EnchantmentInit {
 			() -> new AccelerateEnchantment());
 	public static RegistryObject<BonusShotEnchantment> BONUS_SHOT = ENCHANTMENTS.register("bonus_shot",
 			() -> new BonusShotEnchantment());
+	public static RegistryObject<ChainReactionEnchantment> CHAIN_REACTION = ENCHANTMENTS.register("chain_reaction",
+			() -> new ChainReactionEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

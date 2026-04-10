@@ -508,6 +508,10 @@
   "enchantment.dungeonsmobs.accelerate.desc": "Increases charge speed for each consecutive shot. Resets one second after firing.",
   "enchantment.dungeonsmobs.bonus_shot": "Bonus Shot",
   "enchantment.dungeonsmobs.bonus_shot.desc": "Firing a shot also fires a second shot at a nearby enemy. The second shot has reduced damage.",
+  "enchantment.dungeonsmobs.burst_bowstring": "Burst Bowstring",
+  "enchantment.dungeonsmobs.burst_bowstring.desc": "Shoots nearby mobs when you roll, costing one arrow per roll. Projectiles deal 40% of a charged shot's damage.",
+  "enchantment.dungeonsmobs.chain_reaction": "Chain Reaction",
+  "enchantment.dungeonsmobs.chain_reaction.desc": "Has a chance to fire four arrows in all directions on impact.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
