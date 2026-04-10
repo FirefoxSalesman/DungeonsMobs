@@ -21,8 +21,8 @@ public class ModEnchantmentTypes {
 	public static final EnchantmentCategory MELEE_RANGED = addEnchantment("dungeons_gear_melee_ranged",
 			item -> DungeonsGearConfig.ENABLE_ENCHANTS_ON_NON_DUNGEONS_GEAR.get()
 					? (item instanceof SwordItem || item instanceof IMeleeWeapon
-							|| item instanceof TridentItem || item instanceof BowItem
-							|| item instanceof CrossbowItem)
+							|| item instanceof TridentItem || item instanceof AxeItem
+							|| item instanceof BowItem || item instanceof CrossbowItem)
 					: (item instanceof IMeleeWeapon || item instanceof IRangedWeapon));
 
 	public static final EnchantmentCategory RANGED = addEnchantment("dungeons_gear_ranged",

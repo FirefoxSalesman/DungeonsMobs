@@ -436,11 +436,23 @@
   "subtitles.entity.spider.shoot": "Spider shoots",
   "subtitles.entity.spider.web_impact": "Spider Web hits",
 
+  "commands.souls.add.failed": "Failed to add souls",
+  "commands.souls.set.failed": "Failed to set souls",
+  "commands.souls.add.success": "Successfully added souls",
+  "commands.souls.set.success": "Successfully set souls",
+
   "artifact.dungeons_libraries.base": "Using the Artifact will move it into a free Artifact Curios Slot.",
   "artifact.dungeons_libraries.duration": "%d Seconds Duration",
   "artifact.dungeons_libraries.cooldown": "%d Seconds Cooldown",
   
   "attribute.name.generic.dungeons_libraries.summon_cap": "Summon Cap",
+  "attribute.name.generic.dungeons_libraries.follower_cost_limit": "Follower Cost Limit",
+  "attribute.name.generic.dungeons_libraries.soul_gathering": "Soul Gathering",
+  "attribute.name.generic.dungeons_libraries.soul_cap": "Max Soul Capacity",
+  "attribute.name.generic.dungeons_libraries.life_steal": "Life Steal",
+  "attribute.name.generic.dungeons_libraries.ranged_damage_multiplier": "Ranged Damage Multiplier",
+  "attribute.name.generic.dungeons_libraries.magic_damage_multiplier": "Magic Damage Multiplier",
+  "attribute.name.generic.dungeons_libraries.artifact_cooldown_multiplier": "Artifact Cooldown Multiplier",
 
   "curios.identifier.artifact": "Artifact",
   "item.modifiers.artifact": "When In Artifact Slot:",
@@ -451,6 +463,8 @@
 
   "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
   "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",
+  "enchantment.dungeonsmobs.enigma_resonator": "Enigma Resonator",
+  "enchantment.dungeonsmobs.enigma_resonator.desc": "Give a chance to inflict 50% more damage based on the amount of souls you have.",
   "enchantment.dungeonsmobs.freezing": "Freezing",
   "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
   "enchantment.dungeonsmobs.busy_bee": "Busy Bee",
@@ -492,6 +506,8 @@
 
   "enchantment.dungeonsmobs.accelerate": "Accelerate",
   "enchantment.dungeonsmobs.accelerate.desc": "Increases charge speed for each consecutive shot. Resets one second after firing.",
+  "enchantment.dungeonsmobs.bonus_shot": "Bonus Shot",
+  "enchantment.dungeonsmobs.bonus_shot.desc": "Firing a shot also fires a second shot at a nearby enemy. The second shot has reduced damage.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",

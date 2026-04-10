@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.network.UpdateSoulsMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArmorGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.BowGearConfigSyncPacket;
@@ -29,11 +30,9 @@ public class NetworkHandler {
 	}
 
 	public static void init() {
-		// INSTANCE.messageBuilder(UpdateSoulsMessage.class,
-		// incrementAndGetPacketCounter())
-		// .encoder(UpdateSoulsMessage::encode).decoder(UpdateSoulsMessage::decode)
-		// .consumerMainThread(UpdateSoulsMessage.UpdateSoulsHandler::handle)
-		// .add();
+		INSTANCE.messageBuilder(UpdateSoulsMessage.class, incrementAndGetPacketCounter())
+				.encoder(UpdateSoulsMessage::encode).decoder(UpdateSoulsMessage::decode)
+				.consumerMainThread(UpdateSoulsMessage.UpdateSoulsHandler::handle).add();
 		INSTANCE.messageBuilder(ArmorGearConfigSyncPacket.class, incrementAndGetPacketCounter())
 				.encoder(ArmorGearConfigSyncPacket::encode).decoder(ArmorGearConfigSyncPacket::decode)
 				.consumerMainThread(ArmorGearConfigSyncPacket::onPacketReceived)

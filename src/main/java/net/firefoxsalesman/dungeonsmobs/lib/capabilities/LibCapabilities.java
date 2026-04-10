@@ -21,6 +21,10 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.AttacherFo
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.AttacherLeader;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.playerrewards.AttacherPlayerRewards;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.playerrewards.PlayerRewards;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.AttacherSoulCaster;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCaster;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LibCapabilities {
@@ -33,9 +37,14 @@ public class LibCapabilities {
 			});
 	public static final Capability<Follower> FOLLOWER_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
 	});
-
 	public static final Capability<Leader> LEADER_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
 	});
+	public static final Capability<SoulCaster> SOUL_CASTER_CAPABILITY = CapabilityManager
+			.get(new CapabilityToken<>() {
+			});
+	public static final Capability<PlayerRewards> PLAYER_REWARDS_CAPABILITY = CapabilityManager
+			.get(new CapabilityToken<>() {
+			});
 
 	public static void setupCapabilities() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -43,6 +52,8 @@ public class LibCapabilities {
 		forgeBus.addGenericListener(Entity.class, AttacherArtifactUsage::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherLeader::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherFollower::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherSoulCaster::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherPlayerRewards::attach);
 	}
 
 	@SubscribeEvent

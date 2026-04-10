@@ -15,6 +15,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
+import net.firefoxsalesman.dungeonsmobs.lib.entities.LibEntityTypes;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGearConfigRegistry;
@@ -66,6 +67,7 @@ public class DungeonsMobs {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ItemTagWrappers.init();
 		AttributeRegistry.register(modEventBus);
+		LibEntityTypes.register(modEventBus);
 		DungeonsArmorMaterials.setupVanillaMaterials();
 		WeaponMaterials.setupVanillaMaterials();
 
