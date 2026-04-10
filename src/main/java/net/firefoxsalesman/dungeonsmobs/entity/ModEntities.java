@@ -37,6 +37,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjectileEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
@@ -206,6 +207,13 @@ public class ModEntities {
 					.fireImmune()
 					.build(new ResourceLocation(MOD_ID, "redstone_golem").toString()),
 			0xaeaaa6, 0xe3260c);
+	public static final RegistryObject<EntityType<RedstoneCubeEntity>> REDSTONE_CUBE = registerEntityWithoutEgg(
+			"redstone_cube",
+			() -> EntityType.Builder.<RedstoneCubeEntity>of(RedstoneCubeEntity::new, MobCategory.MONSTER)
+					.sized(1.0F, 1.0F)
+					.clientTrackingRange(10)
+					.fireImmune()
+					.build(new ResourceLocation(MOD_ID, "redstone_cube").toString()));
 	// GOLEM
 	public static final RegistryObject<EntityType<SquallGolemEntity>> SQUALL_GOLEM = registerEntity("squall_golem",
 			() -> EntityType.Builder.<SquallGolemEntity>of(SquallGolemEntity::new, MobCategory.MONSTER)

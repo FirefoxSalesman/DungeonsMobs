@@ -10,6 +10,7 @@ import net.firefoxsalesman.dungeonsmobs.client.models.illager.IllagerBipedModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.VindicatorChefModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.SnarelingGlobModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.redstone.RedstoneCubeModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.NecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -23,6 +24,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModModelLayers {
+	public static ModelLayerLocation REDSTONE_CUBE = makeModelLayerLocation("redstone_cube_model");
 	public static ModelLayerLocation SUNKEN_SKELETON = makeModelLayerLocation("sunken_skeleton_model");
 	public static ModelLayerLocation SNARELING_GLOB = makeModelLayerLocation("snareling_glob_model");
 
@@ -46,6 +48,7 @@ public class ModModelLayers {
 
 	@SubscribeEvent
 	public static void layerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+		event.registerLayerDefinition(REDSTONE_CUBE, RedstoneCubeModel::createBodyLayer);
 		event.registerLayerDefinition(SUNKEN_SKELETON, SunkenSkeletonModel::createBodyLayer);
 		event.registerLayerDefinition(FUNGUS_SACK, FungusSackModel::createBackpackLayer);
 		event.registerLayerDefinition(SNARELING_GLOB, SnarelingGlobModel::createLayer);

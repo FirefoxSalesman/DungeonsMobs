@@ -34,6 +34,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneCubeRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerBombRenderer;
@@ -107,6 +108,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.WINDCALLER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new WindcallerModel()));
 
+		event.registerEntityRenderer(ModEntities.REDSTONE_CUBE.get(), RedstoneCubeRenderer::new);
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.WHISPERER.get(), WhispererRenderer::new);

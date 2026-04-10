@@ -21,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.PoisonQuillVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.QuickGrowingVineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
@@ -65,6 +66,7 @@ public class EntityTypeAttributes {
 
 		event.put(ModEntities.WRAITH.get(), WraithEntity.setCustomAttributes().build());
 
+		event.put(ModEntities.REDSTONE_CUBE.get(), RedstoneCubeEntity.setCustomAttributes().build());
 		event.put(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.WHISPERER.get(), WhispererEntity.setCustomAttributes().build());
