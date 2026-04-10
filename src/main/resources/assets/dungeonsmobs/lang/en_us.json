@@ -557,6 +557,13 @@
   "item.dungeonsmobs.sickle": "Sickle",
   "lore.dungeonsmobs.sickle": "A ceremonial weapon that hails from the same region as the Desert Temple.",
 
+  "item.dungeonsmobs.eternal_knife": "Eternal Knife",
+  "lore.dungeonsmobs.eternal_knife": "A disturbing aura surrounds this knife, as if it has existed for all time and will outlive us all.",
+  "item.dungeonsmobs.truthseeker": "Truthseeker",
+  "lore.dungeonsmobs.truthseeker": "The warden of Highblock Keep kept this unpleasant blade by their side during interrogations.",
+  "item.dungeonsmobs.soul_knife": "Soul Knife",
+  "lore.dungeonsmobs.soul_knife": "A ceremonial knife that uses magical energy to hold the wrath of souls inside its blade.",
+
   "item.dungeonsmobs.frost_scythe": "Frost Scythe",
   "lore.dungeonsmobs.frost_scythe": "The Frost Scythe is an indestructible blade that is freezing to the touch and never seems to melt.",
   "item.dungeonsmobs.jailors_scythe": "Jailor's Scythe",

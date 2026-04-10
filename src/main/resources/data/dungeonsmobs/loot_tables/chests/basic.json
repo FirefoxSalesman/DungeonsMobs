@@ -6,106 +6,111 @@
         {
           "type": "item",
           "name": "dungeonsmobs:claymore",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:katana",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:double_axe",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:rapier",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dagger",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:gauntlet",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:fighters_binding",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:mace",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:flail",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:suns_grace",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:hawkbrand",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:sinister_sword",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:firebrand",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:highland_axe",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:cursed_axe",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:whirlwind",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_katana",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:masters_katana",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:broadsword",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heartstealer",
-          "weight": 1 
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_fist",
+          "weight": 1
         },
 	{
           "type": "empty",
-          "weight": 18
+          "weight": 47
         }
       ]
     }
