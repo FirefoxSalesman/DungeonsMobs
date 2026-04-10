@@ -490,6 +490,9 @@
   "enchantment.dungeonsmobs.weakening": "Weakening",
   "enchantment.dungeonsmobs.weakening.desc": "Your attacks decrease the attack damage of nearby enemies for five seconds.",
 
+  "enchantment.dungeonsmobs.accelerate": "Accelerate",
+  "enchantment.dungeonsmobs.accelerate.desc": "Increases charge speed for each consecutive shot. Resets one second after firing.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",

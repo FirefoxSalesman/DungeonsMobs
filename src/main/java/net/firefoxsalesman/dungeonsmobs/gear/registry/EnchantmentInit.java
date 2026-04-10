@@ -28,6 +28,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ShockwaveEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.StunningEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ThunderingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.WeakeningEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -71,6 +72,8 @@ public class EnchantmentInit {
 			() -> new ThunderingEnchantment());
 	public static RegistryObject<WeakeningEnchantment> WEAKENING = ENCHANTMENTS.register("weakening",
 			() -> new WeakeningEnchantment());
+	public static RegistryObject<AccelerateEnchantment> ACCELERATE = ENCHANTMENTS.register("accelerate",
+			() -> new AccelerateEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
