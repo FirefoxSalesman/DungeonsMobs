@@ -15,6 +15,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
+import net.firefoxsalesman.dungeonsmobs.lib.config.DungeonsLibrariesConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.entities.LibEntityTypes;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactGearConfigRegistry;
@@ -59,6 +60,7 @@ public class DungeonsMobs {
 	public static CommonProxy PROXY;
 
 	public DungeonsMobs() {
+		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC);
 		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsMobsConfig.COMMON_SPEC,
 				"dungeons-mobs-common.toml");
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
