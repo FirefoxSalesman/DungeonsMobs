@@ -528,6 +528,10 @@
   "enchantment.dungeonsmobs.overcharge.desc": "Continue to hold the ranged attack button to double, triple, or quadruple charge a bow, increasing its damage each time.",
   "enchantment.dungeonsmobs.radiance_shot": "Radiance Shot",
   "enchantment.dungeonsmobs.radiance_shot.desc": "Has a 20% chance to spawn a circular area that heals all allies within it.",
+  "enchantment.dungeonsmobs.replenish": "Replenish",
+  "enchantment.dungeonsmobs.replenish.desc": "Chance to immediately replenish an arrow after shooting.",
+  "enchantment.dungeonsmobs.ricochet": "Ricochet",
+  "enchantment.dungeonsmobs.ricochet.desc": "Small chance for arrows to ricochet off mobs.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
