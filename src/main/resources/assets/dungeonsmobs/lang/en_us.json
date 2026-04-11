@@ -532,6 +532,10 @@
   "enchantment.dungeonsmobs.replenish.desc": "Chance to immediately replenish an arrow after shooting.",
   "enchantment.dungeonsmobs.ricochet": "Ricochet",
   "enchantment.dungeonsmobs.ricochet.desc": "Small chance for arrows to ricochet off mobs.",
+  "enchantment.dungeonsmobs.supercharge": "Supercharge",
+  "enchantment.dungeonsmobs.supercharge.desc": "Charged shots deal more damage and have more pushback.",
+  "enchantment.dungeonsmobs.tempo_theft": "Tempo Theft",
+  "enchantment.dungeonsmobs.tempo_theft.desc": "Steals a small amount of a mob's movement speed and gives it to you for four seconds.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
