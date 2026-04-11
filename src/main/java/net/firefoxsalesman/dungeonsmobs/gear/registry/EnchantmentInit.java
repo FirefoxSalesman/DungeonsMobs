@@ -38,6 +38,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FreezingShotEnc
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GaleShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GravityShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GrowingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.OverchargeEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.RadianceShotEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -101,6 +103,10 @@ public class EnchantmentInit {
 			() -> new GravityShotEnchantment());
 	public static RegistryObject<GrowingEnchantment> GROWING = ENCHANTMENTS.register("growing",
 			() -> new GrowingEnchantment());
+	public static RegistryObject<OverchargeEnchantment> OVERCHARGE = ENCHANTMENTS.register("overcharge",
+			() -> new OverchargeEnchantment());
+	public static RegistryObject<RadianceShotEnchantment> RADIANCE_SHOT = ENCHANTMENTS.register("radiance_shot",
+			() -> new RadianceShotEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
