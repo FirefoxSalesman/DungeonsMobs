@@ -516,6 +516,10 @@
   "enchantment.dungeonsmobs.chain_reaction.desc": "Has a chance to fire four arrows in all directions on impact.",
   "enchantment.dungeonsmobs.exploding_shot": "Exploding Shot",
   "enchantment.dungeonsmobs.exploding_shot.desc": "Causes an explosion at the arrow's impact point.",
+  "enchantment.dungeonsmobs.freezing_shot": "Freezing Shot",
+  "enchantment.dungeonsmobs.freezing_shot.desc": "Slows mobs after impact for three seconds.",
+  "enchantment.dungeonsmobs.gale_shot": "Gale Shot",
+  "enchantment.dungeonsmobs.gale_shot.desc": "Charged shots pull in enemies.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",

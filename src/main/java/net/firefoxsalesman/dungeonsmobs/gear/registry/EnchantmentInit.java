@@ -34,6 +34,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEncha
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ExplodingShotEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FreezingShotEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GaleShotEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -89,6 +91,10 @@ public class EnchantmentInit {
 			() -> new BonusShotEnchantment());
 	public static RegistryObject<ChainReactionEnchantment> CHAIN_REACTION = ENCHANTMENTS.register("chain_reaction",
 			() -> new ChainReactionEnchantment());
+	public static RegistryObject<FreezingShotEnchantment> FREEZING_SHOT = ENCHANTMENTS.register("freezing_shot",
+			() -> new FreezingShotEnchantment());
+	public static RegistryObject<GaleShotEnchantment> GALE_SHOT = ENCHANTMENTS.register("gale_shot",
+			() -> new GaleShotEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
