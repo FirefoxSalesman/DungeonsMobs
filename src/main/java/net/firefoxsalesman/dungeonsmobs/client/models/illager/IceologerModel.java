@@ -3,13 +3,13 @@ package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 import net.firefoxsalesman.dungeonsmobs.client.animation.IceologerAnimations;
 import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
 // Made with Blockbench 5.0.7
 

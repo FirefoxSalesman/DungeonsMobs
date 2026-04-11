@@ -1,7 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.WindcallerModel;
@@ -21,6 +20,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRendere
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GeomancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MageRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.VindicatorChefRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
@@ -56,9 +56,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar.ArtifactsBarRender;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -99,12 +97,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.VINDICATOR_CHEF.get(), VindicatorChefRenderer::new);
 		event.registerEntityRenderer(ModEntities.ICEOLOGER.get(), IceologerRenderer::new);
 		event.registerEntityRenderer(ModEntities.GEOMANCER.get(), GeomancerRenderer::new);
-		event.registerEntityRenderer(ModEntities.MAGE.get(),
-				manager -> new DefaultIllagerRenderer<MageEntity>(manager,
-						new MageModel<MageEntity>()));
-		event.registerEntityRenderer(ModEntities.MAGE_CLONE.get(),
-				manager -> new DefaultIllagerRenderer<MageCloneEntity>(manager,
-						new MageModel<MageCloneEntity>()));
+		event.registerEntityRenderer(ModEntities.MAGE.get(), MageRenderer::new);
+		event.registerEntityRenderer(ModEntities.MAGE_CLONE.get(), MageRenderer::new);
 		event.registerEntityRenderer(ModEntities.WINDCALLER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new WindcallerModel()));
 

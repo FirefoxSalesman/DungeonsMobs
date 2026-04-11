@@ -4,9 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
-import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
+import net.firefoxsalesman.dungeonsmobs.interfaces.AnimatedMage;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -28,26 +26,20 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class MageCloneEntity extends AbstractIllager implements GeoEntity, SpawnArmoredMob {
+public class MageCloneEntity extends AbstractIllager implements AnimatedMage {
 
 	private static final EntityDataAccessor<Boolean> DELAYED_APPEAR = SynchedEntityData.defineId(
 			MageCloneEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState celebrateAnimationState = new AnimationState();
+	public final AnimationState attackAnimationState = new AnimationState();
+	public final AnimationState vanishAnimationState = new AnimationState();
+	public final AnimationState appearAnimationState = new AnimationState();
 	public int shootAnimationTick;
 	public int shootAnimationLength = 40;
 	public int shootAnimationActionPoint = 20;
@@ -58,8 +50,6 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 	public int lifeTime;
 
 	private Mob owner;
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public MageCloneEntity(EntityType<? extends MageCloneEntity> type, Level world) {
 		super(type, world);
@@ -163,6 +153,32 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		}
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		attackAnimationState.animateWhen(isAttacking() && !isCelebrating(), tickCount);
+		appearAnimationState.animateWhen(isAppearing() && !isAttacking() && !isCelebrating(), tickCount);
+		idleAnimationState.animateWhen(!isAppearing() && !isAttacking() && !isMoving() && isAlive(), tickCount);
+	}
+
+	private boolean isAppearing() {
+		return appearAnimationTick > 0;
+	}
+
+	private boolean isAttacking() {
+		return shootAnimationTick > 0;
+	}
+
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	public void baseTick() {
 		super.baseTick();
 		tickDownAnimTimers();
@@ -206,38 +222,6 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		}
 	}
 
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (appearAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("mage_appear", LoopType.LOOP));
-		} else if (shootAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("mage_shoot", LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("mage_walk", LoopType.LOOP));
-		} else {
-			if (isCelebrating()) {
-				event.getController().setAnimation(RawAnimation.begin().then("mage_celebrate",
-						LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(RawAnimation.begin().then("mage_idle",
-						LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
-	}
-
 	/**
 	 * Returns whether this Entity is on the same team as the given Entity.
 	 */
@@ -274,11 +258,6 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 	@Override
 	public SoundEvent getCelebrateSound() {
 		return SoundEvents.ILLUSIONER_AMBIENT;
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.MAGE_ARMOR;
 	}
 
 	class ShootAttackGoal extends Goal {
@@ -376,6 +355,31 @@ public class MageCloneEntity extends AbstractIllager implements GeoEntity, Spawn
 		public boolean canUse() {
 			return shouldBeStationary();
 		}
+	}
+
+	@Override
+	public AnimationState getIdleState() {
+		return idleAnimationState;
+	}
+
+	@Override
+	public AnimationState getCelebrateState() {
+		return celebrateAnimationState;
+	}
+
+	@Override
+	public AnimationState getAttackState() {
+		return attackAnimationState;
+	}
+
+	@Override
+	public AnimationState getVanishState() {
+		return vanishAnimationState;
+	}
+
+	@Override
+	public AnimationState getAppearState() {
+		return appearAnimationState;
 	}
 
 }

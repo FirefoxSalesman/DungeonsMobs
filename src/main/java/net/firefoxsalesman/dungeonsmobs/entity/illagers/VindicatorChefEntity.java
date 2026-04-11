@@ -129,7 +129,7 @@ public class VindicatorChefEntity extends Vindicator implements SpawnArmoredMob 
 			celebrationAnimationTick--;
 		}
 		idleAnimationState.animateWhen(
-				!isMoving() && isAlive() && !isCelebrating() && isAttacking(),
+				!isMoving() && isAlive() && !isCelebrating() && !isAttacking(),
 				tickCount);
 	}
 
