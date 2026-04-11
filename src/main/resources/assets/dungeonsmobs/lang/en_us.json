@@ -520,6 +520,10 @@
   "enchantment.dungeonsmobs.freezing_shot.desc": "Slows mobs after impact for three seconds.",
   "enchantment.dungeonsmobs.gale_shot": "Gale Shot",
   "enchantment.dungeonsmobs.gale_shot.desc": "Charged shots pull in enemies.",
+  "enchantment.dungeonsmobs.gravity_shot": "Gravity Shot",
+  "enchantment.dungeonsmobs.gravity_shot.desc": "This effect pulls mobs in range towards the arrow's impact point.",
+  "enchantment.dungeonsmobs.growing": "Growing",
+  "enchantment.dungeonsmobs.growing.desc": "The fired shot grows in the air, dealing extra damage to distant targets.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
