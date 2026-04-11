@@ -44,6 +44,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ReplenishEnchan
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.RicochetEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.SuperchargeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.TempoTheftEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.VelocityEnchantment;
 
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
@@ -119,6 +120,8 @@ public class EnchantmentInit {
 			() -> new SuperchargeEnchantment());
 	public static RegistryObject<TempoTheftEnchantment> TEMPO_THEFT = ENCHANTMENTS.register("tempo_theft",
 			() -> new TempoTheftEnchantment());
+	public static RegistryObject<VelocityEnchantment> VELOCITY = ENCHANTMENTS.register("velocity",
+			() -> new VelocityEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
