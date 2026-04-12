@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/soul_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/soul_bow_pulling_0"
+    }
+}

@@ -120,6 +120,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:bonebow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:twin_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:haunted_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:soul_fist",
           "weight": 1
         },
@@ -134,8 +154,18 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:nocturnal_bow",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shivering_bow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 55
+          "weight": 59
         }
       ]
     }

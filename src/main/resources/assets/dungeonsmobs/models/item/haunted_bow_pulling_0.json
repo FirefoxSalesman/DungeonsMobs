@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/haunted_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/haunted_bow_pulling_0"
+    }
+}

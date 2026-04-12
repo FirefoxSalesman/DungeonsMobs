@@ -6,16 +6,16 @@
         {
           "type": "item",
           "name": "dungeonsmobs:boneclub",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:bone_cudgel",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "empty",
-          "weight": 3
+          "weight": 6
         }
       ]
     }

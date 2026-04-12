@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/shivering_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/shivering_bow_pulling_1"
+    }
+}

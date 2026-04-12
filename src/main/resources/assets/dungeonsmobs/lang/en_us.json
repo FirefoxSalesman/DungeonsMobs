@@ -552,6 +552,22 @@
   "enchantment.dungeonsmobs.velocity": "Velocity",
   "enchantment.dungeonsmobs.velocity.desc": "Projectiles shot by this weapon move faster.",
 
+  "item.dungeonsmobs.bonebow": "Bonebow",
+  "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",
+  "item.dungeonsmobs.twin_bow": "Twin Bow",
+  "lore.dungeonsmobs.twin_bow": "The Twin Bow is the champion of the hero who finds themselves outnumbered and alone.",
+  "item.dungeonsmobs.haunted_bow": "Haunted Bow",
+  "lore.dungeonsmobs.haunted_bow": "What indescribable horror! The creeping tentacles of this bow reach for the unknowable Void.",
+  
+  "item.dungeonsmobs.bow_of_lost_souls": "Bow of Lost Souls",
+  "lore.dungeonsmobs.bow_of_lost_souls": "This bow, made of cursed bones, strips the living of their very souls.",
+  "item.dungeonsmobs.nocturnal_bow": "Nocturnal Bow",
+  "lore.dungeonsmobs.nocturnal_bow": "The souls bound to the bow guide the arrows to their targets and cause it to glow slightly.",
+  "item.dungeonsmobs.soul_bow": "Soul Bow",
+  "lore.dungeonsmobs.soul_bow": "The Soul Bow shimmers with all the beauty and fury of an attacking Vex.",
+  "item.dungeonsmobs.shivering_bow": "Shivering Bow",
+  "lore.dungeonsmobs.shivering_bow": "The Shivering Bow pierces even the most ancient ice and strikes a chill into the heart of any enemy.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",

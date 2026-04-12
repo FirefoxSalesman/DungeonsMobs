@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/bonebow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/bonebow_pulling_0"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/twin_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/twin_bow_pulling_1"
+    }
+}
