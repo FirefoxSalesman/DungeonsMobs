@@ -6,26 +6,36 @@
         {
           "type": "item",
           "name": "dungeonsmobs:cutlass",
-          "weight": 2 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dancers_sword",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:nameless_blade",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:sparkler",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:anchor",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:encrusted_anchor",
           "weight": 1 
         },
 	{
           "type": "empty",
-          "weight": 5
+          "weight": 13
         }
       ]
     }

@@ -545,6 +545,8 @@
   "enchantment.dungeonsmobs.ricochet.desc": "Small chance for arrows to ricochet off mobs.",
   "enchantment.dungeonsmobs.supercharge": "Supercharge",
   "enchantment.dungeonsmobs.supercharge.desc": "Charged shots deal more damage and have more pushback.",
+  "enchantment.dungeonsmobs.swirling": "Swirling",
+  "enchantment.dungeonsmobs.swirling.desc": "Critical hits become swirling attacks, damaging nearby enemies.",
   "enchantment.dungeonsmobs.tempo_theft": "Tempo Theft",
   "enchantment.dungeonsmobs.tempo_theft.desc": "Steals a small amount of a mob's movement speed and gives it to you for four seconds.",
   "enchantment.dungeonsmobs.velocity": "Velocity",
@@ -631,6 +633,11 @@
   "item.dungeonsmobs.bone_cudgel": "Bone Cudgel",
   "lore.dungeonsmobs.bone_cudgel": "The Bone Cudgel is old enough to be considered an ancient treasure, but still menacing even by modern standards.",
 
+  "item.dungeonsmobs.anchor": "Anchor",
+  "lore.dungeonsmobs.anchor": "Those strong enough to wield the Anchor in battle follow the tradition of legendary seafaring warriors.",
+  "item.dungeonsmobs.encrusted_anchor": "Encrusted Anchor",
+  "lore.dungeonsmobs.encrusted_anchor": "",
+
   "item.dungeonsmobs.hawkbrand": "Hawkbrand",
   "lore.dungeonsmobs.hawkbrand": "The Hawkbrand is the legendary sword of proven warriors.",
   "item.dungeonsmobs.sinister_sword": "Sinister Sword",
@@ -644,6 +651,13 @@
   "lore.dungeonsmobs.mauler": "These claw-like weapons, wielded by ancient Illager soldiers, are savage in battle.",
   "item.dungeonsmobs.soul_fist": "Soul Fist",
   "lore.dungeonsmobs.soul_fist": "Soul Fists are gauntlets clad with great gemstones, each containing a powerful soul.",
+
+  "item.dungeonsmobs.hammer_of_gravity": "Hammer of Gravity",
+  "lore.dungeonsmobs.hammer_of_gravity": "A hammer, embedded with a crystal that harnesses the power of gravity, that is incredibly powerful.",
+  "item.dungeonsmobs.stormlander": "Stormlander",
+  "lore.dungeonsmobs.stormlander": "The Stormlander, enchanted with the power of the raging storm, is a treasure of the Illagers.",
+  "item.dungeonsmobs.great_hammer": "Great Hammer",
+  "lore.dungeonsmobs.great_hammer": "Blacksmiths and soldiers alike use the Great Hammer for its strength in forging and in battle.",
 
   "item.dungeonsmobs.dark_katana": "Dark Katana",
   "lore.dungeonsmobs.dark_katana": "A blade that will not rest until the battle has been won.",

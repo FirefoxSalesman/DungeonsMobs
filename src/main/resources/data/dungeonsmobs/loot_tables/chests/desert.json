@@ -45,6 +45,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:nightmares_bite",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:moon_dagger",
           "weight": 1 
         },

@@ -105,12 +105,37 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:shear_dagger",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:bee_stinger",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:great_hammer",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:soul_fist",
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:stormlander",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hammer_of_gravity",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 47
+          "weight": 55
         }
       ]
     }

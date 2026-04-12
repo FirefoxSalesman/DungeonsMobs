@@ -31,14 +31,12 @@ public class ItemInit {
 	public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger", meleeSupplier);
 	public static final RegistryObject<Item> FANG_OF_FROST = registerMeleeWeapon("fang_of_frost", meleeSupplier);
 	public static final RegistryObject<Item> MOON_DAGGER = registerMeleeWeapon("moon_dagger", meleeSupplier);
-	// public static final RegistryObject<Item> SHEAR_DAGGER =
-	// registerMeleeWeapon("shear_dagger",
-	// () -> new ShearsGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> SHEAR_DAGGER = registerMeleeWeapon("shear_dagger",
+			() -> new ShearsGear(MELEE_WEAPON_PROPERTIES));
 	// DPS 10 (20), crits once per 3 (1.5) seconds
 	public static final RegistryObject<Item> SICKLE = registerMeleeWeapon("sickle", meleeSupplier);
-	// public static final RegistryObject<Item> NIGHTMARES_BITE =
-	// registerMeleeWeapon("nightmares_bite",
-	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> NIGHTMARES_BITE = registerMeleeWeapon("nightmares_bite",
+			meleeSupplier);
 	public static final RegistryObject<Item> THE_LAST_LAUGH = registerMeleeWeapon("the_last_laugh", meleeSupplier);
 	// DPS 9.6/8 (19.2/16), crits once per 2.92/1 (1.46/0.5) seconds
 	public static final RegistryObject<Item> GAUNTLET = registerMeleeWeapon("gauntlet", meleeSupplier);
@@ -49,9 +47,7 @@ public class ItemInit {
 
 	// DPS 8, crits once per 3.5 seconds
 	public static final RegistryObject<Item> RAPIER = registerMeleeWeapon("rapier", meleeSupplier);
-	// public static final RegistryObject<Item> BEE_STINGER =
-	// registerMeleeWeapon("bee_stinger",
-	// () -> new MeleeGear(MELEE_WEAPON_PROPERTIES));
+	public static final RegistryObject<Item> BEE_STINGER = registerMeleeWeapon("bee_stinger", meleeSupplier);
 	public static final RegistryObject<Item> FREEZING_FOIL = registerMeleeWeapon("freezing_foil", meleeSupplier);
 
 	// DPS 9.1, crits once per 1.53 seconds
@@ -90,13 +86,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> SUNS_GRACE = registerMeleeWeapon("suns_grace", meleeSupplier);
 
 	// DPS 8.8, crits once per 0.9 seconds, disables shields
-	// public static final RegistryObject<Item> GREAT_HAMMER =
-	// registerMeleeWeapon("great_hammer", meleeSupplier);
-	// public static final RegistryObject<Item> HAMMER_OF_GRAVITY =
-	// registerMeleeWeapon("hammer_of_gravity",
-	// meleeSupplier);
-	// public static final RegistryObject<Item> STORMLANDER =
-	// registerMeleeWeapon("stormlander", meleeSupplier);
+	public static final RegistryObject<Item> GREAT_HAMMER = registerMeleeWeapon("great_hammer", meleeSupplier);
+	public static final RegistryObject<Item> HAMMER_OF_GRAVITY = registerMeleeWeapon("hammer_of_gravity",
+			meleeSupplier);
+	public static final RegistryObject<Item> STORMLANDER = registerMeleeWeapon("stormlander", meleeSupplier);
 
 	// DPS 11.2, crits once per 2.1 seconds
 	public static final RegistryObject<Item> KATANA = registerMeleeWeapon("katana", meleeSupplier);
@@ -148,11 +141,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> BONE_CUDGEL = registerMeleeWeapon("bone_cudgel", meleeSupplier);
 
 	// DPS 8, crits once per 1.25 seconds
-	// public static final RegistryObject<Item> ANCHOR =
-	// registerMeleeWeapon("anchor", meleeSupplier);
-	// public static final RegistryObject<Item> ENCRUSTED_ANCHOR =
-	// registerMeleeWeapon("encrusted_anchor",
-	// meleeSupplier);
+	public static final RegistryObject<Item> ANCHOR = registerMeleeWeapon("anchor", meleeSupplier);
+	public static final RegistryObject<Item> ENCRUSTED_ANCHOR = registerMeleeWeapon("encrusted_anchor",
+			meleeSupplier);
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
