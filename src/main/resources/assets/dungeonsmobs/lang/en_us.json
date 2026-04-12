@@ -467,6 +467,10 @@
   "enchantment.dungeonsmobs.enigma_resonator.desc": "Give a chance to inflict 50% more damage based on the amount of souls you have.",
   "enchantment.dungeonsmobs.gravity": "Gravity",
   "enchantment.dungeonsmobs.gravity.desc": "This effect pulls mobs in range towards the weapon's impact point.",
+  "enchantment.dungeonsmobs.masters_call": "Masters Call",
+  "enchantment.dungeonsmobs.masters_call.desc": "Pets Attack Targeted Mob.",
+  "enchantment.dungeonsmobs.poison_cloud": "Poison Cloud",
+  "enchantment.dungeonsmobs.poison_cloud.desc": "Has a 30% chance to summon a poison cloud that deals damage to enemies in an area for three seconds.",
 
   "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
   "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",

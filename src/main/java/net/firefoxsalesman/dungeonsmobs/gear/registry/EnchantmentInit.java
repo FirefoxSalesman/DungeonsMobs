@@ -32,6 +32,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.WeakeningEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.AnimaConduitEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.EnigmaResonatorEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.GravityEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.MastersCallEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.PoisonCloudEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
@@ -57,6 +59,10 @@ public class EnchantmentInit {
 			.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
 	public static RegistryObject<GravityEnchantment> GRAVITY = ENCHANTMENTS.register("gravity",
 			() -> new GravityEnchantment());
+	public static RegistryObject<MastersCallEnchantment> MASTERS_CALL = ENCHANTMENTS.register("masters_call",
+			() -> new MastersCallEnchantment());
+	public static RegistryObject<PoisonCloudEnchantment> POISON_CLOUD = ENCHANTMENTS.register("poison_cloud",
+			() -> new PoisonCloudEnchantment());
 	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
 			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
 	public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot",

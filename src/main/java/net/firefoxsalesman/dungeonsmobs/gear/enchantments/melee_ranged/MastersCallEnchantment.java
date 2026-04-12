@@ -1,0 +1,74 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged;
+
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.PetHelper;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper.enchantmentTagToLevel;
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper.shooterIsLiving;
+
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
+public class MastersCallEnchantment extends DungeonsEnchantment {
+
+	public MastersCallEnchantment() {
+		super(Rarity.RARE, ModEnchantmentTypes.MELEE_RANGED, new EquipmentSlot[] {
+				EquipmentSlot.MAINHAND });
+	}
+
+	@SubscribeEvent
+	public static void onWeaponAttack(LivingAttackEvent event) {
+		if (event.getSource().getDirectEntity() != event.getSource().getEntity())
+			return;
+		if (!(event.getSource().getEntity() instanceof LivingEntity))
+			return;
+		LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
+		if (attacker.getLastHurtMobTimestamp() == attacker.tickCount)
+			return;
+		LivingEntity victim = event.getEntity();
+		ItemStack mainhand = attacker.getMainHandItem();
+		if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.MASTERS_CALL.get())) {
+			PetHelper.makeNearbyPetsAttackTarget(victim, attacker);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onArrowImpact(ProjectileImpactEvent event) {
+		HitResult rayTraceResult = event.getRayTraceResult();
+		if (event.getProjectile() instanceof AbstractArrow arrow) {
+			if (!shooterIsLiving(arrow))
+				return;
+			LivingEntity shooter = (LivingEntity) arrow.getOwner();
+
+			int enchantLevel = enchantmentTagToLevel(arrow, EnchantmentInit.MASTERS_CALL.get());
+
+			if (enchantLevel > 0) {
+				if (rayTraceResult instanceof EntityHitResult) {
+					EntityHitResult entityRayTraceResult = (EntityHitResult) rayTraceResult;
+					if (entityRayTraceResult.getEntity() instanceof LivingEntity) {
+						LivingEntity victim = (LivingEntity) ((EntityHitResult) rayTraceResult)
+								.getEntity();
+						PetHelper.makeNearbyPetsAttackTarget(victim, shooter);
+					}
+				}
+			}
+		}
+	}
+
+	public int getMaxLevel() {
+		return 1;
+	}
+
+}

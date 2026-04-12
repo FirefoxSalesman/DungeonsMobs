@@ -27,10 +27,13 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.playerrewards.AttacherP
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.playerrewards.PlayerRewards;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.AttacherSoulCaster;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCaster;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.AttacherTimers;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.Timers;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LibCapabilities {
-
+	public static final Capability<Timers> TIMERS_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+	});
 	public static final Capability<BuiltInEnchantments> BUILT_IN_ENCHANTMENTS_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});
@@ -54,6 +57,7 @@ public class LibCapabilities {
 	public static void setupCapabilities() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(ItemStack.class, AttacherBuiltInEnchantments::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherTimers::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherArtifactUsage::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherLeader::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherFollower::attach);
