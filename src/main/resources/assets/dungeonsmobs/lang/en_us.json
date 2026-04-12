@@ -471,6 +471,8 @@
   "enchantment.dungeonsmobs.masters_call.desc": "Pets Attack Targeted Mob.",
   "enchantment.dungeonsmobs.poison_cloud": "Poison Cloud",
   "enchantment.dungeonsmobs.poison_cloud.desc": "Has a 30% chance to summon a poison cloud that deals damage to enemies in an area for three seconds.",
+  "enchantment.dungeonsmobs.refreshment": "Refreshment",
+  "enchantment.dungeonsmobs.refreshment.desc": "Defeating a mob can turn a glass bottle in your inventory into a health potion.",
 
   "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
   "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",

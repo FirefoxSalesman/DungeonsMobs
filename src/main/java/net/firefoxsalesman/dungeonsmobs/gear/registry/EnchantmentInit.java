@@ -34,6 +34,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.EnigmaRes
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.GravityEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.MastersCallEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.PoisonCloudEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.RefreshmentEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
@@ -63,6 +64,8 @@ public class EnchantmentInit {
 			() -> new MastersCallEnchantment());
 	public static RegistryObject<PoisonCloudEnchantment> POISON_CLOUD = ENCHANTMENTS.register("poison_cloud",
 			() -> new PoisonCloudEnchantment());
+	public static RegistryObject<RefreshmentEnchantment> REFRESHMENT = ENCHANTMENTS.register("refreshment",
+			() -> new RefreshmentEnchantment());
 	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
 			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
 	public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot",
