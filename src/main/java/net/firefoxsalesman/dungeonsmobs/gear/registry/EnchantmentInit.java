@@ -29,7 +29,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.SoulSiphonEnchan
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.StunningEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ThunderingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.WeakeningEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.AnimaConduitEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.EnigmaResonatorEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.GravityEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
@@ -49,8 +51,12 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.VelocityEnchant
 public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
 			.create(ForgeRegistries.ENCHANTMENTS, MOD_ID);
+	public static RegistryObject<AnimaConduitEnchantment> ANIMA_CONDUIT = ENCHANTMENTS.register("anima_conduit",
+			() -> new AnimaConduitEnchantment());
 	public static RegistryObject<EnigmaResonatorEnchantment> ENIGMA_RESONATOR = ENCHANTMENTS
 			.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
+	public static RegistryObject<GravityEnchantment> GRAVITY = ENCHANTMENTS.register("gravity",
+			() -> new GravityEnchantment());
 	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
 			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
 	public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot",

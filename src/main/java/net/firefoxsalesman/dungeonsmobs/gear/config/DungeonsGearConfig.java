@@ -31,9 +31,8 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Integer> WEAKENING_DISTANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_BASE_MULTIPLIER;
 	public static ForgeConfigSpec.ConfigValue<Double> COMMITTED_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Integer> DYNAMO_MAX_STACKS;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// DYNAMO_DAMAGE_MULTIPLIER_PER_STACK;
+	public static ForgeConfigSpec.ConfigValue<Integer> DYNAMO_MAX_STACKS;
+	public static ForgeConfigSpec.ConfigValue<Double> DYNAMO_DAMAGE_MULTIPLIER_PER_STACK;
 	public static ForgeConfigSpec.ConfigValue<Integer> FREEZING_DURATION;
 	public static ForgeConfigSpec.ConfigValue<Double> SOUL_SIPHON_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Integer> SOUL_SIPHON_SOULS_PER_LEVEL;
@@ -150,13 +149,12 @@ public class DungeonsGearConfig {
 		WEAKENING_DISTANCE = builder
 				.comment("The application distance in blocks for weakening. [0-10000, default: 5]")
 				.defineInRange("weakeningDistance", 5, 0, 10000);
-		// DYNAMO_MAX_STACKS = builder
-		// .comment("The max stacks for dynamo. [0-10000, default: 20]")
-		// .defineInRange("dynamoMaxStacks", 20, 0, 10000);
-		// DYNAMO_DAMAGE_MULTIPLIER_PER_STACK = builder
-		// .comment("Multiplier per level applied to the damage. " +
-		// "damage * (1 + (configValue*Stacks)) [0.0-5.0, default: 0.1]")
-		// .defineInRange("dynamoDamageMultiplierPerStack", 0.1, 0, 5.0);
+		DYNAMO_MAX_STACKS = builder.comment("The max stacks for dynamo. [0-10000, default: 20]")
+				.defineInRange("dynamoMaxStacks", 20, 0, 10000);
+		DYNAMO_DAMAGE_MULTIPLIER_PER_STACK = builder
+				.comment("Multiplier per level applied to the damage. "
+						+ "damage * (1 + (configValue*Stacks)) [0.0-5.0, default: 0.1]")
+				.defineInRange("dynamoDamageMultiplierPerStack", 0.1, 0, 5.0);
 		COMMITTED_BASE_MULTIPLIER = builder.comment(
 				"The decimal base multiplier on the damage for max damage committed. [0.0-5.0, default: 1.25]")
 				.defineInRange("committedBaseMultiplier", 1.25, 0, 5.0);

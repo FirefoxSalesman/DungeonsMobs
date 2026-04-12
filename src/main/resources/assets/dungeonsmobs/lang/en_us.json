@@ -461,10 +461,15 @@
   "key.dungeons_libraries.curiosintegration.description_slot2": "Artifact Slot 2",
   "key.dungeons_libraries.curiosintegration.description_slot3": "Artifact Slot 3",
 
-  "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
-  "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",
+  "enchantment.dungeonsmobs.anima_conduit": "Anima Conduit",
+  "enchantment.dungeonsmobs.anima_conduit.desc": "Each soul you absorb grants a small amount of health.",
   "enchantment.dungeonsmobs.enigma_resonator": "Enigma Resonator",
   "enchantment.dungeonsmobs.enigma_resonator.desc": "Give a chance to inflict 50% more damage based on the amount of souls you have.",
+  "enchantment.dungeonsmobs.gravity": "Gravity",
+  "enchantment.dungeonsmobs.gravity.desc": "This effect pulls mobs in range towards the weapon's impact point.",
+
+  "enchantment.dungeonsmobs.artifact_synergy": "Artifact Synergy",
+  "enchantment.dungeonsmobs.artifact_synergy.desc": "Whenever you use an artifact, your next attack deals bonus damage.",
   "enchantment.dungeonsmobs.freezing": "Freezing",
   "enchantment.dungeonsmobs.freezing.desc": "Slows mobs after hit for three seconds.",
   "enchantment.dungeonsmobs.busy_bee": "Busy Bee",
