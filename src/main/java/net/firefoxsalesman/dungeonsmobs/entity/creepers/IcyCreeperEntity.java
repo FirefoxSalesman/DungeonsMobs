@@ -16,6 +16,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
@@ -81,6 +82,9 @@ public class IcyCreeperEntity extends Creeper {
 	}
 
 	private void explodeCreeper() {
+		if (new GameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
+			return;
+
 		if (!level().isClientSide) {
 			float f = isPowered() ? 2.0F : 1.0F;
 			dead = true;
