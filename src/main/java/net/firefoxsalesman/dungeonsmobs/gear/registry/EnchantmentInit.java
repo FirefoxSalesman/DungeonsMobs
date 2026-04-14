@@ -41,6 +41,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchan
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ExplodingShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FreezingShotEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FuseShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GaleShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GravityShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.GrowingEnchantment;
@@ -59,6 +60,8 @@ public class EnchantmentInit {
 			() -> new AnimaConduitEnchantment());
 	public static RegistryObject<EnigmaResonatorEnchantment> ENIGMA_RESONATOR = ENCHANTMENTS
 			.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
+	public static RegistryObject<FuseShotEnchantment> FUSE_SHOT = ENCHANTMENTS.register("fuse_shot",
+			() -> new FuseShotEnchantment());
 	public static RegistryObject<GravityEnchantment> GRAVITY = ENCHANTMENTS.register("gravity",
 			() -> new GravityEnchantment());
 	public static RegistryObject<MastersCallEnchantment> MASTERS_CALL = ENCHANTMENTS.register("masters_call",

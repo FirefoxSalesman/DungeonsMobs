@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/red_snake",
+    "textures": {
+        "layer0": "dungeonsmobs:item/red_snake_pulling_0"
+    }
+}

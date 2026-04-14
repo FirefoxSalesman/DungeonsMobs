@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/guardian_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/guardian_bow_pulling_2"
+    }
+}

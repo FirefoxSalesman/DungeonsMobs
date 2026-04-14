@@ -140,6 +140,31 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:power_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:longbow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:guardian_bow",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:red_snake",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:elite_power_bow",
+          "weight": 1
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:soul_fist",
           "weight": 1
         },
@@ -164,8 +189,13 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:sabrewing",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 59
+          "weight": 67
         }
       ]
     }

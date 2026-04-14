@@ -1,0 +1,8 @@
+{
+  "attributes": [],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:supercharge", "level": 1},{"enchantment": "minecraft:power", "level": 1}],
+  "unique": true,
+  "durability": 384,
+  "default_charge_time": 25,
+  "rarity": "RARE"
+}
