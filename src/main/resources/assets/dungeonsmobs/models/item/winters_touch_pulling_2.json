@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/winters_touch",
+    "textures": {
+        "layer0": "dungeonsmobs:item/winters_touch_pulling_2"
+    }
+}

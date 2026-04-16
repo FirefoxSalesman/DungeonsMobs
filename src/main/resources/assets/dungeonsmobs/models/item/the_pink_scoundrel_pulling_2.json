@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/the_pink_scoundrel",
+    "textures": {
+        "layer0": "dungeonsmobs:item/the_pink_scoundrel_pulling_2"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/the_green_menace",
+    "textures": {
+        "layer0": "dungeonsmobs:item/the_green_menace_pulling_1"
+    }
+}

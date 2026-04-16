@@ -30,6 +30,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:snow_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wind_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:resolute_tempest_knife",
           "weight": 1
         },
@@ -39,8 +49,18 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:winters_touch",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:echo_of_the_valley",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 12
+          "weight": 18
         }
       ]
     }

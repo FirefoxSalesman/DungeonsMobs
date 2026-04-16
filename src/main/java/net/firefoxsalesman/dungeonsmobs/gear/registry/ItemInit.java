@@ -178,6 +178,24 @@ public class ItemInit {
 	public static final RegistryObject<Item> PURPLE_STORM = registerRangedWeapon("purple_storm", bowSupplier);
 	public static final RegistryObject<Item> LOVE_SPELL_BOW = registerRangedWeapon("love_spell_bow", bowSupplier);
 
+	public static final RegistryObject<Item> TRICKBOW = registerRangedWeapon("trickbow", bowSupplier);
+	public static final RegistryObject<Item> THE_GREEN_MENACE = registerRangedWeapon("the_green_menace",
+			bowSupplier);
+	// public static final RegistryObject<Item> THE_PINK_SCOUNDREL =
+	// registerRangedWeapon("the_pink_scoundrel",
+	// bowSupplier);
+	// public static final RegistryObject<Item> SUGAR_RUSH =
+	// registerRangedWeapon("sugar_rush", bowSupplier);
+
+	public static final RegistryObject<Item> SNOW_BOW = registerRangedWeapon("snow_bow", bowSupplier);
+	public static final RegistryObject<Item> WINTERS_TOUCH = registerRangedWeapon("winters_touch", bowSupplier);
+
+	public static final RegistryObject<Item> WIND_BOW = registerRangedWeapon("wind_bow", bowSupplier);
+	// public static final RegistryObject<Item> BURST_GALE_BOW =
+	// registerRangedWeapon("burst_gale_bow", bowSupplier);
+	public static final RegistryObject<Item> ECHO_OF_THE_VALLEY = registerRangedWeapon("echo_of_the_valley",
+			bowSupplier);
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);

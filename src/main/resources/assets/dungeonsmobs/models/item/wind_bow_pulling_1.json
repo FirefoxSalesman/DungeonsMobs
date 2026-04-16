@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/wind_bow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/wind_bow_pulling_1"
+    }
+}

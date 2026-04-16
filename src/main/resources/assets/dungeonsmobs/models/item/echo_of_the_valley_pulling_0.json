@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/echo_of_the_valley",
+    "textures": {
+        "layer0": "dungeonsmobs:item/echo_of_the_valley_pulling_0"
+    }
+}

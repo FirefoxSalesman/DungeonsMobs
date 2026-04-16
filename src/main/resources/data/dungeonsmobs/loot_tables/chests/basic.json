@@ -175,6 +175,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:trickbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -229,8 +234,13 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:the_green_menace",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 75
+          "weight": 84
         }
       ]
     }

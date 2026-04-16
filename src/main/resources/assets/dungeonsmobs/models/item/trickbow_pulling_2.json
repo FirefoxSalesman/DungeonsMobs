@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/trickbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/trickbow_pulling_2"
+    }
+}
