@@ -56,6 +56,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
+import net.firefoxsalesman.dungeonsmobs.lib.client.SoulEnergyGui;
 import net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar.ArtifactsBarRender;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
@@ -72,9 +73,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
+	/**
+	 * Borrowed from Goety
+	 */
 	@SubscribeEvent
 	public static void registerGUI(final RegisterGuiOverlaysEvent event) {
 		event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "artifacts_bar", ArtifactsBarRender.OVERLAY);
+		event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "soul_energy_hud", SoulEnergyGui.OVERLAY);
 	}
 
 	@SubscribeEvent
