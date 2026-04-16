@@ -166,6 +166,18 @@ public class ItemInit {
 	public static final RegistryObject<Item> GUARDIAN_BOW = registerRangedWeapon("guardian_bow", bowSupplier);
 	public static final RegistryObject<Item> RED_SNAKE = registerRangedWeapon("red_snake", bowSupplier);
 
+	public static final RegistryObject<Item> HUNTING_BOW = registerRangedWeapon("hunting_bow", bowSupplier);
+	public static final RegistryObject<Item> HUNTERS_PROMISE = registerRangedWeapon("hunters_promise", bowSupplier);
+	public static final RegistryObject<Item> MASTERS_BOW = registerRangedWeapon("masters_bow", bowSupplier);
+	// public static final RegistryObject<Item> ANCIENT_BOW =
+	// registerRangedWeapon("ancient_bow", bowSupplier);
+
+	public static final RegistryObject<Item> SHORTBOW = registerRangedWeapon("shortbow", bowSupplier);
+	public static final RegistryObject<Item> MECHANICAL_SHORTBOW = registerRangedWeapon("mechanical_shortbow",
+			bowSupplier);
+	public static final RegistryObject<Item> PURPLE_STORM = registerRangedWeapon("purple_storm", bowSupplier);
+	public static final RegistryObject<Item> LOVE_SPELL_BOW = registerRangedWeapon("love_spell_bow", bowSupplier);
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);

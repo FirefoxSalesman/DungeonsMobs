@@ -1,0 +1,8 @@
+{
+  "attributes": [],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:accelerate", "level": 1}],
+  "unique": true,
+  "durability": 384,
+  "default_charge_time": 20,
+  "rarity": "RARE"
+}

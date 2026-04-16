@@ -5,6 +5,11 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:shortbow",
+          "weight": 4 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:claymore",
           "weight": 4 
         },
@@ -150,6 +155,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:hunting_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mechanical_shortbow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:purple_storm",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:love_spell_bow",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -194,8 +219,18 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:hunters_promise",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:masters_bow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 67
+          "weight": 75
         }
       ]
     }
