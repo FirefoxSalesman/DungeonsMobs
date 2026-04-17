@@ -60,7 +60,8 @@ public class DungeonsMobs {
 	public static CommonProxy PROXY;
 
 	public DungeonsMobs() {
-		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC,
+				"dungeons-lib-common.toml");
 		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsMobsConfig.COMMON_SPEC,
 				"dungeons-mobs-common.toml");
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

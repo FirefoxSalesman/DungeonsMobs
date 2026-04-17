@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,11 +34,14 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.scores.Scoreboard;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Collections;
 import java.util.EnumSet;
-import javax.annotation.Nullable;
+import java.util.List;
 
-import com.google.common.base.Predicate;
+import javax.annotation.Nullable;
 
 import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
@@ -331,12 +336,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		public int nextUseTime;
 
-		private final Predicate<Entity> WATCHLING = (p_33346_) -> {
-			return p_33346_ instanceof WatchlingEntity
-					&& ((WatchlingEntity) p_33346_).getOwner().isPresent()
-					&& ((WatchlingEntity) p_33346_).getOwner().get() == mob;
-		};
-
 		public CreateWatchlingGoal(EndersentEntity mob) {
 			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
 			this.mob = mob;
@@ -356,11 +355,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		public boolean canUse() {
 			target = mob.getTarget();
 
-			int nearbyClones = mob.level().getEntities(mob, mob.getBoundingBox().inflate(30.0D), WATCHLING)
-					.size();
-
 			return target != null && mob.tickCount >= nextUseTime && mob.random.nextInt(10) == 0
-					&& mob.hasLineOfSight(target) && nearbyClones <= 0 && animationsUseable();
+					&& mob.hasLineOfSight(target) && animationsUseable();
 		}
 
 		@Override
@@ -414,16 +410,50 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 					cloneSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
 					((ServerLevel) mob.level()).addFreshEntityWithPassengers(cloneSummonSpot);
 					PositionUtils.moveToCorrectHeight(cloneSummonSpot);
+					EntityType<?> entityType = getEntityType();
+					Mob summonedMob = null;
 
-					WatchlingEntity clone = ModEntities.WATCHLING.get().create(mob.level());
-					clone.finalizeSpawn(((ServerLevel) mob.level()),
+					Entity entity = entityType.create(mob.level());
+
+					if (entity == null) {
+						cloneSummonSpot.remove(RemovalReason.DISCARDED);
+						return;
+					}
+
+					if (entity instanceof Mob) {
+						summonedMob = ((Mob) entity);
+					}
+
+					summonedMob.setTarget(target);
+					summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
 							mob.level().getCurrentDifficultyAt(
 									cloneSummonSpot.blockPosition()),
 							MobSpawnType.MOB_SUMMONED, null, null);
-					clone.setOwner(mob);
-					cloneSummonSpot.summonedEntity = clone;
+					if (mob.getTeam() != null) {
+						Scoreboard scoreboard = mob.level().getScoreboard();
+						scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
+								scoreboard.getPlayerTeam(mob.getTeam().getName()));
+					}
+					cloneSummonSpot.summonedEntity = summonedMob;
 				}
 			}
+		}
+
+		private EntityType<?> getEntityType() {
+			EntityType<?> entityType = null;
+			List<String> endersentMobSummons = (List<String>) DungeonsMobsConfig.Common.ENDERSENT_MOB_SUMMONS
+					.get();
+			if (!endersentMobSummons.isEmpty()) {
+				Collections.shuffle(endersentMobSummons);
+
+				int randomIndex = mob.getRandom().nextInt(endersentMobSummons.size());
+				String randomMobID = endersentMobSummons.get(randomIndex);
+				entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(randomMobID));
+			}
+			if (entityType == null) {
+				entityType = ModEntities.WATCHLING.get();
+			}
+			return entityType;
 		}
 
 		private void doSummonSpot(SummonSpotEntity spot) {
