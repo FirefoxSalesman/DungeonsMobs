@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 
+import java.util.Optional;
+
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AbstractTrapEntity;
@@ -142,8 +144,8 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 	}
 
 	@Override
-	protected SoundEvent getAmbientSoundFoley() {
-		return null;
+	protected Optional<SoundEvent> getAmbientSoundFoley() {
+		return Optional.empty();
 	}
 
 	@Override
@@ -152,8 +154,8 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 	}
 
 	@Override
-	protected SoundEvent getHurtSoundFoley(DamageSource pDamageSource) {
-		return null;
+	protected Optional<SoundEvent> getHurtSoundFoley(DamageSource pDamageSource) {
+		return Optional.empty();
 	}
 
 	@Override

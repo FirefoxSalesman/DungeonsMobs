@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 
+import java.util.Optional;
+
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AbstractTrapEntity;
@@ -104,8 +106,8 @@ public class WhispererEntity extends AbstractWhispererEntity {
 	}
 
 	@Override
-	protected SoundEvent getAmbientSoundFoley() {
-		return ModSoundEvents.WHISPERER_IDLE_FOLEY.get();
+	protected Optional<SoundEvent> getAmbientSoundFoley() {
+		return Optional.of(ModSoundEvents.WHISPERER_IDLE_FOLEY.get());
 	}
 
 	@Override
@@ -114,8 +116,8 @@ public class WhispererEntity extends AbstractWhispererEntity {
 	}
 
 	@Override
-	protected SoundEvent getHurtSoundFoley(DamageSource pDamageSource) {
-		return ModSoundEvents.WHISPERER_HURT_FOLEY.get();
+	protected Optional<SoundEvent> getHurtSoundFoley(DamageSource pDamageSource) {
+		return Optional.of(ModSoundEvents.WHISPERER_HURT_FOLEY.get());
 	}
 
 	@Override
@@ -123,10 +125,10 @@ public class WhispererEntity extends AbstractWhispererEntity {
 		return ModSoundEvents.WHISPERER_DEATH.get();
 	}
 
-	@Override
-	protected SoundEvent getSwimSound() {
-		return null;
-	}
+	// @Override
+	// protected SoundEvent getSwimSound() {
+	// return null;
+	// }
 
 	@Override
 	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

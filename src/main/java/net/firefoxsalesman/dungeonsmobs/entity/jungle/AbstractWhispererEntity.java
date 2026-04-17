@@ -35,6 +35,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.Optional;
 
 public abstract class AbstractWhispererEntity extends Monster implements GeoEntity {
 
@@ -144,7 +145,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 	@Override
 	public void playAmbientSound() {
 		SoundEvent soundeventVocal = getAmbientSound();
-		SoundEvent soundeventFoley = getAmbientSoundFoley();
+		Optional<SoundEvent> soundeventFoley = getAmbientSoundFoley();
 		playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(),
 				getSoundVolume(), getVoicePitch());
 	}
@@ -153,7 +154,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 	protected void playHurtSound(DamageSource pDamageSource) {
 		ambientSoundTime = -getAmbientSoundInterval();
 		SoundEvent soundeventVocal = getHurtSound(pDamageSource);
-		SoundEvent soundeventFoley = getHurtSoundFoley(pDamageSource);
+		Optional<SoundEvent> soundeventFoley = getHurtSoundFoley(pDamageSource);
 		playSound(soundeventVocal, soundeventFoley, getSoundVolume(), getVoicePitch(),
 				getSoundVolume(), getVoicePitch());
 	}
@@ -164,15 +165,16 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 		playSound(getStepSoundFoley(), 0.5F, 1.0F);
 	}
 
-	public void playSound(SoundEvent vocalSound, SoundEvent foleySound, float vocalVolume, float vocalPitch,
+	public void playSound(SoundEvent vocalSound, Optional<SoundEvent> foleySound, float vocalVolume,
+			float vocalPitch,
 			float foleyVolume, float foleyPitch) {
 		if (!isSilent()) {
 			if (vocalSound != null) {
 				level().playSound(null, getX(), getY(), getZ(), vocalSound,
 						getSoundSource(), vocalVolume, vocalPitch);
 			}
-			if (foleySound != null) {
-				level().playSound(null, getX(), getY(), getZ(), foleySound,
+			if (foleySound.isPresent()) {
+				level().playSound(null, getX(), getY(), getZ(), foleySound.get(),
 						getSoundSource(), foleyVolume, foleyPitch);
 			}
 		}
@@ -180,7 +182,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 	abstract protected SoundEvent getAmbientSound();
 
-	abstract protected SoundEvent getAmbientSoundFoley();
+	abstract protected Optional<SoundEvent> getAmbientSoundFoley();
 
 	@Override
 	public int getAmbientSoundInterval() {
@@ -189,7 +191,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 	abstract protected SoundEvent getHurtSound(DamageSource pDamageSource);
 
-	abstract protected SoundEvent getHurtSoundFoley(DamageSource pDamageSource);
+	abstract protected Optional<SoundEvent> getHurtSoundFoley(DamageSource pDamageSource);
 
 	@Override
 	abstract protected SoundEvent getDeathSound();
@@ -218,9 +220,6 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 			super.playSound(soundEvent, p_184185_2_, p_184185_3_);
 		}
 	}
-
-	@Override
-	abstract protected SoundEvent getSwimSound();
 
 	public void baseTick() {
 		super.baseTick();
