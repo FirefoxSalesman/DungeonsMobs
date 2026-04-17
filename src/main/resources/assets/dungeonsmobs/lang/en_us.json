@@ -445,14 +445,21 @@
   "artifact.dungeons_libraries.duration": "%d Seconds Duration",
   "artifact.dungeons_libraries.cooldown": "%d Seconds Cooldown",
   
-  "attribute.name.generic.dungeons_libraries.summon_cap": "Summon Cap",
-  "attribute.name.generic.dungeons_libraries.follower_cost_limit": "Follower Cost Limit",
-  "attribute.name.generic.dungeons_libraries.soul_gathering": "Soul Gathering",
-  "attribute.name.generic.dungeons_libraries.soul_cap": "Max Soul Capacity",
-  "attribute.name.generic.dungeons_libraries.life_steal": "Life Steal",
-  "attribute.name.generic.dungeons_libraries.ranged_damage_multiplier": "Ranged Damage Multiplier",
-  "attribute.name.generic.dungeons_libraries.magic_damage_multiplier": "Magic Damage Multiplier",
-  "attribute.name.generic.dungeons_libraries.artifact_cooldown_multiplier": "Artifact Cooldown Multiplier",
+  "attribute.name.generic.dungeonsmobs.summon_cap": "Summon Cap",
+  "attribute.name.generic.dungeonsmobs.follower_cost_limit": "Follower Cost Limit",
+  "attribute.name.generic.dungeonsmobs.soul_gathering": "Soul Gathering",
+  "attribute.name.generic.dungeonsmobs.soul_cap": "Max Soul Capacity",
+  "attribute.name.generic.dungeonsmobs.life_steal": "Life Steal",
+  "attribute.name.generic.dungeonsmobs.ranged_damage_multiplier": "Ranged Damage Multiplier",
+  "attribute.name.generic.dungeonsmobs.magic_damage_multiplier": "Magic Damage Multiplier",
+  "attribute.name.generic.dungeonsmobs.artifact_cooldown_multiplier": "Artifact Cooldown Multiplier",
+  "attribute.name.generic.dungeons.follower_cost_limit": "Follower Cost Limit",
+  "attribute.name.generic.dungeons.soul_gathering": "Soul Gathering",
+  "attribute.name.generic.dungeons.soul_cap": "Max Soul Capacity",
+  "attribute.name.generic.dungeons.life_steal": "Life Steal",
+  "attribute.name.generic.dungeons.ranged_damage_multiplier": "Ranged Damage Multiplier",
+  "attribute.name.generic.dungeons.magic_damage_multiplier": "Magic Damage Multiplier",
+  "attribute.name.generic.dungeons.artifact_cooldown_multiplier": "Artifact Cooldown Multiplier",
 
   "curios.identifier.artifact": "Artifact",
   "item.modifiers.artifact": "When In Artifact Slot:",
@@ -749,5 +756,17 @@
   "item.dungeonsmobs.bee_stinger": "Bee Stinger",
   "lore.dungeonsmobs.bee_stinger": "The Bee Stinger, a swift blade inspired by a bee's barb, can draw friendly bees into the fray to fight alongside you.",
   "item.dungeonsmobs.freezing_foil": "Freezing Foil",
-  "lore.dungeonsmobs.freezing_foil": "This needle-like blade is cold to the touch and makes quick work of any cut."
+  "lore.dungeonsmobs.freezing_foil": "This needle-like blade is cold to the touch and makes quick work of any cut.",
+  
+  "item.dungeonsmobs.boots_of_swiftness": "Boots of Swiftness",
+  "lore.dungeonsmobs.boots_of_swiftness": "Boots blessed with enchantments to allow for swift movements. Useful in uncertain times such as these.",
+  "ability.dungeonsmobs.boots_of_swiftness": "Gives a short boost to movement speed.",
+
+  "item.dungeonsmobs.death_cap_mushroom": "Death Cap Mushroom",
+  "lore.dungeonsmobs.death_cap_mushroom": "Eaten by daring warriors before battle, the Death Cap Mushroom drives fighters into a frenzy.",
+  "ability.dungeonsmobs.death_cap_mushroom": "Greatly increases attack and movement speed.",
+
+  "item.dungeonsmobs.golem_kit": "Golem Kit",
+  "lore.dungeonsmobs.golem_kit": "Iron Golems have always protected the Villagers of the Overworld. Their numbers are dwindling as a result of the Arch-Illager's war.",
+  "ability.dungeonsmobs.golem_kit": "Summons an Iron Golem to aid you in battle."
 }

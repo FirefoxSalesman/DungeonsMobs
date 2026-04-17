@@ -180,6 +180,21 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:boots_of_swiftness",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:death_cap_mushroom",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:golem_kit",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -240,7 +255,7 @@
         },
 	{
           "type": "empty",
-          "weight": 84
+          "weight": 90
         }
       ]
     }

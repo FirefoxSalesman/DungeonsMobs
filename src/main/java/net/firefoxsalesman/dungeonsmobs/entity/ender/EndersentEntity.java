@@ -12,6 +12,8 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -88,7 +90,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	public static AttributeSupplier.Builder setCustomAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.KNOCKBACK_RESISTANCE, 0.85D)
 				.add(Attributes.MAX_HEALTH, 200.0D).add(Attributes.MOVEMENT_SPEED, 0.2F)
-				.add(Attributes.ATTACK_DAMAGE, 14.0D).add(Attributes.FOLLOW_RANGE, 32.0D);
+				.add(Attributes.ATTACK_DAMAGE, 14.0D).add(Attributes.FOLLOW_RANGE, 32.0D)
+				.add(AttributeRegistry.SUMMON_CAP.get(), 5);
 	}
 
 	protected void registerGoals() {
@@ -419,7 +422,9 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 					EntityType<?> entityType = getEntityType();
 					Mob summonedMob = null;
 
-					Entity entity = entityType.create(mob.level());
+					// Entity entity = entityType.create(mob.level());
+					Entity entity = SummonHelper.summonEntity(mob, cloneSummonSpot.blockPosition(),
+							entityType);
 
 					if (entity == null) {
 						cloneSummonSpot.remove(RemovalReason.DISCARDED);

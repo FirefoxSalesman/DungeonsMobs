@@ -31,7 +31,7 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 	private final ModelPart eye;
 
 	public EndersentModel(ModelPart root) {
-		super(EndersentAnimations.WALK);
+		super();
 		this.humanoid = root.getChild("humanoid");
 		this.leftLeg = this.humanoid.getChild("leftLeg");
 		this.rightLeg = this.humanoid.getChild("rightLeg");
@@ -141,6 +141,7 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 3f, 4f);
 		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks, 1f);
 		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks, 1f);
 		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks, 1f);

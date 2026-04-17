@@ -1,5 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
@@ -24,10 +27,12 @@ public class ItemInit {
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 	public static final Map<ResourceLocation, RegistryObject<Item>> MELEE_WEAPONS = new HashMap<>();
 	public static final Map<ResourceLocation, RegistryObject<Item>> RANGED_WEAPONS = new HashMap<>();
-	private static Supplier<Item> meleeSupplier = () -> new MeleeGear(new Item.Properties());
-	private static Supplier<Item> staffSupplier = () -> new StaffGear(new Item.Properties());
-	private static Supplier<Item> axeSupplier = () -> new AxeGear(new Item.Properties());
-	private static Supplier<Item> bowSupplier = () -> new BowGear(new Item.Properties());
+	public static final Map<ResourceLocation, RegistryObject<Item>> ARTIFACTS = new HashMap<>();
+	private static Item.Properties PROPERTIES = new Item.Properties();
+	private static Supplier<Item> meleeSupplier = () -> new MeleeGear(PROPERTIES);
+	private static Supplier<Item> staffSupplier = () -> new StaffGear(PROPERTIES);
+	private static Supplier<Item> axeSupplier = () -> new AxeGear(PROPERTIES);
+	private static Supplier<Item> bowSupplier = () -> new BowGear(PROPERTIES);
 
 	// DPS 9.6 (19.2), crits once per 2.5 (1.25) seconds
 	public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger", meleeSupplier);
@@ -196,6 +201,13 @@ public class ItemInit {
 	public static final RegistryObject<Item> ECHO_OF_THE_VALLEY = registerRangedWeapon("echo_of_the_valley",
 			bowSupplier);
 
+	public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
+			() -> new BootsOfSwiftnessItem(PROPERTIES));
+	public static final RegistryObject<Item> DEATH_CAP_MUSHROOM = registerArtifact("death_cap_mushroom",
+			() -> new DeathCapMushroomItem(PROPERTIES));
+	public static final RegistryObject<Item> GOLEM_KIT = registerArtifact("golem_kit",
+			() -> new GolemKitItem(PROPERTIES));
+
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
 		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);
@@ -205,6 +217,12 @@ public class ItemInit {
 	private static RegistryObject<Item> registerRangedWeapon(String rangedWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(rangedWeaponId, itemSupplier);
 		RANGED_WEAPONS.put(GeneralHelper.modLoc(rangedWeaponId), register);
+		return register;
+	}
+
+	private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier) {
+		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
+		ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
 		return register;
 	}
 

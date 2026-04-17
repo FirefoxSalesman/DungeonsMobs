@@ -50,6 +50,7 @@ public class SummonHelper {
 
 	public static Entity summonEntity(LivingEntity leader, BlockPos position, EntityType<?> entityType) {
 		Entity entity = entityType.create(leader.level());
+		System.out.println("Entity was " + entity);
 		if (entity != null) {
 			Follower summonable = getFollowerCapability(entity);
 			if (addSummonedMob(leader, entity)) {
