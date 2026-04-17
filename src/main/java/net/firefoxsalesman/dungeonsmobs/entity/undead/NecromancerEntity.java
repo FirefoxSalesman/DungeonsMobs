@@ -378,7 +378,7 @@ public class NecromancerEntity extends Skeleton {
 			return mob.summonAnimationTick <= 0;
 		}
 
-		public boolean canSee(Entity entitySeeing, Entity p_70685_1_) {
+		private boolean canSee(Entity entitySeeing, Entity p_70685_1_) {
 			Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
 			Vec3 vector3d1 = new Vec3(p_70685_1_.getX(), p_70685_1_.getEyeY(), p_70685_1_.getZ());
 			if (p_70685_1_.level() != entitySeeing.level()

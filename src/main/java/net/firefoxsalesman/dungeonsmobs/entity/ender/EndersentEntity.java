@@ -1,5 +1,13 @@
 package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
+import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
+
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
@@ -28,22 +36,20 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
 public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
@@ -439,6 +445,18 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 			}
 		}
 
+		private boolean canSee(Entity entitySeeing, Entity p_70685_1_) {
+			Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
+			Vec3 vector3d1 = new Vec3(p_70685_1_.getX(), p_70685_1_.getEyeY(), p_70685_1_.getZ());
+			if (p_70685_1_.level() != entitySeeing.level()
+					|| vector3d1.distanceToSqr(vector3d) > 128.0D * 128.0D)
+				return false; // Forge Backport MC-209819
+			return entitySeeing.level()
+					.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER,
+							ClipContext.Fluid.NONE, entitySeeing))
+					.getType() == HitResult.Type.MISS;
+		}
+
 		private EntityType<?> getEntityType() {
 			EntityType<?> entityType = null;
 			List<String> endersentMobSummons = (List<String>) DungeonsMobsConfig.Common.ENDERSENT_MOB_SUMMONS
@@ -457,9 +475,27 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		}
 
 		private void doSummonSpot(SummonSpotEntity spot) {
-			spot.moveTo(mob.blockPosition().offset((int) -2.5 + mob.random.nextInt(5), 0,
-					(int) -2.5 + mob.random.nextInt(5)), 0.0F, 0.0F);
+			int closeMobSummonRange = 5;
+			int mobSummonRange = 10;
+			BlockPos summonPos = mob.blockPosition().offset(
+					-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1),
+					0,
+					-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1));
 			spot.setSummonType(3);
+			spot.moveTo(summonPos, 0.0F, 0.0F);
+			if (spot.isInWall() || !canSee(spot, target)) {
+				summonPos = mob.blockPosition().offset(
+						-closeMobSummonRange + mob.random
+								.nextInt((closeMobSummonRange * 2) + 1),
+						0, -closeMobSummonRange + mob.random
+								.nextInt((closeMobSummonRange * 2)
+										+ 1));
+			}
+			spot.moveTo(summonPos, 0.0F, 0.0F);
+			if (spot.isInWall() || !canSee(spot, target)) {
+				summonPos = mob.blockPosition();
+			}
+			spot.moveTo(summonPos, 0.0F, 0.0F);
 		}
 
 		public boolean animationsUseable() {
