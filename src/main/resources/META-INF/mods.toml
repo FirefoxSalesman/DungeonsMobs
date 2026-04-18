@@ -158,6 +158,12 @@ description='''${mod_description}'''
     ordering="AFTER"
     # Side this dependency is applied on - BOTH, CLIENT, or SERVER
     side="BOTH"
+[[dependencies.${mod_id}]] 
+    modId="goety" 
+    mandatory=false 
+    versionRange="[2.5.52.2,)" 
+    ordering="AFTER"
+    side="BOTH"
 [[dependencies.${mod_id}]] #optional
     # the modid of the dependency
     modId="curios" #mandatory

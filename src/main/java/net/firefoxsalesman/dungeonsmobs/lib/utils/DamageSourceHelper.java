@@ -1,4 +1,4 @@
-package net.firefoxsalesman.dungeonsmobs.gear.utilities;
+package net.firefoxsalesman.dungeonsmobs.lib.utils;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;

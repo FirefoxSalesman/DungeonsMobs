@@ -17,7 +17,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
-import static net.firefoxsalesman.dungeonsmobs.gear.utilities.DamageSourceHelper.isSource;
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.DamageSourceHelper.isSource;
 
 import java.util.Optional;
 

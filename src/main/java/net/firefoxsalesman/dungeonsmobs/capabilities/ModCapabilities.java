@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCapabilities {
-
 	public static final Capability<Convertible> CONVERTIBLE_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});

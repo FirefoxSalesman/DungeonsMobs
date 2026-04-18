@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.GameType;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.minecraftforge.fml.ModList;
 
 /**
  * Borrowed from Goety. Many thanks to Polarice
@@ -23,7 +24,8 @@ public class SoulEnergyGui {
 
 	public static boolean shouldDisplayBar() {
 		return SoulCasterHelper.hasSouls(minecraft.player) && (minecraft.gameMode != null
-				&& minecraft.gameMode.getPlayerMode() != GameType.SPECTATOR);
+				&& minecraft.gameMode.getPlayerMode() != GameType.SPECTATOR)
+				&& !ModList.get().isLoaded("goety");
 	}
 
 	public static Font getFont() {
