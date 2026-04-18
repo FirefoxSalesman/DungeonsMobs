@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.config.DungeonsLibrariesConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -37,11 +38,11 @@ public class SoulEnergyGui {
 
 		int soulEnergy = (int) SoulCasterHelper.getSouls(minecraft.player);
 		int soulEnergyTotal = (int) SoulCasterHelper.getSoulCap(minecraft.player);
-		int i = (screenWidth / 2) - 200;
+		int i = (screenWidth / 2) - 200 + DungeonsLibrariesConfig.SOUL_BAR_HORIZONTAL_OFFSET.get();
 		int energylength = (int) (60 * (soulEnergy / (double) soulEnergyTotal));
 		int maxenergy = 71;
 
-		int height = screenHeight - 5;
+		int height = screenHeight - 5 + DungeonsLibrariesConfig.SOUL_BAR_VERTICAL_OFFSET.get();
 
 		int offset = (int) ((minecraft.player.tickCount + partialTicks) % 234);
 
