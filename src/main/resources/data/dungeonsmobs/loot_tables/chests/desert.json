@@ -50,6 +50,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:gong_of_weakening",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:moon_dagger",
           "weight": 1 
         },
@@ -65,7 +70,7 @@
         },
 	{
           "type": "empty",
-          "weight": 19
+          "weight": 21
         }
       ]
     }

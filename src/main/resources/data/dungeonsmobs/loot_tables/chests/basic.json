@@ -195,6 +195,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:tasty_bone",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wonderful_wheat",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -255,7 +265,7 @@
         },
 	{
           "type": "empty",
-          "weight": 90
+          "weight": 94
         }
       ]
     }

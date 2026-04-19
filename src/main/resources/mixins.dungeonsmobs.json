@@ -24,7 +24,9 @@
     "NearestAttackableTargetGoalAccessor",
     "TargetingConditionsAccessor",
     "EnchantmentHelperMixin",
-    "AxeItemAccessor"
+    "AxeItemAccessor",
+    "AbstractHorseAccessor",
+    "LlamaInvoker"
   ],
   "client": [
     "SpiderModelMixin"

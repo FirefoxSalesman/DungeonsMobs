@@ -768,5 +768,21 @@
 
   "item.dungeonsmobs.golem_kit": "Golem Kit",
   "lore.dungeonsmobs.golem_kit": "Iron Golems have always protected the Villagers of the Overworld. Their numbers are dwindling as a result of the Arch-Illager's war.",
-  "ability.dungeonsmobs.golem_kit": "Summons an Iron Golem to aid you in battle."
+  "ability.dungeonsmobs.golem_kit": "Summons an Iron Golem to aid you in battle.",
+  
+  "item.dungeonsmobs.golem_kit": "Golem Kit",
+  "lore.dungeonsmobs.golem_kit": "Iron Golems have always protected the Villagers of the Overworld. Their numbers are dwindling as a result of the Arch-Illager's war.",
+  "ability.dungeonsmobs.golem_kit": "Summons an Iron Golem to aid you in battle.",
+
+  "item.dungeonsmobs.tasty_bone": "Tasty Bone",
+  "lore.dungeonsmobs.tasty_bone": "You hear distant howling as you hold the Tasty Bone in your hand.",
+  "ability.dungeonsmobs.tasty_bone": "Summons a wolf to aid you in battle.",
+
+  "item.dungeonsmobs.wonderful_wheat": "Wonderful Wheat",
+  "lore.dungeonsmobs.wonderful_wheat": "This item has the faint smell of an open field, baked bread, and freshly cut crops.",
+  "ability.dungeonsmobs.wonderful_wheat": "Summons a llama to aid you in battle.",
+
+  "item.dungeonsmobs.gong_of_weakening": "Gong of Weakening",
+  "lore.dungeonsmobs.gong_of_weakening": "The ancient gong, marked with the symbols of a nameless kingdom, feels safe in your hands but emits a menacing hum to those nearby.",
+  "ability.dungeonsmobs.gong_of_weakening": "Weakens enemies around you, decreasing their damage and defensive capabilities."
 }

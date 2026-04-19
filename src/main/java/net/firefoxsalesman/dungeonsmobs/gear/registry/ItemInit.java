@@ -3,6 +3,9 @@ package net.firefoxsalesman.dungeonsmobs.gear.registry;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GongOfWeakeningItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
@@ -207,6 +210,12 @@ public class ItemInit {
 			() -> new DeathCapMushroomItem(PROPERTIES));
 	public static final RegistryObject<Item> GOLEM_KIT = registerArtifact("golem_kit",
 			() -> new GolemKitItem(PROPERTIES));
+	public static final RegistryObject<Item> TASTY_BONE = registerArtifact("tasty_bone",
+			() -> new TastyBoneItem(PROPERTIES));
+	public static final RegistryObject<Item> WONDERFUL_WHEAT = registerArtifact("wonderful_wheat",
+			() -> new WonderfulWheatItem(PROPERTIES));
+	public static final RegistryObject<Item> GONG_OF_WEAKENING = registerArtifact("gong_of_weakening",
+			() -> new GongOfWeakeningItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
