@@ -36,7 +36,7 @@ public class RedstoneCubeEntity extends Monster {
 	public RedstoneCubeEntity(EntityType<? extends RedstoneCubeEntity> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new RedstoneCubeEntity.MoveHelperController(this);
-		// this.maxUpStep = 1.0F;
+		setMaxUpStep(1.0F);
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
