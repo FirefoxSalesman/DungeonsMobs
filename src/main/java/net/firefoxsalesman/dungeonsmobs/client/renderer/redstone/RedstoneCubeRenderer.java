@@ -51,11 +51,7 @@ public class RedstoneCubeRenderer extends MobRenderer<RedstoneCubeEntity, Redsto
 
 	protected void scale(RedstoneCubeEntity redstoneCubeEntity, PoseStack matrixStackIn, float partialTickTime) {
 		matrixStackIn.translate(0.0D, 0.001F, 0.0D);
-		float sizeScaleFactor = 2.0F; // Big slimes have a size of 2
-		// float f2 = MathHelper.lerp(partialTickTime,
-		// redstoneCubeEntity.prevSquishFactor, redstoneCubeEntity.squishFactor) /
-		// (sizeScaleFactor * 0.5F + 1.0F);
-		// float f3 = 1.0F / (f2 + 1.0F);
+		float sizeScaleFactor = 0.5F; // Big slimes have a size of 2
 		matrixStackIn.scale(sizeScaleFactor, sizeScaleFactor, sizeScaleFactor);
 	}
 
