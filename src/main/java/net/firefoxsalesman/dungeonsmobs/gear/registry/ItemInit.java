@@ -3,15 +3,21 @@ package net.firefoxsalesman.dungeonsmobs.gear.registry;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FlamingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GhostCloakItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GongOfWeakeningItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.HarvesterItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.IronHideAmuletItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightFeatherItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightningRodItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SoulHealerItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TormentQuiverItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfRegenerationItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfShieldingItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
@@ -240,6 +246,22 @@ public class ItemInit {
 			() -> new CorruptedSeedsItem(PROPERTIES));
 	public static final RegistryObject<Item> WIND_HORN = registerArtifact("wind_horn",
 			() -> new WindHornItem(PROPERTIES));
+	public static final RegistryObject<Item> SOUL_HEALER = registerArtifact("soul_healer",
+			() -> new SoulHealerItem(PROPERTIES));
+	public static final RegistryObject<Item> LIGHT_FEATHER = registerArtifact("light_feather",
+			() -> new LightFeatherItem(PROPERTIES));
+	// TODO Something is wrong with the setFlamingArrowsCount method in the Combo
+	// capability.
+	// public static final RegistryObject<Item> FLAMING_QUIVER =
+	// registerArtifact("flaming_quiver",
+	// () -> new FlamingQuiverItem(PROPERTIES));
+	// public static final RegistryObject<Item> TORMENT_QUIVER =
+	// registerArtifact("torment_quiver",
+	// () -> new TormentQuiverItem(PROPERTIES));
+	public static final RegistryObject<Item> TOTEM_OF_REGENERATION = registerArtifact("totem_of_regeneration",
+			() -> new TotemOfRegenerationItem(PROPERTIES));
+	public static final RegistryObject<Item> TOTEM_OF_SHIELDING = registerArtifact("totem_of_shielding",
+			() -> new TotemOfShieldingItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);

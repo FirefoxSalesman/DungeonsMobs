@@ -10,14 +10,14 @@ import net.minecraftforge.registries.RegistryObject;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.effects.CustomEffect;
+import net.firefoxsalesman.dungeonsmobs.gear.effects.ShieldingEffect;
 
 public class MobEffectInit {
 	private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister
 			.create(ForgeRegistries.MOB_EFFECTS, MOD_ID);
 
-	// public static RegistryObject<MobEffect> SHIELDING =
-	// MOB_EFFECTS.register("shielding",
-	// () -> new ShieldingEffect(MobEffectCategory.BENEFICIAL, 10044730));
+	public static RegistryObject<MobEffect> SHIELDING = MOB_EFFECTS.register("shielding",
+			() -> new ShieldingEffect(MobEffectCategory.BENEFICIAL, 10044730));
 	public static RegistryObject<MobEffect> SOUL_PROTECTION = MOB_EFFECTS.register("soul_protection",
 			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 2445989));
 	public static RegistryObject<MobEffect> STUNNED = MOB_EFFECTS.register("stunned",

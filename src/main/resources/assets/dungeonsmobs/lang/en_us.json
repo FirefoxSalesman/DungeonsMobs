@@ -816,5 +816,29 @@
 
   "item.dungeonsmobs.wind_horn": "Wind Horn",
   "lore.dungeonsmobs.wind_horn": "When the Wind Horn echoes throughout the forests of the Overworld the creatures of the night tremble with fear.",
-  "ability.dungeonsmobs.wind_horn": "Pushes enemies away from you and slows them briefly."
+  "ability.dungeonsmobs.wind_horn": "Pushes enemies away from you and slows them briefly.",
+
+  "item.dungeonsmobs.soul_healer": "Soul Healer",
+  "lore.dungeonsmobs.soul_healer": "The Soul Healer amulet is cold to the touch and trembles with the power of souls. It is a common sight among the Illagers of the Woodland Mansions.",
+  "ability.dungeonsmobs.soul_healer": "Heals the most injured ally nearby, including yourself.",
+
+  "item.dungeonsmobs.light_feather": "Light Feather",
+  "lore.dungeonsmobs.light_feather": "No one knows what mysterious creature this feather came from, but it is as beautiful and powerful.",
+  "ability.dungeonsmobs.light_feather": "Lets you tumble through the air, stunning and pushing enemies back as you go.",
+
+  "item.dungeonsmobs.flaming_quiver": "Flaming Quiver",
+  "lore.dungeonsmobs.flaming_quiver": "This quiver is filled with the deadliest of arrows.",
+  "ability.dungeonsmobs.flaming_quiver": "Turns the next 7 arrows you shoot into burning arrows.",
+  
+  "item.dungeonsmobs.torment_quiver": "Torment Quiver",
+  "lore.dungeonsmobs.torment_quiver": "The Torment Quiver radiates powerful energy drawn from the eternal source of the Undead.",
+  "ability.dungeonsmobs.torment_quiver": "Makes the next 3 arrows you shoot apply high knockback to mobs and pass through walls.",
+
+  "item.dungeonsmobs.totem_of_regeneration": "Totem of Regeneration",
+  "lore.dungeonsmobs.totem_of_regeneration": "This hand-crafted wooden figurine radiates a warmth like that of a crackling campfire, healing those who gather around it.",
+  "ability.dungeonsmobs.totem_of_regeneration": "A totem that creates a circular aura, healing you and your allies.",
+
+  "item.dungeonsmobs.totem_of_shielding": "Totem of Shielding",
+  "lore.dungeonsmobs.totem_of_shielding": "This totem radiates powerful energy that bursts forth as a protective shield around those near it.",
+  "ability.dungeonsmobs.totem_of_shielding": "This totem has mystical powers that shield those around it from projectiles."
 }

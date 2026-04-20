@@ -55,6 +55,21 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:soul_healer",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:totem_of_regeneration",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:totem_of_shielding",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:moon_dagger",
           "weight": 1 
         },
@@ -70,7 +85,7 @@
         },
 	{
           "type": "empty",
-          "weight": 21
+          "weight": 27
         }
       ]
     }

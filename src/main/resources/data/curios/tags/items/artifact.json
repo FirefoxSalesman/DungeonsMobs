@@ -18,6 +18,10 @@
     "dungeonsmobs:harvester",
     "dungeonsmobs:shock_powder",
     "dungeonsmobs:corrupted_seeds",
-    "dungeonsmobs:wind_horn"
+    "dungeonsmobs:wind_horn",
+    "dungeonsmobs:light_feather",
+    "dungeonsmobs:soul_healer",
+    "dungeonsmobs:totem_of_regeneration",
+    "dungeonsmobs:totem_of_shielding"
   ]
 }

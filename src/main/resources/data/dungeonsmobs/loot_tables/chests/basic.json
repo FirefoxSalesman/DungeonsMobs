@@ -235,6 +235,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:light_feather",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:torment_quiver",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -295,7 +305,7 @@
         },
 	{
           "type": "empty",
-          "weight": 106
+          "weight": 108
         }
       ]
     }
