@@ -20,6 +20,11 @@ public class SoulCaster implements INBTSerializable<CompoundTag> {
 		this.souls = 0;
 	}
 
+	/**
+	 * Do not call this method directly or you will be fired!
+	 * Use {@link SoulCasterHelper#getSouls(Entity)} instead, because it supports
+	 * Goety.
+	 */
 	public float getSouls() {
 		return souls;
 	}
@@ -29,7 +34,6 @@ public class SoulCaster implements INBTSerializable<CompoundTag> {
 			SEHelper.increaseSouls((Player) living, (int) amount);
 		} else {
 			setSouls(this.getSouls() + amount, living);
-
 		}
 	}
 

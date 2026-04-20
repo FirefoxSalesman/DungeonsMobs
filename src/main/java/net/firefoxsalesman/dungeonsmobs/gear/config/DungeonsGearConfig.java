@@ -78,6 +78,8 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double> BEEHIVE_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> STUNNING_CHANCE_PER_LEVEL;
 
+	public static ForgeConfigSpec.ConfigValue<List<? extends String>> LOVE_MEDALLION_BLACKLIST;
+
 	private static CommentedFileConfig cfg;
 
 	public DungeonsGearConfig() {
@@ -270,6 +272,16 @@ public class DungeonsGearConfig {
 		STUNNING_CHANCE_PER_LEVEL = builder
 				.comment("The chance per level for Stunning to trigger [-5.0-5.0, default: 0.25]")
 				.defineInRange("stunningChancePerLevel", 0.1, -5.0, 5.0);
+		builder.pop();
+
+		builder.comment("Artifact Specific Configuration").push("artifact_specific_configuration");
+		LOVE_MEDALLION_BLACKLIST = builder
+				.comment("Entities that can not be converted by Love Medallion.")
+				.defineList("loveMedallionBlacklist", Lists.newArrayList(
+						"minecraft:ender_dragon",
+						"minecraft:elder_guardian",
+						"minecraft:wither"),
+						(itemRaw) -> itemRaw instanceof String);
 		builder.pop();
 	}
 }

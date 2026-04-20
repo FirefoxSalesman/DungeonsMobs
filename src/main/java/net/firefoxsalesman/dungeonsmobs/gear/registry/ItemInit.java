@@ -4,6 +4,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessIte
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GongOfWeakeningItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.IronHideAmuletItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightningRodItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
@@ -216,6 +219,12 @@ public class ItemInit {
 			() -> new WonderfulWheatItem(PROPERTIES));
 	public static final RegistryObject<Item> GONG_OF_WEAKENING = registerArtifact("gong_of_weakening",
 			() -> new GongOfWeakeningItem(PROPERTIES));
+	public static final RegistryObject<Item> LIGHTNING_ROD = registerArtifact("lightning_rod",
+			() -> new LightningRodItem(PROPERTIES));
+	public static final RegistryObject<Item> IRON_HIDE_AMULET = registerArtifact("iron_hide_amulet",
+			() -> new IronHideAmuletItem(PROPERTIES));
+	public static final RegistryObject<Item> LOVE_MEDALLION = registerArtifact("love_medallion",
+			() -> new LoveMedallionItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);

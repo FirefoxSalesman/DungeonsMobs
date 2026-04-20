@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster;
 import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities.SOUL_CASTER_CAPABILITY;
 import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_CAP;
 
+import com.Polarice3.Goety.utils.SEHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.ISoulConsumer;
 import net.firefoxsalesman.dungeonsmobs.lib.network.UpdateSoulsMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
@@ -12,17 +13,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
 
 public class SoulCasterHelper {
 
 	public static void addSouls(LivingEntity le, float amount) {
 		SoulCaster soulCasterCapability = getSoulCasterCapability(le);
-		float newAmount = soulCasterCapability.getSouls() + amount + 1;
+		float newAmount = getSouls(le) + amount + 1;
 		soulCasterCapability.setSouls(newAmount, le);
 		if (le instanceof ServerPlayer) {
 			NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) le),
-					new UpdateSoulsMessage(soulCasterCapability.getSouls()));
+					new UpdateSoulsMessage(getSouls(le)));
 		}
 	}
 
@@ -30,25 +32,26 @@ public class SoulCasterHelper {
 		SoulCaster soulCasterCapability = getSoulCasterCapability(le);
 		float newAmount = amount;
 		soulCasterCapability.setSouls(newAmount, le);
-		if (le instanceof ServerPlayer) {
+		if (le instanceof ServerPlayer)
 			NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) le),
-					new UpdateSoulsMessage(soulCasterCapability.getSouls()));
-		}
+					new UpdateSoulsMessage(getSouls(le)));
+
 	}
 
 	public static boolean consumeSouls(LivingEntity le, float amount) {
 		if (le instanceof Player && ((Player) le).isCreative())
 			return true;
-		SoulCaster soulCasterCapability = getSoulCasterCapability(le);
 
-		if (soulCasterCapability.getSouls() < amount)
+		float soulCount = getSouls(le);
+		System.out.println("Attempting to consume " + amount + " souls. Current soul count: " + soulCount);
+		if (soulCount < amount)
 			return false;
-		float newAmount = soulCasterCapability.getSouls() - amount;
-		soulCasterCapability.setSouls(newAmount, le);
-		if (le instanceof ServerPlayer) {
+		float newAmount = soulCount - amount;
+		SoulCasterHelper.setSouls(le, newAmount);
+		if (le instanceof ServerPlayer)
 			NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) le),
-					new UpdateSoulsMessage(soulCasterCapability.getSouls()));
-		}
+					new UpdateSoulsMessage(getSouls(le)));
+
 		return true;
 	}
 
@@ -68,12 +71,16 @@ public class SoulCasterHelper {
 		return entity.getCapability(SOUL_CASTER_CAPABILITY).orElse(new SoulCaster());
 	}
 
-	public static float getSouls(LivingEntity le) {
-		SoulCaster soulCasterCapability = getSoulCasterCapability(le);
-		return soulCasterCapability.getSouls();
+	public static float getSouls(Entity le) {
+		if (ModList.get().isLoaded("goety") && le instanceof Player) {
+			return (float) SEHelper.getSoulAmountInt((Player) le);
+		} else {
+			SoulCaster soulCasterCapability = getSoulCasterCapability(le);
+			return soulCasterCapability.getSouls();
+		}
 	}
 
-	public static boolean hasSouls(LivingEntity le) {
+	public static boolean hasSouls(Entity le) {
 		return getSouls(le) > 0;
 	}
 

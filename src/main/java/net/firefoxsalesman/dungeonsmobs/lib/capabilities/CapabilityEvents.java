@@ -26,9 +26,8 @@ public class CapabilityEvents {
 		if (event.getEntity() instanceof ServerPlayer) {
 			NetworkHandler.INSTANCE
 					.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()),
-							new UpdateSoulsMessage(SoulCasterHelper
-									.getSoulCasterCapability(event.getEntity())
-									.getSouls()));
+							new UpdateSoulsMessage(
+									SoulCasterHelper.getSouls(event.getEntity())));
 		}
 	}
 
@@ -38,9 +37,8 @@ public class CapabilityEvents {
 		Leader newLeaderCap = getLeaderCapability(event.getEntity());
 		newLeaderCap.copyFrom(oldLeaderCap);
 		if (!event.isWasDeath() || DungeonsLibrariesConfig.ENABLE_KEEP_SOULS_ON_DEATH.get()) {
-			SoulCaster oldSoulsCap = SoulCasterHelper.getSoulCasterCapability(event.getOriginal());
 			SoulCaster newSoulsCap = SoulCasterHelper.getSoulCasterCapability(event.getEntity());
-			newSoulsCap.setSouls(oldSoulsCap.getSouls(), event.getEntity());
+			newSoulsCap.setSouls(SoulCasterHelper.getSouls(event.getOriginal()), event.getEntity());
 		}
 		PlayerRewards oldPlayerRewardsCap = getPlayerRewardsCapability(event.getOriginal());
 		PlayerRewards newPlayerRewardsCap = getPlayerRewardsCapability(event.getEntity());

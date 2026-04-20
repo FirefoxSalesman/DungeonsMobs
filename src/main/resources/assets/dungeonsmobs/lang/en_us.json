@@ -784,5 +784,17 @@
 
   "item.dungeonsmobs.gong_of_weakening": "Gong of Weakening",
   "lore.dungeonsmobs.gong_of_weakening": "The ancient gong, marked with the symbols of a nameless kingdom, feels safe in your hands but emits a menacing hum to those nearby.",
-  "ability.dungeonsmobs.gong_of_weakening": "Weakens enemies around you, decreasing their damage and defensive capabilities."
+  "ability.dungeonsmobs.gong_of_weakening": "Weakens enemies around you, decreasing their damage and defensive capabilities.",
+  
+  "item.dungeonsmobs.lightning_rod": "Lightning Rod",
+  "lore.dungeonsmobs.lightning_rod": "Crafted by Illager Geomancers, this item is enchanted with the power of a storming sky.",
+  "ability.dungeonsmobs.lightning_rod": "You can spend souls to attack nearby enemies with a lightning strike.",
+
+  "item.dungeonsmobs.iron_hide_amulet": "Iron Hide Amulet",
+  "lore.dungeonsmobs.iron_hide_amulet": "The Iron Hide Amulet is both ancient and timeless. Sand mysteriously and endlessly slips through the cracks in the iron.",
+  "ability.dungeonsmobs.iron_hide_amulet": "Provides a major boost to defense for a short time.",
+
+  "item.dungeonsmobs.love_medallion": "Love Medallion",
+  "lore.dungeonsmobs.love_medallion": "A spell radiates from this trinket, enchanting those nearby into a trance where they must protect the holder of the medallion at all costs.",
+  "ability.dungeonsmobs.love_medallion": "Turn up to three hostile mobs into allies for ten seconds before they disappear."
 }

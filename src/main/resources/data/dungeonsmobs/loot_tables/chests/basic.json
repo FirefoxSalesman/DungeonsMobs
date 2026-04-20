@@ -205,6 +205,21 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:lightning_rod",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:iron_hide_amulet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:love_medallion",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -265,7 +280,7 @@
         },
 	{
           "type": "empty",
-          "weight": 94
+          "weight": 100
         }
       ]
     }

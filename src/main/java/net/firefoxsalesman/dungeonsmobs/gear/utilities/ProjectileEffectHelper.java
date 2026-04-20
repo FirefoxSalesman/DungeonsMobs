@@ -1,7 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCaster;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -256,10 +255,8 @@ public class ProjectileEffectHelper {
 	}
 
 	public static boolean soulsCriticalBoost(Player attacker, ItemStack mainhand) {
-		SoulCaster soulCasterCapability = SoulCasterHelper.getSoulCasterCapability(attacker);
-
 		float soulsLimit = 50.0F;
-		float numSouls = Math.min(soulCasterCapability.getSouls(), soulsLimit);
+		float numSouls = Math.min(SoulCasterHelper.getSouls(attacker), soulsLimit);
 		if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.ENIGMA_RESONATOR.get())) {
 			int enigmaResonatorLevel = EnchantmentHelper
 					.getItemEnchantmentLevel(EnchantmentInit.ENIGMA_RESONATOR.get(), mainhand);

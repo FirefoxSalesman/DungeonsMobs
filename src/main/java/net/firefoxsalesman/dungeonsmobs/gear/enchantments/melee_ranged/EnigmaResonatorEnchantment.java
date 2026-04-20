@@ -4,7 +4,6 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.AOEDamageEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DamageBoostEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCaster;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
 import net.minecraft.core.particles.ParticleTypes;
@@ -74,9 +73,8 @@ public class EnigmaResonatorEnchantment extends DamageBoostEnchantment {
 			return;
 		Player attacker = event.getEntity();
 		ItemStack mainhand = attacker.getMainHandItem();
-		SoulCaster soulCasterCapability = SoulCasterHelper.getSoulCasterCapability(attacker);
 
-		int numSouls = (int) soulCasterCapability.getSouls();
+		int numSouls = (int) SoulCasterHelper.getSouls(attacker);
 		if (!event.isVanillaCritical()) {
 			boolean success = false;
 			if (ModEnchantmentHelper.hasEnchantment(mainhand, ENIGMA_RESONATOR.get())) {
