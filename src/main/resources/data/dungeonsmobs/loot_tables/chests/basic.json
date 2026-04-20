@@ -240,11 +240,6 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:torment_quiver",
-          "weight": 2
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -305,7 +300,7 @@
         },
 	{
           "type": "empty",
-          "weight": 108
+          "weight": 106
         }
       ]
     }
