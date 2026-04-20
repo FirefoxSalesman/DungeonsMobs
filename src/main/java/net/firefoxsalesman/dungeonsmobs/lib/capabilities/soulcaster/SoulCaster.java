@@ -39,6 +39,10 @@ public class SoulCaster implements INBTSerializable<CompoundTag> {
 
 	public void setSouls(float amount, @Nullable LivingEntity living) {
 		if (ModList.get().isLoaded("goety") && living instanceof Player) {
+			// HACK If the player's totem is full, it will not change to any number besides
+			// 0. It's likely a skill issue on my part, but I don't know any other way to
+			// fix it.
+			SEHelper.setSoulsAmount((Player) living, 0);
 			SEHelper.setSoulsAmount((Player) living, (int) amount);
 		} else if (living != null) {
 			this.souls = Mth.clamp(amount, 0, (float) living.getAttributeValue(SOUL_CAP.get()));

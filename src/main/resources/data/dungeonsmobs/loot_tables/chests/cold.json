@@ -40,6 +40,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:wind_horn",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:resolute_tempest_knife",
           "weight": 1
         },
@@ -60,7 +65,7 @@
         },
 	{
           "type": "empty",
-          "weight": 18
+          "weight": 20
         }
       ]
     }

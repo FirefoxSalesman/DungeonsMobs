@@ -9,8 +9,13 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:corrupted_seeds",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 1
+          "weight": 2
         }
       ]
     }

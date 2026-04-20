@@ -220,6 +220,21 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:ghost_cloak",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:harvester",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shock_powder",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -280,7 +295,7 @@
         },
 	{
           "type": "empty",
-          "weight": 100
+          "weight": 106
         }
       ]
     }

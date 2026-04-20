@@ -43,7 +43,6 @@ public class SoulCasterHelper {
 			return true;
 
 		float soulCount = getSouls(le);
-		System.out.println("Attempting to consume " + amount + " souls. Current soul count: " + soulCount);
 		if (soulCount < amount)
 			return false;
 		float newAmount = soulCount - amount;

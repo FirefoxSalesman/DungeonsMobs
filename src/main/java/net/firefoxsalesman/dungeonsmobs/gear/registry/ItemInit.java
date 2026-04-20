@@ -1,13 +1,18 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GhostCloakItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GongOfWeakeningItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.HarvesterItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.IronHideAmuletItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightningRodItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
@@ -225,6 +230,16 @@ public class ItemInit {
 			() -> new IronHideAmuletItem(PROPERTIES));
 	public static final RegistryObject<Item> LOVE_MEDALLION = registerArtifact("love_medallion",
 			() -> new LoveMedallionItem(PROPERTIES));
+	public static final RegistryObject<Item> GHOST_CLOAK = registerArtifact("ghost_cloak",
+			() -> new GhostCloakItem(PROPERTIES));
+	public static final RegistryObject<Item> HARVESTER = registerArtifact("harvester",
+			() -> new HarvesterItem(PROPERTIES));
+	public static final RegistryObject<Item> SHOCK_POWDER = registerArtifact("shock_powder",
+			() -> new ShockPowderItem(PROPERTIES));
+	public static final RegistryObject<Item> CORRUPTED_SEEDS = registerArtifact("corrupted_seeds",
+			() -> new CorruptedSeedsItem(PROPERTIES));
+	public static final RegistryObject<Item> WIND_HORN = registerArtifact("wind_horn",
+			() -> new WindHornItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);

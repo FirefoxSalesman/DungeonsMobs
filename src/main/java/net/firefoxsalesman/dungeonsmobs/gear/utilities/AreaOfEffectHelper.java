@@ -1,9 +1,11 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
+import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -324,49 +326,44 @@ public class AreaOfEffectHelper {
 				});
 	}
 
-	// public static void stunNearbyEnemies(Level worldIn, Player playerIn, int
-	// distance) {
-	// applyToNearbyEntities(playerIn, distance,
-	// getCanApplyToEnemyPredicate(playerIn),
-	// (LivingEntity nearbyEntity) -> {
-	// MobEffectInstance stunned = new
-	// MobEffectInstance(MobEffectInit.STUNNED.get(),
-	// 100);
-	// MobEffectInstance nausea = new MobEffectInstance(MobEffects.CONFUSION, 100);
-	// MobEffectInstance slowness = new
-	// MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-	// 100, 4);
-	// nearbyEntity.addEffect(slowness);
-	// nearbyEntity.addEffect(nausea);
-	// nearbyEntity.addEffect(stunned);
-	// });
-	// }
+	public static void stunNearbyEnemies(Level worldIn, Player playerIn, int distance) {
+		applyToNearbyEntities(playerIn, distance,
+				getCanApplyToEnemyPredicate(playerIn),
+				(LivingEntity nearbyEntity) -> {
+					MobEffectInstance stunned = new MobEffectInstance(MobEffectInit.STUNNED.get(),
+							100);
+					MobEffectInstance nausea = new MobEffectInstance(MobEffects.CONFUSION, 100);
+					MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
+							100, 4);
+					nearbyEntity.addEffect(slowness);
+					nearbyEntity.addEffect(nausea);
+					nearbyEntity.addEffect(stunned);
+				});
+	}
 
-	// public static void knockbackNearbyEnemies(Level worldIn, Player playerIn, int
-	// distance) {
-	// applyToNearbyEntities(playerIn, distance,
-	// getCanApplyToEnemyPredicate(playerIn),
-	// (LivingEntity nearbyEntity) -> {
-	// // KNOCKBACK
-	// float knockbackMultiplier = 3.0F;
-	// double xRatio = playerIn.getX() - nearbyEntity.getX();
-	// double zRatio;
-	// for (zRatio = playerIn.getZ() - nearbyEntity.getZ(); xRatio * xRatio + zRatio
-	// * zRatio < 1.0E-4D; zRatio = (Math.random() - Math.random())
-	// * 0.01D) {
-	// xRatio = (Math.random() - Math.random()) * 0.01D;
-	// }
-	// nearbyEntity.hurtDir = (float) (Mth.atan2(zRatio, xRatio) * 57.2957763671875D
-	// - (double) nearbyEntity.getYRot());
-	// nearbyEntity.knockback(0.4F * knockbackMultiplier, xRatio, zRatio);
-	// // END OF KNOCKBACK
+	public static void knockbackNearbyEnemies(Level worldIn, Player playerIn, int distance) {
+		applyToNearbyEntities(playerIn, distance, getCanApplyToEnemyPredicate(playerIn),
+				(LivingEntity nearbyEntity) -> {
+					// KNOCKBACK
+					float knockbackMultiplier = 3.0F;
+					double xRatio = playerIn.getX() - nearbyEntity.getX();
+					double zRatio;
+					for (zRatio = playerIn.getZ() - nearbyEntity.getZ(); xRatio * xRatio + zRatio
+							* zRatio < 1.0E-4D; zRatio = (Math.random() - Math.random())
+									* 0.01D) {
+						xRatio = (Math.random() - Math.random()) * 0.01D;
+					}
+					// nearbyEntity.hurtDir = (float) (Mth.atan2(zRatio, xRatio) * 57.2957763671875D
+					// - (double) nearbyEntity.getYRot());
+					nearbyEntity.knockback(0.4F * knockbackMultiplier, xRatio, zRatio);
+					// END OF KNOCKBACK
 
-	// PROXY.spawnParticles(nearbyEntity, ParticleTypes.CLOUD);
+					PROXY.spawnParticles(nearbyEntity, ParticleTypes.CLOUD);
 
-	// MobEffectInstance stun = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-	// 60,
-	// 4);
-	// nearbyEntity.addEffect(stun);
-	// });
-	// }
+					MobEffectInstance stun = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
+							60,
+							4);
+					nearbyEntity.addEffect(stun);
+				});
+	}
 }
