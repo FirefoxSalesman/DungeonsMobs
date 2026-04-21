@@ -232,6 +232,11 @@ public class NecromancerEntity extends Skeleton {
 		}
 
 		protected Optional<SoundEvent> getSummonSound() {
+			return Optional.of(ModSoundEvents.NECROMANCER_SUMMON.get());
+		}
+
+		@Override
+		protected Optional<SoundEvent> getSummonPrepSound() {
 			return Optional.of(ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get());
 		}
 

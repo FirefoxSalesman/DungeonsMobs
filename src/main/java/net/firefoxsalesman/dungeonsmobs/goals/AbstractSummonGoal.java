@@ -124,8 +124,8 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 			summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
 					mob.level().getCurrentDifficultyAt(summonPos),
 					MobSpawnType.MOB_SUMMONED, null, null);
-			if (getSummonSound().isPresent())
-				mobSummonSpot.playSound(getSummonSound().get(), 1.0F, 1.0F);
+			if (getSummonPrepSound().isPresent())
+				mobSummonSpot.playSound(getSummonPrepSound().get(), 1.0F, 1.0F);
 			if (mob.getTeam() != null) {
 				Scoreboard scoreboard = mob.level().getScoreboard();
 				scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
@@ -175,6 +175,8 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	protected abstract int closeMobSummonRange();
 
 	protected abstract int mobSummonRange();
+
+	protected abstract Optional<SoundEvent> getSummonPrepSound();
 
 	protected abstract Optional<SoundEvent> getSummonSound();
 
