@@ -82,7 +82,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	public void start() {
 		if (summonSound.isPresent())
 			mob.playSound(summonSound.get(), 1.0F, 1.0F);
-		setSummonTick(getSummonLength());
+		resetSummonTick();
 		mob.level().broadcastEntityEvent(mob, entityEventState);
 	}
 
@@ -189,11 +189,9 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 				.getType() == HitResult.Type.MISS;
 	}
 
-	protected abstract void setSummonTick(int tick);
+	protected abstract void resetSummonTick();
 
 	protected abstract int getSummonTick();
-
-	protected abstract int getSummonLength();
 
 	protected abstract boolean tickCondition();
 }

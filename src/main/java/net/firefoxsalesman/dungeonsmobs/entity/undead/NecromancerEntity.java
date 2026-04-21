@@ -231,8 +231,8 @@ public class NecromancerEntity extends Skeleton {
 					ModSoundEvents.NECROMANCER_SUMMON.get());
 		}
 
-		protected void setSummonTick(int tick) {
-			mob.summonAnimationTick = tick;
+		protected void resetSummonTick() {
+			mob.summonAnimationTick = summonAnimationLength;
 		}
 
 		protected int getSummonTick() {
@@ -252,11 +252,6 @@ public class NecromancerEntity extends Skeleton {
 		@Override
 		public boolean canUse() {
 			return super.canUse() && mob.distanceTo(target) > 5;
-		}
-
-		@Override
-		protected int getSummonLength() {
-			return mob.summonAnimationLength;
 		}
 	}
 

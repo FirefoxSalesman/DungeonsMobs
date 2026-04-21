@@ -458,18 +458,13 @@ public class DrownedNecromancerEntity extends Drowned {
 		}
 
 		@Override
-		protected void setSummonTick(int tick) {
-			landSummonAnimationTick = tick;
+		protected void resetSummonTick() {
+			landSummonAnimationTick = landShootAnimationLength;
 		}
 
 		@Override
 		protected int getSummonTick() {
 			return landSummonAnimationTick;
-		}
-
-		@Override
-		protected int getSummonLength() {
-			return landSummonAnimationLength;
 		}
 
 		@Override
@@ -718,18 +713,13 @@ public class DrownedNecromancerEntity extends Drowned {
 		}
 
 		@Override
-		protected void setSummonTick(int tick) {
-			summonAnimationTick = tick;
+		protected void resetSummonTick() {
+			summonAnimationTick = summonAnimationLength;
 		}
 
 		@Override
 		protected int getSummonTick() {
 			return summonAnimationTick;
-		}
-
-		@Override
-		protected int getSummonLength() {
-			return summonAnimationLength;
 		}
 
 		@Override
@@ -742,6 +732,11 @@ public class DrownedNecromancerEntity extends Drowned {
 			for (int i = 0; i < 6; i++) {
 				super.tickBody();
 			}
+		}
+
+		@Override
+		public boolean canUse() {
+			return super.canUse() && mob.isInWaterOrBubble();
 		}
 	}
 
