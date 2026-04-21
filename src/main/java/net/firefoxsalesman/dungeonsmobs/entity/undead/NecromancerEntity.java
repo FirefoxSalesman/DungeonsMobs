@@ -286,6 +286,11 @@ public class NecromancerEntity extends Skeleton {
 		protected int closeMobSummonRange() {
 			return 1;
 		}
+
+		@Override
+		protected int entityEventState() {
+			return 9;
+		}
 	}
 
 	class ShootAttackGoal extends Goal {

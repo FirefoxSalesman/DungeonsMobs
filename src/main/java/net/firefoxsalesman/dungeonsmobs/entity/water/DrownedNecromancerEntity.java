@@ -526,6 +526,11 @@ public class DrownedNecromancerEntity extends Drowned {
 		public boolean canUse() {
 			return super.canUse() && !mob.isInWaterOrBubble();
 		}
+
+		@Override
+		protected int entityEventState() {
+			return 9;
+		}
 	}
 
 	class LandShootAttackGoal extends Goal {

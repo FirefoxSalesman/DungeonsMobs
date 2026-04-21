@@ -68,71 +68,73 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 		if (getSummonSound().isPresent())
 			mob.playSound(getSummonSound().get(), 1.0F, 1.0F);
 		setSummonTick(getSummonLength());
-		mob.level().broadcastEntityEvent(mob, (byte) 9);
+		mob.level().broadcastEntityEvent(mob, (byte) entityEventState());
 	}
 
 	@Override
 	public void tick() {
 		target = mob.getTarget();
-
 		this.mob.getNavigation().stop();
+		if (target != null && tickCondition())
+			tickBody();
 
-		if (target != null && tickCondition()) {
-			SummonSpotEntity mobSummonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
-			mobSummonSpot.mobSpawnRotation = mob.getRandom().nextInt(360);
-			mobSummonSpot.setSummonType(2);
-			BlockPos summonPos = mob.blockPosition().offset(
-					-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1), 0,
-					-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1));
-			mobSummonSpot.moveTo(summonPos, 0.0F, 0.0F);
+	}
 
-			// RELOCATES SUMMONED MOB CLOSER TO NECROMANCER IF SPAWNED IN A POSITION THAT
-			// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
-			if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
-				summonPos = mob.blockPosition().offset(
-						-closeMobSummonRange() + mob.getRandom()
-								.nextInt((closeMobSummonRange() * 2) + 1),
-						0, -closeMobSummonRange() + mob.getRandom()
-								.nextInt((closeMobSummonRange() * 2) + 1));
-			}
+	protected void tickBody() {
+		SummonSpotEntity mobSummonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
+		mobSummonSpot.mobSpawnRotation = mob.getRandom().nextInt(360);
+		mobSummonSpot.setSummonType(2);
+		BlockPos summonPos = mob.blockPosition().offset(
+				-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1), 0,
+				-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1));
+		mobSummonSpot.moveTo(summonPos, 0.0F, 0.0F);
 
-			// RELOCATES SUMMONED MOB TO NECROMANCER'S POSITION IF STILL IN A POSITION THAT
-			// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
-			if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
-				summonPos = mob.blockPosition();
-			}
-			((ServerLevel) mob.level()).addFreshEntityWithPassengers(mobSummonSpot);
-			PositionUtils.moveToCorrectHeight(mobSummonSpot);
-
-			EntityType<?> entityType = getEntityType();
-
-			Mob summonedMob = null;
-
-			Entity entity = SummonHelper.summonEntity(mob, mobSummonSpot.blockPosition(),
-					entityType);
-
-			if (entity == null) {
-				mobSummonSpot.remove(RemovalReason.DISCARDED);
-				return;
-			}
-
-			if (entity instanceof Mob) {
-				summonedMob = ((Mob) entity);
-			}
-
-			summonedMob.setTarget(target);
-			summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
-					mob.level().getCurrentDifficultyAt(summonPos),
-					MobSpawnType.MOB_SUMMONED, null, null);
-			if (getSummonPrepSound().isPresent())
-				mobSummonSpot.playSound(getSummonPrepSound().get(), 1.0F, 1.0F);
-			if (mob.getTeam() != null) {
-				Scoreboard scoreboard = mob.level().getScoreboard();
-				scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
-						scoreboard.getPlayerTeam(mob.getTeam().getName()));
-			}
-			mobSummonSpot.summonedEntity = summonedMob;
+		// RELOCATES SUMMONED MOB CLOSER TO NECROMANCER IF SPAWNED IN A POSITION THAT
+		// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
+		if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
+			summonPos = mob.blockPosition().offset(
+					-closeMobSummonRange() + mob.getRandom()
+							.nextInt((closeMobSummonRange() * 2) + 1),
+					0, -closeMobSummonRange() + mob.getRandom()
+							.nextInt((closeMobSummonRange() * 2) + 1));
 		}
+
+		// RELOCATES SUMMONED MOB TO NECROMANCER'S POSITION IF STILL IN A POSITION THAT
+		// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
+		if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
+			summonPos = mob.blockPosition();
+		}
+		((ServerLevel) mob.level()).addFreshEntityWithPassengers(mobSummonSpot);
+		PositionUtils.moveToCorrectHeight(mobSummonSpot);
+
+		EntityType<?> entityType = getEntityType();
+
+		Mob summonedMob = null;
+
+		Entity entity = SummonHelper.summonEntity(mob, mobSummonSpot.blockPosition(),
+				entityType);
+
+		if (entity == null) {
+			mobSummonSpot.remove(RemovalReason.DISCARDED);
+			return;
+		}
+
+		if (entity instanceof Mob) {
+			summonedMob = ((Mob) entity);
+		}
+
+		summonedMob.setTarget(target);
+		summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
+				mob.level().getCurrentDifficultyAt(summonPos),
+				MobSpawnType.MOB_SUMMONED, null, null);
+		if (getSummonPrepSound().isPresent())
+			mobSummonSpot.playSound(getSummonPrepSound().get(), 1.0F, 1.0F);
+		if (mob.getTeam() != null) {
+			Scoreboard scoreboard = mob.level().getScoreboard();
+			scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
+					scoreboard.getPlayerTeam(mob.getTeam().getName()));
+		}
+		mobSummonSpot.summonedEntity = summonedMob;
 	}
 
 	private EntityType<?> getEntityType() {
@@ -191,4 +193,6 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	protected abstract List<String> getSummonList();
 
 	protected abstract EntityType<?> getBackupEntityType();
+
+	protected abstract int entityEventState();
 }
