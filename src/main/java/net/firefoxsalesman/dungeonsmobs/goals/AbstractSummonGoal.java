@@ -29,17 +29,32 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.world.phys.HitResult;
 
 public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
-
+	int mobSummonRange;
+	int closeMobSummonRange;
+	byte entityEventState;
+	List<String> summonList;
+	EntityType<?> backupEntityType;
+	Optional<SoundEvent> summonPrepSound;
+	Optional<SoundEvent> summonSound;
 	public T mob;
 	@Nullable
 	public LivingEntity target;
 
 	public int nextUseTime;
 
-	public AbstractSummonGoal(T mob) {
+	public AbstractSummonGoal(T mob, int mobSummonRange, int closeMobSummonRange, int entityEventState,
+			List<? extends String> summonList, EntityType<?> backupEntityType,
+			@Nullable SoundEvent summonPrepSound, @Nullable SoundEvent summonSound) {
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 		this.mob = mob;
 		this.target = mob.getTarget();
+		this.closeMobSummonRange = closeMobSummonRange;
+		this.mobSummonRange = mobSummonRange;
+		this.entityEventState = (byte) entityEventState;
+		this.summonList = (List<String>) summonList;
+		this.backupEntityType = backupEntityType;
+		this.summonPrepSound = Optional.ofNullable(summonPrepSound);
+		this.summonSound = Optional.ofNullable(summonSound);
 	}
 
 	@Override
@@ -65,10 +80,10 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 
 	@Override
 	public void start() {
-		if (getSummonSound().isPresent())
-			mob.playSound(getSummonSound().get(), 1.0F, 1.0F);
+		if (summonSound.isPresent())
+			mob.playSound(summonSound.get(), 1.0F, 1.0F);
 		setSummonTick(getSummonLength());
-		mob.level().broadcastEntityEvent(mob, (byte) entityEventState());
+		mob.level().broadcastEntityEvent(mob, entityEventState);
 	}
 
 	@Override
@@ -85,18 +100,18 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 		mobSummonSpot.mobSpawnRotation = mob.getRandom().nextInt(360);
 		mobSummonSpot.setSummonType(2);
 		BlockPos summonPos = mob.blockPosition().offset(
-				-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1), 0,
-				-mobSummonRange() + mob.getRandom().nextInt((mobSummonRange() * 2) + 1));
+				-mobSummonRange + mob.getRandom().nextInt((mobSummonRange * 2) + 1), 0,
+				-mobSummonRange + mob.getRandom().nextInt((mobSummonRange * 2) + 1));
 		mobSummonSpot.moveTo(summonPos, 0.0F, 0.0F);
 
 		// RELOCATES SUMMONED MOB CLOSER TO NECROMANCER IF SPAWNED IN A POSITION THAT
 		// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
 		if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
 			summonPos = mob.blockPosition().offset(
-					-closeMobSummonRange() + mob.getRandom()
-							.nextInt((closeMobSummonRange() * 2) + 1),
-					0, -closeMobSummonRange() + mob.getRandom()
-							.nextInt((closeMobSummonRange() * 2) + 1));
+					-closeMobSummonRange + mob.getRandom()
+							.nextInt((closeMobSummonRange * 2) + 1),
+					0, -closeMobSummonRange + mob.getRandom()
+							.nextInt((closeMobSummonRange * 2) + 1));
 		}
 
 		// RELOCATES SUMMONED MOB TO NECROMANCER'S POSITION IF STILL IN A POSITION THAT
@@ -127,8 +142,8 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 		summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
 				mob.level().getCurrentDifficultyAt(summonPos),
 				MobSpawnType.MOB_SUMMONED, null, null);
-		if (getSummonPrepSound().isPresent())
-			mobSummonSpot.playSound(getSummonPrepSound().get(), 1.0F, 1.0F);
+		if (summonPrepSound.isPresent())
+			mobSummonSpot.playSound(summonPrepSound.get(), 1.0F, 1.0F);
 		if (mob.getTeam() != null) {
 			Scoreboard scoreboard = mob.level().getScoreboard();
 			scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
@@ -139,7 +154,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 
 	private EntityType<?> getEntityType() {
 		EntityType<?> entityType = null;
-		List<String> necromancerMobSummons = getSummonList();
+		List<String> necromancerMobSummons = summonList;
 		if (!necromancerMobSummons.isEmpty()) {
 			Collections.shuffle(necromancerMobSummons);
 
@@ -148,7 +163,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 			entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(randomMobID));
 		}
 		if (entityType == null) {
-			entityType = getBackupEntityType();
+			entityType = backupEntityType;
 		}
 		return entityType;
 	}
@@ -174,14 +189,6 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 				.getType() == HitResult.Type.MISS;
 	}
 
-	protected abstract int closeMobSummonRange();
-
-	protected abstract int mobSummonRange();
-
-	protected abstract Optional<SoundEvent> getSummonPrepSound();
-
-	protected abstract Optional<SoundEvent> getSummonSound();
-
 	protected abstract void setSummonTick(int tick);
 
 	protected abstract int getSummonTick();
@@ -189,10 +196,4 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	protected abstract int getSummonLength();
 
 	protected abstract boolean tickCondition();
-
-	protected abstract List<String> getSummonList();
-
-	protected abstract EntityType<?> getBackupEntityType();
-
-	protected abstract int entityEventState();
 }

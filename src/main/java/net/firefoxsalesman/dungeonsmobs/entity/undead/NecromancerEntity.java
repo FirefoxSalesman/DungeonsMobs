@@ -30,8 +30,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.List;
-import java.util.Optional;
 
 public class NecromancerEntity extends Skeleton {
 
@@ -228,16 +226,9 @@ public class NecromancerEntity extends Skeleton {
 
 	class SummonGoal extends AbstractSummonGoal<NecromancerEntity> {
 		public SummonGoal(NecromancerEntity mob) {
-			super(mob);
-		}
-
-		protected Optional<SoundEvent> getSummonSound() {
-			return Optional.of(ModSoundEvents.NECROMANCER_SUMMON.get());
-		}
-
-		@Override
-		protected Optional<SoundEvent> getSummonPrepSound() {
-			return Optional.of(ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get());
+			super(mob, 3, 1, 9, DungeonsMobsConfig.Common.NECROMANCER_MOB_SUMMONS.get(), EntityType.ZOMBIE,
+					ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(),
+					ModSoundEvents.NECROMANCER_SUMMON.get());
 		}
 
 		protected void setSummonTick(int tick) {
@@ -258,38 +249,14 @@ public class NecromancerEntity extends Skeleton {
 							&& mob.random.nextBoolean());
 		}
 
-		protected List<String> getSummonList() {
-			return (List<String>) DungeonsMobsConfig.Common.NECROMANCER_MOB_SUMMONS.get();
-		}
-
 		@Override
 		public boolean canUse() {
 			return super.canUse() && mob.distanceTo(target) > 5;
 		}
 
 		@Override
-		protected EntityType<?> getBackupEntityType() {
-			return EntityType.ZOMBIE;
-		}
-
-		@Override
 		protected int getSummonLength() {
 			return mob.summonAnimationLength;
-		}
-
-		@Override
-		protected int mobSummonRange() {
-			return 3;
-		}
-
-		@Override
-		protected int closeMobSummonRange() {
-			return 1;
-		}
-
-		@Override
-		protected int entityEventState() {
-			return 9;
 		}
 	}
 

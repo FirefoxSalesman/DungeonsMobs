@@ -37,8 +37,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.List;
-import java.util.Optional;
 
 public class DrownedNecromancerEntity extends Drowned {
 
@@ -454,22 +452,9 @@ public class DrownedNecromancerEntity extends Drowned {
 
 	class LandSummonGoal extends AbstractSummonGoal<DrownedNecromancerEntity> {
 		public LandSummonGoal(DrownedNecromancerEntity mob) {
-			super(mob);
-		}
-
-		@Override
-		protected int closeMobSummonRange() {
-			return 2;
-		}
-
-		@Override
-		protected int mobSummonRange() {
-			return 5;
-		}
-
-		@Override
-		protected Optional<SoundEvent> getSummonSound() {
-			return Optional.of(ModSoundEvents.NECROMANCER_SUMMON.get());
+			super(mob, 5, 2, 9, DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get(),
+					EntityType.DROWNED, ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(),
+					ModSoundEvents.NECROMANCER_SUMMON.get());
 		}
 
 		@Override
@@ -499,28 +484,8 @@ public class DrownedNecromancerEntity extends Drowned {
 		}
 
 		@Override
-		protected List<String> getSummonList() {
-			return (List<String>) DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get();
-		}
-
-		@Override
-		protected EntityType<?> getBackupEntityType() {
-			return EntityType.DROWNED;
-		}
-
-		@Override
-		protected Optional<SoundEvent> getSummonPrepSound() {
-			return Optional.of(ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get());
-		}
-
-		@Override
 		public boolean canUse() {
 			return super.canUse() && !mob.isInWaterOrBubble();
-		}
-
-		@Override
-		protected int entityEventState() {
-			return 9;
 		}
 	}
 
@@ -747,27 +712,9 @@ public class DrownedNecromancerEntity extends Drowned {
 
 	class SummonGoal extends AbstractSummonGoal<DrownedNecromancerEntity> {
 		public SummonGoal(DrownedNecromancerEntity mob) {
-			super(mob);
-		}
-
-		@Override
-		protected int closeMobSummonRange() {
-			return 3;
-		}
-
-		@Override
-		protected int mobSummonRange() {
-			return 6;
-		}
-
-		@Override
-		protected Optional<SoundEvent> getSummonPrepSound() {
-			return Optional.of(ModSoundEvents.DROWNED_NECROMANCER_STRONG_ATTACK.get());
-		}
-
-		@Override
-		protected Optional<SoundEvent> getSummonSound() {
-			return Optional.of(ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get());
+			super(mob, 6, 3, 7, DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get(),
+					EntityType.DROWNED, ModSoundEvents.DROWNED_NECROMANCER_STRONG_ATTACK.get(),
+					ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get());
 		}
 
 		@Override
@@ -795,21 +742,6 @@ public class DrownedNecromancerEntity extends Drowned {
 			for (int i = 0; i < 6; i++) {
 				super.tickBody();
 			}
-		}
-
-		@Override
-		protected List<String> getSummonList() {
-			return (List<String>) DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get();
-		}
-
-		@Override
-		protected EntityType<?> getBackupEntityType() {
-			return EntityType.DROWNED;
-		}
-
-		@Override
-		protected int entityEventState() {
-			return 7;
 		}
 	}
 
