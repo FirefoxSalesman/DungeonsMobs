@@ -54,9 +54,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	@Override
 	public boolean canUse() {
 		target = mob.getTarget();
-
-		return target != null && mob.tickCount >= this.nextUseTime && mob.distanceTo(target) > 5
-				&& animationsUseable()
+		return target != null && mob.tickCount >= this.nextUseTime && animationsUseable()
 				&& mob.hasLineOfSight(target);
 	}
 

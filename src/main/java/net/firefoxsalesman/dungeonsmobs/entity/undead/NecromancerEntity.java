@@ -258,6 +258,11 @@ public class NecromancerEntity extends Skeleton {
 		}
 
 		@Override
+		public boolean canUse() {
+			return super.canUse() && mob.distanceTo(target) > 5;
+		}
+
+		@Override
 		protected EntityType<?> getBackupEntityType() {
 			return EntityType.ZOMBIE;
 		}
