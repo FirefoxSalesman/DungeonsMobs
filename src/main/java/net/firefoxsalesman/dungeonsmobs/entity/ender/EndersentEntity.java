@@ -2,19 +2,13 @@ package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -22,9 +16,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.BossEvent;
@@ -33,32 +25,22 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.scores.Scoreboard;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
 	public final AnimationState idleAnimationState = new AnimationState();
-	private int idleAnimationTimeout = 0;
 
 	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTimeout = 0;
@@ -270,8 +252,15 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		} else {
 			attackAnimationTimeout--;
 		}
-		idleAnimationState.animateWhen(!walkAnimation.isMoving() && getTarget() == null && isAlive(),
+		summonAnimationState.animateWhen(!walkAnimation.isMoving() && isSummoning() && isAlive(),
 				tickCount);
+		idleAnimationState.animateWhen(
+				!walkAnimation.isMoving() && !isSummoning() && getTarget() == null && isAlive(),
+				tickCount);
+	}
+
+	private boolean isSummoning() {
+		return summonAnimationTick >= 0;
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
@@ -338,180 +327,47 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		return summonAnimationTick > 0 || appearDelay > 0;
 	}
 
-	class CreateWatchlingGoal extends Goal {
-		public EndersentEntity mob;
-		@Nullable
-		public LivingEntity target;
-
-		public int nextUseTime;
+	class CreateWatchlingGoal extends AbstractSummonGoal<EndersentEntity> {
 
 		public CreateWatchlingGoal(EndersentEntity mob) {
-			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
-			this.mob = mob;
-			target = mob.getTarget();
+			super(mob, 10, 5, 8, DungeonsMobsConfig.Common.ENDERSENT_MOB_SUMMONS.get(),
+					ModEntities.WATCHLING.get(), null, null);
+		}
+
+		@Override
+		protected void tickBody() {
+			int clonesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
+					.getDifficulty().getId();
+
+			for (int i = 0; i < clonesByDifficulty * 2; i++) {
+				super.tickBody();
+			}
+		}
+
+		@Override
+		protected void resetSummonTick() {
+			summonAnimationTick = summonAnimationLength;
+		}
+
+		@Override
+		protected int getSummonTick() {
+			return summonAnimationTick;
+		}
+
+		@Override
+		protected boolean tickCondition() {
+			return mob.summonAnimationTick == 1;
+		}
+
+		@Override
+		public boolean canUse() {
+			return super.canUse() && random.nextInt(10) == 0;
 		}
 
 		@Override
 		public boolean isInterruptable() {
 			return mob.shouldBeStationary();
 		}
-
-		public boolean requiresUpdateEveryTick() {
-			return true;
-		}
-
-		@Override
-		public boolean canUse() {
-			target = mob.getTarget();
-
-			return target != null && mob.tickCount >= nextUseTime && mob.random.nextInt(10) == 0
-					&& mob.hasLineOfSight(target) && animationsUseable();
-		}
-
-		@Override
-		public boolean canContinueToUse() {
-			return target != null && !animationsUseable();
-		}
-
-		@Override
-		public void start() {
-			mob.summonAnimationTick = mob.summonAnimationLength;
-			mob.level().broadcastEntityEvent(mob, (byte) 8);
-			summonAnimationState.start(tickCount);
-		}
-
-		@Override
-		public void tick() {
-			target = mob.getTarget();
-
-			mob.getNavigation().stop();
-
-			if (target != null) {
-				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
-			}
-
-			if (target != null && mob.summonAnimationTick == 1) {
-				SummonSpotEntity summonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
-				doSummonSpot(summonSpot);
-				((ServerLevel) mob.level()).addFreshEntityWithPassengers(summonSpot);
-				PositionUtils.moveToCorrectHeight(summonSpot);
-
-				mob.level().broadcastEntityEvent(mob, (byte) 7);
-
-				if (target instanceof Mob) {
-					((Mob) target).setTarget(null);
-					target.setLastHurtByMob(null);
-					if (target instanceof NeutralMob) {
-						((NeutralMob) target).stopBeingAngry();
-						((NeutralMob) target).setLastHurtByMob(null);
-						((NeutralMob) target).setTarget(null);
-						((NeutralMob) target).setPersistentAngerTarget(null);
-					}
-				}
-
-				int clonesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
-						.getDifficulty().getId();
-
-				for (int i = 0; i < clonesByDifficulty * 2; i++) {
-					SummonSpotEntity cloneSummonSpot = ModEntities.SUMMON_SPOT.get()
-							.create(mob.level());
-					doSummonSpot(cloneSummonSpot);
-					cloneSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
-					((ServerLevel) mob.level()).addFreshEntityWithPassengers(cloneSummonSpot);
-					PositionUtils.moveToCorrectHeight(cloneSummonSpot);
-					EntityType<?> entityType = getEntityType();
-					Mob summonedMob = null;
-
-					// Entity entity = entityType.create(mob.level());
-					Entity entity = SummonHelper.summonEntity(mob, cloneSummonSpot.blockPosition(),
-							entityType);
-
-					if (entity == null) {
-						cloneSummonSpot.remove(RemovalReason.DISCARDED);
-						return;
-					}
-
-					if (entity instanceof Mob) {
-						summonedMob = ((Mob) entity);
-					}
-
-					summonedMob.setTarget(target);
-					summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
-							mob.level().getCurrentDifficultyAt(
-									cloneSummonSpot.blockPosition()),
-							MobSpawnType.MOB_SUMMONED, null, null);
-					if (mob.getTeam() != null) {
-						Scoreboard scoreboard = mob.level().getScoreboard();
-						scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
-								scoreboard.getPlayerTeam(mob.getTeam().getName()));
-					}
-					cloneSummonSpot.summonedEntity = summonedMob;
-				}
-			}
-		}
-
-		private boolean canSee(Entity entitySeeing, Entity p_70685_1_) {
-			Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
-			Vec3 vector3d1 = new Vec3(p_70685_1_.getX(), p_70685_1_.getEyeY(), p_70685_1_.getZ());
-			if (p_70685_1_.level() != entitySeeing.level()
-					|| vector3d1.distanceToSqr(vector3d) > 128.0D * 128.0D)
-				return false; // Forge Backport MC-209819
-			return entitySeeing.level()
-					.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER,
-							ClipContext.Fluid.NONE, entitySeeing))
-					.getType() == HitResult.Type.MISS;
-		}
-
-		private EntityType<?> getEntityType() {
-			EntityType<?> entityType = null;
-			List<String> endersentMobSummons = (List<String>) DungeonsMobsConfig.Common.ENDERSENT_MOB_SUMMONS
-					.get();
-			if (!endersentMobSummons.isEmpty()) {
-				Collections.shuffle(endersentMobSummons);
-
-				int randomIndex = mob.getRandom().nextInt(endersentMobSummons.size());
-				String randomMobID = endersentMobSummons.get(randomIndex);
-				entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(randomMobID));
-			}
-			if (entityType == null) {
-				entityType = ModEntities.WATCHLING.get();
-			}
-			return entityType;
-		}
-
-		private void doSummonSpot(SummonSpotEntity spot) {
-			int closeMobSummonRange = 5;
-			int mobSummonRange = 10;
-			BlockPos summonPos = mob.blockPosition().offset(
-					-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1),
-					0,
-					-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1));
-			spot.setSummonType(3);
-			spot.moveTo(summonPos, 0.0F, 0.0F);
-			if (spot.isInWall() || !canSee(spot, target)) {
-				summonPos = mob.blockPosition().offset(
-						-closeMobSummonRange + mob.random
-								.nextInt((closeMobSummonRange * 2) + 1),
-						0, -closeMobSummonRange + mob.random
-								.nextInt((closeMobSummonRange * 2)
-										+ 1));
-			}
-			spot.moveTo(summonPos, 0.0F, 0.0F);
-			if (spot.isInWall() || !canSee(spot, target)) {
-				summonPos = mob.blockPosition();
-			}
-			spot.moveTo(summonPos, 0.0F, 0.0F);
-		}
-
-		public boolean animationsUseable() {
-			return mob.summonAnimationTick <= 0;
-		}
-
-		@Override
-		public void stop() {
-			super.stop();
-			nextUseTime = mob.tickCount + 600;
-		}
-
 	}
+
 }
