@@ -6,18 +6,14 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.DrownedNecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.TridentStormEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -34,17 +30,12 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
@@ -509,7 +500,7 @@ public class DrownedNecromancerEntity extends Drowned {
 
 		@Override
 		protected List<String> getSummonList() {
-			return (List<String>) DungeonsMobsConfig.COMMON.DROWNED_NECROMANCER_MOB_SUMMONS.get();
+			return (List<String>) DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get();
 		}
 
 		@Override
@@ -754,158 +745,72 @@ public class DrownedNecromancerEntity extends Drowned {
 
 	}
 
-	class SummonGoal extends Goal {
-
-		public DrownedNecromancerEntity mob;
-		@Nullable
-		public LivingEntity target;
-
-		public int nextUseTime;
-
-		public int mobSummonRange = 6;
-		public int closeMobSummonRange = 3;
-
+	class SummonGoal extends AbstractSummonGoal<DrownedNecromancerEntity> {
 		public SummonGoal(DrownedNecromancerEntity mob) {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
-			this.mob = mob;
-			this.target = mob.getTarget();
+			super(mob);
 		}
 
 		@Override
-		public boolean isInterruptable() {
-			return false;
-		}
-
-		public boolean requiresUpdateEveryTick() {
-			return true;
+		protected int closeMobSummonRange() {
+			return 3;
 		}
 
 		@Override
-		public boolean canUse() {
-			target = mob.getTarget();
-
-			return target != null && mob.tickCount >= this.nextUseTime && animationsUseable()
-					&& mob.hasLineOfSight(target) && mob.isInWaterOrBubble();
+		protected int mobSummonRange() {
+			return 6;
 		}
 
 		@Override
-		public boolean canContinueToUse() {
-			return target != null && !animationsUseable();
+		protected Optional<SoundEvent> getSummonPrepSound() {
+			return Optional.of(ModSoundEvents.DROWNED_NECROMANCER_STRONG_ATTACK.get());
 		}
 
 		@Override
-		public void start() {
-			mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_STRONG_ATTACK.get(), 1.0F, 1.0F);
-			mob.summonAnimationTick = mob.summonAnimationLength;
-			mob.level().broadcastEntityEvent(mob, (byte) 7);
+		protected Optional<SoundEvent> getSummonSound() {
+			return Optional.of(ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get());
 		}
 
 		@Override
-		public void tick() {
-			target = mob.getTarget();
+		protected void setSummonTick(int tick) {
+			summonAnimationTick = tick;
+		}
 
-			this.mob.getNavigation().stop();
+		@Override
+		protected int getSummonTick() {
+			return summonAnimationTick;
+		}
 
-			if (target != null &&
-					mob.summonAnimationTick == mob.summonAnimationActionPoint) {
-				for (int i = 0; i < 6; i++) {
-					SummonSpotEntity mobSummonSpot = ModEntities.SUMMON_SPOT.get()
-							.create(mob.level());
-					mobSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
-					mobSummonSpot.setSummonType(2);
-					BlockPos summonPos = mob.blockPosition().offset(
-							-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1),
-							0,
-							-mobSummonRange + mob.random.nextInt((mobSummonRange * 2) + 1));
-					mobSummonSpot.moveTo(summonPos, 0.0F, 0.0F);
+		@Override
+		protected int getSummonLength() {
+			return summonAnimationLength;
+		}
 
-					// RELOCATES SUMMONED MOB CLOSER TO NECROMANCER IF SPAWNED IN A POSITION THAT
-					// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
-					if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
-						summonPos = mob.blockPosition().offset(
-								-closeMobSummonRange + mob.random
-										.nextInt((closeMobSummonRange * 2) + 1),
-								0, -closeMobSummonRange + mob.random.nextInt(
-										(closeMobSummonRange * 2) + 1));
-					}
+		@Override
+		protected boolean tickCondition() {
+			return mob.summonAnimationTick == mob.summonAnimationActionPoint;
+		}
 
-					// RELOCATES SUMMONED MOB TO NECROMANCER'S POSITION IF STILL IN A POSITION THAT
-					// MAY HINDER ITS ABILITY TO JOIN IN THE BATTLE
-					if (mobSummonSpot.isInWall() || !canSee(mobSummonSpot, target)) {
-						summonPos = mob.blockPosition();
-					}
-					((ServerLevel) mob.level()).addFreshEntityWithPassengers(mobSummonSpot);
-
-					EntityType<?> entityType = getEntityType();
-
-					Mob summonedMob = null;
-
-					Entity entity = SummonHelper.summonEntity(mob, mobSummonSpot.blockPosition(),
-							entityType);
-
-					if (entity == null) {
-						mobSummonSpot.remove(RemovalReason.DISCARDED);
-						return;
-					}
-
-					if (entity instanceof Mob) {
-						summonedMob = ((Mob) entity);
-					}
-
-					summonedMob.setTarget(target);
-					summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
-							mob.level().getCurrentDifficultyAt(summonPos),
-							MobSpawnType.MOB_SUMMONED, null, null);
-					mobSummonSpot.playSound(ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get(), 1.0F,
-							1.0F);
-					if (mob.getTeam() != null) {
-						Scoreboard scoreboard = mob.level().getScoreboard();
-						scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
-								scoreboard.getPlayerTeam(mob.getTeam().getName()));
-					}
-					mobSummonSpot.summonedEntity = summonedMob;
-				}
+		@Override
+		protected void tickBody() {
+			for (int i = 0; i < 6; i++) {
+				super.tickBody();
 			}
 		}
 
-		private EntityType<?> getEntityType() {
-			EntityType<?> entityType = null;
-			List<String> necromancerMobSummons = (List<String>) DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS
-					.get();
-			if (!necromancerMobSummons.isEmpty()) {
-				Collections.shuffle(necromancerMobSummons);
-
-				int randomIndex = mob.getRandom().nextInt(necromancerMobSummons.size());
-				String randomMobID = necromancerMobSummons.get(randomIndex);
-				entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(randomMobID));
-			}
-			if (entityType == null) {
-				entityType = EntityType.DROWNED;
-			}
-			return entityType;
+		@Override
+		protected List<String> getSummonList() {
+			return (List<String>) DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get();
 		}
 
 		@Override
-		public void stop() {
-			this.nextUseTime = mob.tickCount + (200 + mob.random.nextInt(250));
+		protected EntityType<?> getBackupEntityType() {
+			return EntityType.DROWNED;
 		}
 
-		public boolean animationsUseable() {
-			return mob.summonAnimationTick <= 0;
+		@Override
+		protected int entityEventState() {
+			return 7;
 		}
-
-		public boolean canSee(Entity entitySeeing, Entity pEntity) {
-			Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
-			Vec3 vector3d1 = new Vec3(pEntity.getX(), pEntity.getEyeY(), pEntity.getZ());
-			if (pEntity.level() != entitySeeing.level()
-					|| vector3d1.distanceToSqr(vector3d) > 128.0D * 128.0D)
-				return false; // Forge Backport MC-209819
-			return entitySeeing.level()
-					.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER,
-							ClipContext.Fluid.NONE, entitySeeing))
-					.getType() == HitResult.Type.MISS;
-		}
-
 	}
 
 	class ShootAttackGoal extends Goal {
