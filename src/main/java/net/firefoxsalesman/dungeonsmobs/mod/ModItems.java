@@ -94,8 +94,6 @@ public class ModItems {
 
 	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", null, null,
 			null);
-	public static final ArmorSet ROYAL_GUARD_ARMOR = registerArmorSet("royal_guard_armor", "royal_guard_helmet",
-			"royal_guard_chestplate", "royal_guard_leggings", "royal_guard_boots");
 	public static final ArmorSet VANGUARD_ARMOR = registerArmorSet("vanguard_armor", "vanguard_helmet",
 			"vanguard_chestplate", "vanguard_leggings", null);
 	public static final ArmorSet WINDCALLER_ARMOR = registerArmorSetWindcaller("windcaller_armor",

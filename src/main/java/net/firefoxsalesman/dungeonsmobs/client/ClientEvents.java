@@ -2,7 +2,6 @@ package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
-import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.WindcallerModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
@@ -21,6 +20,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GeomancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MageRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.RoyalGuardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.VindicatorChefRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.PoisonQuillVineRenderer;
@@ -93,9 +93,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
 		event.registerEntityRenderer(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardRenderer::new);
 
-		event.registerEntityRenderer(ModEntities.ROYAL_GUARD.get(),
-				manager -> new DefaultIllagerRenderer<>(manager, new RoyalGuardModel(),
-						0.9375F * 1.2F));
+		event.registerEntityRenderer(ModEntities.ROYAL_GUARD.get(), RoyalGuardRenderer::new);
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
 				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
 

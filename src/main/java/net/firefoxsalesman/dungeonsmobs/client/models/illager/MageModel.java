@@ -2,7 +2,6 @@ package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.MageAnimations;
 import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
 import net.firefoxsalesman.dungeonsmobs.interfaces.AnimatedMage;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

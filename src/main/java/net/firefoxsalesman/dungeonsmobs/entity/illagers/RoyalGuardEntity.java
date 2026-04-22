@@ -9,8 +9,6 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -53,33 +51,24 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.UUID;
 
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
-
-public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShieldUser, SpawnArmoredMob {
+public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState celebrateAnimationState = new AnimationState();
+	public final AnimationState attackAnimationState = new AnimationState();
+	public final AnimationState walkAnimationState = new AnimationState();
+	public final AnimationState walkBlockAnimationState = new AnimationState();
+	public final AnimationState blockAnimationState = new AnimationState();
 
 	private static final UUID SPEED_MODIFIER_BLOCKING_UUID = UUID
 			.fromString("05cd371b-0ff4-4ded-8630-b380232ed7b1");
 	private static final AttributeModifier SPEED_MODIFIER_BLOCKING = new AttributeModifier(
 			SPEED_MODIFIER_BLOCKING_UUID,
 			"Blocking speed decrease", -0.1D, AttributeModifier.Operation.ADDITION);
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	private int shieldCooldownTime;
 
@@ -163,6 +152,33 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 		}
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		attackAnimationState.animateWhen(isAttacking(), tickCount);
+		walkBlockAnimationState.animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
+		blockAnimationState.animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
+		walkAnimationState.animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
+		celebrateAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking() && isCelebrating(),
+				tickCount);
+		idleAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking() && !isCelebrating(),
+				tickCount);
+	}
+
+	private boolean isAttacking() {
+		return attackAnimationTick > 0;
+	}
+
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	public void baseTick() {
 		super.baseTick();
 		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
@@ -185,45 +201,8 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 	}
 
 	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (attackAnimationTick > 0) {
-			event.getController()
-					.setAnimation(RawAnimation.begin().then("royal_guard_attack", LoopType.LOOP));
-		} else if (isBlocking()) {
-			if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-				event.getController().setAnimation(RawAnimation.begin()
-						.then("royal_guard_new_walk_blocking", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("royal_guard_new_blocking", LoopType.LOOP));
-			}
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("royal_guard_new_walk", LoopType.LOOP));
-		} else {
-			if (isCelebrating()) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("royal_guard_celebrate", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(
-						RawAnimation.begin().then("royal_guard_new_idle", LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
 		playSound(ModSoundEvents.ROYAL_GUARD_STEP.get(), 0.5F, 1.0F);
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -234,8 +213,6 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		equipArmorSet(ModItems.ROYAL_GUARD_ARMOR, this);
-
 		if (ModList.get().isLoaded("dungeonsmobs")) {
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsmobs", "mace"));
 
@@ -369,11 +346,6 @@ public class RoyalGuardEntity extends AbstractIllager implements GeoEntity, IShi
 				}
 			}
 		}
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.ROYAL_GUARD_ARMOR;
 	}
 
 	class BasicAttackGoal extends Goal {
