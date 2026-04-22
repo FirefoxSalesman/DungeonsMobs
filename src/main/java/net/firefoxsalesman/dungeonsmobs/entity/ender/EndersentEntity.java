@@ -331,7 +331,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		public CreateWatchlingGoal(EndersentEntity mob) {
 			super(mob, 10, 5, 8, DungeonsMobsConfig.Common.ENDERSENT_MOB_SUMMONS.get(),
-					ModEntities.WATCHLING.get(), null, null);
+					ModEntities.WATCHLING.get(), null, null, 2);
 		}
 
 		@Override
@@ -367,6 +367,13 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 		@Override
 		public boolean isInterruptable() {
 			return mob.shouldBeStationary();
+		}
+
+		@Override
+		protected void tickStareHook() {
+			if (target != null) {
+				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
+			}
 		}
 	}
 

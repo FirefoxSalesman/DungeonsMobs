@@ -454,7 +454,7 @@ public class DrownedNecromancerEntity extends Drowned {
 		public LandSummonGoal(DrownedNecromancerEntity mob) {
 			super(mob, 5, 2, 9, DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get(),
 					EntityType.DROWNED, ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(),
-					ModSoundEvents.NECROMANCER_SUMMON.get());
+					ModSoundEvents.NECROMANCER_SUMMON.get(), 2);
 		}
 
 		@Override
@@ -709,7 +709,7 @@ public class DrownedNecromancerEntity extends Drowned {
 		public SummonGoal(DrownedNecromancerEntity mob) {
 			super(mob, 6, 3, 7, DungeonsMobsConfig.Common.DROWNED_NECROMANCER_MOB_SUMMONS.get(),
 					EntityType.DROWNED, ModSoundEvents.DROWNED_NECROMANCER_STRONG_ATTACK.get(),
-					ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get());
+					ModSoundEvents.DROWNED_NECROMANCER_SUMMON.get(), 2);
 		}
 
 		@Override

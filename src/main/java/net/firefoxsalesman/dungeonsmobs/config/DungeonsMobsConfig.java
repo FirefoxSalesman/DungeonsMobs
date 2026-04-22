@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 public class DungeonsMobsConfig {
 
 	public static class Common {
+		public static ForgeConfigSpec.ConfigValue<List<? extends String>> WILDFIRE_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENDERSENT_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> NECROMANCER_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> DROWNED_NECROMANCER_MOB_SUMMONS;
@@ -35,6 +36,15 @@ public class DungeonsMobsConfig {
 		public Common(ForgeConfigSpec.Builder builder) {
 			// MOB CONFIGURATION
 			builder.comment("Mob Configuration").push("mob_configuration");
+			WILDFIRE_MOB_SUMMONS = builder
+					.comment("Add mobs (preferably blaze-related) that the Wildfire can summon. \n"
+							+ "To do so, enter the namespace ID of the mob, like \"minecraft:blaze\".\n"
+							+
+							"If this list is empty, blazes will be summoned instead.\n"
+							+ "If a mob chosen from this list cannot be spawned, a blaze will be summoned instead.")
+					.defineList("wildfireMobSummons", Lists.newArrayList(
+							"minecraft:blaze"),
+							(itemRaw) -> itemRaw instanceof String);
 			ENDERSENT_MOB_SUMMONS = builder
 					.comment("Add mobs (preferably end-related) that the Endersent can summon. \n"
 							+ "To do so, enter the namespace ID of the mob, like \"dungeonsmobs:watchling\".\n"

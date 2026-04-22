@@ -228,7 +228,7 @@ public class NecromancerEntity extends Skeleton {
 		public SummonGoal(NecromancerEntity mob) {
 			super(mob, 3, 1, 9, DungeonsMobsConfig.Common.NECROMANCER_MOB_SUMMONS.get(), EntityType.ZOMBIE,
 					ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(),
-					ModSoundEvents.NECROMANCER_SUMMON.get());
+					ModSoundEvents.NECROMANCER_SUMMON.get(), 2);
 		}
 
 		protected void resetSummonTick() {

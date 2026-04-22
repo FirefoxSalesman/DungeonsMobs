@@ -31,6 +31,7 @@ import net.minecraft.world.phys.HitResult;
 public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	int mobSummonRange;
 	int closeMobSummonRange;
+	int summonType;
 	byte entityEventState;
 	List<String> summonList;
 	EntityType<?> backupEntityType;
@@ -44,7 +45,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 
 	public AbstractSummonGoal(T mob, int mobSummonRange, int closeMobSummonRange, int entityEventState,
 			List<? extends String> summonList, EntityType<?> backupEntityType,
-			@Nullable SoundEvent summonPrepSound, @Nullable SoundEvent summonSound) {
+			@Nullable SoundEvent summonPrepSound, @Nullable SoundEvent summonSound, int summonType) {
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
 		this.mob = mob;
 		this.target = mob.getTarget();
@@ -55,6 +56,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 		this.backupEntityType = backupEntityType;
 		this.summonPrepSound = Optional.ofNullable(summonPrepSound);
 		this.summonSound = Optional.ofNullable(summonSound);
+		this.summonType = summonType;
 	}
 
 	@Override
@@ -98,7 +100,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	protected void tickBody() {
 		SummonSpotEntity mobSummonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
 		mobSummonSpot.mobSpawnRotation = mob.getRandom().nextInt(360);
-		mobSummonSpot.setSummonType(2);
+		mobSummonSpot.setSummonType(summonType);
 		BlockPos summonPos = mob.blockPosition().offset(
 				-mobSummonRange + mob.getRandom().nextInt((mobSummonRange * 2) + 1), 0,
 				-mobSummonRange + mob.getRandom().nextInt((mobSummonRange * 2) + 1));
@@ -187,6 +189,9 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 				.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER,
 						ClipContext.Fluid.NONE, entitySeeing))
 				.getType() == HitResult.Type.MISS;
+	}
+
+	protected void tickStareHook() {
 	}
 
 	protected abstract void resetSummonTick();

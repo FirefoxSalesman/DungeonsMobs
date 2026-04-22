@@ -1,14 +1,12 @@
 package net.firefoxsalesman.dungeonsmobs.entity.blaze;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
-import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
+import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,7 +14,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -36,16 +33,11 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.entity.raid.Raider;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.scores.Scoreboard;
-
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
@@ -379,139 +371,51 @@ public class WildfireEntity extends Monster {
 		}
 	}
 
-	class SummonBlazesGoal extends Goal {
-		public WildfireEntity mob;
-		@Nullable
-		public LivingEntity target;
-
-		public int blazeSummonRange = 5;
-		public int closeBlazeSummonRange = 2;
+	class SummonBlazesGoal extends AbstractSummonGoal<WildfireEntity> {
 
 		public SummonBlazesGoal(WildfireEntity mob) {
+			super(mob, 5, 2, 9, DungeonsMobsConfig.Common.WILDFIRE_MOB_SUMMONS.get(), EntityType.BLAZE,
+					ModSoundEvents.WILDFIRE_MOVE.get(), ModSoundEvents.NECROMANCER_SUMMON.get(), 1);
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
-			this.mob = mob;
-			this.target = mob.getTarget();
 		}
 
 		@Override
-		public boolean isInterruptable() {
-			return false;
+		protected void resetSummonTick() {
+			summonAnimationTick = summonAnimationLength;
 		}
 
-		public boolean requiresUpdateEveryTick() {
-			return true;
+		@Override
+		protected int getSummonTick() {
+			return summonAnimationTick;
+		}
+
+		@Override
+		protected boolean tickCondition() {
+			return mob.summonAnimationTick == mob.summonAnimationActionPoint;
 		}
 
 		@Override
 		public boolean canUse() {
-			target = mob.getTarget();
 			Master master = MinionMasterHelper.getMasterCapability(mob);
 			List<Entity> summons = master.getSummonedMobs();
 			AttributeInstance attribute = mob.getAttribute(SUMMON_CAP.get());
-
-			return target != null && mob.random.nextInt((80 * (summons.size() + 1))) == 0
-					&& attribute != null && master.getSummonedMobsCost() < attribute.getValue()
-					&& mob.hasLineOfSight(target) && animationsUseable();
+			return super.canUse() && mob.random.nextInt((80 * (summons.size() + 1))) == 0
+					&& attribute != null && master.getSummonedMobsCost() < attribute.getValue();
 		}
 
 		@Override
-		public boolean canContinueToUse() {
-			return target != null && !animationsUseable();
+		protected void tickBody() {
+			for (int i = 0; i < 1 + mob.random.nextInt(1); i++) {
+				super.tickBody();
+			}
 		}
 
 		@Override
-		public void start() {
-			mob.playSound(ModSoundEvents.WILDFIRE_MOVE.get(), 1.0F, mob.getVoicePitch());
-			mob.summonAnimationTick = mob.summonAnimationLength;
-			mob.level().broadcastEntityEvent(mob, (byte) 9);
-		}
-
-		@Override
-		public void tick() {
-			target = mob.getTarget();
-
+		protected void tickStareHook() {
 			if (target != null) {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
-
-			if (target != null && mob.summonAnimationTick == mob.summonAnimationActionPoint) {
-				for (int i = 0; i < 1 + mob.random.nextInt(1); i++) {
-					SummonSpotEntity blazeSummonSpot = ModEntities.SUMMON_SPOT.get()
-							.create(mob.level());
-					blazeSummonSpot.mobSpawnRotation = mob.random.nextInt(360);
-					blazeSummonSpot.setSummonType(1);
-					BlockPos summonPos = mob.blockPosition().offset(
-							-blazeSummonRange + mob.random
-									.nextInt((blazeSummonRange * 2) + 1),
-							0, -blazeSummonRange + mob.random
-									.nextInt((blazeSummonRange * 2) + 1));
-					blazeSummonSpot.moveTo(summonPos, 0.0F, 0.0F);
-
-					// RELOCATES BLAZE CLOSER TO WILDFIRE IF SPAWNED IN A POSITION THAT MAY HINDER
-					// ITS ABILITY TO JOIN IN THE BATTLE
-					if (blazeSummonSpot.isInWall() || !canSee(blazeSummonSpot, target)) {
-						summonPos = mob.blockPosition().offset(
-								-closeBlazeSummonRange + mob.random.nextInt(
-										(closeBlazeSummonRange * 2) + 1),
-								0, -closeBlazeSummonRange + mob.random.nextInt(
-										(closeBlazeSummonRange * 2) + 1));
-					}
-
-					// RELOCATES BLAZE TO WILDFIRE'S POSITION IF STILL IN A POSITION THAT MAY HINDER
-					// ITS ABILITY TO JOIN IN THE BATTLE
-					if (blazeSummonSpot.isInWall() || !canSee(blazeSummonSpot, target)) {
-						summonPos = mob.blockPosition();
-					}
-					((ServerLevel) mob.level()).addFreshEntityWithPassengers(blazeSummonSpot);
-					PositionUtils.moveToCorrectHeight(blazeSummonSpot);
-
-					EntityType<?> entityType = EntityType.BLAZE;
-
-					Mob summonedMob = null;
-
-					Entity entity = SummonHelper.summonEntity(mob, blazeSummonSpot.blockPosition(),
-							entityType);
-
-					if (entity == null) {
-						blazeSummonSpot.remove(RemovalReason.DISCARDED);
-						return;
-					}
-
-					if (entity instanceof Mob) {
-						summonedMob = ((Mob) entity);
-					}
-
-					summonedMob.setTarget(target);
-					summonedMob.finalizeSpawn(((ServerLevel) mob.level()),
-							mob.level().getCurrentDifficultyAt(summonPos),
-							MobSpawnType.MOB_SUMMONED, null, null);
-					blazeSummonSpot.playSound(ModSoundEvents.NECROMANCER_SUMMON.get(), 1.0F, 1.0F);
-					if (mob.getTeam() != null) {
-						Scoreboard scoreboard = mob.level().getScoreboard();
-						scoreboard.addPlayerToTeam(summonedMob.getScoreboardName(),
-								scoreboard.getPlayerTeam(mob.getTeam().getName()));
-					}
-					blazeSummonSpot.summonedEntity = summonedMob;
-				}
-			}
 		}
-
-		public boolean animationsUseable() {
-			return mob.summonAnimationTick <= 0;
-		}
-
-		public boolean canSee(Entity entitySeeing, Entity p_70685_1_) {
-			Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
-			Vec3 vector3d1 = new Vec3(p_70685_1_.getX(), p_70685_1_.getEyeY(), p_70685_1_.getZ());
-			if (p_70685_1_.level() != entitySeeing.level()
-					|| vector3d1.distanceToSqr(vector3d) > 128.0D * 128.0D)
-				return false; // Forge Backport MC-209819
-			return entitySeeing.level()
-					.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER,
-							ClipContext.Fluid.NONE, entitySeeing))
-					.getType() == HitResult.Type.MISS;
-		}
-
 	}
 
 	class ShockwaveAttackGoal extends Goal {
