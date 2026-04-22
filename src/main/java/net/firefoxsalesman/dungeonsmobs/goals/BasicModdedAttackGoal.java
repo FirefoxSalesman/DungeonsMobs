@@ -7,12 +7,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class BasicModdedAttackGoal<T extends Mob & GeoAnimatable & AnimatableMeleeAttackMob> extends Goal {
+public class BasicModdedAttackGoal<T extends Mob & AnimatableMeleeAttackMob> extends Goal {
 
 	public T mob;
 	@Nullable

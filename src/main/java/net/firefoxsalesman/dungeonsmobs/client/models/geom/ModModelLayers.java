@@ -14,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerMo
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.SnarelingGlobModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.redstone.RedstoneCubeModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.NecromancerModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.undead.SkeletonVanguardModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -44,6 +45,8 @@ public class ModModelLayers {
 	public static final ModelLayerLocation NECROMANCER_BODY = makeModelLayerLocation("necromancer_model");
 	public static final ModelLayerLocation DROWNED_NECROMANCER_BODY = makeModelLayerLocation(
 			"drowned_necromancer_model");
+	public static final ModelLayerLocation SKELETON_VANGUARD_BODY = makeModelLayerLocation(
+			"skeleton_vanguard_model");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
 		return new ModelLayerLocation(new ResourceLocation(MOD_ID + name),
@@ -67,5 +70,6 @@ public class ModModelLayers {
 		event.registerLayerDefinition(ICEOLOGER_BODY, IceologerModel::createBodyLayer);
 		event.registerLayerDefinition(ENDERSENT_BODY, EndersentModel::createBodyLayer);
 		event.registerLayerDefinition(WILDFIRE_BODY, WildfireModel::createBodyLayer);
+		event.registerLayerDefinition(SKELETON_VANGUARD_BODY, SkeletonVanguardModel::createBodyLayer);
 	}
 }

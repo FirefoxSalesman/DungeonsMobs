@@ -1,5 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.entity.undead;
 
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.AnimatableMeleeAttackMob;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
@@ -9,8 +13,6 @@ import net.firefoxsalesman.dungeonsmobs.goals.BasicModdedAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -20,7 +22,12 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -40,32 +47,19 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-import javax.annotation.Nullable;
-import java.util.UUID;
-
-import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equipArmorSet;
-
-public class SkeletonVanguardEntity extends Skeleton
-		implements IShieldUser, GeoEntity, SpawnArmoredMob, AnimatableMeleeAttackMob {
+public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, AnimatableMeleeAttackMob {
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState attackAnimationState = new AnimationState();
+	public final AnimationState walkAnimationState = new AnimationState();
+	public final AnimationState walkBlockAnimationState = new AnimationState();
+	public final AnimationState blockAnimationState = new AnimationState();
 
 	private static final UUID SPEED_MODIFIER_BLOCKING_UUID = UUID
 			.fromString("e4c96392-42f5-4028-ac44-cad469c10d51");
 	private static final AttributeModifier SPEED_MODIFIER_BLOCKING = new AttributeModifier(
 			SPEED_MODIFIER_BLOCKING_UUID,
 			"Blocking speed decrease", -0.05D, AttributeModifier.Operation.ADDITION);
-
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	private int shieldCooldownTime;
 
@@ -111,8 +105,6 @@ public class SkeletonVanguardEntity extends Skeleton
 	}
 
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		equipArmorSet(ModItems.VANGUARD_ARMOR, this);
-
 		SpawnEquipmentHelper.equipMainhand(Items.IRON_SWORD.getDefaultInstance(), this);
 		SpawnEquipmentHelper.equipOffhand(ModItems.VANGUARD_SHIELD.get().getDefaultInstance(), this);
 	}
@@ -156,6 +148,30 @@ public class SkeletonVanguardEntity extends Skeleton
 		}
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+		if (level().isClientSide) {
+			setupAnimationStates();
+		}
+	}
+
+	private void setupAnimationStates() {
+		attackAnimationState.animateWhen(isAttacking(), tickCount);
+		walkBlockAnimationState.animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
+		blockAnimationState.animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
+		walkAnimationState.animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
+		idleAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking(), tickCount);
+	}
+
+	private boolean isAttacking() {
+		return attackAnimationTick > 0;
+	}
+
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
+	}
+
 	public void baseTick() {
 		super.baseTick();
 		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
@@ -195,40 +211,6 @@ public class SkeletonVanguardEntity extends Skeleton
 		if (attackAnimationTick > 0) {
 			attackAnimationTick--;
 		}
-	}
-
-	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (attackAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("skeleton_vanguard_attack", LoopType.LOOP));
-		} else if (isBlocking()) {
-			if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-				event.getController()
-						.setAnimation(RawAnimation.begin().then(
-								"skeleton_vanguard_new_walk_blocking", LoopType.LOOP));
-			} else {
-				event.getController()
-						.setAnimation(RawAnimation.begin()
-								.then("skeleton_vanguard_new_blocking", LoopType.LOOP));
-			}
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("skeleton_vanguard_new_walk", LoopType.LOOP));
-		} else {
-			event.getController().setAnimation(
-					RawAnimation.begin().then("skeleton_vanguard_new_idle", LoopType.LOOP));
-		}
-		return PlayState.CONTINUE;
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
 	}
 
 	// SHIELD STUFF
@@ -315,10 +297,4 @@ public class SkeletonVanguardEntity extends Skeleton
 	public boolean isShieldDisabled() {
 		return shieldCooldownTime > 0;
 	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.VANGUARD_ARMOR;
-	}
-
 }
