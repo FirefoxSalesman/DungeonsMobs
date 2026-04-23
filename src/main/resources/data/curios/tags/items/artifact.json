@@ -22,6 +22,9 @@
     "dungeonsmobs:light_feather",
     "dungeonsmobs:soul_healer",
     "dungeonsmobs:totem_of_regeneration",
-    "dungeonsmobs:totem_of_shielding"
+    "dungeonsmobs:totem_of_shielding",
+    "dungeonsmobs:totem_of_soul_protection",
+    "dungeonsmobs:corrupted_beacon",
+    "dungeonsmobs:buzzy_nest"
   ]
 }

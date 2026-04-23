@@ -840,5 +840,17 @@
 
   "item.dungeonsmobs.totem_of_shielding": "Totem of Shielding",
   "lore.dungeonsmobs.totem_of_shielding": "This totem radiates powerful energy that bursts forth as a protective shield around those near it.",
-  "ability.dungeonsmobs.totem_of_shielding": "This totem has mystical powers that shield those around it from projectiles."
+  "ability.dungeonsmobs.totem_of_shielding": "This totem has mystical powers that shield those around it from projectiles.",
+
+  "item.dungeonsmobs.totem_of_soul_protection": "Totem of Soul Protection",
+  "lore.dungeonsmobs.totem_of_soul_protection": "This totem radiates powerful protective magic.",
+  "ability.dungeonsmobs.totem_of_soul_protection": "Creates a space around the totem which, when you or allies die within it, revives the player.",
+  
+  "item.dungeonsmobs.corrupted_beacon": "Corrupted Beacon",
+  "lore.dungeonsmobs.corrupted_beacon": "The Corrupted Beacon holds immense power within. It waits for the moment to unleash its wrath.",
+  "ability.dungeonsmobs.corrupted_beacon": "Fires a high-powered beam that continuously damages mobs.",
+
+  "item.dungeonsmobs.buzzy_nest": "Buzzy Nest",
+  "lore.dungeonsmobs.buzzy_nest": "Bee lovers and the bee-loved alike are fans of the Buzzy Nest, but don't be fooled by the cute bees within - they pack a powerful sting!",
+  "ability.dungeonsmobs.buzzy_nest": "When the Buzzy Nest is placed on the ground, bees who will fight beside you begin to spawn."
 }

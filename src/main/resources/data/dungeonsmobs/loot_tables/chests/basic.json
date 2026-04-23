@@ -240,6 +240,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:buzzy_nest",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -300,7 +305,7 @@
         },
 	{
           "type": "empty",
-          "weight": 106
+          "weight": 108
         }
       ]
     }

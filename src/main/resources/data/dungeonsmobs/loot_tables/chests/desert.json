@@ -70,6 +70,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:totem_of_soul_protection",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:corrupted_beacon",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:moon_dagger",
           "weight": 1 
         },
@@ -85,7 +95,7 @@
         },
 	{
           "type": "empty",
-          "weight": 27
+          "weight": 31
         }
       ]
     }

@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.network;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.gear.network.entity.PlayerBeamMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
@@ -86,6 +87,9 @@ public class NetworkHandler {
 				.decoder(ArtifactGearConfigSyncPacket::decode)
 				.consumerMainThread(ArtifactGearConfigSyncPacket::onPacketReceived)
 				.add();
+		INSTANCE.registerMessage(incrementAndGetPacketCounter(), PlayerBeamMessage.class,
+				PlayerBeamMessage::encode, PlayerBeamMessage::decode,
+				PlayerBeamMessage.PlayerBeamMessageHandler::handle);
 	}
 
 	public static int incrementAndGetPacketCounter() {

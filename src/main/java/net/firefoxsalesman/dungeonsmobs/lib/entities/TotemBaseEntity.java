@@ -87,9 +87,9 @@ public abstract class TotemBaseEntity extends Entity {
 	}
 
 	// set Using Owner
-	public void setOwner(@Nullable LivingEntity p_190549_1_) {
-		this.owner = p_190549_1_;
-		this.ownerUUID = p_190549_1_ == null ? null : p_190549_1_.getUUID();
+	public void setOwner(@Nullable LivingEntity owner) {
+		this.owner = owner;
+		this.ownerUUID = owner == null ? null : owner.getUUID();
 	}
 
 	@Nullable

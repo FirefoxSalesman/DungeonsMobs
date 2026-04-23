@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BuzzyNestItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FlamingQuiverItem;
@@ -18,8 +19,10 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TormentQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfRegenerationItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfShieldingItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfSoulProtectionItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedBeaconItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
@@ -262,6 +265,12 @@ public class ItemInit {
 			() -> new TotemOfRegenerationItem(PROPERTIES));
 	public static final RegistryObject<Item> TOTEM_OF_SHIELDING = registerArtifact("totem_of_shielding",
 			() -> new TotemOfShieldingItem(PROPERTIES));
+	public static final RegistryObject<Item> TOTEM_OF_SOUL_PROTECTION = registerArtifact("totem_of_soul_protection",
+			() -> new TotemOfSoulProtectionItem(PROPERTIES));
+	public static final RegistryObject<Item> CORRUPTED_BEACON = registerArtifact("corrupted_beacon",
+			() -> new CorruptedBeaconItem(PROPERTIES));
+	public static final RegistryObject<Item> BUZZY_NEST = registerArtifact("buzzy_nest",
+			() -> new BuzzyNestItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
