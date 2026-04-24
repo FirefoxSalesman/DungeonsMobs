@@ -245,6 +245,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:corrupted_pumpkin",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -305,7 +310,7 @@
         },
 	{
           "type": "empty",
-          "weight": 108
+          "weight": 110
         }
       ]
     }

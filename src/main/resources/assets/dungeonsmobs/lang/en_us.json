@@ -852,5 +852,17 @@
 
   "item.dungeonsmobs.buzzy_nest": "Buzzy Nest",
   "lore.dungeonsmobs.buzzy_nest": "Bee lovers and the bee-loved alike are fans of the Buzzy Nest, but don't be fooled by the cute bees within - they pack a powerful sting!",
-  "ability.dungeonsmobs.buzzy_nest": "When the Buzzy Nest is placed on the ground, bees who will fight beside you begin to spawn."
+  "ability.dungeonsmobs.buzzy_nest": "When the Buzzy Nest is placed on the ground, bees who will fight beside you begin to spawn.",
+  
+  "item.dungeonsmobs.enchanted_grass": "Enchanted Grass",
+  "lore.dungeonsmobs.enchanted_grass": "Just as there are powerful heroes who answer the call to fight, there are powerful enchanted sheep who will join the fight when summoned.",
+  "ability.dungeonsmobs.enchanted_grass": "Randomly summons one of three sheep allies that can grant either speed, poison, or fire effects.",
+
+  "item.dungeonsmobs.corrupted_pumpkin": "Corrupted Pumpkin",
+  "lore.dungeonsmobs.corrupted_pumpkin": "The Corrupted Pumpkin glows with supernatural power, illuminating even the darkest nights with its powerful beacon.",
+  "ability.dungeonsmobs.corrupted_pumpkin": "Fires a high-powered beam that continuously damages mobs.",
+
+  "item.dungeonsmobs.thundering_quiver": "Thundering Quiver",
+  "lore.dungeonsmobs.thundering_quiver": "This copper quiver channels the power of lightning.",
+  "ability.dungeonsmobs.thundering_quiver": "Grants 5 electrified arrows."
 }

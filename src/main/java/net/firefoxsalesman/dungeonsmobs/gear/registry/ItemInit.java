@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessIte
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BuzzyNestItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.EnchantedGrassItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FlamingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GhostCloakItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
@@ -16,6 +17,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SoulHealerItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ThunderingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TormentQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfRegenerationItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfShieldingItem;
@@ -23,6 +25,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfSoulProtecti
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedBeaconItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedPumpkinItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
@@ -271,6 +274,14 @@ public class ItemInit {
 			() -> new CorruptedBeaconItem(PROPERTIES));
 	public static final RegistryObject<Item> BUZZY_NEST = registerArtifact("buzzy_nest",
 			() -> new BuzzyNestItem(PROPERTIES));
+	// public static final RegistryObject<Item> ENCHANTED_GRASS =
+	// registerArtifact("enchanted_grass",
+	// () -> new EnchantedGrassItem(PROPERTIES));
+	public static final RegistryObject<Item> CORRUPTED_PUMPKIN = registerArtifact("corrupted_pumpkin",
+			() -> new CorruptedPumpkinItem(PROPERTIES));
+	// public static final RegistryObject<Item> THUNDERING_QUIVER =
+	// registerArtifact("thundering_quiver",
+	// () -> new ThunderingQuiverItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
