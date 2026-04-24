@@ -15,7 +15,7 @@ import net.minecraft.client.animation.KeyframeAnimations;
  */
 public class VindicatorChefAnimations {
 	public static final AnimationDefinition WALK = AnimationDefinition.Builder.withLength(0.7917F).looping()
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-22.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(-12.5F, 0.0F, 0.0F),
@@ -24,7 +24,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.degreeVec(-22.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.5F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0833F, KeyframeAnimations.posVec(-0.5F, 0.0F, -0.7F),
@@ -35,7 +35,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.posVec(-0.5F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(12.5F, 25.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(15.0F, 32.5F, 5.0F),
@@ -44,7 +44,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.degreeVec(12.5F, 25.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(1.0F, 0.0F, 2.8F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0833F, KeyframeAnimations.posVec(1.0F, 1.0F, 1.3F),
@@ -55,7 +55,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.posVec(1.0F, 0.0F, 2.8F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(4.0F, 32.5F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2083F, KeyframeAnimations.degreeVec(4.0F, 45.0F, -1.0F),
@@ -66,7 +66,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.degreeVec(4.0F, 32.5F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2083F, KeyframeAnimations.posVec(0.0F, 1.0F, 0.0F),
@@ -77,14 +77,14 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(7.5F, -40.0F, -0.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(7.5F, -47.5F, -0.5F),
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.degreeVec(7.5F, -40.0F, -0.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-12.5F, 15.0F, -5.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.degreeVec(-7.5F, 10.0F, -5.0F),
@@ -95,37 +95,25 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7917F, KeyframeAnimations.degreeVec(-12.5F, 15.0F, -5.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.5F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(6.61F, 41.69F, 33.01F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(12.5F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(1.0F, 1.0F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR)))
 			.build();
 
 	public static final AnimationDefinition IDLE = AnimationDefinition.Builder.withLength(4.0417F).looping()
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2917F, KeyframeAnimations.degreeVec(2.5F, 3.41F, 1.5F),
@@ -140,7 +128,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(4.0417F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0833F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2917F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
@@ -157,7 +145,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(3.2917F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-2.75F, 20.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4583F, KeyframeAnimations.degreeVec(-2.25F, 32.5F, -4.0F),
@@ -195,31 +183,22 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(2.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.2F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-10.1511F, 9.8466F, -1.7538F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.5F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-35.0F, 17.5F, 22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.55F, 0.8F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR)))
 			.build();
 
 	public static final AnimationDefinition ATTACK = AnimationDefinition.Builder.withLength(1.375F)
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4583F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
@@ -230,7 +209,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.125F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4583F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
@@ -243,7 +222,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.125F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4583F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
@@ -254,7 +233,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.125F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4583F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
@@ -267,7 +246,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.125F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.1667F, KeyframeAnimations.degreeVec(-7.54F, 9.9507F, 0.0648F),
@@ -282,7 +261,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.1667F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.25F, KeyframeAnimations.posVec(0.0F, 0.0F, 1.0F),
@@ -299,7 +278,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(1.1667F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-2.75F, 20.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.degreeVec(0.76F, 0.12F, -0.9F),
@@ -316,7 +295,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.1667F, KeyframeAnimations.degreeVec(-2.75F, 20.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -22.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2917F, KeyframeAnimations.degreeVec(-56.35F, 29.42F, -26.54F),
@@ -331,27 +310,12 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.125F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.2F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(1.125F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.2F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-12.9649F, 7.0453F, 5.8294F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.4167F,
-							KeyframeAnimations.degreeVec(-2.1566F, -2.2494F, -17.3593F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.6667F, KeyframeAnimations.degreeVec(-2.9081F, -1.1268F, 7.6262F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.9583F, KeyframeAnimations.degreeVec(-2.9081F, -1.1268F, 7.6262F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(1.375F, KeyframeAnimations.degreeVec(-40.1641F, 1.5683F, 6.929F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.5F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-35.0F, 17.5F, 22.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(-77.08F, 26.49F, 20.67F),
@@ -379,7 +343,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(1.2083F, KeyframeAnimations.degreeVec(-35.0F, 17.5F, 22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.55F, 0.8F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.625F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
@@ -390,38 +354,16 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.9167F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.4583F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.7083F,
-							KeyframeAnimations.degreeVec(123.5491F, 24.7866F, -10.9024F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.8333F,
-							KeyframeAnimations.degreeVec(113.9388F, 53.6716F, -44.2792F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(1.0833F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.4583F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.7083F, KeyframeAnimations.posVec(0.0F, 2.0F, 1.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.8333F, KeyframeAnimations.posVec(0.0F, 2.0F, 1.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(1.0833F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
 
 	public static final AnimationDefinition CELEBRATE = AnimationDefinition.Builder.withLength(2.4167F).looping()
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-14.7599F, -10.9802F, -6.0358F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(12.1439F, 11.4435F, 10.1266F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(8.0F, 0.0F, -0.35F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.1667F, KeyframeAnimations.degreeVec(7.72F, 0.0F, -1.15F),
@@ -454,7 +396,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(2.4167F, KeyframeAnimations.degreeVec(8.0F, 0.0F, -0.35F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.45F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.posVec(0.0F, 0.5F, 0.0F),
@@ -481,7 +423,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(2.375F, KeyframeAnimations.posVec(0.0F, 0.45F, 0.0F),
 							AnimationChannel.Interpolations.CATMULLROM)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-5.71F, 0.0F, 0.57F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.1667F, KeyframeAnimations.degreeVec(-3.79F, 0.0F, 0.87F),
@@ -526,7 +468,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(2.4167F, KeyframeAnimations.degreeVec(-5.71F, 0.0F, 0.57F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-42.77F, -14.73F, -12.28F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.1667F, KeyframeAnimations.degreeVec(-43.44F, -14.73F, -12.28F),
@@ -555,13 +497,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(2.4167F, KeyframeAnimations.degreeVec(-42.77F, -14.73F, -12.28F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -90.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(1.0F, 6.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-183.79F, 4.26F, -11.35F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.degreeVec(-184.71F, 4.26F, -12.75F),
@@ -610,16 +546,10 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(2.4167F, KeyframeAnimations.degreeVec(-183.79F, 4.26F, -11.35F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(45.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 1.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
 			.build();
 
 	public static final AnimationDefinition FAST_ATTACK = AnimationDefinition.Builder.withLength(0.7083F)
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.3333F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
@@ -631,7 +561,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(0.0F, -45.0F, -15.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.3333F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
@@ -644,7 +574,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.posVec(0.2F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.3333F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
@@ -655,7 +585,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.3333F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
@@ -668,7 +598,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.posVec(-0.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.3333F, KeyframeAnimations.degreeVec(-40.69F, 64.04F, -29.88F),
@@ -679,7 +609,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(2.5F, -12.5F, 1.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.25F, KeyframeAnimations.posVec(0.0F, 0.0F, 1.0F),
@@ -694,7 +624,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.7083F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-2.75F, 20.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(2.88F, -50.96F, 4.08F),
@@ -709,7 +639,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(-2.75F, 20.0F, -2.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -22.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(-56.35F, 29.42F, -26.54F),
@@ -722,18 +652,12 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.2F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.7083F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.2F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-12.9649F, 7.0453F, 5.8294F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.5F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-35.0F, 17.5F, 22.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.1667F, KeyframeAnimations.degreeVec(-209.76F, 3.7F, -10.15F),
@@ -751,7 +675,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(-35.0F, 17.5F, 22.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.55F, 0.8F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4167F, KeyframeAnimations.posVec(1.2F, 0.4F, -5.6F),
@@ -760,31 +684,10 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.625F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.3333F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.4167F,
-							KeyframeAnimations.degreeVec(123.5491F, 24.7866F, -10.9024F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.5F, KeyframeAnimations.degreeVec(113.9388F, 53.6716F, -44.2792F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.7083F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
-					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.3333F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.4167F, KeyframeAnimations.posVec(0.0F, 2.0F, 1.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.5F, KeyframeAnimations.posVec(0.0F, 2.0F, 1.0F),
-							AnimationChannel.Interpolations.CATMULLROM),
-					new Keyframe(0.7083F, KeyframeAnimations.posVec(0.0F, 1.0F, -2.0F),
-							AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
 
 	public static final AnimationDefinition RUN = AnimationDefinition.Builder.withLength(0.4167F).looping()
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-22.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0417F, KeyframeAnimations.degreeVec(-12.5F, 0.0F, 0.0F),
@@ -793,7 +696,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(-22.5F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegLeft", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.5F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0417F, KeyframeAnimations.posVec(-0.5F, 0.0F, -0.7F),
@@ -804,7 +707,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.4167F, KeyframeAnimations.posVec(-0.5F, 0.0F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(12.5F, 25.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0417F, KeyframeAnimations.degreeVec(15.0F, 32.5F, 5.0F),
@@ -813,7 +716,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(12.5F, 25.0F, 2.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedLegRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(1.0F, 0.0F, 2.8F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.0417F, KeyframeAnimations.posVec(1.0F, 1.0F, 1.3F),
@@ -824,7 +727,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.4167F, KeyframeAnimations.posVec(1.0F, 0.0F, 2.8F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(4.0F, 32.5F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.degreeVec(4.0F, 45.0F, -1.0F),
@@ -835,7 +738,7 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(4.0F, 32.5F, -1.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedBody", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.125F, KeyframeAnimations.posVec(0.0F, 1.0F, 0.0F),
@@ -846,32 +749,18 @@ public class VindicatorChefAnimations {
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4167F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHead", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(7.5F, -40.0F, -0.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.2083F, KeyframeAnimations.degreeVec(7.5F, -47.5F, -0.5F),
 							AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(7.5F, -40.0F, -0.5F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("armorBipedLeftArm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-12.5F, 15.0F, -5.0F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(-7.5F, 10.0F, -5.0F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.2083F, KeyframeAnimations.degreeVec(-17.5F, 12.5F, -7.5F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.25F, KeyframeAnimations.degreeVec(-17.5F, 12.5F, -7.5F),
-							AnimationChannel.Interpolations.LINEAR),
-					new Keyframe(0.4167F, KeyframeAnimations.degreeVec(-12.5F, 15.0F, -5.0F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-172.0F, -40.0F, 360.0F),
 							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedArmRight", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 					new Keyframe(0.0F, KeyframeAnimations.posVec(-0.75F, 2.0F, -2.3F),
-							AnimationChannel.Interpolations.LINEAR)))
-			.addAnimation("bipedHandRight", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-					new Keyframe(0.0F, KeyframeAnimations.degreeVec(40.0F, 0.0F, 0.0F),
 							AnimationChannel.Interpolations.LINEAR)))
 			.build();
 }

@@ -92,8 +92,6 @@ public class ModItems {
 			"cracked_gold_piglin_helmet",
 			() -> new PiglinHelmetItem(ArmorMaterials.GOLD, Type.HELMET, new Item.Properties()));
 
-	public static final ArmorSet CHEF_ARMOR = registerArmorSet("chef_armor", "chef_helmet", null, null,
-			null);
 	public static final ArmorSet WINDCALLER_ARMOR = registerArmorSetWindcaller("windcaller_armor",
 			"windcaller_helmet", "windcaller_chestplate", null, null);
 	public static final ArmorSet MOUNTAINEER_ARMOR = registerArmorSet("mountaineer_armor", "mountaineer_helmet",

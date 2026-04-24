@@ -4,8 +4,6 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -39,7 +37,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
-public class VindicatorChefEntity extends Vindicator implements SpawnArmoredMob {
+public class VindicatorChefEntity extends Vindicator {
 	public final AnimationState idleAnimationState = new AnimationState();
 	public final AnimationState celebrateAnimationState = new AnimationState();
 	public int celebrationAnimationTick = 0;
@@ -139,11 +137,6 @@ public class VindicatorChefEntity extends Vindicator implements SpawnArmoredMob 
 
 	public boolean isAttacking() {
 		return entityData.get(ATTACKING);
-	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.CHEF_ARMOR;
 	}
 
 	class AttackGoal extends MeleeAttackGoal {

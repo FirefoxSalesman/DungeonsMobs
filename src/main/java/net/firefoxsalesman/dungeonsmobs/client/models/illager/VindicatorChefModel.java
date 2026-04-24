@@ -1,5 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
+// Made with Blockbench 5.1.3
+// Exported for Minecraft version 1.17 or later with Mojang mappings
+// Paste this class into your mod and generate all required imports
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -9,220 +13,106 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
-// Made with Blockbench 5.0.7
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.HumanoidArm;
 
 public class VindicatorChefModel<T extends VindicatorChefEntity> extends ConvenientModel<T> implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart root;
-	private final ModelPart bipedBody;
-	private final ModelPart illagerArms;
-	private final ModelPart hands;
-	private final ModelPart armourIllagerRightArm2;
-	private final ModelPart armorIllagerLeftArm2;
-	private final ModelPart armourBody;
-	private final ModelPart bipedCape;
-	private final ModelPart bipedArms;
-	private final ModelPart bipedArmRight;
-	private final ModelPart bipedHandRight;
-	private final ModelPart armorBipedRightArm;
-	private final ModelPart bipedArmLeft;
-	private final ModelPart bipedHandLeft;
-	private final ModelPart armorBipedLeftArm;
-	private final ModelPart bipedPotionSlot;
-	private final ModelPart bipedHeadBaseRotator;
-	private final ModelPart bipedHead;
+	private final ModelPart head;
 	private final ModelPart nose;
-	private final ModelPart armorBipedHead;
-	private final ModelPart bipedLegs;
-	private final ModelPart bipedLegLeft;
-	private final ModelPart armorBipedLeftFoot;
-	private final ModelPart armorBipedLeftLeg;
-	private final ModelPart bipedLegRight;
-	private final ModelPart armorBipedRightFoot;
-	private final ModelPart armourRightLeg;
+	private final ModelPart body;
+	private final ModelPart arms;
+	private final ModelPart mirrored;
+	private final ModelPart left_arm;
+	private final ModelPart right_arm;
+	private final ModelPart left_leg;
+	private final ModelPart right_leg;
 
 	public VindicatorChefModel(ModelPart root) {
 		super(VindicatorChefAnimations.WALK);
-		this.root = root.getChild("root");
-		this.bipedBody = this.root.getChild("bipedBody");
-		this.illagerArms = this.bipedBody.getChild("illagerArms");
-		this.hands = this.illagerArms.getChild("hands");
-		this.armourIllagerRightArm2 = this.illagerArms.getChild("armourIllagerRightArm2");
-		this.armorIllagerLeftArm2 = this.illagerArms.getChild("armorIllagerLeftArm2");
-		this.armourBody = this.bipedBody.getChild("armourBody");
-		this.bipedCape = this.bipedBody.getChild("bipedCape");
-		this.bipedArms = this.bipedBody.getChild("bipedArms");
-		this.bipedArmRight = this.bipedArms.getChild("bipedArmRight");
-		this.bipedHandRight = this.bipedArmRight.getChild("bipedHandRight");
-		this.armorBipedRightArm = this.bipedArmRight.getChild("armorBipedRightArm");
-		this.bipedArmLeft = this.bipedArms.getChild("bipedArmLeft");
-		this.bipedHandLeft = this.bipedArmLeft.getChild("bipedHandLeft");
-		this.armorBipedLeftArm = this.bipedArmLeft.getChild("armorBipedLeftArm");
-		this.bipedPotionSlot = this.bipedBody.getChild("bipedPotionSlot");
-		this.bipedHeadBaseRotator = this.bipedBody.getChild("bipedHeadBaseRotator");
-		this.bipedHead = this.bipedHeadBaseRotator.getChild("bipedHead");
-		this.nose = this.bipedHead.getChild("nose");
-		this.armorBipedHead = this.bipedHead.getChild("armorBipedHead");
-		this.bipedLegs = this.root.getChild("bipedLegs");
-		this.bipedLegLeft = this.bipedLegs.getChild("bipedLegLeft");
-		this.armorBipedLeftFoot = this.bipedLegLeft.getChild("armorBipedLeftFoot");
-		this.armorBipedLeftLeg = this.bipedLegLeft.getChild("armorBipedLeftLeg");
-		this.bipedLegRight = this.bipedLegs.getChild("bipedLegRight");
-		this.armorBipedRightFoot = this.bipedLegRight.getChild("armorBipedRightFoot");
-		this.armourRightLeg = this.bipedLegRight.getChild("armourRightLeg");
+		this.root = root;
+		this.body = root.getChild("body");
+		this.head = body.getChild("head");
+		this.nose = head.getChild("nose");
+		this.arms = body.getChild("arms");
+		this.mirrored = this.arms.getChild("mirrored");
+		this.left_arm = body.getChild("left_arm");
+		this.right_arm = body.getChild("right_arm");
+		this.left_leg = body.getChild("left_leg");
+		this.right_leg = body.getChild("right_leg");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(),
-				PartPose.offset(0.0F, 6.0F, 0.0F));
-
-		PartDefinition bipedBody = root.addOrReplaceChild("bipedBody", CubeListBuilder.create().texOffs(32, 0)
-				.addBox(-4.0F, -12.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F))
-				.texOffs(60, 0).addBox(-4.0F, -12.0F, -3.0F, 8.0F, 20.0F, 6.0F,
+		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 20)
+				.addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 38)
+				.addBox(-4.0F, 0.0F, -3.0F, 8.0F, 20.0F, 6.0F, new CubeDeformation(0.25F))
+				.texOffs(66, 38).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 20.0F, 6.0F,
 						new CubeDeformation(0.5F)),
-				PartPose.offset(0.0F, 6.0F, 0.0F));
-
-		PartDefinition illagerArms = bipedBody.addOrReplaceChild("illagerArms", CubeListBuilder.create()
-				.texOffs(0, 18).addBox(4.0F, -1.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F))
-				.texOffs(32, 18).addBox(-4.0F, 3.0F, -2.0F, 8.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 18)
-				.addBox(-8.0F, -1.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)),
-				PartPose.offsetAndRotation(0.0F, -10.0F, 0.0F, -0.7418F, 0.0F, 0.0F));
-
-		PartDefinition hands = illagerArms.addOrReplaceChild("hands", CubeListBuilder.create(),
-				PartPose.offsetAndRotation(0.0F, 7.0F, -2.0F, 0.7418F, 0.0F, 0.0F));
-
-		PartDefinition armourIllagerRightArm2 = illagerArms.addOrReplaceChild(
-				"armourIllagerRightArm2", CubeListBuilder.create().texOffs(44, 48).addBox(-4.0F, -2.0F,
-						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
-				PartPose.offset(-4.0F, 0.0F, 0.0F));
-
-		PartDefinition armorIllagerLeftArm2 = illagerArms.addOrReplaceChild("armorIllagerLeftArm2",
-				CubeListBuilder.create().texOffs(44, 48).mirror()
-						.addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(1.0F))
-						.mirror(false),
-				PartPose.offset(4.0F, 0.0F, 0.0F));
-
-		PartDefinition armourBody = bipedBody.addOrReplaceChild("armourBody", CubeListBuilder.create()
-				.texOffs(76, 48)
-				.addBox(-4.0F, -12.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(1.75F))
-				.texOffs(16, 48)
-				.addBox(-4.0F, -12.0F, -3.0F, 8.0F, 10.0F, 6.0F, new CubeDeformation(0.4F))
-				.texOffs(68, 32).addBox(-4.0F, -1.25F, -3.0F, 8.0F, 9.0F, 6.0F,
-						new CubeDeformation(0.4F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition bipedCape = bipedBody.addOrReplaceChild(
-				"bipedCape", CubeListBuilder.create().texOffs(96, 32).addBox(-5.0F, 0.0F, 0.0F, 10.0F,
-						16.0F, 1.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(0.0F, -12.0F, 3.0F));
-
-		PartDefinition bipedArms = bipedBody.addOrReplaceChild("bipedArms", CubeListBuilder.create(),
-				PartPose.offset(0.0F, -10.0F, 0.0F));
-
-		PartDefinition bipedArmRight = bipedArms.addOrReplaceChild("bipedArmRight",
-				CubeListBuilder.create().texOffs(104, 0).mirror()
-						.addBox(-4.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(0.0F))
-						.mirror(false),
-				PartPose.offset(-4.0F, 0.0F, 0.0F));
-
-		PartDefinition bipedHandRight = bipedArmRight.addOrReplaceChild("bipedHandRight",
-				CubeListBuilder.create(), PartPose.offset(-2.0F, 11.0F, 0.0F));
-
-		PartDefinition armorBipedRightArm = bipedArmRight.addOrReplaceChild(
-				"armorBipedRightArm", CubeListBuilder.create().texOffs(44, 48).addBox(-4.0F, -2.0F,
-						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
+		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0)
+				.addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(72, 0)
+				.addBox(-6.0F, -16.0F, -6.0F, 12.0F, 6.0F, 12.0F, new CubeDeformation(0.0F))
+				.texOffs(32, 5).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 3.0F, 10.0F,
+						new CubeDeformation(0.0F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition bipedArmLeft = bipedArms.addOrReplaceChild(
-				"bipedArmLeft", CubeListBuilder.create().texOffs(104, 0).addBox(0.0F, -2.0F, -2.0F,
-						4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(4.0F, 0.0F, 0.0F));
-
-		PartDefinition bipedHandLeft = bipedArmLeft.addOrReplaceChild("bipedHandLeft", CubeListBuilder.create(),
-				PartPose.offset(2.0F, 11.0F, 0.0F));
-
-		PartDefinition armorBipedLeftArm = bipedArmLeft.addOrReplaceChild("armorBipedLeftArm",
-				CubeListBuilder.create().texOffs(44, 48).mirror()
-						.addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(1.0F))
-						.mirror(false),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition bipedPotionSlot = bipedBody.addOrReplaceChild(
-				"bipedPotionSlot", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 0.0F, 0.0F,
-						0.0F, 0.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(4.0F, -1.0F, 0.0F));
-
-		PartDefinition bipedHeadBaseRotator = bipedBody.addOrReplaceChild("bipedHeadBaseRotator",
-				CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition bipedHead = bipedHeadBaseRotator.addOrReplaceChild(
-				"bipedHead", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F,
-						10.0F, 8.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(0.0F, -12.0F, 0.0F));
-
-		PartDefinition nose = bipedHead
+		PartDefinition nose = head
 				.addOrReplaceChild("nose",
 						CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F,
 								2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)),
 						PartPose.offset(0.0F, -2.0F, 0.0F));
 
-		PartDefinition armorBipedHead = bipedHead.addOrReplaceChild(
-				"armorBipedHead", CubeListBuilder.create().texOffs(0, 32).addBox(-4.0F, -8.0F, -4.0F,
-						8.0F, 8.0F, 8.0F, new CubeDeformation(1.0F)),
-				PartPose.offset(0.0F, -2.0F, 0.0F));
+		PartDefinition arms = body.addOrReplaceChild("arms",
+				CubeListBuilder.create().texOffs(40, 38)
+						.addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+						.texOffs(44, 22).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F,
+								new CubeDeformation(0.0F)),
+				PartPose.offsetAndRotation(0.0F, 2.95F, -1.05F, -0.7505F, 0.0F, 0.0F));
 
-		PartDefinition bipedLegs = root.addOrReplaceChild("bipedLegs", CubeListBuilder.create(),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition mirrored = arms.addOrReplaceChild("mirrored",
+				CubeListBuilder.create().texOffs(44, 22).mirror()
+						.addBox(4.0F, -23.05F, -3.05F, 4.0F, 8.0F, 4.0F,
+								new CubeDeformation(0.0F))
+						.mirror(false),
+				PartPose.offset(0.0F, 21.05F, 1.05F));
 
-		PartDefinition bipedLegLeft = bipedLegs.addOrReplaceChild("bipedLegLeft",
-				CubeListBuilder.create().texOffs(88, 0).mirror()
+		PartDefinition left_arm = body.addOrReplaceChild("left_arm",
+				CubeListBuilder.create().texOffs(40, 46).mirror()
+						.addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F,
+								new CubeDeformation(0.0F))
+						.mirror(false),
+				PartPose.offset(5.0F, 2.0F, 0.0F));
+
+		PartDefinition right_arm = body.addOrReplaceChild(
+				"right_arm", CubeListBuilder.create().texOffs(40, 46).addBox(-3.0F, -2.0F, -2.0F, 4.0F,
+						12.0F, 4.0F, new CubeDeformation(0.0F)),
+				PartPose.offset(-5.0F, 2.0F, 0.0F));
+
+		PartDefinition left_leg = body.addOrReplaceChild("left_leg",
+				CubeListBuilder.create().texOffs(0, 22).mirror()
 						.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F,
 								new CubeDeformation(0.0F))
 						.mirror(false),
-				PartPose.offset(2.0F, 6.0F, 0.0F));
+				PartPose.offset(2.0F, 12.0F, 0.0F));
 
-		PartDefinition armorBipedLeftFoot = bipedLegLeft.addOrReplaceChild("armorBipedLeftFoot",
-				CubeListBuilder.create().texOffs(60, 48).mirror()
-						.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(0.5F))
-						.mirror(false),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition right_leg = body.addOrReplaceChild(
+				"right_leg", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F,
+						12.0F, 4.0F, new CubeDeformation(0.0F)),
+				PartPose.offset(-2.0F, 12.0F, 0.0F));
 
-		PartDefinition armorBipedLeftLeg = bipedLegLeft.addOrReplaceChild("armorBipedLeftLeg",
-				CubeListBuilder.create().texOffs(0, 48).mirror()
-						.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F,
-								new CubeDeformation(1.0F))
-						.mirror(false),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition bipedLegRight = bipedLegs.addOrReplaceChild(
-				"bipedLegRight", CubeListBuilder.create().texOffs(88, 0).addBox(-2.0F, 0.0F, -2.0F,
-						4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(-2.0F, 6.0F, 0.0F));
-
-		PartDefinition armorBipedRightFoot = bipedLegRight.addOrReplaceChild(
-				"armorBipedRightFoot", CubeListBuilder.create().texOffs(60, 48).addBox(-2.0F, 0.0F,
-						-2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition armourRightLeg = bipedLegRight.addOrReplaceChild(
-				"armourRightLeg", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F,
-						4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		return LayerDefinition.create(meshdefinition, 134, 64);
+		return LayerDefinition.create(meshdefinition, 128, 64);
 	}
 
 	@Override
@@ -236,14 +126,16 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		illagerArms.skipDraw = true;
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+			int packedOverlay,
+			float red, float green, float blue, float alpha) {
+		arms.skipDraw = true;
+		mirrored.skipDraw = true;
+		super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	@Override
 	public ModelPart getHead() {
-		return bipedHead;
+		return head;
 	}
 
 	@Override
@@ -254,9 +146,9 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 	@Override
 	public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
 		root.translateAndRotate(pPoseStack);
-		bipedBody.translateAndRotate(pPoseStack);
-		bipedArms.translateAndRotate(pPoseStack);
-		ModelPart arm = pSide == HumanoidArm.RIGHT ? bipedArmRight : bipedArmLeft;
+		body.translateAndRotate(pPoseStack);
+		ModelPart arm = pSide == HumanoidArm.RIGHT ? right_arm : left_arm;
 		arm.translateAndRotate(pPoseStack);
 	}
+
 }
