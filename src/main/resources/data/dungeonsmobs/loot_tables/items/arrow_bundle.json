@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "minecraft:arrow"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "functions": [
+            {
+              "function": "dungeonsmobs:add_potion"
+            }
+          ],
+          "name": "dungeonsmobs:items/arrow_bundle/expand_tag"
+        }
+      ]
+    }
+  ]
+}

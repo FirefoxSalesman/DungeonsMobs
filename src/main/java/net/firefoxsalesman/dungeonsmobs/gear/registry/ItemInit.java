@@ -9,11 +9,14 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FlamingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GhostCloakItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GongOfWeakeningItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.HarpoonQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.HarvesterItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.IronHideAmuletItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightFeatherItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightningRodItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfElixirsItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfSnacksItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SoulHealerItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
@@ -282,6 +285,15 @@ public class ItemInit {
 	// public static final RegistryObject<Item> THUNDERING_QUIVER =
 	// registerArtifact("thundering_quiver",
 	// () -> new ThunderingQuiverItem(PROPERTIES));
+	// public static final RegistryObject<Item> HARPOON_QUIVER =
+	// registerArtifact("harpoon_quiver",
+	// () -> new HarpoonQuiverItem(PROPERTIES));
+	// public static final RegistryObject<Item> SATCHEL_OF_ELIXIRS =
+	// registerArtifact("satchel_of_elixirs",
+	// () -> new SatchelOfElixirsItem(PROPERTIES));
+	// public static final RegistryObject<Item> SATCHEL_OF_SNACKS =
+	// registerArtifact("satchel_of_snacks",
+	// () -> new SatchelOfSnacksItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);

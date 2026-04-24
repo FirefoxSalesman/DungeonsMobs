@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "dungeonsmobs:endersent_lair",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 19796898,
+    "separation": 60,
+    "spacing": 84
+  }
+}

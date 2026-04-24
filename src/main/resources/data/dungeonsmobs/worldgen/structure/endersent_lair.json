@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#minecraft:is_overworld",
+  "spawn_overrides": {},
+  "start_pool": "dungeonsmobs:endersent_lair",
+  "size": 1,
+  "step": "underground_decoration",
+  "terrain_adaptation": "none",
+  "start_height": {
+    "absolute": -27
+  },
+  "max_distance_from_center": 80,
+  "use_expansion_hack": false
+}

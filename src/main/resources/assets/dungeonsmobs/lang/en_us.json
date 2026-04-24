@@ -864,5 +864,17 @@
 
   "item.dungeonsmobs.thundering_quiver": "Thundering Quiver",
   "lore.dungeonsmobs.thundering_quiver": "This copper quiver channels the power of lightning.",
-  "ability.dungeonsmobs.thundering_quiver": "Grants 5 electrified arrows."
+  "ability.dungeonsmobs.thundering_quiver": "Grants 5 electrified arrows.",
+
+  "item.dungeonsmobs.harpoon_quiver": "Harpoon Quiver",
+  "lore.dungeonsmobs.harpoon_quiver": "This quiver holds a number of harpoons that swiftly pierce through enemies on land or underwater.",
+  "ability.dungeonsmobs.harpoon_quiver": "Grants 5 harpoons.",
+
+  "item.dungeonsmobs.satchel_of_elixirs": "Satchel of Elixirs",
+  "lore.dungeonsmobs.satchel_of_elixirs": "The Satchel of Elixirs always contains the exact potions you need! (Well, at least the potions it thinks you need, which is still pretty helpful.)",
+  "ability.dungeonsmobs.satchel_of_elixirs": "Crafts two random potions and throws them on the ground near you.",
+
+  "item.dungeonsmobs.satchel_of_snacks": "Satchel of Snacks",
+  "lore.dungeonsmobs.satchel_of_snacks": "The Satchel of Snacks provides a treat when you need it the most!",
+  "ability.dungeonsmobs.satchel_of_snacks": "Crafts a random food item and throws it on the ground near you."
 }
