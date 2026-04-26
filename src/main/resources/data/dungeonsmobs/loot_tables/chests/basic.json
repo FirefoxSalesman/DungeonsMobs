@@ -250,6 +250,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:soul_lantern",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },

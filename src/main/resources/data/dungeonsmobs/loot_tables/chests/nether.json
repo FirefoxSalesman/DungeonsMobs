@@ -19,8 +19,13 @@
           "weight": 2 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:fireworks_display",
+          "weight": 2 
+        },
+	{
           "type": "empty",
-          "weight": 8
+          "weight": 10
         }
       ]
     }

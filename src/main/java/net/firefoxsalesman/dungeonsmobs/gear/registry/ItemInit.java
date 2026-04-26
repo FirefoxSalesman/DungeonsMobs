@@ -5,6 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BuzzyNestItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.DeathCapMushroomItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.EnchantedGrassItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FireworksDisplayItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.FlamingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GhostCloakItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.GolemKitItem;
@@ -21,6 +22,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfElixirsIte
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfSnacksItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SoulHealerItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SoulLanternItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TastyBoneItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ThunderingQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TormentQuiverItem;
@@ -32,6 +34,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedBeaconItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedPumpkinItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.EyeOfTheGuardianItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
@@ -303,6 +306,12 @@ public class ItemInit {
 			() -> new PowershakerItem(PROPERTIES));
 	public static final RegistryObject<Item> UPDRAFT_TOME = registerArtifact("updraft_tome",
 			() -> new UpdraftTomeItem(PROPERTIES));
+	public static final RegistryObject<Item> EYE_OF_THE_GUARDIAN = registerArtifact("eye_of_the_guardian",
+			() -> new EyeOfTheGuardianItem(PROPERTIES));
+	public static final RegistryObject<Item> FIREWORKS_DISPLAY = registerArtifact("fireworks_display",
+			() -> new FireworksDisplayItem(PROPERTIES));
+	public static final RegistryObject<Item> SOUL_LANTERN = registerArtifact("soul_lantern",
+			() -> new SoulLanternItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);

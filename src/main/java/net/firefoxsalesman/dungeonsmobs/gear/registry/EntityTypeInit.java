@@ -13,6 +13,9 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.ArtifactBeamEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.BuzzyNestEntity;
+import net.firefoxsalesman.dungeonsmobs.gear.entities.FireworksDisplayEntity;
+import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
+import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfRegenerationEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfShieldingEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfSoulProtectionEntity;
@@ -36,6 +39,23 @@ public final class EntityTypeInit {
 
 	public static final RegistryObject<EntityType<ArtifactBeamEntity>> BEAM_ENTITY = registerTotem("beam_entity",
 			ArtifactBeamEntity::new);
+
+	public static final RegistryObject<EntityType<FireworksDisplayEntity>> FIREWORKS_DISPLAY = registerTotem(
+			"fireworks_display", FireworksDisplayEntity::new);
+
+	public static final RegistryObject<EntityType<SoulWizardEntity>> SOUL_WIZARD = ENTITY_TYPES
+			.register("soul_wizard", () -> EntityType.Builder.of(SoulWizardEntity::new, MobCategory.MONSTER)
+					.sized(0.25F, 1.0F)
+					.clientTrackingRange(8)
+					.build(new ResourceLocation(MOD_ID, "soul_wizard").toString()));
+
+	public static final RegistryObject<EntityType<SoulWizardOrbEntity>> SOUL_WIZARD_ORB = ENTITY_TYPES.register(
+			"soul_wizard_orb",
+			() -> EntityType.Builder.<SoulWizardOrbEntity>of(SoulWizardOrbEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(0.3F, 0.3F)
+					.updateInterval(1)
+					.build(new ResourceLocation(MOD_ID, "soul_wizard_orb").toString()));
 
 	private static <P extends Entity> RegistryObject<EntityType<P>> registerTotem(String name,
 			EntityType.EntityFactory<P> factory) {

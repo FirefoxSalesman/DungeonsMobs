@@ -30,12 +30,17 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:eye_of_the_guardian",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:encrusted_anchor",
           "weight": 1 
         },
 	{
           "type": "empty",
-          "weight": 11
+          "weight": 13
         }
       ]
     }

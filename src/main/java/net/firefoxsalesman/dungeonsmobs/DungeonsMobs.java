@@ -9,12 +9,14 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.gear.CommonProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
+import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.loot.ModLootModifiers;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.SoundEventInit;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
 import net.firefoxsalesman.dungeonsmobs.lib.config.DungeonsLibrariesConfig;
@@ -38,6 +40,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -102,7 +105,9 @@ public class DungeonsMobs {
 		new DungeonsGearConfig();
 		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 		ParticleInit.register(modEventBus);
+		SoundEventInit.register(modEventBus);
 		EntityTypeInit.register(modEventBus);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initEntityTypeAttributes);
 		ItemInit.register(modEventBus);
 		MobEffectInit.register(modEventBus);
 		EnchantmentInit.register(modEventBus);
@@ -145,5 +150,9 @@ public class DungeonsMobs {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 		}
+	}
+
+	public void initEntityTypeAttributes(EntityAttributeCreationEvent event) {
+		event.put(EntityTypeInit.SOUL_WIZARD.get(), SoulWizardEntity.setCustomAttributes().build());
 	}
 }

@@ -888,5 +888,17 @@
 
   "item.dungeonsmobs.updraft_tome": "Updraft Tome",
   "lore.dungeonsmobs.updraft_tome": "An ancient book filled with illegible glyphs, you feel a strange breeze as you flip the pages.",
-  "ability.dungeonsmobs.updraft_tome": "Launch up to 5 enemies into the air, stunning and damaging them."
+  "ability.dungeonsmobs.updraft_tome": "Launch up to 5 enemies into the air, stunning and damaging them.",
+  
+  "item.dungeonsmobs.eye_of_the_guardian": "Eye of the Guardian",
+  "lore.dungeonsmobs.eye_of_the_guardian": "The Eye of the Guardian holds a power that awakens in the hands of a worthy hero.",
+  "ability.dungeonsmobs.eye_of_the_guardian": "Fires a beam of energy that locks you into place as it deals damage to enemies in its path.",
+
+  "item.dungeonsmobs.fireworks_display": "Fireworks Display",
+  "lore.dungeonsmobs.fireworks_display": "The Fireworks Display is often used by Villagers to celebrate a successful defense against an Illager raid, it is also quite handy as a flare for lost travellers.",
+  "ability.dungeonsmobs.fireworks_display": "Shoots a display of fireworks into the sky.",
+
+  "item.dungeonsmobs.soul_lantern": "Soul Lantern",
+  "lore.dungeonsmobs.soul_lantern": "This lantern, still covered in the sands of a far-flung place, allows those who hold it to summon a creature formed from bound souls.",
+  "ability.dungeonsmobs.soul_lantern": "Summons a Soul Wizard to aid you in battle."
 }

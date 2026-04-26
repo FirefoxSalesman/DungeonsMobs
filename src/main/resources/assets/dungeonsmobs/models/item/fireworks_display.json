@@ -1,0 +1,6 @@
+{
+  "parent": "dungeonsmobs:item/fireworks_box",
+  "textures": {
+    "layer0": "dungeonsmobs:item/fireworks_display"
+  }
+}
