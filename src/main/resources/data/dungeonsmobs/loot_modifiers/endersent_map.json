@@ -1,0 +1,259 @@
+{
+  "type": "dungeonsmobs:loottable",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_corridor"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_crossing"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_library"
+        },
+        {
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/armoury"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/crypt"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/mess"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/prison_lg"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/trap"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/grand_library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "betterstrongholds:chests/library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/armory"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/brewing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/crypt"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/dining_hall"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/enchanting"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/farm"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/grand_library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/intersection"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/maze"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/mine"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/nether_portal"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/prison"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/sanctorum"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/secret_lab"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/storage"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/stronghold"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/torture_chamber"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/base"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/generic"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/jail"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/library_bookshelf"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/nether_portal"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "minecraft:chests/stronghold/sewer"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/coffin"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/corridor"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/farm"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/junk"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/portal_room/brewing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/portal_room/frame"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/portal_room/library"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/portal_room/treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/prison/allay"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/regular"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/rascal_crossing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/ritual_crossing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/sculk_crossing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/secret_coffin"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "stellarity:stronghold/spider_crossing"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/biblio"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/dungeon"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/food"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/hided"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/house"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/lab"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/throne"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "tlc:chests/treasure"
+	}
+      ]
+    }
+  ],
+  "table": "dungeonsmobs:chests/endersent_map"
+}
