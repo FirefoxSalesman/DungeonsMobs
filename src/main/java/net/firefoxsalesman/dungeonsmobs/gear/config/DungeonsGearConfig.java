@@ -80,6 +80,9 @@ public class DungeonsGearConfig {
 
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> LOVE_MEDALLION_BLACKLIST;
 
+	// Effect Values
+	public static ForgeConfigSpec.ConfigValue<Integer> PARTY_STARTER_DAMAGE;
+
 	private static CommentedFileConfig cfg;
 
 	public DungeonsGearConfig() {
@@ -126,6 +129,12 @@ public class DungeonsGearConfig {
 						+
 						"Disable this feature if you want to prevent this. [true / false]")
 				.define("enableEnchantmentLoot", true);
+		builder.pop();
+
+		builder.comment("Effect Specific Configuration").push("effect_specific_configuration");
+		PARTY_STARTER_DAMAGE = builder
+				.comment("The damage caused by Party Starter. [0-10000, default: 4]")
+				.defineInRange("partyStarterDamage", 4, 0, 10000);
 		builder.pop();
 
 		builder.comment("Enchantment Specific Configuration").push("enchantment_specific_configuration");

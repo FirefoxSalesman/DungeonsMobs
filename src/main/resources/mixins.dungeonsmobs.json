@@ -26,7 +26,8 @@
     "EnchantmentHelperMixin",
     "AxeItemAccessor",
     "AbstractHorseAccessor",
-    "LlamaInvoker"
+    "LlamaInvoker",
+    "MobEffectInstanceAccessor"
   ],
   "client": [
     "SpiderModelMixin"

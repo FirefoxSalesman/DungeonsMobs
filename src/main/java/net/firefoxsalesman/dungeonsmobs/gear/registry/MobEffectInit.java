@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.effects.CustomEffect;
+import net.firefoxsalesman.dungeonsmobs.gear.effects.PartyStarterEffect;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.ShieldingEffect;
 
 public class MobEffectInit {
@@ -22,9 +23,8 @@ public class MobEffectInit {
 			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 2445989));
 	public static RegistryObject<MobEffect> STUNNED = MOB_EFFECTS.register("stunned",
 			() -> new CustomEffect(MobEffectCategory.HARMFUL, 4738376));
-	// public static RegistryObject<MobEffect> PARTY_STARTER =
-	// MOB_EFFECTS.register("party_starter",
-	// () -> new PartyStarterEffect(MobEffectCategory.BENEFICIAL, 0xE25822));
+	public static RegistryObject<MobEffect> PARTY_STARTER = MOB_EFFECTS.register("party_starter",
+			() -> new PartyStarterEffect(MobEffectCategory.BENEFICIAL, 0xE25822));
 	public static RegistryObject<MobEffect> DYNAMO = MOB_EFFECTS.register("dynamo",
 			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 0xFFBB2E));
 	// public static RegistryObject<MobEffect> LIFE_STEAL =

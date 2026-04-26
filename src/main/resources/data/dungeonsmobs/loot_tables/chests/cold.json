@@ -45,6 +45,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:satchel_of_elements",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:updraft_tome",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:resolute_tempest_knife",
           "weight": 1
         },
@@ -65,7 +75,7 @@
         },
 	{
           "type": "empty",
-          "weight": 20
+          "weight": 22
         }
       ]
     }

@@ -14,8 +14,13 @@
           "weight": 2 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:powershaker",
+          "weight": 2 
+        },
+	{
           "type": "empty",
-          "weight": 6
+          "weight": 8
         }
       ]
     }

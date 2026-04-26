@@ -15,6 +15,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.IronHideAmuletItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightFeatherItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LightningRodItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.LoveMedallionItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.PowershakerItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfElementsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfElixirsItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.SatchelOfSnacksItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.ShockPowderItem;
@@ -25,6 +27,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TormentQuiverItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfRegenerationItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfShieldingItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.TotemOfSoulProtectionItem;
+import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.UpdraftTomeItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WindHornItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.WonderfulWheatItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedBeaconItem;
@@ -294,6 +297,12 @@ public class ItemInit {
 	// public static final RegistryObject<Item> SATCHEL_OF_SNACKS =
 	// registerArtifact("satchel_of_snacks",
 	// () -> new SatchelOfSnacksItem(PROPERTIES));
+	public static final RegistryObject<Item> SATCHEL_OF_ELEMENTS = registerArtifact("satchel_of_elements",
+			() -> new SatchelOfElementsItem(PROPERTIES));
+	public static final RegistryObject<Item> POWERSHAKER = registerArtifact("powershaker",
+			() -> new PowershakerItem(PROPERTIES));
+	public static final RegistryObject<Item> UPDRAFT_TOME = registerArtifact("updraft_tome",
+			() -> new UpdraftTomeItem(PROPERTIES));
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
