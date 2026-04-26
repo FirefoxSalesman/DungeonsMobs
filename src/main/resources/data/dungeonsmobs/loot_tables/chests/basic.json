@@ -250,8 +250,8 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:soul_lantern",
-          "weight": 2
+          "name": "dungeonsmobs:fireworks_display",
+          "weight": 2 
         },
 	{
           "type": "item",
