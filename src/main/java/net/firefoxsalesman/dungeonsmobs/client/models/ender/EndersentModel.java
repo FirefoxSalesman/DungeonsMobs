@@ -142,11 +142,11 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 			float headPitch) {
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 3f, 4f);
-		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks, 1f);
-		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks, 1f);
-		animate(entity.summonAnimationState, EndersentAnimations.SUMMON_WATCHLINGS, ageInTicks, 1f);
-		animate(entity.teleportAnimationState, EndersentAnimations.TELEPORT, ageInTicks, 1f);
+		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks);
+		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks);
+		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks);
+		animate(entity.summonAnimationState, EndersentAnimations.SUMMON_WATCHLINGS, ageInTicks);
+		animate(entity.teleportAnimationState, EndersentAnimations.TELEPORT, ageInTicks);
 	}
 
 	@Override

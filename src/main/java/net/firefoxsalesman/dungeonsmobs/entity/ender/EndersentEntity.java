@@ -36,6 +36,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * Our attack goal borrows from Goety, because I am not smart enough to figure
+ * how to synchronize it on my own
+ */
 public class EndersentEntity extends VanillaEnderlingEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
@@ -43,7 +47,8 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	public final AnimationState idleAnimationState = new AnimationState();
 
 	public final AnimationState attackAnimationState = new AnimationState();
-	private int attackAnimationTimeout = 0;
+	private int attackAnimationTick = 0;
+	private final int attackAnimationLength = 26;
 
 	public final AnimationState deathAnimationState = new AnimationState();
 
@@ -116,9 +121,6 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	@Override
 	protected void tickDeath() {
-		if (deathTime == 0) {
-			deathAnimationState.start(deathTime);
-		}
 		++deathTime;
 		if (deathTime == 100) {
 			remove(RemovalReason.KILLED);
@@ -187,6 +189,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 			setupAnimationStates();
 		}
 		summonAnimationTick--;
+		attackAnimationTick--;
 	}
 
 	public void baseTick() {
@@ -246,17 +249,27 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	}
 
 	private void setupAnimationStates() {
-		if (isAttackingBool() && attackAnimationTimeout <= 0) {
-			attackAnimationTimeout = 95;
-			attackAnimationState.start(tickCount);
-		} else {
-			attackAnimationTimeout--;
-		}
-		summonAnimationState.animateWhen(!walkAnimation.isMoving() && isSummoning() && isAlive(),
+		deathAnimationState.animateWhen(isDead(), tickCount);
+		teleportAnimationState.animateWhen(teleporting(), tickCount);
+		if (isSummoning())
+			System.out.println("I should be summoning right now");
+		summonAnimationState.animateWhen(isSummoning() && !teleporting(),
 				tickCount);
-		idleAnimationState.animateWhen(
-				!walkAnimation.isMoving() && !isSummoning() && getTarget() == null && isAlive(),
+		attackAnimationState.animateWhen(isAttackingBool(), tickCount);
+		idleAnimationState.animateWhen(!isMoving() && !isSummoning() && !isAttackingBool() && !isDead(),
 				tickCount);
+	}
+
+	private boolean teleporting() {
+		return isTeleporting() > 0;
+	}
+
+	private boolean isDead() {
+		return deathTime > 0;
+	}
+
+	private boolean isMoving() {
+		return walkAnimation.speed() > 1.0E-1F;
 	}
 
 	private boolean isSummoning() {
@@ -265,49 +278,37 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 	class AttackGoal extends MeleeAttackGoal {
 		private final EndersentEntity entity;
-		private boolean waiting = false;
 
 		public AttackGoal(EndersentEntity mob, double speed) {
 			super(mob, speed, true);
 			entity = mob;
 		}
 
-		public boolean canContinueToUse() {
-			return super.canContinueToUse();
-		}
-
+		@Override
 		protected double getAttackReachSqr(LivingEntity pEntity) {
 			return mob.getBbWidth() * 5.0F * mob.getBbWidth() * 5.0F + pEntity.getBbWidth();
 		}
 
+		@Override
 		public void tick() {
 			super.tick();
-
 			setRunning(10);
 		}
 
+		@Override
 		protected void checkAndPerformAttack(LivingEntity pEntity, double pDistToEnemySqr) {
 			double d0 = getAttackReachSqr(pEntity);
-			if (pDistToEnemySqr <= d0 && isTimeToAttack()) {
-				resetAttackCooldown();
+			if (pDistToEnemySqr <= d0 && !entity.isAttackingBool()) {
 				entity.setAttacking(true);
-				if (waiting) {
-					mob.doHurtTarget(pEntity);
-					waiting = false;
-				} else {
-					waiting = true;
-				}
-			} else if (pDistToEnemySqr <= d0 * 1.5D) {
-				if (isTimeToAttack()) {
-					resetAttackCooldown();
-				}
-
-				if (getTicksUntilNextAttack() <= 30) {
-					setAttacking(30);
-				}
-			} else {
-				entity.setAttacking(false);
-				resetAttackCooldown();
+				entity.attackAnimationTick = attackAnimationLength;
+				System.out.println("Attack animation tick is " + attackAnimationTick);
+			}
+			int inverseTick = entity.attackAnimationLength - entity.attackAnimationTick;
+			if (entity.isAttackingBool() && inverseTick == 20) {
+				doHurtTarget(getTarget());
+			}
+			if (entity.attackAnimationTick <= 0) {
+				setAttacking(false);
 			}
 		}
 
@@ -346,12 +347,12 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 
 		@Override
 		protected void resetSummonTick() {
-			summonAnimationTick = summonAnimationLength;
+			mob.summonAnimationTick = summonAnimationLength;
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return summonAnimationTick;
+			return mob.summonAnimationTick;
 		}
 
 		@Override
