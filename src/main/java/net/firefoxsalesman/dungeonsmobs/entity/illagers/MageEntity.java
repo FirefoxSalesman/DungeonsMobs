@@ -32,6 +32,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -166,10 +167,6 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 
 	private boolean isAttacking() {
 		return attackAnimationTick > 0;
-	}
-
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
 	}
 
 	public void baseTick() {
@@ -499,5 +496,10 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }

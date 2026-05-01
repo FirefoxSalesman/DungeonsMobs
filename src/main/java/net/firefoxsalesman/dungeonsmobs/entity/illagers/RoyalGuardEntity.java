@@ -179,10 +179,6 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		return attackAnimationTick > 0;
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	public void baseTick() {
 		super.baseTick();
 		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
@@ -444,5 +440,10 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }

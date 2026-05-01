@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -113,10 +114,6 @@ public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 		}
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	private void setupAnimationStates() {
 		if (isAttacking() && attackAnimationTimeout <= 0) {
 			attackAnimationTimeout = 5;
@@ -175,5 +172,10 @@ public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }

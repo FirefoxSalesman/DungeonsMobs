@@ -29,6 +29,7 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -272,10 +273,6 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		return deathTime > 0;
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	private boolean isSummoning() {
 		return summonAnimationTick >= 0;
 	}
@@ -385,6 +382,11 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 
 }

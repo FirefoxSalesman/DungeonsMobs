@@ -104,10 +104,6 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 		}
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
@@ -245,5 +241,10 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return animations;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }

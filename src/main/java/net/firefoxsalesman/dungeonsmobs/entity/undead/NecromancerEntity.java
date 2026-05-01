@@ -180,10 +180,6 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		}
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	private void setupAnimationStates() {
 		getState("summon").animateWhen(isSummoning(), tickCount);
 		getState("shoot").animateWhen(isShooting() && !isSummoning(), tickCount);
@@ -328,6 +324,11 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 
 }

@@ -334,4 +334,9 @@ public class RedstoneCubeEntity extends Monster implements KeyframeEntity {
 		return new HashMap<>();
 	}
 
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
+	}
+
 }

@@ -31,6 +31,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -173,10 +174,6 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 		return attackAnimationTick > 0;
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	public void baseTick() {
 		super.baseTick();
 		AttributeInstance modifiableattributeinstance = getAttribute(Attributes.MOVEMENT_SPEED);
@@ -306,5 +303,10 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }

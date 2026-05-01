@@ -120,10 +120,6 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 		}
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
@@ -325,6 +321,11 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 
 }

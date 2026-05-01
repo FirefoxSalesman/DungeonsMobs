@@ -178,10 +178,6 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 		return shootAnimationTick > 0;
 	}
 
-	private boolean isMoving() {
-		return walkAnimation.speed() > 1.0E-1F;
-	}
-
 	public void baseTick() {
 		super.baseTick();
 		tickDownAnimTimers();
@@ -363,5 +359,10 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 	@Override
 	public Map<String, AnimationState> getStates() {
 		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }
