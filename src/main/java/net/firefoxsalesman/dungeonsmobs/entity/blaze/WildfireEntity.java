@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -40,13 +41,16 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
 
-public class WildfireEntity extends Monster {
+public class WildfireEntity extends Monster implements KeyframeEntity {
 
+	private Map<String, AnimationState> states;
 	private static final EntityDataAccessor<Integer> SHIELDS = SynchedEntityData.defineId(WildfireEntity.class,
 			EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Float> SHIELD_HEALTH = SynchedEntityData.defineId(WildfireEntity.class,
@@ -69,12 +73,7 @@ public class WildfireEntity extends Monster {
 	public int regenerateShieldTime = 150;
 	public float individualShieldHealth = 15.0F;
 
-	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
-
-	public final AnimationState shootAnimationState = new AnimationState();
-	public final AnimationState shockwaveAnimationState = new AnimationState();
-	public final AnimationState summonAnimationState = new AnimationState();
 
 	public WildfireEntity(EntityType<? extends WildfireEntity> type, Level world) {
 		super(type, world);
@@ -83,6 +82,11 @@ public class WildfireEntity extends Monster {
 		this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
 		this.xpReward = 25;
+		states = new HashMap<>();
+		addState("idle");
+		addState("shoot");
+		addState("shockwave");
+		addState("summon");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -94,21 +98,21 @@ public class WildfireEntity extends Monster {
 	private void setupAnimationStates() {
 		if (idleAnimationTimeout <= 0) {
 			idleAnimationTimeout = 20;
-			idleAnimationState.start(tickCount);
+			getState("idle").start(tickCount);
 		} else {
 			idleAnimationTimeout--;
 		}
 
 		if (this.shootAnimationTick > 0) {
-			this.shootAnimationState.start(this.tickCount - this.shootAnimationTick);
+			getState("shoot").start(this.tickCount - this.shootAnimationTick);
 		}
 
 		if (this.shockwaveAnimationTick > 0) {
-			this.shockwaveAnimationState.start(this.tickCount - this.shockwaveAnimationTick);
+			getState("shockwave").start(this.tickCount - this.shockwaveAnimationTick);
 		}
 
 		if (this.summonAnimationTick > 0) {
-			this.summonAnimationState.start(this.tickCount - this.summonAnimationTick);
+			getState("summon").start(this.tickCount - this.summonAnimationTick);
 		}
 	}
 
@@ -540,6 +544,16 @@ public class WildfireEntity extends Monster {
 			return mob.shootAnimationTick <= 0;
 		}
 
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
+	}
+
+	@Override
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 
 }

@@ -1,21 +1,21 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.blaze;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.firefoxsalesman.dungeonsmobs.client.animation.WildfireAnimations;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
-import net.minecraft.client.model.HierarchicalModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.util.Mth;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
 // Made with Blockbench 4.12.3
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T> {
+public class WildfireModel<T extends WildfireEntity> extends ConvenientModel<T> {
 	public final ModelPart everything;
 	public final ModelPart head;
 	public final ModelPart armorHead;
@@ -36,6 +36,10 @@ public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T
 		this.shield1 = this.shields.getChild("shield1");
 		this.shield3 = this.shields.getChild("shield3");
 		this.shield4 = this.shields.getChild("shield4");
+		animations.put("idle", WildfireAnimations.wildfire_idle);
+		animations.put("shockwave", WildfireAnimations.wildfire_shockwave);
+		animations.put("shoot", WildfireAnimations.wildfire_shoot);
+		animations.put("summon", WildfireAnimations.wildfire_summon);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -89,32 +93,8 @@ public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		everything.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
-
-	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch, float ageInTicks) {
-		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
-		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
-		head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		head.xRot = headPitch * ((float) Math.PI / 180F);
-	}
-
-	@Override
 	public ModelPart root() {
 		return everything;
-	}
-
-	@Override
-	public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw,
-			float pHeadPitch) {
-		root().getAllParts().forEach(ModelPart::resetPose);
-		applyHeadRotation(pEntity, pNetHeadYaw, pHeadPitch, pAgeInTicks);
-		animate(pEntity.idleAnimationState, WildfireAnimations.wildfire_idle, pAgeInTicks, 1f);
-		animate(pEntity.shootAnimationState, WildfireAnimations.wildfire_shoot, pAgeInTicks, 1f);
-		animate(pEntity.shockwaveAnimationState, WildfireAnimations.wildfire_shockwave, pAgeInTicks, 1f);
-		animate(pEntity.summonAnimationState, WildfireAnimations.wildfire_summon, pAgeInTicks, 1f);
 	}
 
 	public void setAllVisible(boolean pVisible) {
@@ -126,5 +106,10 @@ public class WildfireModel<T extends WildfireEntity> extends HierarchicalModel<T
 		this.shield2.visible = pVisible;
 		this.shield3.visible = pVisible;
 		this.shield4.visible = pVisible;
+	}
+
+	@Override
+	public ModelPart getHead() {
+		return head;
 	}
 }
