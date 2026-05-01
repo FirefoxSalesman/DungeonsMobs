@@ -4,7 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.interfaces.AnimatedMage;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -28,18 +28,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MageCloneEntity extends AbstractIllager implements AnimatedMage {
+public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 
 	private static final EntityDataAccessor<Boolean> DELAYED_APPEAR = SynchedEntityData.defineId(
 			MageCloneEntity.class,
 			EntityDataSerializers.BOOLEAN);
-
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState celebrateAnimationState = new AnimationState();
-	public final AnimationState attackAnimationState = new AnimationState();
-	public final AnimationState vanishAnimationState = new AnimationState();
-	public final AnimationState appearAnimationState = new AnimationState();
+	private Map<String, AnimationState> states;
 	public int shootAnimationTick;
 	public int shootAnimationLength = 40;
 	public int shootAnimationActionPoint = 20;
@@ -54,6 +51,12 @@ public class MageCloneEntity extends AbstractIllager implements AnimatedMage {
 	public MageCloneEntity(EntityType<? extends MageCloneEntity> type, Level world) {
 		super(type, world);
 		xpReward = 0;
+		states = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("attack");
+		addState("vanish");
+		addState("appear");
 	}
 
 	protected void registerGoals() {
@@ -162,9 +165,9 @@ public class MageCloneEntity extends AbstractIllager implements AnimatedMage {
 	}
 
 	private void setupAnimationStates() {
-		attackAnimationState.animateWhen(isAttacking() && !isCelebrating(), tickCount);
-		appearAnimationState.animateWhen(isAppearing() && !isAttacking() && !isCelebrating(), tickCount);
-		idleAnimationState.animateWhen(!isAppearing() && !isAttacking() && !isMoving() && isAlive(), tickCount);
+		getState("attack").animateWhen(isAttacking() && !isCelebrating(), tickCount);
+		getState("appear").animateWhen(isAppearing() && !isAttacking() && !isCelebrating(), tickCount);
+		getState("idle").animateWhen(!isAppearing() && !isAttacking() && !isMoving() && isAlive(), tickCount);
 	}
 
 	private boolean isAppearing() {
@@ -358,28 +361,7 @@ public class MageCloneEntity extends AbstractIllager implements AnimatedMage {
 	}
 
 	@Override
-	public AnimationState getIdleState() {
-		return idleAnimationState;
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
-
-	@Override
-	public AnimationState getCelebrateState() {
-		return celebrateAnimationState;
-	}
-
-	@Override
-	public AnimationState getAttackState() {
-		return attackAnimationState;
-	}
-
-	@Override
-	public AnimationState getVanishState() {
-		return vanishAnimationState;
-	}
-
-	@Override
-	public AnimationState getAppearState() {
-		return appearAnimationState;
-	}
-
 }

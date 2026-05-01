@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 // Paste this class into your mod and generate all required imports
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.RoyalGuardAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -50,6 +50,12 @@ public class RoyalGuardModel<T extends RoyalGuardEntity> extends ConvenientModel
 		this.lefteyebrows = this.head.getChild("lefteyebrows");
 		this.left_leg = this.everything.getChild("left_leg");
 		this.right_leg = this.everything.getChild("right_leg");
+		animations.put("attack", RoyalGuardAnimations.ATTACK);
+		animations.put("walkBlock", RoyalGuardAnimations.NEW_WALK_BLOCKING);
+		animations.put("block", RoyalGuardAnimations.NEW_BLOCKING);
+		animations.put("walk", RoyalGuardAnimations.EVEN_NEWER_WALK);
+		animations.put("celebrate", RoyalGuardAnimations.CELEBRATE);
+		animations.put("idle", RoyalGuardAnimations.NEW_IDLE);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -161,18 +167,6 @@ public class RoyalGuardModel<T extends RoyalGuardEntity> extends ConvenientModel
 				PartPose.offset(-2.0F, -10.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 96, 96);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.attackAnimationState, RoyalGuardAnimations.ATTACK, ageInTicks);
-		animate(entity.walkBlockAnimationState, RoyalGuardAnimations.NEW_WALK_BLOCKING, ageInTicks);
-		animate(entity.blockAnimationState, RoyalGuardAnimations.NEW_BLOCKING, ageInTicks);
-		animate(entity.walkAnimationState, RoyalGuardAnimations.EVEN_NEWER_WALK, ageInTicks);
-		animate(entity.celebrateAnimationState, RoyalGuardAnimations.CELEBRATE, ageInTicks);
-		animate(entity.idleAnimationState, RoyalGuardAnimations.NEW_IDLE, ageInTicks);
 	}
 
 	@Override

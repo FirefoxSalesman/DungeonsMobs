@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.redstone;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,8 +23,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RedstoneCubeEntity extends Monster {
+public class RedstoneCubeEntity extends Monster implements KeyframeEntity {
 	protected int rollingDuration;
 
 	private static final EntityDataAccessor<Boolean> IS_ROLLING = SynchedEntityData
@@ -324,6 +327,11 @@ public class RedstoneCubeEntity extends Monster {
 
 	public boolean isRolling() {
 		return this.entityData.get(IS_ROLLING);
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return new HashMap<>();
 	}
 
 }

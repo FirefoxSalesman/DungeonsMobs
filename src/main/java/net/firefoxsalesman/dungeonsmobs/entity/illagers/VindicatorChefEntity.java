@@ -1,9 +1,11 @@
 package net.firefoxsalesman.dungeonsmobs.entity.illagers;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -37,18 +39,20 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
-public class VindicatorChefEntity extends Vindicator {
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState celebrateAnimationState = new AnimationState();
+public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
+	private Map<String, AnimationState> states;
 	public int celebrationAnimationTick = 0;
 
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(
 			VindicatorChefEntity.class, EntityDataSerializers.BOOLEAN);
-	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTimeout = 0;
 
 	public VindicatorChefEntity(EntityType<? extends Vindicator> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
+		states = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("attack");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -116,17 +120,17 @@ public class VindicatorChefEntity extends Vindicator {
 	private void setupAnimationStates() {
 		if (isAttacking() && attackAnimationTimeout <= 0) {
 			attackAnimationTimeout = 5;
-			attackAnimationState.start(tickCount);
+			getState("attack").start(tickCount);
 		} else {
 			attackAnimationTimeout--;
 		}
 		if (isCelebrating() && celebrationAnimationTick <= 0 && !isAttacking()) {
 			celebrationAnimationTick = 35;
-			celebrateAnimationState.start(tickCount);
+			getState("celebrate").start(tickCount);
 		} else {
 			celebrationAnimationTick--;
 		}
-		idleAnimationState.animateWhen(
+		getState("idle").animateWhen(
 				!isMoving() && isAlive() && !isCelebrating() && !isAttacking(),
 				tickCount);
 	}
@@ -166,5 +170,10 @@ public class VindicatorChefEntity extends Vindicator {
 			super.stop();
 			entity.setAttacking(false);
 		}
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 }

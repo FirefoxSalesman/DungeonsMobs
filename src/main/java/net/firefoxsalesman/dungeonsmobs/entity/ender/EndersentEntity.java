@@ -2,6 +2,9 @@ package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
@@ -9,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -40,25 +44,19 @@ import net.minecraft.world.level.block.state.BlockState;
  * Our attack goal borrows from Goety, because I am not smart enough to figure
  * how to synchronize it on my own
  */
-public class EndersentEntity extends VanillaEnderlingEntity {
+public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeEntity {
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
-	public final AnimationState idleAnimationState = new AnimationState();
-
-	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTick = 0;
 	private final int attackAnimationLength = 26;
 
-	public final AnimationState deathAnimationState = new AnimationState();
-
-	public final AnimationState summonAnimationState = new AnimationState();
 	public int summonAnimationTick;
 	public final int summonAnimationLength = 22;
 
-	public final AnimationState teleportAnimationState = new AnimationState();
-
 	public int appearDelay = 0;
+
+	private Map<String, AnimationState> states;
 
 	public static final EntityDataAccessor<Integer> TELEPORTING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.INT);
@@ -69,9 +67,15 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 					.setPlayBossMusic(true)
 			: null;
 
-	public EndersentEntity(EntityType<? extends EndersentEntity> p_i50210_1_, Level p_i50210_2_) {
-		super(p_i50210_1_, p_i50210_2_);
+	public EndersentEntity(EntityType<? extends EndersentEntity> type, Level level) {
+		super(type, level);
 		xpReward = 50;
+		states = new HashMap<>();
+		addState("idle");
+		addState("attack");
+		addState("death");
+		addState("summon");
+		addState("teleport");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -238,7 +242,7 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	protected boolean teleport(double x, double y, double z) {
 		boolean result = super.teleport(x, y, z);
 		if (result) {
-			teleportAnimationState.start(tickCount);
+			getState("teleport").start(tickCount);
 		}
 		return result;
 	}
@@ -249,14 +253,14 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 	}
 
 	private void setupAnimationStates() {
-		deathAnimationState.animateWhen(isDead(), tickCount);
-		teleportAnimationState.animateWhen(teleporting(), tickCount);
+		getState("death").animateWhen(isDead(), tickCount);
+		getState("teleport").animateWhen(teleporting(), tickCount);
 		if (isSummoning())
 			System.out.println("I should be summoning right now");
-		summonAnimationState.animateWhen(isSummoning() && !teleporting(),
+		getState("summon").animateWhen(isSummoning() && !teleporting(),
 				tickCount);
-		attackAnimationState.animateWhen(isAttackingBool(), tickCount);
-		idleAnimationState.animateWhen(!isMoving() && !isSummoning() && !isAttackingBool() && !isDead(),
+		getState("attack").animateWhen(isAttackingBool(), tickCount);
+		getState("idle").animateWhen(!isMoving() && !isSummoning() && !isAttackingBool() && !isDead(),
 				tickCount);
 	}
 
@@ -376,6 +380,11 @@ public class EndersentEntity extends VanillaEnderlingEntity {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 		}
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 
 }

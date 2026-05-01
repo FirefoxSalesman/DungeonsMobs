@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.undead;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -13,6 +15,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.BasicModdedAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -48,12 +51,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, AnimatableMeleeAttackMob {
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState attackAnimationState = new AnimationState();
-	public final AnimationState walkAnimationState = new AnimationState();
-	public final AnimationState walkBlockAnimationState = new AnimationState();
-	public final AnimationState blockAnimationState = new AnimationState();
+public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, AnimatableMeleeAttackMob, KeyframeEntity {
+	private Map<String, AnimationState> states;
 
 	private static final UUID SPEED_MODIFIER_BLOCKING_UUID = UUID
 			.fromString("e4c96392-42f5-4028-ac44-cad469c10d51");
@@ -68,12 +67,18 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	public int attackAnimationActionPoint = 10;
 
 	public SkeletonVanguardEntity(Level worldIn) {
-		super(ModEntities.SKELETON_VANGUARD.get(), worldIn);
+		this(ModEntities.SKELETON_VANGUARD.get(), worldIn);
 	}
 
-	public SkeletonVanguardEntity(EntityType<? extends SkeletonVanguardEntity> p_i48555_1_, Level p_i48555_2_) {
-		super(p_i48555_1_, p_i48555_2_);
+	public SkeletonVanguardEntity(EntityType<? extends SkeletonVanguardEntity> entityType, Level worldIn) {
+		super(entityType, worldIn);
 		shieldCooldownTime = 0;
+		states = new HashMap<>();
+		addState("idle");
+		addState("attack");
+		addState("walk");
+		addState("walkBlock");
+		addState("block");
 	}
 
 	@Override
@@ -157,11 +162,11 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	}
 
 	private void setupAnimationStates() {
-		attackAnimationState.animateWhen(isAttacking(), tickCount);
-		walkBlockAnimationState.animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
-		blockAnimationState.animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
-		walkAnimationState.animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
-		idleAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking(), tickCount);
+		getState("attack").animateWhen(isAttacking(), tickCount);
+		getState("walkBlock").animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
+		getState("block").animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
+		getState("walk").animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
+		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isBlocking(), tickCount);
 	}
 
 	private boolean isAttacking() {
@@ -296,5 +301,10 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	@Override
 	public boolean isShieldDisabled() {
 		return shieldCooldownTime > 0;
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 }

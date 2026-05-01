@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.ConstructEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.AvoidBaseEntityGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
 import net.minecraft.Util;
@@ -32,15 +33,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class GeomancerEntity extends SpellcasterIllager {
+public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntity {
 
-	public final AnimationState idleAnimationState = new AnimationState();
-
-	public final AnimationState celebrationAnimationState = new AnimationState();
 	public int celebrationAnimationTick = 0;
-
-	public final AnimationState summonAnimationState = new AnimationState();
 
 	public int summonBombsAttackAnimationTick;
 	public int summonBombsAttackAnimationLength = 35;
@@ -50,8 +48,14 @@ public class GeomancerEntity extends SpellcasterIllager {
 	public int summonWallsAnimationLength = 35;
 	public int summonWallsAnimationActionPoint = 20;
 
+	private Map<String, AnimationState> states;
+
 	public GeomancerEntity(EntityType<? extends SpellcasterIllager> type, Level world) {
 		super(type, world);
+		states = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("summon");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -123,13 +127,12 @@ public class GeomancerEntity extends SpellcasterIllager {
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
-			celebrationAnimationState.start(tickCount);
+			getState("celebrate").start(tickCount);
 		} else {
 			celebrationAnimationTick--;
 		}
-		summonAnimationState.animateWhen(isSummoning(),
-				tickCount);
-		idleAnimationState.animateWhen(!isSummoning() && !isMoving() && isAlive(), tickCount);
+		getState("summon").animateWhen(isSummoning(), tickCount);
+		getState("idle").animateWhen(!isSummoning() && !isMoving() && isAlive(), tickCount);
 	}
 
 	private boolean isSummoning() {
@@ -317,6 +320,11 @@ public class GeomancerEntity extends SpellcasterIllager {
 			return mob.summonWallsAnimationTick > 0 || mob.summonBombsAttackAnimationTick > 0;
 		}
 
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 
 }

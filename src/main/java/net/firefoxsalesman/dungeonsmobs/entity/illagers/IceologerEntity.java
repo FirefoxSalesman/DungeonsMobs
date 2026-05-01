@@ -5,6 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -25,25 +26,29 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
-public class IceologerEntity extends AbstractIllager {
+public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState celebrateAnimationState = new AnimationState();
+	private Map<String, AnimationState> animations;
 	public int celebrationAnimationTick = 0;
 
-	public final AnimationState summonAnimationState = new AnimationState();
 	public int summonAnimationTick;
 	public int summonAnimationLength = 60;
 	public int summonAnimationActionPoint = 40;
 
 	public IceologerEntity(Level world) {
-		super(ModEntities.ICEOLOGER.get(), world);
+		this(ModEntities.ICEOLOGER.get(), world);
 	}
 
 	public IceologerEntity(EntityType<? extends IceologerEntity> type, Level world) {
 		super(type, world);
+		animations = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("summon");
 	}
 
 	@Override
@@ -106,12 +111,12 @@ public class IceologerEntity extends AbstractIllager {
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
-			celebrateAnimationState.start(tickCount);
+			getState("celebrate").start(tickCount);
 		} else {
 			celebrationAnimationTick--;
 		}
-		summonAnimationState.animateWhen(summonAnimationTick > 0, tickCount);
-		idleAnimationState.animateWhen(
+		getState("summon").animateWhen(summonAnimationTick > 0, tickCount);
+		getState("idle").animateWhen(
 				!isMoving() && isAlive() && summonAnimationTick <= 0 && !isCelebrating(),
 				tickCount);
 	}
@@ -235,5 +240,10 @@ public class IceologerEntity extends AbstractIllager {
 			return mob.summonAnimationTick <= 0;
 		}
 
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return animations;
 	}
 }

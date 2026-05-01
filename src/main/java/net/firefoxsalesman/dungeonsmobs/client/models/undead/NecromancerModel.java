@@ -1,10 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.undead;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.NecromancerAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.NecromancerEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -47,6 +46,9 @@ public class NecromancerModel<T extends NecromancerEntity> extends ConvenientMod
 		this.rightEye = this.head.getChild("rightEye");
 		this.left_leg = this.everything.getChild("left_leg");
 		this.right_leg = this.everything.getChild("right_leg");
+		animations.put("idle", NecromancerAnimations.IDLE);
+		animations.put("summon", NecromancerAnimations.SUMMON);
+		animations.put("shoot", NecromancerAnimations.SHOOT);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -118,15 +120,6 @@ public class NecromancerModel<T extends NecromancerEntity> extends ConvenientMod
 				PartPose.offset(-2.0F, -10.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 139, 64);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks,
-			float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.idleAnimationState, NecromancerAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.summonAnimationState, NecromancerAnimations.SUMMON, ageInTicks, 1f);
-		animate(entity.shootAnimationState, NecromancerAnimations.SHOOT, ageInTicks, 1f);
 	}
 
 	@Override

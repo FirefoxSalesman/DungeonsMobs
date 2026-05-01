@@ -1,5 +1,7 @@
-package net.firefoxsalesman.dungeonsmobs.client.models;
+package net.firefoxsalesman.dungeonsmobs.lib.client;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,18 +12,29 @@ import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 
-public abstract class ConvenientModel<T extends Entity> extends HierarchicalModel<T> implements HeadedModel {
+public abstract class ConvenientModel<T extends Entity & KeyframeEntity> extends HierarchicalModel<T>
+		implements HeadedModel {
 
 	private Optional<AnimationDefinition> walkAnimation;
 
+	/**
+	 * <p>
+	 * Contains all the {@link AnimationDefinition} that should be set up
+	 * automatically. Each key should match an {@link AnimationState} in the entity.
+	 * </p>
+	 */
+	protected Map<String, AnimationDefinition> animations;
+
 	public ConvenientModel(AnimationDefinition walkAnimation) {
 		this.walkAnimation = Optional.ofNullable(walkAnimation);
+		animations = new HashMap<>();
 	}
 
 	public ConvenientModel() {
-		this.walkAnimation = Optional.empty();
+		this(null);
 	}
 
 	@Override
@@ -31,6 +44,8 @@ public abstract class ConvenientModel<T extends Entity> extends HierarchicalMode
 		applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
 		if (walkAnimation.isPresent())
 			animateWalk(walkAnimation.get(), limbSwing, limbSwingAmount, 3f, 2f);
+		for (String key : animations.keySet())
+			animate(entity.getState(key), animations.get(key), ageInTicks);
 	}
 
 	@Override

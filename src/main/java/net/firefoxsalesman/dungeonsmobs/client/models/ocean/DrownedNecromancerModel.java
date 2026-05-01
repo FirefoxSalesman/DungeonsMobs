@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client.models.ocean;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.DrownedNecromancerAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -41,6 +41,17 @@ public class DrownedNecromancerModel<T extends DrownedNecromancerEntity> extends
 		this.head = this.body.getChild("head");
 		this.left_leg = this.everything.getChild("left_leg");
 		this.right_leg = this.everything.getChild("right_leg");
+		animations.put("walk", DrownedNecromancerAnimations.WALK);
+		animations.put("swim", DrownedNecromancerAnimations.SWIM);
+		animations.put("waterIdle", DrownedNecromancerAnimations.WATER_IDLE);
+		animations.put("landIdle", DrownedNecromancerAnimations.LAND_IDLE);
+		animations.put("waterSummon", DrownedNecromancerAnimations.WATER_SUMMON);
+		animations.put("landSummon", DrownedNecromancerAnimations.LAND_SUMMON);
+		animations.put("shoot", DrownedNecromancerAnimations.SHOOT);
+		animations.put("waterShoot", DrownedNecromancerAnimations.SHOOT_RAIN);
+		animations.put("landShoot", DrownedNecromancerAnimations.SHOOT_LAND);
+		animations.put("waterTridentStorm", DrownedNecromancerAnimations.TRIDENT_STORM);
+		animations.put("landTridentStorm", DrownedNecromancerAnimations.TRIDENT_STORM_LAND);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -105,24 +116,6 @@ public class DrownedNecromancerModel<T extends DrownedNecromancerEntity> extends
 				PartPose.offset(-2.0F, -10.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 137, 64);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.walkAnimationState, DrownedNecromancerAnimations.WALK, ageInTicks, 1f);
-		animate(entity.swimAnimationState, DrownedNecromancerAnimations.SWIM, ageInTicks, 1f);
-		animate(entity.waterIdleAnimationState, DrownedNecromancerAnimations.WATER_IDLE, ageInTicks, 1f);
-		animate(entity.landIdleAnimationState, DrownedNecromancerAnimations.LAND_IDLE, ageInTicks, 1f);
-		animate(entity.waterSummonAnimationState, DrownedNecromancerAnimations.WATER_SUMMON, ageInTicks, 1f);
-		animate(entity.landSummonAnimationState, DrownedNecromancerAnimations.LAND_SUMMON, ageInTicks,
-				1f);
-		animate(entity.shootAnimationState, DrownedNecromancerAnimations.SHOOT, ageInTicks, 1f);
-		animate(entity.waterShootAnimationState, DrownedNecromancerAnimations.SHOOT_RAIN, ageInTicks, 1f);
-		animate(entity.landShootAnimationState, DrownedNecromancerAnimations.SHOOT_LAND, ageInTicks, 1f);
-		animate(entity.waterTridentStormAnimationState, DrownedNecromancerAnimations.TRIDENT_STORM, ageInTicks, 1f);
-		animate(entity.landTridentStormAnimationState, DrownedNecromancerAnimations.TRIDENT_STORM_LAND, ageInTicks, 1f);
 	}
 
 	@Override

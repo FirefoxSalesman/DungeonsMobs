@@ -1,14 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
-import org.joml.Quaternionf;
-
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.firefoxsalesman.dungeonsmobs.client.animation.GeomancerAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
-import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -88,6 +83,9 @@ public class GeomancerModel<T extends GeomancerEntity> extends ConvenientModel<T
 		this.bipedLegRight = this.bipedLegs.getChild("bipedLegRight");
 		this.armorBipedRightFoot = this.bipedLegRight.getChild("armorBipedRightFoot");
 		this.armourRightLeg = this.bipedLegRight.getChild("armourRightLeg");
+		animations.put("idle", GeomancerAnimations.IDLE);
+		animations.put("summon", GeomancerAnimations.SUMMON);
+		animations.put("celebrate", GeomancerAnimations.CELEBRATE);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -274,15 +272,6 @@ public class GeomancerModel<T extends GeomancerEntity> extends ConvenientModel<T
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.idleAnimationState, GeomancerAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.summonAnimationState, GeomancerAnimations.SUMMON, ageInTicks, 1f);
-		animate(entity.celebrationAnimationState, GeomancerAnimations.CELEBRATE, ageInTicks, 1f);
-	}
-
-	@Override
 	public ModelPart getHead() {
 		return bipedHead;
 	}
@@ -294,7 +283,5 @@ public class GeomancerModel<T extends GeomancerEntity> extends ConvenientModel<T
 		bipedArms.translateAndRotate(pPoseStack);
 		ModelPart arm = pSide == HumanoidArm.RIGHT ? bipedArmRight : bipedArmLeft;
 		arm.translateAndRotate(pPoseStack);
-		// ModelPart hand = pSide == HumanoidArm.RIGHT ? bipedHandRight : bipedHandLeft;
-		// hand.translateAndRotate(pPoseStack);
 	}
 }

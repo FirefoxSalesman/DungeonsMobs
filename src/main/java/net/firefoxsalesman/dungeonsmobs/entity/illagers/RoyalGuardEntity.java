@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -53,16 +54,12 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState celebrateAnimationState = new AnimationState();
-	public final AnimationState attackAnimationState = new AnimationState();
-	public final AnimationState walkAnimationState = new AnimationState();
-	public final AnimationState walkBlockAnimationState = new AnimationState();
-	public final AnimationState blockAnimationState = new AnimationState();
+public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, KeyframeEntity {
+	private Map<String, AnimationState> states;
 
 	private static final UUID SPEED_MODIFIER_BLOCKING_UUID = UUID
 			.fromString("05cd371b-0ff4-4ded-8630-b380232ed7b1");
@@ -84,6 +81,13 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
 	public RoyalGuardEntity(EntityType<? extends RoyalGuardEntity> p_i50189_1_, Level p_i50189_2_) {
 		super(p_i50189_1_, p_i50189_2_);
 		shieldCooldownTime = 0;
+		states = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("attack");
+		addState("walk");
+		addState("walkBlock");
+		addState("block");
 	}
 
 	@Override
@@ -111,15 +115,15 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
 	}
 
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_213386_1_, DifficultyInstance p_213386_2_,
-			MobSpawnType p_213386_3_, @Nullable SpawnGroupData p_213386_4_,
-			@Nullable CompoundTag p_213386_5_) {
-		SpawnGroupData ilivingentitydata = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_,
-				p_213386_4_,
-				p_213386_5_);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
+			MobSpawnType spawnType, @Nullable SpawnGroupData groupData,
+			@Nullable CompoundTag compoundTag) {
+		SpawnGroupData ilivingentitydata = super.finalizeSpawn(accessor, difficulty, spawnType,
+				groupData,
+				compoundTag);
 		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
-		populateDefaultEquipmentSlots(getRandom(), p_213386_2_);
-		populateDefaultEquipmentEnchantments(getRandom(), p_213386_2_);
+		populateDefaultEquipmentSlots(getRandom(), difficulty);
+		populateDefaultEquipmentEnchantments(getRandom(), difficulty);
 		return ilivingentitydata;
 	}
 
@@ -161,13 +165,13 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
 	}
 
 	private void setupAnimationStates() {
-		attackAnimationState.animateWhen(isAttacking(), tickCount);
-		walkBlockAnimationState.animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
-		blockAnimationState.animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
-		walkAnimationState.animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
-		celebrateAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking() && isCelebrating(),
+		getState("attack").animateWhen(isAttacking(), tickCount);
+		getState("walkBlock").animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
+		getState("block").animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
+		getState("walk").animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
+		getState("celebrate").animateWhen(!isAttacking() && !isMoving() && !isBlocking() && isCelebrating(),
 				tickCount);
-		idleAnimationState.animateWhen(!isAttacking() && !isMoving() && !isBlocking() && !isCelebrating(),
+		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isBlocking() && !isCelebrating(),
 				tickCount);
 	}
 
@@ -435,5 +439,10 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser {
 			livingEntity.stopUsingItem();
 			livingEntity.level().broadcastEntityEvent(livingEntity, (byte) 30);
 		}
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 }

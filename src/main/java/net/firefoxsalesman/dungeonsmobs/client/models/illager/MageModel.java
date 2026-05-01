@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.MageAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.interfaces.AnimatedMage;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -16,7 +16,7 @@ import net.minecraft.world.entity.monster.AbstractIllager;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class MageModel<T extends AbstractIllager & AnimatedMage> extends ConvenientModel<T> {
+public class MageModel<T extends AbstractIllager & KeyframeEntity> extends ConvenientModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart everything;
@@ -50,6 +50,11 @@ public class MageModel<T extends AbstractIllager & AnimatedMage> extends Conveni
 		this.lefteyebrows = this.head.getChild("lefteyebrows");
 		this.left_leg = this.everything.getChild("left_leg");
 		this.right_leg = this.everything.getChild("right_leg");
+		animations.put("idle", MageAnimations.IDLE);
+		animations.put("celebrate", MageAnimations.CELEBRATE);
+		animations.put("attack", MageAnimations.THROW);
+		animations.put("vanish", MageAnimations.VANISH);
+		animations.put("appear", MageAnimations.APPEAR);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -137,17 +142,6 @@ public class MageModel<T extends AbstractIllager & AnimatedMage> extends Conveni
 				PartPose.offset(-2.0F, -10.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 128, 64);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.getIdleState(), MageAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.getCelebrateState(), MageAnimations.CELEBRATE, ageInTicks, 1f);
-		animate(entity.getAttackState(), MageAnimations.THROW, ageInTicks, 1f);
-		animate(entity.getVanishState(), MageAnimations.VANISH, ageInTicks, 1f);
-		animate(entity.getAppearState(), MageAnimations.APPEAR, ageInTicks, 1f);
 	}
 
 	@Override

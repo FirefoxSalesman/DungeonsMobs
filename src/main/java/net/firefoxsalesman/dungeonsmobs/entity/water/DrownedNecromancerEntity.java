@@ -11,6 +11,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
@@ -37,9 +38,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DrownedNecromancerEntity extends Drowned {
+public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity {
 
+	private Map<String, AnimationState> states;
 	public int landShootAnimationTick;
 	public int landShootAnimationLength = 20;
 	public int landShootAnimationActionPoint = 7;
@@ -64,20 +68,20 @@ public class DrownedNecromancerEntity extends Drowned {
 	public int tridentStormAnimationTick;
 	public int tridentStormAnimationLength = 45;
 
-	public final AnimationState swimAnimationState = new AnimationState();
-	public final AnimationState walkAnimationState = new AnimationState();
-	public final AnimationState waterIdleAnimationState = new AnimationState();
-	public final AnimationState landIdleAnimationState = new AnimationState();
-	public final AnimationState waterSummonAnimationState = new AnimationState();
-	public final AnimationState landSummonAnimationState = new AnimationState();
-	public final AnimationState shootAnimationState = new AnimationState();
-	public final AnimationState landShootAnimationState = new AnimationState();
-	public final AnimationState waterShootAnimationState = new AnimationState();
-	public final AnimationState waterTridentStormAnimationState = new AnimationState();
-	public final AnimationState landTridentStormAnimationState = new AnimationState();
-
 	public DrownedNecromancerEntity(EntityType<? extends DrownedNecromancerEntity> type, Level worldIn) {
 		super(type, worldIn);
+		states = new HashMap<>();
+		addState("swim");
+		addState("walk");
+		addState("waterIdle");
+		addState("landIdle");
+		addState("waterSummon");
+		addState("landSummon");
+		addState("shoot");
+		addState("landShoot");
+		addState("waterShoot");
+		addState("waterTridentStorm");
+		addState("landTridentStorm");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -148,20 +152,20 @@ public class DrownedNecromancerEntity extends Drowned {
 	}
 
 	private void setupAnimationStates() {
-		animate(walkAnimationState, isMoving() && !isInWater());
-		animate(swimAnimationState, isMoving() && isInWater());
-		animate(waterSummonAnimationState, isSummoningInWater() && !isMoving());
-		animate(landSummonAnimationState, isSummoningOnLand() && !isSummoningInWater() && !isMoving());
-		animate(shootAnimationState, isShooting() && !isSummoning() && !isMoving());
-		animate(landShootAnimationState, isShootingOnLand() && !isShooting() && !isSummoning() && !isMoving());
-		animate(waterShootAnimationState, isShootingInWater() && !isShootingOnLand() && !isShooting()
+		animate(getState("walk"), isMoving() && !isInWater());
+		animate(getState("swim"), isMoving() && isInWater());
+		animate(getState("waterSummon"), isSummoningInWater() && !isMoving());
+		animate(getState("landSummon"), isSummoningOnLand() && !isSummoningInWater() && !isMoving());
+		animate(getState("shoot"), isShooting() && !isSummoning() && !isMoving());
+		animate(getState("landShoot"), isShootingOnLand() && !isShooting() && !isSummoning() && !isMoving());
+		animate(getState("waterShoot"), isShootingInWater() && !isShootingOnLand() && !isShooting()
 				&& !isSummoning() && !isMoving());
-		animate(waterTridentStormAnimationState,
+		animate(getState("waterTridentStorm"),
 				isUsingTridentStormInWater() && !isShootingGeneric() && !isSummoning() && !isMoving());
-		animate(landTridentStormAnimationState,
+		animate(getState("landTridentStorm"),
 				isUsingTridentStormOnLand() && !isShootingGeneric() && !isSummoning() && !isMoving());
-		animate(waterIdleAnimationState, !isSpellcasting() && !isMoving() && isAlive() && isInWater());
-		animate(landIdleAnimationState, !isSpellcasting() && !isMoving() && isAlive() && !isInWater());
+		animate(getState("waterIdle"), !isSpellcasting() && !isMoving() && isAlive() && isInWater());
+		animate(getState("landIdle"), !isSpellcasting() && !isMoving() && isAlive() && !isInWater());
 	}
 
 	private void animate(AnimationState state, boolean condition) {
@@ -904,6 +908,11 @@ public class DrownedNecromancerEntity extends Drowned {
 			return mob.tridentStormAnimationTick <= 0;
 		}
 
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 
 }

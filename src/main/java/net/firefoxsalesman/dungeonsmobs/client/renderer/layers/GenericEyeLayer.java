@@ -1,13 +1,14 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.world.entity.Entity;
 
-public class GenericEyeLayer<T extends Entity, M extends ConvenientModel<T>> extends EyesLayer<T, M> {
+public class GenericEyeLayer<T extends Entity & KeyframeEntity, M extends ConvenientModel<T>> extends EyesLayer<T, M> {
 	private RenderType eyes;
 
 	public GenericEyeLayer(RenderLayerParent<T, M> parent, String path) {

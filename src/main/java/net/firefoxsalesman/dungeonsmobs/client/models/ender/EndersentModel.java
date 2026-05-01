@@ -4,11 +4,8 @@ package net.firefoxsalesman.dungeonsmobs.client.models.ender;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.firefoxsalesman.dungeonsmobs.client.animation.EndersentAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -44,6 +41,11 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 		this.rightArmBone = this.rightArm.getChild("rightArmBone");
 		this.rightHand = this.rightArmBone.getChild("rightHand");
 		this.eye = this.body.getChild("eye");
+		animations.put("idle", EndersentAnimations.IDLE);
+		animations.put("attack", EndersentAnimations.ATTACK);
+		animations.put("death", EndersentAnimations.DEATH);
+		animations.put("summon", EndersentAnimations.SUMMON_WATCHLINGS);
+		animations.put("teleport", EndersentAnimations.TELEPORT);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -142,11 +144,6 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 			float headPitch) {
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		animateWalk(EndersentAnimations.WALK, limbSwing, limbSwingAmount, 3f, 4f);
-		animate(entity.idleAnimationState, EndersentAnimations.IDLE, ageInTicks);
-		animate(entity.attackAnimationState, EndersentAnimations.ATTACK, ageInTicks);
-		animate(entity.deathAnimationState, EndersentAnimations.DEATH, ageInTicks);
-		animate(entity.summonAnimationState, EndersentAnimations.SUMMON_WATCHLINGS, ageInTicks);
-		animate(entity.teleportAnimationState, EndersentAnimations.TELEPORT, ageInTicks);
 	}
 
 	@Override

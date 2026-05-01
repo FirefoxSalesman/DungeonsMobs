@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.VindicatorChefAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -46,6 +46,9 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 		this.right_arm = body.getChild("right_arm");
 		this.left_leg = body.getChild("left_leg");
 		this.right_leg = body.getChild("right_leg");
+		animations.put("idle", VindicatorChefAnimations.IDLE);
+		animations.put("celebrate", VindicatorChefAnimations.CELEBRATE);
+		animations.put("attack", VindicatorChefAnimations.FAST_ATTACK);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -113,15 +116,6 @@ public class VindicatorChefModel<T extends VindicatorChefEntity> extends Conveni
 				PartPose.offset(-2.0F, 12.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 128, 64);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.idleAnimationState, VindicatorChefAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.celebrateAnimationState, VindicatorChefAnimations.CELEBRATE, ageInTicks, 1f);
-		animate(entity.attackAnimationState, VindicatorChefAnimations.FAST_ATTACK, ageInTicks, 1f);
 	}
 
 	@Override

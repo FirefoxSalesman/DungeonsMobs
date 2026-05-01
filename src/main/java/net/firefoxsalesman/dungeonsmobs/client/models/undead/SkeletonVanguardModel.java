@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.undead;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.SkeletonVanguardAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -51,6 +51,11 @@ public class SkeletonVanguardModel<T extends SkeletonVanguardEntity> extends Con
 		this.rightEye = this.head.getChild("rightEye");
 		this.left_leg = this.everything.getChild("left_leg");
 		this.right_leg = this.everything.getChild("right_leg");
+		animations.put("walk", SkeletonVanguardAnimations.NEW_WALK);
+		animations.put("block", SkeletonVanguardAnimations.NEW_BLOCKING);
+		animations.put("attack", SkeletonVanguardAnimations.ATTACK);
+		animations.put("idle", SkeletonVanguardAnimations.NEW_IDLE);
+		animations.put("walkBlock", SkeletonVanguardAnimations.NEW_WALK_BLOCKING);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -115,17 +120,6 @@ public class SkeletonVanguardModel<T extends SkeletonVanguardEntity> extends Con
 				PartPose.offset(-2.0F, -10.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 96);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.walkAnimationState, SkeletonVanguardAnimations.NEW_WALK, ageInTicks);
-		animate(entity.blockAnimationState, SkeletonVanguardAnimations.NEW_BLOCKING, ageInTicks);
-		animate(entity.attackAnimationState, SkeletonVanguardAnimations.ATTACK, ageInTicks);
-		animate(entity.idleAnimationState, SkeletonVanguardAnimations.NEW_IDLE, ageInTicks);
-		animate(entity.walkBlockAnimationState, SkeletonVanguardAnimations.NEW_WALK_BLOCKING, ageInTicks);
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.entity.illagers;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -10,7 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.interfaces.AnimatedMage;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.ParticleTypes;
@@ -50,20 +52,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
-public class MageEntity extends AbstractIllager implements AnimatedMage {
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState celebrateAnimationState = new AnimationState();
+public class MageEntity extends AbstractIllager implements KeyframeEntity {
+	private Map<String, AnimationState> states;
 	private int celebrationAnimationTick = 0;
 
-	public final AnimationState attackAnimationState = new AnimationState();
 	private int attackAnimationTick;
 	private int attackAnimationLength = 50;
 
-	public final AnimationState vanishAnimationState = new AnimationState();
 	private int vanishAnimationTick;
 	private int vanishAnimationLength = 23;
 
-	public final AnimationState appearAnimationState = new AnimationState();
 	private int appearAnimationTick;
 	private int appearAnimationLength = 25;
 
@@ -71,6 +69,12 @@ public class MageEntity extends AbstractIllager implements AnimatedMage {
 
 	public MageEntity(EntityType<? extends MageEntity> type, Level world) {
 		super(type, world);
+		states = new HashMap<>();
+		addState("idle");
+		addState("celebrate");
+		addState("attack");
+		addState("vanish");
+		addState("appear");
 	}
 
 	@Override
@@ -138,15 +142,15 @@ public class MageEntity extends AbstractIllager implements AnimatedMage {
 	private void setupAnimationStates() {
 		if (isCelebrating() && celebrationAnimationTick <= 0) {
 			celebrationAnimationTick = 35;
-			celebrateAnimationState.start(tickCount);
+			getState("celebrate").start(tickCount);
 		} else {
 			celebrationAnimationTick--;
 		}
-		attackAnimationState.animateWhen(isAttacking() && !isCelebrating(), tickCount);
-		vanishAnimationState.animateWhen(isVanishing() && !isAttacking() && !isCelebrating(), tickCount);
-		appearAnimationState.animateWhen(isAppearing() && !isVanishing() && !isAttacking() && !isCelebrating(),
+		getState("attack").animateWhen(isAttacking() && !isCelebrating(), tickCount);
+		getState("vanish").animateWhen(isVanishing() && !isAttacking() && !isCelebrating(), tickCount);
+		getState("appear").animateWhen(isAppearing() && !isVanishing() && !isAttacking() && !isCelebrating(),
 				tickCount);
-		idleAnimationState.animateWhen(
+		getState("idle").animateWhen(
 				!isAppearing() && !isVanishing() && !isAttacking() && !isMoving() && !isCelebrating()
 						&& isAlive(),
 				tickCount);
@@ -493,27 +497,7 @@ public class MageEntity extends AbstractIllager implements AnimatedMage {
 	}
 
 	@Override
-	public AnimationState getIdleState() {
-		return idleAnimationState;
-	}
-
-	@Override
-	public AnimationState getCelebrateState() {
-		return celebrateAnimationState;
-	}
-
-	@Override
-	public AnimationState getAttackState() {
-		return attackAnimationState;
-	}
-
-	@Override
-	public AnimationState getVanishState() {
-		return vanishAnimationState;
-	}
-
-	@Override
-	public AnimationState getAppearState() {
-		return appearAnimationState;
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 }

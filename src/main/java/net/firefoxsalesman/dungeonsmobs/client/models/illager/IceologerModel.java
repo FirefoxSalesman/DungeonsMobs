@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.IceologerAnimations;
-import net.firefoxsalesman.dungeonsmobs.client.models.ConvenientModel;
+import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -76,6 +76,9 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 		this.bipedLegRight = this.bipedLegs.getChild("bipedLegRight");
 		this.armorBipedRightFoot = this.bipedLegRight.getChild("armorBipedRightFoot");
 		this.armourRightLeg = this.bipedLegRight.getChild("armourRightLeg");
+		animations.put("idle", IceologerAnimations.IDLE);
+		animations.put("celebrate", IceologerAnimations.CELEBRATE);
+		animations.put("summon", IceologerAnimations.SUMMON);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -229,15 +232,6 @@ public class IceologerModel<T extends IceologerEntity> extends ConvenientModel<T
 	@Override
 	public ModelPart root() {
 		return root;
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		animate(entity.idleAnimationState, IceologerAnimations.IDLE, ageInTicks, 1f);
-		animate(entity.summonAnimationState, IceologerAnimations.SUMMON, ageInTicks, 1f);
-		animate(entity.celebrateAnimationState, IceologerAnimations.CELEBRATE, ageInTicks, 1f);
 	}
 
 	@Override

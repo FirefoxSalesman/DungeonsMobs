@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.nbt.CompoundTag;
@@ -30,12 +31,12 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class NecromancerEntity extends Skeleton {
+public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 
-	public final AnimationState idleAnimationState = new AnimationState();
-	public final AnimationState summonAnimationState = new AnimationState();
-	public final AnimationState shootAnimationState = new AnimationState();
+	private Map<String, AnimationState> states;
 
 	private int shootAnimationTick;
 	private int shootAnimationLength = 20;
@@ -51,13 +52,17 @@ public class NecromancerEntity extends Skeleton {
 	private int specialAnimationLength = 48;
 
 	public NecromancerEntity(Level worldIn) {
-		super(ModEntities.NECROMANCER.get(), worldIn);
+		this(ModEntities.NECROMANCER.get(), worldIn);
 	}
 
 	public NecromancerEntity(EntityType<? extends NecromancerEntity> pEntityType, Level worldIn) {
 		super(pEntityType, worldIn);
 		this.xpReward = 20;
 		setMaxUpStep(1.0F);
+		states = new HashMap<>();
+		addState("idle");
+		addState("summon");
+		addState("shoot");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -180,9 +185,9 @@ public class NecromancerEntity extends Skeleton {
 	}
 
 	private void setupAnimationStates() {
-		summonAnimationState.animateWhen(isSummoning(), tickCount);
-		shootAnimationState.animateWhen(isShooting() && !isSummoning(), tickCount);
-		idleAnimationState.animateWhen(
+		getState("summon").animateWhen(isSummoning(), tickCount);
+		getState("shoot").animateWhen(isShooting() && !isSummoning(), tickCount);
+		getState("idle").animateWhen(
 				!isSpellcasting() && !isMoving() && isAlive() && summonAnimationTick <= 0,
 				tickCount);
 	}
@@ -318,6 +323,11 @@ public class NecromancerEntity extends Skeleton {
 			return mob.shootAnimationTick <= 0;
 		}
 
+	}
+
+	@Override
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 
 }
