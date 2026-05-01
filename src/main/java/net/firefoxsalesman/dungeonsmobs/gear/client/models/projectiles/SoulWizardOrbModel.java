@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.client.models.projectiles;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardOrbEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
@@ -11,18 +12,17 @@ public class SoulWizardOrbModel extends GeoModel<SoulWizardOrbEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(SoulWizardOrbEntity entity) {
-		return new ResourceLocation(MOD_ID, "animations/soul_wizard_orb.animation.json");
+		return modLoc("animations/soul_wizard_orb.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(SoulWizardOrbEntity entity) {
-		return new ResourceLocation(MOD_ID, "geo/soul_wizard_orb.geo.json");
+		return modLoc("geo/soul_wizard_orb.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(SoulWizardOrbEntity entity) {
-		return new ResourceLocation(MOD_ID,
-				"textures/entity/projectile/soul_wizard_orb_" + entity.textureChange % 2 + ".png");
+		return modLoc("textures/entity/projectile/soul_wizard_orb_" + entity.textureChange % 2 + ".png");
 	}
 
 	@Override

@@ -1,10 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.items.shield;
 
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class ShieldTextures {
 
@@ -14,6 +12,6 @@ public class ShieldTextures {
 	public static final Material LOCATION_VANGUARD_SHIELD = makeMaterial("vanguard_shield");
 
 	private static Material makeMaterial(String location) {
-		return new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(MOD_ID, "item/" + location));
+		return new Material(TextureAtlas.LOCATION_BLOCKS, GeneralHelper.modLoc("item/" + location));
 	}
 }

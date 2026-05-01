@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.undead;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -14,17 +15,17 @@ public class WraithModel extends GeoModel<WraithEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(WraithEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/wraith.animation.json");
+		return modLoc("animations/wraith.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(WraithEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/wraith.geo.json");
+		return modLoc("geo/wraith.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(WraithEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/wraith/wraith.png");
+		return modLoc("textures/entity/wraith/wraith.png");
 	}
 
 	@Override

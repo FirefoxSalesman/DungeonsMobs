@@ -1,6 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.lib.capabilities.playerrewards;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -11,15 +14,12 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import org.jetbrains.annotations.NotNull;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class AttacherPlayerRewards {
 
 	private static class PlayerRewardsProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-		public static final ResourceLocation IDENTIFIER = new ResourceLocation(MOD_ID, "player_rewards");
+		public static final ResourceLocation IDENTIFIER = ResourceLocationHelper.modLoc("player_rewards");
 		private final PlayerRewards backend = new PlayerRewards();
 		private final LazyOptional<PlayerRewards> optionalData = LazyOptional.of(() -> backend);
 

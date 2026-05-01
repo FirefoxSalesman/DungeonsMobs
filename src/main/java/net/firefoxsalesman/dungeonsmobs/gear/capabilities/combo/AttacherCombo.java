@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo;
 
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.GearCapabilities;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -13,13 +14,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import org.jetbrains.annotations.NotNull;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class AttacherCombo {
 
 	private static class ComboProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-		public static final ResourceLocation IDENTIFIER = new ResourceLocation(MOD_ID, "combo");
+		public static final ResourceLocation IDENTIFIER = GeneralHelper.modLoc("combo");
 		private final Combo backend = new Combo();
 		private final LazyOptional<Combo> optionalData = LazyOptional.of(() -> backend);
 

@@ -1,7 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.capabilities.convertible;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import org.jetbrains.annotations.NotNull;
+
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -12,36 +14,35 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import org.jetbrains.annotations.NotNull;
 
 public class AttacherConvertible {
 
-    private static class ConvertibleProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+	private static class ConvertibleProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(DungeonsMobs.MOD_ID, "convertible");
-        private final Convertible backend = new Convertible();
-        private final LazyOptional<Convertible> optionalData = LazyOptional.of(() -> backend);
+		public static final ResourceLocation IDENTIFIER = GeneralHelper.modLoc("convertible");
+		private final Convertible backend = new Convertible();
+		private final LazyOptional<Convertible> optionalData = LazyOptional.of(() -> backend);
 
-        @Override
-        public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
-            return ModCapabilities.CONVERTIBLE_CAPABILITY.orEmpty(cap, optionalData);
-        }
+		@Override
+		public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
+			return ModCapabilities.CONVERTIBLE_CAPABILITY.orEmpty(cap, optionalData);
+		}
 
-        @Override
-        public CompoundTag serializeNBT() {
-            return backend.serializeNBT();
-        }
+		@Override
+		public CompoundTag serializeNBT() {
+			return backend.serializeNBT();
+		}
 
-        @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            backend.deserializeNBT(nbt);
-        }
-    }
+		@Override
+		public void deserializeNBT(CompoundTag nbt) {
+			backend.deserializeNBT(nbt);
+		}
+	}
 
-    public static void attach(final AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof LivingEntity) {
-            final ConvertibleProvider provider = new ConvertibleProvider();
-            event.addCapability(ConvertibleProvider.IDENTIFIER, provider);
-        }
-    }
+	public static void attach(final AttachCapabilitiesEvent<Entity> event) {
+		if (event.getObject() instanceof LivingEntity) {
+			final ConvertibleProvider provider = new ConvertibleProvider();
+			event.addCapability(ConvertibleProvider.IDENTIFIER, provider);
+		}
+	}
 }

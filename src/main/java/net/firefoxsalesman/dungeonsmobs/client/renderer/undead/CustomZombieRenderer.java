@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.JungleZombieEntity;
@@ -13,12 +13,11 @@ import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
 
 public class CustomZombieRenderer extends ZombieRenderer {
-	private static final ResourceLocation JUNGLE_ZOMBIE_TEXUTRE = new ResourceLocation(DungeonsMobs.MOD_ID,
+	private static final ResourceLocation JUNGLE_ZOMBIE_TEXUTRE = modLoc(
 			"textures/entity/zombie/jungle_zombie.png");
-	private static final ResourceLocation FROZEN_ZOMBIE_TEXTURE = new ResourceLocation(DungeonsMobs.MOD_ID,
+	private static final ResourceLocation FROZEN_ZOMBIE_TEXTURE = modLoc(
 			"textures/entity/zombie/frozen_zombie.png");
-	private static final ResourceLocation HUSK_ZOMBIE_TEXTURE = new ResourceLocation(
-			"textures/entity/zombie/husk.png");
+	private static final ResourceLocation HUSK_ZOMBIE_TEXTURE = modLoc("textures/entity/zombie/husk.png");
 
 	public CustomZombieRenderer(EntityRendererProvider.Context renderContext) {
 		super(renderContext);

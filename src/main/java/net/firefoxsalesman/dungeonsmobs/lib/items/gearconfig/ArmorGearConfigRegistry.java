@@ -1,17 +1,16 @@
 package net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig;
 
+import java.util.Map;
+
 import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArmorGearConfigSyncPacket;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Map;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class ArmorGearConfigRegistry {
-	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MOD_ID,
-			"gear_config");
+	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = ResourceLocationHelper
+			.modLoc("gear_config");
 
 	public static final CodecJsonDataManager<ArmorGearConfig> ARMOR_GEAR_CONFIGS = new CodecJsonDataManager<>(
 			"gearconfig/armor", ArmorGearConfig.CODEC);

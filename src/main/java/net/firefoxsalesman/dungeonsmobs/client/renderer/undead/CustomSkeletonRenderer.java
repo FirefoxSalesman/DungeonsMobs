@@ -1,15 +1,15 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.MossySkeletonEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 
 public class CustomSkeletonRenderer extends SkeletonRenderer {
-	private static final ResourceLocation MOSSY_SKELETON_TEXTURE = new ResourceLocation(DungeonsMobs.MOD_ID,
-			"textures/entity/skeleton/mossy_skeleton.png");
+	private static final ResourceLocation MOSSY_SKELETON_TEXTURE = GeneralHelper
+			.modLoc("textures/entity/skeleton/mossy_skeleton.png");
 
 	public CustomSkeletonRenderer(EntityRendererProvider.Context renderContext) {
 		super(renderContext);

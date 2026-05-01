@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.geom;
 
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+
 import net.firefoxsalesman.dungeonsmobs.client.models.FungusSackModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.armor.VanguardShieldModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.blaze.WildfireModel;
@@ -16,14 +18,12 @@ import net.firefoxsalesman.dungeonsmobs.client.models.redstone.RedstoneCubeModel
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.NecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SkeletonVanguardModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SunkenSkeletonModel;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;;
+import net.minecraftforge.fml.common.Mod;;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModModelLayers {
@@ -49,7 +49,7 @@ public class ModModelLayers {
 			"skeleton_vanguard_model");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
-		return new ModelLayerLocation(new ResourceLocation(MOD_ID + name),
+		return new ModelLayerLocation(GeneralHelper.modLoc(name),
 				"main");
 	}
 

@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.client.models.ghosts;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
@@ -13,17 +14,17 @@ public class SoulWizardModel extends GeoModel<SoulWizardEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(SoulWizardEntity entity) {
-		return new ResourceLocation(MOD_ID, "animations/soul_wizard.animation.json");
+		return modLoc("animations/soul_wizard.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(SoulWizardEntity entity) {
-		return new ResourceLocation(MOD_ID, "geo/soul_wizard.geo.json");
+		return modLoc("geo/soul_wizard.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(SoulWizardEntity entity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/ghosts/soul_wizard.png");
+		return modLoc("textures/entity/ghosts/soul_wizard.png");
 	}
 
 	@Override

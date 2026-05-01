@@ -1,7 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-import net.minecraft.resources.ResourceLocation;
+
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,7 +27,7 @@ public class SoundEventInit {
 
 	private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
 		return SOUNDS.register(name, () -> SoundEvent
-				.createVariableRangeEvent(new ResourceLocation(MOD_ID, name)));
+				.createVariableRangeEvent(GeneralHelper.modLoc(name)));
 	}
 
 	public static void register(IEventBus event) {

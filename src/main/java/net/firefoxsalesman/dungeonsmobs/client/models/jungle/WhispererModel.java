@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.jungle;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.AbstractWhispererEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -18,17 +19,17 @@ public class WhispererModel<T extends AbstractWhispererEntity> extends GeoModel<
 
 	@Override
 	public ResourceLocation getAnimationResource(T entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/whisperer.animation.json");
+		return modLoc("animations/whisperer.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(T entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/whisperer.geo.json");
+		return modLoc("geo/whisperer.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(T entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/jungle/whisperer.png");
+		return modLoc("textures/entity/jungle/whisperer.png");
 	}
 
 	@Override

@@ -4,13 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.jungle.WhispererModel;
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.AbstractWhispererEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.GeoBone;
@@ -21,8 +20,8 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class WhispererRenderer<T extends AbstractWhispererEntity> extends GeoEntityRenderer<T> {
 	public WhispererRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new WhispererModel<T>());
-		addRenderLayer(new GeoEyeLayer<>(this, new ResourceLocation(DungeonsMobs.MOD_ID,
-				"textures/entity/jungle/whisperer_glow.png")));
+		addRenderLayer(new GeoEyeLayer<>(this,
+				GeneralHelper.modLoc("textures/entity/jungle/whisperer_glow.png")));
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.blaze;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.blaze.WildfireModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.core.BlockPos;
@@ -15,12 +15,12 @@ public class WildfireRenderer extends MobRenderer<WildfireEntity, WildfireModel<
 	}
 
 	@Override
-	protected int getBlockLightLevel(WildfireEntity p_225624_1_, BlockPos p_225624_2_) {
+	protected int getBlockLightLevel(WildfireEntity pEntity, BlockPos pos) {
 		return 15;
 	}
 
 	@Override
 	public ResourceLocation getTextureLocation(WildfireEntity pEntity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/blaze/wildfire.png");
+		return GeneralHelper.modLoc("textures/entity/blaze/wildfire.png");
 	}
 }

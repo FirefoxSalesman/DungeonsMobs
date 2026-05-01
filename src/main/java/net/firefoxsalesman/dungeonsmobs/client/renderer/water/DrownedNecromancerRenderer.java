@@ -4,11 +4,11 @@ import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.VanillaPulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class DrownedNecromancerRenderer
 		extends MobRenderer<DrownedNecromancerEntity, DrownedNecromancerModel<DrownedNecromancerEntity>> {
@@ -23,7 +23,7 @@ public class DrownedNecromancerRenderer
 
 	@Override
 	public ResourceLocation getTextureLocation(DrownedNecromancerEntity pEntity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/ocean/drowned_necromancer.png");
+		return GeneralHelper.modLoc("textures/entity/ocean/drowned_necromancer.png");
 	}
 
 }

@@ -1,14 +1,22 @@
 package net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig;
 
+import static java.util.UUID.randomUUID;
+import static net.minecraft.world.item.ArmorMaterials.CHAIN;
+import static net.minecraftforge.registries.ForgeRegistries.ATTRIBUTES;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.function.Consumer;
+
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.gearconfig.ArmorGearRenderer;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IArmor;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IReloadableGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IUniqueGear;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.DescriptionHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.firefoxsalesman.dungeonsmobs.mixin.ArmorItemAccessor;
 import net.firefoxsalesman.dungeonsmobs.mixin.ItemAccessor;
 import net.minecraft.client.model.HumanoidModel;
@@ -19,37 +27,29 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.registries.ForgeRegistries;
+import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 import software.bernie.geckolib.core.animation.Animation.LoopType;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.function.Consumer;
-
-import static java.util.UUID.randomUUID;
-import static net.minecraft.world.item.ArmorMaterials.CHAIN;
-import static net.minecraftforge.registries.ForgeRegistries.ATTRIBUTES;
-
 public class ArmorGear extends ArmorItem implements IReloadableGear, IArmor, IUniqueGear, GeoItem {
-	private static final ResourceLocation DEFAULT_ARMOR_ANIMATIONS = new ResourceLocation(DungeonsMobs.MOD_ID,
-			"animations/armor/armor_default.animation.json");
+	private static final ResourceLocation DEFAULT_ARMOR_ANIMATIONS = ResourceLocationHelper
+			.modLoc("animations/armor/armor_default.animation.json");
 	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = new UUID[] {
 			UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"),
 			UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"),

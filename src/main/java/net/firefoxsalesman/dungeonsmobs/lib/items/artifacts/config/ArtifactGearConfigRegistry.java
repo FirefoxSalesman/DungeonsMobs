@@ -1,16 +1,15 @@
 package net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config;
 
-import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
-import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
-import net.minecraft.resources.ResourceLocation;
-
 import java.util.Map;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
+import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
+import net.minecraft.resources.ResourceLocation;
 
 public class ArtifactGearConfigRegistry {
-	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MOD_ID,
-			"gear_config");
+	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = ResourceLocationHelper
+			.modLoc("gear_config");
 
 	public static final CodecJsonDataManager<ArtifactGearConfig> ARTIFACT_GEAR_CONFIGS = new CodecJsonDataManager<>(
 			"gearconfig/artifact", ArtifactGearConfig.CODEC);

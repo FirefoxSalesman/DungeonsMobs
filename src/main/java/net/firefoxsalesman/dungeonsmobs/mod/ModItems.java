@@ -27,6 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModItems {
-	private static final ResourceLocation DEFAULT_ANIMATION_RESOURCE = new ResourceLocation(MOD_ID,
+	private static final ResourceLocation DEFAULT_ANIMATION_RESOURCE = modLoc(
 			"animations/armor/armor_default.animation.json");
 
 	public static final Map<ResourceLocation, RegistryObject<Item>> ARMORS = new HashMap<>();
@@ -54,29 +55,26 @@ public class ModItems {
 	// Armour
 	public static final RegistryObject<Item> GOLD_PILLAGER_HELMET = registerArmor("gold_pillager_helmet",
 			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					new ResourceLocation(MOD_ID, "geo/armor/pillager_helmet.geo.json"),
-					new ResourceLocation(MOD_ID, "textures/models/armor/gold_pillager_helmet.png"),
+					modLoc("geo/armor/pillager_helmet.geo.json"),
+					modLoc("textures/models/armor/gold_pillager_helmet.png"),
 					DEFAULT_ANIMATION_RESOURCE));
 
 	public static final RegistryObject<Item> DIAMOND_PILLAGER_HELMET = ITEMS.register("diamond_pillager_helmet",
 			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					new ResourceLocation(MOD_ID, "geo/armor/pillager_helmet.geo.json"),
-					new ResourceLocation(MOD_ID,
-							"textures/models/armor/diamond_pillager_helmet.png"),
+					modLoc("geo/armor/pillager_helmet.geo.json"),
+					modLoc("textures/models/armor/diamond_pillager_helmet.png"),
 					DEFAULT_ANIMATION_RESOURCE));
 
 	public static final RegistryObject<Item> GOLD_VINDICATOR_HELMET = ITEMS.register("gold_vindicator_helmet",
 			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					new ResourceLocation(MOD_ID, "geo/armor/vindicator_helmet.geo.json"),
-					new ResourceLocation(MOD_ID,
-							"textures/models/armor/gold_vindicator_helmet.png"),
+					modLoc("geo/armor/vindicator_helmet.geo.json"),
+					modLoc("textures/models/armor/gold_vindicator_helmet.png"),
 					DEFAULT_ANIMATION_RESOURCE));
 
 	public static final RegistryObject<Item> DIAMOND_VINDICATOR_HELMET = ITEMS.register("diamond_vindicator_helmet",
 			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					new ResourceLocation(MOD_ID, "geo/armor/vindicator_helmet.geo.json"),
-					new ResourceLocation(MOD_ID,
-							"textures/models/armor/diamond_vindicator_helmet.png"),
+					modLoc("geo/armor/vindicator_helmet.geo.json"),
+					modLoc("textures/models/armor/diamond_vindicator_helmet.png"),
 					DEFAULT_ANIMATION_RESOURCE));
 
 	public static final RegistryObject<Item> NETHERITE_PIGLIN_HELMET = ITEMS.register("netherite_piglin_helmet",
@@ -142,12 +140,11 @@ public class ModItems {
 
 	private static ArmorSet registerArmorSet(String armorSetId, String helmetId, String chestId, String legsId,
 			String bootsId, boolean animated) {
-		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
-		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
-		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
-				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation armorSet = modLoc(armorSetId);
+		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
 		ResourceLocation animationFileLocation = animated
-				? new ResourceLocation(MOD_ID, "animations/armor/" + armorSetId + ".animation.json")
+				? modLoc("animations/armor/" + armorSetId + ".animation.json")
 				: DEFAULT_ANIMATION_RESOURCE;
 		return new ArmorSet(
 				armorSet,
@@ -174,12 +171,10 @@ public class ModItems {
 
 	private static ArmorSet registerArmorSetWindcaller(String armorSetId, String helmetId, String chestId,
 			String legsId, String bootsId) {
-		ResourceLocation armorSet = new ResourceLocation(MOD_ID, armorSetId);
-		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
-		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
-				"textures/models/armor/" + armorSetId + ".png");
-		ResourceLocation animationFileLocation = new ResourceLocation(MOD_ID,
-				"animations/armor/cloaked_armor.animation.json");
+		ResourceLocation armorSet = modLoc(armorSetId);
+		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = modLoc("animations/armor/cloaked_armor.animation.json");
 		return new ArmorSet(
 				armorSet,
 				registerArmor(helmetId,

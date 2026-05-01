@@ -2,10 +2,10 @@ package net.firefoxsalesman.dungeonsmobs.gear.client.renderer.ghosts;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.gear.client.models.ghosts.SoulWizardModel;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,8 +17,7 @@ public class SoulWizardRenderer extends GeoEntityRenderer<SoulWizardEntity> {
 	public SoulWizardRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new SoulWizardModel());
 		this.addRenderLayer(new PulsatingGlowLayer<>(this,
-				new ResourceLocation(DungeonsMobs.MOD_ID,
-						"textures/entity/ghosts/soul_wizard_glow.png"),
+				GeneralHelper.modLoc("textures/entity/ghosts/soul_wizard_glow.png"),
 				0.2F, 1.0F, 0.25F));
 	}
 

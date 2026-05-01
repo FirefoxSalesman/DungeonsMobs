@@ -1,5 +1,12 @@
 package net.firefoxsalesman.dungeonsmobs.lib.integration.curios;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -14,39 +21,37 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
-@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CuriosIntegration {
 
-    public static final ResourceLocation CURIOS_ICON_TEXTURE = new ResourceLocation(MOD_ID, "slot/empty_artifact_slot");
+	public static final ResourceLocation CURIOS_ICON_TEXTURE = ResourceLocationHelper
+			.modLoc("slot/empty_artifact_slot");
 
-    public static final String ARTIFACT_IDENTIFIER = "artifact";
+	public static final String ARTIFACT_IDENTIFIER = "artifact";
 
-    @SubscribeEvent
-    public static void enqueue(InterModEnqueueEvent event) {
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder(ARTIFACT_IDENTIFIER).icon(CURIOS_ICON_TEXTURE).priority(10).size(3).build());
-    }
+	@SubscribeEvent
+	public static void enqueue(InterModEnqueueEvent event) {
+		InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+				() -> new SlotTypeMessage.Builder(ARTIFACT_IDENTIFIER).icon(CURIOS_ICON_TEXTURE)
+						.priority(10).size(3).build());
+	}
 
-    public static List<ItemStack> getArtifacts(LivingEntity livingEntity) {
-        LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(livingEntity);
-        if (curiosHandler.isPresent()) {
-            Optional<ICurioStacksHandler> artifactStackHandler = curiosHandler.resolve().get().getStacksHandler(ARTIFACT_IDENTIFIER);
-            if (artifactStackHandler.isPresent()) {
-                IDynamicStackHandler stacks = artifactStackHandler.get().getStacks();
-                List<ItemStack> artifacts = new ArrayList<>();
-                for (int i = 0; i < stacks.getSlots(); i++) {
-                    artifacts.add(stacks.getStackInSlot(i));
-                }
-                return artifacts;
-            }
-        }
-        return Collections.emptyList();
-    }
+	public static List<ItemStack> getArtifacts(LivingEntity livingEntity) {
+		LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper()
+				.getCuriosHandler(livingEntity);
+		if (curiosHandler.isPresent()) {
+			Optional<ICurioStacksHandler> artifactStackHandler = curiosHandler.resolve().get()
+					.getStacksHandler(ARTIFACT_IDENTIFIER);
+			if (artifactStackHandler.isPresent()) {
+				IDynamicStackHandler stacks = artifactStackHandler.get().getStacks();
+				List<ItemStack> artifacts = new ArrayList<>();
+				for (int i = 0; i < stacks.getSlots(); i++) {
+					artifacts.add(stacks.getStackInSlot(i));
+				}
+				return artifacts;
+			}
+		}
+		return Collections.emptyList();
+	}
 
 }

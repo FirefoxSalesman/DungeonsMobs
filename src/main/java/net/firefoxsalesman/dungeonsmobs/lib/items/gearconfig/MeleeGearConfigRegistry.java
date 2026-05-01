@@ -1,17 +1,15 @@
 package net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig;
 
+import java.util.Map;
+
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.MeleeGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Map;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class MeleeGearConfigRegistry {
-	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MOD_ID,
-			"gear_config");
+	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = GeneralHelper.modLoc("gear_config");
 
 	public static final CodecJsonDataManager<MeleeGearConfig> MELEE_GEAR_CONFIGS = new CodecJsonDataManager<>(
 			"gearconfig/melee", MeleeGearConfig.CODEC);

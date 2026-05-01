@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.ender;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.ender.AbstractEnderlingEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -14,17 +15,17 @@ public class SnarelingModel extends GeoModel<AbstractEnderlingEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(AbstractEnderlingEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/snareling.animation.json");
+		return modLoc("animations/snareling.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(AbstractEnderlingEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/snareling.geo.json");
+		return modLoc("geo/snareling.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(AbstractEnderlingEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/snareling.png");
+		return modLoc("textures/entity/ender/snareling.png");
 	}
 
 	@Override

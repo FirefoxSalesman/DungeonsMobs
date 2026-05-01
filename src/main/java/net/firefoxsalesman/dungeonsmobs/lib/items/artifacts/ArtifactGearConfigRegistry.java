@@ -1,18 +1,17 @@
 package net.firefoxsalesman.dungeonsmobs.lib.items.artifacts;
 
+import java.util.Map;
+
 import net.firefoxsalesman.dungeonsmobs.lib.data.util.CodecJsonDataManager;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Map;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class ArtifactGearConfigRegistry {
-	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MOD_ID,
-			"gear_config");
+	public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = ResourceLocationHelper
+			.modLoc("gear_config");
 
 	public static final CodecJsonDataManager<ArtifactGearConfig> ARTIFACT_GEAR_CONFIGS = new CodecJsonDataManager<>(
 			"gearconfig/artifact", ArtifactGearConfig.CODEC);
@@ -30,6 +29,7 @@ public class ArtifactGearConfigRegistry {
 	}
 
 	public static void subscribe() {
-		ARTIFACT_GEAR_CONFIGS.subscribeAsSyncable(NetworkHandler.INSTANCE, ArtifactGearConfigRegistry::toPacket);
+		ARTIFACT_GEAR_CONFIGS.subscribeAsSyncable(NetworkHandler.INSTANCE,
+				ArtifactGearConfigRegistry::toPacket);
 	}
 }

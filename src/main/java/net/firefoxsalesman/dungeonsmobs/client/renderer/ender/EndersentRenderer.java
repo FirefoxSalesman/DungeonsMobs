@@ -3,11 +3,11 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.ender;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GenericEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +21,7 @@ public class EndersentRenderer extends MobRenderer<EndersentEntity, EndersentMod
 
 	@Override
 	public ResourceLocation getTextureLocation(EndersentEntity pEntity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/endersent.png");
+		return GeneralHelper.modLoc("textures/entity/ender/endersent.png");
 	}
 
 	protected void setupRotations(EndersentEntity pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks,

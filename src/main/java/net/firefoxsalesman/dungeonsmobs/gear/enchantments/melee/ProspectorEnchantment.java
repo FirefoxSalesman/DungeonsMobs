@@ -21,6 +21,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DropsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.LootTableHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
 
@@ -69,12 +70,12 @@ public class ProspectorEnchantment extends DropsEnchantment {
 	}
 
 	private static ResourceLocation getProspectorLootTable(Level world) {
-		ResourceLocation resourceLocation = new ResourceLocation(MOD_ID,
+		ResourceLocation resourceLocation = modLoc(
 				"enchantments/prospector/" + world.dimension().location().getPath());
 		if (LootTableHelper.lootTableExists((ServerLevel) world, resourceLocation)) {
 			return resourceLocation;
 		} else {
-			return new ResourceLocation(MOD_ID, "enchantments/prospector/overworld");
+			return modLoc("enchantments/prospector/overworld");
 		}
 	}
 

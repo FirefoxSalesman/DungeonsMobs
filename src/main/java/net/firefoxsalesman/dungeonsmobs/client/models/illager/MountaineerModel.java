@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MountaineerEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -13,24 +15,22 @@ import software.bernie.geckolib.core.molang.MolangParser;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 // Model and animation received from CQR and DerToaster
 public class MountaineerModel extends GeoModel<MountaineerEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(MountaineerEntity entity) {
-		return new ResourceLocation(MOD_ID, "animations/vindicator.animation.json");
+		return modLoc("animations/vindicator.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(MountaineerEntity entity) {
-		return new ResourceLocation(MOD_ID, "geo/geo_illager.geo.json");
+		return modLoc("geo/geo_illager.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(MountaineerEntity entity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/illager/mountaineer.png");
+		return modLoc("textures/entity/illager/mountaineer.png");
 	}
 
 	@Override

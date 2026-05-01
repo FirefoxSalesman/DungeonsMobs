@@ -1,9 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.ender;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.client.models.ender.SnarelingModel;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.AbstractEnderlingEntity;
-import net.firefoxsalesman.dungeonsmobs.client.models.ender.SnarelingModel;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,7 +14,7 @@ public class SnarelingRenderer extends GeoEntityRenderer<AbstractEnderlingEntity
 	public SnarelingRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new SnarelingModel());
 		addRenderLayer(new GeoEyeLayer<>(this,
-				new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/ender/snareling_eyes.png")));
+				GeneralHelper.modLoc("textures/entity/ender/snareling_eyes.png")));
 	}
 
 	@Override

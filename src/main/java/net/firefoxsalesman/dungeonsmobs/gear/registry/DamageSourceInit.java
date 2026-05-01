@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.registry;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.minecraft.core.registries.Registries.DAMAGE_TYPE;
 
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
@@ -18,6 +19,6 @@ public class DamageSourceInit {
 	}
 
 	private ResourceKey<DamageType> mkDamageType(String name) {
-		return ResourceKey.create(DAMAGE_TYPE, new ResourceLocation(MOD_ID, name));
+		return ResourceKey.create(DAMAGE_TYPE, GeneralHelper.modLoc(name));
 	}
 }

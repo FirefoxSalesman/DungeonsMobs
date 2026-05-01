@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.redstone;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers.REDSTONE_CUBE;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -8,6 +7,7 @@ import com.mojang.math.Axis;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.redstone.RedstoneCubeModel;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -18,8 +18,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class RedstoneCubeRenderer extends MobRenderer<RedstoneCubeEntity, RedstoneCubeModel<RedstoneCubeEntity>> {
-	private static final ResourceLocation REDSTONE_CUBE_TEXTURE = new ResourceLocation(MOD_ID,
-			"textures/entity/redstone/redstone_cube.png");
+	private static final ResourceLocation REDSTONE_CUBE_TEXTURE = GeneralHelper
+			.modLoc("textures/entity/redstone/redstone_cube.png");
 
 	public RedstoneCubeRenderer(EntityRendererProvider.Context renderContext) {
 		super(renderContext, new RedstoneCubeModel<>(renderContext.bakeLayer(REDSTONE_CUBE)), 0.25F);

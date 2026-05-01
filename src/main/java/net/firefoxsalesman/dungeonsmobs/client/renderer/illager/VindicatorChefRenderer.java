@@ -3,11 +3,11 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.VindicatorChefModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.VindicatorChefEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class VindicatorChefRenderer
 		extends MobRenderer<VindicatorChefEntity, VindicatorChefModel<VindicatorChefEntity>> {
@@ -19,6 +19,6 @@ public class VindicatorChefRenderer
 
 	@Override
 	public ResourceLocation getTextureLocation(VindicatorChefEntity pEntity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/illager/vindicator_chef.png");
+		return GeneralHelper.modLoc("textures/entity/illager/vindicator_chef.png");
 	}
 }

@@ -1,9 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.undead;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.SkeletonVanguardModel;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
@@ -20,7 +20,7 @@ public class SkeletonVanguardRenderer
 
 	@Override
 	public ResourceLocation getTextureLocation(SkeletonVanguardEntity pEntity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/skeleton/skeleton_vanguard.png");
+		return GeneralHelper.modLoc("textures/entity/skeleton/skeleton_vanguard.png");
 	}
 
 }

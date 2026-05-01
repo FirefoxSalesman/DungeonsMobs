@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.golem;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
@@ -13,18 +14,17 @@ public class SquallGolemModel extends GeoModel<SquallGolemEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(SquallGolemEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/squall_golem.animation.json");
+		return modLoc("animations/squall_golem.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(SquallGolemEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/squall_golem.geo.json");
+		return modLoc("geo/squall_golem.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(SquallGolemEntity entity) {
-		// ChorusGormandizerEntity entityIn = (ChorusGormandizerEntity) entity;
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/golem/squall_golem.png");
+		return modLoc("textures/entity/golem/squall_golem.png");
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class SquallGolemModel extends GeoModel<SquallGolemEntity> {
 			head.setRotX(head.getRotX() + (extraData.headPitch() * ((float) Math.PI / 180F)));
 			head.setRotZ(head.getRotZ() + (extraData.netHeadYaw() * ((float) Math.PI / 180F)));
 			eye.setPosY(Math.max(Math.min(extraData.headPitch() / 80, 0.15F), -0.2F));
-			eyeBrow.setPosY(Math.max(Math.min(extraData.headPitch() / 80, 0.15F),0.2F));
+			eyeBrow.setPosY(Math.max(Math.min(extraData.headPitch() / 80, 0.15F), 0.2F));
 		}
 	}
 

@@ -1,5 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.WindcallerEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -9,23 +11,21 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class WindcallerModel extends GeoModel<WindcallerEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(WindcallerEntity entity) {
-		return new ResourceLocation(MOD_ID, "animations/windcaller.animation.json");
+		return modLoc("animations/windcaller.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(WindcallerEntity entity) {
-		return new ResourceLocation(MOD_ID, "geo/windcaller.geo.json");
+		return modLoc("geo/windcaller.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(WindcallerEntity entity) {
-		return new ResourceLocation(MOD_ID, "textures/entity/illager/windcaller.png");
+		return modLoc("textures/entity/illager/windcaller.png");
 	}
 
 	@Override

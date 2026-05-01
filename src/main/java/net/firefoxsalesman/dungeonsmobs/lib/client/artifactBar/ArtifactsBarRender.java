@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.lib.client.CuriosKeyBindings;
 import net.firefoxsalesman.dungeonsmobs.lib.client.gui.elementconfig.GuiElementConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.client.gui.elementconfig.GuiElementConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper.modLoc;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,13 +17,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -35,8 +33,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 // @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MOD_ID)
 public class ArtifactsBarRender {
 	public static final IGuiOverlay OVERLAY = ArtifactsBarRender::drawHUD;
-	private static final ResourceLocation ARTIFACT_BAR_RESOURCE = new ResourceLocation(MOD_ID,
-			"textures/gui/artifact_bar.png");
+	private static final ResourceLocation ARTIFACT_BAR_RESOURCE = modLoc("textures/gui/artifact_bar.png");
 
 	public static void drawHUD(ForgeGui gui, GuiGraphics guiGraphics, float partialTicks, int screenWidth,
 			int screenHeight) {
@@ -44,7 +41,7 @@ public class ArtifactsBarRender {
 			if (renderPlayer == null)
 				return;
 			GuiElementConfig guiElementConfig = GuiElementConfigRegistry
-					.getConfig(new ResourceLocation(MOD_ID, "artifact_bar"));
+					.getConfig(modLoc("artifact_bar"));
 
 			if (guiElementConfig.isHidden())
 				return;
@@ -77,7 +74,7 @@ public class ArtifactsBarRender {
 			if (renderPlayer == null)
 				return;
 			GuiElementConfig guiElementConfig = GuiElementConfigRegistry
-					.getConfig(new ResourceLocation(MOD_ID, "artifact_bar"));
+					.getConfig(modLoc("artifact_bar"));
 			if (guiElementConfig.isHidden())
 				return;
 

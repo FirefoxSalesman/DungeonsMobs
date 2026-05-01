@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.network;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.network.entity.PlayerBeamMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
@@ -13,13 +12,13 @@ import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.CrossbowGearConfi
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.MeleeGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.materials.ArmorMaterialSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.materials.WeaponMaterialSyncPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public class NetworkHandler {
 	public static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(
-			new ResourceLocation(DungeonsMobs.MOD_ID, "network"))
+			GeneralHelper.modLoc("network"))
 			.clientAcceptedVersions("1"::equals)
 			.serverAcceptedVersions("1"::equals)
 			.networkProtocolVersion(() -> "1")

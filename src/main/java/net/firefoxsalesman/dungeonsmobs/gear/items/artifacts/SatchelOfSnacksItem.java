@@ -11,6 +11,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.LootTableHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
@@ -34,7 +35,7 @@ public class SatchelOfSnacksItem extends ArtifactItem {
 		if (!c.getLevel().isClientSide) {
 			ItemStack foodItemStack = LootTableHelper.generateItemStack((ServerLevel) playerIn.level(),
 					playerIn.blockPosition(),
-					new ResourceLocation(MOD_ID, "items/satchel_of_snacks"), playerIn.getRandom());
+					GeneralHelper.modLoc("items/satchel_of_snacks"), playerIn.getRandom());
 			ItemEntity foodDrop = new ItemEntity(playerIn.level(), playerIn.getX(), playerIn.getY(),
 					playerIn.getZ(), foodItemStack);
 			playerIn.level().addFreshEntity(foodDrop);

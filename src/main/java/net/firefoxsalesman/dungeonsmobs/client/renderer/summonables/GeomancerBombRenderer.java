@@ -13,14 +13,15 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class GeomancerBombRenderer extends GeoEntityRenderer<GeomancerBombEntity> {
 	public GeomancerBombRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new GeomancerConstructModel<GeomancerBombEntity>(
 				"textures/entity/constructs/geomancer_bomb.png"));
-		this.addRenderLayer(new PulsatingGlowLayer<GeomancerBombEntity>(this, new ResourceLocation(MOD_ID,
-				"textures/entity/constructs/geomancer_bomb.png"), 0.5F, 0.6F, 0.2F) {
+		this.addRenderLayer(new PulsatingGlowLayer<GeomancerBombEntity>(this,
+				modLoc("textures/entity/constructs/geomancer_bomb.png"), 0.5F, 0.6F, 0.2F) {
 			@Override
 			public void render(PoseStack poseStack, GeomancerBombEntity animatable,
 					BakedGeoModel bakedModel,
@@ -28,12 +29,12 @@ public class GeomancerBombRenderer extends GeoEntityRenderer<GeomancerBombEntity
 					float partialTick, int packedLight, int packedOverlay) {
 
 				if (animatable.getLifeTicks() < 60 && animatable.getLifeTicks() >= 30) {
-					textureLocation = new ResourceLocation(MOD_ID,
+					textureLocation = modLoc(
 							"textures/entity/constructs/geomancer_bomb_eyes_1.png");
 				} else if (animatable.getLifeTicks() < 30
 						&& animatable.getLifeTicks() >= 0) {
 					pulseSpeed = 0.8F;
-					textureLocation = new ResourceLocation(MOD_ID,
+					textureLocation = modLoc(
 							"textures/entity/constructs/geomancer_bomb_eyes_2.png");
 				}
 				super.render(poseStack, animatable, bakedModel, renderType, bufferSource, buffer,

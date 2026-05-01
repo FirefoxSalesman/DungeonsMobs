@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.jungle;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -13,17 +14,17 @@ public class LeapleafModel extends GeoModel<LeapleafEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(LeapleafEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/leapleaf.animation.json");
+		return modLoc("animations/leapleaf.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(LeapleafEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/leapleaf.geo.json");
+		return modLoc("geo/leapleaf.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(LeapleafEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/jungle/leapleaf.png");
+		return modLoc("textures/entity/jungle/leapleaf.png");
 	}
 
 	@Override

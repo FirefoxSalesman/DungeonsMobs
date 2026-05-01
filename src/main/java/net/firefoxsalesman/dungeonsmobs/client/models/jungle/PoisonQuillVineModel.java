@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.jungle;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.AbstractVineEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
@@ -11,17 +12,17 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class PoisonQuillVineModel extends AbstractVineModel {
 	@Override
 	public ResourceLocation getAnimationResource(AbstractVineEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/poison_quill_vine.animation.json");
+		return modLoc("animations/poison_quill_vine.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(AbstractVineEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/poison_quill_vine.geo.json");
+		return modLoc("geo/poison_quill_vine.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(AbstractVineEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/jungle/poison_quill_vine.png");
+		return modLoc("textures/entity/jungle/poison_quill_vine.png");
 	}
 
 	@Override

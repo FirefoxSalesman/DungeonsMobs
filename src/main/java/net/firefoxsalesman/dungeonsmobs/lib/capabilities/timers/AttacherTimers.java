@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers;
 
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -13,13 +14,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import org.jetbrains.annotations.NotNull;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 public class AttacherTimers {
 
 	private static class TimersProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-		public static final ResourceLocation IDENTIFIER = new ResourceLocation(MOD_ID, "timers");
+		public static final ResourceLocation IDENTIFIER = ResourceLocationHelper.modLoc("timers");
 		private final Timers backend = new Timers();
 		private final LazyOptional<Timers> optionalData = LazyOptional.of(() -> backend);
 

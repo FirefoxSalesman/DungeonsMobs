@@ -8,6 +8,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 import net.firefoxsalesman.dungeonsmobs.lib.entities.SoulOrbEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -20,8 +21,8 @@ import net.minecraft.util.Mth;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class SoulOrbRenderer extends EntityRenderer<SoulOrbEntity> {
-	private static final ResourceLocation SOUL_ORB_LOCATION = new ResourceLocation(MOD_ID,
-			"textures/entity/soul_orb.png");
+	private static final ResourceLocation SOUL_ORB_LOCATION = ResourceLocationHelper
+			.modLoc("textures/entity/soul_orb.png");
 	private static final RenderType RENDER_TYPE = RenderType.itemEntityTranslucentCull(SOUL_ORB_LOCATION);
 
 	public SoulOrbRenderer(EntityRendererProvider.Context context) {

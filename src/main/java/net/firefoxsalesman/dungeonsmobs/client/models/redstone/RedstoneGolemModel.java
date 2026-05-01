@@ -1,6 +1,8 @@
-package net.firefoxsalesman.dungeonsmobs.client.models.redstone;// Made with Blockbench 3.6.6
+package net.firefoxsalesman.dungeonsmobs.client.models.redstone;
+// Made with Blockbench 3.6.6
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -14,17 +16,17 @@ public class RedstoneGolemModel extends GeoModel<RedstoneGolemEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(RedstoneGolemEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "animations/redstone_golem.animation.json");
+		return modLoc("animations/redstone_golem.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(RedstoneGolemEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "geo/redstone_golem.geo.json");
+		return modLoc("geo/redstone_golem.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(RedstoneGolemEntity entity) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/entity/redstone/redstone_golem.png");
+		return modLoc("textures/entity/redstone/redstone_golem.png");
 	}
 
 	@Override

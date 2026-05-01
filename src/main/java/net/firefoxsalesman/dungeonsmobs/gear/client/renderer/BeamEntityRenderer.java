@@ -9,10 +9,10 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.ArtifactBeamEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.BeamColor;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.MyRenderType;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -27,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BeamEntityRenderer<T extends ArtifactBeamEntity> extends EntityRenderer<T> {
 	@Override
 	public ResourceLocation getTextureLocation(T renderer) {
-		return new ResourceLocation(DungeonsMobs.MOD_ID, "textures/misc/beacon_beam_core.png");
+		return GeneralHelper.modLoc("textures/misc/beacon_beam_core.png");
 	}
 
 	public BeamEntityRenderer(EntityRendererProvider.Context pContext) {
