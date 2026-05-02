@@ -28,7 +28,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 
 public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
@@ -51,12 +50,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 	public MageCloneEntity(EntityType<? extends MageCloneEntity> type, Level world) {
 		super(type, world);
 		xpReward = 0;
-		states = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("attack");
-		addState("vanish");
-		addState("appear");
+		states = genStates("idle", "celebrate", "attack", "vanish", "appear");
 	}
 
 	protected void registerGoals() {

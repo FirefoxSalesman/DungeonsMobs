@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.entity.illagers;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -50,10 +49,7 @@ public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 
 	public VindicatorChefEntity(EntityType<? extends Vindicator> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
-		states = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("attack");
+		states = genStates("idle", "celebrate", "attack");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {

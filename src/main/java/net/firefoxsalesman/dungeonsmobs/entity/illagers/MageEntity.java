@@ -1,7 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.illagers;
 
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -70,12 +69,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 
 	public MageEntity(EntityType<? extends MageEntity> type, Level world) {
 		super(type, world);
-		states = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("attack");
-		addState("vanish");
-		addState("appear");
+		states = genStates("idle", "celebrate", "attack", "vanish", "appear");
 	}
 
 	@Override

@@ -54,7 +54,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -78,16 +77,10 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		shieldCooldownTime = 0;
 	}
 
-	public RoyalGuardEntity(EntityType<? extends RoyalGuardEntity> p_i50189_1_, Level p_i50189_2_) {
-		super(p_i50189_1_, p_i50189_2_);
+	public RoyalGuardEntity(EntityType<? extends RoyalGuardEntity> type, Level level) {
+		super(type, level);
 		shieldCooldownTime = 0;
-		states = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("attack");
-		addState("walk");
-		addState("walkBlock");
-		addState("block");
+		states = genStates("idle", "celebrate", "attack", "walk", "walkBlock", "block");
 	}
 
 	@Override

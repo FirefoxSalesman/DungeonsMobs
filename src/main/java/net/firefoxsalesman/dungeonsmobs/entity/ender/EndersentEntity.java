@@ -2,7 +2,6 @@ package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
 import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -71,12 +70,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	public EndersentEntity(EntityType<? extends EndersentEntity> type, Level level) {
 		super(type, level);
 		xpReward = 50;
-		states = new HashMap<>();
-		addState("idle");
-		addState("attack");
-		addState("death");
-		addState("summon");
-		addState("teleport");
+		states = genStates("idle", "attack", "death", "summon", "teleport");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {

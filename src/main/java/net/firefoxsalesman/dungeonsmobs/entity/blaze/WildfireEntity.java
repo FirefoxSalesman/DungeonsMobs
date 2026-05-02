@@ -41,7 +41,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -82,11 +81,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
 		this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
 		this.xpReward = 25;
-		states = new HashMap<>();
-		addState("idle");
-		addState("shoot");
-		addState("shockwave");
-		addState("summon");
+		states = genStates("idle", "shoot", "shockwave", "summon");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {

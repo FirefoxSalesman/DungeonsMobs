@@ -33,7 +33,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 
 public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntity {
@@ -52,10 +51,7 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 
 	public GeomancerEntity(EntityType<? extends SpellcasterIllager> type, Level world) {
 		super(type, world);
-		states = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("summon");
+		states = genStates("idle", "celebrate", "summon");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {

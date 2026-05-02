@@ -31,7 +31,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 
 public class NecromancerEntity extends Skeleton implements KeyframeEntity {
@@ -59,10 +58,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		super(pEntityType, worldIn);
 		this.xpReward = 20;
 		setMaxUpStep(1.0F);
-		states = new HashMap<>();
-		addState("idle");
-		addState("summon");
-		addState("shoot");
+		states = genStates("idle", "summon", "shoot");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {

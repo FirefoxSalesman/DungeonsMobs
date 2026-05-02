@@ -1,6 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.entity.undead;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -74,12 +73,7 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	public SkeletonVanguardEntity(EntityType<? extends SkeletonVanguardEntity> entityType, Level worldIn) {
 		super(entityType, worldIn);
 		shieldCooldownTime = 0;
-		states = new HashMap<>();
-		addState("idle");
-		addState("attack");
-		addState("walk");
-		addState("walkBlock");
-		addState("block");
+		states = genStates("idle", "attack", "walk", "walkBlock", "block");
 	}
 
 	@Override

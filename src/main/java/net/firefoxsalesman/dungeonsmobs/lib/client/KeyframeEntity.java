@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.lib.client;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.world.entity.AnimationState;
@@ -41,5 +42,18 @@ public interface KeyframeEntity {
 	 */
 	default boolean isMoving() {
 		return getWalkAnimation().speed() > 1.0E-1F;
+	}
+
+	/**
+	 * <p>
+	 * Generates a map from the given names to {@link AnimationState}
+	 * </p>
+	 */
+	default Map<String, AnimationState> genStates(String... names) {
+		Map<String, AnimationState> states = new HashMap<>();
+		for (String name : names) {
+			states.put(name, new AnimationState());
+		}
+		return states;
 	}
 }

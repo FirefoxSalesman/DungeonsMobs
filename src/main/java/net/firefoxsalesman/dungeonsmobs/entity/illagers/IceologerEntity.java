@@ -26,7 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -45,10 +44,7 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 
 	public IceologerEntity(EntityType<? extends IceologerEntity> type, Level world) {
 		super(type, world);
-		animations = new HashMap<>();
-		addState("idle");
-		addState("celebrate");
-		addState("summon");
+		animations = genStates("idle", "celebrate", "summon");
 	}
 
 	@Override

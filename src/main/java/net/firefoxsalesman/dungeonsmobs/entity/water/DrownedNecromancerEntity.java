@@ -38,7 +38,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 
 public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity {
@@ -70,18 +69,8 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 	public DrownedNecromancerEntity(EntityType<? extends DrownedNecromancerEntity> type, Level worldIn) {
 		super(type, worldIn);
-		states = new HashMap<>();
-		addState("swim");
-		addState("walk");
-		addState("waterIdle");
-		addState("landIdle");
-		addState("waterSummon");
-		addState("landSummon");
-		addState("shoot");
-		addState("landShoot");
-		addState("waterShoot");
-		addState("waterTridentStorm");
-		addState("landTridentStorm");
+		states = genStates("swim", "walk", "waterIdle", "landIdle", "waterSummon", "landSummon", "shoot",
+				"landShoot", "waterShoot", "waterTridentStorm", "landTridentStorm");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
