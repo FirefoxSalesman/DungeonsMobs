@@ -568,6 +568,12 @@
   "enchantment.dungeonsmobs.beast_boss.desc": "Increases the amount of damage your summoned pets deal.",
   "enchantment.dungeonsmobs.beehive": "Beehive",
   "enchantment.dungeonsmobs.beehive.desc": "Chance to summon a bee when you get hit by an enemy.",
+  "enchantment.dungeonsmobs.cowardice": "Cowardice",
+  "enchantment.dungeonsmobs.cowardice.desc": "While you are at full HP, you deal increased ranged and melee damage.",
+  "enchantment.dungeonsmobs.death_barter": "Death Barter",
+  "enchantment.dungeonsmobs.death_barter.desc": "The first amount of emeralds collected are stored and then spent to save the player from death.",
+  "enchantment.dungeonsmobs.deflect": "Deflect",
+  "enchantment.dungeonsmobs.deflect.desc": "Grants a small chance to deflect incoming projectiles.",
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",

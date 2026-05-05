@@ -11,6 +11,9 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BagOfSoulsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BeastBossEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BeehiveEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.CowardiceEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.DeathBarterEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.DeflectEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -152,6 +155,12 @@ public class EnchantmentInit {
 			() -> new BeastBossEnchantment());
 	public static RegistryObject<BeehiveEnchantment> BEEHIVE = ENCHANTMENTS.register("beehive",
 			() -> new BeehiveEnchantment());
+	public static RegistryObject<CowardiceEnchantment> COWARDICE = ENCHANTMENTS.register("cowardice",
+			() -> new CowardiceEnchantment());
+	public static RegistryObject<DeathBarterEnchantment> DEATH_BARTER = ENCHANTMENTS.register("death_barter",
+			() -> new DeathBarterEnchantment());
+	public static RegistryObject<DeflectEnchantment> DEFLECT = ENCHANTMENTS.register("deflect",
+			() -> new DeflectEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

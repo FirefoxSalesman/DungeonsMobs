@@ -47,10 +47,9 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Integer>
 	// BEAST_BURST_DAMAGE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer> BEAST_SURGE_DURATION;
-	// public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_BASE_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// COWARDICE_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> DEFLECT_CHANCE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_BASE_MULTIPLIER;
+	public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> DEFLECT_CHANCE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double> FOCUS_MULTIPLIER_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// FRENZIED_MULTIPLIER_PER_LEVEL;
@@ -207,18 +206,15 @@ public class DungeonsGearConfig {
 		// .comment("The duration in ticks of the speed boost applied by Beast Surge.
 		// [0-10000, default: 200]")
 		// .defineInRange("beastSurgeDuration", 200, 0, 10000);
-		// COWARDICE_BASE_MULTIPLIER = builder
-		// .comment("The decimal base multiplier on the damage for cowardice [0.0-5.0,
-		// default: 0.1]")
-		// .defineInRange("cowardiceBaseMultiplier", 0.1, 0, 5.0);
-		// COWARDICE_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for cowardice [0.0-5.0, default:
-		// 0.1]")
-		// .defineInRange("cowardiceMultiplierPerLevel", 0.1, 0, 5.0);
-		// DEFLECT_CHANCE_PER_LEVEL = builder
-		// .comment("The chance per level for deflect to trigger [0.0-5.0, default:
-		// 0.2]")
-		// .defineInRange("deflectChancePerLevel", 0.2, 0, 5.0);
+		COWARDICE_BASE_MULTIPLIER = builder.comment(
+				"The decimal base multiplier on the damage for cowardice [0.0-5.0, default: 0.1]")
+				.defineInRange("cowardiceBaseMultiplier", 0.1, 0, 5.0);
+		COWARDICE_MULTIPLIER_PER_LEVEL = builder
+				.comment("The multiplier increase per level for cowardice [0.0-5.0, default: 0.1]")
+				.defineInRange("cowardiceMultiplierPerLevel", 0.1, 0, 5.0);
+		DEFLECT_CHANCE_PER_LEVEL = builder
+				.comment("The chance per level for deflect to trigger [0.0-5.0, default: 0.2]")
+				.defineInRange("deflectChancePerLevel", 0.2, 0, 5.0);
 		// FOCUS_MULTIPLIER_PER_LEVEL = builder
 		// .comment("The multiplier increase per level for Focus Enchantments [0.0-5.0,
 		// default: 0.25]")
