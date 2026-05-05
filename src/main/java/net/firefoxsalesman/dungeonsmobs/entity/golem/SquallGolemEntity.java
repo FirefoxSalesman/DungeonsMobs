@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.golem;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.utils.KnockbackHelper;
+import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -619,54 +619,7 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
 			}
 			if (attackTimer == 30) {
-				areaAttack(4, 4, 4, 4, 360, 1.0F);
-			}
-		}
-
-		private void areaAttack(float range, float X, float Y, float Z, float arc, float damage) {
-			for (LivingEntity entityHit : level().getEntitiesOfClass(LivingEntity.class,
-					getBoundingBox().inflate(X, Y, Z))) {
-				float entityHitAngle = (float) ((Math.atan2(
-						entityHit.getZ() - getZ(),
-						entityHit.getX() - getX()) * (180 / Math.PI)
-						- 90) % 360);
-				float entityAttackingAngle = yBodyRot % 360;
-				if (entityHitAngle < 0) {
-					entityHitAngle += 360;
-				}
-				if (entityAttackingAngle < 0) {
-					entityAttackingAngle += 360;
-				}
-				float entityRelativeAngle = entityHitAngle - entityAttackingAngle;
-				float entityHitDistance = (float) Math.sqrt((entityHit.getZ()
-						- getZ())
-						* (entityHit.getZ() - getZ())
-						+ (entityHit.getX() - getX())
-								* (entityHit.getX() - getX()));
-				if (entityHitDistance <= range
-						&& (entityRelativeAngle <= arc / 2 && entityRelativeAngle >= -arc / 2)
-						|| (entityRelativeAngle >= 360 - arc / 2
-								|| entityRelativeAngle <= -360 + arc / 2)) {
-					if (!isAlliedTo(entityHit) && !(entityHit == SquallGolemEntity.this)) {
-						entityHit.hurt(damageSources().mobAttack(SquallGolemEntity.this),
-								(float) SquallGolemEntity.this.getAttributeValue(
-										Attributes.ATTACK_DAMAGE) * damage);
-
-						SquallGolemEntity v = SquallGolemEntity.this;
-						float attackKnockback = (float) getAttributeValue(
-								Attributes.ATTACK_KNOCKBACK);
-						double ratioX = Mth.sin(v.getYRot() * ((float) Math.PI / 180F));
-						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
-						double knockbackReduction = 0.35D;
-						entityHit.hurt(damageSources().mobAttack(SquallGolemEntity.this),
-								damage);
-						KnockbackHelper.forceKnockback(entityHit, attackKnockback * 0.8F,
-								ratioX, ratioZ,
-								knockbackReduction);
-						entityHit.setDeltaMovement(
-								entityHit.getDeltaMovement().add(0, 0.3333333, 0));
-					}
-				}
+				AreaAttackHelper.areaAttack(4, 4, 4, 4, 360, 1.0F, SquallGolemEntity.this);
 			}
 		}
 

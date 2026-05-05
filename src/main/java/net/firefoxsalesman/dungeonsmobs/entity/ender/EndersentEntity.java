@@ -12,7 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
-import net.firefoxsalesman.dungeonsmobs.utils.KnockbackHelper;
+import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -23,7 +23,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
@@ -320,60 +319,12 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 					doHurtTarget(getTarget());
 				}
 				if (inverseTick == 27 && entity.isSmashing()) {
-					areaAttack(4, 4, 4, 4, 270, 1.0F);
+					AreaAttackHelper.areaAttack(4, 4, 4, 4, 270, 1.0F, entity);
 				}
 			}
 			if (entity.attackAnimationTick <= 0) {
 				entity.setAttacking(false);
 				entity.setSmashing(false);
-			}
-		}
-
-		private void areaAttack(float range, float X, float Y, float Z, float arc, float damage) {
-			for (LivingEntity entityHit : level().getEntitiesOfClass(LivingEntity.class,
-					getBoundingBox().inflate(X, Y, Z))) {
-				float entityHitAngle = (float) ((Math.atan2(
-						entityHit.getZ() - getZ(),
-						entityHit.getX() - getX()) * (180 / Math.PI)
-						- 90) % 360);
-				float entityAttackingAngle = yBodyRot % 360;
-				if (entityHitAngle < 0) {
-					entityHitAngle += 360;
-				}
-				if (entityAttackingAngle < 0) {
-					entityAttackingAngle += 360;
-				}
-				float entityRelativeAngle = entityHitAngle - entityAttackingAngle;
-				float entityHitDistance = (float) Math.sqrt((entityHit.getZ()
-						- getZ())
-						* (entityHit.getZ() - getZ())
-						+ (entityHit.getX() - getX())
-								* (entityHit.getX() - getX()));
-				if (entityHitDistance <= range
-						&& (entityRelativeAngle <= arc / 2 && entityRelativeAngle >= -arc / 2)
-						|| (entityRelativeAngle >= 360 - arc / 2
-								|| entityRelativeAngle <= -360 + arc / 2)) {
-					if (!isAlliedTo(entityHit) && !(entityHit == EndersentEntity.this)
-							&& !(entityHit instanceof WatchlingEntity)) {
-						entityHit.hurt(damageSources().mobAttack(EndersentEntity.this),
-								(float) EndersentEntity.this.getAttributeValue(
-										Attributes.ATTACK_DAMAGE) * damage);
-
-						EndersentEntity v = EndersentEntity.this;
-						float attackKnockback = (float) getAttributeValue(
-								Attributes.ATTACK_KNOCKBACK);
-						double ratioX = Mth.sin(v.getYRot() * ((float) Math.PI / 180F));
-						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
-						double knockbackReduction = 0.35D;
-						entityHit.hurt(damageSources().mobAttack(EndersentEntity.this),
-								damage);
-						KnockbackHelper.forceKnockback(entityHit, attackKnockback * 0.8F,
-								ratioX, ratioZ,
-								knockbackReduction);
-						entityHit.setDeltaMovement(
-								entityHit.getDeltaMovement().add(0, 0.3333333, 0));
-					}
-				}
 			}
 		}
 
