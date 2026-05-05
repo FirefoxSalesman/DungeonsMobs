@@ -51,8 +51,7 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> DEFLECT_CHANCE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double> FOCUS_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// FRENZIED_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> FRENZIED_MULTIPLIER_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// GRAVITY_PULSE_BASE_STRENGTH;
 	// public static ForgeConfigSpec.ConfigValue<Double>
@@ -219,10 +218,9 @@ public class DungeonsGearConfig {
 		// .comment("The multiplier increase per level for Focus Enchantments [0.0-5.0,
 		// default: 0.25]")
 		// .defineInRange("focusMultiplierPerLevel", 0.25, 0, 5.0);
-		// FRENZIED_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for Frenzied [0.0-5.0, default:
-		// 0.1]")
-		// .defineInRange("frenziedMultiplierPerLevel", 0.1, 0, 5.0);
+		FRENZIED_MULTIPLIER_PER_LEVEL = builder
+				.comment("The multiplier increase per level for Frenzied [0.0-5.0, default: 0.1]")
+				.defineInRange("frenziedMultiplierPerLevel", 0.1, 0, 5.0);
 		// GRAVITY_PULSE_BASE_STRENGTH = builder
 		// .comment("The decimal base pull strength for Gravity Pulse [0.0-5.0, default:
 		// 0.1]")

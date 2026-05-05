@@ -574,6 +574,12 @@
   "enchantment.dungeonsmobs.death_barter.desc": "The first amount of emeralds collected are stored and then spent to save the player from death.",
   "enchantment.dungeonsmobs.deflect": "Deflect",
   "enchantment.dungeonsmobs.deflect.desc": "Grants a small chance to deflect incoming projectiles.",
+  "enchantment.dungeonsmobs.final_shout": "Final Shout",
+  "enchantment.dungeonsmobs.final_shout.desc": "When your health drops below 25%, automatically activates the first three artifacts in your inventory without cooldown.",
+  "enchantment.dungeonsmobs.fortune_of_the_sea": "Fortune of the Sea",
+  "enchantment.dungeonsmobs.fortune_of_the_sea.desc": "Increases your luck, which boosts the chance that rare drops become unique.",
+  "enchantment.dungeonsmobs.frenzied": "Frenzied",
+  "enchantment.dungeonsmobs.frenzied.desc": "While you are at less than half health, your attack speed is increased.",
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",

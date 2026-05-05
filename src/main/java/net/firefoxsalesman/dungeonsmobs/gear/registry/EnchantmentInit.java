@@ -14,6 +14,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BeehiveEnc
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.CowardiceEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.DeathBarterEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.DeflectEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FinalShoutEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FortuneOfTheSeaEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FrenziedEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -161,6 +164,12 @@ public class EnchantmentInit {
 			() -> new DeathBarterEnchantment());
 	public static RegistryObject<DeflectEnchantment> DEFLECT = ENCHANTMENTS.register("deflect",
 			() -> new DeflectEnchantment());
+	public static RegistryObject<FinalShoutEnchantment> FINAL_SHOUT = ENCHANTMENTS.register("final_shout",
+			() -> new FinalShoutEnchantment());
+	public static RegistryObject<FortuneOfTheSeaEnchantment> FORTUNE_OF_THE_SEA = ENCHANTMENTS
+			.register("fortune_of_the_sea", () -> new FortuneOfTheSeaEnchantment());
+	public static RegistryObject<FrenziedEnchantment> FRENZIED = ENCHANTMENTS.register("frenzied",
+			() -> new FrenziedEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
