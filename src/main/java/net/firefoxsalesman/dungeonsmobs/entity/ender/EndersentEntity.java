@@ -52,6 +52,9 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	private static final EntityDataAccessor<Boolean> SMASHING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
+	private int teleportAnimationTick = 0;
+	private final int teleportAnimationLength = 29;
+
 	private int attackAnimationTick = 0;
 	private final int attackAnimationLength = 26;
 
@@ -204,6 +207,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		}
 		summonAnimationTick--;
 		attackAnimationTick--;
+		teleportAnimationTick--;
 	}
 
 	public void baseTick() {
@@ -252,7 +256,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	protected boolean teleport(double x, double y, double z) {
 		boolean result = super.teleport(x, y, z);
 		if (result) {
-			getState("teleport").start(tickCount);
+			teleportAnimationTick = teleportAnimationLength;
 		}
 		return result;
 	}
@@ -273,7 +277,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	}
 
 	private boolean teleporting() {
-		return isTeleporting() > 0;
+		return isTeleporting() > 0 || teleportAnimationTick > 0;
 	}
 
 	private boolean isDead() {
@@ -286,10 +290,14 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 
 	class AttackGoal extends MeleeAttackGoal {
 		private final EndersentEntity entity;
+		private LivingEntity oldTarget;
+		private int teleportTick;
 
 		public AttackGoal(EndersentEntity mob, double speed) {
 			super(mob, speed, true);
 			entity = mob;
+			oldTarget = null;
+			teleportTick = 0;
 		}
 
 		@Override
@@ -301,16 +309,40 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		public void tick() {
 			super.tick();
 			setRunning(10);
+			teleportTick--;
 		}
 
 		@Override
 		protected void checkAndPerformAttack(LivingEntity pEntity, double pDistToEnemySqr) {
 			double d0 = getAttackReachSqr(pEntity);
+			if (oldTarget != null && teleportTick == 0) {
+				entity.setTarget(oldTarget);
+				BlockPos offset = mkOffset(2, oldTarget.blockPosition());
+				entity.teleport(offset.getX(), offset.getY(), offset.getZ());
+				attackSetup(true);
+				oldTarget = null;
+			}
 			if (pDistToEnemySqr <= d0 && !entity.isAttackingBool()) {
-				entity.setAttacking(true);
 				boolean smashing = mob.getRandom().nextInt(5) == 1;
-				entity.setSmashing(smashing);
-				entity.attackAnimationTick = smashing ? smashAnimationLength : attackAnimationLength;
+				if (smashing) {
+					oldTarget = entity.getTarget();
+					BlockPos oldPos = entity.blockPosition();
+					teleportTick = 40;
+					BlockPos tpPos = mkOffset(10, oldPos);
+					entity.moveTo(tpPos, 0.0F, 0.0F);
+					if (entity.isInWall() || entity.isInWaterOrRain()) {
+						entity.moveTo(oldPos, 0.0F, 0.0F);
+						tpPos = mkOffset(5, oldPos);
+					}
+					entity.moveTo(tpPos, 0.0F, 0.0F);
+					if (entity.isInWall() || entity.isInWaterOrRain()) {
+						entity.moveTo(oldPos, 0.0F, 0.0F);
+						tpPos = oldPos;
+					}
+					entity.teleport(tpPos.getX(), tpPos.getY(), tpPos.getZ());
+				} else {
+					attackSetup(false);
+				}
 			}
 			int inverseTick = (entity.isSmashing() ? smashAnimationLength : attackAnimationLength)
 					- entity.attackAnimationTick;
@@ -326,6 +358,18 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 				entity.setAttacking(false);
 				entity.setSmashing(false);
 			}
+		}
+
+		private BlockPos mkOffset(int range, BlockPos position) {
+			return position.offset(-range + mob.getRandom().nextInt((range * 2) + 1), 0,
+					-range + mob.getRandom().nextInt((range * 2) + 1));
+		}
+
+		private void attackSetup(boolean smashing) {
+			entity.setAttacking(true);
+			entity.setSmashing(smashing);
+			entity.attackAnimationTick = smashing ? smashAnimationLength
+					: attackAnimationLength;
 		}
 
 		@Override
