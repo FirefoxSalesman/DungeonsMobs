@@ -8,6 +8,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BagOfSoulsEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BeastBossEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.BeehiveEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -143,6 +146,12 @@ public class EnchantmentInit {
 			() -> new TempoTheftEnchantment());
 	public static RegistryObject<VelocityEnchantment> VELOCITY = ENCHANTMENTS.register("velocity",
 			() -> new VelocityEnchantment());
+	public static RegistryObject<BagOfSoulsEnchantment> BAG_OF_SOULS = ENCHANTMENTS.register("bag_of_souls",
+			() -> new BagOfSoulsEnchantment());
+	public static RegistryObject<BeastBossEnchantment> BEAST_BOSS = ENCHANTMENTS.register("beast_boss",
+			() -> new BeastBossEnchantment());
+	public static RegistryObject<BeehiveEnchantment> BEEHIVE = ENCHANTMENTS.register("beehive",
+			() -> new BeehiveEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

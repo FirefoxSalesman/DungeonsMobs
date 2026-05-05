@@ -42,9 +42,8 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Integer> THUNDERING_BASE_DAMAGE;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_BASE_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// BEAST_BOSS_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_BASE_MULTIPLIER;
+	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_MULTIPLIER_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer>
 	// BEAST_BURST_DAMAGE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer> BEAST_SURGE_DURATION;
@@ -75,7 +74,7 @@ public class DungeonsGearConfig {
 	// public static ForgeConfigSpec.ConfigValue<Double> DODGE_CHANCE_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Double>
 	// VOID_DODGE_CHANCE_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double> BEEHIVE_CHANCE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> BEEHIVE_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> STUNNING_CHANCE_PER_LEVEL;
 
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> LOVE_MEDALLION_BLACKLIST;
@@ -194,14 +193,12 @@ public class DungeonsGearConfig {
 		// .comment("Multiplier per level damage to healing conversion. [0.0-5.0,
 		// default: 0.25]")
 		// .defineInRange("altruisticDamageToHealingPerLevel", 0.25, 0, 5.0);
-		// BEAST_BOSS_BASE_MULTIPLIER = builder
-		// .comment("The decimal base multiplier on the minions's damage for beast boss
-		// [0.0-5.0, default: 0.1]")
-		// .defineInRange("beastBossBaseMultiplier", 0.1, 0, 5.0);
-		// BEAST_BOSS_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for beast boss [0.0-5.0, default:
-		// 0.1]")
-		// .defineInRange("beastBossMultiplierPerLevel", 0.1, 0, 5.0);
+		BEAST_BOSS_BASE_MULTIPLIER = builder.comment(
+				"The decimal base multiplier on the minions's damage for beast boss [0.0-5.0, default: 0.1]")
+				.defineInRange("beastBossBaseMultiplier", 0.1, 0, 5.0);
+		BEAST_BOSS_MULTIPLIER_PER_LEVEL = builder
+				.comment("The multiplier increase per level for beast boss [0.0-5.0, default: 0.1]")
+				.defineInRange("beastBossMultiplierPerLevel", 0.1, 0, 5.0);
 		// BEAST_BURST_DAMAGE_PER_LEVEL = builder
 		// .comment("The amount of damage per trigger of Beast burst. " +
 		// "Each trigger causes an explosion around each minion [0-100, default: 5]")
@@ -274,10 +271,9 @@ public class DungeonsGearConfig {
 		// .comment("The chance per level for void dodge to trigger [-5.0-5.0, default:
 		// 0.25]")
 		// .defineInRange("voidDodgeChancePerLevel", 0.05, -5.0, 5.0);
-		// BEEHIVE_CHANCE_PER_LEVEL = builder
-		// .comment("The chance per level for beehive to trigger [-5.0-5.0, default:
-		// 0.25]")
-		// .defineInRange("beehiveChancePerLevel", 0.1, -5.0, 5.0);
+		BEEHIVE_CHANCE_PER_LEVEL = builder
+				.comment("The chance per level for beehive to trigger [-5.0-5.0, default: 0.25]")
+				.defineInRange("beehiveChancePerLevel", 0.1, -5.0, 5.0);
 		STUNNING_CHANCE_PER_LEVEL = builder
 				.comment("The chance per level for Stunning to trigger [-5.0-5.0, default: 0.25]")
 				.defineInRange("stunningChancePerLevel", 0.1, -5.0, 5.0);
