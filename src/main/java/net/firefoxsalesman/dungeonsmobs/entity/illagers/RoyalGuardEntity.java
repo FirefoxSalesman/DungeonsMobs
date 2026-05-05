@@ -68,9 +68,9 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 	private int shieldCooldownTime;
 
-	public int attackAnimationTick;
-	public int attackAnimationLength = 27;
-	public int attackAnimationActionPoint = 15;
+	private int attackAnimationTick;
+	private int attackAnimationLength = 27;
+	private int attackAnimationActionPoint = 15;
 
 	public RoyalGuardEntity(Level world) {
 		super(ModEntities.ROYAL_GUARD.get(), world);

@@ -41,7 +41,7 @@ import net.minecraft.world.level.Level;
 
 public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 	private Map<String, AnimationState> states;
-	public int celebrationAnimationTick = 0;
+	private int celebrationAnimationTick = 0;
 
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(
 			VindicatorChefEntity.class, EntityDataSerializers.BOOLEAN);

@@ -36,12 +36,12 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 			MageCloneEntity.class,
 			EntityDataSerializers.BOOLEAN);
 	private Map<String, AnimationState> states;
-	public int shootAnimationTick;
-	public int shootAnimationLength = 40;
-	public int shootAnimationActionPoint = 20;
+	private int shootAnimationTick;
+	private int shootAnimationLength = 40;
+	private int shootAnimationActionPoint = 20;
 
-	public int appearAnimationTick;
-	public int appearAnimationLength = 25;
+	private int appearAnimationTick;
+	private int appearAnimationLength = 25;
 
 	public int lifeTime;
 

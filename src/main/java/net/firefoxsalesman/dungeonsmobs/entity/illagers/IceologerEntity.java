@@ -32,11 +32,11 @@ import java.util.function.Predicate;
 public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 
 	private Map<String, AnimationState> animations;
-	public int celebrationAnimationTick = 0;
+	private int celebrationAnimationTick = 0;
 
-	public int summonAnimationTick;
-	public int summonAnimationLength = 60;
-	public int summonAnimationActionPoint = 40;
+	private int summonAnimationTick;
+	private int summonAnimationLength = 60;
+	private int summonAnimationActionPoint = 40;
 
 	public IceologerEntity(Level world) {
 		this(ModEntities.ICEOLOGER.get(), world);

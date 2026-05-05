@@ -37,15 +37,15 @@ import java.util.Map;
 
 public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntity {
 
-	public int celebrationAnimationTick = 0;
+	private int celebrationAnimationTick = 0;
 
-	public int summonBombsAttackAnimationTick;
-	public int summonBombsAttackAnimationLength = 35;
-	public int summonBombsAttackAnimationActionPoint = 15;
+	private int summonBombsAttackAnimationTick;
+	private int summonBombsAttackAnimationLength = 35;
+	private int summonBombsAttackAnimationActionPoint = 15;
 
-	public int summonWallsAnimationTick;
-	public int summonWallsAnimationLength = 35;
-	public int summonWallsAnimationActionPoint = 20;
+	private int summonWallsAnimationTick;
+	private int summonWallsAnimationLength = 35;
+	private int summonWallsAnimationActionPoint = 20;
 
 	private Map<String, AnimationState> states;
 
