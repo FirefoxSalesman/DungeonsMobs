@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.KnockbackHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -40,9 +41,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 
 /**
  * Our attack goal borrows from Goety, because I am not smart enough to figure
@@ -369,36 +367,13 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 						double knockbackReduction = 0.35D;
 						entityHit.hurt(damageSources().mobAttack(EndersentEntity.this),
 								damage);
-						forceKnockback(entityHit, attackKnockback * 0.8F, ratioX, ratioZ,
+						KnockbackHelper.forceKnockback(entityHit, attackKnockback * 0.8F,
+								ratioX, ratioZ,
 								knockbackReduction);
 						entityHit.setDeltaMovement(
 								entityHit.getDeltaMovement().add(0, 0.3333333, 0));
 					}
 				}
-			}
-		}
-
-		private void forceKnockback(LivingEntity attackTarget, float strength, double ratioX, double ratioZ,
-				double knockbackResistanceReduction) {
-			LivingKnockBackEvent event = ForgeHooks.onLivingKnockBack(attackTarget, strength, ratioX,
-					ratioZ);
-			if (event.isCanceled())
-				return;
-			strength = event.getStrength();
-			ratioX = event.getRatioX();
-			ratioZ = event.getRatioZ();
-			strength = (float) ((double) strength
-					* (1.0D - attackTarget.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)
-							* knockbackResistanceReduction));
-			if (!(strength <= 0.0F)) {
-				attackTarget.hasImpulse = true;
-				Vec3 vector3d = attackTarget.getDeltaMovement();
-				Vec3 vector3d1 = (new Vec3(ratioX, 0.0D, ratioZ)).normalize().scale(strength);
-				attackTarget.setDeltaMovement(vector3d.x / 2.0D - vector3d1.x,
-						attackTarget.onGround()
-								? Math.min(0.4D, vector3d.y / 2.0D + (double) strength)
-								: vector3d.y,
-						vector3d.z / 2.0D - vector3d1.z);
 			}
 		}
 
