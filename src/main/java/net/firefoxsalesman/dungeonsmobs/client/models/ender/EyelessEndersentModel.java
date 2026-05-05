@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class EndersentModel<T extends AbstractEndersentEntity> extends ConvenientModel<T> {
+public class EyelessEndersentModel<T extends AbstractEndersentEntity> extends ConvenientModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
 	private final ModelPart humanoid;
@@ -25,9 +25,8 @@ public class EndersentModel<T extends AbstractEndersentEntity> extends Convenien
 	private final ModelPart rightArm;
 	private final ModelPart rightArmBone;
 	private final ModelPart rightHand;
-	private final ModelPart eye;
 
-	public EndersentModel(ModelPart root) {
+	public EyelessEndersentModel(ModelPart root) {
 		super();
 		this.humanoid = root.getChild("humanoid");
 		this.leftLeg = this.humanoid.getChild("leftLeg");
@@ -40,7 +39,6 @@ public class EndersentModel<T extends AbstractEndersentEntity> extends Convenien
 		this.rightArm = this.body.getChild("rightArm");
 		this.rightArmBone = this.rightArm.getChild("rightArmBone");
 		this.rightHand = this.rightArmBone.getChild("rightHand");
-		this.eye = this.body.getChild("eye");
 		animations.put("idle", EndersentAnimations.IDLE);
 		animations.put("attack", EndersentAnimations.ATTACK);
 		animations.put("death", EndersentAnimations.DEATH);
@@ -124,18 +122,6 @@ public class EndersentModel<T extends AbstractEndersentEntity> extends Convenien
 				"rightHand", CubeListBuilder.create().texOffs(112, 58).addBox(-4.0F, -0.01F, -2.0F,
 						8.0F, 11.0F, 17.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(-0.5F, 42.0F, 0.0F));
-
-		PartDefinition eye = body.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(45, 61)
-				.addBox(-6.5F, -2.0F, -1.0F, 13.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(19, 61)
-				.addBox(-5.5F, -4.0F, -1.0F, 11.0F, 7.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(19, 72)
-				.addBox(-4.5F, -5.0F, -1.0F, 9.0F, 9.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(45, 70)
-				.addBox(-3.5F, -6.0F, -1.0F, 7.0F, 11.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(65, 68).addBox(-1.5F, -7.0F, -1.0F, 3.0F, 13.0F, 1.0F,
-						new CubeDeformation(0.0F)),
-				PartPose.offset(0.0F, -12.0F, -4.0F));
 
 		return LayerDefinition.create(meshdefinition, 184, 117);
 	}

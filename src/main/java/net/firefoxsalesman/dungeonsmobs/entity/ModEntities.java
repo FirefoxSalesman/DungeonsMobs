@@ -10,6 +10,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
@@ -60,7 +61,6 @@ import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -316,6 +316,14 @@ public class ModEntities {
 					.sized(0.8F, 5.6F)
 					.clientTrackingRange(8)
 					.build(modLoc("endersent").toString()),
+			1447446, 0);
+
+	public static final RegistryObject<EntityType<EyelessEndersentEntity>> EYELESS_ENDERSENT = registerEntity(
+			"eyeless_endersent",
+			() -> EntityType.Builder.of(EyelessEndersentEntity::new, MobCategory.MONSTER)
+					.sized(0.8F, 5.6F)
+					.clientTrackingRange(8)
+					.build(modLoc("eyeless_endersent").toString()),
 			1447446, 0);
 
 	public static final RegistryObject<EntityType<BlastlingEntity>> BLASTLING = registerEntity("blastling",

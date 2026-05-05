@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.blaze.WildfireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.BlastlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.EndersentRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.EyelessEndersentRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
@@ -146,6 +147,7 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.TRIDENT_STORM.get(), TridentStormRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.EYELESS_ENDERSENT.get(), EyelessEndersentRenderer::new);
 		event.registerEntityRenderer(ModEntities.ENDERSENT.get(), EndersentRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLASTLING.get(), BlastlingRenderer::new);
 		event.registerEntityRenderer(ModEntities.WATCHLING.get(), WatchlingRenderer::new);
