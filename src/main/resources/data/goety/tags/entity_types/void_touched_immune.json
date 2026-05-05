@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "dungeonsmobs:eyeless_endersent",
     "dungeonsmobs:endersent"
   ]
 }
