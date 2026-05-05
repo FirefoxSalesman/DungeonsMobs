@@ -46,6 +46,7 @@ public class EndersentModel<T extends EndersentEntity> extends ConvenientModel<T
 		animations.put("death", EndersentAnimations.DEATH);
 		animations.put("summon", EndersentAnimations.SUMMON_WATCHLINGS);
 		animations.put("teleport", EndersentAnimations.TELEPORT);
+		animations.put("smash", EndersentAnimations.SMASH_ATTACK);
 	}
 
 	public static LayerDefinition createBodyLayer() {

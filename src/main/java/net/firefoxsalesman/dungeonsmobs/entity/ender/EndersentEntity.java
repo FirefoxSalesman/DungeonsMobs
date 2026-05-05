@@ -22,6 +22,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
@@ -39,6 +40,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 
 /**
  * Our attack goal borrows from Goety, because I am not smart enough to figure
@@ -48,11 +52,16 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(EndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
+	private static final EntityDataAccessor<Boolean> SMASHING = SynchedEntityData.defineId(EndersentEntity.class,
+			EntityDataSerializers.BOOLEAN);
+
 	private int attackAnimationTick = 0;
 	private final int attackAnimationLength = 26;
 
-	public int summonAnimationTick;
-	public final int summonAnimationLength = 22;
+	private int summonAnimationTick = 0;
+	private final int summonAnimationLength = 22;
+
+	private final int smashAnimationLength = 37;
 
 	public int appearDelay = 0;
 
@@ -70,7 +79,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	public EndersentEntity(EntityType<? extends EndersentEntity> type, Level level) {
 		super(type, level);
 		xpReward = 50;
-		states = genStates("idle", "attack", "death", "summon", "teleport");
+		states = genStates("idle", "attack", "death", "summon", "teleport", "smash");
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -96,6 +105,14 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		entityData.set(ATTACKING, attacking);
 	}
 
+	public void setSmashing(boolean attacking) {
+		entityData.set(SMASHING, attacking);
+	}
+
+	public boolean isSmashing() {
+		return entityData.get(SMASHING);
+	}
+
 	public Boolean isAttackingBool() {
 		return entityData.get(ATTACKING);
 	}
@@ -104,6 +121,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		super.defineSynchedData();
 		entityData.define(TELEPORTING, 0);
 		entityData.define(ATTACKING, false);
+		entityData.define(SMASHING, false);
 	}
 
 	public int isTeleporting() {
@@ -162,9 +180,9 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		return ModSoundEvents.ENDERSENT_DEATH.get();
 	}
 
-	public boolean doHurtTarget(Entity p_70652_1_) {
+	public boolean doHurtTarget(Entity pEntity) {
 		playSound(ModSoundEvents.ENDERSENT_ATTACK.get(), 1.0F, 1.0F);
-		return super.doHurtTarget(p_70652_1_);
+		return super.doHurtTarget(pEntity);
 	}
 
 	@Override
@@ -250,11 +268,9 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	private void setupAnimationStates() {
 		getState("death").animateWhen(isDead(), tickCount);
 		getState("teleport").animateWhen(teleporting(), tickCount);
-		if (isSummoning())
-			System.out.println("I should be summoning right now");
-		getState("summon").animateWhen(isSummoning() && !teleporting(),
-				tickCount);
-		getState("attack").animateWhen(isAttackingBool(), tickCount);
+		getState("summon").animateWhen(isSummoning() && !teleporting(), tickCount);
+		getState("attack").animateWhen(isAttackingBool() && !isSmashing(), tickCount);
+		getState("smash").animateWhen(isAttackingBool() && isSmashing(), tickCount);
 		getState("idle").animateWhen(!isMoving() && !isSummoning() && !isAttackingBool() && !isDead(),
 				tickCount);
 	}
@@ -268,7 +284,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 	}
 
 	private boolean isSummoning() {
-		return summonAnimationTick >= 0;
+		return summonAnimationTick > 0;
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
@@ -295,15 +311,94 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 			double d0 = getAttackReachSqr(pEntity);
 			if (pDistToEnemySqr <= d0 && !entity.isAttackingBool()) {
 				entity.setAttacking(true);
-				entity.attackAnimationTick = attackAnimationLength;
-				System.out.println("Attack animation tick is " + attackAnimationTick);
+				boolean smashing = mob.getRandom().nextInt(5) == 1;
+				entity.setSmashing(smashing);
+				entity.attackAnimationTick = smashing ? smashAnimationLength : attackAnimationLength;
 			}
-			int inverseTick = entity.attackAnimationLength - entity.attackAnimationTick;
-			if (entity.isAttackingBool() && inverseTick == 20) {
-				doHurtTarget(getTarget());
+			int inverseTick = (entity.isSmashing() ? smashAnimationLength : attackAnimationLength)
+					- entity.attackAnimationTick;
+			if (entity.isAttackingBool()) {
+				if (inverseTick == 20 && !entity.isSmashing()) {
+					doHurtTarget(getTarget());
+				}
+				if (inverseTick == 27 && entity.isSmashing()) {
+					areaAttack(4, 4, 4, 4, 270, 1.0F);
+				}
 			}
 			if (entity.attackAnimationTick <= 0) {
-				setAttacking(false);
+				entity.setAttacking(false);
+				entity.setSmashing(false);
+			}
+		}
+
+		private void areaAttack(float range, float X, float Y, float Z, float arc, float damage) {
+			for (LivingEntity entityHit : level().getEntitiesOfClass(LivingEntity.class,
+					getBoundingBox().inflate(X, Y, Z))) {
+				float entityHitAngle = (float) ((Math.atan2(
+						entityHit.getZ() - getZ(),
+						entityHit.getX() - getX()) * (180 / Math.PI)
+						- 90) % 360);
+				float entityAttackingAngle = yBodyRot % 360;
+				if (entityHitAngle < 0) {
+					entityHitAngle += 360;
+				}
+				if (entityAttackingAngle < 0) {
+					entityAttackingAngle += 360;
+				}
+				float entityRelativeAngle = entityHitAngle - entityAttackingAngle;
+				float entityHitDistance = (float) Math.sqrt((entityHit.getZ()
+						- getZ())
+						* (entityHit.getZ() - getZ())
+						+ (entityHit.getX() - getX())
+								* (entityHit.getX() - getX()));
+				if (entityHitDistance <= range
+						&& (entityRelativeAngle <= arc / 2 && entityRelativeAngle >= -arc / 2)
+						|| (entityRelativeAngle >= 360 - arc / 2
+								|| entityRelativeAngle <= -360 + arc / 2)) {
+					if (!isAlliedTo(entityHit) && !(entityHit == EndersentEntity.this)
+							&& !(entityHit instanceof WatchlingEntity)) {
+						entityHit.hurt(damageSources().mobAttack(EndersentEntity.this),
+								(float) EndersentEntity.this.getAttributeValue(
+										Attributes.ATTACK_DAMAGE) * damage);
+
+						EndersentEntity v = EndersentEntity.this;
+						float attackKnockback = (float) getAttributeValue(
+								Attributes.ATTACK_KNOCKBACK);
+						double ratioX = Mth.sin(v.getYRot() * ((float) Math.PI / 180F));
+						double ratioZ = -Mth.cos(v.getYRot() * ((float) Math.PI / 180F));
+						double knockbackReduction = 0.35D;
+						entityHit.hurt(damageSources().mobAttack(EndersentEntity.this),
+								damage);
+						forceKnockback(entityHit, attackKnockback * 0.8F, ratioX, ratioZ,
+								knockbackReduction);
+						entityHit.setDeltaMovement(
+								entityHit.getDeltaMovement().add(0, 0.3333333, 0));
+					}
+				}
+			}
+		}
+
+		private void forceKnockback(LivingEntity attackTarget, float strength, double ratioX, double ratioZ,
+				double knockbackResistanceReduction) {
+			LivingKnockBackEvent event = ForgeHooks.onLivingKnockBack(attackTarget, strength, ratioX,
+					ratioZ);
+			if (event.isCanceled())
+				return;
+			strength = event.getStrength();
+			ratioX = event.getRatioX();
+			ratioZ = event.getRatioZ();
+			strength = (float) ((double) strength
+					* (1.0D - attackTarget.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)
+							* knockbackResistanceReduction));
+			if (!(strength <= 0.0F)) {
+				attackTarget.hasImpulse = true;
+				Vec3 vector3d = attackTarget.getDeltaMovement();
+				Vec3 vector3d1 = (new Vec3(ratioX, 0.0D, ratioZ)).normalize().scale(strength);
+				attackTarget.setDeltaMovement(vector3d.x / 2.0D - vector3d1.x,
+						attackTarget.onGround()
+								? Math.min(0.4D, vector3d.y / 2.0D + (double) strength)
+								: vector3d.y,
+						vector3d.z / 2.0D - vector3d1.z);
 			}
 		}
 
@@ -311,6 +406,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 		public void stop() {
 			super.stop();
 			entity.setAttacking(false);
+			entity.setSmashing(false);
 		}
 
 	}

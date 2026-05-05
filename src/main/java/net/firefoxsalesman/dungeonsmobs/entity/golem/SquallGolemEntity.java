@@ -620,11 +620,11 @@ public class SquallGolemEntity extends Raider implements GeoEntity {
 				playSound(ModSoundEvents.SQUALL_GOLEM_ATTACK.get(), 2.0F, 1F);
 			}
 			if (attackTimer == 30) {
-				AreaAttack(4, 4, 4, 4, 360, 1.0F);
+				areaAttack(4, 4, 4, 4, 360, 1.0F);
 			}
 		}
 
-		private void AreaAttack(float range, float X, float Y, float Z, float arc, float damage) {
+		private void areaAttack(float range, float X, float Y, float Z, float arc, float damage) {
 			for (LivingEntity entityHit : level().getEntitiesOfClass(LivingEntity.class,
 					getBoundingBox().inflate(X, Y, Z))) {
 				float entityHitAngle = (float) ((Math.atan2(
