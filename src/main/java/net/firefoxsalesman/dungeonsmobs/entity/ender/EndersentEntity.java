@@ -330,12 +330,14 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 					teleportTick = 40;
 					BlockPos tpPos = mkOffset(10, oldPos);
 					entity.moveTo(tpPos, 0.0F, 0.0F);
-					if (entity.isInWall() || entity.isInWaterOrRain()) {
+					if (entity.isInWall() || entity.isInWaterOrRain()
+							|| !level().getBlockState(tpPos).isAir()) {
 						entity.moveTo(oldPos, 0.0F, 0.0F);
 						tpPos = mkOffset(5, oldPos);
 					}
 					entity.moveTo(tpPos, 0.0F, 0.0F);
-					if (entity.isInWall() || entity.isInWaterOrRain()) {
+					if (entity.isInWall() || entity.isInWaterOrRain()
+							|| !level().getBlockState(tpPos).isAir()) {
 						entity.moveTo(oldPos, 0.0F, 0.0F);
 						tpPos = oldPos;
 					}
@@ -351,7 +353,7 @@ public class EndersentEntity extends VanillaEnderlingEntity implements KeyframeE
 					doHurtTarget(getTarget());
 				}
 				if (inverseTick == 27 && entity.isSmashing()) {
-					AreaAttackHelper.areaAttack(4, 4, 4, 4, 270, 1.0F, entity);
+					AreaAttackHelper.areaAttack(7, 7, 7, 7, 270, 1.0F, entity);
 				}
 			}
 			if (entity.attackAnimationTick <= 0) {
