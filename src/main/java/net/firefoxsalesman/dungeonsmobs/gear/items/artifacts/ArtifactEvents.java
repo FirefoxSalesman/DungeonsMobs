@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent.ImpactResult;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -17,13 +18,13 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper.getMinionCapability;
+import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper.getFollowerCapability;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Minion;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class ArtifactEvents {
@@ -36,8 +37,8 @@ public class ArtifactEvents {
 	public static void onEnchantedSheepAttack(LivingDamageEvent event) {
 		if (event.getSource().getEntity() instanceof Sheep) {
 			Sheep sheepEntity = (Sheep) event.getSource().getEntity();
-			Minion summonableCap = getMinionCapability(sheepEntity);
-			if (summonableCap.getMaster() != null) {
+			Follower summonableCap = getFollowerCapability(sheepEntity);
+			if (summonableCap.getLeader() != null) {
 				if (sheepEntity.getTags().contains(FIRE_SHEEP_TAG)) {
 					event.getEntity().setSecondsOnFire(5);
 				} else if (sheepEntity.getTags().contains(POISON_SHEEP_TAG)) {
@@ -52,8 +53,8 @@ public class ArtifactEvents {
 	public static void updateBlueEnchantedSheep(LivingEvent.LivingTickEvent event) {
 		if (event.getEntity() instanceof Sheep) {
 			Sheep sheepEntity = (Sheep) event.getEntity();
-			Minion summonableCap = getMinionCapability(sheepEntity);
-			LivingEntity summoner = summonableCap.getMaster();
+			Follower summonableCap = getFollowerCapability(sheepEntity);
+			LivingEntity summoner = summonableCap.getLeader();
 			if (summoner != null) {
 				if (sheepEntity.level() instanceof ServerLevel) {
 					if (!summoner.hasEffect(MobEffects.MOVEMENT_SPEED)
@@ -134,7 +135,7 @@ public class ArtifactEvents {
 			if (arrow.getTags().contains(TormentQuiverItem.TORMENT_ARROW)) {
 				if (arrow.tickCount > 1200) {
 					arrow.remove(Entity.RemovalReason.DISCARDED);
-					event.setCanceled(true);
+					event.setImpactResult(ImpactResult.STOP_AT_CURRENT_NO_DAMAGE);
 				}
 
 				// TODO Uncomment these when the appropriate artifacts are added

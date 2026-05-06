@@ -16,6 +16,13 @@ public class RaidEntries {
 		 */
 
 		// WARRIOR
+		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_PILLAGERS_IN_RAIDS.get()) {
+			Raid.RaiderType.create("gold_armoured_pillager", ModEntities.GOLD_ARMOURED_PILLAGER.get(),
+					new int[] { 0, 1, 2, 0, 3, 0, 0, 0 });
+			Raid.RaiderType.create("diamond_armoured_pillager", ModEntities.DIAMOND_ARMOURED_PILLAGER.get(),
+					new int[] { 0, 0, 0, 0, 1, 1, 0, 3 });
+		}
+
 		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get()) {
 			Raid.RaiderType.create("mountaineer", ModEntities.MOUNTAINEER.get(),
 					new int[] { 0, 0, 2, 0, 1, 4, 2, 5 });

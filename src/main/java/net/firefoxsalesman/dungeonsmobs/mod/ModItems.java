@@ -53,18 +53,6 @@ public class ModItems {
 					new Item.Properties().durability(336)));
 
 	// Armour
-	public static final RegistryObject<Item> GOLD_PILLAGER_HELMET = registerArmor("gold_pillager_helmet",
-			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					modLoc("geo/armor/pillager_helmet.geo.json"),
-					modLoc("textures/models/armor/gold_pillager_helmet.png"),
-					DEFAULT_ANIMATION_RESOURCE));
-
-	public static final RegistryObject<Item> DIAMOND_PILLAGER_HELMET = ITEMS.register("diamond_pillager_helmet",
-			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					modLoc("geo/armor/pillager_helmet.geo.json"),
-					modLoc("textures/models/armor/diamond_pillager_helmet.png"),
-					DEFAULT_ANIMATION_RESOURCE));
-
 	public static final RegistryObject<Item> GOLD_VINDICATOR_HELMET = ITEMS.register("gold_vindicator_helmet",
 			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
 					modLoc("geo/armor/vindicator_helmet.geo.json"),

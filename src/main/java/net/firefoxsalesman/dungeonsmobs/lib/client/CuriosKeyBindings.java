@@ -70,7 +70,7 @@ public class CuriosKeyBindings {
 
 	private static void curiosStartMessage(int slot, BlockHitResult blockHitResult, LocalPlayer player) {
 		NetworkHandler.INSTANCE.sendToServer(new CuriosArtifactStartMessage(slot, blockHitResult));
-		CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCuriosItemHandler -> {
+		CuriosApi.getCuriosInventory(player).ifPresent(iCuriosItemHandler -> {
 			Optional<ICurioStacksHandler> artifactStackHandler = iCuriosItemHandler
 					.getStacksHandler("artifact");
 			if (artifactStackHandler.isPresent()) {

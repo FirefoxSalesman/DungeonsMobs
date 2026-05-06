@@ -16,8 +16,8 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.BeastEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Minion;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class BeastBossEnchantment extends BeastEnchantment {
@@ -39,12 +39,12 @@ public class BeastBossEnchantment extends BeastEnchantment {
 			return;
 
 		if (trueSource.level() instanceof ServerLevel
-				&& MinionMasterHelper.isMinionEntity(trueSource)) {
-			Minion attackerSummonableCap = MinionMasterHelper.getMinionCapability(trueSource);
+				&& FollowerLeaderHelper.isFollower(trueSource)) {
+			Follower attackerSummonableCap = FollowerLeaderHelper.getFollowerCapability(trueSource);
 
-			LivingEntity beastOwner = attackerSummonableCap.getMaster();
+			LivingEntity beastOwner = attackerSummonableCap.getLeader();
 			if (beastOwner != null) {
-				if (!MinionMasterHelper.isMinionOf(target, beastOwner)) {
+				if (!FollowerLeaderHelper.isFollowerOf(target, beastOwner)) {
 					int beastBossLevel = EnchantmentHelper.getEnchantmentLevel(
 							EnchantmentInit.BEAST_BOSS.get(), beastOwner);
 					if (beastBossLevel > 0) {

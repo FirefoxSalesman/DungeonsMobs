@@ -1,6 +1,10 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.interfaces;
 
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
+import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper.getLeaderCapability;
+
+import java.util.List;
+
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
@@ -17,10 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.PacketDistributor;
-
-import java.util.List;
-
-import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper.getMasterCapability;
 
 public interface SummoningArtifact<E extends Entity> {
 	default InteractionResultHolder<ItemStack> procSummoningArtifact(ArtifactUseContext itemUseContext) {
@@ -42,7 +42,7 @@ public interface SummoningArtifact<E extends Entity> {
 			}
 
 			if (player != null) {
-				Master summonerCap = getMasterCapability(player);
+				Leader summonerCap = getLeaderCapability(player);
 				Entity summonEntity = SummonHelper.summonEntity(player, player.blockPosition(),
 						this.getSummonType());
 				if (summonEntity != null) {

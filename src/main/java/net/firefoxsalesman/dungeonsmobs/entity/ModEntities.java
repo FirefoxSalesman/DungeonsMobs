@@ -14,7 +14,9 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredPillagerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredPillagerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
@@ -139,7 +141,25 @@ public class ModEntities {
 					.<VindicatorChefEntity>of(VindicatorChefEntity::new, MobCategory.MONSTER)
 					.sized(0.6F, 1.95F).clientTrackingRange(8)
 					.build(modLoc("vindicator_chef").toString()),
-			0x676767, 0x014675);
+			0x676767, 0x014475);
+
+	public static final RegistryObject<EntityType<GoldArmouredPillagerEntity>> GOLD_ARMOURED_PILLAGER = registerEntity(
+			"gold_armoured_pillager",
+			() -> EntityType.Builder
+					.<GoldArmouredPillagerEntity>of(GoldArmouredPillagerEntity::new,
+							MobCategory.MONSTER)
+					.sized(0.6F, 1.95F).clientTrackingRange(8)
+					.build(modLoc("gold_armoured_pillager").toString()),
+			0x676767, 0x014575);
+
+	public static final RegistryObject<EntityType<DiamondArmouredPillagerEntity>> DIAMOND_ARMOURED_PILLAGER = registerEntity(
+			"diamond_armoured_pillager",
+			() -> EntityType.Builder
+					.<DiamondArmouredPillagerEntity>of(DiamondArmouredPillagerEntity::new,
+							MobCategory.MONSTER)
+					.sized(0.6F, 1.95F).clientTrackingRange(8)
+					.build(modLoc("diamond_armoured_pillager").toString()),
+			0x676767, 0x013575);
 
 	public static final RegistryObject<EntityType<IceologerEntity>> ICEOLOGER = registerEntity("iceologer",
 			() -> EntityType.Builder.<IceologerEntity>of(IceologerEntity::new, MobCategory.MONSTER)

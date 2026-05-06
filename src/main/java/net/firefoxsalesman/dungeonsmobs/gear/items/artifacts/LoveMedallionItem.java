@@ -1,5 +1,16 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts;
 
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
+import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.LOVE_MEDALLION_BLACKLIST;
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
+
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -10,18 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.LOVE_MEDALLION_BLACKLIST;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
-
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Minion;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 
 public class LoveMedallionItem extends ArtifactItem {
 	public LoveMedallionItem(Properties properties) {
@@ -34,7 +33,7 @@ public class LoveMedallionItem extends ArtifactItem {
 
 		applyToNearbyEntities(playerIn, 5, 2,
 				(nearbyEntity) -> nearbyEntity instanceof Enemy
-						&& !MinionMasterHelper.isMinionEntity(nearbyEntity)
+						&& !FollowerLeaderHelper.isFollower(nearbyEntity)
 						&& nearbyEntity.isAlive()
 						&& nearbyEntity.canChangeDimensions()
 						&& !LOVE_MEDALLION_BLACKLIST.get().contains(ForgeRegistries.ENTITY_TYPES
@@ -54,16 +53,16 @@ public class LoveMedallionItem extends ArtifactItem {
 		if (nearbyEntity instanceof Monster) {
 			Monster mobEntity = (Monster) nearbyEntity;
 			PROXY.spawnParticles(nearbyEntity, ParticleTypes.HEART);
-			Master masterCapability = MinionMasterHelper.getMasterCapability(playerIn);
-			Minion minionCapability = MinionMasterHelper.getMinionCapability(nearbyEntity);
-			masterCapability.addMinion(mobEntity);
-			minionCapability.setMaster(playerIn);
-			minionCapability.setTemporary(true);
-			minionCapability.setRevertsOnExpiration(true);
-			minionCapability.setMinionTimer(200);
-			minionCapability.setGoalsAdded(false);
+			Leader leaderCapability = FollowerLeaderHelper.getLeaderCapability(playerIn);
+			Follower followerCapability = FollowerLeaderHelper.getFollowerCapability(nearbyEntity);
+			leaderCapability.addMinion(mobEntity);
+			followerCapability.setLeader(playerIn);
+			followerCapability.setTemporary(true);
+			followerCapability.setRevertsOnExpiration(true);
+			followerCapability.setFollowerDuration(200);
+			followerCapability.setGoalsAdded(false);
 			((Monster) nearbyEntity).setTarget(null);
-			MinionMasterHelper.addMinionGoals(mobEntity);
+			FollowerLeaderHelper.addFollowerGoals(mobEntity);
 		}
 	}
 

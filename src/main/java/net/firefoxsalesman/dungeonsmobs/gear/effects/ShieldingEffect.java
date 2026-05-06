@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent.ImpactResult;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -29,7 +30,7 @@ public class ShieldingEffect extends MobEffect {
 				MobEffect shielding = MobEffectInit.SHIELDING.get();
 				if (livingEntity.getEffect(shielding) != null) {
 					if (event.isCancelable()) {
-						event.setCanceled(true);
+						event.setImpactResult(ImpactResult.STOP_AT_CURRENT_NO_DAMAGE);
 						if (event.getEntity() instanceof AbstractArrow) {
 							AbstractArrow arrowEntity = (AbstractArrow) event.getEntity();
 							ProjectileEffectHelper.ricochetArrowLikeShield(arrowEntity,

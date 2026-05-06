@@ -1,12 +1,21 @@
 package net.firefoxsalesman.dungeonsmobs.entity.blaze;
 
+import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
+
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Master;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.MinionMasterHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -20,7 +29,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -39,13 +56,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
 
 public class WildfireEntity extends Monster implements KeyframeEntity {
 
@@ -395,7 +405,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 
 		@Override
 		public boolean canUse() {
-			Master master = MinionMasterHelper.getMasterCapability(mob);
+			Leader master = FollowerLeaderHelper.getLeaderCapability(mob);
 			List<Entity> summons = master.getSummonedMobs();
 			AttributeInstance attribute = mob.getAttribute(SUMMON_CAP.get());
 			return super.canUse() && mob.random.nextInt((80 * (summons.size() + 1))) == 0
