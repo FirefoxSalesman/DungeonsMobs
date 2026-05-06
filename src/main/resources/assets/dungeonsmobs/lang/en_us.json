@@ -580,6 +580,12 @@
   "enchantment.dungeonsmobs.fortune_of_the_sea.desc": "Increases your luck, which boosts the chance that rare drops become unique.",
   "enchantment.dungeonsmobs.frenzied": "Frenzied",
   "enchantment.dungeonsmobs.frenzied.desc": "While you are at less than half health, your attack speed is increased.",
+  "enchantment.dungeonsmobs.health_synergy": "Health Synergy",
+  "enchantment.dungeonsmobs.health_synergy.desc": "When activating any artifact, you regain a small amount of health.",
+  "enchantment.dungeonsmobs.life_boost": "Life Boost",
+  "enchantment.dungeonsmobs.life_boost.desc": "Each time you respawn due to enemy interference, your maximum health permanently increases.",
+  "enchantment.dungeonsmobs.opulent_shield": "Opulent Shield",
+  "enchantment.dungeonsmobs.opulent_shield.desc": "Provides a brief invulnerability when collecting XP orbs.",
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",

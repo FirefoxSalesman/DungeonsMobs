@@ -17,6 +17,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.DeflectEnc
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FinalShoutEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FortuneOfTheSeaEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FrenziedEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.HealthSynergyEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.LifeBoostEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.OpulentShieldEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -170,6 +173,13 @@ public class EnchantmentInit {
 			.register("fortune_of_the_sea", () -> new FortuneOfTheSeaEnchantment());
 	public static RegistryObject<FrenziedEnchantment> FRENZIED = ENCHANTMENTS.register("frenzied",
 			() -> new FrenziedEnchantment());
+	public static RegistryObject<HealthSynergyEnchantment> HEALTH_SYNERGY = ENCHANTMENTS.register("health_synergy",
+			() -> new HealthSynergyEnchantment());
+	// public static RegistryObject<LifeBoostEnchantment> LIFE_BOOST =
+	// ENCHANTMENTS.register("life_boost",
+	// () -> new LifeBoostEnchantment());
+	public static RegistryObject<OpulentShieldEnchantment> OPULENT_SHIELD = ENCHANTMENTS.register("opulent_shield",
+			() -> new OpulentShieldEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
