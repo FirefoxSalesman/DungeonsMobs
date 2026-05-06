@@ -586,6 +586,11 @@
   "enchantment.dungeonsmobs.life_boost.desc": "Each time you respawn due to enemy interference, your maximum health permanently increases.",
   "enchantment.dungeonsmobs.opulent_shield": "Opulent Shield",
   "enchantment.dungeonsmobs.opulent_shield.desc": "Provides a brief invulnerability when collecting XP orbs.",
+  "enchantment.dungeonsmobs.reckless": "Reckless",
+  "enchantment.dungeonsmobs.reckless.desc": "Your health is decreased by 60%, but your melee damage is increased.",
+  "enchantment.dungeonsmobs.recycler": "Recycler",
+  "enchantment.dungeonsmobs.recycler.desc": "Being hit by damage-inflicting projectiles will occasionally craft a small quiver of arrows.",
+
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",

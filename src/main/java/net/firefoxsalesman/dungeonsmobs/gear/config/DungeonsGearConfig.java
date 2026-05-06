@@ -60,12 +60,9 @@ public class DungeonsGearConfig {
 	// POTION_BARRIER_BASE_DURATION;
 	// public static ForgeConfigSpec.ConfigValue<Integer>
 	// POTION_BARRIER_DURATION_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// RECKLESS_MAX_HEALTH_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// RECKLESS_ATTACK_DAMAGE_BASE_MULTIPLIER;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// RECKLESS_ATTACK_DAMAGE_MULTIPLIER_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> RECKLESS_MAX_HEALTH_MULTIPLIER;
+	public static ForgeConfigSpec.ConfigValue<Double> RECKLESS_ATTACK_DAMAGE_BASE_MULTIPLIER;
+	public static ForgeConfigSpec.ConfigValue<Double> RECKLESS_ATTACK_DAMAGE_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> EXPLODING_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> PROSPECTOR_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> POISON_CLOUD_CHANCE;
@@ -237,18 +234,15 @@ public class DungeonsGearConfig {
 		// .comment("The duration increase per level for Potion Barrier [0-10000,
 		// default: 20]")
 		// .defineInRange("potionBarrierDurationPerLevel", 20, 0, 10000);
-		// RECKLESS_MAX_HEALTH_MULTIPLIER = builder
-		// .comment("The multiplier to max health for reckless. Balanced as a negative
-		// number. [-5.0-5.0, default: -0.6]")
-		// .defineInRange("recklessMaxHealthMultiplier", -0.6, -5.0, 5.0);
-		// RECKLESS_ATTACK_DAMAGE_BASE_MULTIPLIER = builder
-		// .comment("The decimal base multiplier on the damage for reckless [-5.0-5.0,
-		// default: 0.2]")
-		// .defineInRange("recklessAttackDamageBaseMultiplier", 0.2, -5.0, 5.0);
-		// RECKLESS_ATTACK_DAMAGE_MULTIPLIER_PER_LEVEL = builder
-		// .comment("The multiplier increase per level for reckless [-5.0-5.0, default:
-		// 0.2]")
-		// .defineInRange("recklessAttackDamageMultiplierPerLevel", 0.2, -5.0, 5.0);
+		RECKLESS_MAX_HEALTH_MULTIPLIER = builder.comment(
+				"The multiplier to max health for reckless. Balanced as a negative number. [-5.0-5.0, default: -0.6]")
+				.defineInRange("recklessMaxHealthMultiplier", -0.6, -5.0, 5.0);
+		RECKLESS_ATTACK_DAMAGE_BASE_MULTIPLIER = builder.comment(
+				"The decimal base multiplier on the damage for reckless [-5.0-5.0, default: 0.2]")
+				.defineInRange("recklessAttackDamageBaseMultiplier", 0.2, -5.0, 5.0);
+		RECKLESS_ATTACK_DAMAGE_MULTIPLIER_PER_LEVEL = builder
+				.comment("The multiplier increase per level for reckless [-5.0-5.0, default: 0.2]")
+				.defineInRange("recklessAttackDamageMultiplierPerLevel", 0.2, -5.0, 5.0);
 		EXPLODING_MULTIPLIER_PER_LEVEL = builder
 				.comment("The multiplier increase per level for exploding [-5.0-5.0, default: 0.2]")
 				.defineInRange("explodingMultiplierPerLevel", 0.2, -5.0, 5.0);
