@@ -20,6 +20,10 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.FrenziedEn
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.HealthSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.OpulentShieldEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest.RecklessEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.DodgeEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.RushEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.SpeedSynergyEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.VoidDodgeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -179,6 +183,13 @@ public class EnchantmentInit {
 			() -> new OpulentShieldEnchantment());
 	public static RegistryObject<RecklessEnchantment> RECKLESS = ENCHANTMENTS.register("reckless",
 			() -> new RecklessEnchantment());
+	public static RegistryObject<DodgeEnchantment> DODGE = ENCHANTMENTS.register("dodge",
+			() -> new DodgeEnchantment());
+	public static RegistryObject<RushEnchantment> RUSH = ENCHANTMENTS.register("rush", () -> new RushEnchantment());
+	public static RegistryObject<SpeedSynergyEnchantment> SPEED_SYNERGY = ENCHANTMENTS.register("speed_synergy",
+			() -> new SpeedSynergyEnchantment());
+	public static RegistryObject<VoidDodgeEnchantment> VOID_DODGE = ENCHANTMENTS.register("void_dodge",
+			() -> new VoidDodgeEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

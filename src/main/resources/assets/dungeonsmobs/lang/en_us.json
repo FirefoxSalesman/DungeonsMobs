@@ -595,6 +595,18 @@
   "enchantment.dungeonsmobs.reckless.desc": "Your health is decreased by 60%, but your melee damage is increased.",
   "enchantment.dungeonsmobs.recycler": "Recycler",
   "enchantment.dungeonsmobs.recycler.desc": "Being hit by damage-inflicting projectiles will occasionally craft a small quiver of arrows.",
+  "enchantment.dungeonsmobs.explorer": "Explorer",
+  "enchantment.dungeonsmobs.explorer.desc": "For every one hundred blocks explored, you regain a small amount of health.",
+  "enchantment.dungeonsmobs.lucky_explorer": "Lucky Explorer",
+  "enchantment.dungeonsmobs.lucky_explorer.desc": "Chance to spawn emeralds with every block explored.",
+  "enchantment.dungeonsmobs.dodge": "Dodge",
+  "enchantment.dungeonsmobs.dodge.desc": "Small chance to avoid all damage.",
+  "enchantment.dungeonsmobs.rush": "Rush",
+  "enchantment.dungeonsmobs.rush.desc": "Increases movement speed for one second after taking damage.",
+  "enchantment.dungeonsmobs.speed_synergy": "Speed Synergy",
+  "enchantment.dungeonsmobs.speed_synergy.desc": "When activating any artifact, you gain +20% movement speed for a short time.",
+  "enchantment.dungeonsmobs.void_dodge": "Void Dodge",
+  "enchantment.dungeonsmobs.void_dodge.desc": "Small chance to randomly teleport on hit, avoiding all damage.",
 
 
   "item.dungeonsmobs.bonebow": "Bonebow",

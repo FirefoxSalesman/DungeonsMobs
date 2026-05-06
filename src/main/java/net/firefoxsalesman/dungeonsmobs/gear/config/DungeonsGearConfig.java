@@ -66,9 +66,8 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Double> EXPLODING_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> PROSPECTOR_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> POISON_CLOUD_CHANCE;
-	// public static ForgeConfigSpec.ConfigValue<Double> DODGE_CHANCE_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// VOID_DODGE_CHANCE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> DODGE_CHANCE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> VOID_DODGE_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> BEEHIVE_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> STUNNING_CHANCE_PER_LEVEL;
 
@@ -251,14 +250,12 @@ public class DungeonsGearConfig {
 				.defineInRange("prospectorChancePerLevel", 0.25, -5.0, 5.0);
 		POISON_CLOUD_CHANCE = builder.comment("chance The for Poison Cloud to trigger [-5.0-5.0, default: 0.3]")
 				.defineInRange("prospectorChancePerLevel", 0.3, -5.0, 5.0);
-		// DODGE_CHANCE_PER_LEVEL = builder
-		// .comment("The chance per level for dodge to trigger [-5.0-5.0, default:
-		// 0.25]")
-		// .defineInRange("dodgeChancePerLevel", 0.01, -5.0, 5.0);
-		// VOID_DODGE_CHANCE_PER_LEVEL = builder
-		// .comment("The chance per level for void dodge to trigger [-5.0-5.0, default:
-		// 0.25]")
-		// .defineInRange("voidDodgeChancePerLevel", 0.05, -5.0, 5.0);
+		DODGE_CHANCE_PER_LEVEL = builder
+				.comment("The chance per level for dodge to trigger [-5.0-5.0, default: 0.25]")
+				.defineInRange("dodgeChancePerLevel", 0.01, -5.0, 5.0);
+		VOID_DODGE_CHANCE_PER_LEVEL = builder
+				.comment("The chance per level for void dodge to trigger [-5.0-5.0, default: 0.25]")
+				.defineInRange("voidDodgeChancePerLevel", 0.05, -5.0, 5.0);
 		BEEHIVE_CHANCE_PER_LEVEL = builder
 				.comment("The chance per level for beehive to trigger [-5.0-5.0, default: 0.25]")
 				.defineInRange("beehiveChancePerLevel", 0.1, -5.0, 5.0);
