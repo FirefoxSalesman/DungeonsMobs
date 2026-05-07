@@ -618,6 +618,12 @@
   "enchantment.dungeonsmobs.beast_surge.desc": "Using your health potion boosts your summoned pets' attack and movement speed for 10 seconds.",
   "enchantment.dungeonsmobs.cooldown": "Cooldown",
   "enchantment.dungeonsmobs.cooldown.desc": "Reduces the cool-down time between uses of your artifacts.",
+  "enchantment.dungeonsmobs.fire_focus": "Fire Focus",
+  "enchantment.dungeonsmobs.fire_focus.desc": "The fire damage you deal is increased.",
+  "enchantment.dungeonsmobs.food_reserves": "Food Reserves",
+  "enchantment.dungeonsmobs.food_reserves.desc": "Whenever you use a healing potion, you also create random food items.",
+  "enchantment.dungeonsmobs.lightning_focus": "Lightning Focus",
+  "enchantment.dungeonsmobs.lightning_focus.desc": "The lightning damage you deal is increased.",
 
 
   "item.dungeonsmobs.bonebow": "Bonebow",

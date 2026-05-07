@@ -27,6 +27,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.VoidDodgeEn
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.BeastBurstEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.BeastSurgeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.CooldownEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.FireFocusEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.LightningFocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -199,6 +201,10 @@ public class EnchantmentInit {
 			() -> new BeastSurgeEnchantment());
 	public static RegistryObject<CooldownEnchantment> COOLDOWN = ENCHANTMENTS.register("cooldown",
 			() -> new CooldownEnchantment());
+	public static RegistryObject<FireFocusEnchantment> FIRE_FOCUS = ENCHANTMENTS.register("fire_focus",
+			() -> new FireFocusEnchantment());
+	public static RegistryObject<LightningFocusEnchantment> LIGHTNING_FOCUS = ENCHANTMENTS
+			.register("lightning_focus", () -> new LightningFocusEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);
