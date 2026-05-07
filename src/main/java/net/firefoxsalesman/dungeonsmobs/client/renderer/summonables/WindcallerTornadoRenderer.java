@@ -4,9 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 
-import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.models.summonables.WindcallerTornadoModel;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

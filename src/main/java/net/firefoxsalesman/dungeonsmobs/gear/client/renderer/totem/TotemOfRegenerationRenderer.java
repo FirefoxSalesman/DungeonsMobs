@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.gear.client.renderer.totem;
 
-import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.gear.client.models.totem.TotemOfRegenerationModel;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfRegenerationEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

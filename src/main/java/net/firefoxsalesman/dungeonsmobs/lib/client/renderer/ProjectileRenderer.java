@@ -1,4 +1,4 @@
-package net.firefoxsalesman.dungeonsmobs.client.renderer.projectile;
+package net.firefoxsalesman.dungeonsmobs.lib.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

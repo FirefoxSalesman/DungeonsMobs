@@ -4,8 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.gear.client.models.projectiles.SoulWizardOrbModel;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardOrbEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
