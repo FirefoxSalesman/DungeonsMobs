@@ -24,6 +24,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.DodgeEnchan
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.RushEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.SpeedSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.feet.VoidDodgeEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.BeastBurstEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.BeastSurgeEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.CooldownEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -190,6 +193,12 @@ public class EnchantmentInit {
 			() -> new SpeedSynergyEnchantment());
 	public static RegistryObject<VoidDodgeEnchantment> VOID_DODGE = ENCHANTMENTS.register("void_dodge",
 			() -> new VoidDodgeEnchantment());
+	public static RegistryObject<BeastBurstEnchantment> BEAST_BURST = ENCHANTMENTS.register("beast_burst",
+			() -> new BeastBurstEnchantment());
+	public static RegistryObject<BeastSurgeEnchantment> BEAST_SURGE = ENCHANTMENTS.register("beast_surge",
+			() -> new BeastSurgeEnchantment());
+	public static RegistryObject<CooldownEnchantment> COOLDOWN = ENCHANTMENTS.register("cooldown",
+			() -> new CooldownEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

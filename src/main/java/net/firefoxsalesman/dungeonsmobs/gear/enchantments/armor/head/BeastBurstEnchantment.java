@@ -1,0 +1,72 @@
+package net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head;
+
+import static net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes.ARMOR_SLOT;
+
+import java.util.List;
+
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.BeastEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.AOECloudHelper;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.AreaOfEffectHelper;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
+public class BeastBurstEnchantment extends BeastEnchantment {
+	public BeastBurstEnchantment() {
+		super(Rarity.RARE, EnchantmentCategory.ARMOR_HEAD, ARMOR_SLOT);
+	}
+
+	@Override
+	public int getMaxLevel() {
+		return 3;
+	}
+
+	@SubscribeEvent
+	public static void onPlayerUsedHealthPotion(LivingEntityUseItemEvent.Finish event) {
+		if (!(event.getEntity() instanceof Player))
+			return;
+		Player player = (Player) event.getEntity();
+		if (player.isAlive()) {
+			List<MobEffectInstance> potionEffects = PotionUtils.getMobEffects(event.getItem());
+			if (potionEffects.isEmpty())
+				return;
+			if (potionEffects.get(0).getEffect() == MobEffects.HEAL) {
+				int beastBurstLevel = EnchantmentHelper
+						.getEnchantmentLevel(EnchantmentInit.BEAST_BURST.get(), player);
+				if (beastBurstLevel > 0) {
+					Leader summonerCap = FollowerLeaderHelper.getLeaderCapability(player);
+
+					for (Entity summonedMob : summonerCap.getSummonedMobs()) {
+						if (summonedMob instanceof LivingEntity) {
+							LivingEntity summonedMobAsLiving = (LivingEntity) summonedMob;
+							SoundHelper.playGenericExplodeSound(summonedMobAsLiving);
+							AOECloudHelper.spawnExplosionCloud(summonedMobAsLiving,
+									summonedMobAsLiving, 3.0F);
+							AreaOfEffectHelper.causeExplosionAttack(summonedMobAsLiving,
+									summonedMobAsLiving,
+									DungeonsGearConfig.BEAST_BURST_DAMAGE_PER_LEVEL
+											.get() * beastBurstLevel,
+									3.0F);
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

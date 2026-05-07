@@ -44,9 +44,8 @@ public class DungeonsGearConfig {
 	// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_BASE_MULTIPLIER;
 	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Integer>
-	// BEAST_BURST_DAMAGE_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Integer> BEAST_SURGE_DURATION;
+	public static ForgeConfigSpec.ConfigValue<Integer> BEAST_BURST_DAMAGE_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Integer> BEAST_SURGE_DURATION;
 	public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_BASE_MULTIPLIER;
 	public static ForgeConfigSpec.ConfigValue<Double> COWARDICE_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> DEFLECT_CHANCE_PER_LEVEL;
@@ -193,14 +192,12 @@ public class DungeonsGearConfig {
 		BEAST_BOSS_MULTIPLIER_PER_LEVEL = builder
 				.comment("The multiplier increase per level for beast boss [0.0-5.0, default: 0.1]")
 				.defineInRange("beastBossMultiplierPerLevel", 0.1, 0, 5.0);
-		// BEAST_BURST_DAMAGE_PER_LEVEL = builder
-		// .comment("The amount of damage per trigger of Beast burst. " +
-		// "Each trigger causes an explosion around each minion [0-100, default: 5]")
-		// .defineInRange("beastBurstDamagePerLevel", 5, 0, 100);
-		// BEAST_SURGE_DURATION = builder
-		// .comment("The duration in ticks of the speed boost applied by Beast Surge.
-		// [0-10000, default: 200]")
-		// .defineInRange("beastSurgeDuration", 200, 0, 10000);
+		BEAST_BURST_DAMAGE_PER_LEVEL = builder.comment("The amount of damage per trigger of Beast burst. "
+				+ "Each trigger causes an explosion around each minion [0-100, default: 5]")
+				.defineInRange("beastBurstDamagePerLevel", 5, 0, 100);
+		BEAST_SURGE_DURATION = builder.comment(
+				"The duration in ticks of the speed boost applied by Beast Surge. [0-10000, default: 200]")
+				.defineInRange("beastSurgeDuration", 200, 0, 10000);
 		COWARDICE_BASE_MULTIPLIER = builder.comment(
 				"The decimal base multiplier on the damage for cowardice [0.0-5.0, default: 0.1]")
 				.defineInRange("cowardiceBaseMultiplier", 0.1, 0, 5.0);
