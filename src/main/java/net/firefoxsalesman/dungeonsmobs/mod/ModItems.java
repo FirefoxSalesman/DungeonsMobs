@@ -53,18 +53,6 @@ public class ModItems {
 					new Item.Properties().durability(336)));
 
 	// Armour
-	public static final RegistryObject<Item> GOLD_VINDICATOR_HELMET = ITEMS.register("gold_vindicator_helmet",
-			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					modLoc("geo/armor/vindicator_helmet.geo.json"),
-					modLoc("textures/models/armor/gold_vindicator_helmet.png"),
-					DEFAULT_ANIMATION_RESOURCE));
-
-	public static final RegistryObject<Item> DIAMOND_VINDICATOR_HELMET = ITEMS.register("diamond_vindicator_helmet",
-			() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, null,
-					modLoc("geo/armor/vindicator_helmet.geo.json"),
-					modLoc("textures/models/armor/diamond_vindicator_helmet.png"),
-					DEFAULT_ANIMATION_RESOURCE));
-
 	public static final RegistryObject<Item> NETHERITE_PIGLIN_HELMET = ITEMS.register("netherite_piglin_helmet",
 			() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE, Type.HELMET,
 					new Item.Properties()));

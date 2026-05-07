@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
+    "dungeonsmobs:gold_armoured_vindicator",
+    "dungeonsmobs:diamond_armoured_vindicator",
+    "dungeonsmobs:gold_armoured_pillager",
+    "dungeonsmobs:diamond_armoured_pillager",
+    "dungeonsmobs:vindicator_chef",
     "dungeonsmobs:geomancer",
     "dungeonsmobs:redstone_golem",
     "dungeonsmobs:mountaineer",

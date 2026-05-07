@@ -20,6 +20,7 @@ public class DungeonsMobsConfig {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENDERSENT_BOSS_BAR;
 
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMOURED_PILLAGERS_IN_RAIDS;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMOURED_VINDICATORS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAINEERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ROYAL_GUARDS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEOMANCERS_IN_RAIDS;
@@ -82,7 +83,10 @@ public class DungeonsMobsConfig {
 			builder.comment("Raid Configuration").push("raid_configuration");
 			ENABLE_ARMOURED_PILLAGERS_IN_RAIDS = builder
 					.comment("Enable the addition of Armoured Pillagers to raids. [true / false]")
-					.define("enableArmouredPillagersInRaids", false);
+					.define("enableArmouredPillagersInRaids", true);
+			ENABLE_ARMOURED_VINDICATORS_IN_RAIDS = builder
+					.comment("Enable the addition of Armoured Vindicators to raids. [true / false]")
+					.define("enableArmouredVindicatorsInRaids", true);
 			ENABLE_MOUNTAINEERS_IN_RAIDS = builder
 					.comment("Enable the addition of Mountaineers to raids. [true / false]")
 					.define("enableMountaineersInRaids", false);

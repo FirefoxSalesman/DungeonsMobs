@@ -8,6 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.client.models.blaze.WildfireModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EyelessEndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.ArmoredPillagerModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.ArmouredVindicatorModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IceologerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IllagerBipedModel;
@@ -52,6 +53,8 @@ public class ModModelLayers {
 			"skeleton_vanguard_model");
 	public static final ModelLayerLocation ARMOURED_PILLAGER_BODY = makeModelLayerLocation(
 			"armoured_pillager_model");
+	public static final ModelLayerLocation ARMOURED_VINDICATOR_BODY = makeModelLayerLocation(
+			"armoured_vindicator_model");
 
 	private static ModelLayerLocation makeModelLayerLocation(String name) {
 		return new ModelLayerLocation(GeneralHelper.modLoc(name),
@@ -69,6 +72,7 @@ public class ModModelLayers {
 		event.registerLayerDefinition(DROWNED_NECROMANCER_BODY, DrownedNecromancerModel::createBodyLayer);
 		event.registerLayerDefinition(NECROMANCER_BODY, NecromancerModel::createBodyLayer);
 		event.registerLayerDefinition(ARMOURED_PILLAGER_BODY, ArmoredPillagerModel::createBodyLayer);
+		event.registerLayerDefinition(ARMOURED_VINDICATOR_BODY, ArmouredVindicatorModel::createBodyLayer);
 		event.registerLayerDefinition(ROYAL_GUARD_BODY, RoyalGuardModel::createBodyLayer);
 		event.registerLayerDefinition(GEOMANCER_BODY, GeomancerModel::createBodyLayer);
 		event.registerLayerDefinition(VINDICATOR_CHEF_BODY, VindicatorChefModel::createBodyLayer);
