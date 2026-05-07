@@ -29,6 +29,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.BeastSurgeE
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.CooldownEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.FireFocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.LightningFocusEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PoisonFocusEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PotionBarrierEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.SoulFocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -205,6 +208,12 @@ public class EnchantmentInit {
 			() -> new FireFocusEnchantment());
 	public static RegistryObject<LightningFocusEnchantment> LIGHTNING_FOCUS = ENCHANTMENTS
 			.register("lightning_focus", () -> new LightningFocusEnchantment());
+	public static RegistryObject<PoisonFocusEnchantment> POISON_FOCUS = ENCHANTMENTS.register("poison_focus",
+			() -> new PoisonFocusEnchantment());
+	public static RegistryObject<PotionBarrierEnchantment> POTION_BARRIER = ENCHANTMENTS.register("potion_barrier",
+			() -> new PotionBarrierEnchantment());
+	public static RegistryObject<SoulFocusEnchantment> SOUL_FOCUS = ENCHANTMENTS.register("soul_focus",
+			() -> new SoulFocusEnchantment());
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

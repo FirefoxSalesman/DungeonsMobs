@@ -624,7 +624,12 @@
   "enchantment.dungeonsmobs.food_reserves.desc": "Whenever you use a healing potion, you also create random food items.",
   "enchantment.dungeonsmobs.lightning_focus": "Lightning Focus",
   "enchantment.dungeonsmobs.lightning_focus.desc": "The lightning damage you deal is increased.",
-
+  "enchantment.dungeonsmobs.poison_focus": "Poison Focus",
+  "enchantment.dungeonsmobs.poison_focus.desc": "The poison damage you deal is increased.",
+  "enchantment.dungeonsmobs.potion_barrier": "Potion Barrier",
+  "enchantment.dungeonsmobs.potion_barrier.desc": "Whenever you use a healing potion, you take -80% damage for a short duration.",
+  "enchantment.dungeonsmobs.soul_focus": "Soul Focus",
+  "enchantment.dungeonsmobs.soul_focus.desc": "Increases the amount of soul damage you deal.",
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",
