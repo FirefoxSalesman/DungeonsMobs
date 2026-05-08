@@ -1,0 +1,18 @@
+{
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 0.075,
+      "operation": 1
+    },
+    {
+      "attribute": "dungeonsmobs:artifact_cooldown_multiplier",
+      "amount": -0.1,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [],
+  "material": "dungeonsmobs:cloth",
+  "unique": false,
+  "rarity": "UNCOMMON"
+}

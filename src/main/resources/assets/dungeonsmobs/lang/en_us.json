@@ -988,5 +988,11 @@
 
   "item.dungeonsmobs.soul_lantern": "Soul Lantern",
   "lore.dungeonsmobs.soul_lantern": "This lantern, still covered in the sands of a far-flung place, allows those who hold it to summon a creature formed from bound souls.",
-  "ability.dungeonsmobs.soul_lantern": "Summons a Soul Wizard to aid you in battle."
+  "ability.dungeonsmobs.soul_lantern": "Summons a Soul Wizard to aid you in battle.",
+  
+  "item.dungeonsmobs.battle_robes_helmet": "Battle Hood",
+  "item.dungeonsmobs.battle_robes_chestplate": "Battle Robe",
+  "item.dungeonsmobs.battle_robes_leggings": "Battle Pants",
+  "item.dungeonsmobs.battle_robes_boots": "Battle Shoes",
+  "lore.dungeonsmobs.battle_robes_armor": "The Battle Robe is worn by the distinguished Illager Evokers of the Arch-Illager's court."
 }

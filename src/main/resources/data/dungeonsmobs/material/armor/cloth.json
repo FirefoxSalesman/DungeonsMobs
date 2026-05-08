@@ -1,0 +1,12 @@
+{
+  "type": "dungeonsmobs:dungeons_armor_material",
+  "name": "dungeonsmobs:cloth",
+  "durability": 10,
+  "damage_reduction_amounts":  [1, 2, 2, 1],
+  "enchantability": 25,
+  "repair_item":  "minecraft:string",
+  "equip_sound": "minecraft:item.armor.equip_leather",
+  "toughness":  0.0,
+  "knockback_resistance": 0.0,
+  "base_type": "cloth"
+}

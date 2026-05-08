@@ -50,6 +50,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:battle_robes_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:battle_robes_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:battle_robes_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:battle_robes_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:flail",
           "weight": 2 
         },

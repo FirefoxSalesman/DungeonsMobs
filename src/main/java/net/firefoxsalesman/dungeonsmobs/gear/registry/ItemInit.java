@@ -38,10 +38,12 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.EyeOfTheGuar
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -312,6 +314,52 @@ public class ItemInit {
 			() -> new FireworksDisplayItem(PROPERTIES));
 	public static final RegistryObject<Item> SOUL_LANTERN = registerArtifact("soul_lantern",
 			() -> new SoulLanternItem(PROPERTIES));
+	// public static final ArmorSetInit HUNTERS_ARMOR = registerArmorSet("hunters",
+	// BASIC);
+	// public static final ArmorSetInit ARCHERS_ARMOR = registerArmorSet("archers",
+	// BASIC);
+	public static final ArmorSetInit BATTLE_ROBES = registerArmorSet("battle_robes");
+
+	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
+		if (armorId == null)
+			return null;
+		RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
+		return register;
+	}
+
+	private static ArmorSetInit registerArmorSet(String armorSetName, boolean animated) {
+		String armorSetId = armorSetName + "_armor";
+		ResourceLocation armorSetResource = new ResourceLocation(MOD_ID, armorSetId);
+		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
+				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = animated
+				? new ResourceLocation(MOD_ID, "animations/armor/" + armorSetId + ".animation.json")
+				: new ResourceLocation(MOD_ID, "animations/armor/armor_default.animation.json");
+		ArmorSetInit armorSet = new ArmorSetInit(
+				armorSetId,
+				registerArmor(armorSetName + "_helmet",
+						() -> new ArmorGear(Type.HELMET, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_chestplate",
+						() -> new ArmorGear(Type.CHESTPLATE, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_leggings",
+						() -> new ArmorGear(Type.LEGGINGS, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_boots",
+						() -> new ArmorGear(Type.BOOTS, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)));
+		return armorSet;
+	}
+
+	private static ArmorSetInit registerArmorSet(String armorSetId) {
+		return registerArmorSet(armorSetId, false);
+	}
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
