@@ -1011,5 +1011,10 @@
   "item.dungeonsmobs.dark_helmet": "Dark Helmet",
   "item.dungeonsmobs.dark_leggings": "Dark Leggings",
   "item.dungeonsmobs.dark_boots": "Dark Boots",
-  "lore.dungeonsmobs.dark_armor": "Dark Armor, made in the blackest depths of the Fiery Forge, is worn by the Illager royal guard."
+  "lore.dungeonsmobs.dark_armor": "Dark Armor, made in the blackest depths of the Fiery Forge, is worn by the Illager royal guard.",
+  "item.dungeonsmobs.titans_shroud_chestplate": "Titan's Shroud Chestplate",
+  "item.dungeonsmobs.titans_shroud_helmet": "Titan's Shroud Helmet",
+  "item.dungeonsmobs.titans_shroud_leggings": "Titan's Shroud Leggings",
+  "item.dungeonsmobs.titans_shroud_boots": "Titan's Shroud Boots",
+  "lore.dungeonsmobs.titans_shroud_armor": "The Titan's Shroud has passed through the hands of evil for generations."
 }

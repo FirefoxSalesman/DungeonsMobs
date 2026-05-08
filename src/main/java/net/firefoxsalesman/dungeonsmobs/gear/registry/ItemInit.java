@@ -322,6 +322,7 @@ public class ItemInit {
 	public static final ArmorSetInit CHAMPIONS_ARMOR = registerArmorSet("champions");
 	public static final ArmorSetInit HEROS_ARMOR = registerArmorSet("heros");
 	public static final ArmorSetInit DARK_ARMOR = registerArmorSet("dark");
+	public static final ArmorSetInit TITANS_SHROUD = registerArmorSet("titans_shroud");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

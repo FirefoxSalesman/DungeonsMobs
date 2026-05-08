@@ -335,6 +335,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:titans_shroud_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:titans_shroud_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:titans_shroud_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:titans_shroud_boots",
+          "weight": 1 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:guardian_bow",
           "weight": 1
         },
@@ -395,7 +415,7 @@
         },
 	{
           "type": "empty",
-          "weight": 134
+          "weight": 138
         }
       ]
     }
