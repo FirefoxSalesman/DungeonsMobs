@@ -32,6 +32,11 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.LightningFo
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PoisonFocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PotionBarrierEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.SoulFocusEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.AltruisticEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.ChillingEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.GravityPulseEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.LifeStealAuraEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.MeleeAuraEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -81,139 +86,148 @@ public class EnchantmentInit {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister
 			.create(ForgeRegistries.ENCHANTMENTS, MOD_ID);
 	public static RegistryObject<AnimaConduitEnchantment> ANIMA_CONDUIT = ENCHANTMENTS.register("anima_conduit",
-			() -> new AnimaConduitEnchantment());
+			AnimaConduitEnchantment::new);
 	public static RegistryObject<EnigmaResonatorEnchantment> ENIGMA_RESONATOR = ENCHANTMENTS
-			.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
+			.register("enigma_resonator", EnigmaResonatorEnchantment::new);
 	public static RegistryObject<FuseShotEnchantment> FUSE_SHOT = ENCHANTMENTS.register("fuse_shot",
-			() -> new FuseShotEnchantment());
+			FuseShotEnchantment::new);
 	public static RegistryObject<GravityEnchantment> GRAVITY = ENCHANTMENTS.register("gravity",
-			() -> new GravityEnchantment());
+			GravityEnchantment::new);
 	public static RegistryObject<MastersCallEnchantment> MASTERS_CALL = ENCHANTMENTS.register("masters_call",
-			() -> new MastersCallEnchantment());
+			MastersCallEnchantment::new);
 	public static RegistryObject<PoisonCloudEnchantment> POISON_CLOUD = ENCHANTMENTS.register("poison_cloud",
-			() -> new PoisonCloudEnchantment());
+			PoisonCloudEnchantment::new);
 	public static RegistryObject<RefreshmentEnchantment> REFRESHMENT = ENCHANTMENTS.register("refreshment",
-			() -> new RefreshmentEnchantment());
+			RefreshmentEnchantment::new);
 	public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS
 			.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
 	public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot",
-			() -> new ExplodingShotEnchantment());
+			ExplodingShotEnchantment::new);
 	public static RegistryObject<FreezingEnchantment> FREEZING = ENCHANTMENTS.register("freezing",
-			() -> new FreezingEnchantment());
+			FreezingEnchantment::new);
 	public static RegistryObject<BusyBeeEnchantment> BUSY_BEE = ENCHANTMENTS.register("busy_bee",
-			() -> new BusyBeeEnchantment());
+			BusyBeeEnchantment::new);
 	public static RegistryObject<ChainsEnchantment> CHAINS = ENCHANTMENTS.register("chains",
-			() -> new ChainsEnchantment());
+			ChainsEnchantment::new);
 	public static RegistryObject<CommittedEnchantment> COMMITTED = ENCHANTMENTS.register("committed",
-			() -> new CommittedEnchantment());
+			CommittedEnchantment::new);
 	public static RegistryObject<CriticalHitEnchantment> CRITICAL_HIT = ENCHANTMENTS.register("critical_hit",
-			() -> new CriticalHitEnchantment());
-	public static RegistryObject<EchoEnchantment> ECHO = ENCHANTMENTS.register("echo", () -> new EchoEnchantment());
+			CriticalHitEnchantment::new);
+	public static RegistryObject<EchoEnchantment> ECHO = ENCHANTMENTS.register("echo", EchoEnchantment::new);
 	public static RegistryObject<ExplodingEnchantment> EXPLODING = ENCHANTMENTS.register("exploding",
-			() -> new ExplodingEnchantment());
+			ExplodingEnchantment::new);
 	public static RegistryObject<GuardingStrikeEnchantment> GUARDING_STRIKE = ENCHANTMENTS
-			.register("guarding_strike", () -> new GuardingStrikeEnchantment());
+			.register("guarding_strike", GuardingStrikeEnchantment::new);
 	public static RegistryObject<IllagersBaneEnchantment> ILLAGERS_BANE = ENCHANTMENTS.register("illagers_bane",
-			() -> new IllagersBaneEnchantment());
+			IllagersBaneEnchantment::new);
 	public static RegistryObject<LeechingEnchantment> LEECHING = ENCHANTMENTS.register("leeching",
-			() -> new LeechingEnchantment());
+			LeechingEnchantment::new);
 	public static RegistryObject<PainCycleEnchantment> PAIN_CYCLE = ENCHANTMENTS.register("pain_cycle",
-			() -> new PainCycleEnchantment());
+			PainCycleEnchantment::new);
 	public static RegistryObject<ProspectorEnchantment> PROSPECTOR = ENCHANTMENTS.register("prospector",
-			() -> new ProspectorEnchantment());
+			ProspectorEnchantment::new);
 	public static RegistryObject<RadianceEnchantment> RADIANCE = ENCHANTMENTS.register("radiance",
-			() -> new RadianceEnchantment());
+			RadianceEnchantment::new);
 	public static RegistryObject<RampagingEnchantment> RAMPAGING = ENCHANTMENTS.register("rampaging",
-			() -> new RampagingEnchantment());
+			RampagingEnchantment::new);
 	public static RegistryObject<RushdownEnchantment> RUSHDOWN = ENCHANTMENTS.register("rushdown",
-			() -> new RushdownEnchantment());
+			RushdownEnchantment::new);
 	public static RegistryObject<ShockwaveEnchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave",
-			() -> new ShockwaveEnchantment());
+			ShockwaveEnchantment::new);
 	public static RegistryObject<SoulSiphonEnchantment> SOUL_SIPHON = ENCHANTMENTS.register("soul_siphon",
-			() -> new SoulSiphonEnchantment());
+			SoulSiphonEnchantment::new);
 	public static RegistryObject<StunningEnchantment> STUNNING = ENCHANTMENTS.register("stunning",
-			() -> new StunningEnchantment());
+			StunningEnchantment::new);
 	public static RegistryObject<SwirlingEnchantment> SWIRLING = ENCHANTMENTS.register("swirling",
-			() -> new SwirlingEnchantment());
+			SwirlingEnchantment::new);
 	public static RegistryObject<ThunderingEnchantment> THUNDERING = ENCHANTMENTS.register("thundering",
-			() -> new ThunderingEnchantment());
+			ThunderingEnchantment::new);
 	public static RegistryObject<WeakeningEnchantment> WEAKENING = ENCHANTMENTS.register("weakening",
-			() -> new WeakeningEnchantment());
+			WeakeningEnchantment::new);
 	public static RegistryObject<AccelerateEnchantment> ACCELERATE = ENCHANTMENTS.register("accelerate",
-			() -> new AccelerateEnchantment());
+			AccelerateEnchantment::new);
 	public static RegistryObject<BonusShotEnchantment> BONUS_SHOT = ENCHANTMENTS.register("bonus_shot",
-			() -> new BonusShotEnchantment());
+			BonusShotEnchantment::new);
 	public static RegistryObject<ChainReactionEnchantment> CHAIN_REACTION = ENCHANTMENTS.register("chain_reaction",
-			() -> new ChainReactionEnchantment());
+			ChainReactionEnchantment::new);
 	public static RegistryObject<FreezingShotEnchantment> FREEZING_SHOT = ENCHANTMENTS.register("freezing_shot",
-			() -> new FreezingShotEnchantment());
+			FreezingShotEnchantment::new);
 	public static RegistryObject<GaleShotEnchantment> GALE_SHOT = ENCHANTMENTS.register("gale_shot",
-			() -> new GaleShotEnchantment());
+			GaleShotEnchantment::new);
 	public static RegistryObject<GravityShotEnchantment> GRAVITY_SHOT = ENCHANTMENTS.register("gravity_shot",
-			() -> new GravityShotEnchantment());
+			GravityShotEnchantment::new);
 	public static RegistryObject<GrowingEnchantment> GROWING = ENCHANTMENTS.register("growing",
-			() -> new GrowingEnchantment());
+			GrowingEnchantment::new);
 	public static RegistryObject<OverchargeEnchantment> OVERCHARGE = ENCHANTMENTS.register("overcharge",
-			() -> new OverchargeEnchantment());
+			OverchargeEnchantment::new);
 	public static RegistryObject<RadianceShotEnchantment> RADIANCE_SHOT = ENCHANTMENTS.register("radiance_shot",
-			() -> new RadianceShotEnchantment());
+			RadianceShotEnchantment::new);
 	public static RegistryObject<ReplenishEnchantment> REPLENISH = ENCHANTMENTS.register("replenish",
-			() -> new ReplenishEnchantment());
+			ReplenishEnchantment::new);
 	public static RegistryObject<RicochetEnchantment> RICOCHET = ENCHANTMENTS.register("ricochet",
-			() -> new RicochetEnchantment());
+			RicochetEnchantment::new);
 	public static RegistryObject<SuperchargeEnchantment> SUPERCHARGE = ENCHANTMENTS.register("supercharge",
-			() -> new SuperchargeEnchantment());
+			SuperchargeEnchantment::new);
 	public static RegistryObject<TempoTheftEnchantment> TEMPO_THEFT = ENCHANTMENTS.register("tempo_theft",
-			() -> new TempoTheftEnchantment());
+			TempoTheftEnchantment::new);
 	public static RegistryObject<VelocityEnchantment> VELOCITY = ENCHANTMENTS.register("velocity",
-			() -> new VelocityEnchantment());
+			VelocityEnchantment::new);
 	public static RegistryObject<BagOfSoulsEnchantment> BAG_OF_SOULS = ENCHANTMENTS.register("bag_of_souls",
-			() -> new BagOfSoulsEnchantment());
+			BagOfSoulsEnchantment::new);
 	public static RegistryObject<BeastBossEnchantment> BEAST_BOSS = ENCHANTMENTS.register("beast_boss",
-			() -> new BeastBossEnchantment());
+			BeastBossEnchantment::new);
 	public static RegistryObject<BeehiveEnchantment> BEEHIVE = ENCHANTMENTS.register("beehive",
-			() -> new BeehiveEnchantment());
+			BeehiveEnchantment::new);
 	public static RegistryObject<CowardiceEnchantment> COWARDICE = ENCHANTMENTS.register("cowardice",
-			() -> new CowardiceEnchantment());
+			CowardiceEnchantment::new);
 	public static RegistryObject<DeathBarterEnchantment> DEATH_BARTER = ENCHANTMENTS.register("death_barter",
-			() -> new DeathBarterEnchantment());
+			DeathBarterEnchantment::new);
 	public static RegistryObject<DeflectEnchantment> DEFLECT = ENCHANTMENTS.register("deflect",
-			() -> new DeflectEnchantment());
+			DeflectEnchantment::new);
 	public static RegistryObject<FinalShoutEnchantment> FINAL_SHOUT = ENCHANTMENTS.register("final_shout",
-			() -> new FinalShoutEnchantment());
+			FinalShoutEnchantment::new);
 	public static RegistryObject<FortuneOfTheSeaEnchantment> FORTUNE_OF_THE_SEA = ENCHANTMENTS
-			.register("fortune_of_the_sea", () -> new FortuneOfTheSeaEnchantment());
+			.register("fortune_of_the_sea", FortuneOfTheSeaEnchantment::new);
 	public static RegistryObject<FrenziedEnchantment> FRENZIED = ENCHANTMENTS.register("frenzied",
-			() -> new FrenziedEnchantment());
+			FrenziedEnchantment::new);
 	public static RegistryObject<HealthSynergyEnchantment> HEALTH_SYNERGY = ENCHANTMENTS.register("health_synergy",
-			() -> new HealthSynergyEnchantment());
+			HealthSynergyEnchantment::new);
 	public static RegistryObject<OpulentShieldEnchantment> OPULENT_SHIELD = ENCHANTMENTS.register("opulent_shield",
-			() -> new OpulentShieldEnchantment());
+			OpulentShieldEnchantment::new);
 	public static RegistryObject<RecklessEnchantment> RECKLESS = ENCHANTMENTS.register("reckless",
-			() -> new RecklessEnchantment());
-	public static RegistryObject<DodgeEnchantment> DODGE = ENCHANTMENTS.register("dodge",
-			() -> new DodgeEnchantment());
-	public static RegistryObject<RushEnchantment> RUSH = ENCHANTMENTS.register("rush", () -> new RushEnchantment());
+			RecklessEnchantment::new);
+	public static RegistryObject<DodgeEnchantment> DODGE = ENCHANTMENTS.register("dodge", DodgeEnchantment::new);
+	public static RegistryObject<RushEnchantment> RUSH = ENCHANTMENTS.register("rush", RushEnchantment::new);
 	public static RegistryObject<SpeedSynergyEnchantment> SPEED_SYNERGY = ENCHANTMENTS.register("speed_synergy",
-			() -> new SpeedSynergyEnchantment());
+			SpeedSynergyEnchantment::new);
 	public static RegistryObject<VoidDodgeEnchantment> VOID_DODGE = ENCHANTMENTS.register("void_dodge",
-			() -> new VoidDodgeEnchantment());
+			VoidDodgeEnchantment::new);
 	public static RegistryObject<BeastBurstEnchantment> BEAST_BURST = ENCHANTMENTS.register("beast_burst",
-			() -> new BeastBurstEnchantment());
+			BeastBurstEnchantment::new);
 	public static RegistryObject<BeastSurgeEnchantment> BEAST_SURGE = ENCHANTMENTS.register("beast_surge",
-			() -> new BeastSurgeEnchantment());
+			BeastSurgeEnchantment::new);
 	public static RegistryObject<CooldownEnchantment> COOLDOWN = ENCHANTMENTS.register("cooldown",
-			() -> new CooldownEnchantment());
+			CooldownEnchantment::new);
 	public static RegistryObject<FireFocusEnchantment> FIRE_FOCUS = ENCHANTMENTS.register("fire_focus",
-			() -> new FireFocusEnchantment());
+			FireFocusEnchantment::new);
 	public static RegistryObject<LightningFocusEnchantment> LIGHTNING_FOCUS = ENCHANTMENTS
-			.register("lightning_focus", () -> new LightningFocusEnchantment());
+			.register("lightning_focus", LightningFocusEnchantment::new);
 	public static RegistryObject<PoisonFocusEnchantment> POISON_FOCUS = ENCHANTMENTS.register("poison_focus",
-			() -> new PoisonFocusEnchantment());
+			PoisonFocusEnchantment::new);
 	public static RegistryObject<PotionBarrierEnchantment> POTION_BARRIER = ENCHANTMENTS.register("potion_barrier",
-			() -> new PotionBarrierEnchantment());
+			PotionBarrierEnchantment::new);
 	public static RegistryObject<SoulFocusEnchantment> SOUL_FOCUS = ENCHANTMENTS.register("soul_focus",
-			() -> new SoulFocusEnchantment());
+			SoulFocusEnchantment::new);
+	public static RegistryObject<AltruisticEnchantment> ALTRUISTIC = ENCHANTMENTS.register("altruistic",
+			AltruisticEnchantment::new);
+	public static RegistryObject<ChillingEnchantment> CHILLING = ENCHANTMENTS.register("chilling",
+			ChillingEnchantment::new);
+	public static RegistryObject<GravityPulseEnchantment> GRAVITY_PULSE = ENCHANTMENTS.register("gravity_pulse",
+			GravityPulseEnchantment::new);
+	public static RegistryObject<LifeStealAuraEnchantment> LIFE_STEAL_AURA = ENCHANTMENTS
+			.register("life_steal_aura", LifeStealAuraEnchantment::new);
+	public static RegistryObject<MeleeAuraEnchantment> MELEE_AURA = ENCHANTMENTS.register("melee_aura",
+			MeleeAuraEnchantment::new);
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

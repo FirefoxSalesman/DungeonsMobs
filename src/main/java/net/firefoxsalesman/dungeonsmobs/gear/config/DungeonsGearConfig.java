@@ -40,8 +40,7 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Double> RADIANCE_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Double> THUNDERING_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<Integer> THUNDERING_BASE_DAMAGE;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_BASE_MULTIPLIER;
 	public static ForgeConfigSpec.ConfigValue<Double> BEAST_BOSS_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Integer> BEAST_BURST_DAMAGE_PER_LEVEL;
@@ -51,10 +50,8 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<Double> DEFLECT_CHANCE_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> FOCUS_MULTIPLIER_PER_LEVEL;
 	public static ForgeConfigSpec.ConfigValue<Double> FRENZIED_MULTIPLIER_PER_LEVEL;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// GRAVITY_PULSE_BASE_STRENGTH;
-	// public static ForgeConfigSpec.ConfigValue<Double>
-	// GRAVITY_PULSE_STRENGTH_PER_LEVEL;
+	public static ForgeConfigSpec.ConfigValue<Double> GRAVITY_PULSE_BASE_STRENGTH;
+	public static ForgeConfigSpec.ConfigValue<Double> GRAVITY_PULSE_STRENGTH_PER_LEVEL;
 	// public static ForgeConfigSpec.ConfigValue<Integer>
 	// POTION_BARRIER_BASE_DURATION;
 	// public static ForgeConfigSpec.ConfigValue<Integer>
@@ -182,10 +179,9 @@ public class DungeonsGearConfig {
 				.defineInRange("thunderingChance", 0.3, 0, 1.0);
 		THUNDERING_BASE_DAMAGE = builder.comment("The base damage for Thundering [0-10000, default: 5]")
 				.defineInRange("thunderingBaseDamage", 5, 0, 10000);
-		// ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL = builder
-		// .comment("Multiplier per level damage to healing conversion. [0.0-5.0,
-		// default: 0.25]")
-		// .defineInRange("altruisticDamageToHealingPerLevel", 0.25, 0, 5.0);
+		ALTRUISTIC_DAMAGE_TO_HEALING_PER_LEVEL = builder
+				.comment("Multiplier per level damage to healing conversion. [0.0-5.0, default: 0.25]")
+				.defineInRange("altruisticDamageToHealingPerLevel", 0.25, 0, 5.0);
 		BEAST_BOSS_BASE_MULTIPLIER = builder.comment(
 				"The decimal base multiplier on the minions's damage for beast boss [0.0-5.0, default: 0.1]")
 				.defineInRange("beastBossBaseMultiplier", 0.1, 0, 5.0);
@@ -213,14 +209,12 @@ public class DungeonsGearConfig {
 		FRENZIED_MULTIPLIER_PER_LEVEL = builder
 				.comment("The multiplier increase per level for Frenzied [0.0-5.0, default: 0.1]")
 				.defineInRange("frenziedMultiplierPerLevel", 0.1, 0, 5.0);
-		// GRAVITY_PULSE_BASE_STRENGTH = builder
-		// .comment("The decimal base pull strength for Gravity Pulse [0.0-5.0, default:
-		// 0.1]")
-		// .defineInRange("gravityPulseBaseStrength", 0.1, 0, 5.0);
-		// GRAVITY_PULSE_STRENGTH_PER_LEVEL = builder
-		// .comment("The strength increase per level for Gravity Pulse [0.0-5.0,
-		// default: 0.1]")
-		// .defineInRange("gravityPulseStrengthPerLevel", 0.1, 0, 5.0);
+		GRAVITY_PULSE_BASE_STRENGTH = builder
+				.comment("The decimal base pull strength for Gravity Pulse [0.0-5.0, default: 0.1]")
+				.defineInRange("gravityPulseBaseStrength", 0.1, 0, 5.0);
+		GRAVITY_PULSE_STRENGTH_PER_LEVEL = builder
+				.comment("The strength increase per level for Gravity Pulse [0.0-5.0, default: 0.1]")
+				.defineInRange("gravityPulseStrengthPerLevel", 0.1, 0, 5.0);
 		// POTION_BARRIER_BASE_DURATION = builder
 		// .comment("The decimal base duration for Potion Barrier [0-10000, default:
 		// 60]")

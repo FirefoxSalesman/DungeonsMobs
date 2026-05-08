@@ -1,17 +1,18 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 import net.firefoxsalesman.dungeonsmobs.gear.effects.CustomEffect;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.PartyStarterEffect;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.ShieldingEffect;
+import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class MobEffectInit {
 	private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister
@@ -27,12 +28,10 @@ public class MobEffectInit {
 			() -> new PartyStarterEffect(MobEffectCategory.BENEFICIAL, 0xE25822));
 	public static RegistryObject<MobEffect> DYNAMO = MOB_EFFECTS.register("dynamo",
 			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 0xFFBB2E));
-	// public static RegistryObject<MobEffect> LIFE_STEAL =
-	// MOB_EFFECTS.register("life_steal",
-	// () -> new CustomEffect(MobEffectCategory.BENEFICIAL,
-	// 0x660901).addAttributeModifier(
-	// AttributeRegistry.LIFE_STEAL.get(), "ba815a35-c0d4-4bbd-b932-76a916d44eb9",
-	// 0.05F, AttributeModifier.Operation.ADDITION));
+	public static RegistryObject<MobEffect> LIFE_STEAL = MOB_EFFECTS.register("life_steal",
+			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 0x660901).addAttributeModifier(
+					AttributeRegistry.LIFE_STEAL.get(), "ba815a35-c0d4-4bbd-b932-76a916d44eb9",
+					0.05F, AttributeModifier.Operation.ADDITION));
 	public static RegistryObject<MobEffect> BOW_CHARGE = MOB_EFFECTS.register("bow_charge",
 			() -> new CustomEffect(MobEffectCategory.BENEFICIAL, 0x3571D4));
 
