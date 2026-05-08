@@ -33,6 +33,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PoisonFocus
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.PotionBarrierEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head.SoulFocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.AltruisticEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.BurningEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.ChillingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.GravityPulseEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.LifeStealAuraEnchantment;
@@ -223,6 +224,8 @@ public class EnchantmentInit {
 			SoulFocusEnchantment::new);
 	public static RegistryObject<AltruisticEnchantment> ALTRUISTIC = ENCHANTMENTS.register("altruistic",
 			AltruisticEnchantment::new);
+	public static RegistryObject<BurningEnchantment> BURNING = ENCHANTMENTS.register("burning",
+			BurningEnchantment::new);
 	public static RegistryObject<ChillingEnchantment> CHILLING = ENCHANTMENTS.register("chilling",
 			ChillingEnchantment::new);
 	public static RegistryObject<GravityPulseEnchantment> GRAVITY_PULSE = ENCHANTMENTS.register("gravity_pulse",
