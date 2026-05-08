@@ -994,5 +994,11 @@
   "item.dungeonsmobs.battle_robes_chestplate": "Battle Robe",
   "item.dungeonsmobs.battle_robes_leggings": "Battle Pants",
   "item.dungeonsmobs.battle_robes_boots": "Battle Shoes",
-  "lore.dungeonsmobs.battle_robes_armor": "The Battle Robe is worn by the distinguished Illager Evokers of the Arch-Illager's court."
+  "lore.dungeonsmobs.battle_robes_armor": "The Battle Robe is worn by the distinguished Illager Evokers of the Arch-Illager's court.",
+  
+  "item.dungeonsmobs.champions_helmet": "Champion's Helmet",
+  "item.dungeonsmobs.champions_chestplate": "Champion's Chestplate",
+  "item.dungeonsmobs.champions_leggings": "Champion's Legguards",
+  "item.dungeonsmobs.champions_boots": "Champion's Sabatons",
+  "lore.dungeonsmobs.champions_armor": "Given to the champions of the Overworld by the free villagers as a token of their thanks for many years of protection and assistance. The mark of a true hero."
 }

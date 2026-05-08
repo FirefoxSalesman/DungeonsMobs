@@ -70,6 +70,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:champions_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:flail",
           "weight": 2 
         },
