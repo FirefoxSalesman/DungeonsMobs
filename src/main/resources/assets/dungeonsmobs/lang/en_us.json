@@ -1000,5 +1000,10 @@
   "item.dungeonsmobs.champions_chestplate": "Champion's Chestplate",
   "item.dungeonsmobs.champions_leggings": "Champion's Legguards",
   "item.dungeonsmobs.champions_boots": "Champion's Sabatons",
-  "lore.dungeonsmobs.champions_armor": "Given to the champions of the Overworld by the free villagers as a token of their thanks for many years of protection and assistance. The mark of a true hero."
+  "lore.dungeonsmobs.champions_armor": "Given to the champions of the Overworld by the free villagers as a token of their thanks for many years of protection and assistance. The mark of a true hero.",
+  "item.dungeonsmobs.heros_chestplate": "Hero's Chestplate",
+  "item.dungeonsmobs.heros_helmet": "Hero's Helmet",
+  "item.dungeonsmobs.heros_leggings": "Hero's Leggings",
+  "item.dungeonsmobs.heros_boots": "Hero's Boots",
+  "lore.dungeonsmobs.heros_armor": "Only given to the highest caliber of heroes, the Hero's Armor is a precious gift from the Villagers."
 }
