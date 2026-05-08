@@ -1022,5 +1022,10 @@
   "item.dungeonsmobs.evocation_robes_helmet": "Evocation Hat",
   "item.dungeonsmobs.evocation_robes_leggings": "Evocation Pants",
   "item.dungeonsmobs.evocation_robes_boots": "Evocation Shoes",
-  "lore.dungeonsmobs.evocation_robes_armor": "Potent magical runes are weaved into the fabric of these robes, their origins and powers are shrouded in mystery."
+  "lore.dungeonsmobs.evocation_robes_armor": "Potent magical runes are weaved into the fabric of these robes, their origins and powers are shrouded in mystery.",
+  "item.dungeonsmobs.ember_robes_chestplate": "Ember Robe",
+  "item.dungeonsmobs.ember_robes_helmet": "Ember Hat",
+  "item.dungeonsmobs.ember_robes_leggings": "Ember Pants",
+  "item.dungeonsmobs.ember_robes_boots": "Ember Shoes",
+  "lore.dungeonsmobs.ember_robes_armor": "The Ember Robe was created by Illager Evokers to distinguish themselves from the common guard."
 }

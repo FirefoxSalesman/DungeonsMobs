@@ -51,42 +51,42 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_helmet",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_chestplate",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_leggings",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_boots",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_helmet",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_chestplate",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_leggings",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_boots",
-          "weight": 2 
+          "weight": 3 
         },
 	{
           "type": "item",
@@ -295,43 +295,63 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:evocation_robes_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:evocation_robes_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:evocation_robes_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:evocation_robes_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:dark_helmet",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_chestplate",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_leggings",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_boots",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heros_helmet",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heros_chestplate",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heros_leggings",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heros_boots",
-          "weight": 1 
+          "weight": 2 
         },
 	{
           "type": "item",
@@ -351,26 +371,6 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:titans_shroud_boots",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:evocation_robes_helmet",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:evocation_robes_chestplate",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:evocation_robes_leggings",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:evocation_robes_boots",
           "weight": 1 
         },
 	{
@@ -434,8 +434,28 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:ember_robes_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ember_robes_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ember_robes_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ember_robes_boots",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 138
+          "weight": 158
         }
       ]
     }
