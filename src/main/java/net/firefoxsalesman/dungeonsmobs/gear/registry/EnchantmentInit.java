@@ -37,6 +37,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.ChillingEnc
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.GravityPulseEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.LifeStealAuraEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.MeleeAuraEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.PotionAuraEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.SnowballEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs.SpeedAuraEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ArtifactSynergyEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.BusyBeeEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee.ChainsEnchantment;
@@ -228,6 +231,12 @@ public class EnchantmentInit {
 			.register("life_steal_aura", LifeStealAuraEnchantment::new);
 	public static RegistryObject<MeleeAuraEnchantment> MELEE_AURA = ENCHANTMENTS.register("melee_aura",
 			MeleeAuraEnchantment::new);
+	public static RegistryObject<PotionAuraEnchantment> POTION_AURA = ENCHANTMENTS.register("potion_aura",
+			PotionAuraEnchantment::new);
+	public static RegistryObject<SnowballEnchantment> SNOWBALL = ENCHANTMENTS.register("snowball",
+			SnowballEnchantment::new);
+	public static RegistryObject<SpeedAuraEnchantment> SPEED_AURA = ENCHANTMENTS.register("speed_aura",
+			SpeedAuraEnchantment::new);
 
 	public static void register(IEventBus event) {
 		ENCHANTMENTS.register(event);

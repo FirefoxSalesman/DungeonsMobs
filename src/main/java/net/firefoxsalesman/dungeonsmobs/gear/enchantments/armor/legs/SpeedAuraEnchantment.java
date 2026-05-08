@@ -1,13 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.legs;
 
-import static net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes.ARMOR_SLOT;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
-
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.PulseEnchantment;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.AbilityHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,10 +10,19 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
-public class MeleeAuraEnchantment extends PulseEnchantment {
+import static net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes.ARMOR_SLOT;
+import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
 
-	public MeleeAuraEnchantment() {
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.PulseEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
+import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.AbilityHelper;
+
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
+public class SpeedAuraEnchantment extends PulseEnchantment {
+
+	public SpeedAuraEnchantment() {
 		super(Rarity.RARE, EnchantmentCategory.ARMOR_LEGS, ARMOR_SLOT);
 	}
 
@@ -42,15 +43,14 @@ public class MeleeAuraEnchantment extends PulseEnchantment {
 	}
 
 	private static void triggerEffect(LivingEntity entity) {
-
-		int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.MELEE_AURA.get(), entity);
+		int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.SPEED_AURA.get(), entity);
 		if (enchantmentLevel > 0) {
 			applyToNearbyEntities(entity, 5,
 					(nearbyEntity) -> {
 						return AbilityHelper.isAlly(entity, nearbyEntity);
 					}, (LivingEntity nearbyEntity) -> {
 						MobEffectInstance speedBoost = new MobEffectInstance(
-								MobEffects.DAMAGE_BOOST, 20, enchantmentLevel - 1);
+								MobEffects.MOVEMENT_SPEED, 20, enchantmentLevel - 1);
 						nearbyEntity.addEffect(speedBoost);
 					});
 		}

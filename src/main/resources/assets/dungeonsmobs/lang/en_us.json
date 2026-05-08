@@ -642,6 +642,12 @@
   "enchantment.dungeonsmobs.life_steal_aura.desc": "Passively increases life steal of nearby allies.",
   "enchantment.dungeonsmobs.melee_aura": "Melee Aura",
   "enchantment.dungeonsmobs.melee_aura.desc": "Passively increases melee attack damage of nearby allies.",
+  "enchantment.dungeonsmobs.snowball": "Snowball",
+  "enchantment.dungeonsmobs.snowball.desc": "Fires a snowball at a nearby enemy every few seconds, briefly stunning it.",
+  "enchantment.dungeonsmobs.speed_aura": "Speed Aura",
+  "enchantment.dungeonsmobs.speed_aura.desc": "Passively increases speed of nearby allies.",
+  "enchantment.dungeonsmobs.potion_aura": "Potion Aura",
+  "enchantment.dungeonsmobs.potion_aura.desc": "Using a healing potion, will heal nearby allies as well.",
 
   "item.dungeonsmobs.bonebow": "Bonebow",
   "lore.dungeonsmobs.bonebow": "The Bonebow is the pride of Pumpkin Pastures, crafted within the walls of their humble village.",
