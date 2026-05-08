@@ -1005,5 +1005,11 @@
   "item.dungeonsmobs.heros_helmet": "Hero's Helmet",
   "item.dungeonsmobs.heros_leggings": "Hero's Leggings",
   "item.dungeonsmobs.heros_boots": "Hero's Boots",
-  "lore.dungeonsmobs.heros_armor": "Only given to the highest caliber of heroes, the Hero's Armor is a precious gift from the Villagers."
+  "lore.dungeonsmobs.heros_armor": "Only given to the highest caliber of heroes, the Hero's Armor is a precious gift from the Villagers.",
+
+  "item.dungeonsmobs.dark_chestplate": "Dark Chestplate",
+  "item.dungeonsmobs.dark_helmet": "Dark Helmet",
+  "item.dungeonsmobs.dark_leggings": "Dark Leggings",
+  "item.dungeonsmobs.dark_boots": "Dark Boots",
+  "lore.dungeonsmobs.dark_armor": "Dark Armor, made in the blackest depths of the Fiery Forge, is worn by the Illager royal guard."
 }
