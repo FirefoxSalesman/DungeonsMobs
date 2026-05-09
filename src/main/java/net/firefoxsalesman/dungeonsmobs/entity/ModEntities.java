@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -65,6 +66,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.water.DrownedNecromancerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.PoisonAnemoneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.QuickGrowingKelpEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.water.SunkenSkeletonEntity;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -80,7 +82,8 @@ import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 
 public class ModEntities {
-	private static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS,
+	public static final List<ResourceLocation> EGGS = new ArrayList<>();
+	public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			MOD_ID);
 	public static final List<String> ENTITY_IDS = new ObjectArrayList<>();
 
@@ -571,10 +574,10 @@ public class ModEntities {
 			Supplier<EntityType<T>> sup, int primaryColor, int secondaryColor) {
 		ENTITY_IDS.add(key);
 		RegistryObject<EntityType<T>> entityType = ENTITY_TYPES.register(key, sup);
-
-		SPAWN_EGGS.register(key + "_spawn_egg", () -> new ForgeSpawnEggItem(entityType, primaryColor,
+		String eggName = key + "_spawn_egg";
+		SPAWN_EGGS.register(eggName, () -> new ForgeSpawnEggItem(entityType, primaryColor,
 				secondaryColor, new Item.Properties()));
-
+		EGGS.add(modLoc("models/item/" + eggName));
 		return entityType;
 	}
 

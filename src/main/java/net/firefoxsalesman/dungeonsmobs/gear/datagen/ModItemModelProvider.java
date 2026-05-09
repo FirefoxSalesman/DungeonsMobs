@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.datagen;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -19,6 +20,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		registerArmors();
+		// TODO Remember to separate this out
+		ModEntities.SPAWN_EGGS.getEntries().forEach(item -> {
+			getBuilder(item.getId().getPath())
+					.parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")));
+		});
 	}
 
 	private void registerArmors() {
