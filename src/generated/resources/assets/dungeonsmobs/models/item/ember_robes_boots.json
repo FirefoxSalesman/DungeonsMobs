@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "dungeonsmobs:item/armor/heros_boots"
+    "layer0": "dungeonsmobs:item/armor/ember_robes_boots"
   }
 }

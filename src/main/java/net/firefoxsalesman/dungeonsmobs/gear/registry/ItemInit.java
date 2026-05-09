@@ -58,6 +58,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ItemInit {
+	public static final Map<ResourceLocation, RegistryObject<Item>> ARMORS = new HashMap<>();
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 	public static final Map<ResourceLocation, RegistryObject<Item>> MELEE_WEAPONS = new HashMap<>();
 	public static final Map<ResourceLocation, RegistryObject<Item>> RANGED_WEAPONS = new HashMap<>();
@@ -330,6 +331,7 @@ public class ItemInit {
 		if (armorId == null)
 			return null;
 		RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
+		ARMORS.put(GeneralHelper.modLoc(armorId), register);
 		return register;
 	}
 

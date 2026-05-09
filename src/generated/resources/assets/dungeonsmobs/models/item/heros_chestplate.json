@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "dungeonsmobs:item/armor/heros_helmet"
+    "layer0": "dungeonsmobs:item/armor/heros_chestplate"
   }
 }

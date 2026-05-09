@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "dungeonsmobs:item/armor/dark_chestplate"
+    "layer0": "dungeonsmobs:item/armor/champions_boots"
   }
 }
