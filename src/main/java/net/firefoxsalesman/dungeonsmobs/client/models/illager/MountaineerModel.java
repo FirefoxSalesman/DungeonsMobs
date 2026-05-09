@@ -29,11 +29,11 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 	private final ModelPart head;
 	private final ModelPart nose;
 	private final ModelPart eyepupil0;
-	private final ModelPart eyeiris0;
+	private final ModelPart eyelid0;
 	private final ModelPart eyebrow0;
 	private final ModelPart eyebrow1;
 	private final ModelPart eyepupil1;
-	private final ModelPart eyeiris1;
+	private final ModelPart eyelid1;
 	private final ModelPart arm0;
 	private final ModelPart arm1;
 	private final ModelPart hand;
@@ -53,11 +53,11 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 		this.head = this.neck.getChild("head");
 		this.nose = this.head.getChild("nose");
 		this.eyepupil0 = this.head.getChild("eyepupil0");
-		this.eyeiris0 = this.head.getChild("eyeiris0");
+		this.eyelid0 = this.head.getChild("eyelid0");
 		this.eyebrow0 = this.head.getChild("eyebrow0");
 		this.eyebrow1 = this.head.getChild("eyebrow1");
 		this.eyepupil1 = this.head.getChild("eyepupil1");
-		this.eyeiris1 = this.head.getChild("eyeiris1");
+		this.eyelid1 = this.head.getChild("eyelid1");
 		this.arm0 = this.spine.getChild("arm0");
 		this.arm1 = this.spine.getChild("arm1");
 		this.hand = this.arm1.getChild("hand");
@@ -113,10 +113,10 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 						0.0F, 1.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(-1.577F, -4.0F, -2.295F));
 
-		PartDefinition eyeiris0 = head.addOrReplaceChild(
-				"eyeiris0", CubeListBuilder.create().texOffs(0, 7).addBox(-0.925F, 0.0F, 0.0F, 2.0F,
+		PartDefinition eyelid0 = head.addOrReplaceChild(
+				"eyelid0", CubeListBuilder.create().texOffs(0, 7).addBox(-0.917F, -0.01F, 0.0F, 2.0F,
 						0.0F, 1.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(-2.077F, -4.0F, -2.295F));
+				PartPose.offset(-2.077F, -4.0F, -1.295F));
 
 		PartDefinition eyebrow0 = head.addOrReplaceChild(
 				"eyebrow0", CubeListBuilder.create().texOffs(-2, 4).addBox(-1.925F, -0.05F, 0.0F, 3.0F,
@@ -135,10 +135,10 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 						0.0F, 1.0F, new CubeDeformation(0.0F)),
 				PartPose.offset(1.423F, -4.0F, -2.295F));
 
-		PartDefinition eyeiris1 = head.addOrReplaceChild(
-				"eyeiris1", CubeListBuilder.create().texOffs(0, 7).addBox(-0.925F, 0.0F, 0.0F, 2.0F,
+		PartDefinition eyelid1 = head.addOrReplaceChild(
+				"eyelid1", CubeListBuilder.create().texOffs(0, 7).addBox(-0.917F, -0.01F, 0.0F, 2.0F,
 						0.0F, 1.0F, new CubeDeformation(0.0F)),
-				PartPose.offset(1.923F, -4.0F, -2.295F));
+				PartPose.offset(1.923F, -4.0F, -1.295F));
 
 		PartDefinition arm0 = spine.addOrReplaceChild("arm0", CubeListBuilder.create(),
 				PartPose.offset(4.0F, 0.0F, 0.061F));
