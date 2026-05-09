@@ -1027,5 +1027,11 @@
   "item.dungeonsmobs.ember_robes_helmet": "Ember Hat",
   "item.dungeonsmobs.ember_robes_leggings": "Ember Pants",
   "item.dungeonsmobs.ember_robes_boots": "Ember Shoes",
-  "lore.dungeonsmobs.ember_robes_armor": "The Ember Robe was created by Illager Evokers to distinguish themselves from the common guard."
+  "lore.dungeonsmobs.ember_robes_armor": "The Ember Robe was created by Illager Evokers to distinguish themselves from the common guard.",
+  
+  "item.dungeonsmobs.grim_chestplate": "Grim Chestplate",
+  "item.dungeonsmobs.grim_helmet": "Grim Helmet",
+  "item.dungeonsmobs.grim_leggings": "Grim Leggings",
+  "item.dungeonsmobs.grim_boots": "Grim Boots",
+  "lore.dungeonsmobs.grim_armor": "Grim Armor invokes a sense of dread for the one who wears it and to those who face it in battle."
 }

@@ -51,42 +51,42 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_helmet",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_chestplate",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_leggings",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_boots",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_helmet",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_chestplate",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_leggings",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:champions_boots",
-          "weight": 3 
+          "weight": 4 
         },
 	{
           "type": "item",
@@ -351,6 +351,26 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:heros_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:grim_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:grim_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:grim_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:grim_boots",
           "weight": 2 
         },
 	{
