@@ -16,6 +16,14 @@ public enum BiomeSpecificRaider {
 			ModEntities.MOUNTAINEER.get(),
 			EntityType.VINDICATOR,
 			BiomeTags.MOUNTAINEEER_RAIDS_IN),
+	GOLD_ARMORED_MOUNTAINEER(
+			ModEntities.GOLD_ARMOURED_MOUNTAINEER.get(),
+			ModEntities.GOLD_ARMOURED_VINDICATOR.get(),
+			BiomeTags.MOUNTAINEEER_RAIDS_IN),
+	DIAMOND_ARMORED_MOUNTAINEER(
+			ModEntities.DIAMOND_ARMOURED_MOUNTAINEER.get(),
+			ModEntities.DIAMOND_ARMOURED_VINDICATOR.get(),
+			BiomeTags.MOUNTAINEEER_RAIDS_IN),
 	ICEOLOGER(
 			ModEntities.ICEOLOGER.get(),
 			EntityType.EVOKER,

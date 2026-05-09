@@ -22,8 +22,4 @@ public class BiomeTags {
 	private static TagKey<Biome> forgeTag(String name) {
 		return TagKey.create(Registries.BIOME, new ResourceLocation("forge", name));
 	}
-
-	public static void register() {
-		// NOOP
-	}
 }

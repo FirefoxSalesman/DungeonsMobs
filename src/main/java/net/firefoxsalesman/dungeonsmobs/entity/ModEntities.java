@@ -15,9 +15,11 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredMountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredPillagerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredMountaineerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredPillagerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
@@ -222,6 +224,26 @@ public class ModEntities {
 					.sized(0.6F, 1.95F)
 					.clientTrackingRange(8)
 					.build(modLoc("mountaineer").toString()),
+			0x715039, 0xe6e4d4);
+
+	public static final RegistryObject<EntityType<GoldArmouredMountaineerEntity>> GOLD_ARMOURED_MOUNTAINEER = registerEntity(
+			"gold_armored_mountaineer",
+			() -> EntityType.Builder
+					.<GoldArmouredMountaineerEntity>of(GoldArmouredMountaineerEntity::new,
+							MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(modLoc("gold_armored_mountaineer").toString()),
+			0x715039, 0xe6e4d4);
+
+	public static final RegistryObject<EntityType<DiamondArmouredMountaineerEntity>> DIAMOND_ARMOURED_MOUNTAINEER = registerEntity(
+			"diamond_armored_mountaineer",
+			() -> EntityType.Builder
+					.<DiamondArmouredMountaineerEntity>of(DiamondArmouredMountaineerEntity::new,
+							MobCategory.MONSTER)
+					.sized(0.6F, 1.95F)
+					.clientTrackingRange(8)
+					.build(modLoc("diamond_armored_mountaineer").toString()),
 			0x715039, 0xe6e4d4);
 
 	// CREEPER

@@ -32,7 +32,12 @@ public class RaidEntries {
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get()) {
 			Raid.RaiderType.create("mountaineer", ModEntities.MOUNTAINEER.get(),
-					new int[] { 0, 0, 2, 0, 1, 4, 2, 5 });
+					new int[] { 0, 0, 2, 0, 1, 0, 0, 0 });
+			Raid.RaiderType.create("gold_armored_mountaineer", ModEntities.GOLD_ARMOURED_MOUNTAINEER.get(),
+					new int[] { 0, 0, 0, 0, 0, 2, 1, 3 });
+			Raid.RaiderType.create("diamond_armored_mountaineer",
+					ModEntities.DIAMOND_ARMOURED_MOUNTAINEER.get(),
+					new int[] { 0, 0, 0, 0, 0, 0, 0, 1 });
 		}
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_ROYAL_GUARDS_IN_RAIDS.get()) {

@@ -68,8 +68,6 @@ public class ModItems {
 
 	public static final ArmorSet WINDCALLER_ARMOR = registerArmorSetWindcaller("windcaller_armor",
 			"windcaller_helmet", "windcaller_chestplate", null, null);
-	public static final ArmorSet MOUNTAINEER_ARMOR = registerArmorSet("mountaineer_armor", "mountaineer_helmet",
-			"mountaineer_chestplate", "mountaineer_leggings", "mountaineer_boots");
 
 	// SPATULA
 	public static final RegistryObject<Item> WOODEN_LADLE = ITEMS.register("wooden_ladle",
