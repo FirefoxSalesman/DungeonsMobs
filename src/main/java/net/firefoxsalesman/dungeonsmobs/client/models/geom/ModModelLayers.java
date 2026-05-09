@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IceologerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.IllagerBipedModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.RoyalGuardModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.VindicatorChefModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.ocean.DrownedNecromancerModel;
@@ -44,6 +45,7 @@ public class ModModelLayers {
 	public static final ModelLayerLocation VINDICATOR_CHEF_BODY = makeModelLayerLocation("vindicator_chef_model");
 	public static final ModelLayerLocation ICEOLOGER_BODY = makeModelLayerLocation("iceologer_model");
 	public static final ModelLayerLocation MAGE_BODY = makeModelLayerLocation("mage_model");
+	public static final ModelLayerLocation MOUNTAINEER_BODY = makeModelLayerLocation("mountaineer_model");
 	public static final ModelLayerLocation ROYAL_GUARD_BODY = makeModelLayerLocation("royal_guard_model");
 	public static final ModelLayerLocation GEOMANCER_BODY = makeModelLayerLocation("geomancer_model");
 	public static final ModelLayerLocation NECROMANCER_BODY = makeModelLayerLocation("necromancer_model");
@@ -74,6 +76,7 @@ public class ModModelLayers {
 		event.registerLayerDefinition(ARMOURED_PILLAGER_BODY, ArmoredPillagerModel::createBodyLayer);
 		event.registerLayerDefinition(ARMOURED_VINDICATOR_BODY, ArmouredVindicatorModel::createBodyLayer);
 		event.registerLayerDefinition(ROYAL_GUARD_BODY, RoyalGuardModel::createBodyLayer);
+		event.registerLayerDefinition(MOUNTAINEER_BODY, MountaineerModel::createBodyLayer);
 		event.registerLayerDefinition(GEOMANCER_BODY, GeomancerModel::createBodyLayer);
 		event.registerLayerDefinition(VINDICATOR_CHEF_BODY, VindicatorChefModel::createBodyLayer);
 		event.registerLayerDefinition(MAGE_BODY, MageModel::createBodyLayer);

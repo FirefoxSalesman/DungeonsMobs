@@ -1,7 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.client;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.client.models.illager.MountaineerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.WindcallerModel;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
@@ -25,6 +24,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GoldArmouredPill
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GoldArmouredVindicatorRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MageRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MountaineerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.RoyalGuardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.VindicatorChefRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.LeapleafRenderer;
@@ -61,13 +61,12 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
+import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.lib.client.SoulEnergyGui;
 import net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar.ArtifactsBarRender;
-import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -75,6 +74,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
@@ -99,8 +99,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.SKELETON_VANGUARD.get(), SkeletonVanguardRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.ROYAL_GUARD.get(), RoyalGuardRenderer::new);
-		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(),
-				manager -> new DefaultIllagerRenderer<>(manager, new MountaineerModel()));
+		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(), MountaineerRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.GOLD_ARMOURED_PILLAGER.get(),
 				GoldArmouredPillagerRenderer::new);

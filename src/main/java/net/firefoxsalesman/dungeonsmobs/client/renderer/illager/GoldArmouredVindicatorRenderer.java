@@ -3,7 +3,6 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
-import net.minecraft.resources.ResourceLocation;
 
 public class GoldArmouredVindicatorRenderer extends AbstractArmouredVindicatorRenderer<GoldArmouredVindicatorEntity> {
 

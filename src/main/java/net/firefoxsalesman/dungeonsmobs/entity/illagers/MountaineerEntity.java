@@ -8,8 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.BasicModdedAttackGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
+import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.GoalUtils;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
@@ -21,10 +20,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -39,34 +39,25 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.Animation.LoopType;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, GeoEntity, AnimatableMeleeAttackMob {
+public class MountaineerEntity extends Vindicator implements AnimatableMeleeAttackMob, KeyframeEntity {
 
 	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData
 			.defineId(MountaineerEntity.class, EntityDataSerializers.BYTE);
 	public int attackAnimationTick;
 	public int attackAnimationLength = 7;
 	public int attackAnimationActionPoint = 6;
+	private final Map<String, AnimationState> states;
 
 	public MountaineerEntity(Level worldIn) {
-		super(ModEntities.MOUNTAINEER.get(), worldIn);
+		this(ModEntities.MOUNTAINEER.get(), worldIn);
 	}
 
 	public MountaineerEntity(EntityType<? extends MountaineerEntity> entityType, Level world) {
 		super(entityType, world);
+		states = genStates("attack", "run", "walk", "celebrate", "idle");
 	}
 
 	@Override
@@ -91,7 +82,19 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 		if (!level().isClientSide) {
 			setClimbing(horizontalCollision);
 		}
+		setupAnimationStates();
+	}
 
+	private void setupAnimationStates() {
+		getState("attack").animateWhen(isAttacking(), tickCount);
+		getState("run").animateWhen(!isAttacking() && isAggressive() && isMoving(), tickCount);
+		getState("walk").animateWhen(!isAttacking() && !isAggressive() && isMoving(), tickCount);
+		getState("celebrate").animateWhen(!isAttacking() && !isMoving() && isCelebrating(), tickCount);
+		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isCelebrating(), tickCount);
+	}
+
+	private boolean isAttacking() {
+		return attackAnimationTick > 0;
 	}
 
 	public boolean onClimbable() {
@@ -142,19 +145,15 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
 		SpawnEquipmentHelper.equipMainhand(ModItems.MOUNTAINEER_AXE.get().getDefaultInstance(), this);
-		SpawnEquipmentHelper.equipArmorSet(ModItems.MOUNTAINEER_ARMOR, this);
 	}
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_213386_1_, DifficultyInstance p_213386_2_,
-			MobSpawnType p_213386_3_, @Nullable SpawnGroupData p_213386_4_,
-			@Nullable CompoundTag p_213386_5_) {
-		SpawnGroupData iLivingEntityData = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_,
-				p_213386_4_,
-				p_213386_5_);
-		populateDefaultEquipmentSlots(getRandom(), p_213386_2_);
-		populateDefaultEquipmentEnchantments(getRandom(), p_213386_2_);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
+			MobSpawnType spawnType, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
+		SpawnGroupData iLivingEntityData = super.finalizeSpawn(accessor, difficulty, spawnType, groupData, tag);
+		populateDefaultEquipmentSlots(getRandom(), difficulty);
+		populateDefaultEquipmentEnchantments(getRandom(), difficulty);
 		return iLivingEntityData;
 	}
 
@@ -192,13 +191,6 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 	public boolean canBeLeader() {
 		return false;
 	}
-
-	@Override
-	public ArmorSet getArmorSet() {
-		return ModItems.MOUNTAINEER_ARMOR;
-	}
-
-	private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
@@ -241,47 +233,12 @@ public class MountaineerEntity extends Vindicator implements SpawnArmoredMob, Ge
 	}
 
 	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<GeoAnimatable>(this, "controller", 2, this::predicate));
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		String animation = "animation.vindicator";
-		String handSide = "_right";
-		if (isLeftHanded()) {
-			handSide = "_left";
-		}
-		if (getMainHandItem().isEmpty()) {
-			handSide += "_both";
-		}
-		String crossed = "";
-		if (IllagerArmsUtil.armorHasCrossedArms(this, getItemBySlot(EquipmentSlot.CHEST))) {
-			crossed = "_crossed";
-		}
-		if (attackAnimationTick > 0) {
-			event.getController().setAnimation(
-					RawAnimation.begin().then(animation + ".attack" + handSide, LoopType.LOOP));
-		} else if (isAggressive()
-				&& !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(RawAnimation.begin()
-					.then(animation + ".run" + handSide, LoopType.LOOP));
-		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-			event.getController().setAnimation(RawAnimation.begin()
-					.then(animation + ".walk" + crossed, LoopType.LOOP));
-		} else {
-			if (isCelebrating()) {
-				event.getController().setAnimation(
-						RawAnimation.begin().then(animation + ".win", LoopType.LOOP));
-			} else {
-				event.getController().setAnimation(RawAnimation.begin()
-						.then(animation + ".idle" + crossed, LoopType.LOOP));
-			}
-		}
-		return PlayState.CONTINUE;
+	public Map<String, AnimationState> getStates() {
+		return states;
 	}
 
 	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return factory;
+	public WalkAnimationState getWalkAnimation() {
+		return walkAnimation;
 	}
 }
