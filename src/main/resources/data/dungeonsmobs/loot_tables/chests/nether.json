@@ -10,6 +10,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:wither_bone_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wither_bone_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wither_bone_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wither_bone_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:bone_cudgel",
           "weight": 2 
         },
@@ -30,7 +50,7 @@
         },
 	{
           "type": "empty",
-          "weight": 10
+          "weight": 18
         }
       ]
     }

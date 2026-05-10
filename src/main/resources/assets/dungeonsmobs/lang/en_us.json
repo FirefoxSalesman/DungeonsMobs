@@ -1035,5 +1035,27 @@
   "item.dungeonsmobs.grim_helmet": "Grim Helmet",
   "item.dungeonsmobs.grim_leggings": "Grim Leggings",
   "item.dungeonsmobs.grim_boots": "Grim Boots",
-  "lore.dungeonsmobs.grim_armor": "Grim Armor invokes a sense of dread for the one who wears it and to those who face it in battle."
+  "lore.dungeonsmobs.grim_armor": "Grim Armor invokes a sense of dread for the one who wears it and to those who face it in battle.",
+  "item.dungeonsmobs.wither_chestplate": "Wither Chestplate",
+  "item.dungeonsmobs.wither_helmet": "Wither Helmet",
+  "item.dungeonsmobs.wither_leggings": "Wither Leggings",
+  "item.dungeonsmobs.wither_boots": "Wither Boots",
+  "lore.dungeonsmobs.wither_armor": "Wither Armor, crafted with the parts of slain enemies, was made to terrify the wearer's enemies.",
+
+  "item.dungeonsmobs.guards_chestplate": "Guard's Chestplate",
+  "item.dungeonsmobs.guards_helmet": "Guard's Helmet",
+  "item.dungeonsmobs.guards_leggings": "Guard's Leggings",
+  "item.dungeonsmobs.guards_boots": "Guard's Boots",
+  "lore.dungeonsmobs.guards_armor": "Cheap armor made in bulk, the Guard's Armor is a common sight in the villages of the Overworld.",
+  "item.dungeonsmobs.curious_chestplate": "Curious Chestplate",
+  "item.dungeonsmobs.curious_helmet": "Curious Helmet",
+  "item.dungeonsmobs.curious_leggings": "Curious Leggings",
+  "item.dungeonsmobs.curious_boots": "Curious Boots",
+  "lore.dungeonsmobs.curious_armor": "No one knows where this strange armor came from but it seems familiar to you.",
+
+  "item.dungeonsmobs.mercenary_chestplate": "Mercenary Chestplate",
+  "item.dungeonsmobs.mercenary_helmet": "Mercenary Helmet",
+  "item.dungeonsmobs.mercenary_leggings": "Mercenary Leggings",
+  "item.dungeonsmobs.mercenary_boots": "Mercenary Boots",
+  "lore.dungeonsmobs.mercenary_armor": "Mercenary Armor, favored by those looking to save some coin, lacks flair but gets the job done."
 }

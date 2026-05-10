@@ -1,0 +1,13 @@
+{
+  "attributes": [
+    {
+      "attribute": "dungeonsmobs:soul_gathering",
+      "amount": 0.125,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:life_steal_aura", "level": 1}],
+  "material": "dungeonsmobs:wither_bone",
+  "unique": true,
+  "rarity": "RARE"
+}

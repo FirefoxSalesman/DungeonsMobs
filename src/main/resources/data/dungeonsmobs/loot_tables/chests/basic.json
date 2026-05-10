@@ -375,6 +375,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:mercenary_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1 
         },
@@ -475,7 +495,7 @@
         },
 	{
           "type": "empty",
-          "weight": 158
+          "weight": 166
         }
       ]
     }

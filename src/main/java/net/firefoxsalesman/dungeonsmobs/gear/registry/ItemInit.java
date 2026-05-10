@@ -327,6 +327,12 @@ public class ItemInit {
 	public static final ArmorSetInit EVOCATION_ROBES = registerArmorSet("evocation_robes");
 	public static final ArmorSetInit EMBER_ROBES = registerArmorSet("ember_robes");
 	public static final ArmorSetInit GRIM_ARMOR = registerArmorSet("grim");
+	public static final ArmorSetInit WITHER_ARMOR = registerArmorSet("wither");
+	// public static final ArmorSetInit GUARDS_ARMOR = registerArmorSet("guards",
+	// BASIC);
+	// public static final ArmorSetInit CURIOUS_ARMOR = registerArmorSet("curious",
+	// BASIC);
+	public static final ArmorSetInit MERCENARY_ARMOR = registerArmorSet("mercenary");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
