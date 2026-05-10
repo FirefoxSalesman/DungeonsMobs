@@ -1057,5 +1057,16 @@
   "item.dungeonsmobs.mercenary_helmet": "Mercenary Helmet",
   "item.dungeonsmobs.mercenary_leggings": "Mercenary Leggings",
   "item.dungeonsmobs.mercenary_boots": "Mercenary Boots",
-  "lore.dungeonsmobs.mercenary_armor": "Mercenary Armor, favored by those looking to save some coin, lacks flair but gets the job done."
+  "lore.dungeonsmobs.mercenary_armor": "Mercenary Armor, favored by those looking to save some coin, lacks flair but gets the job done.",
+  "item.dungeonsmobs.renegade_chestplate": "Renegade Chestplate",
+  "item.dungeonsmobs.renegade_helmet": "Renegade Helmet",
+  "item.dungeonsmobs.renegade_leggings": "Renegade Leggings",
+  "item.dungeonsmobs.renegade_boots": "Renegade Boots",
+  "lore.dungeonsmobs.renegade_armor": "Renegade Armor made a fine payment for mercenaries hired to protect the villages against Illagers.",
+  "item.dungeonsmobs.hungry_horror_chestplate": "Hungry Horror Chestplate",
+  "item.dungeonsmobs.hungry_horror_helmet": "Hungry Horror Helmet",
+  "item.dungeonsmobs.hungry_horror_leggings": "Hungry Horror Leggings",
+  "item.dungeonsmobs.hungry_horror_boots": "Hungry Horror Boots",
+  "lore.dungeonsmobs.hungry_horror_armor": "When you wear this cloak, the sounds of screams fill the air. But are the screams yours, or your enemies?"
+
 }

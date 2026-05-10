@@ -494,8 +494,48 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_boots",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_boots",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 166
+          "weight": 174
         }
       ]
     }

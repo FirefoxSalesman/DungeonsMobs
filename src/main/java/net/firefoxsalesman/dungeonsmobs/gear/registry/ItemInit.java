@@ -333,6 +333,8 @@ public class ItemInit {
 	// public static final ArmorSetInit CURIOUS_ARMOR = registerArmorSet("curious",
 	// BASIC);
 	public static final ArmorSetInit MERCENARY_ARMOR = registerArmorSet("mercenary");
+	public static final ArmorSetInit RENEGADE_ARMOR = registerArmorSet("renegade");
+	public static final ArmorSetInit HUNGRY_HORROR = registerArmorSet("hungry_horror");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
