@@ -1067,6 +1067,16 @@
   "item.dungeonsmobs.hungry_horror_helmet": "Hungry Horror Helmet",
   "item.dungeonsmobs.hungry_horror_leggings": "Hungry Horror Leggings",
   "item.dungeonsmobs.hungry_horror_boots": "Hungry Horror Boots",
-  "lore.dungeonsmobs.hungry_horror_armor": "When you wear this cloak, the sounds of screams fill the air. But are the screams yours, or your enemies?"
+  "lore.dungeonsmobs.hungry_horror_armor": "When you wear this cloak, the sounds of screams fill the air. But are the screams yours, or your enemies?",
 
+  "item.dungeonsmobs.ocelot_chestplate": "Ocelot Vest",
+  "item.dungeonsmobs.ocelot_helmet": "Ocelot Hood",
+  "item.dungeonsmobs.ocelot_leggings": "Ocelot Leggings",
+  "item.dungeonsmobs.ocelot_boots": "Ocelot Boots",
+  "lore.dungeonsmobs.ocelot_armor": "You feel a rush of pure adrenaline surge through your body when you wear this Ocelot's pelt.",
+  "item.dungeonsmobs.shadow_walker_chestplate": "Shadow Walker Vest",
+  "item.dungeonsmobs.shadow_walker_helmet": "Shadow Walker Hood",
+  "item.dungeonsmobs.shadow_walker_leggings": "Shadow Walker Leggings",
+  "item.dungeonsmobs.shadow_walker_boots": "Shadow Walker Boots",
+  "lore.dungeonsmobs.shadow_walker_armor": "The legendary black Ocelot was as graceful as it was deadly. When you wear its pelt, you feel like your enemies are left chasing your shadow."
 }

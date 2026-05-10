@@ -49,8 +49,28 @@
           "weight": 2 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:hungry_horror_boots",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 18
+          "weight": 22
         }
       ]
     }

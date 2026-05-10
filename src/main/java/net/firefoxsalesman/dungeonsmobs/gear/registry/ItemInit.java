@@ -335,6 +335,8 @@ public class ItemInit {
 	public static final ArmorSetInit MERCENARY_ARMOR = registerArmorSet("mercenary");
 	public static final ArmorSetInit RENEGADE_ARMOR = registerArmorSet("renegade");
 	public static final ArmorSetInit HUNGRY_HORROR = registerArmorSet("hungry_horror");
+	public static final ArmorSetInit OCELOT_ARMOR = registerArmorSet("ocelot");
+	public static final ArmorSetInit SHADOW_WALKER_ARMOR = registerArmorSet("shadow_walker");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
