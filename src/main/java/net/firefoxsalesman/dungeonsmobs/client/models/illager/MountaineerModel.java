@@ -18,6 +18,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
 public class MountaineerModel<T extends MountaineerEntity> extends ConvenientModel<T> implements ArmedModel {
@@ -267,5 +268,13 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 		spine.translateAndRotate(pPoseStack);
 		arm1.translateAndRotate(pPoseStack);
 		hand.translateAndRotate(pPoseStack);
+	}
+
+	protected void applyHeadRotation(T entity, float netHeadYaw, float headPitch,
+			float ageInTicks) {
+		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
+		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
+		getHead().xRot = netHeadYaw * ((float) Math.PI / 180F);
+		getHead().zRot = headPitch * ((float) Math.PI / 180F);
 	}
 }

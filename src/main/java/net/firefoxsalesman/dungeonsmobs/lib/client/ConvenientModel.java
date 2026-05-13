@@ -54,7 +54,7 @@ public abstract class ConvenientModel<T extends Entity & KeyframeEntity> extends
 		root().render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
-	private void applyHeadRotation(T entity, float netHeadYaw, float headPitch,
+	protected void applyHeadRotation(T entity, float netHeadYaw, float headPitch,
 			float ageInTicks) {
 		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
 		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
