@@ -274,7 +274,7 @@ public class MountaineerModel<T extends MountaineerEntity> extends ConvenientMod
 			float ageInTicks) {
 		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
 		headPitch = Mth.clamp(headPitch, -30.0F, 30.0F);
-		getHead().xRot = netHeadYaw * ((float) Math.PI / 180F);
-		getHead().zRot = headPitch * ((float) Math.PI / 180F);
+		getHead().zRot = netHeadYaw * ((float) Math.PI / -180F);
+		getHead().xRot = headPitch * ((float) Math.PI / 180F);
 	}
 }
