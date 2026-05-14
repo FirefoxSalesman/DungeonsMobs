@@ -200,11 +200,6 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:soul_bow",
-          "weight": 2 
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:power_bow",
           "weight": 2 
         },
@@ -595,7 +590,7 @@
         },
 	{
           "type": "empty",
-          "weight": 206
+          "weight": 204
         }
       ]
     }

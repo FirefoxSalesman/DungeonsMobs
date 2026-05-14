@@ -50,6 +50,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:soul_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:hungry_horror_helmet",
           "weight": 1 
         },
@@ -69,8 +74,13 @@
           "weight": 1 
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:bow_of_lost_souls",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 22
+          "weight": 25
         }
       ]
     }

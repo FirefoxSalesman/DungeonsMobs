@@ -192,9 +192,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> HAUNTED_BOW = registerRangedWeapon("haunted_bow", bowSupplier);
 
 	public static final RegistryObject<Item> SOUL_BOW = registerRangedWeapon("soul_bow", bowSupplier);
-	// public static final RegistryObject<Item> BOW_OF_LOST_SOULS =
-	// registerRangedWeapon("bow_of_lost_souls",
-	// bowSupplier);
+	public static final RegistryObject<Item> BOW_OF_LOST_SOULS = registerRangedWeapon("bow_of_lost_souls",
+			bowSupplier);
 	public static final RegistryObject<Item> NOCTURNAL_BOW = registerRangedWeapon("nocturnal_bow", bowSupplier);
 	public static final RegistryObject<Item> SHIVERING_BOW = registerRangedWeapon("shivering_bow", bowSupplier);
 
