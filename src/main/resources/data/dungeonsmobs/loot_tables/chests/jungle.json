@@ -3,6 +3,46 @@
     {
       "rolls": 1,
       "entries": [
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ocelot_helmet",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ocelot_chestplate",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ocelot_leggings",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:ocelot_boots",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shadow_walker_helmet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shadow_walker_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shadow_walker_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:shadow_walker_boots",
+          "weight": 2 
+        },
         {
           "type": "item",
           "name": "dungeonsmobs:mauler",
@@ -15,7 +55,7 @@
         },
 	{
           "type": "empty",
-          "weight": 2
+          "weight": 26
         }
       ]
     }

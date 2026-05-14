@@ -55,6 +55,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:phantom_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:phantom_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:phantom_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:phantom_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:resolute_tempest_knife",
           "weight": 1
         },
@@ -74,8 +94,28 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:frost_bite_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:frost_bite_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:frost_bite_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:frost_bite_boots",
+          "weight": 1 
+        },
+	{
           "type": "empty",
-          "weight": 22
+          "weight": 34
         }
       ]
     }

@@ -17,18 +17,6 @@
           "loot_table_id": "minecraft:chests/simple_dungeon"
         },
 	{
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:chests/village/village_toolsmith"
-        },
-	{
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:chests/village/village_weaponsmith"
-        },
-	{
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:chests/village/village_tannery"
-        },
-	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "repurposed_structures:chests/mineshaft/birch"
 	},

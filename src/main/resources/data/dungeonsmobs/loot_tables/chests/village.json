@@ -1,0 +1,118 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_helmet",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_chestplate",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_leggings",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:champions_boots",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heros_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heros_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heros_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heros_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:mercenary_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:bonebow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:twin_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:haunted_bow",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:fireworks_display",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:broadsword",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_helmet",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_chestplate",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_leggings",
+          "weight": 1 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:renegade_boots",
+          "weight": 1 
+        },
+	{
+          "type": "empty",
+          "weight": 46
+        }
+      ]
+    }
+  ]
+}

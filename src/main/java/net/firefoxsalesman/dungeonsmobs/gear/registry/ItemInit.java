@@ -328,9 +328,9 @@ public class ItemInit {
 	public static final ArmorSetInit GRIM_ARMOR = registerArmorSet("grim");
 	public static final ArmorSetInit WITHER_ARMOR = registerArmorSet("wither");
 	// public static final ArmorSetInit GUARDS_ARMOR = registerArmorSet("guards",
-	// BASIC);
+	// VILLAGE);
 	// public static final ArmorSetInit CURIOUS_ARMOR = registerArmorSet("curious",
-	// BASIC);
+	// VILLAGE);
 	public static final ArmorSetInit MERCENARY_ARMOR = registerArmorSet("mercenary");
 	public static final ArmorSetInit RENEGADE_ARMOR = registerArmorSet("renegade");
 	public static final ArmorSetInit HUNGRY_HORROR = registerArmorSet("hungry_horror");

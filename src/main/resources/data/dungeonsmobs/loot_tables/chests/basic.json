@@ -70,46 +70,6 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:champions_helmet",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:champions_chestplate",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:champions_leggings",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:champions_boots",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:ocelot_helmet",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:ocelot_chestplate",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:ocelot_leggings",
-          "weight": 4 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:ocelot_boots",
-          "weight": 4 
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:flail",
           "weight": 2 
         },
@@ -155,17 +115,12 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:masters_katana",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:broadsword",
-          "weight": 2 
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:heartstealer",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:masters_katana",
           "weight": 2 
         },
 	{
@@ -181,21 +136,6 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:great_hammer",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:bonebow",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:twin_bow",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:haunted_bow",
           "weight": 2 
         },
 	{
@@ -305,11 +245,6 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:fireworks_display",
-          "weight": 2 
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:evocation_robes_helmet",
           "weight": 2 
         },
@@ -350,26 +285,6 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:heros_helmet",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:heros_chestplate",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:heros_leggings",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:heros_boots",
-          "weight": 2 
-        },
-	{
-          "type": "item",
           "name": "dungeonsmobs:grim_helmet",
           "weight": 2 
         },
@@ -386,66 +301,6 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:grim_boots",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:mercenary_helmet",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:mercenary_chestplate",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:mercenary_leggings",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:mercenary_boots",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:shadow_walker_helmet",
-          "weight": 2
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:shadow_walker_chestplate",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:shadow_walker_leggings",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:shadow_walker_boots",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:phantom_helmet",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:phantom_chestplate",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:phantom_leggings",
-          "weight": 2 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:phantom_boots",
           "weight": 2 
         },
 	{
@@ -569,48 +424,8 @@
           "weight": 1 
         },
 	{
-          "type": "item",
-          "name": "dungeonsmobs:renegade_helmet",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:renegade_chestplate",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:renegade_leggings",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:renegade_boots",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:frost_bite_helmet",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:frost_bite_chestplate",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:frost_bite_leggings",
-          "weight": 1 
-        },
-	{
-          "type": "item",
-          "name": "dungeonsmobs:frost_bite_boots",
-          "weight": 1 
-        },
-	{
           "type": "empty",
-          "weight": 212
+          "weight": 140
         }
       ]
     }
