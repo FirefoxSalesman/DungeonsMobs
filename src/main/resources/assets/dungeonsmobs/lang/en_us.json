@@ -1078,5 +1078,16 @@
   "item.dungeonsmobs.shadow_walker_helmet": "Shadow Walker Hood",
   "item.dungeonsmobs.shadow_walker_leggings": "Shadow Walker Leggings",
   "item.dungeonsmobs.shadow_walker_boots": "Shadow Walker Boots",
-  "lore.dungeonsmobs.shadow_walker_armor": "The legendary black Ocelot was as graceful as it was deadly. When you wear its pelt, you feel like your enemies are left chasing your shadow."
+  "lore.dungeonsmobs.shadow_walker_armor": "The legendary black Ocelot was as graceful as it was deadly. When you wear its pelt, you feel like your enemies are left chasing your shadow.",
+  
+  "item.dungeonsmobs.phantom_chestplate": "Phantom Chestplate",
+  "item.dungeonsmobs.phantom_helmet": "Phantom Helmet",
+  "item.dungeonsmobs.phantom_leggings": "Phantom Leggings",
+  "item.dungeonsmobs.phantom_boots": "Phantom Boots",
+  "lore.dungeonsmobs.phantom_armor": "This armor, crafted from the bones of Phantoms, is a terrifying sight on the battlefield.",
+  "item.dungeonsmobs.frost_bite_chestplate": "Frost Bite Chestplate",
+  "item.dungeonsmobs.frost_bite_helmet": "Frost Bite Helmet",
+  "item.dungeonsmobs.frost_bite_leggings": "Frost Bite Leggings",
+  "item.dungeonsmobs.frost_bite_boots": "Frost Bite Boots",
+  "lore.dungeonsmobs.frost_bite_armor": "Frost Bite remembers the icy winds which once flowed beneath the wings of the night Phantoms."
 }

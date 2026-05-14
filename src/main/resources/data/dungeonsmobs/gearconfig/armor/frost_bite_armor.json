@@ -1,0 +1,18 @@
+{
+  "attributes": [
+    {
+      "attribute": "dungeonsmobs:ranged_damage_multiplier",
+      "amount": 0.075,
+      "operation": 1
+    },
+    {
+      "attribute": "dungeonsmobs:soul_gathering",
+      "amount": 0.125,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:snowball", "level": 1}],
+  "material": "dungeonsmobs:bone",
+  "unique": true,
+  "rarity": "RARE"
+}
