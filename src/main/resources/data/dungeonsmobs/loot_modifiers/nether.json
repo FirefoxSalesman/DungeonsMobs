@@ -187,6 +187,14 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "dungeons_plus:chests/warped_garden/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_portal/ancient_portal_nether"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/necromancers_spire/necromancers_spire"
 	}
       ]
     }

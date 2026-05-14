@@ -6,6 +6,10 @@
       "terms": [
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ancient_city"
+        },
+	{
+          "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/stronghold_corridor"
         },
         {
@@ -315,6 +319,90 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "dungeons_plus:chests/vanilla_dungeon"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_mines/mineshall"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_portal/ancient_portal_overworld"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_statue/ancient_statue_treasure_plains"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/archmages_tower/archmages_tower"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/collectors_museum/museum_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/collectors_museum/museum_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/fishermans_lodge/fishermans_lodge_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/haunted_manor/haunted_manor_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/haunted_manor/haunted_manor_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/hermits_hollow/hollow_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/hunters_cabin/hunters_cabin_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/nexus/nexus"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/pillager_camp/pillager_camp"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/pillager_fortress/pillager_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ruins_of_the_deep/ruins_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/the_log/the_log_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/tinkers_citadel/tinkers_citadel_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/tinkers_workshop/tinkers_workshop_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/train_ruins/train_ruins_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/windswept_shrine/windswept_shrine"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/witches_treestump/witches_treestump"
 	}
       ]
     }

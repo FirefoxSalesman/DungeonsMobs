@@ -55,6 +55,18 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "dungeons_plus:chests/snowy_temple/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/dread_citadel/dread_citadel"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/dread_citadel/dread_citadel_throne"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/frozen_crypt/frozen_crypt"
 	}
       ]
     }

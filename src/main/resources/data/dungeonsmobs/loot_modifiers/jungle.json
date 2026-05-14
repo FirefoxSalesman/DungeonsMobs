@@ -39,6 +39,10 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "repurposed_structures:chests/pyramid/jungle_chest"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_statue/ancient_statue_treasure_jungle"
 	}
       ]
     }

@@ -15,7 +15,59 @@
 	{
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/village/village_tannery"
-        }
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "idas:chests/bazaar/bazaar_tools"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "idas:chests/bearclaw_inn/bearclaw_inn_bedroom"
+        },
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/beekeepers_house/beekeepers_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/botanist/botanist_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/castle/castle_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/castle/castle_throne"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/dig_site/dig_site_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/dig_site/dig_site_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/mason_house/mason_house_bedroom"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/redhorn_guild/redhorn_guild_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/treetop_tavern/treetop_tavern_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/tudor_pub/tudor_pub_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/winter_wagon/winter_wagon_tools"
+	}
       ]
     }
   ],

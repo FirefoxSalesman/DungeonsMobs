@@ -43,6 +43,30 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "dungeons_plus:chests/leviathan/common"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/ancient_statue/ancient_statue_treasure_desert"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/desert_pyramid/desert_pyramid_tomb"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/desert_pyramid/desert_pyramid_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/desert_pyramid/desert_pyramid_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/labyrinth/labyrinth_tomb"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "idas:chests/labyrinth/labyrinth_treasure"
 	}
       ]
     }

@@ -39,6 +39,18 @@
 	{
           "condition": "forge:loot_table_id",
           "loot_table_id": "repurposed_structures:chests/pyramid/ocean_chest"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "idas:chests/ruins_of_the_deep/ruins_ocean"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "idas:chests/ruins_of_the_deep/ruins_treasure"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "idas:chests/sunken_ship/sunken_ship_supply"
         }
       ]
     }
