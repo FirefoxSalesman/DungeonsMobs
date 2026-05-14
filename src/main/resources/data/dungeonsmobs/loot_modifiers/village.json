@@ -67,6 +67,74 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "idas:chests/winter_wagon/winter_wagon_tools"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/airship_village/airship_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/airship_village/airship_village_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/cabin_village/cabin_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/clockwork_village/clockwork_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/kutcha_village/kutcha_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/marketstead_village/marketstead_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/mediterranean_village/mediterranean_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/minka_village/minka_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/minka_village/minka_village_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/mossy_mounds_village/mossy_mounds_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/mossy_mounds_village/mossy_mounds_village_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/oasis_village/oasis_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/pirate_village/pirate_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/pirate_village/pirate_village_treasure"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/swamp_village/swamp_village_armorer"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/swamp_village/swamp_village_blacksmith"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_villages:chests/tavern_village/tavern_village_blacksmith"
 	}
       ]
     }
