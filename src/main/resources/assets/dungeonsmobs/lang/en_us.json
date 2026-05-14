@@ -1096,5 +1096,27 @@
   "item.dungeonsmobs.full_metal_helmet": "Full Metal Helmet",
   "item.dungeonsmobs.full_metal_leggings": "Full Metal Leggings",
   "item.dungeonsmobs.full_metal_boots": "Full Metal Boots",
-  "lore.dungeonsmobs.full_metal_armor": "Full Metal Armor is destined for the great defenders of the Overworld."
+  "lore.dungeonsmobs.full_metal_armor": "Full Metal Armor is destined for the great defenders of the Overworld.",
+  
+  "item.dungeonsmobs.reinforced_mail_chestplate": "Reinforced Mail Chestplate",
+  "item.dungeonsmobs.reinforced_mail_helmet": "Reinforced Mail Helmet",
+  "item.dungeonsmobs.reinforced_mail_leggings": "Reinforced Mail Leggings",
+  "item.dungeonsmobs.reinforced_mail_boots": "Reinforced Mail Boots",
+  "lore.dungeonsmobs.reinforced_mail_armor": "Mostly worn by casual adventurers, Reinforced Mail is a common sight throughout the land.",
+  "item.dungeonsmobs.stalwart_chestplate": "Stalwart Chestplate",
+  "item.dungeonsmobs.stalwart_helmet": "Stalwart Helmet",
+  "item.dungeonsmobs.stalwart_leggings": "Stalwart Leggings",
+  "item.dungeonsmobs.stalwart_boots": "Stalwart Boots",
+  "lore.dungeonsmobs.stalwart_armor": "This reliable armor is sturdy enough to be passed down for generations.",
+  
+  "item.dungeonsmobs.scale_mail_chestplate": "Scale Mail Chestplate",
+  "item.dungeonsmobs.scale_mail_helmet": "Scale Mail Helmet",
+  "item.dungeonsmobs.scale_mail_leggings": "Scale Mail Leggings",
+  "item.dungeonsmobs.scale_mail_boots": "Scale Mail Boots",
+  "lore.dungeonsmobs.scale_mail_armor": "This armor, crafted near the shores of a great sea, was inspired by the scales of fish.",
+  "item.dungeonsmobs.highland_chestplate": "Highland Chestplate",
+  "item.dungeonsmobs.highland_helmet": "Highland Helmet",
+  "item.dungeonsmobs.highland_leggings": "Highland Leggings",
+  "item.dungeonsmobs.highland_boots": "Highland Boots",
+  "lore.dungeonsmobs.highland_armor": "A wise armorer made this armor with care."
 }

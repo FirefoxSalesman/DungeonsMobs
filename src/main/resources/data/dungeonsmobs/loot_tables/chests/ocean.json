@@ -10,6 +10,31 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:cutlass",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heavy_plate_helmet",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heavy_plate_chestplate",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heavy_plate_leggings",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:heavy_plate_boots",
+          "weight": 4 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:dancers_sword",
           "weight": 2 
         },

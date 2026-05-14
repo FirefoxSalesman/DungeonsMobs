@@ -341,6 +341,13 @@ public class ItemInit {
 	public static final ArmorSetInit PLATE_ARMOR = registerArmorSet("plate");
 	// public static final ArmorSetInit FULL_METAL_ARMOR =
 	// registerArmorSet("full_metal", BASIC);
+	// public static final ArmorSetInit REINFORCED_MAIL =
+	// registerArmorSet("reinforced_mail", BASIC);
+	// public static final ArmorSetInit STALWART_ARMOR =
+	// registerArmorSet("stalwart", BASIC);
+	public static final ArmorSetInit SCALE_MAIL = registerArmorSet("scale_mail");
+	// public static final ArmorSetInit HIGHLAND_ARMOR =
+	// registerArmorSet("highland", BASIC);
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
