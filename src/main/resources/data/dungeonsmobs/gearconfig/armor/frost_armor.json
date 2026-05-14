@@ -1,0 +1,8 @@
+{
+  "attributes": [
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:chilling", "level": 1}],
+  "material": "dungeonsmobs:heavy_plate",
+  "unique": true,
+  "rarity": "RARE"
+}

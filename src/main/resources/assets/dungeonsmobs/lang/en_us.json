@@ -1118,5 +1118,16 @@
   "item.dungeonsmobs.highland_helmet": "Highland Helmet",
   "item.dungeonsmobs.highland_leggings": "Highland Leggings",
   "item.dungeonsmobs.highland_boots": "Highland Boots",
-  "lore.dungeonsmobs.highland_armor": "A wise armorer made this armor with care."
+  "lore.dungeonsmobs.highland_armor": "A wise armorer made this armor with care.",
+
+  "item.dungeonsmobs.snow_chestplate": "Snow Chestplate",
+  "item.dungeonsmobs.snow_helmet": "Snow Helmet",
+  "item.dungeonsmobs.snow_leggings": "Snow Leggings",
+  "item.dungeonsmobs.snow_boots": "Snow Boots",
+  "lore.dungeonsmobs.snow_armor": "A suit of armor that was tempered in snowmelt, protecting the wearer from the harsh cold of the tundra.",
+  "item.dungeonsmobs.frost_chestplate": "Frost Chestplate",
+  "item.dungeonsmobs.frost_helmet": "Frost Helmet",
+  "item.dungeonsmobs.frost_leggings": "Frost Leggings",
+  "item.dungeonsmobs.frost_boots": "Frost Boots",
+  "lore.dungeonsmobs.frost_armor": "This legendary armor, forged from ice that never melts, makes the wearer feel as if they are one with winter."
 }

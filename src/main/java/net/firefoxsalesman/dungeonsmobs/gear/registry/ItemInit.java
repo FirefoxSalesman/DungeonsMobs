@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
+import net.firefoxsalesman.dungeonsmobs.gear.items.armor.FreezingResistanceArmorGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BuzzyNestItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
@@ -37,11 +38,12 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedPum
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.EyeOfTheGuardianItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
-import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
+import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
@@ -348,24 +350,25 @@ public class ItemInit {
 	public static final ArmorSetInit SCALE_MAIL = registerArmorSet("scale_mail");
 	// public static final ArmorSetInit HIGHLAND_ARMOR =
 	// registerArmorSet("highland", BASIC);
+	public static final ArmorSetInit SNOW_ARMOR = registerFreezingResistanceArmorSet("snow");
+	public static final ArmorSetInit FROST_ARMOR = registerFreezingResistanceArmorSet("frost");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
 			return null;
 		RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
-		ARMORS.put(GeneralHelper.modLoc(armorId), register);
+		ARMORS.put(modLoc(armorId), register);
 		return register;
 	}
 
 	private static ArmorSetInit registerArmorSet(String armorSetName, boolean animated) {
 		String armorSetId = armorSetName + "_armor";
-		ResourceLocation armorSetResource = new ResourceLocation(MOD_ID, armorSetId);
-		ResourceLocation modelLocation = new ResourceLocation(MOD_ID, "geo/armor/" + armorSetId + ".geo.json");
-		ResourceLocation textureLocation = new ResourceLocation(MOD_ID,
-				"textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation armorSetResource = modLoc(armorSetId);
+		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
 		ResourceLocation animationFileLocation = animated
-				? new ResourceLocation(MOD_ID, "animations/armor/" + armorSetId + ".animation.json")
-				: new ResourceLocation(MOD_ID, "animations/armor/armor_default.animation.json");
+				? modLoc("animations/armor/" + armorSetId + ".animation.json")
+				: modLoc("animations/armor/armor_default.animation.json");
 		ArmorSetInit armorSet = new ArmorSetInit(
 				armorSetId,
 				registerArmor(armorSetName + "_helmet",
@@ -387,25 +390,53 @@ public class ItemInit {
 		return armorSet;
 	}
 
+	private static ArmorSetInit registerFreezingResistanceArmorSet(String armorSetName) {
+		String armorSetId = armorSetName + "_armor";
+		ResourceLocation armorSetResource = modLoc(armorSetId);
+		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = ResourceLocationHelper.modLoc(
+				"animations/armor/armor_default.animation.json");
+		ArmorSetInit armorSet = new ArmorSetInit(
+				armorSetId,
+				registerArmor(armorSetName + "_helmet",
+						() -> new FreezingResistanceArmorGear(Type.HELMET,
+								PROPERTIES, armorSetResource, modelLocation,
+								textureLocation, animationFileLocation)),
+				registerArmor(armorSetName + "_chestplate",
+						() -> new FreezingResistanceArmorGear(Type.CHESTPLATE,
+								PROPERTIES, armorSetResource, modelLocation,
+								textureLocation, animationFileLocation)),
+				registerArmor(armorSetName + "_leggings",
+						() -> new FreezingResistanceArmorGear(Type.LEGGINGS,
+								PROPERTIES, armorSetResource, modelLocation,
+								textureLocation, animationFileLocation)),
+				registerArmor(armorSetName + "_boots",
+						() -> new FreezingResistanceArmorGear(Type.BOOTS,
+								PROPERTIES, armorSetResource, modelLocation,
+								textureLocation, animationFileLocation)));
+		return armorSet;
+	}
+
 	private static ArmorSetInit registerArmorSet(String armorSetId) {
 		return registerArmorSet(armorSetId, false);
 	}
 
 	private static RegistryObject<Item> registerMeleeWeapon(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
-		MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);
+		MELEE_WEAPONS.put(modLoc(meleeWeaponId), register);
 		return register;
 	}
 
 	private static RegistryObject<Item> registerRangedWeapon(String rangedWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(rangedWeaponId, itemSupplier);
-		RANGED_WEAPONS.put(GeneralHelper.modLoc(rangedWeaponId), register);
+		RANGED_WEAPONS.put(modLoc(rangedWeaponId), register);
 		return register;
 	}
 
 	private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier) {
 		RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
-		ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
+		ARTIFACTS.put(modLoc(meleeWeaponId), register);
 		return register;
 	}
 
