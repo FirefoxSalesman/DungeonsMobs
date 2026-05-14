@@ -195,6 +195,10 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "idas:chests/necromancers_spire/necromancers_spire"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/nether_portal"
 	}
       ]
     }

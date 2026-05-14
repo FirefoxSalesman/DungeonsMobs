@@ -403,6 +403,42 @@
 	{
 	  "condition": "forge:loot_table_id",
 	  "loot_table_id": "idas:chests/witches_treestump/witches_treestump"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/armory"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/crypt"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/intersection"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/maze"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/prison"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/sanctorum"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/storage"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/stronghold"
+	},
+	{
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "integrated_stronghold:chests/torture_chamber"
 	}
       ]
     }
