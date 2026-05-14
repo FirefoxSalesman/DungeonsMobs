@@ -338,6 +338,9 @@ public class ItemInit {
 	public static final ArmorSetInit SHADOW_WALKER_ARMOR = registerArmorSet("shadow_walker");
 	public static final ArmorSetInit PHANTOM_ARMOR = registerArmorSet("phantom");
 	public static final ArmorSetInit FROST_BITE = registerArmorSet("frost_bite");
+	public static final ArmorSetInit PLATE_ARMOR = registerArmorSet("plate");
+	// public static final ArmorSetInit FULL_METAL_ARMOR =
+	// registerArmorSet("full_metal", BASIC);
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

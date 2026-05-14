@@ -450,6 +450,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:plate_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:plate_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:plate_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:plate_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1 
         },
@@ -590,7 +610,7 @@
         },
 	{
           "type": "empty",
-          "weight": 204
+          "weight": 212
         }
       ]
     }

@@ -1089,5 +1089,16 @@
   "item.dungeonsmobs.frost_bite_helmet": "Frost Bite Helmet",
   "item.dungeonsmobs.frost_bite_leggings": "Frost Bite Leggings",
   "item.dungeonsmobs.frost_bite_boots": "Frost Bite Boots",
-  "lore.dungeonsmobs.frost_bite_armor": "Frost Bite remembers the icy winds which once flowed beneath the wings of the night Phantoms."
+  "lore.dungeonsmobs.frost_bite_armor": "Frost Bite remembers the icy winds which once flowed beneath the wings of the night Phantoms.",
+  
+  "item.dungeonsmobs.plate_chestplate": "Plate Chestplate",
+  "item.dungeonsmobs.plate_helmet": "Plate Helmet",
+  "item.dungeonsmobs.plate_leggings": "Plate Leggings",
+  "item.dungeonsmobs.plate_boots": "Plate Boots",
+  "lore.dungeonsmobs.plate_armor": "Plate Armor turns the average soldier into a fortress but comes with reduced mobility.",
+  "item.dungeonsmobs.full_metal_chestplate": "Full Metal Chestplate",
+  "item.dungeonsmobs.full_metal_helmet": "Full Metal Helmet",
+  "item.dungeonsmobs.full_metal_leggings": "Full Metal Leggings",
+  "item.dungeonsmobs.full_metal_boots": "Full Metal Boots",
+  "lore.dungeonsmobs.full_metal_armor": "Full Metal Armor is destined for the great defenders of the Overworld."
 }
