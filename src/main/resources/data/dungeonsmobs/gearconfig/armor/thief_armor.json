@@ -1,0 +1,13 @@
+{
+  "attributes": [
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": 0.06,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [],
+  "material": "minecraft:leather",
+  "unique": false,
+  "rarity": "UNCOMMON"
+}

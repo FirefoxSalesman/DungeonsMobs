@@ -357,6 +357,8 @@ public class ItemInit {
 	public static final ArmorSetInit SOULDANCER_ROBES = registerArmorSet("souldancer");
 	public static final ArmorSetInit SPELUNKER_ARMOR = registePetBatArmorSet("spelunker");
 	public static final ArmorSetInit CAVE_CRAWLER = registePetBatArmorSet("cave_crawler");
+	public static final ArmorSetInit THIEF_ARMOR = registerArmorSet("thief");
+	public static final ArmorSetInit SPIDER_ARMOR = registerArmorSet("spider");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

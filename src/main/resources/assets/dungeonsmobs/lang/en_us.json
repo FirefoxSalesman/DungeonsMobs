@@ -1151,5 +1151,16 @@
   "item.dungeonsmobs.cave_crawler_helmet": "Cave Crawler Helmet",
   "item.dungeonsmobs.cave_crawler_leggings": "Cave Crawler Leggings",
   "item.dungeonsmobs.cave_crawler_boots": "Cave Crawler Boots",
-  "lore.dungeonsmobs.cave_crawler_armor": "The Cave Crawler armor has been passed down through generations of brave spelunkers and miners."
+  "lore.dungeonsmobs.cave_crawler_armor": "The Cave Crawler armor has been passed down through generations of brave spelunkers and miners.",
+
+  "item.dungeonsmobs.thief_chestplate": "Thief Vest",
+  "item.dungeonsmobs.thief_helmet": "Thief Hood",
+  "item.dungeonsmobs.thief_leggings": "Thief Leggings",
+  "item.dungeonsmobs.thief_boots": "Thief Boots",
+  "lore.dungeonsmobs.thief_armor": "This armor is light, nimble, and smells faintly of sulfur.",
+  "item.dungeonsmobs.spider_chestplate": "Spider Vest",
+  "item.dungeonsmobs.spider_helmet": "Spider Hood",
+  "item.dungeonsmobs.spider_leggings": "Spider Leggings",
+  "item.dungeonsmobs.spider_boots": "Spider Boots",
+  "lore.dungeonsmobs.spider_armor": "Spider Armor, created by master thieves, is inspired by the agile talents of the Spider."
 }

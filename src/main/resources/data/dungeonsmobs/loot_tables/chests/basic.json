@@ -90,6 +90,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:thief_helmet",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:thief_chestplate",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:thief_leggings",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:thief_boots",
+          "weight": 4
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:flail",
           "weight": 2
         },
@@ -365,6 +385,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:spider_helmet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spider_chestplate",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spider_leggings",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spider_boots",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1
         },
@@ -465,7 +505,7 @@
         },
 	{
           "type": "empty",
-          "weight": 156
+          "weight": 180
         }
       ]
     }
