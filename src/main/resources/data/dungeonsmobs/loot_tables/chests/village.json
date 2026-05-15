@@ -45,6 +45,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:fox_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:fox_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:fox_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:fox_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:mercenary_helmet",
           "weight": 2 
         },

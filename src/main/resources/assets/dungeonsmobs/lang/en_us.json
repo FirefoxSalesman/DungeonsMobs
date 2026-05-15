@@ -1162,5 +1162,21 @@
   "item.dungeonsmobs.spider_helmet": "Spider Hood",
   "item.dungeonsmobs.spider_leggings": "Spider Leggings",
   "item.dungeonsmobs.spider_boots": "Spider Boots",
-  "lore.dungeonsmobs.spider_armor": "Spider Armor, created by master thieves, is inspired by the agile talents of the Spider."
+  "lore.dungeonsmobs.spider_armor": "Spider Armor, created by master thieves, is inspired by the agile talents of the Spider.",
+
+  "item.dungeonsmobs.wolf_chestplate": "Wolf Vest",
+  "item.dungeonsmobs.wolf_helmet": "Wolf Hood",
+  "item.dungeonsmobs.wolf_leggings": "Wolf Leggings",
+  "item.dungeonsmobs.wolf_boots": "Wolf Boots",
+  "lore.dungeonsmobs.wolf_armor": "Many warriors wear the heads of wolves into battle to strike fear into the hearts of their enemies.",
+  "item.dungeonsmobs.fox_chestplate": "Fox Vest",
+  "item.dungeonsmobs.fox_helmet": "Fox Hood",
+  "item.dungeonsmobs.fox_leggings": "Fox Leggings",
+  "item.dungeonsmobs.fox_boots": "Fox Boots",
+  "lore.dungeonsmobs.fox_armor": "Ancient Villager tribes created this armor to honor the fox, who is a great and agile warrior. This piece strikes terror into the hearts of many enemies as it has a reputation for being quite difficult to pierce.",
+  "item.dungeonsmobs.arctic_fox_chestplate": "Arctic Fox Vest",
+  "item.dungeonsmobs.arctic_fox_helmet": "Arctic Fox Hood",
+  "item.dungeonsmobs.arctic_fox_leggings": "Arctic Fox Leggings",
+  "item.dungeonsmobs.arctic_fox_boots": "Arctic Fox Boots",
+  "lore.dungeonsmobs.arctic_fox_armor": "If you want to survive the icy tundra in style, the Arctic Fox Armor is the best choice this season."
 }

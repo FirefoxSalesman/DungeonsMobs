@@ -5,6 +5,26 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:wolf_helmet",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wolf_chestplate",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wolf_leggings",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wolf_boots",
+          "weight": 4 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:frost_scythe",
           "weight": 2 
         },
@@ -95,6 +115,26 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:artic_fox_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:artic_fox_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:artic_fox_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:artic_fox_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:resolute_tempest_knife",
           "weight": 1
         },
@@ -155,7 +195,7 @@
         },
 	{
           "type": "empty",
-          "weight": 46
+          "weight": 78
         }
       ]
     }
