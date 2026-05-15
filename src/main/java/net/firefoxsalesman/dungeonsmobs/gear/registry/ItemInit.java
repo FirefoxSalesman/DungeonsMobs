@@ -360,10 +360,12 @@ public class ItemInit {
 	public static final ArmorSetInit CAVE_CRAWLER = registePetBatArmorSet("cave_crawler");
 	public static final ArmorSetInit THIEF_ARMOR = registerArmorSet("thief");
 	public static final ArmorSetInit SPIDER_ARMOR = registerArmorSet("spider");
-
 	public static final ArmorSetInit WOLF_ARMOR = registerArmorSet("wolf");
 	public static final ArmorSetInit FOX_ARMOR = registerArmorSet("fox");
 	public static final ArmorSetInit ARCTIC_FOX_ARMOR = registerArmorSet("arctic_fox");
+	public static final ArmorSetInit CLIMBING_GEAR = registerArmorSet("climbing");
+	public static final ArmorSetInit RUGGED_CLIMBING_GEAR = registerFreezingResistanceArmorSet("rugged_climbing");
+	// public static final ArmorSetInit GOAT_GEAR = registerArmorSet("goat", COLD);
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

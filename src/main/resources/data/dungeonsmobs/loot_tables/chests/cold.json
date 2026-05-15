@@ -6,132 +6,152 @@
         {
           "type": "item",
           "name": "dungeonsmobs:wolf_helmet",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:wolf_chestplate",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:wolf_leggings",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:wolf_boots",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_scythe",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:freezing_foil",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:fang_of_frost",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_slayer",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:tempest_knife",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:snow_bow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:wind_bow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:wind_horn",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:satchel_of_elements",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:updraft_tome",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:phantom_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:phantom_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:phantom_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:phantom_boots",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:snow_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:snow_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:snow_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:snow_boots",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:artic_fox_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:artic_fox_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:artic_fox_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:artic_fox_boots",
-          "weight": 2 
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:rugged_climbing_helmet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:rugged_climbing_chestplate",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:rugged_climbing_leggings",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:rugged_climbing_boots",
+          "weight": 2
         },
 	{
           "type": "item",
@@ -156,46 +176,66 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_bite_helmet",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_bite_chestplate",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_bite_leggings",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_bite_boots",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_helmet",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_chestplate",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_leggings",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:frost_boots",
-          "weight": 1 
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:climbing_helmet",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:climbing_chestplate",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:climbing_leggings",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:climbing_boots",
+          "weight": 1
         },
 	{
           "type": "empty",
-          "weight": 78
+          "weight": 90
         }
       ]
     }

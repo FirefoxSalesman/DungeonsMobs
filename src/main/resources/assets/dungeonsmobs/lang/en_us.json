@@ -1178,5 +1178,21 @@
   "item.dungeonsmobs.arctic_fox_helmet": "Arctic Fox Hood",
   "item.dungeonsmobs.arctic_fox_leggings": "Arctic Fox Leggings",
   "item.dungeonsmobs.arctic_fox_boots": "Arctic Fox Boots",
-  "lore.dungeonsmobs.arctic_fox_armor": "If you want to survive the icy tundra in style, the Arctic Fox Armor is the best choice this season."
+  "lore.dungeonsmobs.arctic_fox_armor": "If you want to survive the icy tundra in style, the Arctic Fox Armor is the best choice this season.",
+
+  "item.dungeonsmobs.climbing_chestplate": "Climbing Vest",
+  "item.dungeonsmobs.climbing_helmet": "Climbing Hood",
+  "item.dungeonsmobs.climbing_leggings": "Climbing Leggings",
+  "item.dungeonsmobs.climbing_boots": "Climbing Boots",
+  "lore.dungeonsmobs.climbing_armor": "This sturdy Climbing Gear is perfect for braving the blistering cold of the icy mountain face.",
+  "item.dungeonsmobs.rugged_climbing_chestplate": "Rugged Climbing Vest",
+  "item.dungeonsmobs.rugged_climbing_helmet": "Rugged Climbing Gear Hood",
+  "item.dungeonsmobs.rugged_climbing_leggings": "Rugged Climbing Gear Leggings",
+  "item.dungeonsmobs.rugged_climbing_boots": "Rugged Climbing Gear Boots",
+  "lore.dungeonsmobs.rugged_climbing_armor": "Take on the worst that nature can throw at you in this rugged armor.",
+  "item.dungeonsmobs.goat_chestplate": "Goat Vest",
+  "item.dungeonsmobs.goat_helmet": "Goat Hood",
+  "item.dungeonsmobs.goat_leggings": "Goat Leggings",
+  "item.dungeonsmobs.goat_boots": "Goat Boots",
+  "lore.dungeonsmobs.goat_armor": "Made from the pelts of Mountain Goats, you'll feel like skipping from peak to peak in this Goat Gear."
 }

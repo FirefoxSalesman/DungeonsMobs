@@ -1,0 +1,18 @@
+{
+  "attributes": [
+    {
+      "attribute": "dungeonsmobs:artifact_cooldown_multiplier",
+      "amount": -0.1,
+      "operation": 1
+    },
+    {
+      "attribute": "minecraft:generic.knockback_resistance",
+      "amount": 0.10,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:melee_aura", "level": 1}],
+  "material": "dungeonsmobs:pelt",
+  "unique": false,
+  "rarity": "UNCOMMON"
+}
