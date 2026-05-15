@@ -1194,5 +1194,33 @@
   "item.dungeonsmobs.goat_helmet": "Goat Hood",
   "item.dungeonsmobs.goat_leggings": "Goat Leggings",
   "item.dungeonsmobs.goat_boots": "Goat Boots",
-  "lore.dungeonsmobs.goat_armor": "Made from the pelts of Mountain Goats, you'll feel like skipping from peak to peak in this Goat Gear."
+  "lore.dungeonsmobs.goat_armor": "Made from the pelts of Mountain Goats, you'll feel like skipping from peak to peak in this Goat Gear.",
+
+  "item.dungeons_gmobsmerald_chestplate": "Emerald Chestplate",
+  "item.dungeonsmobs.emerald_helmet": "Emerald Helmet",
+  "item.dungeonsmobs.emerald_leggings": "Emerald Leggings",
+  "item.dungeonsmobs.emerald_boots": "Emerald Boots",
+  "lore.dungeonsmobs.emerald_armor": "As you wear the Emerald Armor during your adventures, it calls other emeralds to you as if by chance.",
+  "item.dungeonsmobs.gilded_glory_chestplate": "Gilded Glory Chestplate",
+  "item.dungeonsmobs.gilded_glory_helmet": "Gilded Glory Helmet",
+  "item.dungeonsmobs.gilded_glory_leggings": "Gilded Glory Leggings",
+  "item.dungeonsmobs.gilded_glory_boots": "Gilded Glory Boots",
+  "lore.dungeonsmobs.gilded_glory_armor": "Even death itself has to pause and admire the charms of the legendary Gilded Glory armor.",
+  "item.dungeonsmobs.opulent_chestplate": "Opulent Chestplate",
+  "item.dungeonsmobs.opulent_helmet": "Opulent Helmet",
+  "item.dungeonsmobs.opulent_leggings": "Opulent Leggings",
+  "item.dungeonsmobs.opulent_boots": "Opulent Boots",
+  "lore.dungeonsmobs.opulent_armor": "Opulent Armor, originally designed more for show than for combat, thrives in the presence of Emeralds.",
+
+  "item.dungeonsmobs.beenest_helmet": "Beenest Helmet",
+  "item.dungeonsmobs.beenest_chestplate": "Beenest Chestplate",
+  "item.dungeonsmobs.beenest_leggings": "Beenest Leggings",
+  "item.dungeonsmobs.beenest_boots": "Beenest Boots",
+  "lore.dungeonsmobs.beenest_armor": "There always seems to be a slight buzz around the Beenest Armor. Or maybe the buzz is coming from within?",
+
+  "item.dungeonsmobs.beehive_helmet": "Beehive Helmet",
+  "item.dungeonsmobs.beehive_chestplate": "Beehive Chestplate",
+  "item.dungeonsmobs.beehive_leggings": "Beehive Leggings",
+  "item.dungeonsmobs.beehive_boots": "Beehive Boots",
+  "lore.dungeonsmobs.beehive_armor": "The Beehive Armor hums with the focused power of countless bees."
 }

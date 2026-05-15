@@ -5,23 +5,43 @@
       "entries": [
 	{
           "type": "item",
+          "name": "dungeonsmobs:beenest_helmet",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beenest_chestplate",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beenest_leggings",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beenest_boots",
+          "weight": 4
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:ocelot_helmet",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ocelot_chestplate",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ocelot_leggings",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ocelot_boots",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
@@ -31,31 +51,51 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:shadow_walker_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:shadow_walker_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:shadow_walker_boots",
-          "weight": 2 
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beehive_helmet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beehive_chestplate",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beehive_leggings",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:beehive_boots",
+          "weight": 2
         },
         {
           "type": "item",
           "name": "dungeonsmobs:mauler",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:corrupted_seeds",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "empty",
-          "weight": 26
+          "weight": 50
         }
       ]
     }

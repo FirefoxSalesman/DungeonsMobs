@@ -1,0 +1,8 @@
+{
+  "attributes": [
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:beehive", "level": 1},{"enchantment": "dungeonsmobs:potion_aura", "level": 1}],
+  "material": "dungeonsmobs:hard_wood",
+  "unique": true,
+  "rarity": "RARE"
+}

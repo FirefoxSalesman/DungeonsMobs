@@ -366,6 +366,14 @@ public class ItemInit {
 	public static final ArmorSetInit CLIMBING_GEAR = registerArmorSet("climbing");
 	public static final ArmorSetInit RUGGED_CLIMBING_GEAR = registerFreezingResistanceArmorSet("rugged_climbing");
 	// public static final ArmorSetInit GOAT_GEAR = registerArmorSet("goat", COLD);
+	// public static final ArmorSetInit EMERALD_ARMOR = registerArmorSet("emerald",
+	// COLD);
+	// public static final ArmorSetInit GILDED_GLORY =
+	// registerArmorSet("gilded_glory", COLD);
+	// public static final ArmorSetInit OPULENT_ARMOR = registerArmorSet("opulent",
+	// COLD);
+	public static final ArmorSetInit BEENEST = registerArmorSet("beenest");
+	public static final ArmorSetInit BEEHIVE = registerArmorSet("beehive");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
