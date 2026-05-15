@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.registry;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.armor.FreezingResistanceArmorGear;
+import net.firefoxsalesman.dungeonsmobs.gear.items.armor.PetBatArmorGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BootsOfSwiftnessItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.BuzzyNestItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.CorruptedSeedsItem;
@@ -354,6 +355,8 @@ public class ItemInit {
 	public static final ArmorSetInit FROST_ARMOR = registerFreezingResistanceArmorSet("frost");
 	public static final ArmorSetInit SOUL_ROBES = registerArmorSet("soul");
 	public static final ArmorSetInit SOULDANCER_ROBES = registerArmorSet("souldancer");
+	public static final ArmorSetInit SPELUNKER_ARMOR = registePetBatArmorSet("spelunker");
+	public static final ArmorSetInit CAVE_CRAWLER = registePetBatArmorSet("cave_crawler");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
@@ -417,6 +420,33 @@ public class ItemInit {
 						() -> new FreezingResistanceArmorGear(Type.BOOTS,
 								PROPERTIES, armorSetResource, modelLocation,
 								textureLocation, animationFileLocation)));
+		return armorSet;
+	}
+
+	private static ArmorSetInit registePetBatArmorSet(String armorSetName) {
+		String armorSetId = armorSetName + "_armor";
+		ResourceLocation armorSetResource = modLoc(armorSetId);
+		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
+		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
+		ResourceLocation animationFileLocation = modLoc("animations/armor/" + armorSetId + ".animation.json");
+		ArmorSetInit armorSet = new ArmorSetInit(
+				armorSetId,
+				registerArmor(armorSetName + "_helmet",
+						() -> new PetBatArmorGear(Type.HELMET, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_chestplate",
+						() -> new PetBatArmorGear(Type.CHESTPLATE, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_leggings",
+						() -> new PetBatArmorGear(Type.LEGGINGS, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)),
+				registerArmor(armorSetName + "_boots",
+						() -> new PetBatArmorGear(Type.BOOTS, PROPERTIES,
+								armorSetResource, modelLocation, textureLocation,
+								animationFileLocation)));
 		return armorSet;
 	}
 

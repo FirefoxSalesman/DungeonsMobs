@@ -1,0 +1,13 @@
+{
+  "attributes": [
+    {
+      "attribute": "dungeonsmobs:magic_damage_multiplier",
+      "amount": 0.125,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [{"enchantment": "dungeonsmobs:melee_aura", "level": 1}],
+  "material": "dungeonsmobs:light_plate",
+  "unique": true,
+  "rarity": "RARE"
+}

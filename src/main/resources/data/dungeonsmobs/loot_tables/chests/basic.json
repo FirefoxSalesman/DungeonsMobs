@@ -6,157 +6,177 @@
         {
           "type": "item",
           "name": "dungeonsmobs:shortbow",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:claymore",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:katana",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:double_axe",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:rapier",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dagger",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:gauntlet",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:fighters_binding",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:mace",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_helmet",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_chestplate",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_leggings",
-          "weight": 4 
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:battle_robes_boots",
-          "weight": 4 
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spelunker_helmet",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spelunker_chestplate",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spelunker_leggings",
+          "weight": 4
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:spelunker_boots",
+          "weight": 4
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:flail",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:suns_grace",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:hawkbrand",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:sinister_sword",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:firebrand",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:highland_axe",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:cursed_axe",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:whirlwind",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_katana",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:heartstealer",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:masters_katana",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:shear_dagger",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:bee_stinger",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:great_hammer",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:power_bow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:longbow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:hunting_bow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:mechanical_shortbow",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
@@ -246,102 +266,122 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:evocation_robes_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:evocation_robes_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:evocation_robes_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:evocation_robes_boots",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:dark_boots",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:grim_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:grim_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:grim_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:grim_boots",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:plate_helmet",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:plate_chestplate",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:plate_leggings",
-          "weight": 2 
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:plate_boots",
-          "weight": 2 
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:cave_crawler_helmet",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:cave_crawler_chestplate",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:cave_crawler_leggings",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:cave_crawler_boots",
+          "weight": 2
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:titans_shroud_chestplate",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:titans_shroud_leggings",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:titans_shroud_boots",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
@@ -406,26 +446,26 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:ember_robes_helmet",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ember_robes_chestplate",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ember_robes_leggings",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "item",
           "name": "dungeonsmobs:ember_robes_boots",
-          "weight": 1 
+          "weight": 1
         },
 	{
           "type": "empty",
-          "weight": 140
+          "weight": 156
         }
       ]
     }

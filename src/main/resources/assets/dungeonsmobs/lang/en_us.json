@@ -3,7 +3,7 @@
   "item.dungeonsmobs.jungle_zombie_spawn_egg": "Jungle Zombie Spawn Egg",
   "entity.dungeonsmobs.frozen_zombie": "Frozen Zombie",
   "item.dungeonsmobs.frozen_zombie_spawn_egg": "Frozen Zombie Spawn Egg",
-  
+
   "entity.dungeonsmobs.mossy_skeleton": "Mossy Skeleton",
   "item.dungeonsmobs.mossy_skeleton_spawn_egg": "Mossy Skeleton Spawn Egg",
   "entity.dungeonsmobs.skeleton_vanguard": "Skeleton Vanguard",
@@ -101,7 +101,7 @@
 
   "entity.dungeonsmobs.blastling_bullet" : "Blastling Bullet",
   "entity.dungeonsmobs.snareling_glob" : "Snareling Glob",
-  
+
   "effect.dungeonsmobs.ensnared" : "Ensnared",
 
   "death.blastling": "%1$s was blasted",
@@ -112,7 +112,7 @@
 
   "death.summoned_trident_storm": "%1$s was struck by an electrically charged trident",
   "death.attack.summoned_trident_storm": "%1$s was struck by an electrically charged trident summoned by %2$s",
-  
+
   "death.trident_storm": "%1$s was struck by an electrically charged trident",
   "death.attack.trident_storm": "%1$s was struck by an electrically charged trident",
 
@@ -143,13 +143,13 @@
   "item.dungeonsmobs.mage_leggings": "Mage Pants",
   "item.dungeonsmobs.mage_boots": "Mage Boots",
   "lore.dungeonsmobs.mage_armor": "Jack of all spells, master of none, those purple robes are worn by the versatile mages, well versed in all of the woodland mansions schools of sorcery, from evocation to illusion.",
-  
+
   "item.dungeonsmobs.royal_guard_helmet": "Royal Guard Helmet",
   "item.dungeonsmobs.royal_guard_chestplate": "Royal Guard Chestplate",
   "item.dungeonsmobs.royal_guard_leggings": "Royal Guard Kneepads",
   "item.dungeonsmobs.royal_guard_boots": "Royal Guard Sabatons",
   "lore.dungeonsmobs.royal_guard_armor": "Ornate armour offered to the distinguished Guard of the Archillager, forged in the darkest depths of the Fiery Forge.",
-  
+
   "item.dungeonsmobs.mountaineer_axe": "Ice Pick",
   "lore.dungeonsmobs.mountaineer_axe": "The main tool of the emerald fevered mountaineers, though it's mainly a tool used for climbing, it as practical as the pickaxe to escavate tunnels and as mighty as the axe to puncture your enemies.",
   "item.dungeonsmobs.gold_mountaineer_axe": "Sturdy Ice Pick",
@@ -285,7 +285,7 @@
   "subtitles.entity.quick_growing_vine.burst_down": "Quick-Growing Vine retracts",
   "subtitles.entity.quick_growing_vine.hurt": "Quick-Growing Vine hurts",
   "subtitles.entity.quick_growing_vine.death": "Quick-Growing Vine dies",
-  
+
   "subtitles.entity.poison_quill_vine.burst": "Poison-Quill Vine emerges",
   "subtitles.entity.poison_quill_vine.idle": "Poison-Quill Vine rustles",
   "subtitles.entity.poison_quill_vine.hurt": "Poison-Quill Vine hurts",
@@ -301,7 +301,7 @@
   "subtitles.entity.geomancer.attack": "Geomancer summons pillars",
   "subtitles.entity.geomancer.wall_spawn": "Geomancer Wall emerges",
   "subtitles.entity.geomancer.wall_despawn": "Geomancer Wall vanishes",
-  "subtitles.entity.geomancer.bomb_spawn": "Geomancer Bomb emerges",  
+  "subtitles.entity.geomancer.bomb_spawn": "Geomancer Bomb emerges",
 
   "subtitles.entity.squall_golem.idle": "Squall Golem creaks",
   "subtitles.entity.squall_golem.hurt": "Squall Golem hurts",
@@ -319,7 +319,7 @@
   "subtitles.entity.snareling.pre_shoot": "Snareling readies shot",
   "subtitles.entity.snareling.shoot": "Snareling shoots",
   "subtitles.entity.snareling.glob_land": "Snareling glob lands",
-  
+
   "subtitles.entity.endersent.idle": "Endersent moans",
   "subtitles.entity.endersent.hurt": "Endersent hurts",
   "subtitles.entity.endersent.death": "Endersent dies",
@@ -336,32 +336,32 @@
   "subtitles.entity.ice_chunk.summoned": "Ice Chunk appears",
   "subtitles.entity.ice_chunk.fall": "Ice Chunk falls",
   "subtitles.entity.ice_chunk.land": "Ice Chunk smashes",
-  
+
   "subtitles.entity.blastling.idle": "Blastling mutters",
   "subtitles.entity.blastling.hurt": "Blastling hurts",
   "subtitles.entity.blastling.death": "Blastling dies",
   "subtitles.entity.blastling.step": "Footsteps",
   "subtitles.entity.blastling.shoot": "Blastling shoots",
   "subtitles.entity.blastling.bullet_land": "Blastling Bullet bursts",
-  
+
   "subtitles.entity.watchling.idle": "Watchling growls",
   "subtitles.entity.watchling.hurt": "Watchling hurts",
   "subtitles.entity.watchling.death": "Watchling dies",
   "subtitles.entity.watchling.step": "Footsteps",
   "subtitles.entity.watchling.attack": "Watchling attacks",
-  
+
   "subtitles.entity.icy_creeper.explode": "Icy Creeper explodes",
-  
+
   "subtitles.entity.jungle_zombie.idle": "Jungle Zombie gurgles",
   "subtitles.entity.jungle_zombie.hurt": "Jungle Zombie hurts",
   "subtitles.entity.jungle_zombie.death": "Jungle Zombie dies",
   "subtitles.entity.jungle_zombie.step": "Footsteps",
-  
+
   "subtitles.entity.frozen_zombie.idle": "Frozen Zombie groans",
   "subtitles.entity.frozen_zombie.hurt": "Frozen Zombie hurts",
   "subtitles.entity.frozen_zombie.death": "Frozen Zombie dies",
   "subtitles.entity.frozen_zombie.snowball_land": "Snowball impacts",
-  
+
   "subtitles.entity.mossy_skeleton.idle": "Mossy Skeleton creaks",
   "subtitles.entity.mossy_skeleton.hurt": "Mossy Skeleton hurts",
   "subtitles.entity.mossy_skeleton.death": "Mossy Skeleton dies",
@@ -396,7 +396,7 @@
 
   "subtitles.entity.fungus_thrower.throw": "Fungus thrown",
   "subtitles.entity.fungus_thrower.fungus_land": "Fungus explodes",
-  
+
   "subtitles.entity.wavewhisperer.idle": "Wavewhisperer mumbles",
   "subtitles.entity.wavewhisperer.hurt": "Wavewhisperer hurts",
   "subtitles.entity.wavewhisperer.death": "Wavewhisperer dies",
@@ -405,12 +405,12 @@
   "subtitles.entity.wavewhisperer.grapple": "Wavewhisperer summons Entangle Kelp",
   "subtitles.entity.wavewhisperer.summon_qgk": "Wavewhisperer summons Quick-Growing Kelp",
   "subtitles.entity.wavewhisperer.summon_pa": "Wavewhisperer summons Poison Anemone",
-  
+
   "subtitles.entity.quick_growing_kelp.burst": "Quick-Growing Kelp emerges",
   "subtitles.entity.quick_growing_kelp.burst_down": "Quick-Growing Kelp retracts",
   "subtitles.entity.quick_growing_kelp.hurt": "Quick-Growing Kelp hurts",
   "subtitles.entity.quick_growing_kelp.death": "Quick-Growing Kelp dies",
-  
+
   "subtitles.entity.poison_anemone.burst": "Poison Anemone emerges",
   "subtitles.entity.poison_anemone.idle": "Poison Anemone rustles",
   "subtitles.entity.poison_anemone.hurt": "Poison Anemone hurts",
@@ -430,7 +430,7 @@
   "subtitles.entity.drowned_necromancer.steam_missile_impact": "Steam Missile hits",
   "subtitles.entity.drowned_necromancer.prepare_trident_storm": "Trident Storm rumbles",
   "subtitles.entity.drowned_necromancer.trident_storm_hit": "Trident Storm strikes",
-  
+
   "subtitles.entity.sunken_skeleton.idle": "Sunken Skeleton bubbles",
   "subtitles.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
   "subtitles.entity.sunken_skeleton.death": "Sunken Skeleton dies",
@@ -458,7 +458,7 @@
   "artifact.dungeons_libraries.base": "Using the Artifact will move it into a free Artifact Curios Slot.",
   "artifact.dungeons_libraries.duration": "%d Seconds Duration",
   "artifact.dungeons_libraries.cooldown": "%d Seconds Cooldown",
-  
+
   "attribute.name.generic.dungeonsmobs.summon_cap": "Summon Cap",
   "attribute.name.generic.dungeonsmobs.follower_cost_limit": "Follower Cost Limit",
   "attribute.name.generic.dungeonsmobs.soul_gathering": "Soul Gathering",
@@ -657,7 +657,7 @@
   "lore.dungeonsmobs.twin_bow": "The Twin Bow is the champion of the hero who finds themselves outnumbered and alone.",
   "item.dungeonsmobs.haunted_bow": "Haunted Bow",
   "lore.dungeonsmobs.haunted_bow": "What indescribable horror! The creeping tentacles of this bow reach for the unknowable Void.",
-  
+
   "item.dungeonsmobs.bow_of_lost_souls": "Bow of Lost Souls",
   "lore.dungeonsmobs.bow_of_lost_souls": "This bow, made of cursed bones, strips the living of their very souls.",
   "item.dungeonsmobs.nocturnal_bow": "Nocturnal Bow",
@@ -689,7 +689,7 @@
   "lore.dungeonsmobs.hunting_bow": "This enchanted bow strengthens the bond between the hunter and their animal companion.",
   "item.dungeonsmobs.ancient_bow": "Ancient Bow",
   "lore.dungeonsmobs.ancient_bow": "The Ancient Bow is still as sprightly as the day it was first strung.",
-  
+
   "item.dungeonsmobs.mechanical_shortbow": "Mechanical Shortbow",
   "lore.dungeonsmobs.mechanical_shortbow": "A brand new development in quick firing technology, this bow packs a swift punch.",
   "item.dungeonsmobs.purple_storm": "Purple Storm",
@@ -698,7 +698,7 @@
   "lore.dungeonsmobs.shortbow": "The preferred weapon of thieves and rogues, the Shortbow is nimble and lethal at short range.",
   "item.dungeonsmobs.love_spell_bow": "Love Spell Bow",
   "lore.dungeonsmobs.love_spell_bow": "Love can be magical, but when it becomes too powerful, it can turn into a frenzy.",
-  
+
   "item.dungeonsmobs.the_green_menace": "The Green Menace",
   "lore.dungeonsmobs.the_green_menace": "The arrows fired from the Green Menace always hit their intended target, even in the thickest fog.",
   "item.dungeonsmobs.the_pink_scoundrel": "The Pink Scoundrel",
@@ -760,7 +760,7 @@
   "lore.dungeonsmobs.firebrand": "Crafted in the blackest depths of the Fiery Forge and enchanted with fiery powers.",
   "item.dungeonsmobs.highland_axe": "Highland Axe",
   "lore.dungeonsmobs.highland_axe": "Expertly crafted and a polished weapon of war, the Highland Axe also makes a daring backscratcher.",
-  
+
   "item.dungeonsmobs.nightmares_bite": "Nightmare's Bite",
   "lore.dungeonsmobs.nightmares_bite": "The twin blades of Nightmare's Bite drip with deadly venom, still potent after all these years.",
   "item.dungeonsmobs.the_last_laugh": "The Last Laugh",
@@ -788,7 +788,7 @@
   "lore.dungeonsmobs.battlestaff_of_terror": "This staff overwhelms its target in battle to explosive effect.",
   "item.dungeonsmobs.growing_staff": "Growing Staff",
   "lore.dungeonsmobs.growing_staff": "A staff that grows and shifts as it attacks, the Growing Staff is unpredictable and powerful.",
-  
+
   "item.dungeonsmobs.tempest_knife": "Tempest Knife",
   "lore.dungeonsmobs.tempest_knife": "This knife slices through enemies like the wind that cuts between the mountaintops.",
   "item.dungeonsmobs.resolute_tempest_knife": "Resolute Tempest Knife",
@@ -833,7 +833,7 @@
   "lore.dungeonsmobs.masters_katana": "The Master's Katana has existed throughout the ages, appearing to heroes at the right moment.",
   "item.dungeonsmobs.katana": "Katana",
   "lore.dungeonsmobs.katana": "A blade fit for expert warriors and fighters, its blade is crafted to inflict precision damage.",
-  
+
   "item.dungeonsmobs.flail": "Flail",
   "lore.dungeonsmobs.flail": "This ancient weapon inflicts grave blunt damage to those who cannot evade the deadly metal ball.",
   "item.dungeonsmobs.suns_grace": "Sun's Grace",
@@ -847,7 +847,7 @@
   "lore.dungeonsmobs.bee_stinger": "The Bee Stinger, a swift blade inspired by a bee's barb, can draw friendly bees into the fray to fight alongside you.",
   "item.dungeonsmobs.freezing_foil": "Freezing Foil",
   "lore.dungeonsmobs.freezing_foil": "This needle-like blade is cold to the touch and makes quick work of any cut.",
-  
+
   "item.dungeonsmobs.boots_of_swiftness": "Boots of Swiftness",
   "lore.dungeonsmobs.boots_of_swiftness": "Boots blessed with enchantments to allow for swift movements. Useful in uncertain times such as these.",
   "ability.dungeonsmobs.boots_of_swiftness": "Gives a short boost to movement speed.",
@@ -855,7 +855,7 @@
   "item.dungeonsmobs.death_cap_mushroom": "Death Cap Mushroom",
   "lore.dungeonsmobs.death_cap_mushroom": "Eaten by daring warriors before battle, the Death Cap Mushroom drives fighters into a frenzy.",
   "ability.dungeonsmobs.death_cap_mushroom": "Greatly increases attack and movement speed.",
-  
+
   "item.dungeonsmobs.golem_kit": "Golem Kit",
   "lore.dungeonsmobs.golem_kit": "Iron Golems have always protected the Villagers of the Overworld. Their numbers are dwindling as a result of the Arch-Illager's war.",
   "ability.dungeonsmobs.golem_kit": "Summons an Iron Golem to aid you in battle.",
@@ -871,7 +871,7 @@
   "item.dungeonsmobs.gong_of_weakening": "Gong of Weakening",
   "lore.dungeonsmobs.gong_of_weakening": "The ancient gong, marked with the symbols of a nameless kingdom, feels safe in your hands but emits a menacing hum to those nearby.",
   "ability.dungeonsmobs.gong_of_weakening": "Weakens enemies around you, decreasing their damage and defensive capabilities.",
-  
+
   "item.dungeonsmobs.lightning_rod": "Lightning Rod",
   "lore.dungeonsmobs.lightning_rod": "Crafted by Illager Geomancers, this item is enchanted with the power of a storming sky.",
   "ability.dungeonsmobs.lightning_rod": "You can spend souls to attack nearby enemies with a lightning strike.",
@@ -883,7 +883,7 @@
   "item.dungeonsmobs.love_medallion": "Love Medallion",
   "lore.dungeonsmobs.love_medallion": "A spell radiates from this trinket, enchanting those nearby into a trance where they must protect the holder of the medallion at all costs.",
   "ability.dungeonsmobs.love_medallion": "Turn up to three hostile mobs into allies for ten seconds before they disappear.",
-  
+
   "item.dungeonsmobs.ghost_cloak": "Ghost Cloak",
   "lore.dungeonsmobs.ghost_cloak": "The souls trapped within the Ghost Cloak are protective, but they radiate a sense of melancholy.",
   "ability.dungeonsmobs.ghost_cloak": "Briefly gain Ghost Form, allowing you to move through mobs and absorb some damage.",
@@ -915,7 +915,7 @@
   "item.dungeonsmobs.flaming_quiver": "Flaming Quiver",
   "lore.dungeonsmobs.flaming_quiver": "This quiver is filled with the deadliest of arrows.",
   "ability.dungeonsmobs.flaming_quiver": "Turns the next 7 arrows you shoot into burning arrows.",
-  
+
   "item.dungeonsmobs.torment_quiver": "Torment Quiver",
   "lore.dungeonsmobs.torment_quiver": "The Torment Quiver radiates powerful energy drawn from the eternal source of the Undead.",
   "ability.dungeonsmobs.torment_quiver": "Makes the next 3 arrows you shoot apply high knockback to mobs and pass through walls.",
@@ -931,7 +931,7 @@
   "item.dungeonsmobs.totem_of_soul_protection": "Totem of Soul Protection",
   "lore.dungeonsmobs.totem_of_soul_protection": "This totem radiates powerful protective magic.",
   "ability.dungeonsmobs.totem_of_soul_protection": "Creates a space around the totem which, when you or allies die within it, revives the player.",
-  
+
   "item.dungeonsmobs.corrupted_beacon": "Corrupted Beacon",
   "lore.dungeonsmobs.corrupted_beacon": "The Corrupted Beacon holds immense power within. It waits for the moment to unleash its wrath.",
   "ability.dungeonsmobs.corrupted_beacon": "Fires a high-powered beam that continuously damages mobs.",
@@ -939,7 +939,7 @@
   "item.dungeonsmobs.buzzy_nest": "Buzzy Nest",
   "lore.dungeonsmobs.buzzy_nest": "Bee lovers and the bee-loved alike are fans of the Buzzy Nest, but don't be fooled by the cute bees within - they pack a powerful sting!",
   "ability.dungeonsmobs.buzzy_nest": "When the Buzzy Nest is placed on the ground, bees who will fight beside you begin to spawn.",
-  
+
   "item.dungeonsmobs.enchanted_grass": "Enchanted Grass",
   "lore.dungeonsmobs.enchanted_grass": "Just as there are powerful heroes who answer the call to fight, there are powerful enchanted sheep who will join the fight when summoned.",
   "ability.dungeonsmobs.enchanted_grass": "Randomly summons one of three sheep allies that can grant either speed, poison, or fire effects.",
@@ -975,7 +975,7 @@
   "item.dungeonsmobs.updraft_tome": "Updraft Tome",
   "lore.dungeonsmobs.updraft_tome": "An ancient book filled with illegible glyphs, you feel a strange breeze as you flip the pages.",
   "ability.dungeonsmobs.updraft_tome": "Launch up to 5 enemies into the air, stunning and damaging them.",
-  
+
   "item.dungeonsmobs.eye_of_the_guardian": "Eye of the Guardian",
   "lore.dungeonsmobs.eye_of_the_guardian": "The Eye of the Guardian holds a power that awakens in the hands of a worthy hero.",
   "ability.dungeonsmobs.eye_of_the_guardian": "Fires a beam of energy that locks you into place as it deals damage to enemies in its path.",
@@ -987,13 +987,13 @@
   "item.dungeonsmobs.soul_lantern": "Soul Lantern",
   "lore.dungeonsmobs.soul_lantern": "This lantern, still covered in the sands of a far-flung place, allows those who hold it to summon a creature formed from bound souls.",
   "ability.dungeonsmobs.soul_lantern": "Summons a Soul Wizard to aid you in battle.",
-  
+
   "item.dungeonsmobs.battle_robes_helmet": "Battle Hood",
   "item.dungeonsmobs.battle_robes_chestplate": "Battle Robe",
   "item.dungeonsmobs.battle_robes_leggings": "Battle Pants",
   "item.dungeonsmobs.battle_robes_boots": "Battle Shoes",
   "lore.dungeonsmobs.battle_robes_armor": "The Battle Robe is worn by the distinguished Illager Evokers of the Arch-Illager's court.",
-  
+
   "item.dungeonsmobs.champions_helmet": "Champion's Helmet",
   "item.dungeonsmobs.champions_chestplate": "Champion's Chestplate",
   "item.dungeonsmobs.champions_leggings": "Champion's Legguards",
@@ -1026,7 +1026,7 @@
   "item.dungeonsmobs.ember_robes_leggings": "Ember Pants",
   "item.dungeonsmobs.ember_robes_boots": "Ember Shoes",
   "lore.dungeonsmobs.ember_robes_armor": "The Ember Robe was created by Illager Evokers to distinguish themselves from the common guard.",
-  
+
   "item.dungeonsmobs.grim_chestplate": "Grim Chestplate",
   "item.dungeonsmobs.grim_helmet": "Grim Helmet",
   "item.dungeonsmobs.grim_leggings": "Grim Leggings",
@@ -1075,7 +1075,7 @@
   "item.dungeonsmobs.shadow_walker_leggings": "Shadow Walker Leggings",
   "item.dungeonsmobs.shadow_walker_boots": "Shadow Walker Boots",
   "lore.dungeonsmobs.shadow_walker_armor": "The legendary black Ocelot was as graceful as it was deadly. When you wear its pelt, you feel like your enemies are left chasing your shadow.",
-  
+
   "item.dungeonsmobs.phantom_chestplate": "Phantom Chestplate",
   "item.dungeonsmobs.phantom_helmet": "Phantom Helmet",
   "item.dungeonsmobs.phantom_leggings": "Phantom Leggings",
@@ -1086,7 +1086,7 @@
   "item.dungeonsmobs.frost_bite_leggings": "Frost Bite Leggings",
   "item.dungeonsmobs.frost_bite_boots": "Frost Bite Boots",
   "lore.dungeonsmobs.frost_bite_armor": "Frost Bite remembers the icy winds which once flowed beneath the wings of the night Phantoms.",
-  
+
   "item.dungeonsmobs.plate_chestplate": "Plate Chestplate",
   "item.dungeonsmobs.plate_helmet": "Plate Helmet",
   "item.dungeonsmobs.plate_leggings": "Plate Leggings",
@@ -1097,7 +1097,7 @@
   "item.dungeonsmobs.full_metal_leggings": "Full Metal Leggings",
   "item.dungeonsmobs.full_metal_boots": "Full Metal Boots",
   "lore.dungeonsmobs.full_metal_armor": "Full Metal Armor is destined for the great defenders of the Overworld.",
-  
+
   "item.dungeonsmobs.reinforced_mail_chestplate": "Reinforced Mail Chestplate",
   "item.dungeonsmobs.reinforced_mail_helmet": "Reinforced Mail Helmet",
   "item.dungeonsmobs.reinforced_mail_leggings": "Reinforced Mail Leggings",
@@ -1108,7 +1108,7 @@
   "item.dungeonsmobs.stalwart_leggings": "Stalwart Leggings",
   "item.dungeonsmobs.stalwart_boots": "Stalwart Boots",
   "lore.dungeonsmobs.stalwart_armor": "This reliable armor is sturdy enough to be passed down for generations.",
-  
+
   "item.dungeonsmobs.scale_mail_chestplate": "Scale Mail Chestplate",
   "item.dungeonsmobs.scale_mail_helmet": "Scale Mail Helmet",
   "item.dungeonsmobs.scale_mail_leggings": "Scale Mail Leggings",
@@ -1140,5 +1140,16 @@
   "item.dungeonsmobs.souldancer_helmet": "Souldancer Hood",
   "item.dungeonsmobs.souldancer_leggings": "Soul Pants",
   "item.dungeonsmobs.souldancer_boots": "Soul Boots",
-  "lore.dungeonsmobs.souldancer_armor": "The Souldancer Robe comes alive in the light, as if the souls within are dancing for all eternity."
+  "lore.dungeonsmobs.souldancer_armor": "The Souldancer Robe comes alive in the light, as if the souls within are dancing for all eternity.",
+
+  "item.dungeonsmobs.spelunker_chestplate": "Spelunker Chestplate",
+  "item.dungeonsmobs.spelunker_helmet": "Spelunker Helmet",
+  "item.dungeonsmobs.spelunker_leggings": "Spelunker Leggings",
+  "item.dungeonsmobs.spelunker_boots": "Spelunker Boots",
+  "lore.dungeonsmobs.spelunker_armor": "The Spelunker Armor is worn by those who brave the darkest depths of the Overworld.",
+  "item.dungeonsmobs.cave_crawler_chestplate": "Cave Crawler Chestplate",
+  "item.dungeonsmobs.cave_crawler_helmet": "Cave Crawler Helmet",
+  "item.dungeonsmobs.cave_crawler_leggings": "Cave Crawler Leggings",
+  "item.dungeonsmobs.cave_crawler_boots": "Cave Crawler Boots",
+  "lore.dungeonsmobs.cave_crawler_armor": "The Cave Crawler armor has been passed down through generations of brave spelunkers and miners."
 }
