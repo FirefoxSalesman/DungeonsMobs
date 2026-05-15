@@ -10,22 +10,62 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:wither_bone_helmet",
+          "name": "dungeonsmobs:soul_helmet",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_chestplate",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_leggings",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_boots",
+          "weight": 4 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:wither_helmet",
           "weight": 2 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:wither_bone_chestplate",
+          "name": "dungeonsmobs:wither_chestplate",
           "weight": 2 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:wither_bone_leggings",
+          "name": "dungeonsmobs:wither_leggings",
           "weight": 2 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:wither_bone_boots",
+          "name": "dungeonsmobs:wither_boots",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:souldancer_helmet",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:souldancer_chestplate",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:souldancer_leggings",
+          "weight": 2 
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:souldancer_boots",
           "weight": 2 
         },
 	{

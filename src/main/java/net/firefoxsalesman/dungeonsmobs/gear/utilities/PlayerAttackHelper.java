@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
+import net.firefoxsalesman.dungeonsmobs.lib.utils.DamageSourceHelper;
 import net.firefoxsalesman.dungeonsmobs.mixin.LivingEntityAccessor;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerChunkCache;
@@ -112,11 +113,6 @@ public class PlayerAttackHelper {
 				|| isSource(damageSource, ds.magic())
 				|| isSource(damageSource, ds.mobProjectile(damageSource.getDirectEntity(),
 						(LivingEntity) damageSource.getEntity()))
-				|| !isDirectDamage(damageSource);
-	}
-
-	private static boolean isDirectDamage(DamageSource damageSource) {
-		return damageSource.getMsgId().equals("mob")
-				|| damageSource.getMsgId().equals("player");
+				|| !DamageSourceHelper.isDirectDamage(damageSource);
 	}
 }

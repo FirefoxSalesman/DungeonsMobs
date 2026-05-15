@@ -1,0 +1,18 @@
+{
+  "attributes": [
+    {
+      "attribute": "dungeonsmobs:soul_gathering",
+      "amount": 0.125,
+      "operation": 1
+    },
+    {
+      "attribute": "dungeonsmobs:magic_damage_multiplier",
+      "amount": 0.125,
+      "operation": 1
+    }
+  ],
+  "built_in_enchantments": [],
+  "material": "dungeonsmobs:cloth",
+  "unique": false,
+  "rarity": "UNCOMMON"
+}

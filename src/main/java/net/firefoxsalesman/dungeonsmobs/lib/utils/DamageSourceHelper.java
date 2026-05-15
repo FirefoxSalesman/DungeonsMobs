@@ -30,4 +30,9 @@ public class DamageSourceHelper {
 	public static Holder<DamageType> mkHolder(Level level, ResourceKey<DamageType> key) {
 		return level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(key);
 	}
+
+	public static boolean isDirectDamage(DamageSource damageSource) {
+		return damageSource.getMsgId().equals("mob")
+				|| damageSource.getMsgId().equals("player");
+	}
 }

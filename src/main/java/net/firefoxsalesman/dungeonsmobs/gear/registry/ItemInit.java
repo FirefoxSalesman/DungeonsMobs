@@ -352,6 +352,8 @@ public class ItemInit {
 	// registerArmorSet("highland", BASIC);
 	public static final ArmorSetInit SNOW_ARMOR = registerFreezingResistanceArmorSet("snow");
 	public static final ArmorSetInit FROST_ARMOR = registerFreezingResistanceArmorSet("frost");
+	public static final ArmorSetInit SOUL_ROBES = registerArmorSet("soul");
+	public static final ArmorSetInit SOULDANCER_ROBES = registerArmorSet("souldancer");
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

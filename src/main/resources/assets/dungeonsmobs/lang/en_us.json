@@ -1129,5 +1129,16 @@
   "item.dungeonsmobs.frost_helmet": "Frost Helmet",
   "item.dungeonsmobs.frost_leggings": "Frost Leggings",
   "item.dungeonsmobs.frost_boots": "Frost Boots",
-  "lore.dungeonsmobs.frost_armor": "This legendary armor, forged from ice that never melts, makes the wearer feel as if they are one with winter."
+  "lore.dungeonsmobs.frost_armor": "This legendary armor, forged from ice that never melts, makes the wearer feel as if they are one with winter.",
+
+  "item.dungeonsmobs.soul_chestplate": "Soul Robe",
+  "item.dungeonsmobs.soul_helmet": "Soul Hood",
+  "item.dungeonsmobs.soul_leggings": "Soul Pants",
+  "item.dungeonsmobs.soul_boots": "Soul Boots",
+  "lore.dungeonsmobs.soul_armor": "In a particular light, the souls woven into the cloth of the Soul Robe shimmer with power.",
+  "item.dungeonsmobs.souldancer_chestplate": "Souldancer Robe",
+  "item.dungeonsmobs.souldancer_helmet": "Souldancer Hood",
+  "item.dungeonsmobs.souldancer_leggings": "Soul Pants",
+  "item.dungeonsmobs.souldancer_boots": "Soul Boots",
+  "lore.dungeonsmobs.souldancer_armor": "The Souldancer Robe comes alive in the light, as if the souls within are dancing for all eternity."
 }

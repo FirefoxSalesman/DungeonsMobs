@@ -15,22 +15,22 @@
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:heavy_plate_helmet",
+          "name": "dungeonsmobs:scale_mail_helmet",
           "weight": 4 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:heavy_plate_chestplate",
+          "name": "dungeonsmobs:scale_mail_chestplate",
           "weight": 4 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:heavy_plate_leggings",
+          "name": "dungeonsmobs:scale_mail_leggings",
           "weight": 4 
         },
 	{
           "type": "item",
-          "name": "dungeonsmobs:heavy_plate_boots",
+          "name": "dungeonsmobs:scale_mail_boots",
           "weight": 4 
         },
 	{
