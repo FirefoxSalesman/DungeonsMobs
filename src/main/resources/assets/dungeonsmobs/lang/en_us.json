@@ -546,6 +546,8 @@
   "enchantment.dungeonsmobs.burst_bowstring.desc": "Shoots nearby mobs when you roll, costing one arrow per roll. Projectiles deal 40% of a charged shot's damage.",
   "enchantment.dungeonsmobs.chain_reaction": "Chain Reaction",
   "enchantment.dungeonsmobs.chain_reaction.desc": "Has a chance to fire four arrows in all directions on impact.",
+  "enchantment.dungeonsmobs.cooldown_shot": "Cooldown Shot",
+  "enchantment.dungeonsmobs.cooldown_shot.desc": "When you attack with a charged shot, artifact cooldowns are decreased.",
   "enchantment.dungeonsmobs.exploding_shot": "Exploding Shot",
   "enchantment.dungeonsmobs.exploding_shot.desc": "Causes an explosion at the arrow's impact point.",
   "enchantment.dungeonsmobs.freezing_shot": "Freezing Shot",

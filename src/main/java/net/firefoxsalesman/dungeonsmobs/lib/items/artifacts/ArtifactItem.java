@@ -6,6 +6,7 @@ import static net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers.ARTIFAC
 import static net.minecraftforge.registries.ForgeRegistries.ATTRIBUTES;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.google.common.collect.ImmutableMultimap;
@@ -15,7 +16,9 @@ import net.firefoxsalesman.dungeonsmobs.lib.event.ArtifactEvent;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IReloadableGear;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.DescriptionHelper;
+import net.firefoxsalesman.dungeonsmobs.mixin.CooldownAccessor;
 import net.firefoxsalesman.dungeonsmobs.mixin.ItemAccessor;
+import net.firefoxsalesman.dungeonsmobs.mixin.ItemCooldownsAccessor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -25,6 +28,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
@@ -87,23 +91,18 @@ public abstract class ArtifactItem extends Item implements ICurioItem, IReloadab
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
 	}
 
-	// public static void reduceArtifactCooldowns(Player playerEntity, double
-	// reductionInSeconds) {
-	// Map<Item, ItemCooldowns.CooldownInstance> cooldowns =
-	// ((ItemCooldownsAccessor) playerEntity
-	// .getCooldowns()).getCooldowns();
-	// for (Item item : cooldowns.keySet()) {
-	// if (item instanceof ArtifactItem) {
-	// int createTicks = ((CooldownAccessor) cooldowns.get(item))
-	// .getStartTime();
-	// int expireTicks = ((CooldownAccessor) cooldowns.get(item))
-	// .getEndTime();
-	// int duration = expireTicks - createTicks;
-	// playerEntity.getCooldowns().addCooldown(item,
-	// Math.max(0, duration - (int) (reductionInSeconds * 20)));
-	// }
-	// }
-	// }
+	public static void reduceArtifactCooldowns(Player playerEntity, double reductionInSeconds) {
+		Map<Item, ItemCooldowns.CooldownInstance> cooldowns = playerEntity.getCooldowns().cooldowns;
+		for (Item item : cooldowns.keySet()) {
+			if (item instanceof ArtifactItem) {
+				int currentTicks = ((ItemCooldownsAccessor) playerEntity.getCooldowns()).getTickCount();
+				int expireTicks = ((CooldownAccessor) cooldowns.get(item)).getEndTime();
+				int duration = expireTicks - currentTicks;
+				playerEntity.getCooldowns().addCooldown(item,
+						Math.max(0, duration - (int) (reductionInSeconds * 20)));
+			}
+		}
+	}
 
 	public Rarity getRarity(ItemStack itemStack) {
 		return Rarity.RARE;

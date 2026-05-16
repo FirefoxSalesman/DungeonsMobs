@@ -72,6 +72,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged.Refreshme
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.AccelerateEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.BonusShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ChainReactionEnchantment;
+import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.CooldownShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.ExplodingShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FreezingShotEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FuseShotEnchantment;
@@ -154,6 +155,8 @@ public class EnchantmentInit {
 			BonusShotEnchantment::new);
 	public static RegistryObject<ChainReactionEnchantment> CHAIN_REACTION = ENCHANTMENTS.register("chain_reaction",
 			ChainReactionEnchantment::new);
+	public static RegistryObject<CooldownShotEnchantment> COOLDOWN_SHOT = ENCHANTMENTS.register("cooldown_shot",
+			CooldownShotEnchantment::new);
 	public static RegistryObject<FreezingShotEnchantment> FREEZING_SHOT = ENCHANTMENTS.register("freezing_shot",
 			FreezingShotEnchantment::new);
 	public static RegistryObject<GaleShotEnchantment> GALE_SHOT = ENCHANTMENTS.register("gale_shot",
