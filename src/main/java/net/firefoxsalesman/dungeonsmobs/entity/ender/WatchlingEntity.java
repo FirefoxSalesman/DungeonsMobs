@@ -15,9 +15,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -37,7 +39,7 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
-		goalSelector.addGoal(2, new AbstractEnderlingEntity.AttackGoal(1.5D));
+		goalSelector.addGoal(2, new AttackGoal(1.5D));
 		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -108,6 +110,48 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 			event.getController().setAnimation(RawAnimation.begin().then("watchling_idle", LoopType.LOOP));
 		}
 		return PlayState.CONTINUE;
+	}
+
+	class AttackGoal extends MeleeAttackGoal {
+
+		public final TargetingConditions slimePredicate = TargetingConditions.forCombat().range(20.0D)
+				.ignoreInvisibilityTesting();
+
+		public AttackGoal(double speed) {
+			super(WatchlingEntity.this, speed, true);
+		}
+
+		public boolean canContinueToUse() {
+			return super.canContinueToUse();
+		}
+
+		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
+			return mob.getBbWidth() * 3.0F * mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
+		}
+
+		public void tick() {
+			super.tick();
+
+			setRunning(10);
+		}
+
+		protected void checkAndPerformAttack(LivingEntity entity, double pDistToEnemySqr) {
+			double d0 = getAttackReachSqr(entity);
+			if (pDistToEnemySqr <= d0 && isAttacking() == 4) {
+				resetAttackCooldown();
+				mob.doHurtTarget(entity);
+			} else if (pDistToEnemySqr <= d0 * 1.5D) {
+				if (isTimeToAttack()) {
+					resetAttackCooldown();
+				}
+
+				if (isAttacking() <= 0) {
+					setAttacking(30);
+				}
+			} else {
+				resetAttackCooldown();
+			}
+		}
 	}
 
 	public Optional<Mob> getOwner() {

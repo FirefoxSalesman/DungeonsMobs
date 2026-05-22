@@ -15,7 +15,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -47,9 +46,6 @@ public abstract class VanillaEnderlingEntity extends Monster {
 
 	private static final EntityDataAccessor<Boolean> DATA_STARED_AT = SynchedEntityData
 			.defineId(VanillaEnderlingEntity.class, EntityDataSerializers.BOOLEAN);
-
-	private final TargetingConditions followPredicate = TargetingConditions.forCombat().range(50.0D)
-			.ignoreInvisibilityTesting();
 
 	protected VanillaEnderlingEntity(EntityType<? extends VanillaEnderlingEntity> pEntityType,
 			Level pLevel) {
@@ -193,7 +189,6 @@ public abstract class VanillaEnderlingEntity extends Monster {
 		Vec3 vector3d = new Vec3(getX() - target.getX(), getY(0.5D) - target.getEyeY(),
 				getZ() - target.getZ());
 		vector3d = vector3d.normalize();
-		double d0 = 16.0D;
 		double d1 = getX() + (random.nextDouble() - 0.5D) * 8.0D - vector3d.x * 16.0D;
 		double d2 = getY() + (double) (random.nextInt(16) - 8) - vector3d.y * 16.0D;
 		double d3 = getZ() + (random.nextDouble() - 0.5D) * 8.0D - vector3d.z * 16.0D;
@@ -255,48 +250,6 @@ public abstract class VanillaEnderlingEntity extends Monster {
 			}
 
 			return flag;
-		}
-	}
-
-	class AttackGoal extends MeleeAttackGoal {
-
-		public final TargetingConditions slimePredicate = TargetingConditions.forCombat().range(20.0D)
-				.ignoreInvisibilityTesting();
-
-		public AttackGoal(double speed) {
-			super(VanillaEnderlingEntity.this, speed, true);
-		}
-
-		public boolean canContinueToUse() {
-			return super.canContinueToUse();
-		}
-
-		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return mob.getBbWidth() * 3.0F * mob.getBbWidth() * 3.0F + p_179512_1_.getBbWidth();
-		}
-
-		public void tick() {
-			super.tick();
-
-			setRunning(10);
-		}
-
-		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = getAttackReachSqr(p_190102_1_);
-			if (p_190102_2_ <= d0 && isTimeToAttack()) {
-				resetAttackCooldown();
-				mob.doHurtTarget(p_190102_1_);
-			} else if (p_190102_2_ <= d0 * 1.5D) {
-				if (isTimeToAttack()) {
-					resetAttackCooldown();
-				}
-
-				if (getTicksUntilNextAttack() <= 30) {
-					setAttacking(30);
-				}
-			} else {
-				resetAttackCooldown();
-			}
 		}
 	}
 
