@@ -44,6 +44,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlob
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneCubeRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMonstrosityRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerBombRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerWallRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.IceCloudRenderer;
@@ -125,6 +126,7 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.REDSTONE_CUBE.get(), RedstoneCubeRenderer::new);
 		event.registerEntityRenderer(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemRenderer::new);
+		event.registerEntityRenderer(ModEntities.REDSTONE_MONSTROSITY.get(), RedstoneMonstrosityRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.WHISPERER.get(), WhispererRenderer::new);
 		event.registerEntityRenderer(ModEntities.LEAPLEAF.get(), LeapleafRenderer::new);

@@ -48,6 +48,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjec
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMonstrosityEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
@@ -271,6 +272,16 @@ public class ModEntities {
 					.clientTrackingRange(10)
 					.fireImmune()
 					.build(modLoc("redstone_golem").toString()),
+			0xaeaaa6, 0xe3260c);
+	public static final RegistryObject<EntityType<RedstoneMonstrosityEntity>> REDSTONE_MONSTROSITY = registerEntity(
+			"redstone_monstrosity",
+			() -> EntityType.Builder
+					.<RedstoneMonstrosityEntity>of(RedstoneMonstrosityEntity::new,
+							MobCategory.MONSTER)
+					.sized(2.66F, 3.83F)
+					.clientTrackingRange(10)
+					.fireImmune()
+					.build(modLoc("redstone_monstrosity").toString()),
 			0xaeaaa6, 0xe3260c);
 	public static final RegistryObject<EntityType<RedstoneCubeEntity>> REDSTONE_CUBE = registerEntityWithoutEgg(
 			"redstone_cube",
