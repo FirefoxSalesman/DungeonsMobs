@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class MooshroomEntityMixin extends Cow {
 
 	public MooshroomEntityMixin(EntityType<? extends Cow> pEntityType, Level pLevel) {
-		super(pEntityType, pLevel);
+	    super(pEntityType, pLevel);
 	}
 
 	@Inject(at = @At("RETURN"), method = "<init>")
