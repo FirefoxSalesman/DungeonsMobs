@@ -1,4 +1,7 @@
 {
+  "entity.dungeonsmobs.redstone_monstrosity": "Redstone Monstrosity",
+  "item.dungeonsmobs.redstone_monstrosity_spawn_egg": "Redstone Monstrosity Spawn Egg",
+
   "entity.dungeonsmobs.jungle_zombie": "Jungle Zombie",
   "item.dungeonsmobs.jungle_zombie_spawn_egg": "Jungle Zombie Spawn Egg",
   "entity.dungeonsmobs.frozen_zombie": "Frozen Zombie",

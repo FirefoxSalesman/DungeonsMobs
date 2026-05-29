@@ -55,7 +55,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		goalSelector.addGoal(0, new SummonRedstoneCubesGoal(this));
+		// goalSelector.addGoal(0, new SummonRedstoneCubesGoal(this));
 		goalSelector.addGoal(5, new AttackGoal(this, 1.3D));
 		goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 		goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
