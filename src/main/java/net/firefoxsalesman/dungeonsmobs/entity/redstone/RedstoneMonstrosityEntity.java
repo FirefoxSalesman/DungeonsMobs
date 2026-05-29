@@ -90,11 +90,12 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
+		System.out.println(isMeleeAttacking());
 		if (isMeleeAttacking()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
-							"animation.redstone_golem.strong_attack",
+							"animation.redstone_monstrosity.strong_attack",
 							LoopType.PLAY_ONCE));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimationSpeed(groundSpeed * 10);
@@ -135,7 +136,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
-		private int maxAttackTimer = 20;
+		private int maxAttackTimer = 60;
 		private final double moveSpeed;
 		private int delayCounter;
 		private int attackTimer;
@@ -172,15 +173,24 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 			attackTimer = Math.max(attackTimer - 1, 0);
 			checkAndPerformAttack(livingentity, distanceToSqr(livingentity.getX(),
 					livingentity.getBoundingBox().minY, livingentity.getZ()));
+
 		}
 
 		@Override
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+			if (attackTimer <= 0 && distToEnemySqr <= getAttackReachSqr(enemy) && !isMeleeAttacking()) {
+				setMeleeAttacking(true);
+				attackTimer = maxAttackTimer;
+			}
+
 			if ((distToEnemySqr <= getAttackReachSqr(enemy)
 					|| getBoundingBox().intersects(enemy.getBoundingBox()))
-					&& attackTimer <= 0) {
-				attackTimer = maxAttackTimer;
+					&& attackTimer == 40) {
 				AreaAttackHelper.areaAttack(7, 7, 7, 7, 360, 1.0F, this.mob);
+			}
+
+			if (attackTimer <= 0) {
+				setMeleeAttacking(false);
 			}
 		}
 
