@@ -90,8 +90,14 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		System.out.println(isMeleeAttacking());
-		if (isMeleeAttacking()) {
+		if (summonAnimationTick > 0) {
+			event.getController().setAnimationSpeed(1.0D);
+			event.getController()
+					.setAnimation(RawAnimation.begin().then(
+							"animation.redstone_monstrosity.lava_attack",
+							LoopType.PLAY_ONCE));
+
+		} else if (isMeleeAttacking()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
