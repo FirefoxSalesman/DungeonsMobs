@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.network;
 
 import net.firefoxsalesman.dungeonsmobs.gear.network.entity.PlayerBeamMessage;
-import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
-import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStartMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.UpdateSoulsMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArmorGearConfigSyncPacket;

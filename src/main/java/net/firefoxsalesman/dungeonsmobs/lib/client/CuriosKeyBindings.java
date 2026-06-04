@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.lib.client;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStartMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStartMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;

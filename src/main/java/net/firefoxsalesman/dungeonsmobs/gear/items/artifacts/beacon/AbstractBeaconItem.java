@@ -4,7 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.entities.ArtifactBeamEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsageHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.client.message.CuriosArtifactStopMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
