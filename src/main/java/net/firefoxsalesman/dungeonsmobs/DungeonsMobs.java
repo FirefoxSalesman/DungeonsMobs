@@ -24,7 +24,8 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
 import net.firefoxsalesman.dungeonsmobs.lib.config.DungeonsLibrariesConfig;
 import net.firefoxsalesman.dungeonsmobs.lib.entities.LibEntityTypes;
 import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactGearConfigRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.items.RangedItemModelProperties;
+import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGearConfigRegistry;
@@ -141,6 +142,8 @@ public class DungeonsMobs {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		// ITEM MODEL PROPERTIES
 		event.enqueueWork(ModItemModelProperties::registerProperties);
+
+		event.enqueueWork(RangedItemModelProperties::init);
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods

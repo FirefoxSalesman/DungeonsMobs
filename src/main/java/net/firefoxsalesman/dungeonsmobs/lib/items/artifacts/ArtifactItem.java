@@ -14,6 +14,7 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.lib.event.ArtifactEvent;
 import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfig;
+import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfigRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IReloadableGear;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.DescriptionHelper;
 import net.firefoxsalesman.dungeonsmobs.mixin.CooldownAccessor;

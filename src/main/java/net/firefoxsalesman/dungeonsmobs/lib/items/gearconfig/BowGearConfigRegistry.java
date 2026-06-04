@@ -26,6 +26,5 @@ public class BowGearConfigRegistry {
 
 	public static void subscribe() {
 		BOW_GEAR_CONFIGS.subscribeAsSyncable(NetworkHandler.INSTANCE, BowGearConfigRegistry::toPacket);
-
 	}
 }
