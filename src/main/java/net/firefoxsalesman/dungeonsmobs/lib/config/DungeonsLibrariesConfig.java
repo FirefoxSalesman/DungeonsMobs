@@ -14,6 +14,8 @@ public class DungeonsLibrariesConfig {
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DUAL_WIELDING;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_TWO_HANDED_WEAPON;
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENEMY_BLACKLIST;
+	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ELITE_MOBS;
+	public static ForgeConfigSpec.ConfigValue<Double> ELITE_MOBS_BASE_CHANCE;
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENEMY_WHITELIST;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_TARGETS_BASED_ON_GOALS;
 
@@ -67,6 +69,18 @@ public class DungeonsLibrariesConfig {
 					.comment("Vertical offset of the soul bar. Negative values move the bar down. Positive values move the bar up.")
 					.define("soulBarVerticalOffset", 0);
 			builder.pop();
+
+			builder.comment("Elite Mob Configuration").push("elite_mob_configuration");
+			ENABLE_ELITE_MOBS = builder
+					.comment("Enables elite mobs, enabled by default. [true / false]")
+					.define("enableEliteMobs", true);
+			ELITE_MOBS_BASE_CHANCE = builder
+					.comment("Base chance of an elite mob spawning. [0.0 - 1.0] \n" +
+							"Calculation: chance * difficulty.getSpecialMultiplier() \n" +
+							"Base chance for vanilla armor spawning is 0.15. Default is 0.15")
+					.defineInRange("eliteMobsBaseChance", 0.15, 0.0, 1.0);
+			builder.pop();
+
 		}
 	}
 

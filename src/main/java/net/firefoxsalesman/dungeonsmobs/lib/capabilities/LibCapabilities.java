@@ -17,6 +17,8 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.AttacherArtifactUsage;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.builtinenchantments.AttacherBuiltInEnchantments;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.builtinenchantments.BuiltInEnchantments;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.elite.AttacherEliteMob;
+import net.firefoxsalesman.dungeonsmobs.lib.capabilities.elite.EliteMob;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.AttacherEnchantedProjectile;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.enchantedprojectile.EnchantedProjectile;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.AttacherFollower;
@@ -53,6 +55,8 @@ public class LibCapabilities {
 	public static final Capability<PlayerRewards> PLAYER_REWARDS_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});
+	public static final Capability<EliteMob> ELITE_MOB_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+	});
 
 	public static void setupCapabilities() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -64,13 +68,19 @@ public class LibCapabilities {
 		forgeBus.addGenericListener(Entity.class, AttacherSoulCaster::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherEnchantedProjectile::attach);
 		forgeBus.addGenericListener(Entity.class, AttacherPlayerRewards::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherEliteMob::attach);
 	}
 
 	@SubscribeEvent
 	public static void registerCaps(RegisterCapabilitiesEvent event) {
+		event.register(Timers.class);
+		event.register(Follower.class);
+		event.register(Leader.class);
+		event.register(SoulCaster.class);
+		event.register(EnchantedProjectile.class);
+		event.register(PlayerRewards.class);
 		event.register(BuiltInEnchantments.class);
 		event.register(ArtifactUsage.class);
-		event.register(Leader.class);
-		event.register(Follower.class);
+		event.register(EliteMob.class);
 	}
 }
