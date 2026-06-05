@@ -11,6 +11,8 @@ public class DungeonsLibrariesConfig {
 	public static ForgeConfigSpec.ConfigValue<Integer> SOUL_BAR_VERTICAL_OFFSET;
 	public static ForgeConfigSpec.ConfigValue<Integer> SOUL_BAR_HORIZONTAL_OFFSET;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_KEEP_SOULS_ON_DEATH;
+	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DUAL_WIELDING;
+	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_TWO_HANDED_WEAPON;
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENEMY_BLACKLIST;
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENEMY_WHITELIST;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_TARGETS_BASED_ON_GOALS;
@@ -39,6 +41,18 @@ public class DungeonsLibrariesConfig {
 							+ "To do so, enter their registry names.")
 					.defineList("effectTargetWhitelist", Lists.newArrayList(),
 							(itemRaw) -> itemRaw instanceof String);
+			builder.pop();
+
+			// combat configuration
+			builder.comment("Combat Configuration").push("combat_configuration");
+			ENABLE_DUAL_WIELDING = builder
+					.comment("Enable dual wielding. \n" +
+							"If you do not want dual wielding, disable this feature. [true / false]")
+					.define("enableDualWielding", true);
+			ENABLE_TWO_HANDED_WEAPON = builder
+					.comment("Enable two handed weapon. \n" +
+							"If you do not want two handed weapon, disable this feature. [true / false]")
+					.define("enableTwoHandedWeapon", true);
 			builder.pop();
 
 			builder.comment("Souls Configuration").push("souls_configuration");

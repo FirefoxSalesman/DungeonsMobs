@@ -5,14 +5,11 @@ import net.firefoxsalesman.dungeonsmobs.lib.capabilities.builtinenchantments.Bui
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -21,13 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
-
-	private static final Optional<Enchantment> enchantmentOnIteration = null;
-	private static final ItemStack itemStackOnIteration = null;
 
 	@Inject(method = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getTagEnchantmentLevel(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I", remap = false, at = @At(value = "RETURN", ordinal = 1), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
 	private static void dungeonslibraries_getItemEnchantmentLevelEnchantmentFound(Enchantment enchantment,
@@ -74,51 +67,4 @@ public abstract class EnchantmentHelperMixin {
 						}));
 		return newEnchantmentMap;
 	}
-
-	// @Inject(method =
-	// "runIterationOnItem(Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Lnet/minecraft/world/item/ItemStack;)V",
-	// at = @At(value = "INVOKE_ASSIGN", target =
-	// "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getEnchantmentId(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/resources/ResourceLocation;"),
-	// locals = LocalCapture.CAPTURE_FAILHARD)
-	// private static void
-	// dungeonslibraries_runIterationOnItemCapture(EnchantmentHelper.EnchantmentVisitor
-	// p_77518_0_, ItemStack p_77518_1_, CallbackInfo ci, ListTag listNBT, int i,
-	// CompoundTag compoundtag) {
-	// enchantmentOnIteration =
-	// Registry.ENCHANTMENT.getOptional(getEnchantmentId(compoundtag));
-	// itemStackOnIteration = p_77518_1_;
-	// }
-	//
-	// @Inject(
-	// method =
-	// "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getEnchantmentLevel(Lnet/minecraft/nbt/CompoundTag;)I",
-	// at = @At(value = "RETURN"), cancellable = true)
-	// private static void dungeonslibraries_runIterationOnItem(CompoundTag value,
-	// CallbackInfoReturnable<Integer> cir) {
-	// if (enchantmentOnIteration == null || itemStackOnIteration == null) {
-	// return;
-	// }
-	// BuiltInEnchantments cap =
-	// BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(itemStackOnIteration);
-	// if (enchantmentOnIteration.isPresent()) {
-	// Integer reduce = cap.getAllBuiltInEnchantmentInstances().stream()
-	// .filter(enchantmentInstance -> enchantmentInstance.enchantment ==
-	// enchantmentOnIteration.get())
-	// .map(enchantmentInstance -> enchantmentInstance.level)
-	// .reduce(0, Integer::sum);
-	// cir.setReturnValue(reduce + cir.getReturnValue());
-	// }
-	// enchantmentOnIteration = null;
-	// itemStackOnIteration = null;
-	// }
-
-	// @Inject(method =
-	// "runIterationOnItem(Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Lnet/minecraft/world/item/ItemStack;)V",
-	// at = @At("TAIL"))
-	// private static void
-	// dungeonslibraries_runIterationOnItemWhenOnlyBuiltIn(EnchantmentHelper.EnchantmentVisitor
-	// visitor, ItemStack itemStack, CallbackInfo ci) {
-	// EnchantmentHelperMixinHandler.handler(visitor, itemStack);
-	// }
-
 }
