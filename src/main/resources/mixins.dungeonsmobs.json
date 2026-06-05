@@ -18,6 +18,7 @@
     "ItemAccessor",
     "ItemInHandRendererMixin",
     "LivingEntityAccessor",
+    "LivingRendererMixin",
     "MinecraftMixin",
     "MobInvoker",
     "MobMixin",
