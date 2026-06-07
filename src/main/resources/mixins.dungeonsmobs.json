@@ -5,7 +5,6 @@
   "minVersion": "0.8.4",
   "refmap": "mixins.dungeonsmobs.refmap.json",
   "mixins": [
-    "AbstractClientPlayerMixin",
     "AbstractSkeletonMixin",
     "ArmorItemAccessor",
     "BeeMixin",
@@ -16,15 +15,11 @@
     "CrossbowItemMixin",
     "EnchantmentHelperMixin",
     "ItemAccessor",
-    "ItemInHandRendererMixin",
     "LivingEntityAccessor",
-    "LivingRendererMixin",
-    "MinecraftMixin",
     "MobInvoker",
     "MobMixin",
     "NearestAttackableTargetGoalAccessor",
     "PiglinMixin",
-    "SkeletonModelMixin",
     "TargetingConditionsAccessor",
     "TieredItemAccessor",
     "AbstractArrowEntityMixin",
@@ -43,6 +38,11 @@
     "MobEffectInstanceAccessor"
   ],
   "client": [
+    "AbstractClientPlayerMixin",
+    "ItemInHandRendererMixin",
+    "LivingRendererMixin",
+    "MinecraftMixin",
+    "SkeletonModelMixin",
     "SpiderModelMixin"
   ],
   "injectors": {
