@@ -1,0 +1,59 @@
+{
+  "configs": [
+    {
+      "handItem": {
+        "id": "dungeonsmobs:gold_mountaineer_axe",
+        "Count": 1
+      },
+      "attributes": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 12,
+          "operation": 0
+        }
+      ],
+      "texture": "dungeonsmobs:textures/entity/illager/mountaineer_expedition.png",
+      "weight": 100
+    },
+    {
+      "handItem": {
+        "id": "dungeonsmobs:diamond_mountaineer_axe",
+        "Count": 1
+      },
+      "attributes": [
+	{
+          "attribute": "minecraft:generic.armor",
+          "amount": 20,
+          "operation": 0
+        },
+        {
+          "attribute": "minecraft:generic.armor_toughness",
+          "amount": 8,
+          "operation": 0
+        }
+      ],
+      "texture": "dungeonsmobs:textures/entity/illager/mountaineer_alpine.png",
+      "weight": 25
+    },
+    {
+      "handItem": {
+        "id": "dungeonsmobs:diamond_mountaineer_axe",
+        "Count": 1
+      },
+      "attributes": [
+	{
+          "attribute": "minecraft:generic.armor",
+          "amount": 20,
+          "operation": 0
+        },
+        {
+          "attribute": "minecraft:generic.armor_toughness",
+          "amount": 8,
+          "operation": 0
+        }
+      ],
+      "texture": "dungeonsmobs:textures/entity/illager/mountaineer_mystery.png",
+      "weight": 5
+    }
+  ]
+}
