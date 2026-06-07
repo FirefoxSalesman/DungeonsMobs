@@ -4,6 +4,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.network.entity.PlayerBeamMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStartMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.network.EliteMobMessage;
+import net.firefoxsalesman.dungeonsmobs.lib.network.SwitchHandMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.UpdateSoulsMessage;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArmorGearConfigSyncPacket;
 import net.firefoxsalesman.dungeonsmobs.lib.network.gearconfig.ArtifactGearConfigSyncPacket;
@@ -67,20 +69,16 @@ public class NetworkHandler {
 				.encoder(CuriosArtifactStopMessage::encode).decoder(CuriosArtifactStopMessage::decode)
 				.consumerMainThread(CuriosArtifactStopMessage::handle)
 				.add();
-		// INSTANCE.messageBuilder(EliteMobMessage.class,
-		// incrementAndGetPacketCounter())
-		// .encoder(EliteMobMessage::encode).decoder(EliteMobMessage::decode)
-		// .consumerMainThread(EliteMobMessage::handle)
-		// .add();
+		INSTANCE.messageBuilder(EliteMobMessage.class, incrementAndGetPacketCounter())
+				.encoder(EliteMobMessage::encode).decoder(EliteMobMessage::decode)
+				.consumerMainThread(EliteMobMessage::handle).add();
 		INSTANCE.messageBuilder(BreakItemMessage.class, incrementAndGetPacketCounter())
 				.encoder(BreakItemMessage::encode).decoder(BreakItemMessage::decode)
 				.consumerMainThread(BreakItemMessage.BreakItemHandler::handle)
 				.add();
-		// INSTANCE.messageBuilder(SwitchHandMessage.class,
-		// incrementAndGetPacketCounter())
-		// .encoder(SwitchHandMessage::encode).decoder(SwitchHandMessage::decode)
-		// .consumerMainThread(SwitchHandMessage.SwitchHandHandler::handle)
-		// .add();
+		INSTANCE.messageBuilder(SwitchHandMessage.class, incrementAndGetPacketCounter())
+				.encoder(SwitchHandMessage::encode).decoder(SwitchHandMessage::decode)
+				.consumerMainThread(SwitchHandMessage.SwitchHandHandler::handle).add();
 		INSTANCE.messageBuilder(ArtifactGearConfigSyncPacket.class, incrementAndGetPacketCounter())
 				.encoder(ArtifactGearConfigSyncPacket::encode)
 				.decoder(ArtifactGearConfigSyncPacket::decode)
