@@ -16,12 +16,10 @@ public class RaidEntries {
 		 */
 
 		// WARRIOR
-		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_PILLAGERS_IN_RAIDS.get()) {
-			Raid.RaiderType.create("gold_armoured_pillager", ModEntities.GOLD_ARMOURED_PILLAGER.get(),
-					new int[] { 0, 1, 2, 0, 3, 0, 0, 0 });
-			Raid.RaiderType.create("diamond_armoured_pillager", ModEntities.DIAMOND_ARMOURED_PILLAGER.get(),
-					new int[] { 0, 0, 0, 0, 1, 1, 0, 3 });
-		}
+		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_PILLAGERS_IN_RAIDS.get())
+			Raid.RaiderType.create("armoured_pillager", ModEntities.ARMOURED_PILLAGER.get(),
+					new int[] { 0, 1, 2, 0, 3, 1, 0, 3 });
+
 		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_VINDICATORS_IN_RAIDS.get()) {
 			Raid.RaiderType.create("gold_armoured_vindicator", ModEntities.GOLD_ARMOURED_VINDICATOR.get(),
 					new int[] { 0, 0, 1, 2, 0, 0, 0, 0 });
@@ -30,15 +28,13 @@ public class RaidEntries {
 					new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });
 		}
 
-		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get()) {
+		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get())
 			Raid.RaiderType.create("mountaineer", ModEntities.MOUNTAINEER.get(),
 					new int[] { 0, 0, 2, 0, 1, 4, 2, 5 });
-		}
 
-		if (DungeonsMobsConfig.COMMON.ENABLE_ROYAL_GUARDS_IN_RAIDS.get()) {
+		if (DungeonsMobsConfig.COMMON.ENABLE_ROYAL_GUARDS_IN_RAIDS.get())
 			Raid.RaiderType.create("royal_guard", ModEntities.ROYAL_GUARD.get(),
 					new int[] { 0, 0, 1, 0, 0, 2, 1, 2 });
-		}
 
 		// SPELLCASTER
 		if (DungeonsMobsConfig.COMMON.ENABLE_GEOMANCERS_IN_RAIDS.get()) {
@@ -61,14 +57,13 @@ public class RaidEntries {
 		}
 
 		// BEAST / GOLEM
-		if (DungeonsMobsConfig.COMMON.ENABLE_SQUALL_GOLEMS_IN_RAIDS.get()) {
+		if (DungeonsMobsConfig.COMMON.ENABLE_SQUALL_GOLEMS_IN_RAIDS.get())
 			Raid.RaiderType.create("squall_golem", ModEntities.SQUALL_GOLEM.get(),
 					new int[] { 0, 0, 0, 1, 0, 1, 0, 2 });
-		}
 
-		if (DungeonsMobsConfig.COMMON.ENABLE_REDSTONE_GOLEMS_IN_RAIDS.get()) {
+		if (DungeonsMobsConfig.COMMON.ENABLE_REDSTONE_GOLEMS_IN_RAIDS.get())
 			Raid.RaiderType.create("redstone_golem", ModEntities.REDSTONE_GOLEM.get(),
 					new int[] { 0, 0, 0, 0, 0, 0, 0, 1 });
-		}
+
 	}
 }

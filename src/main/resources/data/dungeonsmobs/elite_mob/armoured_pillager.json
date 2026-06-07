@@ -1,0 +1,20 @@
+{
+  "configs": [
+    {
+      "attributes": [
+	{
+          "attribute": "minecraft:generic.armor",
+          "amount": 8,
+          "operation": 0
+        },
+        {
+          "attribute": "minecraft:generic.armor_toughness",
+          "amount": 8,
+          "operation": 0
+        }
+      ],
+      "texture": "dungeonsmobs:textures/entity/illager/armored_pillager_diamond.png",
+      "weight": 25
+    }
+  ]
+}

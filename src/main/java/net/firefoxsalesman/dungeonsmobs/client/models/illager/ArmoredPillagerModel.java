@@ -4,7 +4,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.ArmouredIllagerAnimator;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.AbstractArmouredPillagerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredPillagerEntity;
 
 // Made with Blockbench 5.1.3
 // Exported for Minecraft version 1.17 or later with Mojang mappings
@@ -20,7 +20,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class ArmoredPillagerModel<T extends AbstractArmouredPillagerEntity> extends ConvenientModel<T>
+public class ArmoredPillagerModel<T extends ArmouredPillagerEntity> extends ConvenientModel<T>
 		implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
