@@ -110,6 +110,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:rapid_crossbow",
+          "weight": 4
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:flail",
           "weight": 2
         },
@@ -401,6 +406,16 @@
 	{
           "type": "item",
           "name": "dungeonsmobs:spider_boots",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:butterfly_crossbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:auto_crossbow",
           "weight": 2
         },
 	{

@@ -457,6 +457,11 @@
   "commands.souls.set.failed": "Failed to set souls",
   "commands.souls.add.success": "Successfully added souls",
   "commands.souls.set.success": "Successfully set souls",
+  
+  "commands.summonelite.success": "Elite mob summoned successfully",
+  "commands.summonelite.failed": "Failed to summon elite mob",
+  "commands.summonelite.failed.uuid": "A mob with the same uuid already exists",
+  "commands.summonelite.invalidPosition": "Invalid position!",
 
   "artifact.dungeons_libraries.base": "Using the Artifact will move it into a free Artifact Curios Slot.",
   "artifact.dungeons_libraries.duration": "%d Seconds Duration",
@@ -724,6 +729,13 @@
   "lore.dungeonsmobs.burst_gale_bow": "A bow infused with the force of a rolling wind which can flare up in an instant.",
   "item.dungeonsmobs.wind_bow": "Wind Bow",
   "lore.dungeonsmobs.wind_bow": "A mesmerizing bow that captures the power of the wind to fire mighty Gale Arrows.",
+
+  "item.dungeonsmobs.auto_crossbow": "Auto Crossbow",
+  "lore.dungeonsmobs.auto_crossbow": "The Arch-Illager said the design for this powerful crossbow came to him in a vision.",
+  "item.dungeonsmobs.butterfly_crossbow": "Butterfly Crossbow",
+  "lore.dungeonsmobs.butterfly_crossbow": "This crossbow moves faster than wings in flight and strikes down enemies before they see the bolt.",
+  "item.dungeonsmobs.rapid_crossbow": "Rapid Crossbow",
+  "lore.dungeonsmobs.rapid_crossbow": "New reloading technology helps this crossbow fire more rapidly than those that came before it.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
