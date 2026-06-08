@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/the_slicer",
+    "textures": {
+        "layer0": "dungeonsmobs:item/the_slicer_pulling_2"
+    }
+}

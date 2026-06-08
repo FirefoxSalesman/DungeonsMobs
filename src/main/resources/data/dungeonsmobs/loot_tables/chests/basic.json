@@ -519,8 +519,18 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:azure_seeker",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:the_slicer",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 180
+          "weight": 184
         }
       ]
     }

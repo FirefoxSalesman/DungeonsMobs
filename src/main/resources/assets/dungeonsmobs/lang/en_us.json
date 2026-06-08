@@ -731,6 +731,11 @@
   "item.dungeonsmobs.rapid_crossbow": "Rapid Crossbow",
   "lore.dungeonsmobs.rapid_crossbow": "New reloading technology helps this crossbow fire more rapidly than those that came before it.",
 
+  "item.dungeonsmobs.azure_seeker": "Azure Seeker",
+  "lore.dungeonsmobs.azure_seeker": "If the color blue had a sound, it would be shots fired by the Azure Seeker.",
+  "item.dungeonsmobs.the_slicer": "The Slicer",
+  "lore.dungeonsmobs.the_slicer": "The peak of mischievous Illager-engineering, the famous Slicer was designed to fire bolts that pierce through even the thickest of armor.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",

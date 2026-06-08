@@ -246,6 +246,11 @@ public class ItemInit {
 	public static final RegistryObject<Item> AUTO_CROSSBOW = registerRangedWeapon("auto_crossbow",
 			() -> new CrossbowGear(PROPERTIES));
 
+	public static final RegistryObject<Item> AZURE_SEEKER = registerRangedWeapon("azure_seeker",
+			() -> new CrossbowGear(PROPERTIES));
+	public static final RegistryObject<Item> THE_SLICER = registerRangedWeapon("the_slicer",
+			() -> new CrossbowGear(PROPERTIES));
+
 	public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
 			() -> new BootsOfSwiftnessItem(PROPERTIES));
 	public static final RegistryObject<Item> DEATH_CAP_MUSHROOM = registerArtifact("death_cap_mushroom",
