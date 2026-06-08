@@ -425,6 +425,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:harp_crossbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:scatter_crossbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1
         },
@@ -544,8 +554,13 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:lightning_harp_crossbow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 192
+          "weight": 197
         }
       ]
     }

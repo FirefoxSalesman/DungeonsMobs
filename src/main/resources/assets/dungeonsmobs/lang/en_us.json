@@ -750,6 +750,13 @@
   "item.dungeonsmobs.soul_crossbow": "Soul Crossbow",
   "lore.dungeonsmobs.soul_crossbow": "The Soul Crossbow was crafted by the mysterious Evokers and Enchanters of the Woodland Mansions.",
 
+  "item.dungeonsmobs.harp_crossbow": "Harp Crossbow",
+  "lore.dungeonsmobs.harp_crossbow": "Half musical instrument and fully deadly weapon, the Harp Crossbow is the life of the party.",
+  "item.dungeonsmobs.lightning_harp_crossbow": "Lightning Harp Crossbow",
+  "lore.dungeonsmobs.lightning_harp_crossbow": "Adding electrical energy to this crossbow changed the firing sound dramatically.",
+  "item.dungeonsmobs.scatter_crossbow": "Scatter Crossbow",
+  "lore.dungeonsmobs.scatter_crossbow": "This crossbow, modified to hold and fire multiple bolts, is also a half-decent musical instrument.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",
