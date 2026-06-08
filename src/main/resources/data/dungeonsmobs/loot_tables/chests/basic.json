@@ -435,6 +435,16 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:firebolt_thrower",
+          "weight": 2
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:exploding_crossbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1
         },
@@ -559,8 +569,13 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:imploding_crossbow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 197
+          "weight": 202
         }
       ]
     }

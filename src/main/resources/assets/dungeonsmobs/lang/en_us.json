@@ -757,6 +757,13 @@
   "item.dungeonsmobs.scatter_crossbow": "Scatter Crossbow",
   "lore.dungeonsmobs.scatter_crossbow": "This crossbow, modified to hold and fire multiple bolts, is also a half-decent musical instrument.",
 
+  "item.dungeonsmobs.firebolt_thrower": "Firebolt Thrower",
+  "lore.dungeonsmobs.firebolt_thrower": "The Firebolt Thrower launches chaos in a chain reaction of exploding arrows.",
+  "item.dungeonsmobs.exploding_crossbow": "Exploding Crossbow",
+  "lore.dungeonsmobs.exploding_crossbow": "The power of TNT fused with the latest in archery design resulted in this devastating crossbow.",
+  "item.dungeonsmobs.imploding_crossbow": "Imploding Crossbow",
+  "lore.dungeonsmobs.imploding_crossbow": "The Imploding Crossbow has been magically fine-tuned to maximize the impact of the explosion.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",
