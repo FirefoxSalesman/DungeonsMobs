@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/soul_hunter_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/soul_hunter_crossbow_pulling_1"
+    }
+}

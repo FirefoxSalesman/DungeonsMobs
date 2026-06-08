@@ -764,6 +764,13 @@
   "item.dungeonsmobs.imploding_crossbow": "Imploding Crossbow",
   "lore.dungeonsmobs.imploding_crossbow": "The Imploding Crossbow has been magically fine-tuned to maximize the impact of the explosion.",
 
+  "item.dungeonsmobs.burst_crossbow": "Burst Crossbow",
+  "lore.dungeonsmobs.burst_crossbow": "A tactical crossbow favored by warriors and hunters alike, the Burst Crossbow is a powerful tool for any hero.",
+  "item.dungeonsmobs.corrupted_crossbow": "Corrupted Crossbow",
+  "lore.dungeonsmobs.corrupted_crossbow": "This crossbow has a subtle yet corrupting power that is suitable for thieves and nimble warriors alike.",
+  "item.dungeonsmobs.soul_hunter_crossbow": "Soul Hunter Crossbow",
+  "lore.dungeonsmobs.soul_hunter_crossbow": "",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",

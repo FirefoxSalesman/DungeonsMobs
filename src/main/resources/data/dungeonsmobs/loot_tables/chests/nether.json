@@ -124,8 +124,13 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:soul_hunter_crossbow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 29
+          "weight": 30
         }
       ]
     }

@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/corrupted_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/corrupted_crossbow_pulling_0"
+    }
+}

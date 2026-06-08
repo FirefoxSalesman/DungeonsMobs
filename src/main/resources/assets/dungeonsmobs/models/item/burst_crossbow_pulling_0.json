@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/burst_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/burst_crossbow_pulling_0"
+    }
+}
