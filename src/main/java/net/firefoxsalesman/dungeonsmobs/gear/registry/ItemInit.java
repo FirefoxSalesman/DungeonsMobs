@@ -43,6 +43,7 @@ import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modL
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGear;
+import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -237,6 +238,13 @@ public class ItemInit {
 	// registerRangedWeapon("burst_gale_bow", bowSupplier);
 	public static final RegistryObject<Item> ECHO_OF_THE_VALLEY = registerRangedWeapon("echo_of_the_valley",
 			bowSupplier);
+
+	public static final RegistryObject<Item> RAPID_CROSSBOW = registerRangedWeapon("rapid_crossbow",
+			() -> new CrossbowGear(PROPERTIES));
+	public static final RegistryObject<Item> BUTTERFLY_CROSSBOW = registerRangedWeapon("butterfly_crossbow",
+			() -> new CrossbowGear(PROPERTIES));
+	public static final RegistryObject<Item> AUTO_CROSSBOW = registerRangedWeapon("auto_crossbow",
+			() -> new CrossbowGear(PROPERTIES));
 
 	public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
 			() -> new BootsOfSwiftnessItem(PROPERTIES));

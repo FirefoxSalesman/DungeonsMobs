@@ -18,6 +18,7 @@ public class DungeonsGearConfig {
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENCHANTMENT_BLACKLIST;
 	public static ForgeConfigSpec.ConfigValue<List<? extends String>> TREASURE_ONLY_ENCHANTMENTS;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTMENT_TRADES;
+	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FRIENDLY_PET_FIRE;
 	public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTMENT_LOOT;
 
 	// Enchanting specific values
@@ -108,6 +109,9 @@ public class DungeonsGearConfig {
 				.defineList("treasureOnlyEnchantments", Lists.newArrayList(
 						"dungeonsmobs:masters_call"),
 						(itemRaw) -> itemRaw instanceof String);
+		ENABLE_FRIENDLY_PET_FIRE = builder.comment("Enable Friendly Fire on Pets \n"
+				+ "If you dislike (or outright hate) your pets and would like to kill them, enable this feature. [true / false]")
+				.define("enableFriendlyPetFire", false);
 		ENABLE_ENCHANTMENT_TRADES = builder
 				.comment("Enable Librarian Villagers trading books enchanted with this mod's enchantments. \n"
 						+

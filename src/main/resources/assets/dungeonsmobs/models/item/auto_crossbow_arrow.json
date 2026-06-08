@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/auto_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/auto_crossbow_arrow"
+    }
+}

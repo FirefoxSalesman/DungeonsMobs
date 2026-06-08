@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/rapid_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/rapid_crossbow_firework"
+    }
+}

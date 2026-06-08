@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.CommonProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
+import net.firefoxsalesman.dungeonsmobs.gear.items.GearRangedItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.gear.loot.ModLootModifiers;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
@@ -144,6 +145,8 @@ public class DungeonsMobs {
 		event.enqueueWork(ModItemModelProperties::registerProperties);
 
 		event.enqueueWork(RangedItemModelProperties::init);
+
+		GearRangedItemModelProperties.init();
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
