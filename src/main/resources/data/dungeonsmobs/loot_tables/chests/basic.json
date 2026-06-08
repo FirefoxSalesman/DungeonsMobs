@@ -420,6 +420,11 @@
         },
 	{
           "type": "item",
+          "name": "dungeonsmobs:heavy_crossbow",
+          "weight": 2
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:titans_shroud_helmet",
           "weight": 1
         },
@@ -529,8 +534,18 @@
           "weight": 1
         },
 	{
+          "type": "item",
+          "name": "dungeonsmobs:doom_crossbow",
+          "weight": 1
+        },
+	{
+          "type": "item",
+          "name": "dungeonsmobs:slayer_crossbow",
+          "weight": 1
+        },
+	{
           "type": "empty",
-          "weight": 184
+          "weight": 192
         }
       ]
     }

@@ -1,6 +1,10 @@
 {
   "configs": [
     {
+      "handItem": {
+        "id": "dungeonsmobs:heavy_crossbow",
+        "Count": 1
+      },
       "attributes": [
         {
           "attribute": "minecraft:generic.armor",

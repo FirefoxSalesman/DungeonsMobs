@@ -736,6 +736,13 @@
   "item.dungeonsmobs.the_slicer": "The Slicer",
   "lore.dungeonsmobs.the_slicer": "The peak of mischievous Illager-engineering, the famous Slicer was designed to fire bolts that pierce through even the thickest of armor.",
 
+  "item.dungeonsmobs.heavy_crossbow": "Heavy Crossbow",
+  "lore.dungeonsmobs.heavy_crossbow": "The weighted crossbow is a damage-dealing menace and a real threat from a ranged distance.",
+  "item.dungeonsmobs.doom_crossbow": "Doom Crossbow",
+  "lore.dungeonsmobs.doom_crossbow": "Many thought that the Doom Crossbow was just a myth, but this time the rumors turned out to be true.",
+  "item.dungeonsmobs.slayer_crossbow": "Slayer Crossbow",
+  "lore.dungeonsmobs.slayer_crossbow": "The Slayer Crossbow is the treasured heirloom of many legendary hunters.",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",
