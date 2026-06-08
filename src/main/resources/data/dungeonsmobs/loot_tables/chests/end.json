@@ -1,0 +1,18 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+	{
+          "type": "item",
+          "name": "dungeonsmobs:voidcaller",
+          "weight": 2
+        },
+        {
+          "type": "empty",
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

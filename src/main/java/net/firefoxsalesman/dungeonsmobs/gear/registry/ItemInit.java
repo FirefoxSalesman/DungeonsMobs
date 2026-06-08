@@ -72,6 +72,7 @@ public class ItemInit {
 	private static Supplier<Item> staffSupplier = () -> new StaffGear(PROPERTIES);
 	private static Supplier<Item> axeSupplier = () -> new AxeGear(PROPERTIES);
 	private static Supplier<Item> bowSupplier = () -> new BowGear(PROPERTIES);
+	private static Supplier<Item> crossbowSupplier = () -> new CrossbowGear(PROPERTIES);
 
 	// DPS 9.6 (19.2), crits once per 2.5 (1.25) seconds
 	public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger", meleeSupplier);
@@ -240,23 +241,27 @@ public class ItemInit {
 			bowSupplier);
 
 	public static final RegistryObject<Item> RAPID_CROSSBOW = registerRangedWeapon("rapid_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
 	public static final RegistryObject<Item> BUTTERFLY_CROSSBOW = registerRangedWeapon("butterfly_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
 	public static final RegistryObject<Item> AUTO_CROSSBOW = registerRangedWeapon("auto_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
 
-	public static final RegistryObject<Item> AZURE_SEEKER = registerRangedWeapon("azure_seeker",
-			() -> new CrossbowGear(PROPERTIES));
-	public static final RegistryObject<Item> THE_SLICER = registerRangedWeapon("the_slicer",
-			() -> new CrossbowGear(PROPERTIES));
+	public static final RegistryObject<Item> AZURE_SEEKER = registerRangedWeapon("azure_seeker", crossbowSupplier);
+	public static final RegistryObject<Item> THE_SLICER = registerRangedWeapon("the_slicer", crossbowSupplier);
 
 	public static final RegistryObject<Item> HEAVY_CROSSBOW = registerRangedWeapon("heavy_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
 	public static final RegistryObject<Item> DOOM_CROSSBOW = registerRangedWeapon("doom_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
 	public static final RegistryObject<Item> SLAYER_CROSSBOW = registerRangedWeapon("slayer_crossbow",
-			() -> new CrossbowGear(PROPERTIES));
+			crossbowSupplier);
+
+	public static final RegistryObject<Item> SOUL_CROSSBOW = registerRangedWeapon("soul_crossbow",
+			crossbowSupplier);
+	public static final RegistryObject<Item> FERAL_SOUL_CROSSBOW = registerRangedWeapon("feral_soul_crossbow",
+			crossbowSupplier);
+	public static final RegistryObject<Item> VOIDCALLER = registerRangedWeapon("voidcaller", crossbowSupplier);
 
 	public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
 			() -> new BootsOfSwiftnessItem(PROPERTIES));

@@ -1,0 +1,83 @@
+{
+  "type": "dungeonsmobs:loottable",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/end_city_treasure"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/mineshaft/end"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/dungeon/end"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/outpost/end_shulker_box"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/pyramid/end_chest"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/shipwreck/end/map_chest"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/shipwreck/end/supply_chest"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:chests/shipwreck/end/treasure_chest"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:shulker_boxes/stronghold/end_storage_room"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:shulker_boxes/stronghold/end_hallway"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "repurposed_structures:shulker_boxes/stronghold/end_library"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/armoury"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/common"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/crypt"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/mess"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/prison_lg"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/trap"
+        },
+	{
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/end/treasure"
+        }
+      ]
+    }
+  ],
+  "table": "dungeonsmobs:chests/end"
+}

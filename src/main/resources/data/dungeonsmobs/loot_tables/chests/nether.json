@@ -5,6 +5,11 @@
       "entries": [
         {
           "type": "item",
+          "name": "dungeonsmobs:soul_crossbow",
+          "weight": 4 
+        },
+	{
+          "type": "item",
           "name": "dungeonsmobs:boneclub",
           "weight": 4 
         },
@@ -120,7 +125,7 @@
         },
 	{
           "type": "empty",
-          "weight": 25
+          "weight": 29
         }
       ]
     }

@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/voidcaller",
+    "textures": {
+        "layer0": "dungeonsmobs:item/voidcaller_arrow"
+    }
+}

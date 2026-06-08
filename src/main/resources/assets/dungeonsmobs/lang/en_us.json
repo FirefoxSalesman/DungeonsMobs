@@ -451,7 +451,7 @@
   "commands.souls.set.failed": "Failed to set souls",
   "commands.souls.add.success": "Successfully added souls",
   "commands.souls.set.success": "Successfully set souls",
-  
+
   "commands.summonelite.success": "Elite mob summoned successfully",
   "commands.summonelite.failed": "Failed to summon elite mob",
   "commands.summonelite.failed.uuid": "A mob with the same uuid already exists",
@@ -742,6 +742,13 @@
   "lore.dungeonsmobs.doom_crossbow": "Many thought that the Doom Crossbow was just a myth, but this time the rumors turned out to be true.",
   "item.dungeonsmobs.slayer_crossbow": "Slayer Crossbow",
   "lore.dungeonsmobs.slayer_crossbow": "The Slayer Crossbow is the treasured heirloom of many legendary hunters.",
+
+  "item.dungeonsmobs.feral_soul_crossbow": "Feral Soul Crossbow",
+  "lore.dungeonsmobs.feral_soul_crossbow": "If you listen closely you can hear the souls inside the crossbow, usually ridiculing you.",
+  "item.dungeonsmobs.voidcaller": "Voidcaller",
+  "lore.dungeonsmobs.voidcaller": "This weapon calls out to souls that are trapped between this world and the next.",
+  "item.dungeonsmobs.soul_crossbow": "Soul Crossbow",
+  "lore.dungeonsmobs.soul_crossbow": "The Soul Crossbow was crafted by the mysterious Evokers and Enchanters of the Woodland Mansions.",
 
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
