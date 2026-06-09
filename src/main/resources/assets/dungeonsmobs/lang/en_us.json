@@ -771,6 +771,16 @@
   "item.dungeonsmobs.soul_hunter_crossbow": "Soul Hunter Crossbow",
   "lore.dungeonsmobs.soul_hunter_crossbow": "",
 
+  "item.dungeonsmobs.dual_crossbow": "Dual Crossbows",
+  "lore.dungeonsmobs.dual_crossbow": "Dual crossbows are the perfect choice for a warrior with quick reflexes in a fast-paced battle.",
+  "item.dungeonsmobs.baby_crossbow": "Baby Crossbows",
+  "lore.dungeonsmobs.baby_crossbow": "While some discuss the cute Baby Crossbows, these deadly weapons grow into heavy hitters.",
+
+  "item.dungeonsmobs.harpoon_crossbow": "Harpoon Crossbow",
+  "lore.dungeonsmobs.harpoon_crossbow": "The Harpoon Crossbow shoots harpoons that cut through wind and water with devastating power.",
+  "item.dungeonsmobs.nautical_crossbow": "Nautical Crossbow",
+  "lore.dungeonsmobs.nautical_crossbow": "Why harpoon one enemy when you can harpoon many!",
+
   "item.dungeonsmobs.broadsword": "Broadsword",
   "lore.dungeonsmobs.broadsword": "Only those with the strength of a champion and the heart of a hero can carry this massive blade.",
   "item.dungeonsmobs.heartstealer": "Heartstealer",

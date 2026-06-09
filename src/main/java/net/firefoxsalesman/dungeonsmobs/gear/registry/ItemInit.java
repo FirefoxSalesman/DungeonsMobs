@@ -39,6 +39,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.CorruptedPum
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.EyeOfTheGuardianItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.ShearsGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
+import net.firefoxsalesman.dungeonsmobs.gear.items.ranged.crossbows.DualCrossbowGear;
+
 import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
@@ -284,6 +286,20 @@ public class ItemInit {
 	// crossbowSupplier);
 	public static final RegistryObject<Item> SOUL_HUNTER_CROSSBOW = registerRangedWeapon("soul_hunter_crossbow",
 			crossbowSupplier);
+
+	// public static final RegistryObject<Item> DUAL_CROSSBOW =
+	// registerRangedWeapon("dual_crossbow",
+	// () -> new DualCrossbowGear(PROPERTIES));
+	// public static final RegistryObject<Item> BABY_CROSSBOW =
+	// registerRangedWeapon("baby_crossbow",
+	// () -> new DualCrossbowGear(PROPERTIES));
+
+	// public static final RegistryObject<Item> HARPOON_CROSSBOW =
+	// registerRangedWeapon("harpoon_crossbow",
+	// crossbowSupplier);
+	// public static final RegistryObject<Item> NAUTICAL_CROSSBOW =
+	// registerRangedWeapon("nautical_crossbow",
+	// crossbowSupplier);
 
 	public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
 			() -> new BootsOfSwiftnessItem(PROPERTIES));

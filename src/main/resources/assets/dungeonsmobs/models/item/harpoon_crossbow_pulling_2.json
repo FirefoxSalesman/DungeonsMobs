@@ -1,0 +1,6 @@
+{
+    "parent": "dungeonsmobs:item/harpoon_crossbow",
+    "textures": {
+        "layer0": "dungeonsmobs:item/harpoon_crossbow_pulling_2"
+    }
+}
