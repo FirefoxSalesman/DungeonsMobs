@@ -4,11 +4,10 @@ import net.minecraft.world.entity.HumanoidArm;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.ArmouredIllagerAnimator;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.AbstractArmouredVindicatorEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.world.entity.monster.AbstractIllager;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -21,7 +20,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class ArmouredVindicatorModel<T extends AbstractArmouredVindicatorEntity> extends ConvenientModel<T>
+public class ArmouredVindicatorModel<T extends ArmouredVindicatorEntity> extends ConvenientModel<T>
 		implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor

@@ -8,6 +8,7 @@ import com.google.common.base.Supplier;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredPillagerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
@@ -16,9 +17,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
@@ -157,23 +156,14 @@ public class ModEntities {
 					.build(modLoc("armoured_pillager").toString()),
 			0x676767, 0x014575);
 
-	public static final RegistryObject<EntityType<GoldArmouredVindicatorEntity>> GOLD_ARMOURED_VINDICATOR = registerEntity(
-			"gold_armoured_vindicator",
+	public static final RegistryObject<EntityType<ArmouredVindicatorEntity>> ARMOURED_VINDICATOR = registerEntity(
+			"armoured_vindicator",
 			() -> EntityType.Builder
-					.<GoldArmouredVindicatorEntity>of(GoldArmouredVindicatorEntity::new,
+					.<ArmouredVindicatorEntity>of(ArmouredVindicatorEntity::new,
 							MobCategory.MONSTER)
 					.sized(0.6F, 1.95F).clientTrackingRange(8)
-					.build(modLoc("gold_armoured_vindicator").toString()),
+					.build(modLoc("armoured_vindicator").toString()),
 			0x676767, 0x014575);
-
-	public static final RegistryObject<EntityType<DiamondArmouredVindicatorEntity>> DIAMOND_ARMOURED_VINDICATOR = registerEntity(
-			"diamond_armoured_vindicator",
-			() -> EntityType.Builder
-					.<DiamondArmouredVindicatorEntity>of(DiamondArmouredVindicatorEntity::new,
-							MobCategory.MONSTER)
-					.sized(0.6F, 1.95F).clientTrackingRange(8)
-					.build(modLoc("diamond_armoured_vindicator").toString()),
-			0x676767, 0x013575);
 
 	public static final RegistryObject<EntityType<IceologerEntity>> ICEOLOGER = registerEntity("iceologer",
 			() -> EntityType.Builder.<IceologerEntity>of(IceologerEntity::new, MobCategory.MONSTER)

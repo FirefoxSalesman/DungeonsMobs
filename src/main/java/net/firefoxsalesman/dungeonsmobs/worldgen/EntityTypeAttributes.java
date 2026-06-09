@@ -11,9 +11,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredPillagerEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.DiamondArmouredVindicatorEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.GoldArmouredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageCloneEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.MageEntity;
@@ -59,10 +58,8 @@ public class EntityTypeAttributes {
 
 		event.put(ModEntities.ARMOURED_PILLAGER.get(),
 				ArmouredPillagerEntity.createAttributes().build());
-		event.put(ModEntities.DIAMOND_ARMOURED_VINDICATOR.get(),
-				DiamondArmouredVindicatorEntity.createAttributes().build());
-		event.put(ModEntities.GOLD_ARMOURED_VINDICATOR.get(),
-				GoldArmouredVindicatorEntity.createAttributes().build());
+		event.put(ModEntities.ARMOURED_VINDICATOR.get(),
+				ArmouredVindicatorEntity.createAttributes().build());
 		event.put(ModEntities.VINDICATOR_CHEF.get(), VindicatorChefEntity.setCustomAttributes().build());
 		event.put(ModEntities.ROYAL_GUARD.get(), RoyalGuardEntity.setCustomAttributes().build());
 		event.put(ModEntities.MOUNTAINEER.get(), MountaineerEntity.setCustomAttributes().build());

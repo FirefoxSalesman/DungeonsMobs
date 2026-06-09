@@ -17,10 +17,9 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.SnarelingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.ender.WatchlingRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.golem.SquallGolemRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.ArmouredPillagerRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.ArmouredVindicatorRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DefaultIllagerRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.DiamondArmouredVindicatorRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GeomancerRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.GoldArmouredVindicatorRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.IceologerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MageRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.illager.MountaineerRenderer;
@@ -102,10 +101,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.MOUNTAINEER.get(), MountaineerRenderer::new);
 		event.registerEntityRenderer(ModEntities.ARMOURED_PILLAGER.get(),
 				ArmouredPillagerRenderer::new);
-		event.registerEntityRenderer(ModEntities.GOLD_ARMOURED_VINDICATOR.get(),
-				GoldArmouredVindicatorRenderer::new);
-		event.registerEntityRenderer(ModEntities.DIAMOND_ARMOURED_VINDICATOR.get(),
-				DiamondArmouredVindicatorRenderer::new);
+		event.registerEntityRenderer(ModEntities.ARMOURED_VINDICATOR.get(),
+				ArmouredVindicatorRenderer::new);
 		event.registerEntityRenderer(ModEntities.VINDICATOR_CHEF.get(), VindicatorChefRenderer::new);
 		event.registerEntityRenderer(ModEntities.ICEOLOGER.get(), IceologerRenderer::new);
 		event.registerEntityRenderer(ModEntities.GEOMANCER.get(), GeomancerRenderer::new);

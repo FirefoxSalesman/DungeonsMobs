@@ -20,13 +20,9 @@ public class RaidEntries {
 			Raid.RaiderType.create("armoured_pillager", ModEntities.ARMOURED_PILLAGER.get(),
 					new int[] { 0, 1, 2, 0, 3, 1, 0, 3 });
 
-		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_VINDICATORS_IN_RAIDS.get()) {
-			Raid.RaiderType.create("gold_armoured_vindicator", ModEntities.GOLD_ARMOURED_VINDICATOR.get(),
-					new int[] { 0, 0, 1, 2, 0, 0, 0, 0 });
-			Raid.RaiderType.create("diamond_armoured_vindicator",
-					ModEntities.DIAMOND_ARMOURED_VINDICATOR.get(),
-					new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });
-		}
+		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_VINDICATORS_IN_RAIDS.get())
+			Raid.RaiderType.create("armoured_vindicator", ModEntities.ARMOURED_VINDICATOR.get(),
+					new int[] { 0, 0, 1, 2, 0, 1, 1, 2 });
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get())
 			Raid.RaiderType.create("mountaineer", ModEntities.MOUNTAINEER.get(),
