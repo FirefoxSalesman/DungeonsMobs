@@ -30,6 +30,7 @@ public class DungeonsMobsConfig {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WINDCALLERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SQUALL_GOLEMS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REDSTONE_GOLEMS_IN_RAIDS;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REDSTONE_MONSTROSITIES_IN_RAIDS;
 
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_STRONGER_HUSKS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RANGED_SPIDERS;
@@ -121,6 +122,9 @@ public class DungeonsMobsConfig {
 			ENABLE_REDSTONE_GOLEMS_IN_RAIDS = builder
 					.comment("Enable the addition of Redstone Golems to raids. [true / false]")
 					.define("enableRedstoneGolemsInRaids", true);
+			ENABLE_REDSTONE_MONSTROSITIES_IN_RAIDS = builder
+					.comment("Enable the addition of Redstone Monstrosities to raids. [true / false]")
+					.define("enableRedstoneMonstrositiesInRaids", true);
 			builder.pop();
 
 			// MOB CONFIGURATION

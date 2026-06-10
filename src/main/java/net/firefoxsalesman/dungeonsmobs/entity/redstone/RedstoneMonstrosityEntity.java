@@ -91,6 +91,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
 		if (summonAnimationTick > 0) {
+			System.out.println("Should be animating");
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(

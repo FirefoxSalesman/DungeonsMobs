@@ -61,5 +61,8 @@ public class RaidEntries {
 			Raid.RaiderType.create("redstone_golem", ModEntities.REDSTONE_GOLEM.get(),
 					new int[] { 0, 0, 0, 0, 0, 0, 0, 1 });
 
+		if (DungeonsMobsConfig.COMMON.ENABLE_REDSTONE_MONSTROSITIES_IN_RAIDS.get())
+			Raid.RaiderType.create("redstone_monstrosity", ModEntities.REDSTONE_MONSTROSITY.get(),
+					new int[] { 0, 0, 0, 0, 0, 0, 0, 1 });
 	}
 }
