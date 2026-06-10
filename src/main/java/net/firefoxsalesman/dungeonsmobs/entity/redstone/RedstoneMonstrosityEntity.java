@@ -1,13 +1,19 @@
 package net.firefoxsalesman.dungeonsmobs.entity.redstone;
 
+import javax.annotation.Nullable;
+
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -38,6 +44,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import net.minecraft.world.BossEvent;
 
 public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -47,10 +54,37 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
 			.defineId(RedstoneGolemEntity.class, EntityDataSerializers.BOOLEAN);
 
+	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
+			BossEvent.BossBarColor.RED,
+			BossEvent.BossBarOverlay.PROGRESS));
+
 	public RedstoneMonstrosityEntity(EntityType<? extends RedstoneMonstrosityEntity> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
 		setMaxUpStep(1.25F);
 		xpReward = 40;
+	}
+
+	public void readAdditionalSaveData(CompoundTag tag) {
+		super.readAdditionalSaveData(tag);
+		if (hasCustomName()) {
+			bossEvent.setName(getDisplayName());
+		}
+
+	}
+
+	public void setCustomName(@Nullable Component p_200203_1_) {
+		super.setCustomName(p_200203_1_);
+		bossEvent.setName(getDisplayName());
+	}
+
+	public void baseTick() {
+		super.baseTick();
+		bossEvent.setProgress(getHealth() / getMaxHealth());
+	}
+
+	public void startSeenByPlayer(ServerPlayer player) {
+		super.startSeenByPlayer(player);
+		bossEvent.addPlayer(player);
 	}
 
 	protected void registerGoals() {
