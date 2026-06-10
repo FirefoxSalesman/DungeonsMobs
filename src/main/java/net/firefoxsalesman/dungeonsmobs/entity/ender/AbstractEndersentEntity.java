@@ -99,6 +99,13 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 	}
 
 	@Override
+	public void handleEntityEvent(byte pId) {
+		super.handleEntityEvent(pId);
+		if (pId == 8)
+			summonAnimationTick = summonAnimationLength;
+	}
+
+	@Override
 	protected void tickDeath() {
 		++deathTime;
 		if (deathTime == 100) {

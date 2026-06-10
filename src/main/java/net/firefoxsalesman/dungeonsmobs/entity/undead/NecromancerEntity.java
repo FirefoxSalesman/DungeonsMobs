@@ -156,15 +156,15 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		return false;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
 			this.specialAnimationTick = specialAnimationLength;
-		} else if (p_28844_ == 11) {
+		} else if (event == 11) {
 			this.shootAnimationTick = shootAnimationLength;
-		} else if (p_28844_ == 9) {
+		} else if (event == 9) {
 			this.summonAnimationTick = summonAnimationLength;
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 

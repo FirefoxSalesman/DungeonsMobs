@@ -128,6 +128,13 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	}
 
 	@Override
+	public void handleEntityEvent(byte pId) {
+		super.handleEntityEvent(pId);
+		if (pId == 8)
+			summonAnimationTick = summonAnimationLength;
+	}
+
+	@Override
 	public SoundEvent getCelebrateSound() {
 		return SoundEvents.IRON_GOLEM_REPAIR;
 	}
@@ -239,17 +246,17 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 		@Override
 		protected void resetSummonTick() {
-			mob.summonAnimationTick = summonAnimationLength;
+			summonAnimationTick = summonAnimationLength;
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return mob.summonAnimationTick;
+			return summonAnimationTick;
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return mob.summonAnimationTick == 1;
+			return summonAnimationTick == 1;
 		}
 	}
 }
