@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -32,8 +33,7 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int ensnareAnimationTick;
-	public int ensnareAnimationLength = 5;
+	private final AnimationTimer ensnareTimer = new AnimationTimer(5);
 
 	public int trappedMobTime;
 
@@ -49,13 +49,13 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (ensnareAnimationTick > 0) {
+		if (ensnareTimer.isRunning()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("kelp_trap_ensnare", LoopType.LOOP));
-		} else if (spawnAnimationTick > 0) {
+		} else if (spawnTimer.isRunning()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("kelp_trap_spawn", LoopType.LOOP));
-		} else if (decayAnimationTick > 0) {
+		} else if (decayTimer.isRunning()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 		} else {
@@ -153,9 +153,7 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	@Override
 	public void tickDownAnimTimers() {
 		super.tickDownAnimTimers();
-		if (ensnareAnimationTick > 0) {
-			ensnareAnimationTick--;
-		}
+		ensnareTimer.dec();
 	}
 
 	public double waterBlocksAbove() {
@@ -176,9 +174,9 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 				trappedMobTime++;
 
 				if (isPulling()) {
-					if (ensnareAnimationTick <= 0) {
+					if (ensnareTimer.animationsUseable()) {
 						setPulling(false);
-						ensnareAnimationTick = ensnareAnimationLength;
+						ensnareTimer.reset();
 						level().broadcastEntityEvent(this, (byte) 3);
 					}
 				}
@@ -187,28 +185,28 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 			}
 
 			if (trappedMobTime == timeToDecay()) {
-				decayAnimationTick = getDecayAnimationLength();
+				decayTimer.reset();
 				level().broadcastEntityEvent(this, (byte) 2);
 			}
 
 			if (isPulling()) {
 				if (lifeTime == 200) {
-					ensnareAnimationTick = ensnareAnimationLength;
+					ensnareTimer.reset();
 					level().broadcastEntityEvent(this, (byte) 3);
 				}
 
-				if (lifeTime == 200 + ensnareAnimationLength) {
-					decayAnimationTick = getDecayAnimationLength();
+				if (lifeTime == 205) {
+					decayTimer.reset();
 					level().broadcastEntityEvent(this, (byte) 2);
 				}
 			} else {
 				if (trappedMobTime == 100) {
-					decayAnimationTick = getDecayAnimationLength();
+					decayTimer.reset();
 					level().broadcastEntityEvent(this, (byte) 2);
 				}
 			}
 
-			if (decayAnimationTick == 2) {
+			if (decayTimer.tickEquals(2)) {
 				remove(RemovalReason.DISCARDED);
 			}
 		}
@@ -219,11 +217,10 @@ public class KelpTrapEntity extends AbstractTrapEntity {
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 3) {
-			ensnareAnimationTick = ensnareAnimationLength;
-		} else {
-			super.handleEntityEvent(p_70103_1_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 3)
+			ensnareTimer.reset();
+		else
+			super.handleEntityEvent(event);
 	}
 }

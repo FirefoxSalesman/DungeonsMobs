@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AbstractTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
@@ -45,23 +46,16 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int summonQGVAnimationTick;
-	public int summonQGVAnimationLength = 40;
+	protected final AnimationTimer summonQGVTimer = new AnimationTimer(40);
 	public int summonQGVAnimationActionPoint = 20;
 
-	public int summonPQVAnimationTick;
-	public int summonPQVAnimationLength = 70;
+	protected final AnimationTimer summonPQVTimer = new AnimationTimer(70);
 	public int summonPQVAnimationActionPoint1 = 53;
 	public int summonPQVAnimationActionPoint2 = 30;
 
-	public int grappleAnimationTick;
-	public int grappleAnimationLength = 65;
-	public int grappleAnimationActionPoint = 23;
+	protected final AnimationTimer grappleTimer = new AnimationTimer(65);
 
-	public int underwaterGrappleAnimationActionPoint = 20;
-
-	public int attackAnimationTick;
-	public int attackAnimationLength = 30;
+	protected final AnimationTimer attackTimer = new AnimationTimer(30);
 	public int attackAnimationActionPoint = 18;
 
 	public int underwaterAttackAnimationActionPoint = 16;
@@ -75,8 +69,8 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 	}
 
 	public boolean isSpellcasting() {
-		return summonPQVAnimationTick > 0 || summonQGVAnimationTick > 0
-				|| grappleAnimationTick > 0;
+		return summonPQVTimer.isRunning() || summonQGVTimer.isRunning()
+				|| grappleTimer.isRunning();
 	}
 
 	protected void defineSynchedData() {
@@ -233,36 +227,24 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 	}
 
 	public void tickDownAnimTimers() {
-		if (summonQGVAnimationTick > 0) {
-			summonQGVAnimationTick--;
-		}
-
-		if (summonPQVAnimationTick > 0) {
-			summonPQVAnimationTick--;
-		}
-
-		if (grappleAnimationTick > 0) {
-			grappleAnimationTick--;
-		}
-
-		if (attackAnimationTick > 0) {
-			attackAnimationTick--;
-		}
+		summonQGVTimer.dec();
+		summonPQVTimer.dec();
+		grappleTimer.dec();
+		attackTimer.dec();
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 4) {
-			summonQGVAnimationTick = summonQGVAnimationLength;
-		} else if (p_70103_1_ == 5) {
-			summonPQVAnimationTick = summonPQVAnimationLength;
-		} else if (p_70103_1_ == 6) {
-			grappleAnimationTick = grappleAnimationLength;
-		} else if (p_70103_1_ == 7) {
-			attackAnimationTick = attackAnimationLength;
-		} else {
-			super.handleEntityEvent(p_70103_1_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			summonQGVTimer.reset();
+		else if (event == 5)
+			summonPQVTimer.reset();
+		else if (event == 6)
+			grappleTimer.reset();
+		else if (event == 7)
+			attackTimer.reset();
+		else
+			super.handleEntityEvent(event);
 	}
 
 	@Override
@@ -332,7 +314,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 		@Override
 		public void start() {
-			mob.attackAnimationTick = mob.attackAnimationLength;
+			attackTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 7);
 			mob.playSound(ModSoundEvents.WHISPERER_ATTACK_FOLEY.get(), 1.0F, 1.0F);
 		}
@@ -345,18 +327,18 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 			int actionPoint = mob.getBasicAttackActionPoint();
 
-			if (mob.attackAnimationTick == mob.attackAnimationActionPoint + 5) {
+			if (mob.attackTimer.tickEquals(mob.attackAnimationActionPoint + 5)) {
 				mob.playSound(mob.getAttackSound(), 1.25F, 1.0F);
 			}
 
 			if (target != null && mob.distanceTo(target) < 3.5
-					&& mob.attackAnimationTick == actionPoint) {
+					&& mob.attackTimer.tickEquals(actionPoint)) {
 				mob.doHurtTarget(target);
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.attackAnimationTick <= 0;
+			return mob.attackTimer.animationsUseable();
 		}
 
 	}
@@ -399,7 +381,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 		@Override
 		public void start() {
-			mob.summonQGVAnimationTick = mob.summonQGVAnimationLength;
+			summonQGVTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 			mob.playSound(ModSoundEvents.WHISPERER_SUMMON_QGV_FOLEY.get(), 1.0F, 1.0F);
 		}
@@ -410,11 +392,11 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 			mob.getNavigation().stop();
 
-			if (mob.summonQGVAnimationTick == mob.summonQGVAnimationLength - 5) {
+			if (mob.summonQGVTimer.tickEquals(35)) {
 				mob.playSound(mob.getSummonQGSound(), 1.25F, 1.0F);
 			}
 
-			if (target != null && mob.summonQGVAnimationTick == mob.summonQGVAnimationActionPoint) {
+			if (target != null && mob.summonQGVTimer.tickEquals(mob.summonQGVAnimationActionPoint)) {
 				int[] rowToRemove = Util.getRandom(GeomancyHelper.CONFIG_1_ROWS, getRandom());
 				GeomancyHelper.summonAreaDenialVineTrap(mob, target, getAreaDenialVine(), rowToRemove);
 			}
@@ -426,7 +408,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 		}
 
 		public boolean animationsUseable() {
-			return mob.summonQGVAnimationTick <= 0;
+			return mob.summonQGVTimer.animationsUseable();
 		}
 
 	}
@@ -469,7 +451,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 		@Override
 		public void start() {
-			mob.summonPQVAnimationTick = mob.summonPQVAnimationLength;
+			mob.summonPQVTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 5);
 			mob.playSound(mob.getSummonPoisonFoleySound(), 1.0F, 1.0F);
 		}
@@ -480,13 +462,14 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 			mob.getNavigation().stop();
 
-			if (mob.summonPQVAnimationTick == mob.summonPQVAnimationLength - 12) {
+			if (mob.summonPQVTimer.tickEquals(58)) {
 				mob.playSound(getSummonPoisonVocalSound(), 1.25F, 1.0F);
 			}
 
 			if (target != null
-					&& (mob.summonPQVAnimationTick == mob.summonPQVAnimationActionPoint1
-							|| mob.summonPQVAnimationTick == mob.summonPQVAnimationActionPoint2)) {
+					&& (mob.summonPQVTimer.tickEquals(mob.summonPQVAnimationActionPoint1)
+							|| mob.summonPQVTimer.tickEquals(
+									mob.summonPQVAnimationActionPoint2))) {
 				boolean movingOnX = mob.random.nextBoolean();
 				GeomancyHelper.summonOffensiveVine(mob, mob, mob.getOffensiveVine(),
 						movingOnX ? (mob.random.nextBoolean() ? 3 : -3) : 0,
@@ -500,7 +483,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 		}
 
 		public boolean animationsUseable() {
-			return mob.summonPQVAnimationTick <= 0;
+			return mob.summonPQVTimer.animationsUseable();
 		}
 
 	}
@@ -543,7 +526,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 		@Override
 		public void start() {
-			mob.grappleAnimationTick = mob.grappleAnimationLength;
+			grappleTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 6);
 			mob.playSound(ModSoundEvents.WHISPERER_GRAPPLE_FOLEY.get(), 1.0F, 1.0F);
 		}
@@ -554,13 +537,13 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 
 			mob.getNavigation().stop();
 
-			if (mob.grappleAnimationTick == mob.grappleAnimationLength - 30) {
+			if (mob.grappleTimer.tickEquals(35)) {
 				mob.playSound(mob.getGrappleSound(), 1.25F, 1.0F);
 			}
 
 			int actionPoint = mob.getGrappleActionPoint();
 
-			if (target != null && mob.grappleAnimationTick == actionPoint) {
+			if (target != null && mob.grappleTimer.tickEquals(actionPoint)) {
 				AbstractTrapEntity trap = getTrap();
 				trap.moveTo(target.getX(), target.getY(), target.getZ());
 				if (!mob.isWavewhisperer())
@@ -577,7 +560,7 @@ public abstract class AbstractWhispererEntity extends Monster implements GeoEnti
 		}
 
 		public boolean animationsUseable() {
-			return mob.grappleAnimationTick <= 0;
+			return mob.grappleTimer.animationsUseable();
 		}
 
 	}

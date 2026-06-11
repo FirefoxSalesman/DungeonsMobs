@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.minecraft.core.BlockPos;
@@ -38,16 +39,13 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 			AbstractEndersentEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
-	private int teleportAnimationTick = 0;
-	private final int teleportAnimationLength = 29;
+	private final AnimationTimer teleportTimer = new AnimationTimer(29);
 
 	private int attackAnimationTick = 0;
 	private final int attackAnimationLength = 26;
-
-	private int summonAnimationTick = 0;
-	private final int summonAnimationLength = 22;
-
 	private final int smashAnimationLength = 37;
+
+	private final AnimationTimer summonTimer = new AnimationTimer(22);
 
 	public int appearDelay = 0;
 
@@ -102,7 +100,7 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 	public void handleEntityEvent(byte pId) {
 		super.handleEntityEvent(pId);
 		if (pId == 8)
-			summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 	}
 
 	@Override
@@ -159,9 +157,9 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 		if (level().isClientSide) {
 			setupAnimationStates();
 		}
-		summonAnimationTick--;
+		summonTimer.dec();
 		attackAnimationTick--;
-		teleportAnimationTick--;
+		teleportTimer.dec();
 	}
 
 	public void baseTick() {
@@ -187,9 +185,8 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 	@Override
 	protected boolean teleport(double x, double y, double z) {
 		boolean result = super.teleport(x, y, z);
-		if (result) {
-			teleportAnimationTick = teleportAnimationLength;
-		}
+		if (result)
+			teleportTimer.reset();
 		return result;
 	}
 
@@ -201,23 +198,19 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 	private void setupAnimationStates() {
 		getState("death").animateWhen(isDead(), tickCount);
 		getState("teleport").animateWhen(teleporting(), tickCount);
-		getState("summon").animateWhen(isSummoning() && !teleporting(), tickCount);
+		getState("summon").animateWhen(summonTimer.isRunning() && !teleporting(), tickCount);
 		getState("attack").animateWhen(isAttackingBool() && !isSmashing(), tickCount);
 		getState("smash").animateWhen(isAttackingBool() && isSmashing(), tickCount);
-		getState("idle").animateWhen(!isMoving() && !isSummoning() && !isAttackingBool() && !isDead(),
+		getState("idle").animateWhen(!isMoving() && !summonTimer.isRunning() && !isAttackingBool() && !isDead(),
 				tickCount);
 	}
 
 	private boolean teleporting() {
-		return isTeleporting() > 0 || teleportAnimationTick > 0;
+		return isTeleporting() > 0 || teleportTimer.isRunning();
 	}
 
 	private boolean isDead() {
 		return deathTime > 0;
-	}
-
-	private boolean isSummoning() {
-		return summonAnimationTick > 0;
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
@@ -320,7 +313,7 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 	}
 
 	public boolean shouldBeStationary() {
-		return summonAnimationTick > 0 || appearDelay > 0;
+		return summonTimer.isRunning() || appearDelay > 0;
 	}
 
 	class CreateWatchlingGoal extends AbstractSummonGoal<AbstractEndersentEntity> {
@@ -342,17 +335,17 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 
 		@Override
 		protected void resetSummonTick() {
-			mob.summonAnimationTick = summonAnimationLength;
+			mob.summonTimer.reset();
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return mob.summonAnimationTick;
+			return mob.summonTimer.getTick();
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return mob.summonAnimationTick == 1;
+			return mob.summonTimer.tickEquals(1);
 		}
 
 		@Override

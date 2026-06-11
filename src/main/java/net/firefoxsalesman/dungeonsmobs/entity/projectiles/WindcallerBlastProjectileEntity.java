@@ -29,16 +29,15 @@ public class WindcallerBlastProjectileEntity extends AbstractHurtingProjectile {
 		this.setNoGravity(true);
 	}
 
-	public WindcallerBlastProjectileEntity(Level world, LivingEntity entity, double p_i1771_3_, double p_i1771_5_,
-			double p_i1771_7_) {
-		super(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), entity, p_i1771_3_, p_i1771_5_, p_i1771_7_, world);
+	public WindcallerBlastProjectileEntity(Level world, LivingEntity shooter, double offsetX, double offsetY,
+			double offsetZ) {
+		super(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), shooter, offsetX, offsetY, offsetZ, world);
 		this.setNoGravity(true);
 	}
 
-	public WindcallerBlastProjectileEntity(Level world, double p_i1772_2_, double p_i1772_4_, double p_i1772_6_,
-			double p_i1772_8_, double p_i1772_10_, double p_i1772_12_) {
-		super(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), p_i1772_2_, p_i1772_4_, p_i1772_6_, p_i1772_8_,
-				p_i1772_10_, p_i1772_12_, world);
+	public WindcallerBlastProjectileEntity(Level world, double x, double y, double z, double offsetX,
+			double offsetY, double offsetZ) {
+		super(ModEntities.WINDCALLER_BLAST_PROJECTILE.get(), x, y, z, offsetX, offsetY, offsetZ, world);
 		this.setNoGravity(true);
 	}
 

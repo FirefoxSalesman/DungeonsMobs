@@ -56,7 +56,7 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 		return ModSoundEvents.MOSSY_SKELETON_IDLE.get();
 	}
 
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSoundEvents.MOSSY_SKELETON_HURT.get();
 	}
 
@@ -70,10 +70,10 @@ public class MossySkeletonEntity extends AbstractSkeleton {
 	}
 
 	@Override
-	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
+	public void performRangedAttack(LivingEntity p_82196_1_, float damageMultiplier) {
 		ItemStack itemstack = getProjectile(getItemInHand(ProjectileUtil.getWeaponHoldingHand(this,
 				item -> item instanceof net.minecraft.world.item.BowItem)));
-		AbstractArrow abstractarrowentity = getArrow(itemstack, p_82196_2_);
+		AbstractArrow abstractarrowentity = getArrow(itemstack, damageMultiplier);
 		if (getMainHandItem().getItem() instanceof net.minecraft.world.item.BowItem)
 			abstractarrowentity = ((net.minecraft.world.item.BowItem) getMainHandItem().getItem())
 					.customArrow(abstractarrowentity);

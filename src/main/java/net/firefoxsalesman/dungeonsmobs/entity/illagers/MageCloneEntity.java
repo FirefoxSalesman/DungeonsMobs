@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.particles.ParticleTypes;
@@ -36,12 +37,11 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 			MageCloneEntity.class,
 			EntityDataSerializers.BOOLEAN);
 	private Map<String, AnimationState> states;
-	private int shootAnimationTick;
-	private int shootAnimationLength = 40;
+
+	private final AnimationTimer shootTimer = new AnimationTimer(40);
 	private int shootAnimationActionPoint = 20;
 
-	private int appearAnimationTick;
-	private int appearAnimationLength = 25;
+	private final AnimationTimer appearTimer = new AnimationTimer(25);
 
 	public int lifeTime;
 
@@ -119,7 +119,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	public boolean shouldBeStationary() {
-		return appearAnimationTick > 0;
+		return appearTimer.isRunning();
 	}
 
 	@Override
@@ -132,12 +132,12 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 				.add(Attributes.FOLLOW_RANGE, 30.0D).add(Attributes.MAX_HEALTH, 40.0D);
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			shootAnimationTick = shootAnimationLength;
-		} else if (p_28844_ == 8) {
-			appearAnimationTick = appearAnimationLength;
-		} else if (p_28844_ == 11) {
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			shootTimer.reset();
+		else if (event == 8)
+			appearTimer.reset();
+		else if (event == 11) {
 			for (int i = 0; i < 20; ++i) {
 				double d0 = random.nextGaussian() * 0.02D;
 				double d1 = random.nextGaussian() * 0.02D;
@@ -146,7 +146,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 						getRandomZ(1.0D), d0, d1, d2);
 			}
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -159,17 +159,12 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	private void setupAnimationStates() {
-		getState("attack").animateWhen(isAttacking() && !isCelebrating(), tickCount);
-		getState("appear").animateWhen(isAppearing() && !isAttacking() && !isCelebrating(), tickCount);
-		getState("idle").animateWhen(!isAppearing() && !isAttacking() && !isMoving() && isAlive(), tickCount);
-	}
-
-	private boolean isAppearing() {
-		return appearAnimationTick > 0;
-	}
-
-	private boolean isAttacking() {
-		return shootAnimationTick > 0;
+		getState("attack").animateWhen(shootTimer.isRunning() && !isCelebrating(), tickCount);
+		getState("appear").animateWhen(appearTimer.isRunning() && !shootTimer.isRunning() && !isCelebrating(),
+				tickCount);
+		getState("idle").animateWhen(
+				!appearTimer.isRunning() && !shootTimer.isRunning() && !isMoving() && isAlive(),
+				tickCount);
 	}
 
 	public void baseTick() {
@@ -179,7 +174,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 		lifeTime++;
 
 		if (!level().isClientSide && hasDelayedAppear()) {
-			appearAnimationTick = appearAnimationLength;
+			appearTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 8);
 			setDelayedAppear(false);
 		}
@@ -206,13 +201,8 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (shootAnimationTick > 0) {
-			shootAnimationTick--;
-		}
-
-		if (appearAnimationTick > 0) {
-			appearAnimationTick--;
-		}
+		shootTimer.dec();
+		appearTimer.dec();
 	}
 
 	/**
@@ -288,7 +278,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 
 		@Override
 		public void start() {
-			mob.shootAnimationTick = mob.shootAnimationLength;
+			mob.shootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -298,7 +288,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 
 			mob.getNavigation().stop();
 
-			if (target != null && mob.shootAnimationTick == mob.shootAnimationActionPoint) {
+			if (target != null && mob.shootTimer.tickEquals(mob.shootAnimationActionPoint)) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0.3, 1.5, 0.5, mob.yBodyRot);
 				double d1 = target.getX() - pos.x;
 				double d3 = target.getZ() - pos.z;
@@ -313,7 +303,7 @@ public class MageCloneEntity extends AbstractIllager implements KeyframeEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.shootAnimationTick <= 0;
+			return mob.shootTimer.animationsUseable();
 		}
 
 	}

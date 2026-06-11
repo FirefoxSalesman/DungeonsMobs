@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
@@ -37,18 +38,15 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 
 	private Map<String, AnimationState> states;
 
-	private int shootAnimationTick;
-	private int shootAnimationLength = 20;
-	private int shootAnimationActionPoint = 7;
-	private int summonAnimationTick;
-	private int summonAnimationLength = 45;
-	private int summonAnimationActionPoint1 = summonAnimationLength - 20;
-	private int summonAnimationActionPoint2 = summonAnimationLength - 23;
-	private int summonAnimationActionPoint3 = summonAnimationLength - 26;
-	private int summonAnimationActionPoint4 = summonAnimationLength - 32;
-	private int summonAnimationActionPoint5 = summonAnimationLength - 38;
-	private int specialAnimationTick;
-	private int specialAnimationLength = 48;
+	private final AnimationTimer shootTimer = new AnimationTimer(20);
+	private static final int shootAnimationActionPoint = 7;
+	private final AnimationTimer summonTimer = new AnimationTimer(45);
+	private static final int summonAnimationActionPoint1 = 25;
+	private static final int summonAnimationActionPoint2 = 22;
+	private static final int summonAnimationActionPoint3 = 19;
+	private static final int summonAnimationActionPoint4 = 13;
+	private static final int summonAnimationActionPoint5 = 7;
+	private final AnimationTimer specialTimer = new AnimationTimer(48);
 
 	public NecromancerEntity(Level worldIn) {
 		this(ModEntities.NECROMANCER.get(), worldIn);
@@ -89,7 +87,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 	}
 
 	private boolean isShooting() {
-		return shootAnimationTick > 0;
+		return shootTimer.isRunning();
 	}
 
 	@Override
@@ -157,15 +155,14 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 	}
 
 	public void handleEntityEvent(byte event) {
-		if (event == 4) {
-			this.specialAnimationTick = specialAnimationLength;
-		} else if (event == 11) {
-			this.shootAnimationTick = shootAnimationLength;
-		} else if (event == 9) {
-			this.summonAnimationTick = summonAnimationLength;
-		} else {
+		if (event == 4)
+			specialTimer.reset();
+		else if (event == 11)
+			shootTimer.reset();
+		else if (event == 9)
+			summonTimer.reset();
+		else
 			super.handleEntityEvent(event);
-		}
 	}
 
 	@Override
@@ -180,12 +177,12 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		getState("summon").animateWhen(isSummoning(), tickCount);
 		getState("shoot").animateWhen(isShooting() && !isSummoning(), tickCount);
 		getState("idle").animateWhen(
-				!isSpellcasting() && !isMoving() && isAlive() && summonAnimationTick <= 0,
+				!isSpellcasting() && !isMoving() && isAlive() && summonTimer.animationsUseable(),
 				tickCount);
 	}
 
 	private boolean isSummoning() {
-		return summonAnimationTick > 0;
+		return summonTimer.isRunning();
 	}
 
 	public void baseTick() {
@@ -193,7 +190,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		this.tickDownAnimTimers();
 
 		if (!this.level().isClientSide && this.getTarget() == null && this.random.nextInt(300) == 0) {
-			this.specialAnimationTick = this.specialAnimationLength;
+			specialTimer.reset();
 			this.level().broadcastEntityEvent(this, (byte) 4);
 			this.playSound(ModSoundEvents.NECROMANCER_LAUGH.get(), this.getSoundVolume(),
 					this.getVoicePitch());
@@ -208,17 +205,9 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.specialAnimationTick > 0) {
-			this.specialAnimationTick--;
-		}
-
-		if (this.shootAnimationTick > 0) {
-			this.shootAnimationTick--;
-		}
-
-		if (this.summonAnimationTick > 0) {
-			this.summonAnimationTick--;
-		}
+		specialTimer.dec();
+		shootTimer.dec();
+		summonTimer.dec();
 	}
 
 	class SummonGoal extends AbstractSummonGoal<NecromancerEntity> {
@@ -229,21 +218,21 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		}
 
 		protected void resetSummonTick() {
-			mob.summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 		}
 
 		protected int getSummonTick() {
-			return mob.summonAnimationTick;
+			return mob.summonTimer.getTick();
 		}
 
 		protected boolean tickCondition() {
-			return mob.summonAnimationTick == mob.summonAnimationActionPoint1
-					|| mob.summonAnimationTick == mob.summonAnimationActionPoint2
-					|| mob.summonAnimationTick == mob.summonAnimationActionPoint3
-					|| (mob.summonAnimationTick == mob.summonAnimationActionPoint4
+			return mob.summonTimer.tickEquals(summonAnimationActionPoint1)
+					|| mob.summonTimer.tickEquals(summonAnimationActionPoint2)
+					|| mob.summonTimer.tickEquals(summonAnimationActionPoint3)
+					|| (mob.summonTimer.tickEquals(summonAnimationActionPoint4)
 							&& mob.random.nextBoolean())
-					|| (mob.summonAnimationTick == mob.summonAnimationActionPoint5
-							&& mob.random.nextBoolean());
+					|| (mob.summonTimer.tickEquals(summonAnimationActionPoint5)
+							&& mob.random.nextBoolean() && mob.random.nextBoolean());
 		}
 
 		@Override
@@ -286,7 +275,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 
 		@Override
 		public void start() {
-			mob.shootAnimationTick = mob.shootAnimationLength;
+			shootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 11);
 		}
 
@@ -296,7 +285,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 
 			this.mob.getNavigation().stop();
 
-			if (target != null && mob.shootAnimationTick == mob.shootAnimationActionPoint) {
+			if (target != null && mob.shootTimer.tickEquals(shootAnimationActionPoint)) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0.3, 1.5, 0.5, mob.yBodyRot);
 				double d1 = target.getX() - pos.x;
 				double d2 = target.getY(0.6D) - pos.y;
@@ -312,7 +301,7 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.shootAnimationTick <= 0;
+			return mob.shootTimer.animationsUseable();
 		}
 
 	}

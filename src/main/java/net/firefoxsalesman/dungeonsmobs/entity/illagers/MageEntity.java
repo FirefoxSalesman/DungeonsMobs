@@ -11,6 +11,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -54,16 +55,11 @@ import net.minecraft.world.phys.Vec3;
 
 public class MageEntity extends AbstractIllager implements KeyframeEntity {
 	private Map<String, AnimationState> states;
-	private int celebrationAnimationTick = 0;
 
-	private int attackAnimationTick;
-	private int attackAnimationLength = 50;
-
-	private int vanishAnimationTick;
-	private int vanishAnimationLength = 23;
-
-	private int appearAnimationTick;
-	private int appearAnimationLength = 25;
+	private final AnimationTimer celebrationTimer = new AnimationTimer(35);
+	private final AnimationTimer attackTimer = new AnimationTimer(50);
+	private final AnimationTimer vanishTimer = new AnimationTimer(23);
+	private final AnimationTimer appearTimer = new AnimationTimer(25);
 
 	private int appearDelay = 0;
 
@@ -101,15 +97,15 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	public boolean shouldBeStationary() {
-		return isAppearing() || appearDelay > 0;
+		return appearTimer.isRunning() || appearDelay > 0;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			attackAnimationTick = attackAnimationLength;
-		} else if (p_28844_ == 6) {
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			attackTimer.reset();
+		else if (event == 6) {
 			appearDelay = 11;
-		} else if (p_28844_ == 7) {
+		} else if (event == 7) {
 			for (int i = 0; i < 20; ++i) {
 				double d0 = random.nextGaussian() * 0.02D;
 				double d1 = random.nextGaussian() * 0.02D;
@@ -117,12 +113,12 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 				level().addParticle(ParticleTypes.POOF, getRandomX(1.0D), getRandomY(),
 						getRandomZ(1.0D), d0, d1, d2);
 			}
-		} else if (p_28844_ == 8) {
-			vanishAnimationTick = vanishAnimationLength;
-		} else if (p_28844_ == 9) {
-			appearAnimationTick = appearAnimationLength;
+		} else if (event == 8) {
+			vanishTimer.reset();
+		} else if (event == 9) {
+			appearTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -135,32 +131,23 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	private void setupAnimationStates() {
-		if (isCelebrating() && celebrationAnimationTick <= 0) {
-			celebrationAnimationTick = 35;
+		if (isCelebrating() && celebrationTimer.animationsUseable()) {
+			celebrationTimer.reset();
 			getState("celebrate").start(tickCount);
 		} else {
-			celebrationAnimationTick--;
+			celebrationTimer.dec();
 		}
-		getState("attack").animateWhen(isAttacking() && !isCelebrating(), tickCount);
-		getState("vanish").animateWhen(isVanishing() && !isAttacking() && !isCelebrating(), tickCount);
-		getState("appear").animateWhen(isAppearing() && !isVanishing() && !isAttacking() && !isCelebrating(),
+		getState("attack").animateWhen(attackTimer.isRunning() && !isCelebrating(), tickCount);
+		getState("vanish").animateWhen(vanishTimer.isRunning() && !attackTimer.isRunning() && !isCelebrating(),
+				tickCount);
+		getState("appear").animateWhen(
+				appearTimer.isRunning() && !vanishTimer.isRunning() && !attackTimer.isRunning()
+						&& !isCelebrating(),
 				tickCount);
 		getState("idle").animateWhen(
-				!isAppearing() && !isVanishing() && !isAttacking() && !isMoving() && !isCelebrating()
-						&& isAlive(),
+				!appearTimer.isRunning() && !vanishTimer.isRunning() && !attackTimer.isRunning()
+						&& !isMoving() && !isCelebrating() && isAlive(),
 				tickCount);
-	}
-
-	private boolean isAppearing() {
-		return appearAnimationTick > 0;
-	}
-
-	private boolean isVanishing() {
-		return vanishAnimationTick > 0;
-	}
-
-	private boolean isAttacking() {
-		return attackAnimationTick > 0;
 	}
 
 	public void baseTick() {
@@ -172,18 +159,18 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 		}
 
 		if (!level().isClientSide && appearDelay == 1) {
-			appearAnimationTick = appearAnimationLength;
+			appearTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 9);
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (isAttacking())
-			attackAnimationTick--;
-		if (isVanishing())
-			vanishAnimationTick--;
-		if (isAppearing())
-			appearAnimationTick--;
+		if (attackTimer.isRunning())
+			attackTimer.dec();
+		if (vanishTimer.isRunning())
+			vanishTimer.dec();
+		if (appearTimer.isRunning())
+			appearTimer.dec();
 	}
 
 	@Nullable
@@ -287,7 +274,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 		@Override
 		public void start() {
 			mob.playSound(SoundEvents.ILLUSIONER_PREPARE_MIRROR, 1.0F, 1.0F);
-			mob.vanishAnimationTick = mob.vanishAnimationLength;
+			mob.vanishTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 8);
 		}
 
@@ -301,7 +288,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.vanishAnimationTick == 1) {
+			if (target != null && mob.vanishTimer.tickEquals(1)) {
 				SummonSpotEntity summonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
 				summonSpot.moveTo(target.blockPosition().offset((int) -12.5 + mob.random.nextInt(25), 0,
 						(int) -12.5 + mob.random.nextInt(25)), 0.0F, 0.0F);
@@ -370,7 +357,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.vanishAnimationTick <= 0;
+			return mob.vanishTimer.animationsUseable();
 		}
 
 		@Override
@@ -423,7 +410,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 		public void start() {
 			slammedTarget = false;
 			mob.playSound(ModSoundEvents.NECROMANCER_PREPARE_SUMMON.get(), 1.0F, mob.getVoicePitch());
-			mob.attackAnimationTick = mob.attackAnimationLength;
+			mob.attackTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -439,7 +426,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 
 			if (target != null) {
 				target.hurtMarked = true;
-				if (mob.attackAnimationTick >= mob.attackAnimationLength - 32) {
+				if (mob.attackTimer.getTick() >= 18) {
 					if (target.getY() < mob.getY() + 7) {
 						target.push(0, 0.1, 0);
 						if (target.verticalCollision && !target.onGround()) {
@@ -470,7 +457,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.attackAnimationTick <= 0;
+			return mob.attackTimer.animationsUseable();
 		}
 
 	}

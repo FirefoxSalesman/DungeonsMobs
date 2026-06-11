@@ -42,8 +42,8 @@ public class SummonSpotEntity extends Entity implements GeoEntity {
 		super(ModEntities.SUMMON_SPOT.get(), worldIn);
 	}
 
-	public SummonSpotEntity(EntityType<?> p_i48580_1_, Level p_i48580_2_) {
-		super(p_i48580_1_, p_i48580_2_);
+	public SummonSpotEntity(EntityType<?> type, Level world) {
+		super(type, world);
 	}
 
 	@Override

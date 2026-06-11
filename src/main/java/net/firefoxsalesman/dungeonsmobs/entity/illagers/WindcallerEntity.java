@@ -8,6 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjec
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
 import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
@@ -53,12 +54,10 @@ import static net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper.equip
 
 public class WindcallerEntity extends AbstractIllager implements GeoEntity, SpawnArmoredMob {
 
-	public int liftAttackAnimationTick;
-	public int liftAttackAnimationLength = 25;
+	private final AnimationTimer liftTimer = new AnimationTimer(25);
 	public int liftAttackAnimationActionPoint = 15;
 
-	public int blastAttackAnimationTick;
-	public int blastAttackAnimationLength = 32;
+	private final AnimationTimer blastAttackTimer = new AnimationTimer(32);
 	public int blastAttackAnimationActionPoint = 20;
 
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -98,14 +97,13 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 				.setUnseenMemoryTicks(600));
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			this.liftAttackAnimationTick = liftAttackAnimationLength;
-		} else if (p_28844_ == 11) {
-			this.blastAttackAnimationTick = blastAttackAnimationLength;
-		} else {
-			super.handleEntityEvent(p_28844_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			liftTimer.reset();
+		else if (event == 11)
+			blastAttackTimer.reset();
+		else
+			super.handleEntityEvent(event);
 	}
 
 	boolean steepDropBelow() {
@@ -183,13 +181,8 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.liftAttackAnimationTick > 0) {
-			this.liftAttackAnimationTick--;
-		}
-
-		if (this.blastAttackAnimationTick > 0) {
-			this.blastAttackAnimationTick--;
-		}
+		liftTimer.dec();
+		blastAttackTimer.dec();
 	}
 
 	@Override
@@ -198,11 +191,11 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.liftAttackAnimationTick > 0) {
+		if (liftTimer.isRunning()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("windcaller_lift",
 							LoopType.LOOP));
-		} else if (this.blastAttackAnimationTick > 10) {
+		} else if (blastAttackTimer.getTick() > 10) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("windcaller_blast",
 							LoopType.LOOP));
@@ -343,7 +336,7 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 		@Override
 		public void start() {
 			mob.playSound(ModSoundEvents.WINDCALLER_LIFT_VOCAL.get(), 1.0F, mob.getVoicePitch());
-			mob.liftAttackAnimationTick = mob.liftAttackAnimationLength;
+			mob.liftTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -355,7 +348,7 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.liftAttackAnimationTick == mob.liftAttackAnimationActionPoint) {
+			if (target != null && mob.liftTimer.tickEquals(mob.liftAttackAnimationActionPoint)) {
 				WindcallerTornadoEntity tornado = ModEntities.TORNADO.get().create(mob.level());
 				tornado.moveTo(target.blockPosition(), 0, 0);
 				tornado.playSound(ModSoundEvents.WINDCALLER_LIFT_WIND.get(), 1.5F, 1.0F);
@@ -364,7 +357,7 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 		}
 
 		public boolean animationsUseable() {
-			return mob.liftAttackAnimationTick <= 0;
+			return mob.liftTimer.animationsUseable();
 		}
 
 	}
@@ -374,8 +367,8 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 		@Nullable
 		public LivingEntity target;
 
-		private final Predicate<Entity> TORNADO = (p_33346_) -> {
-			return p_33346_ instanceof WindcallerTornadoEntity;
+		private final Predicate<Entity> TORNADO = (entity) -> {
+			return entity instanceof WindcallerTornadoEntity;
 		};
 
 		public BlastAttackGoal(WindcallerEntity mob) {
@@ -419,7 +412,7 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 		@Override
 		public void start() {
 			mob.playSound(ModSoundEvents.WINDCALLER_BLAST_VOCAL.get(), 1.0F, mob.getVoicePitch());
-			mob.blastAttackAnimationTick = mob.blastAttackAnimationLength;
+			mob.blastAttackTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 11);
 		}
 
@@ -431,9 +424,8 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.blastAttackAnimationTick == mob.blastAttackAnimationActionPoint) {
+			if (target != null && mob.blastAttackTimer.tickEquals(mob.blastAttackAnimationActionPoint)) {
 				double d1 = target.getX() - mob.getX();
-				double d2 = target.getY(0.5D) - mob.getY(0.5D);
 				double d3 = target.getZ() - mob.getZ();
 				WindcallerBlastProjectileEntity smallfireballentity = new WindcallerBlastProjectileEntity(
 						mob.level(), mob, d1, 0, d3);
@@ -443,15 +435,13 @@ public class WindcallerEntity extends AbstractIllager implements GeoEntity, Spaw
 				tornado.moveTo(mob.blockPosition(), 0, 0);
 				tornado.playSound(ModSoundEvents.WINDCALLER_BLAST_WIND.get(), 1.5F, 1.0F);
 				tornado.setBlast(true);
-				// mob.lookAt(EntityAnchorArgument.Type.EYES, new Vector3d(target.getX(),
-				// target.getY(), target.getZ()));
 				tornado.setYRot(-mob.yHeadRot - 90);
 				((ServerLevel) mob.level()).addFreshEntityWithPassengers(tornado);
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.blastAttackAnimationTick <= 0;
+			return mob.blastAttackTimer.animationsUseable();
 		}
 
 	}

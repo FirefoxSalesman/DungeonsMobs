@@ -35,8 +35,8 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 	public static final EntityDataAccessor<Integer> SHOOT_TIME = SynchedEntityData.defineId(SnarelingEntity.class,
 			EntityDataSerializers.INT);
 
-	public SnarelingEntity(EntityType<? extends SnarelingEntity> p_i50210_1_, Level p_i50210_2_) {
-		super(p_i50210_1_, p_i50210_2_);
+	public SnarelingEntity(EntityType<? extends SnarelingEntity> type, Level world) {
+		super(type, world);
 	}
 
 	protected void registerGoals() {
@@ -58,7 +58,7 @@ public class SnarelingEntity extends AbstractEnderlingEntity {
 	}
 
 	@Override
-	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+	protected void playStepSound(BlockPos position, BlockState state) {
 		playSound(getStepSound(), 0.75F, 1.0F);
 	}
 

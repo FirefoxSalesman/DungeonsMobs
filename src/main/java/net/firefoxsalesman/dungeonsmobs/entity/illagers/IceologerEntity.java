@@ -5,6 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -32,10 +33,9 @@ import java.util.function.Predicate;
 public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 
 	private Map<String, AnimationState> animations;
-	private int celebrationAnimationTick = 0;
+	private final AnimationTimer celebrationTimer = new AnimationTimer(35);
 
-	private int summonAnimationTick;
-	private int summonAnimationLength = 60;
+	private final AnimationTimer summonTimer = new AnimationTimer(60);
 	private int summonAnimationActionPoint = 40;
 
 	public IceologerEntity(Level world) {
@@ -73,23 +73,17 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 				.setUnseenMemoryTicks(600));
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			this.summonAnimationTick = summonAnimationLength;
-		} else {
-			super.handleEntityEvent(p_28844_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			summonTimer.reset();
+		else
+			super.handleEntityEvent(event);
+
 	}
 
 	public void baseTick() {
 		super.baseTick();
-		this.tickDownAnimTimers();
-	}
-
-	public void tickDownAnimTimers() {
-		if (this.summonAnimationTick > 0) {
-			this.summonAnimationTick--;
-		}
+		summonTimer.dec();
 	}
 
 	@Override
@@ -101,15 +95,14 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 	}
 
 	private void setupAnimationStates() {
-		if (isCelebrating() && celebrationAnimationTick <= 0) {
-			celebrationAnimationTick = 35;
+		if (isCelebrating() && celebrationTimer.isRunning()) {
+			celebrationTimer.reset();
 			getState("celebrate").start(tickCount);
-		} else {
-			celebrationAnimationTick--;
-		}
-		getState("summon").animateWhen(summonAnimationTick > 0, tickCount);
+		} else
+			celebrationTimer.dec();
+		getState("summon").animateWhen(summonTimer.isRunning(), tickCount);
 		getState("idle").animateWhen(
-				!isMoving() && isAlive() && summonAnimationTick <= 0 && !isCelebrating(),
+				!isMoving() && isAlive() && !summonTimer.isRunning() && !isCelebrating(),
 				tickCount);
 	}
 
@@ -211,7 +204,7 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 		@Override
 		public void start() {
 			mob.playSound(ModSoundEvents.ICEOLOGER_ATTACK.get(), 1.0F, mob.getVoicePitch());
-			mob.summonAnimationTick = mob.summonAnimationLength;
+			mob.summonTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -223,13 +216,13 @@ public class IceologerEntity extends AbstractIllager implements KeyframeEntity {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.summonAnimationTick == mob.summonAnimationActionPoint) {
+			if (target != null && mob.summonTimer.tickEquals(summonAnimationActionPoint)) {
 				IceCloudEntity.spawn(mob, target);
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.summonAnimationTick <= 0;
+			return mob.summonTimer.animationsUseable();
 		}
 
 	}

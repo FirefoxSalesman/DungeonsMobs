@@ -61,10 +61,10 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (getTrapType() == 0) {
-			if (spawnAnimationTick > 0) {
+			if (spawnTimer.isRunning()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("web_trap_spawn", LoopType.LOOP));
-			} else if (decayAnimationTick > 0) {
+			} else if (decayTimer.isRunning()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 			} else {
@@ -72,10 +72,10 @@ public class SimpleTrapEntity extends AbstractTrapEntity {
 						RawAnimation.begin().then("vine_trap_idle", LoopType.LOOP));
 			}
 		} else if (getTrapType() == 1) {
-			if (spawnAnimationTick > 0) {
+			if (spawnTimer.isRunning()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_spawn", LoopType.LOOP));
-			} else if (decayAnimationTick > 0) {
+			} else if (decayTimer.isRunning()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("vine_trap_decay", LoopType.LOOP));
 			} else {

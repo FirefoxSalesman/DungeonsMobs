@@ -69,7 +69,7 @@ public class FrozenZombieEntity extends Zombie implements RangedAttackMob {
 		return ModSoundEvents.FROZEN_ZOMBIE_IDLE.get();
 	}
 
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSoundEvents.FROZEN_ZOMBIE_HURT.get();
 	}
 

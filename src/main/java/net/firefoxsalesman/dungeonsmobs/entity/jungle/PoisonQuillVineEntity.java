@@ -4,6 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -34,14 +35,13 @@ import javax.annotation.Nullable;
 public class PoisonQuillVineEntity extends AbstractVineEntity {
 	public int delayedBehaviourTime;
 
-	public int shootAnimationTick;
-	public int shootAnimationLength = 18;
+	private final AnimationTimer shootTimer = new AnimationTimer(18);
 	public int shootAnimationActionPoint = 8;
 
 	public boolean open;
 
-	public PoisonQuillVineEntity(EntityType<? extends PoisonQuillVineEntity> p_i50147_1_, Level p_i50147_2_) {
-		super(p_i50147_1_, p_i50147_2_);
+	public PoisonQuillVineEntity(EntityType<? extends PoisonQuillVineEntity> type, Level world) {
+		super(type, world);
 	}
 
 	@Override
@@ -104,17 +104,17 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 		if (deathTime > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("poison_quill_vine_retract", LoopType.LOOP));
-		} else if (burstAnimationTick > 0) {
+		} else if (burstTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("poison_quill_vine_burst", LoopType.LOOP));
-		} else if (retractAnimationTick > 0) {
+		} else if (retractTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("poison_quill_vine_retract", LoopType.LOOP));
-		} else if (shootAnimationTick > 0) {
+		} else if (shootTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("poison_quill_vine_shoot", LoopType.LOOP));
 		} else {
-			if (isOut() || burstAnimationTick > 0) {
+			if (isOut() || burstTimer.isRunning()) {
 				if (open) {
 					event.getController().setAnimation(RawAnimation.begin()
 							.then("poison_quill_vine_idle_open", LoopType.LOOP));
@@ -251,15 +251,15 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 7) {
+	public void handleEntityEvent(byte event) {
+		if (event == 7) {
 			open = true;
-		} else if (p_70103_1_ == 8) {
+		} else if (event == 8) {
 			open = false;
-		} else if (p_70103_1_ == 9) {
-			shootAnimationTick = shootAnimationLength;
+		} else if (event == 9) {
+			shootTimer.reset();
 		} else {
-			super.handleEntityEvent(p_70103_1_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -275,10 +275,7 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 	@Override
 	public void tickDownAnimTimers() {
 		super.tickDownAnimTimers();
-
-		if (shootAnimationTick > 0) {
-			shootAnimationTick--;
-		}
+		shootTimer.dec();
 	}
 
 	@Override
@@ -371,7 +368,7 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 
 		@Override
 		public void start() {
-			mob.shootAnimationTick = mob.shootAnimationLength;
+			shootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 9);
 		}
 
@@ -381,7 +378,7 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 
 			mob.getNavigation().stop();
 
-			if (target != null && mob.shootAnimationTick == mob.shootAnimationActionPoint) {
+			if (target != null && mob.shootTimer.tickEquals(mob.shootAnimationActionPoint)) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0, mob.getStandingEyeHeight(mob.getPose(),
 						mob.getDimensions(mob.getPose())), 1.0, yHeadRot);
 				double d1 = target.getX() - pos.x;
@@ -397,8 +394,7 @@ public class PoisonQuillVineEntity extends AbstractVineEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.shootAnimationTick <= 0;
+			return mob.shootTimer.animationsUseable();
 		}
-
 	}
 }

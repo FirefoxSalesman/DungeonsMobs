@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -45,8 +46,8 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 
 	public int lifeTime;
 
-	public int burstAnimationTick;
-	public int retractAnimationTick;
+	protected final AnimationTimer burstTimer = new AnimationTimer(getBurstAnimationLength());
+	protected final AnimationTimer retractTimer = new AnimationTimer(getRetractAnimationLength());
 
 	private final Predicate<Entity> SHOULD_BURST_FOR = (entity) -> {
 		return shouldBurstFor(entity);
@@ -309,11 +310,11 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 	}
 
 	public boolean canBurst() {
-		return !isOut() && retractAnimationTick <= 0 && burstAnimationTick <= 0;
+		return !isOut() && retractTimer.animationsUseable() && burstTimer.animationsUseable();
 	}
 
 	public boolean canRetract() {
-		return isOut() && !getAlwaysOut() && retractAnimationTick <= 0 && burstAnimationTick <= 0;
+		return isOut() && !getAlwaysOut() && retractTimer.animationsUseable() && burstTimer.animationsUseable();
 	}
 
 	public boolean shouldBurstFor(Entity entity) {
@@ -375,13 +376,13 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 4) {
-			burstAnimationTick = getBurstAnimationLength();
-		} else if (p_70103_1_ == 11) {
-			retractAnimationTick = getRetractAnimationLength();
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
+			burstTimer.reset();
+		} else if (event == 11) {
+			retractTimer.reset();
 		} else {
-			super.handleEntityEvent(p_70103_1_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -414,10 +415,10 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_213386_1_, DifficultyInstance p_213386_2_,
-			MobSpawnType p_213386_3_, SpawnGroupData p_213386_4_, CompoundTag p_213386_5_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty,
+			MobSpawnType spawnType, SpawnGroupData groupData, CompoundTag tag) {
 		setDefaultFeatures();
-		return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+		return super.finalizeSpawn(level, difficulty, spawnType, groupData, tag);
 	}
 
 	@Override
@@ -440,9 +441,9 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 				kill();
 			}
 
-			if (burstAnimationTick == 1) {
+			if (burstTimer.tickEquals(1)) {
 				setOut(true);
-			} else if (retractAnimationTick == 1) {
+			} else if (retractTimer.tickEquals(1)) {
 				setOut(false);
 			}
 
@@ -461,12 +462,11 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 			}
 
 			if (getVanishes() && lifeTime > getStayTime()) {
-				if (retractAnimationTick <= 0) {
+				if (retractTimer.animationsUseable())
 					retract();
-				}
-				if (retractAnimationTick == 1) {
+
+				if (retractTimer.tickEquals(1))
 					remove(RemovalReason.DISCARDED);
-				}
 			}
 		}
 	}
@@ -474,25 +474,20 @@ public abstract class AbstractVineEntity extends PathfinderMob implements Enemy,
 	public void burst() {
 		spawnAreaDamage();
 		playBurstSound();
-		burstAnimationTick = getBurstAnimationLength();
+		burstTimer.reset();
 		level().broadcastEntityEvent(this, (byte) 4);
 	}
 
 	public void retract() {
 		spawnAreaDamage();
 		playRetractSound();
-		retractAnimationTick = getRetractAnimationLength();
+		retractTimer.reset();
 		level().broadcastEntityEvent(this, (byte) 11);
 	}
 
 	public void tickDownAnimTimers() {
-		if (burstAnimationTick > 0) {
-			burstAnimationTick--;
-		}
-
-		if (retractAnimationTick > 0) {
-			retractAnimationTick--;
-		}
+		burstTimer.dec();
+		retractTimer.dec();
 	}
 
 	@Override

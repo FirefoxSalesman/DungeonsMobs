@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 import com.google.common.collect.Lists;
 
 import net.firefoxsalesman.dungeonsmobs.interfaces.ITrapsTarget;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -20,8 +21,8 @@ import java.util.List;
 
 public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 
-	public int spawnAnimationTick = getSpawnAnimationLength();
-	public int decayAnimationTick;
+	protected final AnimationTimer spawnTimer = new AnimationTimer(getSpawnAnimationLength());
+	protected final AnimationTimer decayTimer = new AnimationTimer(getDecayAnimationLength());
 
 	public int lifeTime;
 
@@ -34,6 +35,7 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 
 	public AbstractTrapEntity(EntityType<? extends AbstractTrapEntity> entityTypeIn, Level worldIn) {
 		super(entityTypeIn, worldIn);
+		spawnTimer.reset();
 	}
 
 	@Override
@@ -49,11 +51,11 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 
 		if (!level().isClientSide) {
 			if (lifeTime == timeToDecay()) {
-				decayAnimationTick = getDecayAnimationLength();
+				decayTimer.reset();
 				level().broadcastEntityEvent(this, (byte) 2);
 			}
 
-			if (decayAnimationTick == 2) {
+			if (decayTimer.tickEquals(2)) {
 				remove(RemovalReason.DISCARDED);
 			}
 		}
@@ -92,18 +94,18 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 			for (int i = 0; i < trappedEntities.size(); i++) {
 				Entity entity = trappedEntities.get(i);
 				Vec3 trappedPos = trappedEntityPositions.get(i);
-			
+
 				if (!entity.isAlive()) {
 					trappedEntities.remove(i);
 					trappedEntityPositions.remove(i);
 					i--; // Adjust index due to removal
 					continue;
 				}
-			
+
 				Vec3 currentPos = entity.position();
 				Vec3 toTarget = trappedPos.subtract(currentPos);
 				double distance = toTarget.length();
-			
+
 				// Threshold: If they escape too far (e.g., Ender Pearl), stop trapping
 				if (distance > 1.2) {
 					trappedEntities.remove(i);
@@ -111,17 +113,18 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 					i--;
 					continue;
 				}
-			
+
 				entity.fallDistance = 0;
-			
+
 				if (distance > 0.1) {
-					Vec3 pullVec = toTarget.normalize().scale(0.2); // Controls pulling force to keep target trapped
+					Vec3 pullVec = toTarget.normalize().scale(0.2); // Controls pulling force to
+											// keep target trapped
 					entity.setDeltaMovement(pullVec);
 					entity.hurtMarked = true; // Ensure motion is synced to client
 				} else {
 					entity.setDeltaMovement(Vec3.ZERO);
 				}
-			}			
+			}
 
 			isTrappingMob = isTrapping;
 		}
@@ -135,13 +138,8 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (spawnAnimationTick > 0) {
-			spawnAnimationTick--;
-		}
-
-		if (decayAnimationTick > 0) {
-			decayAnimationTick--;
-		}
+		spawnTimer.dec();
+		decayTimer.dec();
 	}
 
 	public abstract int getSpawnAnimationLength();
@@ -153,7 +151,7 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	}
 
 	public boolean canTrap() {
-		return spawnAnimationTick <= 0;
+		return spawnTimer.animationsUseable();
 	}
 
 	public boolean canTrapEntity(LivingEntity entity) {
@@ -161,14 +159,13 @@ public abstract class AbstractTrapEntity extends Entity implements GeoEntity {
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 1) {
-			spawnAnimationTick = getSpawnAnimationLength();
-		} else if (p_70103_1_ == 2) {
-			decayAnimationTick = getDecayAnimationLength();
-		} else {
-			super.handleEntityEvent(p_70103_1_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 1)
+			spawnTimer.reset();
+		else if (event == 2)
+			decayTimer.reset();
+		else
+			super.handleEntityEvent(event);
 	}
 
 	@Override

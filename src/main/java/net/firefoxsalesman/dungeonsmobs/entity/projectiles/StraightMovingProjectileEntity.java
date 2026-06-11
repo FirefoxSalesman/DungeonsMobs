@@ -66,9 +66,8 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 	}
 
 	public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType,
-			LivingEntity owner, double p_i50175_3_, double p_i50175_5_, double p_i50175_7_, Level pLevel) {
-		this(pEntityType, owner.getX(), owner.getY(), owner.getZ(), p_i50175_3_, p_i50175_5_, p_i50175_7_,
-				pLevel);
+			LivingEntity owner, double pX, double pY, double pZ, Level pLevel) {
+		this(pEntityType, owner.getX(), owner.getY(), owner.getZ(), pX, pY, pZ, pLevel);
 		setOwner(owner);
 		setRot(owner.getYRot(), owner.getXRot());
 	}

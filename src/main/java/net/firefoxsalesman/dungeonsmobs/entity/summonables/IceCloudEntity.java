@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -48,12 +49,9 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 
 	public LivingEntity target;
 	public Entity owner;
-	public int formAnimationTick;
-	public int formAnimationLength = 40;
-	public int fallAnimationTick;
-	public int fallAnimationLength = 17;
-	public int landAnimationTick;
-	public int landAnimationLength = 22;
+	private final AnimationTimer formTimer = new AnimationTimer(40);
+	private final AnimationTimer fallTimer = new AnimationTimer(17);
+	private final AnimationTimer landTimer = new AnimationTimer(22);
 	public int lifeTime;
 	public boolean falling;
 	public boolean hasFormed;
@@ -102,16 +100,16 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 		return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 1) {
-			this.formAnimationTick = formAnimationLength;
-		} else if (p_28844_ == 2) {
-			this.fallAnimationTick = fallAnimationLength;
-		} else if (p_28844_ == 3) {
-			this.landAnimationTick = landAnimationLength;
-		} else if (p_28844_ == 4) {
+	public void handleEntityEvent(byte event) {
+		if (event == 1)
+			formTimer.reset();
+		else if (event == 2)
+			fallTimer.reset();
+		else if (event == 3)
+			landTimer.reset();
+		else if (event == 4)
 			this.falling = true;
-		} else if (p_28844_ == 5) {
+		else if (event == 5)
 			for (int i = 0; i < 50; ++i) {
 				double d0 = this.random.nextGaussian() * 0.3D;
 				double d1 = this.random.nextGaussian() * 0.2D;
@@ -119,13 +117,12 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 				this.level().addParticle(ParticleTypes.POOF, this.getX(), this.getY(), this.getZ(), d0,
 						d1, d2);
 			}
-		} else if (p_28844_ == 6) {
+		else if (event == 6)
 			this.hasFormed = true;
-		} else if (p_28844_ == 7) {
+		else if (event == 7)
 			this.target = null;
-		} else {
-			super.handleEntityEvent(p_28844_);
-		}
+		else
+			super.handleEntityEvent(event);
 	}
 
 	public void moveToTarget() {
@@ -157,7 +154,7 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 		this.yOld = this.getY();
 		this.zOld = this.getZ();
 
-		if (this.level().isClientSide && this.landAnimationTick <= 0) {
+		if (this.level().isClientSide && landTimer.animationsUseable()) {
 			if (this.hasFormed) {
 				this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(), this.getRandomX(0.5D),
 						this.getRandomY() - 0.25D, this.getRandomZ(0.5D),
@@ -208,7 +205,7 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 			this.lifeTime++;
 		}
 
-		if (this.soundLoopTick % 80 == 0 && this.hasFormed && !this.falling && this.fallAnimationTick <= 0) {
+		if (this.soundLoopTick % 80 == 0 && this.hasFormed && !this.falling && fallTimer.animationsUseable()) {
 			this.playSound(ModSoundEvents.ICE_CHUNK_IDLE_LOOP.get(), 0.5F, 1.0F);
 		}
 
@@ -219,40 +216,40 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 				this.level().broadcastEntityEvent(this, (byte) 7);
 			}
 
-			if (!this.hasFormed && this.formAnimationTick <= 0) {
-				this.formAnimationTick = formAnimationLength;
-				this.level().broadcastEntityEvent(this, (byte) 1);
+			if (!this.hasFormed && formTimer.animationsUseable()) {
+				formTimer.reset();
+				level().broadcastEntityEvent(this, (byte) 1);
 			}
 
-			if (this.formAnimationTick == 1) {
-				this.playSound(ModSoundEvents.ICE_CHUNK_IDLE_LOOP.get(), 0.5F, 1.0F);
-				this.hasFormed = true;
-				this.level().broadcastEntityEvent(this, (byte) 6);
+			if (formTimer.tickEquals(1)) {
+				playSound(ModSoundEvents.ICE_CHUNK_IDLE_LOOP.get(), 0.5F, 1.0F);
+				hasFormed = true;
+				level().broadcastEntityEvent(this, (byte) 6);
 			}
 
-			if ((this.target != null && this.lifeTime > 100 && this.fallAnimationTick <= 0
+			if ((this.target != null && this.lifeTime > 100 && fallTimer.animationsUseable()
 					&& this.falling == false) || this.target == null
 					|| this.target.isDeadOrDying()) {
 				this.playSound(ModSoundEvents.ICE_CHUNK_FALL.get(), 1.0F, this.getRandomPitch());
-				this.fallAnimationTick = this.fallAnimationLength;
+				fallTimer.reset();
 				this.level().broadcastEntityEvent(this, (byte) 2);
 			}
 
-			if (this.fallAnimationTick == 1) {
+			if (fallTimer.tickEquals(1)) {
 				this.falling = true;
 				this.level().broadcastEntityEvent(this, (byte) 4);
 			}
 
-			if (this.landAnimationTick == 1 || this.lifeTime > 150) {
+			if (landTimer.tickEquals(1) || this.lifeTime > 150) {
 				this.remove(RemovalReason.DISCARDED);
 			}
 		}
 
-		if (this.hasFormed && this.landAnimationTick <= 0 && !this.falling && this.fallAnimationTick <= 0) {
+		if (this.hasFormed && landTimer.animationsUseable() && !this.falling && fallTimer.animationsUseable()) {
 			this.moveToTarget();
 		}
 
-		if (this.falling && this.landAnimationTick <= 0) {
+		if (this.falling && landTimer.animationsUseable()) {
 			this.setDeltaMovement(this.getDeltaMovement().add(0, -1.25, 0));
 			this.move(MoverType.SELF, this.getDeltaMovement());
 		}
@@ -265,8 +262,8 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 	protected void onHit(HitResult p_70227_1_) {
 		HitResult.Type raytraceresult$type = p_70227_1_.getType();
 		if (!this.level().isClientSide) {
-			if (this.landAnimationTick <= 0) {
-				this.landAnimationTick = landAnimationLength;
+			if (landTimer.animationsUseable()) {
+				landTimer.reset();
 				this.level().broadcastEntityEvent(this, (byte) 3);
 				this.land();
 				this.moveTo(this.getX(), this.getY() - 1, this.getZ());
@@ -311,17 +308,9 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.formAnimationTick > 0) {
-			this.formAnimationTick--;
-		}
-
-		if (this.fallAnimationTick > 0) {
-			this.fallAnimationTick--;
-		}
-
-		if (this.landAnimationTick > 0) {
-			this.landAnimationTick--;
-		}
+		formTimer.dec();
+		fallTimer.dec();
+		landTimer.dec();
 	}
 
 	@Override
@@ -330,11 +319,11 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (this.formAnimationTick > 0) {
+		if (formTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("ice_chunk_form", LoopType.LOOP));
-		} else if (this.landAnimationTick > 0) {
+		} else if (landTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("ice_chunk_land", LoopType.LOOP));
-		} else if (this.fallAnimationTick > 0) {
+		} else if (fallTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("ice_chunk_fall", LoopType.LOOP));
 		} else {
 			if (this.hasFormed) {

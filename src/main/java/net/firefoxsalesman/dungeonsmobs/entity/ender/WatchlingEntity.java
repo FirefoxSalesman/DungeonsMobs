@@ -33,8 +33,8 @@ import software.bernie.geckolib.core.object.PlayState;
 public class WatchlingEntity extends AbstractEnderlingEntity {
 	private Mob owner;
 
-	public WatchlingEntity(EntityType<? extends WatchlingEntity> p_i50210_1_, Level p_i50210_2_) {
-		super(p_i50210_1_, p_i50210_2_);
+	public WatchlingEntity(EntityType<? extends WatchlingEntity> type, Level world) {
+		super(type, world);
 	}
 
 	protected void registerGoals() {
@@ -64,7 +64,7 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 		return ModSoundEvents.WATCHLING_IDLE.get();
 	}
 
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSoundEvents.WATCHLING_HURT.get();
 	}
 
@@ -78,7 +78,7 @@ public class WatchlingEntity extends AbstractEnderlingEntity {
 	}
 
 	@Override
-	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+	protected void playStepSound(BlockPos pos, BlockState state) {
 		playSound(getStepSound(), 0.75F, 1.0F);
 	}
 

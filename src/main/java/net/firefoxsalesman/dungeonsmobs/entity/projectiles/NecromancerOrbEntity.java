@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.projectiles;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -29,10 +30,9 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 			NecromancerOrbEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
-	public int formAnimationTick;
-	public int formAnimationLength = 20;
+	private final AnimationTimer formTimer = new AnimationTimer(20);
 
-	public int vanishAnimationTick;
+	private final AnimationTimer vanishTimer = new AnimationTimer(getVanishAnimationLength());
 
 	public int textureChange = 0;
 
@@ -65,18 +65,18 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 	}
 
 	public NecromancerOrbEntity(EntityType<? extends NecromancerOrbEntity> necromancerOrbEntityType,
-			LivingEntity p_i1794_2_, double p_i1794_3_, double p_i1794_5_, double p_i1794_7_,
+			LivingEntity owner, double p_i1794_3_, double p_i1794_5_, double p_i1794_7_,
 			Level pLevel) {
-		super(necromancerOrbEntityType, p_i1794_2_, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
+		super(necromancerOrbEntityType, owner, p_i1794_3_, p_i1794_5_, p_i1794_7_, pLevel);
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 1) {
-			vanishAnimationTick = getVanishAnimationLength();
-		} else if (p_28844_ == 2) {
-			formAnimationTick = formAnimationLength;
+	public void handleEntityEvent(byte event) {
+		if (event == 1) {
+			vanishTimer.reset();
+		} else if (event == 2) {
+			formTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 
 	@Override
 	public boolean shouldSpawnParticles() {
-		return vanishAnimationTick <= 0;
+		return vanishTimer.animationsUseable();
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 
 	public void startForming() {
 		if (!level().isClientSide) {
-			formAnimationTick = formAnimationLength;
+			formTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 2);
 		}
 	}
@@ -125,8 +125,8 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 		}
 
 		if (!level().isClientSide && lifeTime >= vanishAfterTime()
-				&& vanishAnimationTick <= 0) {
-			vanishAnimationTick = getVanishAnimationLength();
+				&& vanishTimer.animationsUseable()) {
+			vanishTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 1);
 		}
 
@@ -135,23 +135,18 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 			setDelayedForm(false);
 		}
 
-		if (!level().isClientSide && vanishAnimationTick > 0) {
+		if (!level().isClientSide && vanishTimer.isRunning()) {
 			setDeltaMovement(0, 0, 0);
 		}
 
-		if (!level().isClientSide && vanishAnimationTick == 2) {
+		if (!level().isClientSide && vanishTimer.tickEquals(2)) {
 			remove(RemovalReason.DISCARDED);
 		}
 	}
 
 	public void tickDownAnimTimers() {
-		if (formAnimationTick > 0) {
-			formAnimationTick--;
-		}
-
-		if (vanishAnimationTick > 0) {
-			vanishAnimationTick--;
-		}
+		formTimer.dec();
+		vanishTimer.dec();
 	}
 
 	@Override
@@ -160,10 +155,10 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (vanishAnimationTick > 0) {
+		if (vanishTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("necromancer_orb_vanish", LoopType.LOOP));
-		} else if (formAnimationTick > 0) {
+		} else if (formTimer.isRunning()) {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then("necromancer_orb_form", LoopType.LOOP));
 		} else {
@@ -224,7 +219,7 @@ public class NecromancerOrbEntity extends StraightMovingProjectileEntity impleme
 			entity.setDeltaMovement(entity.getDeltaMovement().add(getDeltaMovement().scale(2.0D)));
 
 			playSound(ModSoundEvents.NECROMANCER_ORB_IMPACT.get(), 1.0F, 1.0F);
-			vanishAnimationTick = getVanishAnimationLength();
+			vanishTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 1);
 		}
 	}

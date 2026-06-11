@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -67,27 +68,18 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	private static final EntityDataAccessor<Boolean> LEAPING = SynchedEntityData.defineId(LeapleafEntity.class,
 			EntityDataSerializers.BOOLEAN);
 
-	public int strafeTick;
-	public int strafeLength = 40;
+	private final AnimationTimer strafeTimer = new AnimationTimer(40);
+	private final AnimationTimer restTimer = new AnimationTimer(100);
 
-	public int restTick;
-	public int restLength = 100;
-
-	public int attackAnimationTick;
-	public int attackAnimationLength = 30;
+	private final AnimationTimer attackTimer = new AnimationTimer(30);
 	public int attackAnimationActionPoint = 15;
 
-	public int prepareLeapAnimationTick;
-	public int prepareLeapAnimationLength = 30;
+	private final AnimationTimer prepareLeapTimer = new AnimationTimer(30);
+	private final AnimationTimer leapTimer = new AnimationTimer(30);
+	private final AnimationTimer leapCooldownTimer = new AnimationTimer(60);
 
-	public int leapAnimationTick;
-	public int leapAnimationLength = 9;
-
-	public int smashAnimationTick;
-	public int smashAnimationLength = 25;
+	private final AnimationTimer smashTimer = new AnimationTimer(25);
 	public int smashAnimationActionPoint = 18;
-
-	public int leapCooldown;
 
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -126,7 +118,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	}
 
 	public boolean shouldBeStationary() {
-		return restTick > 0;
+		return restTimer.isRunning();
 	}
 
 	@Override
@@ -234,19 +226,19 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		entityData.set(LEAPING, attached);
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			attackAnimationTick = attackAnimationLength;
-		} else if (p_28844_ == 8) {
-			prepareLeapAnimationTick = prepareLeapAnimationLength;
-		} else if (p_28844_ == 9) {
-			leapAnimationTick = leapAnimationLength;
-		} else if (p_28844_ == 11) {
-			smashAnimationTick = smashAnimationLength;
-		} else if (p_28844_ == 7) {
-			restTick = restLength;
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
+			attackTimer.reset();
+		} else if (event == 8) {
+			prepareLeapTimer.reset();
+		} else if (event == 9) {
+			leapTimer.reset();
+		} else if (event == 11) {
+			smashTimer.reset();
+		} else if (event == 7) {
+			restTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -258,7 +250,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 
 		if (!level().isClientSide && canLeap()
 				&& (getTarget() == null || getTarget().isDeadOrDying())) {
-			restTick = restLength;
+			restTimer.reset();
 			level().broadcastEntityEvent(this, (byte) 7);
 			setCanLeap(false);
 			setTimesLeapt(0);
@@ -291,35 +283,16 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 			}
 		}
 
-		if (restTick > 0) {
-			restTick--;
-		}
-
-		if (strafeTick > 0) {
-			strafeTick--;
-		}
-
-		if (leapCooldown > 0) {
-			leapCooldown--;
-		}
+		restTimer.dec();
+		strafeTimer.dec();
+		leapCooldownTimer.dec();
 	}
 
 	public void tickDownAnimTimers() {
-		if (attackAnimationTick > 0) {
-			attackAnimationTick--;
-		}
-
-		if (prepareLeapAnimationTick > 0) {
-			prepareLeapAnimationTick--;
-		}
-
-		if (leapAnimationTick > 0) {
-			leapAnimationTick--;
-		}
-
-		if (smashAnimationTick > 0) {
-			smashAnimationTick--;
-		}
+		attackTimer.dec();
+		prepareLeapTimer.dec();
+		leapTimer.dec();
+		smashTimer.dec();
 	}
 
 	@Override
@@ -333,16 +306,16 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (smashAnimationTick > 0) {
+		if (smashTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_smash", LoopType.LOOP));
-		} else if (leapAnimationTick > 0) {
+		} else if (leapTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_leap", LoopType.LOOP));
-		} else if (prepareLeapAnimationTick > 0) {
+		} else if (prepareLeapTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("leapleaf_prepare_leap", LoopType.LOOP));
-		} else if (attackAnimationTick > 0) {
+		} else if (attackTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_attack", LoopType.LOOP));
-		} else if (restTick > 0) {
+		} else if (restTimer.isRunning()) {
 			event.getController().setAnimation(RawAnimation.begin().then("leapleaf_rest", LoopType.LOOP));
 		} else if (isLeaping()) {
 			event.getController()
@@ -408,7 +381,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public void start() {
 			mob.playSound(ModSoundEvents.LEAPLEAF_ATTACK_VOCAL.get(),
 					ModSoundEvents.LEAPLEAF_ATTACK_FOLEY.get(), 1.25F, 1.0F, 1.25F, 1.0F);
-			mob.attackAnimationTick = mob.attackAnimationLength;
+			mob.attackTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -416,7 +389,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public void tick() {
 			target = mob.getTarget();
 
-			if (mob.attackAnimationTick == mob.attackAnimationActionPoint) {
+			if (mob.attackTimer.tickEquals(mob.attackAnimationActionPoint)) {
 				Vec3 areaDamagePos = PositionUtils.getOffsetPos(mob, -1, 0, 1.5, mob.yBodyRot);
 				AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(mob.level(),
 						areaDamagePos,
@@ -428,7 +401,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.attackAnimationTick <= 0;
+			return mob.attackTimer.animationsUseable();
 		}
 
 	}
@@ -460,7 +433,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 
 			return target != null && mob.distanceTo(target) <= 15 && !mob.canLeap()
 					&& mob.random.nextInt(30) == 0 && animationsUseable()
-					&& mob.hasLineOfSight(target) && mob.leapCooldown <= 0;
+					&& mob.hasLineOfSight(target) && mob.leapCooldownTimer.animationsUseable();
 		}
 
 		@Override
@@ -472,7 +445,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public void start() {
 			mob.playSound(ModSoundEvents.LEAPLEAF_PREPARE_LEAP_VOCAL.get(),
 					ModSoundEvents.LEAPLEAF_PREPARE_LEAP_FOLEY.get(), 1.25F, 1.0F, 1.25F, 1.0F);
-			mob.prepareLeapAnimationTick = mob.prepareLeapAnimationLength;
+			mob.prepareLeapTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 8);
 		}
 
@@ -480,13 +453,13 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public void tick() {
 			target = mob.getTarget();
 
-			if (mob.prepareLeapAnimationTick == 1) {
+			if (mob.prepareLeapTimer.tickEquals(1)) {
 				mob.setCanLeap(true);
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.prepareLeapAnimationTick <= 0;
+			return mob.prepareLeapTimer.animationsUseable();
 		}
 
 	}
@@ -526,14 +499,14 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		@Override
 		public boolean canContinueToUse() {
 			return target != null
-					&& (!animationsUseable() || mob.isLeaping() || mob.smashAnimationTick > 0);
+					&& (!animationsUseable() || mob.isLeaping() || mob.smashTimer.isRunning());
 		}
 
 		@Override
 		public void start() {
 			mob.playSound(ModSoundEvents.LEAPLEAF_LEAP_VOCAL.get(),
 					ModSoundEvents.LEAPLEAF_LEAP_FOLEY.get(), 1.5F, 1.0F, 1.5F, 1.0F);
-			mob.leapAnimationTick = mob.leapAnimationLength;
+			mob.leapTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 9);
 		}
 
@@ -541,7 +514,7 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public void tick() {
 			target = mob.getTarget();
 
-			if (target != null && mob.leapAnimationTick == 1) {
+			if (target != null && mob.leapTimer.tickEquals(1)) {
 				double d0 = target.getX() - mob.getX();
 				double d1 = target.getY() - mob.getY();
 				double d2 = target.getZ() - mob.getZ();
@@ -558,11 +531,11 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 			if (mob.isLeaping() && mob.onGround() && leapTime > 10) {
 				mob.playSound(ModSoundEvents.LEAPLEAF_LAND.get(), 2.0F, 1.0F);
 				mob.setLeaping(false);
-				mob.smashAnimationTick = mob.smashAnimationLength;
+				mob.smashTimer.reset();
 				mob.level().broadcastEntityEvent(mob, (byte) 11);
 			}
 
-			if (mob.smashAnimationTick == mob.smashAnimationActionPoint) {
+			if (mob.smashTimer.tickEquals(mob.smashAnimationActionPoint)) {
 				Vec3 areaDamagePos = PositionUtils.getOffsetPos(mob, -1.5, 0, 2, mob.yBodyRot);
 				AreaDamageEntity areaDamage = AreaDamageEntity.spawnAreaDamage(mob.level(),
 						areaDamagePos, mob, 25F, damageSources().mobAttack(mob), 0.0F, 6.0F,
@@ -589,25 +562,25 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 			mob.setCanLeap(false);
 			mob.setLeaping(false);
 			mob.setTimesLeapt(mob.getTimesLeapt() + 1);
-			mob.leapCooldown = 60;
+			mob.leapCooldownTimer.reset();
 
 			int leapTimesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
 					.getDifficulty().getId();
 
 			if (mob.getTimesLeapt() >= leapTimesByDifficulty) {
-				mob.restTick = mob.restLength;
+				mob.restTimer.reset();
 				mob.level().broadcastEntityEvent(mob, (byte) 7);
 				mob.setTimesLeapt(0);
 				mob.playSound(ModSoundEvents.LEAPLEAF_REST_VOCAL.get(),
 						ModSoundEvents.LEAPLEAF_REST_FOLEY.get(), 1.0F, mob.getVoicePitch(),
 						1.0F, mob.getVoicePitch());
 			} else {
-				mob.strafeTick = mob.strafeLength;
+				mob.strafeTimer.reset();
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.leapAnimationTick <= 0;
+			return mob.leapTimer.animationsUseable();
 		}
 
 	}
@@ -639,12 +612,12 @@ public class LeapleafEntity extends Monster implements GeoEntity {
 		public boolean canUse() {
 			target = mob.getTarget();
 
-			return target != null && mob.strafeTick > 0;
+			return target != null && mob.strafeTimer.isRunning();
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			return target != null && mob.strafeTick > 0;
+			return target != null && mob.strafeTimer.isRunning();
 		}
 
 		@Override

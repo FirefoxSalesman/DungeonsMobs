@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -51,8 +52,7 @@ import net.minecraft.world.BossEvent;
 public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	private int summonAnimationTick = 0;
-	private int summonAnimationLength = 72;
+	private AnimationTimer summonTimer = new AnimationTimer(72);
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
 			.defineId(RedstoneGolemEntity.class, EntityDataSerializers.BOOLEAN);
 
@@ -87,6 +87,11 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	public void startSeenByPlayer(ServerPlayer player) {
 		super.startSeenByPlayer(player);
 		bossEvent.addPlayer(player);
+	}
+
+	public void stopSeenByPlayer(ServerPlayer player) {
+		super.stopSeenByPlayer(player);
+		bossEvent.removePlayer(player);
 	}
 
 	protected void registerGoals() {
@@ -126,8 +131,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
-		if (summonAnimationTick > 0) {
-			System.out.println("Should be animating");
+		if (summonTimer.isRunning()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
@@ -167,7 +171,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	public void handleEntityEvent(byte pId) {
 		super.handleEntityEvent(pId);
 		if (pId == 8)
-			summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 	}
 
 	@Override
@@ -188,7 +192,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		summonAnimationTick--;
+		summonTimer.dec();
 	}
 
 	@Override
@@ -262,6 +266,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		@Override
 		public void stop() {
 			getNavigation().stop();
+			setMeleeAttacking(false);
 			if (getTarget() == null)
 				setAggressive(false);
 		}
@@ -291,17 +296,17 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 		@Override
 		protected void resetSummonTick() {
-			summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return summonAnimationTick;
+			return summonTimer.getTick();
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return summonAnimationTick == 1;
+			return summonTimer.tickEquals(1);
 		}
 	}
 }

@@ -52,7 +52,7 @@ public class WhispererEntity extends AbstractWhispererEntity {
 
 	@Override
 	protected int getGrappleActionPoint() {
-		return grappleAnimationActionPoint;
+		return 23;
 	}
 
 	@Override
@@ -125,23 +125,18 @@ public class WhispererEntity extends AbstractWhispererEntity {
 		return ModSoundEvents.WHISPERER_DEATH.get();
 	}
 
-	// @Override
-	// protected SoundEvent getSwimSound() {
-	// return null;
-	// }
-
 	@Override
 	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (attackAnimationTick > 0) {
+		if (attackTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("whisperer_attack", LoopType.LOOP));
-		} else if (summonPQVAnimationTick > 0) {
+		} else if (summonPQVTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("whisperer_summon_pqv", LoopType.LOOP));
-		} else if (summonQGVAnimationTick > 0) {
+		} else if (summonQGVTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("whisperer_summon_qgv", LoopType.LOOP));
-		} else if (grappleAnimationTick > 0) {
+		} else if (grappleTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("whisperer_grapple", LoopType.LOOP));
 		} else if (isClimbing()) {

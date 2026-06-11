@@ -7,6 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.ConstructEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.AvoidBaseEntityGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
@@ -37,14 +38,12 @@ import java.util.Map;
 
 public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntity {
 
-	private int celebrationAnimationTick = 0;
+	private final AnimationTimer celebrateTimer = new AnimationTimer(35);
 
-	private int summonBombsAttackAnimationTick;
-	private int summonBombsAttackAnimationLength = 35;
+	private final AnimationTimer summonBombsTimer = new AnimationTimer(35);
 	private int summonBombsAttackAnimationActionPoint = 15;
 
-	private int summonWallsAnimationTick;
-	private int summonWallsAnimationLength = 35;
+	private final AnimationTimer summonWallsTimer = new AnimationTimer(35);
 	private int summonWallsAnimationActionPoint = 20;
 
 	private Map<String, AnimationState> states;
@@ -92,19 +91,17 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 		return false;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			this.summonWallsAnimationTick = summonWallsAnimationLength;
-		} else if (p_28844_ == 11) {
-			this.summonBombsAttackAnimationTick = summonBombsAttackAnimationLength;
-		} else {
-			super.handleEntityEvent(p_28844_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			summonWallsTimer.reset();
+		else if (event == 11)
+			summonBombsTimer.reset();
+		else
+			super.handleEntityEvent(event);
 	}
 
 	public void baseTick() {
 		super.baseTick();
-
 		this.tickDownAnimTimers();
 	}
 
@@ -117,28 +114,23 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 	}
 
 	private void setupAnimationStates() {
-		if (isCelebrating() && celebrationAnimationTick <= 0) {
-			celebrationAnimationTick = 35;
+		if (isCelebrating() && celebrateTimer.animationsUseable()) {
+			celebrateTimer.reset();
 			getState("celebrate").start(tickCount);
 		} else {
-			celebrationAnimationTick--;
+			celebrateTimer.dec();
 		}
 		getState("summon").animateWhen(isSummoning(), tickCount);
 		getState("idle").animateWhen(!isSummoning() && !isMoving() && isAlive(), tickCount);
 	}
 
 	private boolean isSummoning() {
-		return summonWallsAnimationTick > 0 || summonBombsAttackAnimationTick > 0;
+		return summonWallsTimer.isRunning() || summonBombsTimer.isRunning();
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.summonWallsAnimationTick >= 0) {
-			this.summonWallsAnimationTick--;
-		}
-
-		if (this.summonBombsAttackAnimationTick >= 0) {
-			this.summonBombsAttackAnimationTick--;
-		}
+		summonWallsTimer.dec();
+		summonBombsTimer.dec();
 	}
 
 	@Nullable
@@ -246,10 +238,10 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 		public void start() {
 			mob.playSound(ModSoundEvents.GEOMANCER_PRE_ATTACK.get(), 1.0F, mob.getVoicePitch());
 			if (mob.random.nextBoolean()) {
-				mob.summonWallsAnimationTick = mob.summonWallsAnimationLength;
+				mob.summonWallsTimer.reset();
 				mob.level().broadcastEntityEvent(mob, (byte) 4);
 			} else {
-				mob.summonBombsAttackAnimationTick = mob.summonBombsAttackAnimationLength;
+				mob.summonBombsTimer.reset();
 				mob.level().broadcastEntityEvent(mob, (byte) 11);
 			}
 		}
@@ -264,7 +256,7 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.summonWallsAnimationTick == mob.summonWallsAnimationActionPoint) {
+			if (target != null && mob.summonWallsTimer.tickEquals(mob.summonWallsAnimationActionPoint)) {
 				mob.playSound(ModSoundEvents.GEOMANCER_ATTACK.get(), 1.0F, mob.getVoicePitch());
 				int randomInt = mob.random.nextInt(3);
 
@@ -282,7 +274,7 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 			}
 
 			if (target != null
-					&& mob.summonBombsAttackAnimationTick == mob.summonBombsAttackAnimationActionPoint) {
+					&& mob.summonBombsTimer.tickEquals(mob.summonBombsAttackAnimationActionPoint)) {
 				mob.playSound(ModSoundEvents.GEOMANCER_ATTACK.get(), 1.0F, mob.getVoicePitch());
 				if (mob.getRandom().nextBoolean()) {
 					GeomancyHelper.summonQuadOffensiveTrap(mob, target,
@@ -305,11 +297,11 @@ public class GeomancerEntity extends SpellcasterIllager implements KeyframeEntit
 		}
 
 		public boolean animationsUseable() {
-			return mob.summonWallsAnimationTick <= 0 || mob.summonBombsAttackAnimationTick <= 0;
+			return mob.summonWallsTimer.animationsUseable() || mob.summonBombsTimer.animationsUseable();
 		}
 
 		public boolean animationsNotUseable() {
-			return mob.summonWallsAnimationTick > 0 || mob.summonBombsAttackAnimationTick > 0;
+			return mob.summonWallsTimer.isRunning() || mob.summonBombsTimer.isRunning();
 		}
 
 	}

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -41,11 +42,11 @@ import net.minecraft.world.level.Level;
 
 public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 	private Map<String, AnimationState> states;
-	private int celebrationAnimationTick = 0;
+	private final AnimationTimer celebrationTimer = new AnimationTimer(35);
 
 	private static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(
 			VindicatorChefEntity.class, EntityDataSerializers.BOOLEAN);
-	private int attackAnimationTimeout = 0;
+	private final AnimationTimer attackTimer = new AnimationTimer(5);
 
 	public VindicatorChefEntity(EntityType<? extends Vindicator> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
@@ -111,18 +112,16 @@ public class VindicatorChefEntity extends Vindicator implements KeyframeEntity {
 	}
 
 	private void setupAnimationStates() {
-		if (isAttacking() && attackAnimationTimeout <= 0) {
-			attackAnimationTimeout = 5;
+		if (isAttacking() && attackTimer.animationsUseable()) {
+			attackTimer.reset();
 			getState("attack").start(tickCount);
-		} else {
-			attackAnimationTimeout--;
-		}
-		if (isCelebrating() && celebrationAnimationTick <= 0 && !isAttacking()) {
-			celebrationAnimationTick = 35;
+		} else
+			attackTimer.dec();
+		if (isCelebrating() && celebrationTimer.animationsUseable() && !isAttacking()) {
+			celebrationTimer.reset();
 			getState("celebrate").start(tickCount);
-		} else {
-			celebrationAnimationTick--;
-		}
+		} else
+			celebrationTimer.dec();
 		getState("idle").animateWhen(
 				!isMoving() && isAlive() && !isCelebrating() && !isAttacking(),
 				tickCount);

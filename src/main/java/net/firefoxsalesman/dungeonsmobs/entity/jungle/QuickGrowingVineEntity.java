@@ -42,14 +42,14 @@ public class QuickGrowingVineEntity extends AbstractVineEntity {
 		if (deathTime > 0) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_retract", LoopType.LOOP));
-		} else if (burstAnimationTick > 0) {
+		} else if (burstTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_burst", LoopType.LOOP));
-		} else if (retractAnimationTick > 0) {
+		} else if (retractTimer.isRunning()) {
 			event.getController().setAnimation(
 					RawAnimation.begin().then("quick_growing_vine_retract", LoopType.LOOP));
 		} else {
-			if (isOut() || burstAnimationTick > 0) {
+			if (isOut() || burstTimer.isRunning()) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("quick_growing_vine_idle", LoopType.LOOP));
 			} else {

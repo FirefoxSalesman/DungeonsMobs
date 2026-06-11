@@ -16,6 +16,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
 import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -68,14 +69,11 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		return p_213685_0_.isAlive() && !(p_213685_0_ instanceof Blaze)
 				&& !(p_213685_0_ instanceof WildfireEntity);
 	};
-	public int shootAnimationTick;
-	public int shootAnimationLength = 12;
+	private AnimationTimer shootTimer = new AnimationTimer(12);
 	public int shootAnimationActionPoint = 5;
-	public int shockwaveAnimationTick;
-	public int shockwaveAnimationLength = 27;
+	private AnimationTimer shockwaveTimer = new AnimationTimer(27);
 	public int shockwaveAnimationActionPoint = 9;
-	public int summonAnimationTick;
-	public int summonAnimationLength = 47;
+	private AnimationTimer summonTimer = new AnimationTimer(47);
 	public int summonAnimationActionPoint = 15;
 	public int soundLoopTick;
 	public int regenerateShieldTick;
@@ -108,16 +106,16 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 			idleAnimationTimeout--;
 		}
 
-		if (this.shootAnimationTick > 0) {
-			getState("shoot").start(this.tickCount - this.shootAnimationTick);
+		if (shootTimer.isRunning()) {
+			getState("shoot").start(this.tickCount - shootTimer.getTick());
 		}
 
-		if (this.shockwaveAnimationTick > 0) {
-			getState("shockwave").start(this.tickCount - this.shockwaveAnimationTick);
+		if (shockwaveTimer.isRunning()) {
+			getState("shockwave").start(this.tickCount - shockwaveTimer.getTick());
 		}
 
-		if (this.summonAnimationTick > 0) {
-			getState("summon").start(this.tickCount - this.summonAnimationTick);
+		if (summonTimer.isRunning()) {
+			getState("summon").start(this.tickCount - summonTimer.getTick());
 		}
 	}
 
@@ -230,16 +228,16 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		this.playSound(ModSoundEvents.WILDFIRE_MOVE.get(), 0.15F, 1.0F);
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			this.shootAnimationTick = shootAnimationLength;
-		} else if (p_28844_ == 11) {
-			this.shockwaveAnimationTick = shockwaveAnimationLength;
-		} else if (p_28844_ == 9) {
-			this.summonAnimationTick = summonAnimationLength;
-		} else {
-			super.handleEntityEvent(p_28844_);
-		}
+	public void handleEntityEvent(byte event) {
+		if (event == 4)
+			shootTimer.reset();
+		else if (event == 11)
+			shockwaveTimer.reset();
+		else if (event == 9)
+			summonTimer.reset();
+		else
+			super.handleEntityEvent(event);
+
 	}
 
 	@Override
@@ -367,17 +365,9 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 	}
 
 	public void tickDownAnimTimers() {
-		if (this.shootAnimationTick > 0) {
-			this.shootAnimationTick--;
-		}
-
-		if (this.shockwaveAnimationTick > 0) {
-			this.shockwaveAnimationTick--;
-		}
-
-		if (this.summonAnimationTick > 0) {
-			this.summonAnimationTick--;
-		}
+		shootTimer.dec();
+		shockwaveTimer.dec();
+		summonTimer.dec();
 	}
 
 	class SummonBlazesGoal extends AbstractSummonGoal<WildfireEntity> {
@@ -390,17 +380,17 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 
 		@Override
 		protected void resetSummonTick() {
-			summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return summonAnimationTick;
+			return summonTimer.getTick();
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return mob.summonAnimationTick == mob.summonAnimationActionPoint;
+			return mob.summonTimer.tickEquals(summonAnimationActionPoint);
 		}
 
 		@Override
@@ -463,7 +453,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		@Override
 		public void start() {
 			mob.playSound(ModSoundEvents.WILDFIRE_SHOCKWAVE.get(), 1.0F, mob.getVoicePitch());
-			mob.shockwaveAnimationTick = mob.shockwaveAnimationLength;
+			shockwaveTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 11);
 		}
 
@@ -475,13 +465,13 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.shockwaveAnimationTick == mob.shockwaveAnimationActionPoint) {
+			if (target != null && mob.shockwaveTimer.tickEquals(mob.shockwaveAnimationActionPoint)) {
 				mob.shockwave();
 			}
 		}
 
 		public boolean animationsUseable() {
-			return mob.shockwaveAnimationTick <= 0;
+			return mob.shockwaveTimer.animationsUseable();
 		}
 
 	}
@@ -521,7 +511,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 
 		@Override
 		public void start() {
-			mob.shootAnimationTick = mob.shootAnimationLength;
+			shootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -533,7 +523,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
 
-			if (target != null && mob.shootAnimationTick == mob.shootAnimationActionPoint) {
+			if (target != null && mob.shootTimer.tickEquals(mob.shootAnimationActionPoint)) {
 				double d1 = target.getX() - mob.getX();
 				double d2 = target.getY(0.5D) - mob.getY(0.75D);
 				double d3 = target.getZ() - mob.getZ();
@@ -546,7 +536,7 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		}
 
 		public boolean animationsUseable() {
-			return mob.shootAnimationTick <= 0;
+			return mob.shootTimer.animationsUseable();
 		}
 
 	}

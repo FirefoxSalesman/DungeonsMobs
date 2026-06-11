@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.core.BlockPos;
@@ -68,8 +69,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 	private int shieldCooldownTime;
 
-	private int attackAnimationTick;
-	private int attackAnimationLength = 27;
+	private final AnimationTimer attackTimer = new AnimationTimer(27);
 	private int attackAnimationActionPoint = 15;
 
 	public RoyalGuardEntity(Level world) {
@@ -141,11 +141,11 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		return SoundEvents.VINDICATOR_CELEBRATE;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			this.attackAnimationTick = attackAnimationLength;
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
+			attackTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -158,18 +158,16 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 	}
 
 	private void setupAnimationStates() {
-		getState("attack").animateWhen(isAttacking(), tickCount);
-		getState("walkBlock").animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
-		getState("block").animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
-		getState("walk").animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
-		getState("celebrate").animateWhen(!isAttacking() && !isMoving() && !isBlocking() && isCelebrating(),
+		getState("attack").animateWhen(attackTimer.isRunning(), tickCount);
+		getState("walkBlock").animateWhen(!attackTimer.isRunning() && isMoving() && isBlocking(), tickCount);
+		getState("block").animateWhen(!attackTimer.isRunning() && !isMoving() && isBlocking(), tickCount);
+		getState("walk").animateWhen(!attackTimer.isRunning() && isMoving() && !isBlocking(), tickCount);
+		getState("celebrate").animateWhen(
+				!attackTimer.isRunning() && !isMoving() && !isBlocking() && isCelebrating(),
 				tickCount);
-		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isBlocking() && !isCelebrating(),
+		getState("idle").animateWhen(
+				!attackTimer.isRunning() && !isMoving() && !isBlocking() && !isCelebrating(),
 				tickCount);
-	}
-
-	private boolean isAttacking() {
-		return attackAnimationTick > 0;
 	}
 
 	public void baseTick() {
@@ -184,13 +182,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_BLOCKING);
 		}
 
-		tickDownAnimTimers();
-	}
-
-	public void tickDownAnimTimers() {
-		if (attackAnimationTick > 0) {
-			attackAnimationTick--;
-		}
+		attackTimer.dec();
 	}
 
 	@Override
@@ -377,7 +369,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 		@Override
 		public void start() {
-			mob.attackAnimationTick = mob.attackAnimationLength;
+			mob.attackTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 4);
 		}
 
@@ -385,12 +377,12 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		public void tick() {
 			target = mob.getTarget();
 
-			if (mob.attackAnimationTick == mob.attackAnimationActionPoint) {
+			if (mob.attackTimer.tickEquals(mob.attackAnimationActionPoint)) {
 				mob.playSound(ModSoundEvents.ROYAL_GUARD_ATTACK.get(), 1.25F, 1.0F);
 			}
 
 			if (target != null && mob.distanceTo(target) < 3.5
-					&& mob.attackAnimationTick == mob.attackAnimationActionPoint) {
+					&& mob.attackTimer.tickEquals(mob.attackAnimationActionPoint)) {
 				mob.doHurtTarget(target);
 				RoyalGuardEntity.disableShield(target, 60);
 			}
@@ -415,7 +407,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		}
 
 		public boolean animationsUseable() {
-			return mob.attackAnimationTick <= 0;
+			return mob.attackTimer.animationsUseable();
 		}
 
 	}

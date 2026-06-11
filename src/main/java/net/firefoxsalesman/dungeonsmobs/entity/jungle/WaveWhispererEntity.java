@@ -90,7 +90,7 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 
 	@Override
 	protected int getGrappleActionPoint() {
-		return underwaterGrappleAnimationActionPoint;
+		return 20;
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 
 	@Override
 	protected <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (attackAnimationTick > 0) {
+		if (attackTimer.isRunning()) {
 			if (isEyeInFluid(FluidTags.WATER)) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("wavewhisperer_attack", LoopType.LOOP));
@@ -178,7 +178,7 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 				event.getController().setAnimation(
 						RawAnimation.begin().then("whisperer_attack", LoopType.LOOP));
 			}
-		} else if (summonPQVAnimationTick > 0) {
+		} else if (summonPQVTimer.isRunning()) {
 			if (isEyeInFluid(FluidTags.WATER)) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("wavewhisperer_summon_pa", LoopType.LOOP));
@@ -186,7 +186,7 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 				event.getController().setAnimation(
 						RawAnimation.begin().then("whisperer_summon_pqv", LoopType.LOOP));
 			}
-		} else if (summonQGVAnimationTick > 0) {
+		} else if (summonQGVTimer.isRunning()) {
 			if (isEyeInFluid(FluidTags.WATER)) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("wavewhisperer_summon_qgk", LoopType.LOOP));
@@ -194,7 +194,7 @@ public class WaveWhispererEntity extends AbstractWhispererEntity implements IAqu
 				event.getController().setAnimation(
 						RawAnimation.begin().then("whisperer_summon_qgv", LoopType.LOOP));
 			}
-		} else if (grappleAnimationTick > 0) {
+		} else if (grappleTimer.isRunning()) {
 			if (isEyeInFluid(FluidTags.WATER)) {
 				event.getController().setAnimation(
 						RawAnimation.begin().then("wavewhisperer_grapple", LoopType.LOOP));
