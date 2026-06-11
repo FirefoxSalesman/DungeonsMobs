@@ -46,13 +46,12 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	private Map<String, AnimationState> states;
 	private final AnimationTimer landShootTimer = new AnimationTimer(20);
 	private static final int landShootAnimationActionPoint = 7;
-	private int landSummonAnimationTick;
-	private int landSummonAnimationLength = 45;
-	private int landSummonAnimationActionPoint1 = landSummonAnimationLength - 20;
-	private int landSummonAnimationActionPoint2 = landSummonAnimationLength - 23;
-	private int landSummonAnimationActionPoint3 = landSummonAnimationLength - 26;
-	private int landSummonAnimationActionPoint4 = landSummonAnimationLength - 32;
-	private int landSummonAnimationActionPoint5 = landSummonAnimationLength - 38;
+	private final AnimationTimer landSummonTimer = new AnimationTimer(45);
+	private static final int landSummonAnimationActionPoint1 = 25;
+	private static final int landSummonAnimationActionPoint2 = 22;
+	private static final int landSummonAnimationActionPoint3 = 19;
+	private static final int landSummonAnimationActionPoint4 = 13;
+	private static final int landSummonAnimationActionPoint5 = 7;
 	private int rainTridentStormAnimationTick;
 	private int rainTridentStormAnimationLength = 45;
 	private int rainShootAnimationTick;
@@ -188,7 +187,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	private boolean isSummoningOnLand() {
-		return landSummonAnimationTick > 0;
+		return landSummonTimer.isRunning();
 	}
 
 	private boolean isSummoningInWater() {
@@ -198,9 +197,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	public void tickDownAnimTimers() {
 		landShootTimer.dec();
 
-		if (isSummoningOnLand()) {
-			this.landSummonAnimationTick--;
-		}
+		landSummonTimer.dec();
 
 		if (isUsingTridentStormInWater()) {
 			this.rainTridentStormAnimationTick--;
@@ -237,7 +234,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		if (event == 11) {
 			landShootTimer.reset();
 		} else if (event == 9) {
-			this.landSummonAnimationTick = landSummonAnimationLength;
+			landSummonTimer.reset();
 		} else if (event == 4) {
 			this.rainTridentStormAnimationTick = rainTridentStormAnimationLength;
 		} else if (event == 8) {
@@ -443,22 +440,22 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 		@Override
 		protected void resetSummonTick() {
-			landSummonAnimationTick = landSummonAnimationLength;
+			landSummonTimer.reset();
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return landSummonAnimationTick;
+			return landSummonTimer.getTick();
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return mob.landSummonAnimationTick == mob.landSummonAnimationActionPoint1
-					|| mob.landSummonAnimationTick == mob.landSummonAnimationActionPoint2
-					|| mob.landSummonAnimationTick == mob.landSummonAnimationActionPoint3
-					|| (mob.landSummonAnimationTick == mob.landSummonAnimationActionPoint4
+			return landSummonTimer.tickEquals(landSummonAnimationActionPoint1)
+					|| landSummonTimer.tickEquals(landSummonAnimationActionPoint2)
+					|| landSummonTimer.tickEquals(landSummonAnimationActionPoint3)
+					|| (landSummonTimer.tickEquals(landSummonAnimationActionPoint4)
 							&& mob.random.nextBoolean())
-					|| (mob.landSummonAnimationTick == mob.landSummonAnimationActionPoint5
+					|| (landSummonTimer.tickEquals(landSummonAnimationActionPoint5)
 							&& mob.random.nextBoolean());
 		}
 
