@@ -57,11 +57,9 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	private static final int rainShootAnimationActionPoint = 23;
 	private final AnimationTimer summonTimer = new AnimationTimer(45);
 	private static final int summonAnimationActionPoint = 23;
-	private int shootAnimationTick;
-	private int shootAnimationLength = 40;
-	private int shootAnimationActionPoint = 23;
-	private int tridentStormAnimationTick;
-	private int tridentStormAnimationLength = 45;
+	private final AnimationTimer shootTimer = new AnimationTimer(40);
+	private static final int shootAnimationActionPoint = 23;
+	private final AnimationTimer tridentStormTimer = new AnimationTimer(45);
 
 	public DrownedNecromancerEntity(EntityType<? extends DrownedNecromancerEntity> type, Level worldIn) {
 		super(type, worldIn);
@@ -105,7 +103,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	public boolean isSpellcasting() {
-		return isShootingGeneric() || isUsingTridentStormOnLand() || rainTridentStormTimer.isRunning()
+		return isShootingGeneric() || tridentStormTimer.isRunning() || rainTridentStormTimer.isRunning()
 				|| isSummoning();
 	}
 
@@ -140,17 +138,17 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		animate(getState("swim"), isMoving() && isInWater());
 		animate(getState("waterSummon"), summonTimer.isRunning() && !isMoving());
 		animate(getState("landSummon"), landSummonTimer.isRunning() && !summonTimer.isRunning() && !isMoving());
-		animate(getState("shoot"), isShooting() && !isSummoning() && !isMoving());
+		animate(getState("shoot"), shootTimer.isRunning() && !isSummoning() && !isMoving());
 		animate(getState("landShoot"),
-				landShootTimer.isRunning() && !isShooting() && !isSummoning() && !isMoving());
+				landShootTimer.isRunning() && !shootTimer.isRunning() && !isSummoning() && !isMoving());
 		animate(getState("waterShoot"),
-				rainShootTimer.isRunning() && !landShootTimer.isRunning() && !isShooting()
+				rainShootTimer.isRunning() && !landShootTimer.isRunning() && !shootTimer.isRunning()
 						&& !isSummoning() && !isMoving());
 		animate(getState("waterTridentStorm"),
 				rainTridentStormTimer.isRunning() && !isShootingGeneric() && !isSummoning()
 						&& !isMoving());
 		animate(getState("landTridentStorm"),
-				isUsingTridentStormOnLand() && !isShootingGeneric() && !isSummoning() && !isMoving());
+				tridentStormTimer.isRunning() && !isShootingGeneric() && !isSummoning() && !isMoving());
 		animate(getState("waterIdle"), !isSpellcasting() && !isMoving() && isAlive() && isInWater());
 		animate(getState("landIdle"), !isSpellcasting() && !isMoving() && isAlive() && !isInWater());
 	}
@@ -160,15 +158,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	private boolean isShootingGeneric() {
-		return rainShootTimer.isRunning() || landShootTimer.isRunning() || isShooting();
-	}
-
-	private boolean isShooting() {
-		return shootAnimationTick > 0;
-	}
-
-	private boolean isUsingTridentStormOnLand() {
-		return tridentStormAnimationTick > 0;
+		return rainShootTimer.isRunning() || landShootTimer.isRunning() || shootTimer.isRunning();
 	}
 
 	public void baseTick() {
@@ -182,14 +172,8 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		rainTridentStormTimer.dec();
 		rainShootTimer.dec();
 		summonTimer.dec();
-
-		if (isShooting()) {
-			this.shootAnimationTick--;
-		}
-
-		if (isUsingTridentStormOnLand()) {
-			this.tridentStormAnimationTick--;
-		}
+		shootTimer.dec();
+		tridentStormTimer.dec();
 	}
 
 	@Override
@@ -203,23 +187,22 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	public void handleEntityEvent(byte event) {
-		if (event == 11) {
+		if (event == 11)
 			landShootTimer.reset();
-		} else if (event == 9) {
+		else if (event == 9)
 			landSummonTimer.reset();
-		} else if (event == 4) {
+		else if (event == 4)
 			rainTridentStormTimer.reset();
-		} else if (event == 8) {
+		else if (event == 8)
 			rainShootTimer.reset();
-		} else if (event == 7) {
+		else if (event == 7)
 			summonTimer.reset();
-		} else if (event == 6) {
-			this.shootAnimationTick = shootAnimationLength;
-		} else if (event == 5) {
-			this.tridentStormAnimationTick = tridentStormAnimationLength;
-		} else {
+		else if (event == 6)
+			shootTimer.reset();
+		else if (event == 5)
+			tridentStormTimer.reset();
+		else
 			super.handleEntityEvent(event);
-		}
 	}
 
 	protected boolean isSunSensitive() {
@@ -729,7 +712,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 		@Override
 		public void start() {
-			mob.shootAnimationTick = mob.shootAnimationLength;
+			shootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 6);
 			mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_STEAM_MISSILE.get(), 1.5F, 1.0F);
 		}
@@ -740,17 +723,17 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 			this.mob.getNavigation().stop();
 
-			if (mob.shootAnimationTick == mob.shootAnimationActionPoint) {
+			if (shootTimer.tickEquals(shootAnimationActionPoint)) {
 				mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_SHOOT.get(), 1.0F, 1.0F);
 				mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_ATTACK.get(), 1.5F, 1.0F);
 			}
 
-			if (target != null && (mob.shootAnimationTick == mob.shootAnimationActionPoint
-					|| mob.shootAnimationTick == mob.shootAnimationActionPoint - 2
-					|| mob.shootAnimationTick == mob.shootAnimationActionPoint - 4
-					|| mob.shootAnimationTick == mob.shootAnimationActionPoint - 6
-					|| mob.shootAnimationTick == mob.shootAnimationActionPoint - 8
-					|| mob.shootAnimationTick == mob.shootAnimationActionPoint - 10)) {
+			if (target != null && (shootTimer.tickEquals(shootAnimationActionPoint)
+					|| shootTimer.tickEquals(shootAnimationActionPoint - 2)
+					|| shootTimer.tickEquals(shootAnimationActionPoint - 4)
+					|| shootTimer.tickEquals(shootAnimationActionPoint - 6)
+					|| shootTimer.tickEquals(shootAnimationActionPoint - 8)
+					|| shootTimer.tickEquals(shootAnimationActionPoint - 10))) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0.3, 1.5, 0.5, getYRot());
 				double d1 = target.getX() - pos.x;
 				double d2 = target.getY(0.6D) - pos.y;
@@ -771,7 +754,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		}
 
 		public boolean animationsUseable() {
-			return mob.shootAnimationTick <= 0;
+			return shootTimer.animationsUseable();
 		}
 
 	}
@@ -817,7 +800,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 		@Override
 		public void start() {
-			mob.tridentStormAnimationTick = mob.tridentStormAnimationLength;
+			tridentStormTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 5);
 		}
 
@@ -827,13 +810,13 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 			this.mob.getNavigation().stop();
 
-			if (target != null && mob.tridentStormAnimationTick == 30) {
+			if (target != null && tridentStormTimer.tickEquals(30)) {
 				mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_PREPARE_TRIDENT_STORM.get(), 3.0F,
 						1.0F);
 			}
 
-			if (target != null && mob.tridentStormAnimationTick <= 30
-					&& mob.tridentStormAnimationTick >= 10) {
+			if (target != null && tridentStormTimer.getTick() <= 30
+					&& tridentStormTimer.getTick() >= 10) {
 				TridentStormEntity tridentStorm = ModEntities.TRIDENT_STORM.get().create(mob.level());
 				tridentStorm.owner = mob;
 				tridentStorm.moveTo(new BlockPos(
@@ -854,7 +837,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		}
 
 		public boolean animationsUseable() {
-			return mob.tridentStormAnimationTick <= 0;
+			return tridentStormTimer.animationsUseable();
 		}
 
 	}
