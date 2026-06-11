@@ -334,18 +334,8 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 		}
 
 		@Override
-		protected void resetSummonTick() {
-			mob.summonTimer.reset();
-		}
-
-		@Override
-		protected int getSummonTick() {
-			return mob.summonTimer.getTick();
-		}
-
-		@Override
 		protected boolean tickCondition() {
-			return mob.summonTimer.tickEquals(1);
+			return summonTimer.tickEquals(1);
 		}
 
 		@Override
@@ -363,6 +353,11 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 			if (target != null) {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return summonTimer;
 		}
 	}
 

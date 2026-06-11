@@ -379,18 +379,8 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 		}
 
 		@Override
-		protected void resetSummonTick() {
-			summonTimer.reset();
-		}
-
-		@Override
-		protected int getSummonTick() {
-			return summonTimer.getTick();
-		}
-
-		@Override
 		protected boolean tickCondition() {
-			return mob.summonTimer.tickEquals(summonAnimationActionPoint);
+			return summonTimer.tickEquals(summonAnimationActionPoint);
 		}
 
 		@Override
@@ -414,6 +404,11 @@ public class WildfireEntity extends Monster implements KeyframeEntity {
 			if (target != null) {
 				mob.getLookControl().setLookAt(target.getX(), target.getEyeY(), target.getZ());
 			}
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return summonTimer;
 		}
 	}
 

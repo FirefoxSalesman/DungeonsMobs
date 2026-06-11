@@ -394,16 +394,6 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		}
 
 		@Override
-		protected void resetSummonTick() {
-			landSummonTimer.reset();
-		}
-
-		@Override
-		protected int getSummonTick() {
-			return landSummonTimer.getTick();
-		}
-
-		@Override
 		protected boolean tickCondition() {
 			return landSummonTimer.tickEquals(landSummonAnimationActionPoint1)
 					|| landSummonTimer.tickEquals(landSummonAnimationActionPoint2)
@@ -417,6 +407,11 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		@Override
 		public boolean canUse() {
 			return super.canUse() && !mob.isInWaterOrBubble();
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return landSummonTimer;
 		}
 	}
 
@@ -649,16 +644,6 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		}
 
 		@Override
-		protected void resetSummonTick() {
-			summonTimer.reset();
-		}
-
-		@Override
-		protected int getSummonTick() {
-			return summonTimer.getTick();
-		}
-
-		@Override
 		protected boolean tickCondition() {
 			return summonTimer.tickEquals(summonAnimationActionPoint);
 		}
@@ -673,6 +658,11 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		@Override
 		public boolean canUse() {
 			return super.canUse() && mob.isInWaterOrBubble();
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return summonTimer;
 		}
 	}
 

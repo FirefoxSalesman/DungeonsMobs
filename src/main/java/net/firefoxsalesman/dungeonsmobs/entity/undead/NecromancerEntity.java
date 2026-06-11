@@ -217,27 +217,24 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 					ModSoundEvents.NECROMANCER_SUMMON.get(), 2);
 		}
 
-		protected void resetSummonTick() {
-			summonTimer.reset();
-		}
-
-		protected int getSummonTick() {
-			return mob.summonTimer.getTick();
-		}
-
 		protected boolean tickCondition() {
-			return mob.summonTimer.tickEquals(summonAnimationActionPoint1)
-					|| mob.summonTimer.tickEquals(summonAnimationActionPoint2)
-					|| mob.summonTimer.tickEquals(summonAnimationActionPoint3)
-					|| (mob.summonTimer.tickEquals(summonAnimationActionPoint4)
+			return summonTimer.tickEquals(summonAnimationActionPoint1)
+					|| summonTimer.tickEquals(summonAnimationActionPoint2)
+					|| summonTimer.tickEquals(summonAnimationActionPoint3)
+					|| (summonTimer.tickEquals(summonAnimationActionPoint4)
 							&& mob.random.nextBoolean())
-					|| (mob.summonTimer.tickEquals(summonAnimationActionPoint5)
+					|| (summonTimer.tickEquals(summonAnimationActionPoint5)
 							&& mob.random.nextBoolean() && mob.random.nextBoolean());
 		}
 
 		@Override
 		public boolean canUse() {
 			return super.canUse() && mob.distanceTo(target) > 5;
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return summonTimer;
 		}
 	}
 

@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
@@ -71,20 +72,20 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	@Override
 	public boolean canUse() {
 		target = mob.getTarget();
-		return target != null && mob.tickCount >= this.nextUseTime && animationsUseable()
+		return target != null && mob.tickCount >= this.nextUseTime && timer().animationsUseable()
 				&& mob.hasLineOfSight(target);
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		return target != null && !animationsUseable();
+		return target != null && !timer().animationsUseable();
 	}
 
 	@Override
 	public void start() {
 		if (summonSound.isPresent())
 			mob.playSound(summonSound.get(), 1.0F, 1.0F);
-		resetSummonTick();
+		timer().reset();
 		mob.level().broadcastEntityEvent(mob, entityEventState);
 	}
 
@@ -175,10 +176,6 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 		this.nextUseTime = mob.tickCount + (200 + mob.getRandom().nextInt(200));
 	}
 
-	public boolean animationsUseable() {
-		return getSummonTick() <= 0;
-	}
-
 	private boolean canSee(Entity entitySeeing, Entity pEntity) {
 		Vec3 vector3d = new Vec3(entitySeeing.getX(), entitySeeing.getEyeY(), entitySeeing.getZ());
 		Vec3 vector3d1 = new Vec3(pEntity.getX(), pEntity.getEyeY(), pEntity.getZ());
@@ -194,9 +191,7 @@ public abstract class AbstractSummonGoal<T extends Mob> extends Goal {
 	protected void tickStareHook() {
 	}
 
-	protected abstract void resetSummonTick();
-
-	protected abstract int getSummonTick();
-
 	protected abstract boolean tickCondition();
+
+	protected abstract AnimationTimer timer();
 }

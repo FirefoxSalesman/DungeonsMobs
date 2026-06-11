@@ -295,18 +295,13 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		}
 
 		@Override
-		protected void resetSummonTick() {
-			summonTimer.reset();
-		}
-
-		@Override
-		protected int getSummonTick() {
-			return summonTimer.getTick();
-		}
-
-		@Override
 		protected boolean tickCondition() {
 			return summonTimer.tickEquals(1);
+		}
+
+		@Override
+		protected AnimationTimer timer() {
+			return summonTimer;
 		}
 	}
 }
