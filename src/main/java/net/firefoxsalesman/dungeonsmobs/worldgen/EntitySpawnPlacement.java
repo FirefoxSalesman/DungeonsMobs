@@ -28,6 +28,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraftforge.fml.ModList;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 public class EntitySpawnPlacement {
@@ -59,7 +60,7 @@ public class EntitySpawnPlacement {
 		SpawnPlacements.register(ModEntities.WRAITH.get(),
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				Monster::checkMonsterSpawnRules);
+				EntitySpawnPlacement::goetyFriendlySpawnRule);
 		SpawnPlacements.register(ModEntities.JUNGLE_ZOMBIE.get(),
 				ON_GROUND_ALLOW_LEAVES,
 				Heightmap.Types.MOTION_BLOCKING,
@@ -178,6 +179,13 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
+	}
+
+	private static boolean goetyFriendlySpawnRule(EntityType<? extends Monster> type, ServerLevelAccessor world,
+			MobSpawnType spawnReason,
+			BlockPos pos, RandomSource random) {
+		return !ModList.get().isLoaded("goety")
+				&& Monster.checkMonsterSpawnRules(type, world, spawnReason, pos, random);
 	}
 
 	public static boolean checkAquaticMobSpawnRules(EntityType<? extends Mob> type,

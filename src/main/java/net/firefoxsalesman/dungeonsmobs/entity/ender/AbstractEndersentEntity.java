@@ -319,10 +319,6 @@ public class AbstractEndersentEntity extends VanillaEnderlingEntity implements K
 
 	}
 
-	@Override
-	public void checkDespawn() {
-	}
-
 	public boolean shouldBeStationary() {
 		return summonAnimationTick > 0 || appearDelay > 0;
 	}

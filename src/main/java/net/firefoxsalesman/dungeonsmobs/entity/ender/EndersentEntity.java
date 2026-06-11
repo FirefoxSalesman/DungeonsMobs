@@ -94,4 +94,8 @@ public class EndersentEntity extends AbstractEndersentEntity {
 			bossEvent.removePlayer(player);
 		}
 	}
+
+	@Override
+	public void checkDespawn() {
+	}
 }

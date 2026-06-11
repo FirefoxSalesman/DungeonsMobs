@@ -17,8 +17,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -187,6 +189,15 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	public void tick() {
 		super.tick();
 		summonAnimationTick--;
+	}
+
+	@Override
+	public void checkDespawn() {
+	}
+
+	@Override
+	public EntityDimensions getDimensions(Pose pose) {
+		return EntityDimensions.scalable(2F, 2F);
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
