@@ -53,12 +53,10 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	private static final int landSummonAnimationActionPoint4 = 13;
 	private static final int landSummonAnimationActionPoint5 = 7;
 	private final AnimationTimer rainTridentStormTimer = new AnimationTimer(45);
-	private int rainShootAnimationTick;
-	private int rainShootAnimationLength = 40;
-	private int rainShootAnimationActionPoint = 23;
-	private int summonAnimationTick;
-	private int summonAnimationLength = 45;
-	private int summonAnimationActionPoint = 23;
+	private final AnimationTimer rainShootTimer = new AnimationTimer(40);
+	private static final int rainShootAnimationActionPoint = 23;
+	private final AnimationTimer summonTimer = new AnimationTimer(45);
+	private static final int summonAnimationActionPoint = 23;
 	private int shootAnimationTick;
 	private int shootAnimationLength = 40;
 	private int shootAnimationActionPoint = 23;
@@ -103,7 +101,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	private boolean isSummoning() {
-		return isSummoningInWater() || landSummonTimer.isRunning();
+		return summonTimer.isRunning() || landSummonTimer.isRunning();
 	}
 
 	public boolean isSpellcasting() {
@@ -133,21 +131,21 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	@Override
 	public void tick() {
 		super.tick();
-		if (level().isClientSide) {
+		if (level().isClientSide)
 			setupAnimationStates();
-		}
 	}
 
 	private void setupAnimationStates() {
 		animate(getState("walk"), isMoving() && !isInWater());
 		animate(getState("swim"), isMoving() && isInWater());
-		animate(getState("waterSummon"), isSummoningInWater() && !isMoving());
-		animate(getState("landSummon"), landSummonTimer.isRunning() && !isSummoningInWater() && !isMoving());
+		animate(getState("waterSummon"), summonTimer.isRunning() && !isMoving());
+		animate(getState("landSummon"), landSummonTimer.isRunning() && !summonTimer.isRunning() && !isMoving());
 		animate(getState("shoot"), isShooting() && !isSummoning() && !isMoving());
 		animate(getState("landShoot"),
 				landShootTimer.isRunning() && !isShooting() && !isSummoning() && !isMoving());
-		animate(getState("waterShoot"), isShootingInWater() && !landShootTimer.isRunning() && !isShooting()
-				&& !isSummoning() && !isMoving());
+		animate(getState("waterShoot"),
+				rainShootTimer.isRunning() && !landShootTimer.isRunning() && !isShooting()
+						&& !isSummoning() && !isMoving());
 		animate(getState("waterTridentStorm"),
 				rainTridentStormTimer.isRunning() && !isShootingGeneric() && !isSummoning()
 						&& !isMoving());
@@ -162,11 +160,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 	}
 
 	private boolean isShootingGeneric() {
-		return isShootingInWater() || landShootTimer.isRunning() || isShooting();
-	}
-
-	private boolean isShootingInWater() {
-		return rainShootAnimationTick > 0;
+		return rainShootTimer.isRunning() || landShootTimer.isRunning() || isShooting();
 	}
 
 	private boolean isShooting() {
@@ -182,22 +176,12 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		this.tickDownAnimTimers();
 	}
 
-	private boolean isSummoningInWater() {
-		return summonAnimationTick > 0;
-	}
-
 	public void tickDownAnimTimers() {
 		landShootTimer.dec();
 		landSummonTimer.dec();
 		rainTridentStormTimer.dec();
-
-		if (isShootingInWater()) {
-			this.rainShootAnimationTick--;
-		}
-
-		if (isSummoningInWater()) {
-			this.summonAnimationTick--;
-		}
+		rainShootTimer.dec();
+		summonTimer.dec();
 
 		if (isShooting()) {
 			this.shootAnimationTick--;
@@ -226,9 +210,9 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		} else if (event == 4) {
 			rainTridentStormTimer.reset();
 		} else if (event == 8) {
-			this.rainShootAnimationTick = rainShootAnimationLength;
+			rainShootTimer.reset();
 		} else if (event == 7) {
-			this.summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 		} else if (event == 6) {
 			this.shootAnimationTick = shootAnimationLength;
 		} else if (event == 5) {
@@ -635,7 +619,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 		@Override
 		public void start() {
-			mob.rainShootAnimationTick = mob.rainShootAnimationLength;
+			rainShootTimer.reset();
 			mob.level().broadcastEntityEvent(mob, (byte) 8);
 		}
 
@@ -645,14 +629,14 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 			this.mob.getNavigation().stop();
 
-			if (mob.rainShootAnimationTick == mob.rainShootAnimationActionPoint) {
+			if (rainShootTimer.tickEquals(rainShootAnimationActionPoint)) {
 				mob.playSound(ModSoundEvents.DROWNED_NECROMANCER_SHOOT.get(), 1.25F, 1.0F);
 			}
 
-			if (target != null && (mob.rainShootAnimationTick == mob.rainShootAnimationActionPoint
-					|| mob.rainShootAnimationTick == mob.rainShootAnimationActionPoint - 3
-					|| mob.rainShootAnimationTick == mob.rainShootAnimationActionPoint - 6
-					|| mob.rainShootAnimationTick == mob.rainShootAnimationActionPoint - 9)) {
+			if (target != null && (rainShootTimer.tickEquals(rainShootAnimationActionPoint)
+					|| rainShootTimer.tickEquals(rainShootAnimationActionPoint - 3)
+					|| rainShootTimer.tickEquals(rainShootAnimationActionPoint - 6)
+					|| rainShootTimer.tickEquals(rainShootAnimationActionPoint - 9))) {
 				Vec3 pos = PositionUtils.getOffsetPos(mob, 0.3, 1.5, 0.5, getYRot());
 				double d1 = target.getX() - pos.x;
 				double d2 = target.getY(0.6D) - pos.y;
@@ -669,7 +653,7 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 		}
 
 		public boolean animationsUseable() {
-			return mob.rainShootAnimationTick <= 0;
+			return rainShootTimer.animationsUseable();
 		}
 
 	}
@@ -683,17 +667,17 @@ public class DrownedNecromancerEntity extends Drowned implements KeyframeEntity 
 
 		@Override
 		protected void resetSummonTick() {
-			summonAnimationTick = summonAnimationLength;
+			summonTimer.reset();
 		}
 
 		@Override
 		protected int getSummonTick() {
-			return summonAnimationTick;
+			return summonTimer.getTick();
 		}
 
 		@Override
 		protected boolean tickCondition() {
-			return mob.summonAnimationTick == mob.summonAnimationActionPoint;
+			return summonTimer.tickEquals(summonAnimationActionPoint);
 		}
 
 		@Override
