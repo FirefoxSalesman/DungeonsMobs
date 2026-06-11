@@ -1,12 +1,18 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+
 public interface AnimatableMeleeAttackMob {
 
-    int getAttackAnimationTick();
+	AnimationTimer getTimer();
 
-    void setAttackAnimationTick(int attackAnimationTick);
+	default int getAttackAnimationTick() {
+		return getTimer().getTick();
+	};
 
-    int getAttackAnimationLength();
+	default void resetAttackTimer() {
+		getTimer().reset();
+	}
 
-    int getAttackAnimationActionPoint();
+	int getAttackAnimationActionPoint();
 }

@@ -10,12 +10,12 @@ import net.minecraft.world.level.Level;
 
 public class QuickGrowingKelpEntity extends QuickGrowingVineEntity {
 
-	public QuickGrowingKelpEntity(EntityType<? extends QuickGrowingKelpEntity> p_i50147_1_, Level p_i50147_2_) {
-		super(p_i50147_1_, p_i50147_2_);
+	public QuickGrowingKelpEntity(EntityType<? extends QuickGrowingKelpEntity> type, Level world) {
+		super(type, world);
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSoundEvents.QUICK_GROWING_KELP_HURT.get();
 	}
 

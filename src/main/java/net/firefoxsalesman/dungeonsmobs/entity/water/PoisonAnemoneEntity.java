@@ -10,8 +10,8 @@ import net.minecraft.world.level.Level;
 
 public class PoisonAnemoneEntity extends PoisonQuillVineEntity {
 
-	public PoisonAnemoneEntity(EntityType<? extends PoisonAnemoneEntity> p_i50147_1_, Level p_i50147_2_) {
-		super(p_i50147_1_, p_i50147_2_);
+	public PoisonAnemoneEntity(EntityType<? extends PoisonAnemoneEntity> type, Level world) {
+		super(type, world);
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class PoisonAnemoneEntity extends PoisonQuillVineEntity {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSoundEvents.POISON_ANEMONE_HURT.get();
 	}
 
@@ -30,7 +30,7 @@ public class PoisonAnemoneEntity extends PoisonQuillVineEntity {
 	}
 
 	@Override
-	protected SoundEvent getHurtSoundFoley(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSoundFoley(DamageSource source) {
 		return null;
 	}
 

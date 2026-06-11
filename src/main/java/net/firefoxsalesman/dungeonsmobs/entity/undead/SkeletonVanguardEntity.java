@@ -14,6 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.BasicModdedAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
@@ -62,9 +63,8 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 
 	private int shieldCooldownTime;
 
-	public int attackAnimationTick;
-	public int attackAnimationLength = 22;
-	public int attackAnimationActionPoint = 10;
+	private final AnimationTimer attackTimer = new AnimationTimer(22);
+	private static final int attackAnimationActionPoint = 10;
 
 	public SkeletonVanguardEntity(Level worldIn) {
 		this(ModEntities.SKELETON_VANGUARD.get(), worldIn);
@@ -140,11 +140,11 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 		return true;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			attackAnimationTick = attackAnimationLength;
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
+			attackTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
 	}
 
@@ -157,15 +157,11 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	}
 
 	private void setupAnimationStates() {
-		getState("attack").animateWhen(isAttacking(), tickCount);
-		getState("walkBlock").animateWhen(!isAttacking() && isMoving() && isBlocking(), tickCount);
-		getState("block").animateWhen(!isAttacking() && !isMoving() && isBlocking(), tickCount);
-		getState("walk").animateWhen(!isAttacking() && isMoving() && !isBlocking(), tickCount);
-		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isBlocking(), tickCount);
-	}
-
-	private boolean isAttacking() {
-		return attackAnimationTick > 0;
+		getState("attack").animateWhen(attackTimer.isRunning(), tickCount);
+		getState("walkBlock").animateWhen(!attackTimer.isRunning() && isMoving() && isBlocking(), tickCount);
+		getState("block").animateWhen(!attackTimer.isRunning() && !isMoving() && isBlocking(), tickCount);
+		getState("walk").animateWhen(!attackTimer.isRunning() && isMoving() && !isBlocking(), tickCount);
+		getState("idle").animateWhen(!attackTimer.isRunning() && !isMoving() && !isBlocking(), tickCount);
 	}
 
 	public void baseTick() {
@@ -180,33 +176,12 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_BLOCKING);
 		}
 
-		tickDownAnimTimers();
-	}
-
-	@Override
-	public int getAttackAnimationTick() {
-		return attackAnimationTick;
-	}
-
-	@Override
-	public void setAttackAnimationTick(int attackAnimationTick) {
-		this.attackAnimationTick = attackAnimationTick;
-	}
-
-	@Override
-	public int getAttackAnimationLength() {
-		return attackAnimationLength;
+		attackTimer.dec();
 	}
 
 	@Override
 	public int getAttackAnimationActionPoint() {
 		return attackAnimationActionPoint;
-	}
-
-	public void tickDownAnimTimers() {
-		if (attackAnimationTick > 0) {
-			attackAnimationTick--;
-		}
 	}
 
 	// SHIELD STUFF
@@ -302,5 +277,10 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	@Override
 	public WalkAnimationState getWalkAnimation() {
 		return walkAnimation;
+	}
+
+	@Override
+	public AnimationTimer getTimer() {
+		return attackTimer;
 	}
 }

@@ -8,6 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.BasicModdedAttackGoal;
+import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.utils.GoalUtils;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
@@ -46,9 +47,8 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 
 	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData
 			.defineId(MountaineerEntity.class, EntityDataSerializers.BYTE);
-	public int attackAnimationTick;
-	public int attackAnimationLength = 7;
-	public int attackAnimationActionPoint = 6;
+	private final AnimationTimer attackTimer = new AnimationTimer(7);
+	private static final int attackAnimationActionPoint = 6;
 	private final Map<String, AnimationState> states;
 
 	public MountaineerEntity(Level worldIn) {
@@ -68,8 +68,8 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 		goalSelector.addGoal(5, new ApproachTargetGoal(this, 0, 1.0D, true));
 	}
 
-	protected PathNavigation createNavigation(Level p_175447_1_) {
-		return new WallClimberNavigation(this, p_175447_1_);
+	protected PathNavigation createNavigation(Level world) {
+		return new WallClimberNavigation(this, world);
 	}
 
 	protected void defineSynchedData() {
@@ -86,15 +86,12 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 	}
 
 	private void setupAnimationStates() {
-		getState("attack").animateWhen(isAttacking(), tickCount);
-		getState("run").animateWhen(!isAttacking() && isAggressive() && isMoving(), tickCount);
-		getState("walk").animateWhen(!isAttacking() && !isAggressive() && isMoving(), tickCount);
-		getState("celebrate").animateWhen(!isAttacking() && !isMoving() && isCelebrating(), tickCount);
-		getState("idle").animateWhen(!isAttacking() && !isMoving() && !isCelebrating(), tickCount);
-	}
-
-	private boolean isAttacking() {
-		return attackAnimationTick > 0;
+		getState("attack").animateWhen(attackTimer.isRunning(), tickCount);
+		getState("run").animateWhen(!attackTimer.isRunning() && isAggressive() && isMoving(), tickCount);
+		getState("walk").animateWhen(!attackTimer.isRunning() && !isAggressive() && isMoving(), tickCount);
+		getState("celebrate").animateWhen(!attackTimer.isRunning() && !isMoving() && isCelebrating(),
+				tickCount);
+		getState("idle").animateWhen(!attackTimer.isRunning() && !isMoving() && !isCelebrating(), tickCount);
 	}
 
 	public boolean onClimbable() {
@@ -192,27 +189,12 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 		return false;
 	}
 
-	public void handleEntityEvent(byte p_28844_) {
-		if (p_28844_ == 4) {
-			attackAnimationTick = attackAnimationLength;
+	public void handleEntityEvent(byte event) {
+		if (event == 4) {
+			attackTimer.reset();
 		} else {
-			super.handleEntityEvent(p_28844_);
+			super.handleEntityEvent(event);
 		}
-	}
-
-	@Override
-	public int getAttackAnimationTick() {
-		return attackAnimationTick;
-	}
-
-	@Override
-	public void setAttackAnimationTick(int attackAnimationTick) {
-		this.attackAnimationTick = attackAnimationTick;
-	}
-
-	@Override
-	public int getAttackAnimationLength() {
-		return attackAnimationLength;
 	}
 
 	@Override
@@ -223,13 +205,7 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 	@Override
 	public void baseTick() {
 		super.baseTick();
-		tickDownAnimTimers();
-	}
-
-	public void tickDownAnimTimers() {
-		if (attackAnimationTick > 0) {
-			attackAnimationTick--;
-		}
+		attackTimer.dec();
 	}
 
 	@Override
@@ -240,5 +216,10 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 	@Override
 	public WalkAnimationState getWalkAnimation() {
 		return walkAnimation;
+	}
+
+	@Override
+	public AnimationTimer getTimer() {
+		return attackTimer;
 	}
 }

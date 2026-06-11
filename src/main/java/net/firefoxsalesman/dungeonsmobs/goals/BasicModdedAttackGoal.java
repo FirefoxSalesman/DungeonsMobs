@@ -57,7 +57,7 @@ public class BasicModdedAttackGoal<T extends Mob & AnimatableMeleeAttackMob> ext
 
 	@Override
 	public void start() {
-		mob.setAttackAnimationTick(mob.getAttackAnimationLength());
+		mob.resetAttackTimer();
 		lastUseTime = mob.level().getGameTime();
 		mob.level().broadcastEntityEvent(mob, (byte) 4);
 	}
