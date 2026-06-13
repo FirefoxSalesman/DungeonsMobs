@@ -39,6 +39,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.DrownedNecromancerOrb
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
@@ -237,7 +238,7 @@ public class ModEntities {
 			() -> EntityType.Builder
 					.<RedstoneMonstrosityEntity>of(RedstoneMonstrosityEntity::new,
 							MobCategory.MONSTER)
-					.sized(2.66F, 3.83F)
+					.sized(5.33F, 7F)
 					.clientTrackingRange(10)
 					.fireImmune()
 					.build(modLoc("redstone_monstrosity").toString()),
@@ -427,6 +428,16 @@ public class ModEntities {
 					.clientTrackingRange(6)
 					.updateInterval(2)
 					.build(modLoc("redstone_mine").toString()));
+	public static final RegistryObject<EntityType<RedstoneMonstrosityProjectileEntity>> REDSTONE_MONSTROSITY_PROJECTILE = registerEntityWithoutEgg(
+			"redstone_monstrosity_projectile",
+			() -> EntityType.Builder
+					.<RedstoneMonstrosityProjectileEntity>of(
+							RedstoneMonstrosityProjectileEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(0.25F, 0.25F)
+					.clientTrackingRange(6)
+					.updateInterval(2)
+					.build(modLoc("redstone_monstrosity_projectile").toString()));
 
 	public static final RegistryObject<EntityType<WindcallerTornadoEntity>> TORNADO = registerEntityWithoutEgg(
 			"tornado",

@@ -109,25 +109,25 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 		super.onHitEntity(hitResult);
 		Entity shooter = getOwner();
 		Entity hitEnt = hitResult.getEntity();
-	
+
 		if (hitEnt instanceof LivingEntity &&
-			((LivingEntity) hitEnt).getMobType() == MobType.ARTHROPOD) {
+				((LivingEntity) hitEnt).getMobType() == MobType.ARTHROPOD) {
 			return;
 		}
 
 		if (shooter instanceof LivingEntity) {
 			hitEnt.hurt(damageSources().mobProjectile(this, (LivingEntity) shooter), 1.0F);
 		}
-	
+
 		if (!level().isClientSide) {
 			// Capture the spawn coordinates
 			double trapX = hitEnt.getX();
 			double trapY = hitEnt.getY();
 			double trapZ = hitEnt.getZ();
-	
+
 			// Spawn the trap at that location
 			spawnTrap(trapX, trapY, trapZ);
-	
+
 			// Immediately teleport the target into the trap center
 			if (hitEnt instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
 				// For players, use the connection teleport to avoid rubber-banding
@@ -137,13 +137,13 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 				// For mobs and other entities
 				hitEnt.teleportTo(trapX, trapY, trapZ);
 			}
-	
+
 			// Zero out any velocity so they don’t drift out
 			hitEnt.setDeltaMovement(0, 0, 0);
-	
+
 			remove(RemovalReason.DISCARDED);
 		}
-	}	
+	}
 
 	public void createSpawnParticles() {
 		if (!level().isClientSide) {
@@ -157,20 +157,20 @@ public class CobwebProjectileEntity extends Projectile implements GeoEntity {
 	}
 
 	@Override
-	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 1) {
+	public void handleEntityEvent(byte event) {
+		if (event == 1) {
 			for (int i = 0; i < 5; i++) {
 				level().addParticle(ParticleTypes.POOF, getX(), getY(), getZ(),
 						0.0D,
 						0.0D, 0.0D);
 			}
 		} else {
-			super.handleEntityEvent(p_70103_1_);
+			super.handleEntityEvent(event);
 		}
 	}
 
-	protected void onHitBlock(BlockHitResult p_230299_1_) {
-		super.onHitBlock(p_230299_1_);
+	protected void onHitBlock(BlockHitResult result) {
+		super.onHitBlock(result);
 		if (!level().isClientSide) {
 			spawnTrap(getX(), getY(), getZ());
 

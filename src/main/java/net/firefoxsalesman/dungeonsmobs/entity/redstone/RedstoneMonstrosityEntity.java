@@ -199,11 +199,6 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	public void checkDespawn() {
 	}
 
-	@Override
-	public EntityDimensions getDimensions(Pose pose) {
-		return EntityDimensions.scalable(2F, 2F);
-	}
-
 	class AttackGoal extends MeleeAttackGoal {
 		private int maxAttackTimer = 60;
 		private final double moveSpeed;
