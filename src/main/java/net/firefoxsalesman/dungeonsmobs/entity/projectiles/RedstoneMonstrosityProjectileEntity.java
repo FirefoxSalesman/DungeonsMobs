@@ -4,9 +4,13 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -66,5 +70,39 @@ public class RedstoneMonstrosityProjectileEntity extends Projectile implements G
 	@Override
 	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+
+		Vec3 vector3d = getDeltaMovement();
+
+		HitResult raytraceresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
+		if (raytraceresult != null && raytraceresult.getType() != HitResult.Type.MISS
+				&& !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this,
+						raytraceresult)) {
+			onHit(raytraceresult);
+		}
+
+		double d0 = getX() + vector3d.x;
+		double d1 = getY() + vector3d.y;
+		double d2 = getZ() + vector3d.z;
+		updateRotation();
+		float f = 0.99F;
+		float f1 = 0.06F;
+		if (level().getBlockStates(getBoundingBox())
+				.noneMatch(BlockBehaviour.BlockStateBase::isAir)) {
+			explode();
+		} else if (isInWaterOrBubble()) {
+			explode();
+		} else {
+			setDeltaMovement(vector3d.scale(f));
+			if (!isNoGravity()) {
+				setDeltaMovement(getDeltaMovement().add(0.0D, -f1, 0.0D));
+			}
+
+			setPos(d0, d1, d2);
+		}
 	}
 }
