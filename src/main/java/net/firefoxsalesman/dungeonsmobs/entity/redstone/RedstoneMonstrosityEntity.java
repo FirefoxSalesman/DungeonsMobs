@@ -337,21 +337,28 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 	private static void spewProjectiles(RedstoneMonstrosityEntity shooter, LivingEntity target) {
 		Vec3 pos = PositionUtils.getOffsetPos(shooter, 0.0, 1.0, -0.75, shooter.yBodyRot);
+		for (int i = 0; i < 5; i++) {
+			RedstoneMonstrosityProjectileEntity projectile = new RedstoneMonstrosityProjectileEntity(
+					shooter.level(), shooter);
+			projectile.setPos(pos.x, shooter.getEyeY(), pos.z);
+			double aimX = target.getX() - pos.x;
+			double aimY = target.getY(0.3333333333333333D) - pos.y;
+			double aimZ = target.getZ() - pos.z;
+			if (i > 0) {
+				aimX += shooter.getRandom().nextInt(-5, 5);
+				aimY += shooter.getRandom().nextInt(-5, 5);
+				aimZ += shooter.getRandom().nextInt(-5, 5);
+			}
+			float f = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ)) * 0.2F;
 
-		RedstoneMonstrosityProjectileEntity projectile = new RedstoneMonstrosityProjectileEntity(
-				shooter.level(), shooter);
-		projectile.setPos(pos.x, shooter.getEyeY(), pos.z);
-		double aimX = target.getX() - pos.x;
-		double aimY = target.getY(0.3333333333333333D) - pos.y;
-		double aimZ = target.getZ() - pos.z;
-		float f = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ)) * 0.2F;
+			float horizontalDistance = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ));
+			float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F); // Clamp velocity for longer
+												// shots
+			float inaccuracy = 2.0F;
+			projectile.shoot(aimX, aimY + (double) f, aimZ, velocity, inaccuracy);
 
-		float horizontalDistance = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ));
-		float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F); // Clamp velocity for longer shots
-		float inaccuracy = 2.0F;
-		projectile.shoot(aimX, aimY + (double) f, aimZ, velocity, inaccuracy);
-
-		shooter.level().addFreshEntity(projectile);
+			shooter.level().addFreshEntity(projectile);
+		}
 	}
 
 	class SpewProjectilesGoal extends SimpleRangedAttackGoal<RedstoneMonstrosityEntity> {
