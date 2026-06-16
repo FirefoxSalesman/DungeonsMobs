@@ -1,8 +1,11 @@
 package net.firefoxsalesman.dungeonsmobs.entity.projectiles;
 
+import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
@@ -21,12 +24,22 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class RedstoneMonstrosityProjectileEntity extends Projectile implements GeoEntity {
+	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+
 	public RedstoneMonstrosityProjectileEntity(
 			EntityType<? extends RedstoneMonstrosityProjectileEntity> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
 	}
 
-	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+	public RedstoneMonstrosityProjectileEntity(Level pLevel, LivingEntity pEntity) {
+		this(ModEntities.REDSTONE_MONSTROSITY_PROJECTILE.get(), pLevel);
+		super.setOwner(pEntity);
+		setPos(pEntity.getX() - (double) (pEntity.getBbWidth() + 1.0F) * 0.5D
+				* (double) Mth.sin(pEntity.yBodyRot * ((float) Math.PI / 180F)),
+				pEntity.getEyeY() - (double) 0.1F,
+				pEntity.getZ() + (double) (pEntity.getBbWidth() + 1.0F) * 0.5D
+						* (double) Mth.cos(pEntity.yBodyRot * ((float) Math.PI / 180F)));
+	}
 
 	@Override
 	protected void onHitEntity(EntityHitResult pResult) {

@@ -4,10 +4,13 @@ import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
+import net.firefoxsalesman.dungeonsmobs.goals.SimpleRangedAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
+import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -18,10 +21,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -47,14 +49,17 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import net.minecraft.world.BossEvent;
 
 public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	private AnimationTimer summonTimer = new AnimationTimer(72);
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
-			.defineId(RedstoneGolemEntity.class, EntityDataSerializers.BOOLEAN);
+			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> FIRETIMER = SynchedEntityData
+			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> FIRING = SynchedEntityData
+			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
 			BossEvent.BossBarColor.RED,
@@ -97,10 +102,11 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(0, new SummonRedstoneCubesGoal(this));
-		goalSelector.addGoal(5, new AttackGoal(this, 1.3D));
-		goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-		goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		goalSelector.addGoal(6, new AttackGoal(this, 1.3D));
+		goalSelector.addGoal(5, new SpewProjectilesGoal(this, 2.0D, 30, 20.0F));
+		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		goalSelector.addGoal(9, new RandomLookAroundGoal(this));
 
 		targetSelector.addGoal(2, (new HurtByTargetGoal(this, Raider.class)).setAlertOthers());
 		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -128,6 +134,26 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		entityData.set(MELEEATTACKING, attacking);
 	}
 
+	public boolean isFiring() {
+		return entityData.get(FIRING);
+	}
+
+	public void setFiring(boolean attacking) {
+		entityData.set(FIRING, attacking);
+	}
+
+	private boolean firingUseable() {
+		return entityData.get(FIRETIMER) <= 0;
+	}
+
+	private void resetFireTimer() {
+		entityData.set(FIRETIMER, 100);
+	}
+
+	private void decFireTimer() {
+		entityData.set(FIRETIMER, entityData.get(FIRETIMER) - 1);
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
@@ -143,6 +169,12 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
 							"animation.redstone_monstrosity.strong_attack",
+							LoopType.PLAY_ONCE));
+		} else if (isFiring()) {
+			event.getController().setAnimationSpeed(1.0D);
+			event.getController()
+					.setAnimation(RawAnimation.begin().then(
+							"animation.redstone_monstrosity.spit",
 							LoopType.PLAY_ONCE));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimationSpeed(groundSpeed * 10);
@@ -186,13 +218,16 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
+		entityData.define(FIRING, false);
 		entityData.define(MELEEATTACKING, false);
+		entityData.define(FIRETIMER, 100);
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
 		summonTimer.dec();
+		decFireTimer();
 	}
 
 	@Override
@@ -297,6 +332,60 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		@Override
 		protected AnimationTimer timer() {
 			return summonTimer;
+		}
+	}
+
+	private static void spewProjectiles(RedstoneMonstrosityEntity shooter, LivingEntity target) {
+		Vec3 pos = PositionUtils.getOffsetPos(shooter, 0.0, 1.0, -0.75, shooter.yBodyRot);
+
+		RedstoneMonstrosityProjectileEntity projectile = new RedstoneMonstrosityProjectileEntity(
+				shooter.level(), shooter);
+		projectile.setPos(pos.x, shooter.getEyeY(), pos.z);
+		double aimX = target.getX() - pos.x;
+		double aimY = target.getY(0.3333333333333333D) - pos.y;
+		double aimZ = target.getZ() - pos.z;
+		float f = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ)) * 0.2F;
+
+		float horizontalDistance = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ));
+		float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F); // Clamp velocity for longer shots
+		float inaccuracy = 2.0F;
+		projectile.shoot(aimX, aimY + (double) f, aimZ, velocity, inaccuracy);
+
+		shooter.level().addFreshEntity(projectile);
+	}
+
+	class SpewProjectilesGoal extends SimpleRangedAttackGoal<RedstoneMonstrosityEntity> {
+
+		public SpewProjectilesGoal(RedstoneMonstrosityEntity mob, double speedModifier, int attackInterval,
+				float attackRadius) {
+			super(mob, (w) -> true, RedstoneMonstrosityEntity::spewProjectiles, speedModifier,
+					attackInterval, attackRadius);
+		}
+
+		@Override
+		public boolean canUse() {
+			return super.canUse() && distanceToSqr(getTarget().getX(),
+					getTarget().getBoundingBox().minY, getTarget().getZ()) >= 20
+					&& firingUseable();
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return super.canContinueToUse() && distanceToSqr(getTarget().getX(),
+					getTarget().getBoundingBox().minY, getTarget().getZ()) >= 20;
+		}
+
+		@Override
+		public void start() {
+			super.start();
+			resetFireTimer();
+			setFiring(true);
+		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			setFiring(false);
 		}
 	}
 }
