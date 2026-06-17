@@ -147,7 +147,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	}
 
 	private void resetFireTimer() {
-		entityData.set(FIRETIMER, 100);
+		entityData.set(FIRETIMER, 600);
 	}
 
 	private void decFireTimer() {
@@ -359,6 +359,8 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 			shooter.level().addFreshEntity(projectile);
 		}
+
+		shooter.resetFireTimer();
 	}
 
 	class SpewProjectilesGoal extends SimpleRangedAttackGoal<RedstoneMonstrosityEntity> {
@@ -369,23 +371,25 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 					attackInterval, attackRadius);
 		}
 
+		private boolean targetInRange() {
+			LivingEntity target = getTarget();
+			return target != null && distanceToSqr(target.getX(),
+					target.getBoundingBox().minY, target.getZ()) >= 20;
+		}
+
 		@Override
 		public boolean canUse() {
-			return super.canUse() && distanceToSqr(getTarget().getX(),
-					getTarget().getBoundingBox().minY, getTarget().getZ()) >= 20
-					&& firingUseable();
+			return super.canUse() && targetInRange() && firingUseable();
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && distanceToSqr(getTarget().getX(),
-					getTarget().getBoundingBox().minY, getTarget().getZ()) >= 20;
+			return super.canContinueToUse() && targetInRange() && firingUseable();
 		}
 
 		@Override
 		public void start() {
 			super.start();
-			resetFireTimer();
 			setFiring(true);
 		}
 
