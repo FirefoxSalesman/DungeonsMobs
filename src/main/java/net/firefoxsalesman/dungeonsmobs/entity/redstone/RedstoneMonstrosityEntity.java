@@ -53,11 +53,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
+	private AnimationTimer fireTimer = new AnimationTimer(600);
 	private AnimationTimer summonTimer = new AnimationTimer(72);
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
 			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Integer> FIRETIMER = SynchedEntityData
-			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> FIRING = SynchedEntityData
 			.defineId(RedstoneMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
 
@@ -142,18 +141,6 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		entityData.set(FIRING, attacking);
 	}
 
-	private boolean firingUseable() {
-		return entityData.get(FIRETIMER) <= 0;
-	}
-
-	private void resetFireTimer() {
-		entityData.set(FIRETIMER, 600);
-	}
-
-	private void decFireTimer() {
-		entityData.set(FIRETIMER, entityData.get(FIRETIMER) - 1);
-	}
-
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
@@ -220,14 +207,13 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 		super.defineSynchedData();
 		entityData.define(FIRING, false);
 		entityData.define(MELEEATTACKING, false);
-		entityData.define(FIRETIMER, 100);
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
 		summonTimer.dec();
-		decFireTimer();
+		fireTimer.dec();
 	}
 
 	@Override
@@ -360,7 +346,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 			shooter.level().addFreshEntity(projectile);
 		}
 
-		shooter.resetFireTimer();
+		shooter.fireTimer.reset();
 	}
 
 	class SpewProjectilesGoal extends SimpleRangedAttackGoal<RedstoneMonstrosityEntity> {
@@ -379,12 +365,12 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 		@Override
 		public boolean canUse() {
-			return super.canUse() && targetInRange() && firingUseable();
+			return super.canUse() && targetInRange() && fireTimer.animationsUseable();
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && targetInRange() && firingUseable();
+			return super.canContinueToUse() && targetInRange() && fireTimer.animationsUseable();
 		}
 
 		@Override
