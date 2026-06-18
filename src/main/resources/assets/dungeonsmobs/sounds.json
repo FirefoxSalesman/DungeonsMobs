@@ -554,6 +554,211 @@
     ]
   },
 
+  "entity.redstone_monstrosity.arm": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.arm",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/arm_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/arm_2",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.awaken": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.awaken",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/awaken",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.death": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.death",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/death",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.growl": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.growl",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/growl",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.hurt": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.hurt",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/hurt_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/hurt_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/hurt_3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/hurt_4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.idle": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.idle",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_4",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_5",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_6",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/idle_7",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.shoot": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.shoot",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/shoot_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/shoot_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/shoot_3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.short_growl": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.short_growl",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/short_growl",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.step": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.step",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.step_light": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.step_light",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_light_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_light_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_light_3",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/step_light_4",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.voice_charge": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.voice_charge",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/voice_charge_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/voice_charge_2",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/voice_charge_3",
+	"stream": true
+      }
+    ]
+  },
+  "entity.redstone_monstrosity.voice_short": {
+    "category": "entity",
+    "subtitle": "subtitles.entity.redstone_monstrosity.voice_short",
+    "sounds": [
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/voice_short_1",
+	"stream": true
+      },
+      {
+	"name": "dungeonsmobs:entities/redstone_monstrosity/voice_short_2",
+	"stream": true
+      }
+    ]
+  },
+
   "entity.whisperer.idle_vocal": {
     "category": "entity",
     "subtitle": "subtitles.entity.whisperer.idle",

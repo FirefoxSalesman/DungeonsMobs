@@ -234,6 +234,29 @@ public class ModSoundEvents {
 	public static final RegistryObject<SoundEvent> REDSTONE_GOLEM_SPARK = registerSoundEvents(
 			"entity.redstone_golem.spark");
 
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_ARM = registerSoundEvents(
+			"entity.redstone_monstrosity.arm");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_AWAKEN = registerSoundEvents(
+			"entity.redstone_monstrosity.awaken");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_DEATH = registerSoundEvents(
+			"entity.redstone_monstrosity.death");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_GROWL = registerSoundEvents(
+			"entity.redstone_monstrosity.growl");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_HURT = registerSoundEvents(
+			"entity.redstone_monstrosity.hurt");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_IDLE = registerSoundEvents(
+			"entity.redstone_monstrosity.idle");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_SHOOT = registerSoundEvents(
+			"entity.redstone_monstrosity.shoot");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_SHORT_GROWL = registerSoundEvents(
+			"entity.redstone_monstrosity.short_growl");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_STEP = registerSoundEvents(
+			"entity.redstone_monstrosity.step");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_STEP_LIGHT = registerSoundEvents(
+			"entity.redstone_monstrosity.step_light");
+	public static final RegistryObject<SoundEvent> REDSTONE_MONSTROSITY_VOICE_CHARGE = registerSoundEvents(
+			"entity.redstone_monstrosity.voice_charge");
+
 	public static final RegistryObject<SoundEvent> WHISPERER_IDLE_VOCAL = registerSoundEvents(
 			"entity.whisperer.idle_vocal");
 	public static final RegistryObject<SoundEvent> WHISPERER_HURT_VOCAL = registerSoundEvents(

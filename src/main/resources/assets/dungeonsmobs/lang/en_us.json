@@ -120,6 +120,7 @@
   "entity.dungeonsmobs.geomancer_bomb": "Geomancer Bomb",
   "entity.dungeonsmobs.redstone_mine": "Redstone Mine",
   "entity.dungeonsmobs.tornado": "Tornado",
+  "entity.dungeonsmobs.redstone_monstrosity_projectile": "Redstone Monstrosity Projectile",
 
   "entity.dungeonsmobs.redstone_golem": "Redstone Golem",
   "item.dungeonsmobs.redstone_golem_spawn_egg": "Redstone Golem Spawn Egg",
@@ -255,6 +256,14 @@
   "subtitles.entity.redstone_golem.attack": "Redstone Golem attacks",
   "subtitles.entity.redstone_golem.summon_mines": "Redstone Golem summons mines",
   "subtitles.entity.redstone_golem.spark": "Redstone sparks",
+
+  "subtitles.entity.redstone_monstrosity.hurt": "Redstone Monstrosity hurts",
+  "subtitles.entity.redstone_monstrosity.death": "Redstone Monstrosity dies",
+  "subtitles.entity.redstone_monstrosity.step": "Redstone Monstrosity steps",
+  "subtitles.entity.redstone_monstrosity.idle": "Redstone Monstrosity wheezes",
+  "subtitles.entity.redstone_monstrosity.short_growl": "Redstone Monstrosity attacks",
+  "subtitles.entity.redstone_monstrosity.growl": "Redstone Monstrosity summons Redstone Cubes",
+  "subtitles.entity.redstone_monstrosity.voice_charge": "Redstone Monstrosity spews projectiles",
 
   "subtitles.entity.leapleaf.idle": "Leapleaf growls",
   "subtitles.entity.leapleaf.hurt": "Leapleaf hurts",

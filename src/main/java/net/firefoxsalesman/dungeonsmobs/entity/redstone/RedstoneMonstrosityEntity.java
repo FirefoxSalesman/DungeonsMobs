@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.redstone;
 
 import javax.annotation.Nullable;
 
+import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
@@ -11,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -22,6 +24,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -38,6 +41,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -194,6 +198,26 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 	}
 
 	@Override
+	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+		return ModSoundEvents.REDSTONE_MONSTROSITY_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ModSoundEvents.REDSTONE_MONSTROSITY_DEATH.get();
+	}
+
+	@Override
+	protected void playStepSound(BlockPos pPos, BlockState pState) {
+		playSound(ModSoundEvents.REDSTONE_MONSTROSITY_STEP.get(), 0.5F, 1.0F);
+	}
+
+	@Override
+	public void playAmbientSound() {
+		playSound(ModSoundEvents.REDSTONE_MONSTROSITY_IDLE.get());
+	}
+
+	@Override
 	public SoundEvent getCelebrateSound() {
 		return SoundEvents.IRON_GOLEM_REPAIR;
 	}
@@ -266,6 +290,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 			if (attackTimer <= 0 && distToEnemySqr <= getAttackReachSqr(enemy) && !isMeleeAttacking()) {
 				setMeleeAttacking(true);
 				attackTimer = maxAttackTimer;
+				playSound(ModSoundEvents.REDSTONE_MONSTROSITY_SHORT_GROWL.get());
 			}
 
 			if ((distToEnemySqr <= getAttackReachSqr(enemy)
@@ -302,6 +327,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 		@Override
 		protected void tickBody() {
+			playSound(ModSoundEvents.REDSTONE_MONSTROSITY_GROWL.get());
 			int clonesByDifficulty = mob.level().getCurrentDifficultyAt(mob.blockPosition())
 					.getDifficulty().getId();
 
@@ -323,6 +349,7 @@ public class RedstoneMonstrosityEntity extends Raider implements GeoEntity {
 
 	private static void spewProjectiles(RedstoneMonstrosityEntity shooter, LivingEntity target) {
 		Vec3 pos = PositionUtils.getOffsetPos(shooter, 0.0, 1.0, -0.75, shooter.yBodyRot);
+		shooter.playSound(ModSoundEvents.REDSTONE_MONSTROSITY_VOICE_CHARGE.get());
 		for (int i = 0; i < 5; i++) {
 			RedstoneMonstrosityProjectileEntity projectile = new RedstoneMonstrosityProjectileEntity(
 					shooter.level(), shooter);
