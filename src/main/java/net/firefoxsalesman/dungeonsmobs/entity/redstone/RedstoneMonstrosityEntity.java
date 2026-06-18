@@ -19,7 +19,7 @@ public class RedstoneMonstrosityEntity extends AbstractMonstrosityEntity {
 
 	@Override
 	protected void doSpewAction(Vec3 pos, LivingEntity target) {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 8; i++) {
 			RedstoneMonstrosityProjectileEntity projectile = new RedstoneMonstrosityProjectileEntity(
 					level(), this);
 			projectile.setPos(pos.x, getEyeY(), pos.z);

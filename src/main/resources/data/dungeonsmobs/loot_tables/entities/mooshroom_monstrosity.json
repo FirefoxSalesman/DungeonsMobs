@@ -1,0 +1,206 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:redstone"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:red_mushroom"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:cobblestone"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:emerald_block"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:claymore",
+	  "weight": 8
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:soul_scythe",
+	  "weight": 8
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:mace",
+	  "weight": 8
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:exploding_crossbow",
+	  "weight": 8
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:soul_crossbow",
+	  "weight": 8
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:broadsword",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:heartstealer",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:frost_slayer",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:frost_scythe",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:jailors_scythe",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:flail",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:suns_grace",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:imploding_crossbow",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:firebolt_thrower",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:feral_soul_crossbow",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:voidcaller",
+	  "weight": 4
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:wolf_helmet",
+	  "weight": 2
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:wolf_chestplate",
+	  "weight": 2
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:wolf_leggings",
+	  "weight": 2
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:wolf_boots",
+	  "weight": 2
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:fox_helmet",
+	  "weight": 1
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:fox_chestplate",
+	  "weight": 1
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:fox_leggings",
+	  "weight": 1
+        },
+	{
+          "type": "minecraft:item",
+          "name": "dungeonsmobs:fox_boots",
+	  "weight": 1
+        }
+      ]
+    }
+  ]
+}
