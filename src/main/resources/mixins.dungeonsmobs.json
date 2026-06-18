@@ -24,6 +24,7 @@
     "TieredItemAccessor",
     "AbstractArrowEntityMixin",
     "CropsBlockMixin",
+    "MooshroomEntityMixin",
     "CowEntityMixin",
     "EntityAccessor",
     "GoalSelectorAccessor",
