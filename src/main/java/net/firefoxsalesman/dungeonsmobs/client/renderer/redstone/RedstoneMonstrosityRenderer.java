@@ -5,7 +5,7 @@ import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import net.firefoxsalesman.dungeonsmobs.client.models.redstone.RedstoneMonstrosityModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.redstone.AbstractMonstrosityModel;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMonstrosityEntity;
@@ -19,7 +19,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class RedstoneMonstrosityRenderer extends GeoEntityRenderer<RedstoneMonstrosityEntity> {
 
 	public RedstoneMonstrosityRenderer(Context renderManager) {
-		super(renderManager, new RedstoneMonstrosityModel());
+		super(renderManager, new AbstractMonstrosityModel<>());
 		addRenderLayer(new GeoEyeLayer<>(this,
 				modLoc("textures/entity/redstone/redstone_monstrosity_eyes.png")) {
 			@Override
