@@ -12,6 +12,7 @@ public class DungeonsMobsConfig {
 
 	public static class Common {
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> REDSTONE_MONSTROSITY_MOB_SUMMONS;
+		public static ForgeConfigSpec.ConfigValue<List<? extends String>> MOOSHROOM_MONSTROSITY_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> WILDFIRE_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENDERSENT_MOB_SUMMONS;
 		public static ForgeConfigSpec.ConfigValue<List<? extends String>> NECROMANCER_MOB_SUMMONS;
@@ -54,9 +55,18 @@ public class DungeonsMobsConfig {
 							+ "To do so, enter the namespace ID of the mob, like \"dungeonsmobs:redstone_cube\".\n"
 							+
 							"If this list is empty, redstone cubes will be summoned instead.\n"
-							+ "If a mob chosen from this list cannot be spawned, a redstoen cube will be summoned instead.")
+							+ "If a mob chosen from this list cannot be spawned, a redstone cube will be summoned instead.")
 					.defineList("redstoneMonstrosityMobSummons", Lists.newArrayList(
 							"dungeonsmobs:redstone_cube"),
+							(itemRaw) -> itemRaw instanceof String);
+			MOOSHROOM_MONSTROSITY_MOB_SUMMONS = builder
+					.comment("Add mobs that the Mooshroom Monstrosity can summon. \n"
+							+ "To do so, enter the namespace ID of the mob, like \"minecraft:mooshroom\".\n"
+							+
+							"If this list is empty, mooshrooms will be summoned instead.\n"
+							+ "If a mob chosen from this list cannot be spawned, a mooshroom will be summoned instead.")
+					.defineList("mooshroomMonstrosityMobSummons", Lists.newArrayList(
+							"minecraft:mooshroom"),
 							(itemRaw) -> itemRaw instanceof String);
 			ENDERSENT_MOB_SUMMONS = builder
 					.comment("Add mobs (preferably end-related) that the Endersent can summon. \n"

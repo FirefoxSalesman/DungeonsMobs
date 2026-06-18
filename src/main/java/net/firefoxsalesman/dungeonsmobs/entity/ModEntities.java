@@ -42,6 +42,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjectileEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.redstone.MooshroomMonstrosityEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
@@ -242,6 +243,16 @@ public class ModEntities {
 					.clientTrackingRange(10)
 					.fireImmune()
 					.build(modLoc("redstone_monstrosity").toString()),
+			0xaeaaa6, 0xe3260c);
+	public static final RegistryObject<EntityType<MooshroomMonstrosityEntity>> MOOSHROOM_MONSTROSITY = registerEntity(
+			"mooshroom_monstrosity",
+			() -> EntityType.Builder
+					.<MooshroomMonstrosityEntity>of(MooshroomMonstrosityEntity::new,
+							MobCategory.MONSTER)
+					.sized(5.33F, 7F)
+					.clientTrackingRange(10)
+					.fireImmune()
+					.build(modLoc("mooshroom_monstrosity").toString()),
 			0xaeaaa6, 0xe3260c);
 	public static final RegistryObject<EntityType<RedstoneCubeEntity>> REDSTONE_CUBE = registerEntityWithoutEgg(
 			"redstone_cube",

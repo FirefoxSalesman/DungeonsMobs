@@ -11,6 +11,11 @@ import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
 public class AbstractMonstrosityModel<T extends AbstractMonstrosityEntity> extends GeoModel<T> {
+	ResourceLocation texture;
+
+	public AbstractMonstrosityModel(String texture) {
+		this.texture = modLoc(texture);
+	}
 
 	@Override
 	public ResourceLocation getModelResource(T animatable) {
@@ -19,7 +24,7 @@ public class AbstractMonstrosityModel<T extends AbstractMonstrosityEntity> exten
 
 	@Override
 	public ResourceLocation getTextureResource(T animatable) {
-		return modLoc("textures/entity/redstone/redstone_monstrosity_death.png");
+		return texture;
 	}
 
 	@Override
