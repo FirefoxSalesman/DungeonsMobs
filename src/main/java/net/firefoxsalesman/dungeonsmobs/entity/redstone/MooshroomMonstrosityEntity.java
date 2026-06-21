@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MooshroomMonstrosityProjectileEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -30,6 +31,7 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 			projectile.moveTo(pos.x, pos.y, pos.z);
 			level().addFreshEntity(projectile);
 		}
+		AreaAttackHelper.areaAttack(5, 5, 5, 5, 360, 1.0F, this);
 	}
 
 	@Override
