@@ -37,6 +37,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.BlueNethershroomEntit
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.DrownedNecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MooshroomMonstrosityProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
@@ -449,6 +450,16 @@ public class ModEntities {
 					.clientTrackingRange(6)
 					.updateInterval(2)
 					.build(modLoc("redstone_monstrosity_projectile").toString()));
+	public static final RegistryObject<EntityType<MooshroomMonstrosityProjectileEntity>> MOOSHROOM_MONSTROSITY_PROJECTILE = registerEntityWithoutEgg(
+			"mooshroom_monstrosity_projectile",
+			() -> EntityType.Builder
+					.<MooshroomMonstrosityProjectileEntity>of(
+							MooshroomMonstrosityProjectileEntity::new, MobCategory.MISC)
+					.fireImmune()
+					.sized(0.25F, 0.25F)
+					.clientTrackingRange(6)
+					.updateInterval(2)
+					.build(modLoc("mooshroom_monstrosity_projectile").toString()));
 
 	public static final RegistryObject<EntityType<WindcallerTornadoEntity>> TORNADO = registerEntityWithoutEgg(
 			"tornado",
