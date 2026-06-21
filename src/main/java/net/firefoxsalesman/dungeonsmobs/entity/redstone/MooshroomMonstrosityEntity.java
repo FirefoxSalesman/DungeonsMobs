@@ -18,15 +18,18 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 
 	@Override
 	protected void doSpewAction(Vec3 pos, LivingEntity target) {
-		double d1 = target.getX() - pos.x;
-		double d2 = target.getY(0.6D) - pos.y;
-		double d3 = target.getZ() - pos.z;
-		MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(level(),
-				this, d1, d2, d3);
+		for (int i = 0; i < 7; i++) {
+			double d1 = target.getX() - pos.x;
+			double d2 = target.getY(0.6D) - pos.y;
+			double d3 = target.getZ() - pos.z;
+			MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(
+					level(),
+					this, d1, d2, d3);
 
-		projectile.rotateToMatchMovement();
-		projectile.moveTo(pos.x, pos.y, pos.z);
-		level().addFreshEntity(projectile);
+			projectile.rotateToMatchMovement();
+			projectile.moveTo(pos.x, pos.y, pos.z);
+			level().addFreshEntity(projectile);
+		}
 	}
 
 	@Override
@@ -37,6 +40,11 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 	@Override
 	protected EntityType<? extends Mob> getSummonType() {
 		return EntityType.MOOSHROOM;
+	}
+
+	@Override
+	protected String getFiringAnimation() {
+		return "animation.mooshroom_monstrosity.slam_attack";
 	}
 
 }

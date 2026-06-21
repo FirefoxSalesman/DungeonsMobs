@@ -52,4 +52,9 @@ public class RedstoneMonstrosityEntity extends AbstractMonstrosityEntity {
 	protected List<? extends String> getSummonConfig() {
 		return DungeonsMobsConfig.Common.REDSTONE_MONSTROSITY_MOB_SUMMONS.get();
 	}
+
+	@Override
+	protected String getFiringAnimation() {
+		return "animation.redstone_monstrosity.spit";
+	}
 }

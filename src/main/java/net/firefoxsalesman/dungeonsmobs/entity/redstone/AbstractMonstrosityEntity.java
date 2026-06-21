@@ -171,7 +171,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
-							"animation.redstone_monstrosity.spit",
+							getFiringAnimation(),
 							LoopType.PLAY_ONCE));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimationSpeed(groundSpeed * 10);
@@ -186,6 +186,8 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		}
 		return PlayState.CONTINUE;
 	}
+
+	abstract protected String getFiringAnimation();
 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
