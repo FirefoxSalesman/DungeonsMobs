@@ -41,7 +41,10 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -323,6 +326,39 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		public AttackGoal setMaxAttackTick(int max) {
 			maxAttackTimer = max;
 			return this;
+		}
+	}
+
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		handleLeafCollision();
+	}
+
+	private void handleLeafCollision() {
+		if (isAlive()) {
+
+			if (horizontalCollision && net.minecraftforge.event.ForgeEventFactory
+					.getMobGriefingEvent(level(), this)) {
+				boolean destroyedLeafBlock = false;
+				AABB axisalignedbb = getBoundingBox().inflate(0.2D);
+
+				for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(axisalignedbb.minX),
+						Mth.floor(axisalignedbb.minY), Mth.floor(axisalignedbb.minZ),
+						Mth.floor(axisalignedbb.maxX), Mth.floor(axisalignedbb.maxY),
+						Mth.floor(axisalignedbb.maxZ))) {
+					BlockState blockstate = level().getBlockState(blockpos);
+					Block block = blockstate.getBlock();
+					if (block instanceof LeavesBlock) {
+						destroyedLeafBlock = level().destroyBlock(blockpos, true, this)
+								|| destroyedLeafBlock;
+					}
+				}
+
+				if (!destroyedLeafBlock && onGround()) {
+					jumpFromGround();
+				}
+			}
 		}
 	}
 

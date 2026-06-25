@@ -7,6 +7,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(Mob.class)
 public interface MobInvoker {
 
-    @Invoker("registerGoals")
-    void invokeRegisterGoals();
+	@Invoker("registerGoals")
+	void invokeRegisterGoals();
 }
