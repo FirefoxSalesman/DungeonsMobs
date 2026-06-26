@@ -47,8 +47,8 @@ public class MountaineerEntity extends Vindicator implements AnimatableMeleeAtta
 
 	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData
 			.defineId(MountaineerEntity.class, EntityDataSerializers.BYTE);
-	private final AnimationTimer attackTimer = new AnimationTimer(7);
-	private static final int attackAnimationActionPoint = 6;
+	private final AnimationTimer attackTimer = new AnimationTimer(23);
+	private static final int attackAnimationActionPoint = 13;
 	private final Map<String, AnimationState> states;
 
 	public MountaineerEntity(Level worldIn) {
