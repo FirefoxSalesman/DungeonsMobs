@@ -13,7 +13,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Pose;
 
-public class EndersentRenderer extends MobRenderer<EndersentEntity, EndersentModel<EndersentEntity>> {
+public class EndersentRenderer
+		extends MobRenderer<EndersentEntity, EndersentModel<EndersentEntity>> {
 	public EndersentRenderer(Context pContext) {
 		super(pContext, new EndersentModel<>(pContext.bakeLayer(ModModelLayers.ENDERSENT_BODY)), 2);
 		addLayer(new GenericEyeLayer<>(this, "textures/entity/ender/endersent_eyes.png"));

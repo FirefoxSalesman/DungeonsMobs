@@ -5,8 +5,8 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import net.firefoxsalesman.dungeonsmobs.client.models.FungusSackModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.armor.VanguardShieldModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.blaze.WildfireModel;
+import net.firefoxsalesman.dungeonsmobs.client.models.ender.EyeHolderEndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EndersentModel;
-import net.firefoxsalesman.dungeonsmobs.client.models.ender.EyelessEndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.ArmoredPillagerModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.ArmoredVindicatorModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.GeomancerModel;
@@ -39,8 +39,8 @@ public class ModModelLayers {
 
 	public static ModelLayerLocation VANGUARD_SHIELD = makeModelLayerLocation("vanguard_shield_model");
 	public static ModelLayerLocation FUNGUS_SACK = makeModelLayerLocation("fungus_sack_model");
-	public static final ModelLayerLocation ENDERSENT_BODY = makeModelLayerLocation("endersent");
-	public static final ModelLayerLocation EYELESS_ENDERSENT_BODY = makeModelLayerLocation("eyeless_endersent");
+	public static final ModelLayerLocation EYE_HOLDER_ENDERSENT_BODY = makeModelLayerLocation("endersent");
+	public static final ModelLayerLocation ENDERSENT_BODY = makeModelLayerLocation("eyeless_endersent");
 	public static final ModelLayerLocation WILDFIRE_BODY = makeModelLayerLocation("wildfire");
 	public static final ModelLayerLocation VINDICATOR_CHEF_BODY = makeModelLayerLocation("vindicator_chef_model");
 	public static final ModelLayerLocation ICEOLOGER_BODY = makeModelLayerLocation("iceologer_model");
@@ -81,8 +81,8 @@ public class ModModelLayers {
 		event.registerLayerDefinition(VINDICATOR_CHEF_BODY, VindicatorChefModel::createBodyLayer);
 		event.registerLayerDefinition(MAGE_BODY, MageModel::createBodyLayer);
 		event.registerLayerDefinition(ICEOLOGER_BODY, IceologerModel::createBodyLayer);
-		event.registerLayerDefinition(EYELESS_ENDERSENT_BODY, EyelessEndersentModel::createBodyLayer);
 		event.registerLayerDefinition(ENDERSENT_BODY, EndersentModel::createBodyLayer);
+		event.registerLayerDefinition(EYE_HOLDER_ENDERSENT_BODY, EyeHolderEndersentModel::createBodyLayer);
 		event.registerLayerDefinition(WILDFIRE_BODY, WildfireModel::createBodyLayer);
 		event.registerLayerDefinition(SKELETON_VANGUARD_BODY, SkeletonVanguardModel::createBodyLayer);
 	}

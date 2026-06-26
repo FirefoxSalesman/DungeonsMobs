@@ -5,8 +5,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
@@ -102,8 +102,9 @@ public class EntityTypeAttributes {
 				QuickGrowingKelpEntity.setCustomAttributes().build());
 		event.put(ModEntities.POISON_ANEMONE.get(), PoisonAnemoneEntity.setCustomAttributes().build());
 
+		event.put(ModEntities.ENDERSENT_EYE_HOLDER.get(),
+				EyeHolderEndersentEntity.setCustomAttributes().build());
 		event.put(ModEntities.ENDERSENT.get(), EndersentEntity.setCustomAttributes().build());
-		event.put(ModEntities.EYELESS_ENDERSENT.get(), EyelessEndersentEntity.setCustomAttributes().build());
 		event.put(ModEntities.BLASTLING.get(), BlastlingEntity.setCustomAttributes().build());
 		event.put(ModEntities.WATCHLING.get(), WatchlingEntity.setCustomAttributes().build());
 		event.put(ModEntities.SNARELING.get(), SnarelingEntity.setCustomAttributes().build());

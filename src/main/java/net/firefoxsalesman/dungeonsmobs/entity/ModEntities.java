@@ -12,8 +12,8 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EndersentEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.ender.EyelessEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.SnarelingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.WatchlingEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.golem.SquallGolemEntity;
@@ -358,19 +358,20 @@ public class ModEntities {
 			0x87a964, 0xc06fe5);
 
 	// ENDER
-	public static final RegistryObject<EntityType<EndersentEntity>> ENDERSENT = registerEntity("endersent",
+	public static final RegistryObject<EntityType<EyeHolderEndersentEntity>> ENDERSENT_EYE_HOLDER = registerEntity(
+			"eye_holder_endersent",
+			() -> EntityType.Builder.of(EyeHolderEndersentEntity::new, MobCategory.MONSTER)
+					.sized(0.8F, 5.6F)
+					.clientTrackingRange(8)
+					.build(modLoc("eye_holder_endersent").toString()),
+			1447446, 0);
+
+	public static final RegistryObject<EntityType<EndersentEntity>> ENDERSENT = registerEntity(
+			"endersent",
 			() -> EntityType.Builder.of(EndersentEntity::new, MobCategory.MONSTER)
 					.sized(0.8F, 5.6F)
 					.clientTrackingRange(8)
 					.build(modLoc("endersent").toString()),
-			1447446, 0);
-
-	public static final RegistryObject<EntityType<EyelessEndersentEntity>> EYELESS_ENDERSENT = registerEntity(
-			"eyeless_endersent",
-			() -> EntityType.Builder.of(EyelessEndersentEntity::new, MobCategory.MONSTER)
-					.sized(0.8F, 5.6F)
-					.clientTrackingRange(8)
-					.build(modLoc("eyeless_endersent").toString()),
 			1447446, 0);
 
 	public static final RegistryObject<EntityType<BlastlingEntity>> BLASTLING = registerEntity("blastling",
