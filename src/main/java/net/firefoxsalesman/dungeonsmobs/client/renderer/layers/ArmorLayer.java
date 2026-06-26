@@ -10,8 +10,8 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 
-public class ArmourLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLayer<T> {
-	public ArmourLayer(GeoRenderer<T> geoRenderer) {
+public class ArmorLayer<T extends Mob & GeoAnimatable> extends ItemArmorGeoLayer<T> {
+	public ArmorLayer(GeoRenderer<T> geoRenderer) {
 		super(geoRenderer);
 	}
 

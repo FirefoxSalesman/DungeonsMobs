@@ -30,9 +30,9 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ArmouredVindicatorEntity extends Vindicator implements KeyframeEntity {
+public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntity {
 
-	public ArmouredVindicatorEntity(EntityType<? extends ArmouredVindicatorEntity> pEntityType,
+	public ArmoredVindicatorEntity(EntityType<? extends ArmoredVindicatorEntity> pEntityType,
 			Level pLevel) {
 		super(pEntityType, pLevel);
 	}

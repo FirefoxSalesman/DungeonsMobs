@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 import net.minecraft.world.entity.HumanoidArm;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.client.animation.ArmouredIllagerAnimator;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredVindicatorEntity;
+import net.firefoxsalesman.dungeonsmobs.client.animation.ArmoredIllagerAnimator;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -20,7 +20,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class ArmouredVindicatorModel<T extends ArmouredVindicatorEntity> extends ConvenientModel<T>
+public class ArmoredVindicatorModel<T extends ArmoredVindicatorEntity> extends ConvenientModel<T>
 		implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
@@ -35,7 +35,7 @@ public class ArmouredVindicatorModel<T extends ArmouredVindicatorEntity> extends
 	private final ModelPart left_leg;
 	private final ModelPart right_leg;
 
-	public ArmouredVindicatorModel(ModelPart root) {
+	public ArmoredVindicatorModel(ModelPart root) {
 		this.root = root;
 		this.body = root.getChild("body");
 		this.head = body.getChild("head");
@@ -120,7 +120,7 @@ public class ArmouredVindicatorModel<T extends ArmouredVindicatorEntity> extends
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		ArmouredIllagerAnimator.positionLimbs(entity, riding, right_arm, left_arm, right_leg, left_leg, head,
+		ArmoredIllagerAnimator.positionLimbs(entity, riding, right_arm, left_arm, right_leg, left_leg, head,
 				limbSwing, limbSwingAmount, attackTime, ageInTicks);
 		this.arms.visible = false;
 	}

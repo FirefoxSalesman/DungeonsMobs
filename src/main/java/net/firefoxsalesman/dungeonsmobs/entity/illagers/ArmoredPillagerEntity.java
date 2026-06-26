@@ -12,8 +12,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.level.Level;
 
-public class ArmouredPillagerEntity extends Pillager implements KeyframeEntity {
-	public ArmouredPillagerEntity(EntityType<? extends Pillager> pEntityType, Level pLevel) {
+public class ArmoredPillagerEntity extends Pillager implements KeyframeEntity {
+	public ArmoredPillagerEntity(EntityType<? extends Pillager> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
 	}
 

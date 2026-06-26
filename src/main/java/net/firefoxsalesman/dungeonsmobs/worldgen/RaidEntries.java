@@ -16,12 +16,12 @@ public class RaidEntries {
 		 */
 
 		// WARRIOR
-		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_PILLAGERS_IN_RAIDS.get())
-			Raid.RaiderType.create("armoured_pillager", ModEntities.ARMOURED_PILLAGER.get(),
+		if (DungeonsMobsConfig.COMMON.ENABLE_ARMORED_PILLAGERS_IN_RAIDS.get())
+			Raid.RaiderType.create("armored_pillager", ModEntities.ARMORED_PILLAGER.get(),
 					new int[] { 0, 1, 2, 0, 3, 1, 0, 3 });
 
-		if (DungeonsMobsConfig.COMMON.ENABLE_ARMOURED_VINDICATORS_IN_RAIDS.get())
-			Raid.RaiderType.create("armoured_vindicator", ModEntities.ARMOURED_VINDICATOR.get(),
+		if (DungeonsMobsConfig.COMMON.ENABLE_ARMORED_VINDICATORS_IN_RAIDS.get())
+			Raid.RaiderType.create("armored_vindicator", ModEntities.ARMORED_VINDICATOR.get(),
 					new int[] { 0, 0, 1, 2, 0, 1, 1, 2 });
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_MOUNTAINEERS_IN_RAIDS.get())

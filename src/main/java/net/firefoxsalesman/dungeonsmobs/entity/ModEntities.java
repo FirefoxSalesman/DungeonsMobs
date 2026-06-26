@@ -7,8 +7,8 @@ import java.util.List;
 import com.google.common.base.Supplier;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredPillagerEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmouredVindicatorEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredPillagerEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredVindicatorEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
@@ -150,22 +150,22 @@ public class ModEntities {
 					.build(modLoc("vindicator_chef").toString()),
 			0x676767, 0x014475);
 
-	public static final RegistryObject<EntityType<ArmouredPillagerEntity>> ARMOURED_PILLAGER = registerEntity(
-			"armoured_pillager",
+	public static final RegistryObject<EntityType<ArmoredPillagerEntity>> ARMORED_PILLAGER = registerEntity(
+			"armored_pillager",
 			() -> EntityType.Builder
-					.<ArmouredPillagerEntity>of(ArmouredPillagerEntity::new,
+					.<ArmoredPillagerEntity>of(ArmoredPillagerEntity::new,
 							MobCategory.MONSTER)
 					.sized(0.6F, 1.95F).clientTrackingRange(8)
-					.build(modLoc("armoured_pillager").toString()),
+					.build(modLoc("armored_pillager").toString()),
 			0x676767, 0x014575);
 
-	public static final RegistryObject<EntityType<ArmouredVindicatorEntity>> ARMOURED_VINDICATOR = registerEntity(
-			"armoured_vindicator",
+	public static final RegistryObject<EntityType<ArmoredVindicatorEntity>> ARMORED_VINDICATOR = registerEntity(
+			"armored_vindicator",
 			() -> EntityType.Builder
-					.<ArmouredVindicatorEntity>of(ArmouredVindicatorEntity::new,
+					.<ArmoredVindicatorEntity>of(ArmoredVindicatorEntity::new,
 							MobCategory.MONSTER)
 					.sized(0.6F, 1.95F).clientTrackingRange(8)
-					.build(modLoc("armoured_vindicator").toString()),
+					.build(modLoc("armored_vindicator").toString()),
 			0x676767, 0x014575);
 
 	public static final RegistryObject<EntityType<IceologerEntity>> ICEOLOGER = registerEntity("iceologer",

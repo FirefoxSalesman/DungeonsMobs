@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmourLayer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmorLayer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ItemLayer;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -38,7 +38,7 @@ public class DefaultIllagerRenderer<T extends Mob & GeoAnimatable> extends GeoEn
 				stack.translate(.9, .75, .5);
 			}
 		});
-		addRenderLayer(new ArmourLayer<>(this) {
+		addRenderLayer(new ArmorLayer<>(this) {
 			@Override
 			protected void prepModelPartForRender(PoseStack poseStack, GeoBone bone, ModelPart sourcePart) {
 				super.prepModelPartForRender(poseStack, bone, sourcePart);

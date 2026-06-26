@@ -5,7 +5,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.AbstractIllager;
 
-public class ArmouredIllagerAnimator {
+public class ArmoredIllagerAnimator {
 	public static void positionLimbs(AbstractIllager entity, boolean riding, ModelPart rightArm,
 			ModelPart leftArm, ModelPart rightLeg, ModelPart leftLeg, ModelPart head, float limbSwing,
 			float limbSwingAmount, float attackTime, float ageInTicks) {
