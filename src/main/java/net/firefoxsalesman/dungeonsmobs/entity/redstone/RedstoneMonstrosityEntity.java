@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class RedstoneMonstrosityEntity extends AbstractMonstrosityEntity {
 	public RedstoneMonstrosityEntity(EntityType<? extends AbstractMonstrosityEntity> pEntityType, Level pLevel) {
-		super(pEntityType, pLevel);
+		super(pEntityType, pLevel, "animation.redstone_monstrosity.spit", 48, 18);
 	}
 
 	@Override
@@ -51,10 +51,5 @@ public class RedstoneMonstrosityEntity extends AbstractMonstrosityEntity {
 	@Override
 	protected List<? extends String> getSummonConfig() {
 		return DungeonsMobsConfig.Common.REDSTONE_MONSTROSITY_MOB_SUMMONS.get();
-	}
-
-	@Override
-	protected String getFiringAnimation() {
-		return "animation.redstone_monstrosity.spit";
 	}
 }

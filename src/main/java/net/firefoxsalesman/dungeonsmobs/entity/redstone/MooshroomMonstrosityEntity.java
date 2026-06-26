@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 
 	public MooshroomMonstrosityEntity(EntityType<? extends AbstractMonstrosityEntity> pEntityType, Level pLevel) {
-		super(pEntityType, pLevel);
+		super(pEntityType, pLevel, "animation.mooshroom_monstrosity.slam_attack", 46, 24);
 	}
 
 	@Override
@@ -42,10 +42,4 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 	protected EntityType<? extends Mob> getSummonType() {
 		return EntityType.MOOSHROOM;
 	}
-
-	@Override
-	protected String getFiringAnimation() {
-		return "animation.mooshroom_monstrosity.slam_attack";
-	}
-
 }

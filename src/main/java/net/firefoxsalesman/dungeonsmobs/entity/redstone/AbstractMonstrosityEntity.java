@@ -60,21 +60,25 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public abstract class AbstractMonstrosityEntity extends Raider implements GeoEntity {
 	AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
+	private String firingAnimation;
 	private AnimationTimer fireTimer = new AnimationTimer(600);
+	private AnimationTimer fireAnimationTimer;
+	private int fireActionPoint;
 	private AnimationTimer summonTimer = new AnimationTimer(72);
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
 			.defineId(AbstractMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> FIRING = SynchedEntityData
-			.defineId(AbstractMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
-
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
 			BossEvent.BossBarColor.RED,
 			BossEvent.BossBarOverlay.PROGRESS));
 
-	public AbstractMonstrosityEntity(EntityType<? extends AbstractMonstrosityEntity> pEntityType, Level pLevel) {
+	public AbstractMonstrosityEntity(EntityType<? extends AbstractMonstrosityEntity> pEntityType, Level pLevel,
+			String firingAnimation, int fireAnimationLength, int fireActionPoint) {
 		super(pEntityType, pLevel);
 		setMaxUpStep(1.25F);
 		xpReward = 40;
+		this.firingAnimation = firingAnimation;
+		fireAnimationTimer = new AnimationTimer(fireAnimationLength);
+		this.fireActionPoint = fireActionPoint;
 	}
 
 	protected abstract void doSpewAction(Vec3 pos, LivingEntity target);
@@ -115,7 +119,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		super.registerGoals();
 		goalSelector.addGoal(0, new SummonMinionsGoal(this));
 		goalSelector.addGoal(6, new AttackGoal(this, 1.3D));
-		goalSelector.addGoal(5, new SpewProjectilesGoal(this, 2.0D, 30, 20.0F));
+		goalSelector.addGoal(5, new SpewProjectilesGoal(this));
 		goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 		goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		goalSelector.addGoal(9, new RandomLookAroundGoal(this));
@@ -146,14 +150,6 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		entityData.set(MELEEATTACKING, attacking);
 	}
 
-	public boolean isFiring() {
-		return entityData.get(FIRING);
-	}
-
-	public void setFiring(boolean attacking) {
-		entityData.set(FIRING, attacking);
-	}
-
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Vec3 velocity = getDeltaMovement();
 		float groundSpeed = Mth.sqrt((float) ((velocity.x * velocity.x) + (velocity.z * velocity.z)));
@@ -170,11 +166,11 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 					.setAnimation(RawAnimation.begin().then(
 							"animation.redstone_monstrosity.strong_attack",
 							LoopType.PLAY_ONCE));
-		} else if (isFiring()) {
+		} else if (fireAnimationTimer.isRunning()) {
 			event.getController().setAnimationSpeed(1.0D);
 			event.getController()
 					.setAnimation(RawAnimation.begin().then(
-							getFiringAnimation(),
+							firingAnimation,
 							LoopType.PLAY_ONCE));
 		} else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
 			event.getController().setAnimationSpeed(groundSpeed * 10);
@@ -190,8 +186,6 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		return PlayState.CONTINUE;
 	}
 
-	abstract protected String getFiringAnimation();
-
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return factory;
@@ -206,6 +200,8 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		super.handleEntityEvent(pId);
 		if (pId == 8)
 			summonTimer.reset();
+		else if (pId == 9)
+			fireAnimationTimer.reset();
 	}
 
 	@Override
@@ -240,7 +236,6 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		entityData.define(FIRING, false);
 		entityData.define(MELEEATTACKING, false);
 	}
 
@@ -249,6 +244,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		super.tick();
 		summonTimer.dec();
 		fireTimer.dec();
+		fireAnimationTimer.dec();
 	}
 
 	@Override
@@ -256,10 +252,9 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 	}
 
 	class AttackGoal extends MeleeAttackGoal {
-		private int maxAttackTimer = 60;
 		private final double moveSpeed;
 		private int delayCounter;
-		private int attackTimer;
+		private AnimationTimer attackTimer = new AnimationTimer(60);
 
 		public AttackGoal(AbstractMonstrosityEntity creatureEntity, double moveSpeed) {
 			super(creatureEntity, moveSpeed, true);
@@ -290,7 +285,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 				getNavigation().moveTo(livingentity, moveSpeed);
 			}
 
-			attackTimer = Math.max(attackTimer - 1, 0);
+			attackTimer.dec();
 			checkAndPerformAttack(livingentity, distanceToSqr(livingentity.getX(),
 					livingentity.getBoundingBox().minY, livingentity.getZ()));
 
@@ -298,19 +293,20 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 
 		@Override
 		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-			if (attackTimer <= 0 && distToEnemySqr <= getAttackReachSqr(enemy) && !isMeleeAttacking()) {
+			if (attackTimer.animationsUseable() && distToEnemySqr <= getAttackReachSqr(enemy)
+					&& !isMeleeAttacking()) {
 				setMeleeAttacking(true);
-				attackTimer = maxAttackTimer;
+				attackTimer.reset();
 				playSound(ModSoundEvents.REDSTONE_MONSTROSITY_SHORT_GROWL.get());
 			}
 
 			if ((distToEnemySqr <= getAttackReachSqr(enemy)
 					|| getBoundingBox().intersects(enemy.getBoundingBox()))
-					&& attackTimer == 40) {
+					&& attackTimer.tickEquals(40)) {
 				AreaAttackHelper.areaAttack(7, 7, 7, 7, 360, 1.0F, this.mob);
 			}
 
-			if (attackTimer <= 0) {
+			if (attackTimer.animationsUseable()) {
 				setMeleeAttacking(false);
 			}
 		}
@@ -324,7 +320,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		}
 
 		public AttackGoal setMaxAttackTick(int max) {
-			maxAttackTimer = max;
+			attackTimer = new AnimationTimer(max);
 			return this;
 		}
 	}
@@ -390,26 +386,35 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		}
 	}
 
-	private static void spewProjectiles(AbstractMonstrosityEntity shooter, LivingEntity target) {
-		Vec3 pos = PositionUtils.getOffsetPos(shooter, 0.0, 1.0, -0.75, shooter.yBodyRot);
-		shooter.playSound(ModSoundEvents.REDSTONE_MONSTROSITY_VOICE_CHARGE.get());
-		shooter.doSpewAction(pos, target);
+	private void spewProjectiles(LivingEntity target) {
+		Vec3 pos = PositionUtils.getOffsetPos(this, 0.0, 1.0, -0.75, yBodyRot);
+		playSound(ModSoundEvents.REDSTONE_MONSTROSITY_VOICE_CHARGE.get());
+		doSpewAction(pos, target);
 
-		shooter.fireTimer.reset();
+		fireTimer.reset();
 	}
 
 	class SpewProjectilesGoal extends SimpleRangedAttackGoal<AbstractMonstrosityEntity> {
 
-		public SpewProjectilesGoal(AbstractMonstrosityEntity mob, double speedModifier, int attackInterval,
-				float attackRadius) {
-			super(mob, (w) -> true, AbstractMonstrosityEntity::spewProjectiles, speedModifier,
-					attackInterval, attackRadius);
+		public SpewProjectilesGoal(AbstractMonstrosityEntity mob) {
+			super(mob, (w) -> true, (shooter, target) -> {
+			}, 2.0D, 30, 20.0F);
 		}
 
 		private boolean targetInRange() {
 			LivingEntity target = getTarget();
 			return target != null && distanceToSqr(target.getX(),
 					target.getBoundingBox().minY, target.getZ()) >= 20;
+		}
+
+		@Override
+		public void tick() {
+			super.tick();
+			// HACK this allows us to sync our attack with our animations.
+			LivingEntity target = getTarget();
+			if (fireAnimationTimer.tickEquals(fireActionPoint) && target != null) {
+				spewProjectiles(target);
+			}
 		}
 
 		@Override
@@ -425,13 +430,8 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		@Override
 		public void start() {
 			super.start();
-			setFiring(true);
-		}
-
-		@Override
-		public void stop() {
-			super.stop();
-			setFiring(false);
+			mob.level().broadcastEntityEvent(mob, (byte) 9);
+			fireAnimationTimer.reset();
 		}
 	}
 }
