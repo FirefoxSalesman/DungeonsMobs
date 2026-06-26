@@ -30,12 +30,14 @@ public class RangedItemModelProperties {
 
 		Map<ResourceLocation, ItemPropertyFunction> crossbowModelProperties = itemModelsProperties
 				.get(Items.CROSSBOW);
-		crossbowModelProperties.put(PULL_PROPERTY,
-				RangedItemModelProperties::getCrossbowPullProperty);
-		crossbowModelProperties.put(PULLING_PROPERTY,
-				RangedItemModelProperties::getCrossbowPullingProperty);
-		crossbowModelProperties.put(CHARGED_PROPERTY,
-				RangedItemModelProperties::getCrossbowChargedProperty);
+		if (crossbowModelProperties != null) {
+			crossbowModelProperties.put(PULL_PROPERTY,
+					RangedItemModelProperties::getCrossbowPullProperty);
+			crossbowModelProperties.put(PULLING_PROPERTY,
+					RangedItemModelProperties::getCrossbowPullingProperty);
+			crossbowModelProperties.put(CHARGED_PROPERTY,
+					RangedItemModelProperties::getCrossbowChargedProperty);
+		}
 	}
 
 	public static void addRangedModelProperties(RegistryObject<Item> itemRegistryObject) {
