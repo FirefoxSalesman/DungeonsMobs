@@ -1,9 +1,12 @@
 package net.firefoxsalesman.dungeonsmobs;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
@@ -23,6 +26,7 @@ import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.mod.ModStructureModifiers;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -92,7 +96,14 @@ public class DungeonsMobs {
 			ItemInit.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
 		}
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
-			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
+			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> {
+				boolean idMatches = false;
+				for (String s : List.of("wraith", "necromancer"))
+					if (GeneralHelper.modLoc(s + "_spawn_egg").equals(item.getId()))
+						idMatches = true;
+				if (!(ModHelper.hasGoety() && idMatches))
+					event.accept(item);
+			});
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
