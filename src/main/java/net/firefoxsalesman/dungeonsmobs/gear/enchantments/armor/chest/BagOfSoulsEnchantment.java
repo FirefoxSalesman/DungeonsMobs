@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -11,7 +12,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.event.CurioChangeEvent;
 
@@ -81,7 +81,7 @@ public class BagOfSoulsEnchantment extends DungeonsEnchantment {
 		if (EnchantmentHelper.getItemEnchantmentLevel(BAG_OF_SOULS.get(), itemStack) > 0) {
 			AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
 			if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null
-					&& !ModList.get().isLoaded("goety")) {
+					&& !ModHelper.hasGoety()) {
 				attributeInstance.removeModifier(attributeModifierUUID);
 			}
 			attributeInstance = livingEntity.getAttribute(SOUL_CAP.get());
@@ -94,7 +94,7 @@ public class BagOfSoulsEnchantment extends DungeonsEnchantment {
 	private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
 		int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(BAG_OF_SOULS.get(), itemStack);
 		if (itemEnchantmentLevel > 0) {
-			if (ModList.get().isLoaded("goety")) {
+			if (ModHelper.hasGoety()) {
 				AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
 				if (attributeInstance != null
 						&& attributeInstance.getModifier(attributeModifierUUID) == null) {

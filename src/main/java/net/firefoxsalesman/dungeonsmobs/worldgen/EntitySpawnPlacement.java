@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.worldgen;
 
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.creepers.IcyCreeperEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.piglin.FungusThrowerEntity;
@@ -28,7 +29,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fml.ModList;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 public class EntitySpawnPlacement {
@@ -184,7 +184,7 @@ public class EntitySpawnPlacement {
 	private static boolean goetyFriendlySpawnRule(EntityType<? extends Monster> type, ServerLevelAccessor world,
 			MobSpawnType spawnReason,
 			BlockPos pos, RandomSource random) {
-		return !ModList.get().isLoaded("goety")
+		return !ModHelper.hasGoety()
 				&& Monster.checkMonsterSpawnRules(type, world, spawnReason, pos, random);
 	}
 
