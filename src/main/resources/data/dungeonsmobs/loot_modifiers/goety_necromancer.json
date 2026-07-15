@@ -1,0 +1,15 @@
+{
+  "type": "dungeonslibs:loottable",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+	  "condition": "forge:loot_table_id",
+	  "loot_table_id": "goety:entities/necromancer"
+	}
+      ]
+    }
+  ],
+  "table": "dungeonsmobs:entities/goety_necromancer"
+}
