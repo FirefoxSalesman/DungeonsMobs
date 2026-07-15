@@ -10,7 +10,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredPillagerEntity;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

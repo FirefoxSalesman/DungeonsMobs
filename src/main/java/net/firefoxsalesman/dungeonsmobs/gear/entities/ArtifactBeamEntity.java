@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.entities;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.AbstractBeaconItem;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.BeamColor;
 import net.firefoxsalesman.dungeonsmobs.gear.network.entity.PlayerBeamMessage;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsageHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsage;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsageHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -31,7 +31,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
 
 public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawnData {
 	public static final double MAX_RAYTRACE_DISTANCE = 256;

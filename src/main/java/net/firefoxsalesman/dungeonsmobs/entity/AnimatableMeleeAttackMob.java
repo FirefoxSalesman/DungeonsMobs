@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 
 public interface AnimatableMeleeAttackMob {
 

@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.ISoulConsumer;
+import net.firefoxsalesman.dungeonslibs.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.ISoulConsumer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.UUID;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 public abstract class SoulBeaconItem extends AbstractBeaconItem implements ISoulConsumer {
 

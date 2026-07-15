@@ -18,13 +18,13 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper.getFollowerCapability;
+import static net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper.getFollowerCapability;
 
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Follower;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class ArtifactEvents {

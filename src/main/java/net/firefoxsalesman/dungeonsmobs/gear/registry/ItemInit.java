@@ -42,12 +42,12 @@ import net.firefoxsalesman.dungeonsmobs.gear.items.melee.StaffGear;
 import net.firefoxsalesman.dungeonsmobs.gear.items.ranged.crossbows.DualCrossbowGear;
 
 import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.AxeGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ResourceLocationHelper;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.AxeGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.BowGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.CrossbowGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.MeleeGear;
+import net.firefoxsalesman.dungeonslibs.utils.ResourceLocationHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;

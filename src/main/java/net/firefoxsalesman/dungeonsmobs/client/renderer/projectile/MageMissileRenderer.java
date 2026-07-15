@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.MageMissileModel;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MageMissileEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;

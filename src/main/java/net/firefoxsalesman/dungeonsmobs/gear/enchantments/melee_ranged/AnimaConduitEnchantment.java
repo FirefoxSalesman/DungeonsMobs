@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee_ranged;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.HealingEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.event.PlayerSoulEvent;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.event.PlayerSoulEvent;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.ANIMA_CONDUIT;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class AnimaConduitEnchantment extends HealingEnchantment {

@@ -1,9 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;
@@ -20,7 +20,7 @@ import net.minecraftforge.network.PacketDistributor;
 import java.util.List;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.PetHelper.isPetOf;
+import static net.firefoxsalesman.dungeonslibs.utils.PetHelper.isPetOf;
 
 public class LightFeatherItem extends ArtifactItem {
 	public LightFeatherItem(Properties properties) {

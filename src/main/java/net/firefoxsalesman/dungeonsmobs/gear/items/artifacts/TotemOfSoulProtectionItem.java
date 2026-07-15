@@ -5,11 +5,11 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfSoulProtectionEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.ISoulConsumer;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.ISoulConsumer;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +24,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import java.util.UUID;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 public class TotemOfSoulProtectionItem extends ArtifactItem implements ISoulConsumer {
 	public TotemOfSoulProtectionItem(Properties properties) {

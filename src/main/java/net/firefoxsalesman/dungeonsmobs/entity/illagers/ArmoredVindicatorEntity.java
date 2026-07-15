@@ -7,7 +7,7 @@ import com.google.common.collect.Maps;
 
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;

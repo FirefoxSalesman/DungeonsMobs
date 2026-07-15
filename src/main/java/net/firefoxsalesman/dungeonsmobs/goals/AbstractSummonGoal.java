@@ -9,8 +9,8 @@ import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

@@ -6,11 +6,11 @@ import com.google.common.collect.Multimap;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.AOECloudHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.AreaOfEffectHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.ISoulConsumer;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.ISoulConsumer;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,7 +22,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import java.util.UUID;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 public class HarvesterItem extends ArtifactItem implements ISoulConsumer {
 

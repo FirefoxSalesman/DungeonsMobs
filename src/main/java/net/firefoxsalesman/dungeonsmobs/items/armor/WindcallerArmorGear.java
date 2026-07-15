@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import net.firefoxsalesman.dungeonsmobs.client.renderer.armor.WindcallerArmorGearRenderer;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorGear;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;

@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.summonables.WraithFireModel;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;

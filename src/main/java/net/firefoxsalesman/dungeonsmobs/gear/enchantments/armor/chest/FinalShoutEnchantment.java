@@ -21,11 +21,11 @@ import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.FIN
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.HealthAbilityEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon.AbstractBeaconItem;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.Timers;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.TimersHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.capabilities.timers.Timers;
+import net.firefoxsalesman.dungeonslibs.capabilities.timers.TimersHelper;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class FinalShoutEnchantment extends HealthAbilityEnchantment {

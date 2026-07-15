@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.redstone;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.RedstoneCubeAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

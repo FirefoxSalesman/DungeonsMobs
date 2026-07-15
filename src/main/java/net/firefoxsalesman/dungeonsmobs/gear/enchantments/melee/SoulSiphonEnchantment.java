@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.enchantments.melee;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SoulOrbEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.entities.SoulOrbEntity;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,7 +29,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
 import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.SOUL_SIPHON_CHANCE;
 import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.SOUL_SIPHON_SOULS_PER_LEVEL;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.SOUL_SIPHON;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class SoulSiphonEnchantment extends DungeonsEnchantment {

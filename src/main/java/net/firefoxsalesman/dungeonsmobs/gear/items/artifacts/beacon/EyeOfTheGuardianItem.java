@@ -1,9 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.interfaces.IChargeableItem;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsageHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsage;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsageHelper;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

@@ -1,7 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.entity.blaze;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
-
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -9,15 +7,16 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SUMMON_CAP;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

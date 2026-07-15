@@ -4,8 +4,8 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

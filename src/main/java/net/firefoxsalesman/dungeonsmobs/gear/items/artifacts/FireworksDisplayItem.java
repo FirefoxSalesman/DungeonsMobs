@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.FireworksDisplayEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResultHolder;

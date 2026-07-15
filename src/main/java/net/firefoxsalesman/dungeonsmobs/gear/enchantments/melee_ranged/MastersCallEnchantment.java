@@ -5,7 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.PetHelper;
+import net.firefoxsalesman.dungeonslibs.utils.PetHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -17,8 +17,8 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper.enchantmentTagToLevel;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper.shooterIsLiving;
+import static net.firefoxsalesman.dungeonslibs.utils.ArrowHelper.enchantmentTagToLevel;
+import static net.firefoxsalesman.dungeonslibs.utils.ArrowHelper.shooterIsLiving;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class MastersCallEnchantment extends DungeonsEnchantment {

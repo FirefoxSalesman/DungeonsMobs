@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.mixin;
 
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

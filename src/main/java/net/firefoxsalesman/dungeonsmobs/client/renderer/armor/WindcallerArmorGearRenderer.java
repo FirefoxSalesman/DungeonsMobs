@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.armor.WindcallerArmorGearModel;
 import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.gearconfig.ArmorGearRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.gearconfig.ArmorGearRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
@@ -21,8 +21,10 @@ public class WindcallerArmorGearRenderer extends ArmorGearRenderer<WindcallerArm
 			MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight,
 			int packedOverlay, float red, float green, float blue, float alpha) {
 		GeoModel<WindcallerArmorGear> geoModelProvider = getGeoModel();
-		if (geoModelProvider instanceof WindcallerArmorGearModel && getCurrentEntity() instanceof LivingEntity) {
-		    ((WindcallerArmorGearModel<WindcallerArmorGear>) geoModelProvider).setWearer((LivingEntity) getCurrentEntity());
+		if (geoModelProvider instanceof WindcallerArmorGearModel
+				&& getCurrentEntity() instanceof LivingEntity) {
+			((WindcallerArmorGearModel<WindcallerArmorGear>) geoModelProvider)
+					.setWearer((LivingEntity) getCurrentEntity());
 		}
 		super.renderFinal(poseStack, animatable, model, bufferSource, buffer, partialTick, packedLight,
 				packedOverlay, red,

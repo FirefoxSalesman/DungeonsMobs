@@ -6,11 +6,11 @@ import net.firefoxsalesman.dungeonsmobs.gear.capabilities.bow.RangedAbilitiesHel
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.event.BowEvent;
-import net.firefoxsalesman.dungeonsmobs.lib.event.CrossbowEvent;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGear;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.RangedAttackHelper;
+import net.firefoxsalesman.dungeonslibs.event.BowEvent;
+import net.firefoxsalesman.dungeonslibs.event.CrossbowEvent;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.BowGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.CrossbowGear;
+import net.firefoxsalesman.dungeonslibs.utils.RangedAttackHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

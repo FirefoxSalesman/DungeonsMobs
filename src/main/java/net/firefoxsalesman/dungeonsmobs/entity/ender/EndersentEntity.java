@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;

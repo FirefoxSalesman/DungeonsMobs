@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.ArmoredIllagerAnimator;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.ArmoredVindicatorEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

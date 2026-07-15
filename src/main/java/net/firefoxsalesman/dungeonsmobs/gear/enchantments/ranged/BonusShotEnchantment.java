@@ -1,14 +1,14 @@
 package net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.RangedAttackHelper.getCrossbowArrowVelocity;
+import static net.firefoxsalesman.dungeonslibs.utils.RangedAttackHelper.getCrossbowArrowVelocity;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ProjectileEffectHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.RangedAttackHelper;
+import net.firefoxsalesman.dungeonslibs.utils.RangedAttackHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

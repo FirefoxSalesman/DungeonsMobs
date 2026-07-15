@@ -7,8 +7,8 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.interfaces.SummoningArtifact;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +19,7 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SUMMON_CAP;
 
 public class GolemKitItem extends ArtifactItem implements SummoningArtifact<IronGolem> {
 	public GolemKitItem(Properties itemProperties) {

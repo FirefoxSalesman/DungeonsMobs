@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.undead;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.SkeletonVanguardAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.SkeletonVanguardEntity;
 
 import com.mojang.blaze3d.vertex.PoseStack;

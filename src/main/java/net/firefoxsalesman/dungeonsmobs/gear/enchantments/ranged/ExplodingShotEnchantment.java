@@ -22,7 +22,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.utilities.AOECloudHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.AreaOfEffectHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper;
+import net.firefoxsalesman.dungeonslibs.utils.ArrowHelper;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class ExplodingShotEnchantment extends DungeonsEnchantment {

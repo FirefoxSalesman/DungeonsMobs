@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.chest;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -24,8 +24,8 @@ import java.util.stream.Stream;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes.ARMOR_SLOT;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.BAG_OF_SOULS;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_CAP;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_CAP;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class BagOfSoulsEnchantment extends DungeonsEnchantment {

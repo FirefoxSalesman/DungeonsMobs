@@ -24,7 +24,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.AOEDamageEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DamageBoostEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.mixin.LivingEntityAccessor;;
+import net.firefoxsalesman.dungeonslibs.mixin.LivingEntityAccessor;;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class EchoEnchantment extends AOEDamageEnchantment {

@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.firefoxsalesman.dungeonsmobs.client.animation.GeomancerAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.GeomancerEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;

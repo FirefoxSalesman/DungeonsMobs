@@ -18,7 +18,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantm
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.AreaOfEffectHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper;
+import net.firefoxsalesman.dungeonslibs.utils.ArrowHelper;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class GravityShotEnchantment extends DungeonsEnchantment {

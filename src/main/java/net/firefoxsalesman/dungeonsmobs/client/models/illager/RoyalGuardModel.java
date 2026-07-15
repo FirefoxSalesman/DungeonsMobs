@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 // Paste this class into your mod and generate all required imports
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.RoyalGuardAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.RoyalGuardEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelPart;

@@ -2,14 +2,14 @@ package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
 import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.LOVE_MEDALLION_BLACKLIST;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;
 
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;

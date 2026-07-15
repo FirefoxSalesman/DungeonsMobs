@@ -27,9 +27,9 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantm
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.AOECloudHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.PlayerAttackHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.Timers;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.timers.TimersHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.timers.Timers;
+import net.firefoxsalesman.dungeonslibs.capabilities.timers.TimersHelper;
+import net.firefoxsalesman.dungeonslibs.utils.ArrowHelper;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class PoisonCloudEnchantment extends DungeonsEnchantment {

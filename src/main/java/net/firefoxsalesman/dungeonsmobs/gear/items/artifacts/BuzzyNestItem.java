@@ -7,10 +7,10 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.BuzzyNestEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

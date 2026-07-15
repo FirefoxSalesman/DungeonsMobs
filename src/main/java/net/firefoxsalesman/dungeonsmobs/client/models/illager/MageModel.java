@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.MageAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;

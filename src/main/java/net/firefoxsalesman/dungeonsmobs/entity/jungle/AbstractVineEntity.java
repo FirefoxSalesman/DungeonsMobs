@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

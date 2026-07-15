@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Random;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AbilityHelper.isFacingEntity;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.*;
+import static net.firefoxsalesman.dungeonslibs.utils.AbilityHelper.isFacingEntity;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.*;
 
 public class AreaOfEffectHelper {
 

@@ -16,7 +16,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantm
 import net.firefoxsalesman.dungeonsmobs.gear.registry.DamageSourceInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.PlayerAttackHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.event.ArtifactEvent;
+import net.firefoxsalesman.dungeonslibs.event.ArtifactEvent;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class ArtifactSynergyEnchantment extends DungeonsEnchantment {

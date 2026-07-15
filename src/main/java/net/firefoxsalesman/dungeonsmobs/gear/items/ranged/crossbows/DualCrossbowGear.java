@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.items.ranged.crossbows;
 
 import static net.firefoxsalesman.dungeonsmobs.gear.capabilities.GearCapabilities.DUAL_WIELD_CAPABILITY;
 import net.firefoxsalesman.dungeonsmobs.gear.items.interfaces.IDualWieldWeapon;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGear;
-import net.firefoxsalesman.dungeonsmobs.mixin.CrossbowItemInvoker;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.CrossbowGear;
+import net.firefoxsalesman.dungeonslibs.mixin.CrossbowItemInvoker;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;

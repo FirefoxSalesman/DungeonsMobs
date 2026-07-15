@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

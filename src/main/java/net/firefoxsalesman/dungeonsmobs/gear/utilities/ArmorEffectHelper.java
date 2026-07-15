@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper.getLeaderCapability;
+import static net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper.getLeaderCapability;
 
 public class ArmorEffectHelper {
 	public static void summonOrTeleportBat(Player playerEntity, Level world) {

@@ -7,9 +7,9 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.gear.items.interfaces.SummoningArtifact;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonsmobs.mixin.AbstractHorseAccessor;
 import net.firefoxsalesman.dungeonsmobs.mixin.LlamaInvoker;
 import net.minecraft.sounds.SoundEvents;

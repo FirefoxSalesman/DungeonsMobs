@@ -2,11 +2,11 @@ package net.firefoxsalesman.dungeonsmobs.gear.items.artifacts.beacon;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.ArtifactBeamEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsage;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.artifact.ArtifactUsageHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.client.message.CuriosArtifactStopMessage;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsage;
+import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsageHelper;
+import net.firefoxsalesman.dungeonslibs.integration.curios.client.message.CuriosArtifactStopMessage;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;

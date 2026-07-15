@@ -9,7 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ranged.FuseShotEnchant
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ProjectileEffectHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.PetHelper;
+import net.firefoxsalesman.dungeonslibs.utils.PetHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;

@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.jungle;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AbstractTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
 import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;

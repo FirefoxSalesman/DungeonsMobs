@@ -13,26 +13,12 @@ import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
 import net.firefoxsalesman.dungeonsmobs.gear.items.GearRangedItemModelProperties;
-import net.firefoxsalesman.dungeonsmobs.gear.loot.ModLootModifiers;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.SoundEventInit;
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.LibCapabilities;
-import net.firefoxsalesman.dungeonsmobs.lib.config.DungeonsLibrariesConfig;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.LibEntityTypes;
-import net.firefoxsalesman.dungeonsmobs.lib.items.ItemTagWrappers;
-import net.firefoxsalesman.dungeonsmobs.lib.items.RangedItemModelProperties;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.config.ArtifactGearConfigRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGearConfigRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.BowGearConfigRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.CrossbowGearConfigRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGearConfigRegistry;
-import net.firefoxsalesman.dungeonsmobs.lib.items.materials.armor.DungeonsArmorMaterials;
-import net.firefoxsalesman.dungeonsmobs.lib.items.materials.weapon.WeaponMaterials;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.mod.ModStructureModifiers;
@@ -67,30 +53,12 @@ public class DungeonsMobs {
 	public static CommonProxy PROXY;
 
 	public DungeonsMobs() {
-		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC,
-				"dungeons-lib-common.toml");
 		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsMobsConfig.COMMON_SPEC,
 				"dungeons-mobs-common.toml");
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		ItemTagWrappers.init();
-		AttributeRegistry.register(modEventBus);
-		LibEntityTypes.register(modEventBus);
-		DungeonsArmorMaterials.setupVanillaMaterials();
-		WeaponMaterials.setupVanillaMaterials();
-
-		ArmorGearConfigRegistry.subscribe();
-		MeleeGearConfigRegistry.subscribe();
-		BowGearConfigRegistry.subscribe();
-		CrossbowGearConfigRegistry.subscribe();
-		WeaponMaterials.subscribe();
-		DungeonsArmorMaterials.subscribe();
-		ArtifactGearConfigRegistry.subscribe();
-
-		LibCapabilities.setupCapabilities();
-
 		ModSoundEvents.register(modEventBus);
 		ModEffects.register(modEventBus);
 
@@ -113,7 +81,6 @@ public class DungeonsMobs {
 		ItemInit.register(modEventBus);
 		MobEffectInit.register(modEventBus);
 		EnchantmentInit.register(modEventBus);
-		ModLootModifiers.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
@@ -143,8 +110,6 @@ public class DungeonsMobs {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		// ITEM MODEL PROPERTIES
 		event.enqueueWork(ModItemModelProperties::registerProperties);
-
-		event.enqueueWork(RangedItemModelProperties::init);
 
 		GearRangedItemModelProperties.init();
 	}

@@ -5,13 +5,13 @@ import com.google.common.collect.Multimap;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IHasInventorySprite;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Leader;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.ISoulConsumer;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.SoundHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Leader;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.ISoulConsumer;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
+import net.firefoxsalesman.dungeonslibs.utils.SoundHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
-import static net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper.getLeaderCapability;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SUMMON_CAP;
+import static net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper.getLeaderCapability;
 
 public class NecromancerStaffItem extends ArtifactItem implements IHasInventorySprite, ISoulConsumer {
 	public NecromancerStaffItem(Properties properties) {

@@ -8,9 +8,9 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjec
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.SpawnArmoredMob;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.entities.SpawnArmoredMob;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;

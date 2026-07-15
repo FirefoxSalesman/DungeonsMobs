@@ -13,8 +13,8 @@ import static net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig.WE
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.getCanApplyToSecondEnemyPredicate;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToSecondEnemyPredicate;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class WeakeningEnchantment extends DungeonsEnchantment {

@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.client.renderer.totem;
 
 import net.firefoxsalesman.dungeonsmobs.gear.entities.TotemOfSoulProtectionEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.gear.client.models.totem.TotemOfSoulProtectionModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

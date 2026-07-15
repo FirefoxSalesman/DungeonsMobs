@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.entities;
 
 import com.google.common.collect.Lists;
 
-import net.firefoxsalesman.dungeonsmobs.lib.entities.TotemBaseEntity;
+import net.firefoxsalesman.dungeonslibs.entities.TotemBaseEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;

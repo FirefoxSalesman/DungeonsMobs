@@ -7,7 +7,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DropsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.PlayerAttackHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper;
+import net.firefoxsalesman.dungeonslibs.utils.ArrowHelper;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;

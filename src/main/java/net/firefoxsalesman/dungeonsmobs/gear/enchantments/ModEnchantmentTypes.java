@@ -1,9 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.gear.enchantments;
 
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IMeleeWeapon;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IRangedWeapon;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorGear;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.IMeleeWeapon;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.IRangedWeapon;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;

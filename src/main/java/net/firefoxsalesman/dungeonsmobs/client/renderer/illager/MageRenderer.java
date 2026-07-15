@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.models.illager.MageModel;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;

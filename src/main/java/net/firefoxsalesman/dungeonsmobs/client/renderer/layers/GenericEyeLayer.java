@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;

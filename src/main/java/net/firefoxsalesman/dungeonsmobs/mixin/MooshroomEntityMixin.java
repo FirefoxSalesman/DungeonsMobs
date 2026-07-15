@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.mixin;
 
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.GoalUtils;
+import net.firefoxsalesman.dungeonslibs.utils.GoalUtils;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -23,12 +23,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.At;
 
-
 @Mixin(MushroomCow.class)
 public abstract class MooshroomEntityMixin extends Cow {
 
 	public MooshroomEntityMixin(EntityType<? extends Cow> pEntityType, Level pLevel) {
-	    super(pEntityType, pLevel);
+		super(pEntityType, pLevel);
 	}
 
 	@Inject(at = @At("RETURN"), method = "<init>")

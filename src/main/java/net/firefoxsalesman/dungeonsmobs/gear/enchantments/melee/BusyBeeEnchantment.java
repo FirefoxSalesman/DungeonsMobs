@@ -5,8 +5,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.BUSY_BEE;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SUMMON_CAP;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SUMMON_CAP;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class BusyBeeEnchantment extends DungeonsEnchantment {

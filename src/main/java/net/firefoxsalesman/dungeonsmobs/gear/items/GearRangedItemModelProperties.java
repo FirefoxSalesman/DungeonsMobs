@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
-import net.firefoxsalesman.dungeonsmobs.lib.items.RangedItemModelProperties;
+import net.firefoxsalesman.dungeonslibs.items.RangedItemModelProperties;
 
 public class GearRangedItemModelProperties {
 	public static void init() {

@@ -16,8 +16,8 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.BeastEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.Follower;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.minionmaster.FollowerLeaderHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.Follower;
+import net.firefoxsalesman.dungeonslibs.capabilities.minionmaster.FollowerLeaderHelper;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class BeastBossEnchantment extends BeastEnchantment {

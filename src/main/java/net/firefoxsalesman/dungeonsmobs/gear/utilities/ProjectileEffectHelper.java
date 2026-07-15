@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonslibs.capabilities.soulcaster.SoulCasterHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -25,8 +25,8 @@ import java.util.function.Predicate;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.getCanApplyToSecondEnemyPredicate;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToSecondEnemyPredicate;
 
 public class ProjectileEffectHelper {
 

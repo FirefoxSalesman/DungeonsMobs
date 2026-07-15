@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

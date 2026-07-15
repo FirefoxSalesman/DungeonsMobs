@@ -14,7 +14,7 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.ArrowHelper;
+import net.firefoxsalesman.dungeonslibs.utils.ArrowHelper;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class SuperchargeEnchantment extends DungeonsEnchantment {

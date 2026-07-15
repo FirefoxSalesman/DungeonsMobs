@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorSet;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorSet;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;

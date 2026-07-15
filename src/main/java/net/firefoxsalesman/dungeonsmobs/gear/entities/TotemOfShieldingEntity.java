@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.entities;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
-import net.firefoxsalesman.dungeonsmobs.lib.entities.TotemBaseEntity;
+import net.firefoxsalesman.dungeonslibs.entities.TotemBaseEntity;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,8 +19,8 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.applyToNearbyEntities;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.AreaOfEffectHelper.getCanHealPredicate;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;
+import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanHealPredicate;
 import static software.bernie.geckolib.core.animation.Animation.LoopType.LOOP;
 
 public class TotemOfShieldingEntity extends TotemBaseEntity implements GeoEntity {

@@ -3,8 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;

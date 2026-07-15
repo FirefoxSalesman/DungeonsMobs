@@ -13,7 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.FocusEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.DamageSourceHelper;
+import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class LightningFocusEnchantment extends FocusEnchantment {

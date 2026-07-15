@@ -5,7 +5,7 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.CustomEffect;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.PartyStarterEffect;
 import net.firefoxsalesman.dungeonsmobs.gear.effects.ShieldingEffect;
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

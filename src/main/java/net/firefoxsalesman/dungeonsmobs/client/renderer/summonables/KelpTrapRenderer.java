@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.summonables.KelpTrapModel;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

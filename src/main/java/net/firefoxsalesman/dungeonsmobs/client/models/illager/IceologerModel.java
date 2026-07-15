@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 
 import net.firefoxsalesman.dungeonsmobs.client.animation.IceologerAnimations;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.entity.illagers.IceologerEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

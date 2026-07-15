@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.utilities;
 
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.Combo;
 import net.firefoxsalesman.dungeonsmobs.gear.capabilities.combo.ComboHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.utils.DamageSourceHelper;
-import net.firefoxsalesman.dungeonsmobs.mixin.LivingEntityAccessor;
+import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
+import net.firefoxsalesman.dungeonslibs.mixin.LivingEntityAccessor;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
@@ -18,7 +18,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
-import static net.firefoxsalesman.dungeonsmobs.lib.utils.DamageSourceHelper.isSource;
+import static net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper.isSource;
 
 import java.util.Optional;
 

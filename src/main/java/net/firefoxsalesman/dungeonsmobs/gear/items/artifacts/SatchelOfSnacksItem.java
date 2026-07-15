@@ -9,13 +9,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.PacketDistributor;
 
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.LootTableHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactItem;
-import net.firefoxsalesman.dungeonsmobs.lib.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.lib.network.BreakItemMessage;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
+import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
+import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;;
 
 public class SatchelOfSnacksItem extends ArtifactItem {

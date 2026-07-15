@@ -4,7 +4,7 @@ import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
 
 import javax.annotation.Nullable;
 
-import net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry;
+import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;

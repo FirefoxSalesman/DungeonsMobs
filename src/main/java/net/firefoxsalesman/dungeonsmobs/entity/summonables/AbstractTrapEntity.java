@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 import com.google.common.collect.Lists;
 
 import net.firefoxsalesman.dungeonsmobs.interfaces.ITrapsTarget;
-import net.firefoxsalesman.dungeonsmobs.lib.client.AnimationTimer;
+import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;

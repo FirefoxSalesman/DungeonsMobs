@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.melee;
 
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.MeleeGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.MeleeGear;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

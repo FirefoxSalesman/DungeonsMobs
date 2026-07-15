@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.gear.entities;
 
 import static software.bernie.geckolib.core.animation.Animation.LoopType.PLAY_ONCE;
 
-import net.firefoxsalesman.dungeonsmobs.lib.entities.TotemBaseEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.summon.SummonHelper;
+import net.firefoxsalesman.dungeonslibs.entities.TotemBaseEntity;
+import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvents;

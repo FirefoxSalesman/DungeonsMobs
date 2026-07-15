@@ -4,7 +4,7 @@ package net.firefoxsalesman.dungeonsmobs.client.models.illager;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 

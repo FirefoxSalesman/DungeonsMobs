@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.illagers;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.firefoxsalesman.dungeonsmobs.lib.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.WalkAnimationState;

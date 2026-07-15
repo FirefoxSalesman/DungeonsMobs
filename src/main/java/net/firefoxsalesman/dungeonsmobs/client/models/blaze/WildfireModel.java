@@ -1,8 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.client.models.blaze;
 
+import net.firefoxsalesman.dungeonslibs.client.ConvenientModel;
 import net.firefoxsalesman.dungeonsmobs.client.animation.WildfireAnimations;
 import net.firefoxsalesman.dungeonsmobs.entity.blaze.WildfireEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.ConvenientModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;

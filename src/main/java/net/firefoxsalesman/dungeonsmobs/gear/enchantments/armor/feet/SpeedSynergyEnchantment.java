@@ -15,7 +15,7 @@ import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.ArtifactEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.event.ArtifactEvent;
+import net.firefoxsalesman.dungeonslibs.event.ArtifactEvent;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class SpeedSynergyEnchantment extends ArtifactEnchantment {

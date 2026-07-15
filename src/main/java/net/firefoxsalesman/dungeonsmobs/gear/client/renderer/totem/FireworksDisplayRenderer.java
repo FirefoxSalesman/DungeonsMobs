@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.client.renderer.totem;
 
 import net.firefoxsalesman.dungeonsmobs.gear.client.models.totem.FireworksDisplayModel;
 import net.firefoxsalesman.dungeonsmobs.gear.entities.FireworksDisplayEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

@@ -128,7 +128,7 @@ repositories {
     maven {
 	name = "Illusive Soulworks maven"
 	url = "https://maven.theillusivec4.top/"
-    } 
+    }
     maven {
 	url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
 	content {
@@ -154,6 +154,7 @@ dependencies {
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
     implementation fg.deobf("curse.maven:goety-586095:7935022")
+    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8408946")
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {

@@ -1,6 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.armor;
 
-import net.firefoxsalesman.dungeonsmobs.lib.items.gearconfig.ArmorGear;
+import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorGear;
 import net.minecraft.resources.ResourceLocation;
 
 public class PetBatArmorGear extends ArmorGear {

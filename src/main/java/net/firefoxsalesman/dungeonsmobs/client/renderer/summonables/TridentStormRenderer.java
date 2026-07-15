@@ -6,7 +6,7 @@ import com.mojang.math.Axis;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.summonables.TridentStormModel;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.TridentStormEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

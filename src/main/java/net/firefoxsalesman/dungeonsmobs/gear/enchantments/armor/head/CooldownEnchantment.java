@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.gear.enchantments.armor.head;
 
 import static net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes.ARMOR_SLOT;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.COOLDOWN;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.ARTIFACT_COOLDOWN_MULTIPLIER;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.ARTIFACT_COOLDOWN_MULTIPLIER;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DungeonsEnchantment;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;

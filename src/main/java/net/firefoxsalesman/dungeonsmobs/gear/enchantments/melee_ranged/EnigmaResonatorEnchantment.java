@@ -4,8 +4,8 @@ import net.firefoxsalesman.dungeonsmobs.gear.enchantments.ModEnchantmentTypes;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.AOEDamageEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.enchantments.types.DamageBoostEnchantment;
 import net.firefoxsalesman.dungeonsmobs.gear.utilities.ModEnchantmentHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.capabilities.soulcaster.SoulCasterHelper;
-import net.firefoxsalesman.dungeonsmobs.lib.integration.curios.CuriosIntegration;
+import net.firefoxsalesman.dungeonslibs.capabilities.soulcaster.SoulCasterHelper;
+import net.firefoxsalesman.dungeonslibs.integration.curios.CuriosIntegration;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,7 +33,7 @@ import java.util.stream.Stream;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
 import static net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit.ENIGMA_RESONATOR;
-import static net.firefoxsalesman.dungeonsmobs.lib.attribute.AttributeRegistry.SOUL_GATHERING;
+import static net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry.SOUL_GATHERING;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class EnigmaResonatorEnchantment extends DamageBoostEnchantment {

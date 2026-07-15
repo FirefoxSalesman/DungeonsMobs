@@ -64,8 +64,6 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.lib.client.SoulEnergyGui;
-import net.firefoxsalesman.dungeonsmobs.lib.client.artifactBar.ArtifactsBarRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.world.entity.EntityType;
@@ -80,15 +78,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
-	/**
-	 * Borrowed from Goety
-	 */
-	@SubscribeEvent
-	public static void registerGUI(final RegisterGuiOverlaysEvent event) {
-		event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "artifacts_bar", ArtifactsBarRender.OVERLAY);
-		event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "soul_energy_hud", SoulEnergyGui.OVERLAY);
-	}
-
 	@SubscribeEvent
 	public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(ModEntities.JUNGLE_ZOMBIE.get(), CustomZombieRenderer::new);

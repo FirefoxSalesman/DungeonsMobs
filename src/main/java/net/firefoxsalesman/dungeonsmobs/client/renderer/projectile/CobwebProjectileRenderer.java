@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.projectile;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
-import net.firefoxsalesman.dungeonsmobs.lib.client.renderer.ProjectileRenderer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.ProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.models.projectile.CobwebProjectileModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

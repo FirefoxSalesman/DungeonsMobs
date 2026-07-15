@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.gear.items.ranged;
 
 import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
-import net.firefoxsalesman.dungeonsmobs.lib.items.interfaces.IRangedWeapon;
+import net.firefoxsalesman.dungeonslibs.items.interfaces.IRangedWeapon;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
