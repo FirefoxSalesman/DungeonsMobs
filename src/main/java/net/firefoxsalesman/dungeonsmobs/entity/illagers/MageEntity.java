@@ -8,12 +8,13 @@ import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.entities.SummonSpotEntity;
+import net.firefoxsalesman.dungeonslibs.entities.LibEntityTypes;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -289,7 +290,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 			}
 
 			if (target != null && mob.vanishTimer.tickEquals(1)) {
-				SummonSpotEntity summonSpot = ModEntities.SUMMON_SPOT.get().create(mob.level());
+				SummonSpotEntity summonSpot = LibEntityTypes.SUMMON_SPOT.get().create(mob.level());
 				summonSpot.moveTo(target.blockPosition().offset((int) -12.5 + mob.random.nextInt(25), 0,
 						(int) -12.5 + mob.random.nextInt(25)), 0.0F, 0.0F);
 				summonSpot.setSummonType(3);
@@ -321,7 +322,7 @@ public class MageEntity extends AbstractIllager implements KeyframeEntity {
 						.getDifficulty().getId();
 
 				for (int i = 0; i < clonesByDifficulty * 4; i++) {
-					SummonSpotEntity cloneSummonSpot = ModEntities.SUMMON_SPOT.get()
+					SummonSpotEntity cloneSummonSpot = LibEntityTypes.SUMMON_SPOT.get()
 							.create(mob.level());
 					cloneSummonSpot.moveTo(
 							target.blockPosition().offset(

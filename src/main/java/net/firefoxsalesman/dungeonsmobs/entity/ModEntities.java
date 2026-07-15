@@ -54,7 +54,6 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.KelpTrapEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
-import net.firefoxsalesman.dungeonsmobs.entity.summonables.SummonSpotEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.TridentStormEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WindcallerTornadoEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.WraithFireEntity;
@@ -519,14 +518,6 @@ public class ModEntities {
 					.sized(0.35F, 0.35F)
 					.updateInterval(1)
 					.build(modLoc("mage_missile").toString()));
-
-	public static final RegistryObject<EntityType<SummonSpotEntity>> SUMMON_SPOT = registerEntityWithoutEgg(
-			"summon_spot",
-			() -> EntityType.Builder.<SummonSpotEntity>of(SummonSpotEntity::new, MobCategory.MISC)
-					.fireImmune()
-					.sized(1.0F, 2.0F)
-					.clientTrackingRange(10)
-					.build(modLoc("summon_spot").toString()));
 
 	public static final RegistryObject<EntityType<CobwebProjectileEntity>> COBWEB_PROJECTILE = registerEntityWithoutEgg(
 			"cobweb_projectile",

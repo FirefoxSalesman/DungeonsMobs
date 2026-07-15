@@ -5,7 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;

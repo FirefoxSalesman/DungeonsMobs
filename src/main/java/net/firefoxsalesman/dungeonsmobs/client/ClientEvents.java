@@ -49,7 +49,6 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerWal
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.IceCloudRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.KelpTrapRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SimpleTrapRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.SummonSpotRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.TridentStormRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WindcallerTornadoRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.WraithFireRenderer;
@@ -175,8 +174,6 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.GEOMANCER_BOMB.get(), GeomancerBombRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.AREA_DAMAGE.get(), EmptyRenderer::new);
-
-		event.registerEntityRenderer(ModEntities.SUMMON_SPOT.get(), SummonSpotRenderer::new);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)

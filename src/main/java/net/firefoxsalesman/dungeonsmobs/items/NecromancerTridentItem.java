@@ -7,7 +7,7 @@ import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;

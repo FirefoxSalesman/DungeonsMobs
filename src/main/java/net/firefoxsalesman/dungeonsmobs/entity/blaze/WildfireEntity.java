@@ -14,7 +14,7 @@ import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
-import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
+import net.firefoxsalesman.dungeonslibs.summon.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.LookAtTargetGoal;
 import net.minecraft.commands.arguments.EntityAnchorArgument;

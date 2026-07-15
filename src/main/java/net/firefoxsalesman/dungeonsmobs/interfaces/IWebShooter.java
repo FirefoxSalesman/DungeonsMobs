@@ -2,7 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.interfaces;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.CobwebProjectileEntity;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -26,7 +26,7 @@ public interface IWebShooter extends ITrapsTarget {
 		float f = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ)) * 0.2F;
 
 		float horizontalDistance = Mth.sqrt((float) (aimX * aimX + aimZ * aimZ));
-		float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F);  // Clamp velocity for longer shots
+		float velocity = Mth.clamp(horizontalDistance * 0.25F, 1.0F, 1.5F); // Clamp velocity for longer shots
 		float inaccuracy = 2.0F;
 		projectile.shoot(aimX, aimY + (double) f, aimZ, velocity, inaccuracy);
 

@@ -1,0 +1,5 @@
+* TODO [#B] Redstone monstrosity projectile attack
+
+[[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/entity/redstone/RedstoneMonstrosityEntity.java::package net.firefoxsalesman.dungeonsmobs.entity.redstone;]]
+* TODO [#A] Move AbstractSummonGoal to the library
+DEADLINE: <2026-07-17 Fri>

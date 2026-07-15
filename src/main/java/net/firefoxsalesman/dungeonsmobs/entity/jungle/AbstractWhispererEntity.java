@@ -6,7 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.SimpleTrapEntity;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.tags.EntityTags;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;

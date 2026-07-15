@@ -5,12 +5,12 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
-import net.firefoxsalesman.dungeonsmobs.goals.AbstractSummonGoal;
+import net.firefoxsalesman.dungeonslibs.summon.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.SimpleRangedAttackGoal;
 import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
-import net.firefoxsalesman.dungeonsmobs.utils.PositionUtils;
+import net.firefoxsalesman.dungeonslibs.utils.PositionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
