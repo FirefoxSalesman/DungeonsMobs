@@ -7,7 +7,7 @@ import net.firefoxsalesman.dungeonslibs.capabilities.artifact.ArtifactUsageHelpe
 import net.firefoxsalesman.dungeonslibs.integration.curios.client.message.CuriosArtifactStopMessage;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonslibs.network.NetworkHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
