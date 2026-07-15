@@ -1,0 +1,11 @@
+.classpath
+.direnv
+.eglot-java
+.factorypath
+.gradle
+.project
+.settings
+bin
+build
+run
+src/generated/resources/.cache
