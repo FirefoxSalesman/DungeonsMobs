@@ -1,5 +1,5 @@
 {
-  "type": "dungeonsmobs:loottable",
+  "type": "dungeonslibs:loottable",
   "conditions": [
     {
       "condition": "minecraft:any_of",

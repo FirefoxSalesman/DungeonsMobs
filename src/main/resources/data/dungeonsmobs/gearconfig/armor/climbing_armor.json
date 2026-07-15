@@ -1,7 +1,7 @@
 {
   "attributes": [
     {
-      "attribute": "dungeonsmobs:artifact_cooldown_multiplier",
+      "attribute": "dungeonslibs:artifact_cooldown_multiplier",
       "amount": -0.1,
       "operation": 1
     },

@@ -1,12 +1,12 @@
 {
   "attributes": [
     {
-      "attribute": "dungeonsmobs:soul_gathering",
+      "attribute": "dungeonslibs:soul_gathering",
       "amount": 0.125,
       "operation": 1
     },
     {
-      "attribute": "dungeonsmobs:magic_damage_multiplier",
+      "attribute": "dungeonslibs:magic_damage_multiplier",
       "amount": 0.125,
       "operation": 1
     }

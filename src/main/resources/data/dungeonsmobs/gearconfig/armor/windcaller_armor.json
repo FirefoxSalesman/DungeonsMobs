@@ -2,7 +2,7 @@
   "attributes": [
   ],
   "built_in_enchantments": [],
-  "material": "dungeonsmobs:cosmetic_cloth",
+  "material": "dungeonslibs:cosmetic_cloth",
   "unique": false,
   "rarity": "RARE"
 }
