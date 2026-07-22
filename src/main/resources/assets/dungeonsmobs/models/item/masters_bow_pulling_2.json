@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/masters_bow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/masters_bow_pulling_2"
-    }
-}

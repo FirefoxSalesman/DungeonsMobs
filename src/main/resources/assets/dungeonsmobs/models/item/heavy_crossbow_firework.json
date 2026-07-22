@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/heavy_crossbow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/heavy_crossbow_firework"
-    }
-}

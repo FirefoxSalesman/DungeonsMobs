@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/azure_seeker",
-    "textures": {
-        "layer0": "dungeonsmobs:item/azure_seeker_pulling_2"
-    }
-}

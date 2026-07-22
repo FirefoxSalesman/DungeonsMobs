@@ -6,7 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
-import static net.firefoxsalesman.dungeonsmobs.gear.utilities.GeneralHelper.modLoc;
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 

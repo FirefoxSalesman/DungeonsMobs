@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/power_bow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/power_bow_pulling_2"
-    }
-}

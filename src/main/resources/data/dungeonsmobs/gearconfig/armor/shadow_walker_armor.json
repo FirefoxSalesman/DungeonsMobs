@@ -1,8 +1,0 @@
-{
-  "attributes": [
-  ],
-  "built_in_enchantments": [{"enchantment": "dungeonsmobs:speed_synergy", "level": 1},{"enchantment": "dungeonsmobs:dodge", "level": 1}],
-  "material": "dungeonsmobs:pelt",
-  "unique": false,
-  "rarity": "UNCOMMON"
-}

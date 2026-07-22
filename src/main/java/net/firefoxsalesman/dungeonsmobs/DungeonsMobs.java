@@ -11,21 +11,9 @@ import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
-import net.firefoxsalesman.dungeonsmobs.gear.CommonProxy;
-import net.firefoxsalesman.dungeonsmobs.gear.client.ClientProxy;
-import net.firefoxsalesman.dungeonsmobs.gear.config.DungeonsGearConfig;
-import net.firefoxsalesman.dungeonsmobs.gear.entities.SoulWizardEntity;
-import net.firefoxsalesman.dungeonsmobs.gear.items.GearRangedItemModelProperties;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.EnchantmentInit;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.EntityTypeInit;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.MobEffectInit;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.ParticleInit;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.SoundEventInit;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.mod.ModStructureModifiers;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.firefoxsalesman.dungeonsmobs.worldgen.EntitySpawnPlacement;
 import net.firefoxsalesman.dungeonsmobs.worldgen.RaidEntries;
@@ -34,11 +22,9 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -54,7 +40,6 @@ public class DungeonsMobs {
 	public static final String MOD_ID = "dungeonsmobs";
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
-	public static CommonProxy PROXY;
 
 	public DungeonsMobs() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, DungeonsMobsConfig.COMMON_SPEC,
@@ -74,17 +59,6 @@ public class DungeonsMobs {
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
 		ModStructureModifiers.STRUCTURE_MODIFIER_SERIALIZERS.register(modEventBus);
-
-		// Dungeon gear init
-		new DungeonsGearConfig();
-		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-		ParticleInit.register(modEventBus);
-		SoundEventInit.register(modEventBus);
-		EntityTypeInit.register(modEventBus);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initEntityTypeAttributes);
-		ItemInit.register(modEventBus);
-		MobEffectInit.register(modEventBus);
-		EnchantmentInit.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
@@ -93,7 +67,6 @@ public class DungeonsMobs {
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
 			ModItems.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
-			ItemInit.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
 		}
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> {
@@ -107,7 +80,6 @@ public class DungeonsMobs {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
-		event.enqueueWork(NetworkHandler::init);
 		event.enqueueWork(EntitySpawnPlacement::createPlacementTypes);
 		event.enqueueWork(EntitySpawnPlacement::initSpawnPlacements);
 		event.enqueueWork(RaidEntries::initWaveMemberEntries);
@@ -121,8 +93,6 @@ public class DungeonsMobs {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		// ITEM MODEL PROPERTIES
 		event.enqueueWork(ModItemModelProperties::registerProperties);
-
-		GearRangedItemModelProperties.init();
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
@@ -132,9 +102,5 @@ public class DungeonsMobs {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 		}
-	}
-
-	public void initEntityTypeAttributes(EntityAttributeCreationEvent event) {
-		event.put(EntityTypeInit.SOUL_WIZARD.get(), SoulWizardEntity.setCustomAttributes().build());
 	}
 }

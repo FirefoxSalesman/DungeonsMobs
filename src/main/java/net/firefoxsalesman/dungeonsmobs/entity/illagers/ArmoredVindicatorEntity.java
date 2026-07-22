@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
-import net.firefoxsalesman.dungeonsmobs.gear.registry.ItemInit;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -43,8 +42,9 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-		if (ModList.get().isLoaded("dungeonsmobs"))
-			this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ItemInit.DOUBLE_AXE.get()));
+		if (ModList.get().isLoaded("dungeonsgear"))
+			this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ForgeRegistries.ITEMS
+					.getValue(new ResourceLocation("dungeonsgear", "double_axe"))));
 		else
 			super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
 	}
@@ -52,7 +52,7 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (ModList.get().isLoaded("dungeonsmobs")) {
+		if (ModList.get().isLoaded("dungeonsgear")) {
 			Item DOUBLE_AXE = ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsmobs", "double_axe"));
 

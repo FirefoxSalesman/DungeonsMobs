@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/doom_crossbow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/doom_crossbow_firework"
-    }
-}

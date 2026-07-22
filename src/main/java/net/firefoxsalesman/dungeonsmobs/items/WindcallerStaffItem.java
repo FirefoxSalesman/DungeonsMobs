@@ -8,7 +8,7 @@ import net.firefoxsalesman.dungeonsmobs.interfaces.IHasInventorySprite;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonslibs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResultHolder;

@@ -98,10 +98,6 @@
         "id": "minecraft:empty",
         "Count": 1
       },
-      "handItem": {
-        "id": "dungeonsmobs:firebrand",
-        "Count": 1
-      },
       "offhandItem": {
         "id": "minecraft:empty",
         "Count": 1

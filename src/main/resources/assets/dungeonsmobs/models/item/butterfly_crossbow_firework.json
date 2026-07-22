@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/butterfly_crossbow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/butterfly_crossbow_firework"
-    }
-}

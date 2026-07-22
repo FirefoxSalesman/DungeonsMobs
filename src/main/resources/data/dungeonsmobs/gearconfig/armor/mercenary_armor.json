@@ -1,8 +1,0 @@
-{
-  "attributes": [
-  ],
-  "built_in_enchantments": [{"enchantment": "dungeonsmobs:melee_aura", "level": 1}],
-  "material": "dungeonsmobs:heavy_plate",
-  "unique": false,
-  "rarity": "UNCOMMON"
-}

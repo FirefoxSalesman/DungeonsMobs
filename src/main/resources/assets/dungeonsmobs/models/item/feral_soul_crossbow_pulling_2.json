@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/feral_soul_crossbow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/feral_soul_crossbow_pulling_2"
-    }
-}

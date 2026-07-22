@@ -5,7 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.interfaces.IHasInventorySprite;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonslibs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.utils.GeomancyHelper;
 import net.minecraft.Util;
 import net.minecraft.core.Direction;

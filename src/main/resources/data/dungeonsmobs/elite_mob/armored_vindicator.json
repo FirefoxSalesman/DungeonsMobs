@@ -1,10 +1,6 @@
 {
   "configs": [
     {
-      "handItem": {
-        "id": "dungeonsmobs:whirlwind",
-        "Count": 1
-      },
       "attributes": [
 	{
           "attribute": "minecraft:generic.armor",

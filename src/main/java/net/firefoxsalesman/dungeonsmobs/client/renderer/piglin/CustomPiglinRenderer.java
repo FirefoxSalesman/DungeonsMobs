@@ -9,8 +9,8 @@ import net.firefoxsalesman.dungeonsmobs.client.models.FungusSackModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.FungusSackLayer;
 import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossbowUser;
-import net.firefoxsalesman.dungeonslibs.utils.ResourceLocationHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.PiglinRenderer;
@@ -54,7 +54,13 @@ public class CustomPiglinRenderer extends PiglinRenderer {
 		return RESOURCE_LOCATION_MAP
 				.computeIfAbsent(mobEntity.getType(), type -> new HashMap<>())
 				.computeIfAbsent(skinVariantName,
-						s -> ResourceLocationHelper.modLoc(getPath(skinVariantName)));
+						s -> {
+							String path = getPath(skinVariantName);
+							return (skinVariantName.equals("piglin")
+									|| skinVariantName.equals("zombified_piglin"))
+											? new ResourceLocation(path)
+											: GeneralHelper.modLoc(path);
+						});
 	}
 
 	private String getPath(String skinVariantName) {

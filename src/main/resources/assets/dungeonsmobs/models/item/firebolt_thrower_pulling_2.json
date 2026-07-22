@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/firebolt_thrower",
-    "textures": {
-        "layer0": "dungeonsmobs:item/firebolt_thrower_pulling_2"
-    }
-}

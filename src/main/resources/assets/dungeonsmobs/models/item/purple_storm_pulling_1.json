@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/purple_storm",
-    "textures": {
-        "layer0": "dungeonsmobs:item/purple_storm_pulling_1"
-    }
-}

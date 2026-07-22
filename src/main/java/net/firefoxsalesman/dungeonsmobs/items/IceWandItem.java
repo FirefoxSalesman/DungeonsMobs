@@ -4,7 +4,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.summonables.IceCloudEntity;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactItem;
 import net.firefoxsalesman.dungeonslibs.items.artifacts.ArtifactUseContext;
 import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonslibs.network.NetworkHandler;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;

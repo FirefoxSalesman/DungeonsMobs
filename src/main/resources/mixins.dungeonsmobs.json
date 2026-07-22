@@ -13,10 +13,7 @@
     "GoalSelectorAccessor",
     "HuskAccessor",
     "PiglinAccessor",
-    "SpiderEntityMixin",
-    "AbstractHorseAccessor",
-    "LlamaInvoker",
-    "MobEffectInstanceAccessor"
+    "SpiderEntityMixin"
   ],
   "client": [
     "SpiderModelMixin"

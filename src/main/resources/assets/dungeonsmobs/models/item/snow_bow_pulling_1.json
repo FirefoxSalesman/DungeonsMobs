@@ -1,6 +1,0 @@
-{
-    "parent": "dungeonsmobs:item/snow_bow",
-    "textures": {
-        "layer0": "dungeonsmobs:item/snow_bow_pulling_1"
-    }
-}

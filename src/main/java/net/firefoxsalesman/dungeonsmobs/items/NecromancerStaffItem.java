@@ -12,7 +12,7 @@ import net.firefoxsalesman.dungeonslibs.items.interfaces.ISoulConsumer;
 import net.firefoxsalesman.dungeonslibs.network.BreakItemMessage;
 import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.firefoxsalesman.dungeonslibs.utils.SoundHelper;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
+import net.firefoxsalesman.dungeonslibs.network.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

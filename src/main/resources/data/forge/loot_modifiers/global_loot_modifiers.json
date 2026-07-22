@@ -1,14 +1,6 @@
 {
   "replace": false,
   "entries": [
-    "dungeonsmobs:basic",
-    "dungeonsmobs:cold",
-    "dungeonsmobs:desert",
-    "dungeonsmobs:ocean",
-    "dungeonsmobs:jungle",
-    "dungeonsmobs:nether",
-    "dungeonsmobs:village",
-    "dungeonsmobs:end",
     "dungeonsmobs:endersent_map",
     "dungeonsmobs:goety_necromancer"
   ]
