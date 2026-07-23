@@ -13,7 +13,9 @@
     "GoalSelectorAccessor",
     "HuskAccessor",
     "PiglinAccessor",
-    "SpiderEntityMixin"
+    "PiglinEntityMixin",
+    "SpiderEntityMixin",
+    "ZombifiedPiglinEntityMixin"
   ],
   "client": [
     "SpiderModelMixin"

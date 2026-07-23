@@ -53,15 +53,10 @@ public class ModItems {
 					new Item.Properties().durability(336)));
 
 	// Armour
-	public static final RegistryObject<Item> NETHERITE_PIGLIN_HELMET = ITEMS.register("netherite_piglin_helmet",
-			() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE, Type.HELMET,
-					new Item.Properties()));
 	public static final RegistryObject<Item> CRACKED_NETHERITE_PIGLIN_HELMET = ITEMS
 			.register("cracked_netherite_piglin_helmet",
 					() -> new PiglinHelmetItem(CustomArmorMaterial.PURE_NETHERITE,
 							Type.HELMET, new Item.Properties()));
-	public static final RegistryObject<Item> GOLD_PIGLIN_HELMET = ITEMS.register("gold_piglin_helmet",
-			() -> new PiglinHelmetItem(ArmorMaterials.GOLD, Type.HELMET, new Item.Properties()));
 	public static final RegistryObject<Item> CRACKED_GOLD_PIGLIN_HELMET = ITEMS.register(
 			"cracked_gold_piglin_helmet",
 			() -> new PiglinHelmetItem(ArmorMaterials.GOLD, Type.HELMET, new Item.Properties()));

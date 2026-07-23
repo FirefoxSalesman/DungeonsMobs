@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class CustomPiglinRenderer extends PiglinRenderer {
@@ -76,10 +77,10 @@ public class CustomPiglinRenderer extends PiglinRenderer {
 
 	private String maybeAddArmorPrefix(Mob mobEntity, String in) {
 		Item helmetItem = mobEntity.getItemBySlot(EquipmentSlot.HEAD).getItem();
-		if (helmetItem.equals(ModItems.GOLD_PIGLIN_HELMET.get())
+		if (helmetItem.equals(Items.GOLDEN_HELMET)
 				|| helmetItem.equals(ModItems.CRACKED_GOLD_PIGLIN_HELMET.get())) {
 			return "gold_armored_" + in;
-		} else if (helmetItem.equals(ModItems.NETHERITE_PIGLIN_HELMET.get())
+		} else if (helmetItem.equals(Items.NETHERITE_HELMET)
 				|| helmetItem.equals(ModItems.CRACKED_NETHERITE_PIGLIN_HELMET.get())) {
 			return "netherite_armored_" + in;
 		}
