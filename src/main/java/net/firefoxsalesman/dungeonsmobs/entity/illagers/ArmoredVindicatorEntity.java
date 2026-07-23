@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -26,7 +27,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntity {
@@ -42,7 +42,7 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-		if (ModList.get().isLoaded("dungeonsgear"))
+		if (ModHelper.hasMod("dungeonsgear"))
 			this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsgear", "double_axe"))));
 		else
@@ -52,7 +52,7 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (ModList.get().isLoaded("dungeonsgear")) {
+		if (ModHelper.hasMod("dungeonsgear")) {
 			Item DOUBLE_AXE = ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsmobs", "double_axe"));
 

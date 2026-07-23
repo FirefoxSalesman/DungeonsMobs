@@ -11,6 +11,7 @@ import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -51,7 +52,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -198,8 +198,8 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		if (ModList.get().isLoaded("dungeonsgear")) {
-			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsmobs", "mace"));
+		if (ModHelper.hasMod("dungeonsgear")) {
+			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			ItemStack mace = new ItemStack(MACE);
 			if (getCurrentRaid() == null) {
@@ -216,8 +216,8 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (ModList.get().isLoaded("dungeonsgear")) {
-			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsmobs", "mace"));
+		if (ModHelper.hasMod("dungeonsgear")) {
+			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			mainhandWeapon = new ItemStack(MACE);
 		}
