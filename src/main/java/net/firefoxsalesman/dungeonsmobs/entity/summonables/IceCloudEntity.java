@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
-import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
+import net.firefoxsalesman.dungeonslibs.init.ParticleInit;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.minecraft.core.BlockPos;
@@ -156,13 +156,13 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 
 		if (this.level().isClientSide && landTimer.animationsUseable()) {
 			if (this.hasFormed) {
-				this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(), this.getRandomX(0.5D),
+				this.level().addParticle(ParticleInit.SNOWFLAKE.get(), this.getRandomX(0.5D),
 						this.getRandomY() - 0.25D, this.getRandomZ(0.5D),
 						(this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(),
 						(this.random.nextDouble() - 0.5D) * 2.0D);
 			} else {
 				for (int i = 0; i < 2; i++) {
-					this.level().addParticle(ModParticleTypes.SNOWFLAKE.get(),
+					this.level().addParticle(ParticleInit.SNOWFLAKE.get(),
 							this.getRandomX(0.5D), this.getRandomY() - 0.25D,
 							this.getRandomZ(0.5D),
 							-(this.random.nextDouble() - 0.5D) * 2.0D,

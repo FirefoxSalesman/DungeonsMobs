@@ -6,7 +6,6 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
-import net.firefoxsalesman.dungeonsmobs.client.particle.SnowflakeParticle;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.EmptyRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.blaze.WildfireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
@@ -188,8 +187,6 @@ public class ClientEvents {
 	public static void onParticleFactory(RegisterParticleProvidersEvent event) {
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.DUST.get(),
 				DustParticle.Factory::new);
-		Minecraft.getInstance().particleEngine.register(ModParticleTypes.SNOWFLAKE.get(),
-				SnowflakeParticle.Factory::new);
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.CORRUPTED_MAGIC.get(),
 				CorruptedMagicParticle.Factory::new);
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.CORRUPTED_DUST.get(),

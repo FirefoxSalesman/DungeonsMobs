@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.creepers;
 import java.util.Collection;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
-import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
+import net.firefoxsalesman.dungeonslibs.init.ParticleInit;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,7 +39,7 @@ public class IcyCreeperEntity extends Creeper {
 	@Override
 	public void aiStep() {
 		if (level().isClientSide) {
-			level().addParticle(ModParticleTypes.SNOWFLAKE.get(), getRandomX(0.5D),
+			level().addParticle(ParticleInit.SNOWFLAKE.get(), getRandomX(0.5D),
 					getRandomY() - 0.25D, getRandomZ(0.5D),
 					(random.nextDouble() - 0.5D) * 2.0D, -random.nextDouble(),
 					(random.nextDouble() - 0.5D) * 2.0D);
@@ -106,7 +106,7 @@ public class IcyCreeperEntity extends Creeper {
 			double d0 = random.nextGaussian() * 0.6D;
 			double d1 = random.nextGaussian() * 0.3D;
 			double d2 = random.nextGaussian() * 0.6D;
-			level().addParticle(ModParticleTypes.SNOWFLAKE.get(), getX(), getY(), getZ(), d0, d1, d2);
+			level().addParticle(ParticleInit.SNOWFLAKE.get(), getX(), getY(), getZ(), d0, d1, d2);
 		}
 
 	}
