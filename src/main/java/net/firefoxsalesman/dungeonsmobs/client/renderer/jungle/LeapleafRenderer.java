@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.jungle;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.jungle.LeapleafModel;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.LeapleafEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

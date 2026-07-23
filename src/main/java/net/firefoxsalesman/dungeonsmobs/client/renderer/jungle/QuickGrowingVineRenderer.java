@@ -1,7 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.jungle;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.jungle.QuickGrowingVineModel;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;

@@ -153,7 +153,7 @@ dependencies {
     // Use the full Curios API jar at runtime
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
-    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8437452")
+    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8494459")
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {

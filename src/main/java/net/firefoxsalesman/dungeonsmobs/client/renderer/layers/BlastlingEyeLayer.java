@@ -5,6 +5,7 @@ import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.BlastlingEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

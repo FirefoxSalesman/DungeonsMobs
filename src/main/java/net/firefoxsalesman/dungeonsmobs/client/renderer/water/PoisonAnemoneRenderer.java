@@ -4,7 +4,7 @@ import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.jungle.PoisonQuillVineModel;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.AbstractVineRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.AbstractVineEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

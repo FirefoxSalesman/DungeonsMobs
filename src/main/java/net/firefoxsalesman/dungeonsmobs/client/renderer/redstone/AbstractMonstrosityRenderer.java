@@ -6,8 +6,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.redstone.AbstractMonstrosityModel;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.AbstractMonstrosityEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

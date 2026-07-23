@@ -1,13 +1,14 @@
 package net.firefoxsalesman.dungeonsmobs.client.renderer.ender;
 
+import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GenericEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.client.models.ender.EyeHolderEndersentModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GenericEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
-import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -18,12 +19,13 @@ public class EyeHolderEndersentRenderer
 	public EyeHolderEndersentRenderer(Context pContext) {
 		super(pContext, new EyeHolderEndersentModel<>(
 				pContext.bakeLayer(ModModelLayers.EYE_HOLDER_ENDERSENT_BODY)), 2);
-		addLayer(new GenericEyeLayer<>(this, "textures/entity/ender/eye_holder_endersent_eyes.png"));
+		addLayer(new GenericEyeLayer<>(this,
+				modLoc("textures/entity/ender/eye_holder_endersent_eyes.png")));
 	}
 
 	@Override
 	public ResourceLocation getTextureLocation(EyeHolderEndersentEntity pEntity) {
-		return GeneralHelper.modLoc("textures/entity/ender/eye_holder_endersent.png");
+		return modLoc("textures/entity/ender/eye_holder_endersent.png");
 	}
 
 	protected void setupRotations(EyeHolderEndersentEntity pEntityLiving, PoseStack pMatrixStack, float pAgeInTicks,

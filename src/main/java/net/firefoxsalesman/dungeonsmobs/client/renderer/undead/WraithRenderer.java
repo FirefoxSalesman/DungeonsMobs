@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.undead.WraithModel;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.PulsatingGlowLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.PulsatingGlowLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.WraithEntity;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.renderer.MultiBufferSource;

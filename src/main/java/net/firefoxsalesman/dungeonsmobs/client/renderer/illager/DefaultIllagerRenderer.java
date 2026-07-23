@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.illager;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ArmorLayer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.ItemLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.ArmorLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.ItemLayer;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.client.renderer.water;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.firefoxsalesman.dungeonsmobs.client.renderer.jungle.WhispererRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.GeoEyeLayer;
+import net.firefoxsalesman.dungeonslibs.client.renderer.layers.GeoEyeLayer;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WaveWhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import static net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper.modLoc;

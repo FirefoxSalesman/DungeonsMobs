@@ -1,5 +1,5 @@
-* TODO [#B] Redstone monstrosity projectile attack
+* TODO When you remove generic eye layer, remember that the library version uses a resource location
 
-[[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/entity/redstone/RedstoneMonstrosityEntity.java::package net.firefoxsalesman.dungeonsmobs.entity.redstone;]]
+[[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/client/renderer/layers/GenericEyeLayer.java]]
 * TODO [#A] Pull Dungeons Gear into its own repo
 DEADLINE: <2026-07-24 Fri>
