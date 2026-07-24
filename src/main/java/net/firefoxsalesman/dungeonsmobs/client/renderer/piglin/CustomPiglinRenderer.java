@@ -78,10 +78,13 @@ public class CustomPiglinRenderer extends PiglinRenderer {
 	private String maybeAddArmorPrefix(Mob mobEntity, String in) {
 		Item helmetItem = mobEntity.getItemBySlot(EquipmentSlot.HEAD).getItem();
 		if (helmetItem.equals(Items.GOLDEN_HELMET)
-				|| helmetItem.equals(ModItems.CRACKED_GOLD_PIGLIN_HELMET.get())) {
+				|| helmetItem.equals(ForgeRegistries.ITEMS.getValue(
+						new ResourceLocation("dungeonsgear", "cracked_gold_piglin_helmet")))) {
 			return "gold_armored_" + in;
 		} else if (helmetItem.equals(Items.NETHERITE_HELMET)
-				|| helmetItem.equals(ModItems.CRACKED_NETHERITE_PIGLIN_HELMET.get())) {
+				|| helmetItem.equals(ForgeRegistries.ITEMS.getValue(
+						new ResourceLocation("dungeonsgear",
+								"cracked_netherite_piglin_helmet")))) {
 			return "netherite_armored_" + in;
 		}
 		return in;

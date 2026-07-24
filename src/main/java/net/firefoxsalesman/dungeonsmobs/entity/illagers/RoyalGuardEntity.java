@@ -107,18 +107,18 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 	}
 
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
-			MobSpawnType spawnType, @Nullable SpawnGroupData groupData,
-			@Nullable CompoundTag compoundTag) {
-		SpawnGroupData ilivingentitydata = super.finalizeSpawn(accessor, difficulty, spawnType,
-				groupData,
-				compoundTag);
-		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
-		populateDefaultEquipmentSlots(getRandom(), difficulty);
-		populateDefaultEquipmentEnchantments(getRandom(), difficulty);
-		return ilivingentitydata;
-	}
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
+	MobSpawnType spawnType, @Nullable SpawnGroupData groupData,
+	@Nullable CompoundTag compoundTag) {
+	SpawnGroupData ilivingentitydata = super.finalizeSpawn(accessor, difficulty, spawnType,
+	    groupData,
+	    compoundTag);
+	((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
+	populateDefaultEquipmentSlots(getRandom(), difficulty);
+	populateDefaultEquipmentEnchantments(getRandom(), difficulty);
+	return ilivingentitydata;
+    }
 
 	@Override
 	public boolean isLeftHanded() {
