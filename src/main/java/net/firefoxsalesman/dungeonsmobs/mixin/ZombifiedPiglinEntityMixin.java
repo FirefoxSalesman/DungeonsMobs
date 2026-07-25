@@ -1,16 +1,29 @@
 package net.firefoxsalesman.dungeonsmobs.mixin;
 
+import javax.annotation.Nullable;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.goals.SmartZombieAttackGoal;
-import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossbowUser;
+import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossBowUser;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
 import net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal;
@@ -25,16 +38,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import javax.annotation.Nullable;
 
 @Mixin(ZombifiedPiglin.class)
-public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmartCrossbowUser, CrossbowAttackMob {
+public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmartCrossBowUser, CrossbowAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_IS_CROSSBOW_USER = SynchedEntityData
 			.defineId(ZombifiedPiglin.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_IS_CHARGING_CROSSBOW = SynchedEntityData
@@ -44,8 +50,9 @@ public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmar
 		super(entityType, world);
 	}
 
-	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V"), method = "addBehaviourGoals")
-	private void addCustomGoal(GoalSelector goalSelector, int priority, Goal originalGoal) {
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V"), method = "addBehaviourGoals")
+	private void addCustomGoal(GoalSelector goalSelector, int priority, Goal originalGoal,
+			Operation<Void> original) {
 		if (goalSelector == this.goalSelector && priority == 2 && originalGoal instanceof ZombieAttackGoal) {
 			goalSelector.addGoal(priority, new SmartZombieAttackGoal(this, 1.0D, false));
 			goalSelector.addGoal(priority, new RangedCrossbowAttackGoal<>(this, 1.0D, 8.0F));
@@ -61,12 +68,12 @@ public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmar
 
 	@Inject(at = @At("TAIL"), method = "readAdditionalSaveData")
 	private void readAdditional(CompoundTag compoundNBT, CallbackInfo ci) {
-		this.readCrossbowUserNBT(compoundNBT);
+		this.loadXbowNBT(compoundNBT);
 	}
 
 	@Inject(at = @At("TAIL"), method = "addAdditionalSaveData")
 	private void writeAdditional(CompoundTag compoundNBT, CallbackInfo ci) {
-		this.writeCrossbowUserNBT(compoundNBT);
+		this.saveXbowNBT(compoundNBT);
 	}
 
 	@Nullable

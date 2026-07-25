@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossbowUser;
+import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossBowUser;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
 @Mixin(Piglin.class)
-public abstract class PiglinEntityMixin extends AbstractPiglin implements ISmartCrossbowUser {
+public abstract class PiglinEntityMixin extends AbstractPiglin implements ISmartCrossBowUser {
 
 	@Shadow
 	protected abstract boolean isChargingCrossbow();
@@ -37,12 +37,12 @@ public abstract class PiglinEntityMixin extends AbstractPiglin implements ISmart
 
 	@Inject(at = @At("TAIL"), method = "readAdditionalSaveData")
 	private void readAdditional(CompoundTag compoundNBT, CallbackInfo ci) {
-		this.readCrossbowUserNBT(compoundNBT);
+		this.loadXbowNBT(compoundNBT);
 	}
 
 	@Inject(at = @At("TAIL"), method = "addAdditionalSaveData")
 	private void writeAdditional(CompoundTag compoundNBT, CallbackInfo ci) {
-		this.writeCrossbowUserNBT(compoundNBT);
+		this.saveXbowNBT(compoundNBT);
 	}
 
 	@Inject(at = @At("TAIL"), method = "finalizeSpawn")

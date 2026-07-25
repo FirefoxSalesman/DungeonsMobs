@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.firefoxsalesman.dungeonsmobs.client.models.FungusSackModel;
 import net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.layers.FungusSackLayer;
-import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossbowUser;
+import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossBowUser;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -46,8 +46,8 @@ public class CustomPiglinRenderer extends PiglinRenderer {
 		// want to use the vanilla path for its texture
 		boolean isVanillaMob = mobEntity.getType() == EntityType.PIGLIN
 				|| mobEntity.getType() == EntityType.ZOMBIFIED_PIGLIN;
-		if (isVanillaMob && mobEntity instanceof ISmartCrossbowUser
-				&& !((ISmartCrossbowUser) mobEntity).isCrossbowUser()) {
+		if (isVanillaMob && mobEntity instanceof ISmartCrossBowUser
+				&& !((ISmartCrossBowUser) mobEntity).isCrossbowUser()) {
 			return super.getTextureLocation(mobEntity);
 		}
 
@@ -91,7 +91,7 @@ public class CustomPiglinRenderer extends PiglinRenderer {
 	}
 
 	private String maybeAddHunterSuffix(Mob mobEntity, String in) {
-		if (mobEntity instanceof ISmartCrossbowUser && ((ISmartCrossbowUser) mobEntity).isCrossbowUser()) {
+		if (mobEntity instanceof ISmartCrossBowUser && ((ISmartCrossBowUser) mobEntity).isCrossbowUser()) {
 			return in + "_hunter";
 		}
 		return in;
