@@ -1,10 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
 import net.firefoxsalesman.dungeonsmobs.items.BlueNethershroomItem;
-import net.firefoxsalesman.dungeonsmobs.items.CustomArmorMaterial;
+import net.firefoxsalesman.dungeonsmobs.items.ColoredTridentItem;
 import net.firefoxsalesman.dungeonsmobs.items.GeomancerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.IceWandItem;
-import net.firefoxsalesman.dungeonsmobs.items.PiglinHelmetItem;
 import net.firefoxsalesman.dungeonsmobs.items.WindcallerStaffItem;
 import net.firefoxsalesman.dungeonsmobs.items.MountaineerAxeItem;
 import net.firefoxsalesman.dungeonsmobs.items.NecromancerStaffItem;
@@ -20,7 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.ArmorItem.Type;
-import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -90,14 +89,15 @@ public class ModItems {
 		return ITEMS.getEntries();
 	}
 
-	private static ArmorSet registerArmorSet(String armorSetId, String helmetId, String chestId, String legsId,
-			String bootsId) {
-		return registerArmorSet(armorSetId, helmetId, chestId, legsId, bootsId, false);
-	}
-
 	// PROJECTILES
 	public static final RegistryObject<Item> BLUE_NETHERSHROOM = ITEMS.register("blue_nethershroom",
 			() -> new BlueNethershroomItem(new Item.Properties().stacksTo(16)));
+	// TRIDENTS
+	public static final RegistryObject<Item> YELLOW_TRIDENT = ITEMS.register("yellow_trident",
+			() -> new ColoredTridentItem((new Item.Properties().durability(250)), DyeColor.YELLOW));
+
+	public static final RegistryObject<Item> PURPLE_TRIDENT = ITEMS.register("purple_trident",
+			() -> new ColoredTridentItem((new Item.Properties().durability(250)), DyeColor.PURPLE));
 
 	private static ArmorSet registerArmorSet(String armorSetId, String helmetId, String chestId, String legsId,
 			String bootsId, boolean animated) {

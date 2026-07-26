@@ -15,10 +15,13 @@
     "PiglinAccessor",
     "PiglinEntityMixin",
     "SpiderEntityMixin",
+    "TridentEntityAccessor",
+    "TridentEntityMixin",
     "ZombifiedPiglinEntityMixin"
   ],
   "client": [
-    "SpiderModelMixin"
+    "SpiderModelMixin",
+    "TridentRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

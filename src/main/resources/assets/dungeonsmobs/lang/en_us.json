@@ -26,6 +26,9 @@
   "item.dungeonsmobs.necromancer_trident": "Necromancer Trident",
   "lore.dungeonsmobs.necromancer_trident": "Ceremonial Trident of the the mage-priests of the Abyssal Monument, gleams with the azure glint of a sunken star, this staff grants power over the storm and the dead.",
   "ability.dungeonsmobs.necromancer_trident": "Calls down 8 tridents around the target that causes a thunderbolt where they land.",
+  "item.dungeonsmobs.yellow_trident": "Yellow Trident",
+  "item.dungeonsmobs.purple_trident": "Purple Trident",
+
   "entity.dungeonsmobs.windcaller": "Windcaller",
   "item.dungeonsmobs.windcaller_spawn_egg": "Windcaller Spawn Egg",
   "entity.dungeonsmobs.mountaineer": "Mountaineer",
