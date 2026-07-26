@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -90,5 +91,11 @@ public class CustomISTER extends BlockEntityWithoutLevelRenderer {
 
 	public static ResourceLocation getTridentTexture(DyeColor dyeColor) {
 		return GeneralHelper.modLoc(String.format("textures/entity/%s_trident.png", dyeColor.getName()));
+	}
+
+	public static ModelResourceLocation getTridentMRL(DyeColor dyeColor, boolean inHand) {
+		ResourceLocation resourceLoc = GeneralHelper
+				.modLoc(String.format("%s_trident%s", dyeColor.getName(), inHand ? "_in_hand" : ""));
+		return new ModelResourceLocation(resourceLoc, "inventory");
 	}
 }

@@ -56,20 +56,22 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.NecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.SkeletonVanguardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.water.CustomDrownedRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.DrownedNecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.items.shield.CustomISTER;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -82,6 +84,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.FROZEN_ZOMBIE.get(), CustomZombieRenderer::new);
 		// To match Husk proportions found in MCD
 		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
+		event.registerEntityRenderer(EntityType.DROWNED, CustomDrownedRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
 		event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
@@ -191,5 +194,13 @@ public class ClientEvents {
 				CorruptedMagicParticle.Factory::new);
 		Minecraft.getInstance().particleEngine.register(ModParticleTypes.CORRUPTED_DUST.get(),
 				CorruptedDustParticle.Factory::new);
+	}
+
+	@SubscribeEvent
+	public static void onClientSetup(ModelEvent.RegisterAdditional event) {
+		event.register(CustomISTER.getTridentMRL(DyeColor.YELLOW, false));
+		event.register(CustomISTER.getTridentMRL(DyeColor.PURPLE, false));
+		event.register(CustomISTER.getTridentMRL(DyeColor.YELLOW, true));
+		event.register(CustomISTER.getTridentMRL(DyeColor.PURPLE, true));
 	}
 }
