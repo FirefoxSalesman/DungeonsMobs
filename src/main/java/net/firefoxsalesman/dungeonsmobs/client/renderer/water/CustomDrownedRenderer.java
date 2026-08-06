@@ -31,7 +31,11 @@ public class CustomDrownedRenderer extends DrownedRenderer {
 			} else if (texture.equals(
 					GeneralHelper.modLoc("textures/entity/ocean/pale_armored_drowned.png"))) {
 				outerLayer.setEliteState(DrownedEliteState.PALE);
+			} else {
+				outerLayer.setEliteState(DrownedEliteState.ORDINARY);
 			}
+		} else {
+			outerLayer.setEliteState(DrownedEliteState.ORDINARY);
 		}
 
 		return super.getTextureLocation(pEntity);
