@@ -154,6 +154,8 @@ dependencies {
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
     implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8494459")
+    runtimeOnly(fg.deobf("curse.maven:bagus-lib-866533:6944371"))
+    implementation fg.deobf("curse.maven:enchant-with-mob-913523:7187787")
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {
