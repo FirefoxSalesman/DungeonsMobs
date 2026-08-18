@@ -23,7 +23,7 @@
 	"Count": 1
       },
       "weight": 25,
-      "texture": "dungeonsmobs:textures/entity/ocean/seaweed_armored_drowned.png"
+      "texture": "dungeonslibs:textures/entity/ocean/seaweed_armored_drowned.png"
     },
     {
       "attributes": [
@@ -48,7 +48,7 @@
 	"Count": 1
       },
       "weight": 5,
-      "texture": "dungeonsmobs:textures/entity/ocean/pale_armored_drowned.png"
+      "texture": "dungeonslibs:textures/entity/ocean/pale_armored_drowned.png"
     }
   ]
 }

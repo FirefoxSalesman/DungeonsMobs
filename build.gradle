@@ -153,7 +153,7 @@ dependencies {
     // Use the full Curios API jar at runtime
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
-    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8494459")
+    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8664505")
     runtimeOnly(fg.deobf("curse.maven:bagus-lib-866533:6944371"))
     implementation fg.deobf("curse.maven:enchant-with-mob-913523:7187787")
 

@@ -56,7 +56,6 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.CustomZombieRende
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.NecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.SkeletonVanguardRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.undead.WraithRenderer;
-import net.firefoxsalesman.dungeonsmobs.client.renderer.water.CustomDrownedRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.DrownedNecromancerRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.PoisonAnemoneRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.QuickGrowingKelpRenderer;
@@ -84,7 +83,6 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.FROZEN_ZOMBIE.get(), CustomZombieRenderer::new);
 		// To match Husk proportions found in MCD
 		event.registerEntityRenderer(EntityType.HUSK, CustomZombieRenderer::new);
-		event.registerEntityRenderer(EntityType.DROWNED, CustomDrownedRenderer::new);
 
 		event.registerEntityRenderer(ModEntities.MOSSY_SKELETON.get(), CustomSkeletonRenderer::new);
 		event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
