@@ -7,7 +7,7 @@
   "mixins": [
     "AbstractArrowEntityMixin",
     "CropsBlockMixin",
-    // "MooshroomEntityMixin",
+    "MooshroomEntityMixin",
     "CowEntityMixin",
     "EntityAccessor",
     "GoalSelectorAccessor",

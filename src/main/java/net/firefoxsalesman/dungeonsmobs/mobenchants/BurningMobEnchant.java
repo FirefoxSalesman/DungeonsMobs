@@ -2,17 +2,20 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobProps;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobPropsHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
 import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
 import static net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants.BURNING;
 
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class BurningMobEnchant extends MobEnchant {
 
 	public BurningMobEnchant(Properties properties) {

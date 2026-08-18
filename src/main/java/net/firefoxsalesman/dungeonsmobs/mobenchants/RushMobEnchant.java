@@ -1,13 +1,16 @@
 package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class RushMobEnchant extends MobEnchant {
 
 	public RushMobEnchant(Properties properties) {
