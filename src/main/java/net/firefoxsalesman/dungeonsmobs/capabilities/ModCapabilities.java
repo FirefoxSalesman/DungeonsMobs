@@ -3,6 +3,8 @@ package net.firefoxsalesman.dungeonsmobs.capabilities;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.AttacherConvertible;
 import net.firefoxsalesman.dungeonsmobs.capabilities.convertible.Convertible;
+import net.firefoxsalesman.dungeonsmobs.capabilities.properties.AttacherMobProps;
+import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobProps;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -18,14 +20,18 @@ public class ModCapabilities {
 	public static final Capability<Convertible> CONVERTIBLE_CAPABILITY = CapabilityManager
 			.get(new CapabilityToken<>() {
 			});
+	public static final Capability<MobProps> MOB_PROPS_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+	});
 
 	public static void setupCapabilities() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Entity.class, AttacherConvertible::attach);
+		forgeBus.addGenericListener(Entity.class, AttacherMobProps::attach);
 	}
 
 	@SubscribeEvent
 	public static void registerCaps(RegisterCapabilitiesEvent event) {
 		event.register(Convertible.class);
+		event.register(MobProps.class);
 	}
 }

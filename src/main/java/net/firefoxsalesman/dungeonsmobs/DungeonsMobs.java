@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
@@ -62,11 +63,13 @@ public class DungeonsMobs {
 		ModItems.register(modEventBus);
 		ModParticleTypes.register(modEventBus);
 
+		ModCapabilities.setupCapabilities();
+
 		ModMobEnchants.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
-		ModStructureModifiers.STRUCTURE_MODIFIER_SERIALIZERS.register(modEventBus);
+		ModStructureModifiers.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
