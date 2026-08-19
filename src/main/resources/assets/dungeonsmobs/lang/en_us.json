@@ -107,14 +107,17 @@
   "death.dungeonsmobs.blastling": "%1$s was blasted",
   "death.attack.dungeonsmobs.blastling": "%1$s was blasted by %2$s",
 
-  "death.ice_chunk": "%1$s was crushed by an Ice Chunk",
-  "death.attack.ice_chunk": "%1$s was crushed by an Ice Chunk from %2$s",
+  "death.dungeonsmobs.ice_chunk": "%1$s was crushed by an Ice Chunk",
+  "death.attack.dungeonsmobs.ice_chunk": "%1$s was crushed by an Ice Chunk from %2$s",
 
-  "death.summoned_trident_storm": "%1$s was struck by an electrically charged trident",
-  "death.attack.summoned_trident_storm": "%1$s was struck by an electrically charged trident summoned by %2$s",
+  "death.dungeonsmobs.summoned_trident_storm": "%1$s was struck by an electrically charged trident",
+  "death.attack.dungeonsmobs.summoned_trident_storm": "%1$s was struck by an electrically charged trident summoned by %2$s",
 
-  "death.trident_storm": "%1$s was struck by an electrically charged trident",
-  "death.attack.trident_storm": "%1$s was struck by an electrically charged trident",
+  "death.dungeonsmobs.trident_storm": "%1$s was struck by an electrically charged trident",
+  "death.attack.dungeonsmobs.trident_storm": "%1$s was struck by an electrically charged trident",
+  
+  "death.dungeonsmobs.poison_quill": "%1$s was hit by a Poison Quill",
+  "death.attack.dungeonsmobs.poison_quill": "%1$s was hit by a Poison Quill from %2$s",
 
   "entity.dungeonsmobs.wraith": "Wraith",
   "item.dungeonsmobs.wraith_spawn_egg": "Wraith Spawn Egg",

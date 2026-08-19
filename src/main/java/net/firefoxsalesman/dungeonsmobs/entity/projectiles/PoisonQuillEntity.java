@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -112,7 +113,7 @@ public class PoisonQuillEntity extends StraightMovingProjectileEntity implements
 		if (!level().isClientSide) {
 			super.onHitEntity(entity);
 			boolean flag;
-			flag = entity.hurt(damageSources().mobProjectile(this,
+			flag = entity.hurt(ModDamageSources.source(level(), ModDamageSources.POISON_QUILL, this,
 					(LivingEntity) MoreObjects.firstNonNull(getOwner(), this)), 5.0F);
 			if (entity instanceof LivingEntity) {
 				int i = 0;

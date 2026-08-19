@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonslibs.init.ParticleInit;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -289,7 +290,8 @@ public class IceCloudEntity extends Entity implements GeoEntity {
 			for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class,
 					this.getBoundingBox().inflate(2.5D), ALIVE)) {
 				entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
-				entity.hurt(damageSources().mobProjectile(this, (LivingEntity) this.owner), 15.0F);
+				entity.hurt(ModDamageSources.source(level(), ModDamageSources.ICE_CHUNK, this,
+						(LivingEntity) this.owner), 15.0F);
 				this.strongKnockback(entity);
 			}
 

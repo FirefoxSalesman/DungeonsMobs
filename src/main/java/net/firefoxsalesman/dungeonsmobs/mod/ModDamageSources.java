@@ -17,6 +17,10 @@ import net.minecraft.world.level.Level;
 public class ModDamageSources {
 	public static ResourceKey<DamageType> ECHO = create("echo");
 	public static ResourceKey<DamageType> BLASTLING = create("blastling");
+	public static ResourceKey<DamageType> ICE_CHUNK = create("ice_chunk");
+	public static ResourceKey<DamageType> SUMMONED_TRIDENT_STORM = create("summoned_trident_storm");
+	public static ResourceKey<DamageType> TRIDENT_STORM = create("trident_storm");
+	public static ResourceKey<DamageType> POISON_QUILL = create("poison_quill");
 
 	public static ResourceKey<DamageType> create(String name) {
 		return ResourceKey.create(Registries.DAMAGE_TYPE, GeneralHelper.modLoc(name));

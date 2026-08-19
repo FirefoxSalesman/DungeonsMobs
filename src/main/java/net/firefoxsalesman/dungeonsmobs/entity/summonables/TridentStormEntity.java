@@ -1,6 +1,8 @@
 package net.firefoxsalesman.dungeonsmobs.entity.summonables;
 
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
+import static net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources.source;
+import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -62,13 +64,16 @@ public class TridentStormEntity extends Entity implements GeoEntity {
 					if (this.lifeTime >= 80 && this.lifeTime <= 90) {
 						if (this.owner != null) {
 							if (livingEntity != this.owner) {
-								livingEntity.hurt(
-										damageSources().mobProjectile(this,
-												(LivingEntity) owner),
+								livingEntity.hurt(source(level(),
+										ModDamageSources.SUMMONED_TRIDENT_STORM,
+										this, (LivingEntity) owner),
 										20);
 							}
 						} else {
-							livingEntity.hurt(damageSources().fallingStalactite(this), 20);
+							livingEntity.hurt(
+									source(level(), ModDamageSources.TRIDENT_STORM,
+											this, null),
+									20);
 						}
 					}
 				}

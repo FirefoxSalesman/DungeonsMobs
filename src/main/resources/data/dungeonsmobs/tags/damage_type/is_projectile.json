@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "dungeonsmobs:blastling",
+    "dungeonsmobs:summoned_trident_storm",
+    "dungeonsmobs:trident_storm",
+    "dungeonsmobs:poison_quill"
+  ]
+}

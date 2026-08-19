@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.Entity;
@@ -39,9 +40,8 @@ public class EchoMobEnchant extends MobEnchant {
 	}
 
 	private static boolean isMelee(DamageSource source, DamageSources sources) {
-		return !DamageSourceHelper.isSource(source, sources.onFire())
-				&& !DamageSourceHelper.isSource(source, sources.inFire())
-				&& !DamageSourceHelper.isSource(source, sources.lava())
+		return !source.is(DamageTypeTags.IS_EXPLOSION)
+				&& !source.is(DamageTypeTags.IS_FIRE)
 				&& !DamageSourceHelper.isSource(source, sources.magic());
 	}
 }
