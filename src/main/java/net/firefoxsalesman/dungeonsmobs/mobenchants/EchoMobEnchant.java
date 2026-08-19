@@ -1,7 +1,11 @@
 package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
+import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
+import static net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants.ECHO;
+
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
+import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,10 +14,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
-import static net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants.ECHO;
-
+@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class EchoMobEnchant extends MobEnchant {
 
 	private static final float ECHO_CHANCE = 0.25f;
