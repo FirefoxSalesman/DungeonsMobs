@@ -1,12 +1,9 @@
 package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
-import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;
-import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
 
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
-import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobProps;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobPropsHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
@@ -14,43 +11,15 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class GravityPulseMobEnchant extends MobEnchant {
-
-	public static final double PULL_IN_SPEED_FACTOR = 0.1;
+	private static final double PULL_IN_SPEED_FACTOR = 0.1;
 
 	public GravityPulseMobEnchant(Properties properties) {
 		super(properties);
 	}
 
-	@SubscribeEvent
-	public static void OnLivingUpdate(LivingEvent.LivingTickEvent event) {
-		LivingEntity entity = event.getEntity();
-
-		executeIfPresentWithLevel(entity, ModMobEnchants.GRAVITY_PULSE.get(), (level) -> {
-			MobProps comboCap = MobPropsHelper.getMobPropsCapability(entity);
-			if (comboCap == null)
-				return;
-			int gravityPulseTimer = comboCap.getGravityPulseTimer();
-			if (gravityPulseTimer <= 0) {
-				PROXY.spawnParticles(entity, ParticleTypes.PORTAL);
-				applyToNearbyEntities(entity, 5F,
-						getCanApplyToEnemyPredicate(entity), (LivingEntity nearbyEntity) -> {
-							pullVictimTowardsTarget(entity, nearbyEntity,
-									ParticleTypes.PORTAL, level);
-						});
-				comboCap.setGravityPulseTimer(100);
-			} else {
-				comboCap.setGravityPulseTimer(gravityPulseTimer - 1);
-			}
-		});
-	}
-
-	public static void pullVictimTowardsTarget(LivingEntity target, LivingEntity nearbyEntity,
+	private static void pullVictimTowardsTarget(LivingEntity target, LivingEntity nearbyEntity,
 			SimpleParticleType particleType, Integer level) {
 		double motionX = target.getX() - (nearbyEntity.getX());
 		double motionY = target.getY() - (nearbyEntity.getY());
@@ -59,5 +28,27 @@ public class GravityPulseMobEnchant extends MobEnchant {
 
 		nearbyEntity.setDeltaMovement(vector3d);
 		PROXY.spawnParticles(nearbyEntity, particleType);
+	}
+
+	public static void doEffect(LivingEntity entity) {
+		NewMobEnchantUtils.executeIfPresentWithLevel(entity, ModMobEnchants.GRAVITY_PULSE.get(), (level) -> {
+			MobProps comboCap = MobPropsHelper.getMobPropsCapability(entity);
+			if (comboCap == null)
+				return;
+			int gravityPulseTimer = comboCap.getGravityPulseTimer();
+			if (gravityPulseTimer <= 0) {
+				PROXY.spawnParticles(entity, ParticleTypes.PORTAL);
+				AreaOfEffectHelper.applyToNearbyEntities(entity, 5F,
+						AreaOfEffectHelper.getCanApplyToEnemyPredicate(entity),
+						(LivingEntity nearbyEntity) -> {
+							pullVictimTowardsTarget(entity,
+									nearbyEntity, ParticleTypes.PORTAL,
+									level);
+						});
+				comboCap.setGravityPulseTimer(100);
+			} else {
+				comboCap.setGravityPulseTimer(gravityPulseTimer - 1);
+			}
+		});
 	}
 }

@@ -65,7 +65,8 @@ public class DungeonsMobs {
 
 		ModCapabilities.setupCapabilities();
 
-		ModMobEnchants.register(modEventBus);
+		if (ModHelper.hasMod("enchantwithmob"))
+			ModMobEnchants.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
