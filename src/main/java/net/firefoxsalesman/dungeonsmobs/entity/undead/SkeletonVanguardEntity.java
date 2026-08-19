@@ -16,8 +16,10 @@ import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -51,6 +53,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, AnimatableMeleeAttackMob, KeyframeEntity {
 	private Map<String, AnimationState> states;
@@ -105,7 +108,10 @@ public class SkeletonVanguardEntity extends Skeleton implements IShieldUser, Ani
 	}
 
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		SpawnEquipmentHelper.equipMainhand(Items.IRON_SWORD.getDefaultInstance(), this);
+		SpawnEquipmentHelper.equipMainhand(ModHelper.hasMod("dungeonsgear")
+				? new ItemStack(ForgeRegistries.ITEMS
+						.getValue(new ResourceLocation("dungeonsgear", "glaive")))
+				: Items.IRON_SWORD.getDefaultInstance(), this);
 		SpawnEquipmentHelper.equipOffhand(ModItems.VANGUARD_SHIELD.get().getDefaultInstance(), this);
 	}
 
