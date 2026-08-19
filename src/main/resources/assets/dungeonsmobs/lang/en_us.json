@@ -115,7 +115,7 @@
 
   "death.dungeonsmobs.trident_storm": "%1$s was struck by an electrically charged trident",
   "death.attack.dungeonsmobs.trident_storm": "%1$s was struck by an electrically charged trident",
-  
+
   "death.dungeonsmobs.poison_quill": "%1$s was hit by a Poison Quill",
   "death.attack.dungeonsmobs.poison_quill": "%1$s was hit by a Poison Quill from %2$s",
 
@@ -244,11 +244,10 @@
   "mobenchant.dungeonsmobs.gravity_pulse": "Gravity Pulse",
   "mobenchant.dungeonsmobs.heals_allies": "Heals Allies",
   "mobenchant.dungeonsmobs.levitation_shot": "Levitation Shot",
-  "mobenchant.dungeonsmobs.multishot": "Multishot",
-  "mobenchant.dungeonsmobs.protection": "Protection",
+  "mobenchant.dungeonsmobs.radiance": "Radiance",
+  "mobenchant.dungeonsmobs.regeneration": "Regeneration",
   "mobenchant.dungeonsmobs.quick": "Quick",
   "mobenchant.dungeonsmobs.tempo_theft": "Tempo Theft",
-  "mobenchant.dungeonsmobs.thorns": "Thorns",
   "mobenchant.dungeonsmobs.rush": "Rush",
 
   "mobenchant.enchantwithmob.name.dungeonsmobs.regeneration": "Regeneration",

@@ -8,6 +8,8 @@ import net.firefoxsalesman.dungeonsmobs.mobenchants.ChillingMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.RadianceMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.RegenerationMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.RushMobEnchant;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,6 +34,11 @@ public class ModMobEnchants {
 	public static final RegistryObject<HealsAlliesMobEnchant> HEALS_ALLIES = MOB_ENCHANTS_DEFERRED.register(
 			"heals_allies",
 			() -> new HealsAlliesMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.RARE, 3)));
+	public static final RegistryObject<RadianceMobEnchant> RADIANCE = MOB_ENCHANTS_DEFERRED.register("radiance",
+			() -> new RadianceMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.RARE, 3)));
+	public static final RegistryObject<RegenerationMobEnchant> REGENERATION = MOB_ENCHANTS_DEFERRED.register(
+			"regeneration",
+			() -> new RegenerationMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 
 	public static void register(IEventBus eventBus) {
 		MOB_ENCHANTS_DEFERRED.register(eventBus);
