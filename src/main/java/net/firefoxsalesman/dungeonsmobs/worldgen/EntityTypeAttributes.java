@@ -27,6 +27,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.jungle.WhispererEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.AbstractMonstrosityEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.slime.ConjuredSlimeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.undead.FrozenZombieEntity;
@@ -72,6 +73,8 @@ public class EntityTypeAttributes {
 		event.put(ModEntities.ICY_CREEPER.get(), IcyCreeperEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.WRAITH.get(), WraithEntity.setCustomAttributes().build());
+
+		event.put(ModEntities.CONJURED_SLIME.get(), ConjuredSlimeEntity.setCustomAttributes().build());
 
 		event.put(ModEntities.REDSTONE_CUBE.get(), RedstoneCubeEntity.setCustomAttributes().build());
 		event.put(ModEntities.REDSTONE_GOLEM.get(), RedstoneGolemEntity.setCustomAttributes().build());

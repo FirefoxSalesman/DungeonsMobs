@@ -122,6 +122,9 @@
   "entity.dungeonsmobs.wraith": "Wraith",
   "item.dungeonsmobs.wraith_spawn_egg": "Wraith Spawn Egg",
 
+  "entity.dungeonsmobs.conjured_slime": "Conjured Slime",
+  "item.dungeonsmobs.conjured_slime_spawn_egg": "Conjured Slime Spawn Egg",
+
   "entity.dungeonsmobs.wraith_fireball": "Wraith Fireball",
   "entity.dungeonsmobs.blue_nethershrooom": "Blue Nethershroom",
 

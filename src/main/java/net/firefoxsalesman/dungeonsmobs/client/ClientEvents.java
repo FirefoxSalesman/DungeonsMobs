@@ -35,6 +35,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.DrownedNecrom
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.MageMissileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.OrbProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.PoisonQuillRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SlimeballRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.projectile.SnarelingGlobRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.MooshroomMonstrosityProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.MooshroomMonstrosityRenderer;
@@ -43,6 +44,7 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneGolemRe
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMineRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMonstrosityProjectileRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.redstone.RedstoneMonstrosityRenderer;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.slime.ConjuredSlimeRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerBombRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.GeomancerWallRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.summonables.IceCloudRenderer;
@@ -120,6 +122,8 @@ public class ClientEvents {
 
 		event.registerEntityRenderer(ModEntities.WRAITH.get(), WraithRenderer::new);
 
+		event.registerEntityRenderer(ModEntities.CONJURED_SLIME.get(), ConjuredSlimeRenderer::new);
+
 		event.registerEntityRenderer(ModEntities.SIMPLE_TRAP.get(), SimpleTrapRenderer::new);
 		event.registerEntityRenderer(ModEntities.KELP_TRAP.get(), KelpTrapRenderer::new);
 
@@ -176,6 +180,7 @@ public class ClientEvents {
 		event.registerEntityRenderer(ModEntities.BLASTLING_BULLET.get(),
 				(manager) -> new OrbProjectileRenderer(manager, 0xFFFF93F7, false));
 		event.registerEntityRenderer(ModEntities.SNARELING_GLOB.get(), SnarelingGlobRenderer::new);
+		event.registerEntityRenderer(ModEntities.SLIMEBALL.get(), SlimeballRenderer::new);
 		event.registerEntityRenderer(ModEntities.COBWEB_PROJECTILE.get(), CobwebProjectileRenderer::new);
 		event.registerEntityRenderer(ModEntities.BLUE_NETHERSHROOM.get(), BlueNethershroomRenderer::new);
 		event.registerEntityRenderer(ModEntities.GEOMANCER_WALL.get(), GeomancerWallRenderer::new);

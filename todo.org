@@ -1,0 +1,11 @@
+* TODO Illusioner
++ Do this with mixins
+* TODO Nameless one (maybe)
+* TODO Mooshroom monstrosity (maybe)
+* TODO Port however much of the arch illager is done
+* TODO Conjured slime
+There doesn't seem to be a model, but there is an entity & a renderer.
+* TODO Decide what to do about ancient mobs
+Ideally, ask someone who would know what the plans were
+* TODO Animated props capability
+* TODO Finish Mixins

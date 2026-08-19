@@ -122,6 +122,14 @@ public class EntitySpawnPlacement {
 				SpawnPlacements.Type.ON_GROUND,
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				Monster::checkMonsterSpawnRules);
+		SpawnPlacements.register(ModEntities.REDSTONE_CUBE.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Monster::checkMonsterSpawnRules);
+		SpawnPlacements.register(ModEntities.CONJURED_SLIME.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				Mob::checkMobSpawnRules);
 
 		// Jungle
 		SpawnPlacements.register(ModEntities.WHISPERER.get(),

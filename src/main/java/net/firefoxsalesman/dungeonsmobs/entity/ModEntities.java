@@ -41,6 +41,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.projectiles.MooshroomMonstrosityP
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.NecromancerOrbEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.PoisonQuillEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.RedstoneMonstrosityProjectileEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SlimeballEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.SnarelingGlobEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.projectiles.WindcallerBlastProjectileEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.MooshroomMonstrosityEntity;
@@ -48,6 +49,7 @@ import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneCubeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneGolemEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMineEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.redstone.RedstoneMonstrosityEntity;
+import net.firefoxsalesman.dungeonsmobs.entity.slime.ConjuredSlimeEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.AreaDamageEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerBombEntity;
 import net.firefoxsalesman.dungeonsmobs.entity.summonables.GeomancerWallEntity;
@@ -224,6 +226,14 @@ public class ModEntities {
 					.clientTrackingRange(8)
 					.build(modLoc("wraith").toString()),
 			0x0a2c40, 0x82d8f8);
+
+	// SLIME
+	public static final RegistryObject<EntityType<ConjuredSlimeEntity>> CONJURED_SLIME = registerEntityWithoutEgg(
+			"conjured_slime",
+			() -> EntityType.Builder.<ConjuredSlimeEntity>of(ConjuredSlimeEntity::new, MobCategory.MONSTER)
+					.sized(2.04F, 2.04F)
+					.clientTrackingRange(10)
+					.build(modLoc("conjured_slime").toString()));
 
 	// REDSTONE
 	public static final RegistryObject<EntityType<RedstoneGolemEntity>> REDSTONE_GOLEM = registerEntity(
@@ -405,6 +415,13 @@ public class ModEntities {
 			0x8b3401, 0xffd528);
 
 	// PROJECTILES
+	public static final RegistryObject<EntityType<SlimeballEntity>> SLIMEBALL = registerEntityWithoutEgg(
+			"slimeball",
+			() -> EntityType.Builder.<SlimeballEntity>of(SlimeballEntity::new, MobCategory.MISC)
+					.sized(0.3125F, 0.3125F)
+					.clientTrackingRange(4)
+					.updateInterval(10)
+					.build(modLoc("slimeball").toString()));
 	public static final RegistryObject<EntityType<BlueNethershroomEntity>> BLUE_NETHERSHROOM = registerEntityWithoutEgg(
 			"blue_nethershroom",
 			() -> EntityType.Builder
