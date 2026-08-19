@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.entity.projectiles;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.AbstractEnderlingEntity;
+import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -44,7 +45,7 @@ public class BlastlingBulletEntity extends NecromancerOrbEntity {
 			Entity entity1 = getOwner();
 			if (entity1 instanceof LivingEntity && !(entity instanceof AbstractEnderlingEntity)) {
 				LivingEntity livingentity = (LivingEntity) entity1;
-				entity.hurt(damageSources().mobProjectile(this, livingentity),
+				entity.hurt(ModDamageSources.source(level(), ModDamageSources.BLASTLING, this, entity1),
 						4.0F);
 			}
 

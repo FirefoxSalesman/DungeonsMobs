@@ -104,8 +104,8 @@
 
   "effect.dungeonsmobs.ensnared" : "Ensnared",
 
-  "death.blastling": "%1$s was blasted",
-  "death.attack.blastling": "%1$s was blasted by %2$s",
+  "death.dungeonsmobs.blastling": "%1$s was blasted",
+  "death.attack.dungeonsmobs.blastling": "%1$s was blasted by %2$s",
 
   "death.ice_chunk": "%1$s was crushed by an Ice Chunk",
   "death.attack.ice_chunk": "%1$s was crushed by an Ice Chunk from %2$s",
