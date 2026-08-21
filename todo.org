@@ -2,10 +2,14 @@
 + Do this with mixins
 * TODO Nameless one (maybe)
 * TODO Mooshroom monstrosity (maybe)
++ I need to learn trig in order to do this
+* TODO Corrupted cauldron (maybe)
 * TODO Port however much of the arch illager is done
-* TODO Conjured slime
-There doesn't seem to be a model, but there is an entity & a renderer.
-* TODO Decide what to do about ancient mobs
-Ideally, ask someone who would know what the plans were
+* TODO Fix conjured slime bullets (they don't render)
+* TODO Port ancient mobs
++ [ ] Fix broken mob enchants
++ [ ] Add missing mob enchants (or just rename some from enchant with mob)
++ [ ] Make it actually do things
 * TODO Animated props capability
+Not currently used for anything. Might be skippable, since timers do this better, in my opinion
 * TODO Finish Mixins
