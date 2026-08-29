@@ -26,14 +26,16 @@ public class MobEnchantEvents {
 			LivingEntity defender = event.getEntity();
 			RushMobEnchant.doEffect(defender);
 			HealsAlliesMobEnchant.doEffect(defender, event.getAmount());
-			// radiance
 			Entity attacker;
 			if (!event.getSource().is(DamageTypeTags.IS_PROJECTILE)) {
 				attacker = event.getSource().getDirectEntity();
 			} else {
 				attacker = event.getSource().getEntity();
 			}
-			if (attacker instanceof LivingEntity)
+			if (attacker instanceof LivingEntity) {
+
+				DoubleDamageMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
+				// radiance
 				executeIfPresentWithLevel((LivingEntity) attacker, ModMobEnchants.RADIANCE.get(),
 						(level) -> {
 							LivingEntity source = event.getSource()
@@ -48,6 +50,7 @@ public class MobEnchantEvents {
 												ParticleTypes.HEART);
 									});
 						});
+			}
 		}
 	}
 

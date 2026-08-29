@@ -5,6 +5,7 @@ import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.BurningMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ChillingMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.DoubleDamageMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
@@ -21,6 +22,9 @@ public class ModMobEnchants {
 			() -> new BurningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<ChillingMobEnchant> CHILLING = MOB_ENCHANTS_DEFERRED.register("chilling",
 			() -> new ChillingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
+	public static final RegistryObject<DoubleDamageMobEnchant> DOUBLE_DAMAGE = MOB_ENCHANTS_DEFERRED.register(
+			"double_damage",
+			() -> new DoubleDamageMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 1)));
 	public static final RegistryObject<EchoMobEnchant> ECHO = MOB_ENCHANTS_DEFERRED.register("echo",
 			() -> new EchoMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 3)));
 	public static final RegistryObject<GravityPulseMobEnchant> GRAVITY_PULSE = MOB_ENCHANTS_DEFERRED.register(
