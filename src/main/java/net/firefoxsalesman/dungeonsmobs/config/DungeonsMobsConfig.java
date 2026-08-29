@@ -21,6 +21,7 @@ public class DungeonsMobsConfig {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICY_CREEPER_GRIEFING;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENDERSENT_BOSS_BAR;
 
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BIOME_SPECIFIC_RAIDERS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMORED_PILLAGERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMORED_VINDICATORS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MOUNTAINEERS_IN_RAIDS;
@@ -102,6 +103,14 @@ public class DungeonsMobsConfig {
 
 			// RAID CONFIGURATION
 			builder.comment("Raid Configuration").push("raid_configuration");
+			ENABLE_BIOME_SPECIFIC_RAIDERS = builder
+					.comment("Enables logic for only allowing certain raiders to spawn as a part of raids in certain biome types.  \n"
+							+ "This will make the Mountaineers, Windcaller, Iceologer and Squall Golem only spawn as raiders in their allowed biomes. \n"
+							+ "If they are not allowed to spawn as part of a raid in a given biome, \n"
+							+ "another equivalent Illager type (Vindicator, Evoker, Ravager) will spawn instead. \n"
+							+ "If they are not configured to be added to raids, \n"
+							+ "they will replace their equivalent Illager type (Vindicator, Evoker, Ravager) in raids taking place in their allowed biomes. [true / false]")
+					.define("enableBiomeSpecificRaiders", false);
 			ENABLE_ARMORED_PILLAGERS_IN_RAIDS = builder
 					.comment("Enable the addition of Armored Pillagers to raids. [true / false]")
 					.define("enableArmoredPillagersInRaids", true);

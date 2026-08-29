@@ -6,6 +6,7 @@
   "refmap": "mixins.dungeonsmobs.refmap.json",
   "mixins": [
     "AbstractArrowEntityMixin",
+    "ArrowAccessor",
     "CropsBlockMixin",
     // "MooshroomEntityMixin",
     "CowEntityMixin",
@@ -14,13 +15,16 @@
     "HuskAccessor",
     "PiglinAccessor",
     "PiglinEntityMixin",
+    "ProjectileEntityMixin",
     "SpiderEntityMixin",
     "TridentEntityAccessor",
     "TridentEntityMixin",
+    "WitherSkeletonEntityMixin",
     "ZombifiedPiglinEntityMixin"
   ],
   "client": [
     "DrownedModelMixin",
+    "PiglinModelMixin",
     "SpiderModelMixin",
     "TridentRendererMixin"
   ],
