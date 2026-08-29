@@ -7,7 +7,6 @@ import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.ex
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.mod.ModDamageSources;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.DamageTypeTags;
@@ -68,20 +67,7 @@ public class MobEnchantEvents {
 		if (ModHelper.hasMod("enchantwithmob")) {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
-			// echo
-			if (entity instanceof LivingEntity
-					&& EchoMobEnchant.isMelee(event.getSource(), entity.damageSources())
-					&& !(event.getSource().is(ModDamageSources.ECHO))) {
-				LivingEntity attacker = (LivingEntity) entity;
-				executeIfPresentWithLevel(attacker, ModMobEnchants.ECHO.get(), (level) -> {
-					if (attacker.getRandom().nextFloat() <= EchoMobEnchant.ECHO_CHANCE * level) {
-						defender.hurt(ModDamageSources.source(entity.level(),
-								ModDamageSources.ECHO, attacker, null),
-								event.getAmount());
-						defender.invulnerableTime = 0;
-					}
-				});
-			}
+			EchoMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
 		}
 	}
 }
