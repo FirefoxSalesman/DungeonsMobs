@@ -35,6 +35,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
+import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonslibs.network.CommonProxy;
 import net.firefoxsalesman.dungeonslibs.client.ClientProxy;
 
@@ -92,6 +93,7 @@ public class DungeonsMobs {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
+		event.enqueueWork(NetworkHandler::init);
 		event.enqueueWork(EntitySpawnPlacement::createPlacementTypes);
 		event.enqueueWork(EntitySpawnPlacement::initSpawnPlacements);
 		event.enqueueWork(RaidEntries::initWaveMemberEntries);

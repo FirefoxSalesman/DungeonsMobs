@@ -5,7 +5,7 @@
   "uniques": [
     {
       "name": "Grim Guardian",
-      "mob_enchantments": ["dungeonsmobs:echo", "dungeonsmobs:protection", "dungeonsmobs:quick", "dungeonsmobs:radiance"],
+      "mob_enchantments": ["dungeonsmobs:echo", "dungeonsmobs:protection", "enchantwithmob:speedy", "dungeonsmobs:radiance"],
       "minion": "dungeonsmobs:necromancer",
       "minion_mob_enchantments": ["dungeonsmobs:heals_allies"],
       "minion_count": 6

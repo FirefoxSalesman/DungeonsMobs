@@ -24,7 +24,7 @@ public class AncientEvents {
 	public static void onPlayerStartTracking(PlayerEvent.StartTracking event) {
 		Player player = event.getEntity();
 		Entity target = event.getTarget();
-		if (player instanceof ServerPlayer) {
+		if (player instanceof ServerPlayer && target != null && player != null) {
 			Ancient cap = AncientHelper.getAncientCapability(target);
 			if (cap.isAncient()) {
 				NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),

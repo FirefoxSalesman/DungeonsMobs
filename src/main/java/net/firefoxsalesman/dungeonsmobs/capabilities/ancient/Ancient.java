@@ -20,6 +20,7 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 		this.ancient = ancient;
 	}
 
+	// TODO Make this appear & dissapear when it's supposed to
 	public boolean initiateBossBar(Component displayName) {
 		bossInfo = new ServerBossEvent(displayName, BossEvent.BossBarColor.YELLOW,
 				BossEvent.BossBarOverlay.PROGRESS);
