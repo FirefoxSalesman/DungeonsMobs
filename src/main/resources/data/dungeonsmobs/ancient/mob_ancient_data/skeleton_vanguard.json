@@ -1,0 +1,14 @@
+{
+  "adjectives": ["The Ancient", "The Forgotten", "The Timeless"],
+  "nouns": ["Sentinel", "Watchman", "Guardian"],
+  "minions": ["minecraft:zombie", "minecraft:skeleton", "dungeonsmobs:necromancer"],
+  "uniques": [
+    {
+      "name": "Cursed Presence",
+      "mob_enchantments": ["dungeonsmobs:chilling", "dungeonsmobs:gravity_pulse", "enchantwithmob:poison_cloud"],
+      "minion": "minecraft:zombie",
+      "minion_mob_enchantments": ["dungeonsmobs:burning"],
+      "minion_count": 15
+    }
+  ]
+}

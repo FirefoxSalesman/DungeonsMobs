@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.data;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import baguchan.enchantwithmob.api.IEnchantCap;
@@ -61,6 +62,18 @@ public class AncientDataHelper {
 				MobEnchantmentAncientData.DEFAULT);
 	}
 
+	private static Optional<String> doUniques(LivingEntity entity, MobAncientData mobAncientData) {
+		List<UniqueAncientData> uniques = mobAncientData.getUniques();
+		UniqueAncientData unique = uniques.get(entity.getRandom().nextInt(0, uniques.size()));
+		unique.getMobEnchantments().forEach(enchant -> {
+			MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
+					? enchantedEntity.getEnchantCap()
+					: new MobEnchantCapability();
+			enchantCap.addMobEnchant(entity, MobEnchants.getRegistry().get().getValue(enchant), 1, true);
+		});
+		return Optional.of(unique.getName());
+	}
+
 	public static String getAncientName(LivingEntity entity) {
 		Set<String> adjectives = new HashSet<>();
 		Set<String> nouns = new HashSet<>();
@@ -75,16 +88,18 @@ public class AncientDataHelper {
 		});
 		MobAncientData mobAncientData = getMobAncientData(
 				ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()));
+		Optional<String> uniqueName = doUniques(entity, mobAncientData);
 		adjectives.addAll(mobAncientData.getAdjectives());
 		nouns.addAll(mobAncientData.getNouns());
-		// adjectives.addAll(MobAncientData.DEFAULT.getAdjectives());
-		// nouns.addAll(MobAncientData.DEFAULT.getNouns());
-		return new ObjectArrayList<>(adjectives).get(entity.getRandom().nextInt(adjectives.size())) + " "
-				+ new ObjectArrayList<>(nouns).get(entity.getRandom().nextInt(nouns.size()));
+		return uniqueName.isPresent() ? uniqueName.get()
+				: new ObjectArrayList<>(adjectives).get(entity.getRandom().nextInt(adjectives.size()))
+						+ " " + new ObjectArrayList<>(nouns)
+								.get(entity.getRandom().nextInt(nouns.size()));
 	}
 
 	@SubscribeEvent
 	public static void onAddReloadListeners(AddReloadListenerEvent event) {
 		event.addListener(MOB_ANCIENT_DATA);
+		event.addListener(MOB_ENCHANTMENT_ANCIENT_DATA);
 	}
 }
