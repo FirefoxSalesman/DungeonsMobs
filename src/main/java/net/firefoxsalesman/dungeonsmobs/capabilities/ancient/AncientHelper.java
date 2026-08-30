@@ -22,8 +22,10 @@ public class AncientHelper {
 
 	public static Optional<ServerBossEvent> getBossEvent(Entity entity) {
 		Ancient cap = getAncientCapability(entity);
-		if (cap.isAncient())
+		if (cap.isAncient()) {
+			System.out.println("It is ancient");
 			return Optional.of(cap.getBossInfo());
+		}
 		return Optional.empty();
 	}
 }

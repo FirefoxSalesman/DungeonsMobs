@@ -18,9 +18,13 @@ import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.data.util.MergeableCodecDataManager;
 import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -101,12 +105,16 @@ public class AncientDataHelper {
 						AttributeModifier.Operation.ADDITION));
 			}
 			for (int i = 0; i < count; i++) {
-				Entity summon = SummonHelper.summonEntity(entity,
-						entity.blockPosition().offset(random.nextInt(5), 0, random.nextInt(5)),
-						minion);
+				BlockPos pos = entity.blockPosition().offset(random.nextInt(5), 0, random.nextInt(5));
+				Entity summon = SummonHelper.summonEntity(entity, pos, minion);
 				if (summon != null && summon instanceof LivingEntity) {
 					unique.getMinionMobEnchantments()
 							.forEach(enchant -> addEnchant((LivingEntity) summon, enchant));
+					if (summon instanceof Mob mob) {
+						mob.finalizeSpawn((ServerLevel) mob.level(),
+								mob.level().getCurrentDifficultyAt(pos),
+								MobSpawnType.MOB_SUMMONED, null, null);
+					}
 				}
 			}
 
@@ -115,6 +123,8 @@ public class AncientDataHelper {
 		}
 		// TODO
 		// 1. Get 3 random enchants out of the registry & apply them to the mob
+		// 2. Get 7 minions out of the registry & summon them. Give each a random
+		// enchant
 		return Optional.empty();
 	}
 
