@@ -11,8 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,32 +39,34 @@ public class AncientEvents {
 		if (!entityLiving.level().isClientSide) {
 			Ancient cap = AncientHelper.getAncientCapability(entityLiving);
 			if (cap.isAncient() && cap.getBossInfo() != null) {
-				List<ServerPlayer> nearbyEntities = entityLiving.level().getNearbyEntities(
-						ServerPlayer.class,
-						TargetingConditions.forNonCombat().range(20.0D)
-								.ignoreInvisibilityTesting(),
-						entityLiving, entityLiving.getBoundingBox().inflate(20D, 10D, 20D));
-				nearbyEntities.forEach(playerEntity -> cap.getBossInfo().addPlayer(playerEntity));
-				List<ServerPlayer> trackingPlayers = new ObjectArrayList<>(
-						cap.getBossInfo().getPlayers());
-				List<ServerPlayer> furtherEntities = entityLiving.level().getNearbyEntities(
-						ServerPlayer.class,
-						TargetingConditions.forNonCombat().range(50.0D)
-								.ignoreInvisibilityTesting(),
-						entityLiving, entityLiving.getBoundingBox().inflate(50D, 20D, 50D));
-				trackingPlayers.forEach(playerEntity -> {
-					if (!furtherEntities.contains(playerEntity)) {
-						cap.getBossInfo().removePlayer(playerEntity);
-					}
-				});
+				if (entityLiving.isAlive()) {
+					List<ServerPlayer> nearbyEntities = entityLiving.level().getNearbyEntities(
+							ServerPlayer.class,
+							TargetingConditions.forNonCombat().range(20.0D)
+									.ignoreInvisibilityTesting(),
+							entityLiving,
+							entityLiving.getBoundingBox().inflate(20D, 10D, 20D));
+					nearbyEntities.forEach(
+							playerEntity -> cap.getBossInfo().addPlayer(playerEntity));
+					List<ServerPlayer> trackingPlayers = new ObjectArrayList<>(
+							cap.getBossInfo().getPlayers());
+					List<ServerPlayer> furtherEntities = entityLiving.level().getNearbyEntities(
+							ServerPlayer.class,
+							TargetingConditions.forNonCombat().range(50.0D)
+									.ignoreInvisibilityTesting(),
+							entityLiving,
+							entityLiving.getBoundingBox().inflate(50D, 20D, 50D));
+					trackingPlayers.forEach(playerEntity -> {
+						if (!furtherEntities.contains(playerEntity)) {
+							cap.getBossInfo().removePlayer(playerEntity);
+						}
+					});
+
+				} else {
+					cap.getBossInfo().removeAllPlayers();
+				}
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public static void onLivingDeath(LivingDeathEvent event) {
-		System.out.println("LivingDeathEvent runs");
-		AncientHelper.getBossEvent(event.getEntity()).ifPresent(bossEvent -> bossEvent.removeAllPlayers());
 	}
 
 	@SubscribeEvent
