@@ -1,0 +1,14 @@
+{
+  "adjectives": ["The Stalwart", "The Immovable", "The Steadfast"],
+  "nouns": ["Mage", "Shaman", "Earthspeaker"],
+  "minions": ["minecraft:pillager", "minecraft:vindicator", "dungeonsmobs:royal_guard"],
+  "uniques": [
+    {
+      "name": "Frostwarden",
+      "mob_enchantments": ["dungeonsmobs:chilling", "enchantwithmob:deflect"],
+      "minion": "dungeonsmobs:iceologer",
+      "minion_mob_enchantments": ["enchantwithmob:thorns"],
+      "minion_count": 7
+    }
+  ]
+}

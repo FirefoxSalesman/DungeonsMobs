@@ -27,7 +27,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -90,11 +89,11 @@ public class AncientDataHelper {
 		if (uniques.size() > 0) {
 			RandomSource random = entity.getRandom();
 			UniqueAncientData unique = uniques.get(random.nextInt(0, uniques.size()));
-			unique.getMobEnchantments().forEach(enchant -> addEnchant(entity, enchant));
 			MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
 					? enchantedEntity.getEnchantCap()
 					: new MobEnchantCapability();
 			enchantCap.setEnchantType(entity, MobEnchantCapability.EnchantType.ANCIENT);
+			unique.getMobEnchantments().forEach(enchant -> addEnchant(entity, enchant));
 			EntityType<?> minion = ForgeRegistries.ENTITY_TYPES.getValue(unique.getMinion());
 			int count = unique.getMinionCount();
 			AttributeInstance attributeInstance = entity.getAttribute(AttributeRegistry.SUMMON_CAP.get());

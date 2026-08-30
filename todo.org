@@ -7,9 +7,8 @@
 * TODO Port however much of the arch illager is done
 * TODO Fix conjured slime bullets (they don't render)
 * TODO Port ancient mobs
-+ [ ] Fix broken mob enchants
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
-+ [ ] Make it actually do things
++ [ ] Fix enchantment glint
 * TODO Animated props capability
 Not currently used for anything. Might be skippable, since timers do this better, in my opinion
 * TODO Finish Mixins

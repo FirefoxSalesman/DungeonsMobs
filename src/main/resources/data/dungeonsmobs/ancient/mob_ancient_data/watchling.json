@@ -1,0 +1,14 @@
+{
+  "adjectives": ["The Omniscient", "The All-Seeing", "The Eternal"],
+  "nouns": ["Diviner", "Watcher", "Eye"],
+  "minions": ["dungeonsmobs:watchling", "dungeonsmobs:snareling", "dungeonsmobs:blastling"],
+  "uniques": [
+    {
+      "name": "Watcher of the End",
+      "mob_enchantments": ["enchantwithmob:deflect", "dungeonsmobs:echo", "dungeonsmobs:heal_allies"],
+      "minion": "dungeonsmobs:blastling",
+      "minion_mob_enchantments": ["dungeonsmobs:radiance_shot"],
+      "minion_count": 6
+    }
+  ]
+}

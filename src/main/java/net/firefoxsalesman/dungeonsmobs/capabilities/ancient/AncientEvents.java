@@ -2,6 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.capabilities.ancient;
 
 import java.util.List;
 
+import baguchan.enchantwithmob.api.IEnchantCap;
+import baguchan.enchantwithmob.capability.MobEnchantCapability;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
