@@ -123,16 +123,6 @@ public class NecromancerEntity extends Skeleton implements KeyframeEntity {
 		SpawnEquipmentHelper.equipMainhand(ModItems.NECROMANCER_STAFF.get().getDefaultInstance(), this);
 	}
 
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficultyInstance,
-			MobSpawnType spawnReason, @Nullable SpawnGroupData livingEntityDataIn,
-			@Nullable CompoundTag compoundNBT) {
-		livingEntityDataIn = super.finalizeSpawn(world, difficultyInstance, spawnReason, livingEntityDataIn,
-				compoundNBT);
-
-		return livingEntityDataIn;
-	}
-
 	protected SoundEvent getAmbientSound() {
 		return ModSoundEvents.NECROMANCER_IDLE.get();
 	}
