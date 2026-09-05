@@ -89,7 +89,7 @@ public class SummonAncientCommand {
 							(CompoundTag) null);
 				}
 				if (entity instanceof LivingEntity livingEntity) {
-					AncientHelper.makeAncient(livingEntity);
+					AncientHelper.makeUniqueAncient(livingEntity);
 				}
 				if (!serverlevel.tryAddFreshEntityWithPassengers(entity)) {
 					throw ERROR_DUPLICATE_UUID.create();

@@ -11,9 +11,9 @@ public class AncientHelper {
 		return entity.getCapability(ModCapabilities.ANCIENT_CAPABILITY).orElse(new Ancient());
 	}
 
-	public static void makeAncient(LivingEntity entity) {
+	public static void makeUniqueAncient(LivingEntity entity) {
 		Ancient cap = getAncientCapability(entity);
 		cap.setAncient(true);
-		cap.initiateBossBar(Component.literal(AncientDataHelper.getAncientName(entity)));
+		cap.initiateBossBar(Component.literal(AncientDataHelper.getAncientName(entity, true)));
 	}
 }

@@ -1,17 +1,16 @@
 package net.firefoxsalesman.dungeonsmobs.data;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.EntityType;
-import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import baguchan.enchantwithmob.api.IEnchantCap;
 import baguchan.enchantwithmob.capability.MobEnchantCapability;
+import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import baguchan.enchantwithmob.registry.MobEnchants;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
@@ -22,10 +21,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -84,50 +86,68 @@ public class AncientDataHelper {
 
 	}
 
+	private static <T> T getRandomElement(RandomSource random, Collection<T> collection) {
+		return (T) collection.toArray()[random.nextInt(0, collection.size())];
+	}
+
+	private static void ancientHelper(LivingEntity entity, MobAncientData mobAncientData,
+			List<ResourceLocation> mobEnchants, int minionCount,
+			EntityType<?> minion, List<ResourceLocation> minionEnchants) {
+		RandomSource random = entity.getRandom();
+		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
+				? enchantedEntity.getEnchantCap()
+				: new MobEnchantCapability();
+		enchantCap.setEnchantType(entity, MobEnchantCapability.EnchantType.ANCIENT);
+		mobEnchants.forEach(enchant -> addEnchant(entity, enchant));
+		AttributeInstance attributeInstance = entity.getAttribute(AttributeRegistry.SUMMON_CAP.get());
+		if (attributeInstance != null) {
+			attributeInstance.addTransientModifier(new AttributeModifier(
+					UUID.fromString("3960f897-17c1-4169-b516-07d2b03d41dd"),
+					"AncientMob", minionCount,
+					AttributeModifier.Operation.ADDITION));
+		}
+		for (int i = 0; i < minionCount; i++) {
+			BlockPos pos = entity.blockPosition().offset(random.nextInt(5), 0, random.nextInt(5));
+			Entity summon = SummonHelper.summonEntity(entity, pos, minion);
+			if (summon != null && summon instanceof LivingEntity) {
+				minionEnchants.forEach(enchant -> addEnchant((LivingEntity) summon, enchant));
+				if (summon instanceof Mob mob) {
+					mob.finalizeSpawn((ServerLevel) mob.level(),
+							mob.level().getCurrentDifficultyAt(pos),
+							MobSpawnType.MOB_SUMMONED, null, null);
+				}
+			}
+		}
+
+	}
+
+	private static void doNonUniques(LivingEntity entity, MobAncientData mobAncientData) {
+		RandomSource random = entity.getRandom();
+		Collection<ResourceLocation> enchants = MobEnchants.getRegistry().get().getKeys();
+		List<ResourceLocation> mobEnchants = new ArrayList<>();
+		for (int i = 0; i < 3; i++)
+			mobEnchants.add(getRandomElement(random, enchants));
+		ancientHelper(entity, mobAncientData, mobEnchants, 7, ForgeRegistries.ENTITY_TYPES
+				.getValue(getRandomElement(random, mobAncientData.getMinions())),
+				List.of(getRandomElement(random, enchants)));
+	}
+
 	private static Optional<String> doUniques(LivingEntity entity, MobAncientData mobAncientData) {
 		List<UniqueAncientData> uniques = mobAncientData.getUniques();
 		if (uniques.size() > 0) {
 			RandomSource random = entity.getRandom();
-			UniqueAncientData unique = uniques.get(random.nextInt(0, uniques.size()));
-			MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
-					? enchantedEntity.getEnchantCap()
-					: new MobEnchantCapability();
-			enchantCap.setEnchantType(entity, MobEnchantCapability.EnchantType.ANCIENT);
-			unique.getMobEnchantments().forEach(enchant -> addEnchant(entity, enchant));
-			EntityType<?> minion = ForgeRegistries.ENTITY_TYPES.getValue(unique.getMinion());
-			int count = unique.getMinionCount();
-			AttributeInstance attributeInstance = entity.getAttribute(AttributeRegistry.SUMMON_CAP.get());
-			if (attributeInstance != null) {
-				attributeInstance.addTransientModifier(new AttributeModifier(
-						UUID.fromString("3960f897-17c1-4169-b516-07d2b03d41dd"),
-						"AncientMob", count,
-						AttributeModifier.Operation.ADDITION));
-			}
-			for (int i = 0; i < count; i++) {
-				BlockPos pos = entity.blockPosition().offset(random.nextInt(5), 0, random.nextInt(5));
-				Entity summon = SummonHelper.summonEntity(entity, pos, minion);
-				if (summon != null && summon instanceof LivingEntity) {
-					unique.getMinionMobEnchantments()
-							.forEach(enchant -> addEnchant((LivingEntity) summon, enchant));
-					if (summon instanceof Mob mob) {
-						mob.finalizeSpawn((ServerLevel) mob.level(),
-								mob.level().getCurrentDifficultyAt(pos),
-								MobSpawnType.MOB_SUMMONED, null, null);
-					}
-				}
-			}
-
+			UniqueAncientData unique = getRandomElement(random, uniques);
+			ancientHelper(entity, mobAncientData, unique.getMobEnchantments(), unique.getMinionCount(),
+					ForgeRegistries.ENTITY_TYPES.getValue(unique.getMinion()),
+					unique.getMinionMobEnchantments());
 			return Optional.of(unique.getName());
 
-		}
-		// TODO
-		// 1. Get 3 random enchants out of the registry & apply them to the mob
-		// 2. Get 7 minions out of the registry & summon them. Give each a random
-		// enchant
+		} else
+			doNonUniques(entity, mobAncientData);
 		return Optional.empty();
 	}
 
-	public static String getAncientName(LivingEntity entity) {
+	public static String getAncientName(LivingEntity entity, boolean unique) {
 		Set<String> adjectives = new HashSet<>();
 		Set<String> nouns = new HashSet<>();
 		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
@@ -141,7 +161,7 @@ public class AncientDataHelper {
 		});
 		MobAncientData mobAncientData = getMobAncientData(
 				ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()));
-		Optional<String> uniqueName = doUniques(entity, mobAncientData);
+		Optional<String> uniqueName = unique ? doUniques(entity, mobAncientData) : Optional.empty();
 		adjectives.addAll(mobAncientData.getAdjectives());
 		nouns.addAll(mobAncientData.getNouns());
 		return uniqueName.isPresent() ? uniqueName.get()

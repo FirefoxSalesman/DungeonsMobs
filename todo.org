@@ -13,5 +13,10 @@
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
 + [ ] Fix enchantment glint (This seems to not be my fault. )
 * TODO Fancy Boss Bars
-(Borrow them from someone else)
+Basically, we need
++ An overlay
++ A proxy type thing
++ Network packets (yippee!)
++ A superclass of BossInfo
 * TODO Finish Mixins
+* TODO Maybe make endersent have enchantments
