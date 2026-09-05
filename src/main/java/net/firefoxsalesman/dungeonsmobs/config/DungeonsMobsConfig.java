@@ -28,12 +28,14 @@ public class DungeonsMobsConfig {
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ROYAL_GUARDS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_GEOMANCERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAGES_IN_RAIDS;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ILLUSIONERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ICEOLOGERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WINDCALLERS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SQUALL_GOLEMS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REDSTONE_GOLEMS_IN_RAIDS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REDSTONE_MONSTROSITIES_IN_RAIDS;
 
+		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FIREWORK_ILLUSIONERS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_STRONGER_HUSKS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RANGED_SPIDERS;
 		public final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HOSTILE_MOOSHROOMS;
@@ -129,6 +131,9 @@ public class DungeonsMobsConfig {
 			ENABLE_MAGES_IN_RAIDS = builder
 					.comment("Enable the addition of Mages to raids. [true / false]")
 					.define("enableMagesInRaids", false);
+			ENABLE_ILLUSIONERS_IN_RAIDS = builder
+					.comment("Enable the addition of Illusioners to raids. [true / false]")
+					.define("enableIllusionersInRaids", false);
 			ENABLE_ICEOLOGERS_IN_RAIDS = builder
 					.comment("Enable the addition of Iceologers to raids. [true / false]")
 					.define("enableIceologersInRaids", false);
@@ -161,6 +166,9 @@ public class DungeonsMobsConfig {
 
 			// VANILLA MOB CONFIGURATION
 			builder.comment("Vanilla Mob Configuration").push("vanilla_mob_configuration");
+			ENABLE_FIREWORK_ILLUSIONERS = builder
+					.comment("Makes illusioners shoot fireworks, as they would in Minecraft Dungeons. [true / false]")
+					.define("enableFireworkIllusioners", true);
 			ENABLE_STRONGER_HUSKS = builder
 					.comment("Enable the addition of additional attributes to Husks to make them as powerful as they are in Minecraft Dungeons. [true / false]")
 					.define("enableStrongerHusks", true);

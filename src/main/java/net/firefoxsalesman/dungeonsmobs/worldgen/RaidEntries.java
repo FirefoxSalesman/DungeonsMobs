@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.worldgen;
 
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.raid.Raid;
 
 public class RaidEntries {
@@ -40,6 +41,11 @@ public class RaidEntries {
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_MAGES_IN_RAIDS.get()) {
 			Raid.RaiderType.create("mage", ModEntities.MAGE.get(), new int[] { 0, 0, 1, 0, 0, 1, 0, 2 });
+		}
+
+		if (DungeonsMobsConfig.COMMON.ENABLE_ILLUSIONERS_IN_RAIDS.get()) {
+			Raid.RaiderType.create("illusioner", EntityType.ILLUSIONER,
+					new int[] { 0, 0, 0, 0, 0, 1, 1, 2 });
 		}
 
 		if (DungeonsMobsConfig.COMMON.ENABLE_ICEOLOGERS_IN_RAIDS.get()) {

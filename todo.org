@@ -1,14 +1,17 @@
 * TODO Illusioner
-+ Do this with mixins
++ [X] Make an option for fireworks
++ [X] Make an option to put it in raids
++ [ ] Make a new texture, & use mixins to make it optional
++ [ ] Possibly make the clones fire arrows
 * TODO Nameless one (maybe)
 * TODO Mooshroom monstrosity (maybe)
 + I need to learn trig in order to do this
 * TODO Corrupted cauldron (maybe)
-* TODO Port however much of the arch illager is done
 * TODO Fix conjured slime bullets (they don't render)
 * TODO Port ancient mobs
++ [ ] Add non-unique ancients
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
-+ [ ] Fix enchantment glint
-* TODO Animated props capability
-Not currently used for anything. Might be skippable, since timers do this better, in my opinion
++ [ ] Fix enchantment glint (This seems to not be my fault. )
+* TODO Fancy Boss Bars
+(Borrow them from someone else)
 * TODO Finish Mixins

@@ -53,5 +53,4 @@ public abstract class MooshroomEntityMixin extends Cow {
 		goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	}
-
 }
