@@ -15,7 +15,8 @@ public class CommandEvents {
 	public static void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		if (ModHelper.hasMod("enchantwithmob")) {
 			CommandDispatcher<CommandSourceStack> commandDispatcher = event.getDispatcher();
-			SummonAncientCommand.register(commandDispatcher, event.getBuildContext());
+			SummonUniqueAncientCommand.register(commandDispatcher, event.getBuildContext());
+			SummonNonUniqueAncientCommand.register(commandDispatcher, event.getBuildContext());
 		}
 	}
 }

@@ -121,7 +121,7 @@ public class AncientDataHelper {
 
 	}
 
-	private static void doNonUniques(LivingEntity entity, MobAncientData mobAncientData) {
+	private static Optional<String> doNonUniques(LivingEntity entity, MobAncientData mobAncientData) {
 		RandomSource random = entity.getRandom();
 		Collection<ResourceLocation> enchants = MobEnchants.getRegistry().get().getKeys();
 		List<ResourceLocation> mobEnchants = new ArrayList<>();
@@ -130,6 +130,7 @@ public class AncientDataHelper {
 		ancientHelper(entity, mobAncientData, mobEnchants, 7, ForgeRegistries.ENTITY_TYPES
 				.getValue(getRandomElement(random, mobAncientData.getMinions())),
 				List.of(getRandomElement(random, enchants)));
+		return Optional.empty();
 	}
 
 	private static Optional<String> doUniques(LivingEntity entity, MobAncientData mobAncientData) {
@@ -143,8 +144,7 @@ public class AncientDataHelper {
 			return Optional.of(unique.getName());
 
 		} else
-			doNonUniques(entity, mobAncientData);
-		return Optional.empty();
+			return doNonUniques(entity, mobAncientData);
 	}
 
 	public static String getAncientName(LivingEntity entity, boolean unique) {
@@ -161,7 +161,8 @@ public class AncientDataHelper {
 		});
 		MobAncientData mobAncientData = getMobAncientData(
 				ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()));
-		Optional<String> uniqueName = unique ? doUniques(entity, mobAncientData) : Optional.empty();
+		Optional<String> uniqueName = unique ? doUniques(entity, mobAncientData)
+				: doNonUniques(entity, mobAncientData);
 		adjectives.addAll(mobAncientData.getAdjectives());
 		nouns.addAll(mobAncientData.getNouns());
 		return uniqueName.isPresent() ? uniqueName.get()

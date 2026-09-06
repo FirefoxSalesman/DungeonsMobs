@@ -9,7 +9,7 @@
 * TODO Corrupted cauldron (maybe)
 * TODO Fix conjured slime bullets (they don't render)
 * TODO Port ancient mobs
-+ [ ] Add non-unique ancients
++ [X] Add non-unique ancients
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
 + [ ] Fix enchantment glint (This seems to not be my fault. )
 * TODO Fancy Boss Bars
