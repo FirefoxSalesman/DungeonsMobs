@@ -35,6 +35,8 @@ public class MobEnchantEvents {
 			if (attacker instanceof LivingEntity) {
 
 				DoubleDamageMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
+				CriticalHitMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
+				WeakeningMobEnchant.doEffect(defender, (LivingEntity) attacker);
 				// radiance
 				executeIfPresentWithLevel((LivingEntity) attacker, ModMobEnchants.RADIANCE.get(),
 						(level) -> {

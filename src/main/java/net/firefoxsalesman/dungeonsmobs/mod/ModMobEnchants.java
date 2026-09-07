@@ -5,11 +5,13 @@ import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.BurningMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ChillingMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.CriticalHitMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.DoubleDamageMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.RegenerationMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.WeakeningMobEnchant;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -22,6 +24,9 @@ public class ModMobEnchants {
 			() -> new BurningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<ChillingMobEnchant> CHILLING = MOB_ENCHANTS_DEFERRED.register("chilling",
 			() -> new ChillingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
+	public static final RegistryObject<CriticalHitMobEnchant> CRITICAL_HIT = MOB_ENCHANTS_DEFERRED.register(
+			"critical_hit",
+			() -> new CriticalHitMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<DoubleDamageMobEnchant> DOUBLE_DAMAGE = MOB_ENCHANTS_DEFERRED.register(
 			"double_damage",
 			() -> new DoubleDamageMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 1)));
@@ -40,6 +45,8 @@ public class ModMobEnchants {
 			() -> new RegenerationMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 	public static final RegistryObject<MobEnchant> RUSH = MOB_ENCHANTS_DEFERRED.register("rush",
 			() -> new MobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
+	public static final RegistryObject<WeakeningMobEnchant> WEAKENING = MOB_ENCHANTS_DEFERRED.register("weakening",
+			() -> new WeakeningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 
 	public static void register(IEventBus eventBus) {
 		MOB_ENCHANTS_DEFERRED.register(eventBus);

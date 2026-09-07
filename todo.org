@@ -12,6 +12,96 @@
 + [X] Add non-unique ancients
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
 + [ ] Fix enchantment glint (This seems to not be my fault. )
++ [ ] Add gilded weapons
++ [ ] Move to library
+** TODO ???
+Mooshroom
+Deflect, leeching, poison cloud, thorns
+Minion: 25 mooshrooms (Weakening)
+** TODO Abominable Weaver
+Spider
+Frenzied, mob resurrection aura, multishot, regeneration
+Minion: 8 creepers (deflect, quick)
+** TODO Abyssal Eye
+Guardian
+Electrified, quick, frenzied, heals allies
+Minion: 3 drowned necromancers (double damage)
+** TODO Ancient Terror
+Wraith
+Burning, chilling, electrified, fire trail
+Minion: 9 spiders (weakening)
+** TODO Barrage
+Skeleton
+Accelerate, multishot, ricochet, rapid fire
+Minion: 20 skeletons (accelerate)
+** TODO First Enchanter
+Enchanter
+Critical Hit, echo, freezing
+Minion: 10 husks (swirling)
+** TODO Haunted Caller
+Necromancer
+Accelerate, fire trail, gravity pulse, rapid fire, regeneration
+Minion: 6 skeleton horsemen (cowardice)
+** TODO Oozing Menace
+Slime
+Gravity, huge, poison cloud,
+Minion: 12 enchanted slimes (shockwave)
+** TODO Pestilent Conjurer
+Witch
+Deflect, heals allies, quick
+Minion: 4 necromancers (multishot)
+** TODO Scuttling Torment
+Silverfish
+Huge, burning, cowardice, regeneration
+Minions: 15 skeletons (growing)
+** TODO Solemn Giant
+Pillager
+Huge, multishot, radiance shot, ricochet
+Minion: 4 endermen (radiance)
+** TODO Seeking Flame
+Vex
+Burning, fire aspect, fire trail, huge
+Minion: 3 evokers (chilling)
+** TODO Swarm
+Snareling
+Bonus shot, gravity, mob resurrection aura
+Minion: 16 endermites (thorns)
+** TODO Tiny Scourge
+Baby Zombie
+Fast attack, fire aspect, frenzied, thorns
+Minion: 2 redstone golems (weakening)
+** TODO The Tower
+Chicken Jockey
+Committed, critical hit, freezing
+Minion: 12 chicken jockies (electrified)
+** TODO The Unending
+Blaze Spawner
+Chilling, heals allies, burning
+Minion: 8 wither skeleton archers (chain reaction, tempo theft)
+** TODO Thundering Growth
+Leapleaf
+Deflect, electrified, shockwave
+Minion: 6 whisperers (electrified)
+** TODO Unbreakable One
+Redstone golem
+Committed, electrified, frenzied, swirling
+Minion 6 royal guards (regeneration)
+** TODO Unstoppable Tusk
+Hoglin
+Fire trail, poinson cloud, quick, rampaging
+Minion: 20 piglin hunters (fuse shot)
+** TODO Vengeful Mariner
+Trident Drowned
+Critical Hit, Deflect, Fast Attack, Gravity Pulse
+Minion: 12 baby drowned (regeneration)
+** TODO Vigilant Scoundrel
+Royal guard
+Freezing, sharpness, thundering
+Minion: 15 pillagers (poison cloud, tempo theft)
+** TODO Windbeard
+Goat
+Double damage, fire trail, quick, regeneration, burning
+Minion: 20 mountaineers (regeneration)
 * TODO Fancy Boss Bars
 Basically, we need
 + An overlay

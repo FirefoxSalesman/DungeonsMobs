@@ -241,6 +241,7 @@
 
   "mobenchant.dungeonsmobs.burning": "Burning",
   "mobenchant.dungeonsmobs.chilling": "Chilling",
+  "mobenchant.dungeonsmobs.critical_hit": "Critical Hit",
   "mobenchant.dungeonsmobs.double_damage": "Double Damage",
   "mobenchant.dungeonsmobs.echo": "Echo",
   "mobenchant.dungeonsmobs.fire_trail": "Fire Trail",
@@ -252,17 +253,7 @@
   "mobenchant.dungeonsmobs.quick": "Quick",
   "mobenchant.dungeonsmobs.tempo_theft": "Tempo Theft",
   "mobenchant.dungeonsmobs.rush": "Rush",
-
-  "mobenchant.enchantwithmob.name.dungeonsmobs.regeneration": "Regeneration",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.rush": "Rush",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.radiance": "Radiance",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.gravity_pulse":  "Gravity Pulse",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.burning": "Burning",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.chilling":  "Chilling",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.double_damage":  "Double Damage",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.heals_allies": "Heals Allies",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.echo": "Echo",
-  "mobenchant.enchantwithmob.name.dungeonsmobs.rush": "Rush",
+  "mobenchant.dungeonsmobs.weakening": "Weakening",
 
   "subtitles.entity.wraith.idle": "Wraith wails",
   "subtitles.entity.wraith.hurt": "Wraith hurts",
