@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -74,6 +75,17 @@ public class MobEnchantEvents {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			EchoMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLivingDeath(LivingDeathEvent event) {
+		if (ModHelper.hasMod("enchantwithmob")) {
+			LivingEntity defender = event.getEntity();
+			Entity entity = event.getSource().getEntity();
+			if (entity instanceof LivingEntity attacker) {
+				LeechingMobEnchant.doEffect(attacker, defender);
+			}
 		}
 	}
 }

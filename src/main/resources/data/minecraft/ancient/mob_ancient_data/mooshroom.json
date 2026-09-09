@@ -1,0 +1,14 @@
+{
+  "adjectives": ["Moo?", "Moo", "Moooooooo", "Moo!"],
+  "nouns": ["Moo", "MOOOOOOOOOOOOOOO"],
+  "minions": ["minecraft:mooshroom"],
+  "uniques": [
+    {
+      "name": "???",
+      "mob_enchantments": ["enchantwithmob:deflect", "dungeonsmobs:leeching", "enchantwithmob:poison_cloud", "enchantwithmob:thorns"],
+      "minion": "minecraft:mooshroom",
+      "minion_mob_enchantments": ["dungeonsmobs:weakening"],
+      "minion_count": 25
+    }
+  ]
+}

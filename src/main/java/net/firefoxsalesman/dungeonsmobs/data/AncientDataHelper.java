@@ -77,12 +77,12 @@ public class AncientDataHelper {
 				MobEnchantmentAncientData.DEFAULT);
 	}
 
-	private static void addEnchant(LivingEntity entity, ResourceLocation enchant) {
+	private static void addEnchant(LivingEntity entity, ResourceLocation enchant, boolean ancient) {
 		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
 				? enchantedEntity.getEnchantCap()
 				: new MobEnchantCapability();
 		MobEnchant enchantment = MobEnchants.getRegistry().get().getValue(enchant);
-		enchantCap.addMobEnchant(entity, enchantment, enchantment.getMaxLevel());
+		enchantCap.addMobEnchant(entity, enchantment, enchantment.getMaxLevel(), ancient);
 
 	}
 
@@ -94,11 +94,7 @@ public class AncientDataHelper {
 			List<ResourceLocation> mobEnchants, int minionCount,
 			EntityType<?> minion, List<ResourceLocation> minionEnchants) {
 		RandomSource random = entity.getRandom();
-		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
-				? enchantedEntity.getEnchantCap()
-				: new MobEnchantCapability();
-		enchantCap.setEnchantType(entity, MobEnchantCapability.EnchantType.ANCIENT);
-		mobEnchants.forEach(enchant -> addEnchant(entity, enchant));
+		mobEnchants.forEach(enchant -> addEnchant(entity, enchant, true));
 		AttributeInstance attributeInstance = entity.getAttribute(AttributeRegistry.SUMMON_CAP.get());
 		if (attributeInstance != null) {
 			attributeInstance.addTransientModifier(new AttributeModifier(
@@ -110,7 +106,7 @@ public class AncientDataHelper {
 			BlockPos pos = entity.blockPosition().offset(random.nextInt(5), 0, random.nextInt(5));
 			Entity summon = SummonHelper.summonEntity(entity, pos, minion);
 			if (summon != null && summon instanceof LivingEntity) {
-				minionEnchants.forEach(enchant -> addEnchant((LivingEntity) summon, enchant));
+				minionEnchants.forEach(enchant -> addEnchant((LivingEntity) summon, enchant, false));
 				if (summon instanceof Mob mob) {
 					mob.finalizeSpawn((ServerLevel) mob.level(),
 							mob.level().getCurrentDifficultyAt(pos),

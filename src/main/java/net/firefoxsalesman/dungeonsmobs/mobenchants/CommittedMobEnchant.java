@@ -11,7 +11,7 @@ public class CommittedMobEnchant extends MobEnchant {
 	}
 
 	public static void doEffect(LivingEntity defender, LivingEntity attacker, LivingDamageEvent event) {
-		NewMobEnchantUtils.executeIfPresentWithLevel(attacker, ModMobEnchants.CRITICAL_HIT.get(),
+		NewMobEnchantUtils.executeIfPresentWithLevel(attacker, ModMobEnchants.COMMITTED.get(),
 				(level) -> {
 					if (defender.getHealth() >= defender.getMaxHealth())
 						return;
