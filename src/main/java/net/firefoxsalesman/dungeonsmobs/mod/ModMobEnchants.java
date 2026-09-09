@@ -5,6 +5,7 @@ import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.BurningMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ChillingMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.CommittedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.CriticalHitMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.DoubleDamageMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
@@ -24,6 +25,8 @@ public class ModMobEnchants {
 			() -> new BurningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<ChillingMobEnchant> CHILLING = MOB_ENCHANTS_DEFERRED.register("chilling",
 			() -> new ChillingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
+	public static final RegistryObject<CommittedMobEnchant> COMMITTED = MOB_ENCHANTS_DEFERRED.register("committed",
+			() -> new CommittedMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<CriticalHitMobEnchant> CRITICAL_HIT = MOB_ENCHANTS_DEFERRED.register(
 			"critical_hit",
 			() -> new CriticalHitMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
