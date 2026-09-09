@@ -1,0 +1,14 @@
+{
+  "adjectives": ["The Corrosive", "The Vile", "The Foul"],
+  "nouns": ["Crone", "Hag", "Alchemist"],
+  "minions": ["dungeonsmobs:jungle_zombie", "dungeonsmobs:mossy_skeleton", "dungeonsmobs:necromancer"],
+  "uniques": [
+    {
+      "name": "Pestilent Conjurer",
+      "mob_enchantments": ["enchantwithmob:deflect", "dungeonsmobs:heals_allies", "enchantwithmob:speedy"],
+      "minion": "dungeonsmobs:necromancer",
+      "minion_mob_enchantments": ["enchantwithmobs:multishot"],
+      "minion_count": 4
+    }
+  ]
+}

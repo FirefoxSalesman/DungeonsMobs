@@ -9,10 +9,9 @@
 * TODO Corrupted cauldron (maybe)
 * TODO Fix conjured slime bullets (they don't render)
 * TODO Port ancient mobs
-+ [X] Add non-unique ancients
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
   - Treat strong like sharpness, & speedy like quick
-+ [ ] Fix enchantment glint (This seems to not be my fault. )
++ [ ] Use a mixin to add ancient glint
 + [ ] Add gilded weapons
 + [ ] Move to library
 ** TODO Endersent
@@ -21,10 +20,6 @@
 + [ ] Reaping eye- shockwave, thundering
 + [ ] Blinding eye- chains, echo, fire trail
 ** TODO Ancients
-*** TODO ???
-Mooshroom
-Deflect, leeching, poison cloud, thorns
-Minion: 25 mooshrooms (Weakening)
 *** TODO Abominable Weaver
 Spider
 Frenzied, mob resurrection aura, multishot, regeneration
@@ -53,10 +48,6 @@ Minion: 6 skeleton horsemen (cowardice)
 Slime
 Gravity, huge, poison cloud,
 Minion: 12 enchanted slimes (shockwave)
-*** TODO Pestilent Conjurer
-Witch
-Deflect, heals allies, quick
-Minion: 4 necromancers (multishot)
 *** TODO Scuttling Torment
 Silverfish
 Huge, burning, cowardice, regeneration
