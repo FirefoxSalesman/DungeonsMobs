@@ -11,7 +11,6 @@
 * TODO Port ancient mobs
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
   - Treat strong like sharpness, & speedy like quick
-+ [ ] Use a mixin to add ancient glint
 + [ ] Add gilded weapons
 + [ ] Move to library
 ** TODO Endersent
@@ -107,4 +106,3 @@ Basically, we need
 + Network packets (yippee!)
 + A superclass of BossInfo
 * TODO Finish Mixins
-* TODO Maybe make endersent have enchantments

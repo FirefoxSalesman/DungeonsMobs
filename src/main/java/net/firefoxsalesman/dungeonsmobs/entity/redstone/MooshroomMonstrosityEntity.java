@@ -19,16 +19,22 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 
 	@Override
 	protected void doSpewAction(Vec3 pos, LivingEntity target) {
-		double d1 = target.getX() + pos.x;
+		double d1 = target.getX() - pos.x;
 		double d2 = target.getY(0.6D) - pos.y;
-		double d3 = target.getZ() + pos.z;
-		MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(
-				level(),
-				this, d1, d2, d3);
+		double d3 = target.getZ() - pos.z;
+		for (float i = 0; i < 7; i++) {
+			float rot = yHeadRot - 45F + (22.5F * i);
+			Vec3 v = new Vec3(-Math.sin(Math.toRadians(rot)), 0, Math.cos(Math.toRadians(rot)));
+			MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(
+					level(),
+					this, d1 + pos.x, d2, d3 + pos.z);
 
-		projectile.rotateToMatchMovement();
-		projectile.moveTo(pos.x, pos.y, pos.z);
-		level().addFreshEntity(projectile);
+			projectile.rotateToMatchMovement();
+			v = v.scale(3);
+			projectile.moveTo(pos.x + v.x, pos.y, pos.z + v.z);
+			level().addFreshEntity(projectile);
+
+		}
 
 		AreaAttackHelper.areaAttack(5, 5, 5, 5, 360, 1.0F, this);
 	}
