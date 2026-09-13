@@ -23,7 +23,7 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 		double d2 = target.getY(0.6D) - pos.y;
 		double d3 = target.getZ() - pos.z;
 		for (float i = 0; i < 7; i++) {
-			float rot = yHeadRot - 45F + (22.5F * i);
+			float rot = yBodyRot - 45F + (22.5F * i);
 			Vec3 v = new Vec3(-Math.sin(Math.toRadians(rot)), 0, Math.cos(Math.toRadians(rot)));
 			MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(
 					level(),

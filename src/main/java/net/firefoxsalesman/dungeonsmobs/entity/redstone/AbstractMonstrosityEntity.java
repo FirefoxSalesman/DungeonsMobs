@@ -413,7 +413,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 			// HACK this allows us to sync our attack with our animations.
 			LivingEntity target = getTarget();
 			if (fireAnimationTimer.tickEquals(fireActionPoint) && target != null) {
-				spewProjectiles(target);
+				mob.spewProjectiles(target);
 			}
 		}
 
