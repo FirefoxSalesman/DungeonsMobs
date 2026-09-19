@@ -6,6 +6,7 @@ import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedDustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.CorruptedMagicParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.DustParticle;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
+import net.firefoxsalesman.dungeonsmobs.client.renderer.BossBarRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.EmptyRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.blaze.WildfireRenderer;
 import net.firefoxsalesman.dungeonsmobs.client.renderer.creeper.IcyCreeperRenderer;
@@ -73,12 +74,19 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
+	@SubscribeEvent
+	public static void clientInit(FMLClientSetupEvent event) {
+		MinecraftForge.EVENT_BUS.addListener(BossBarRenderer::renderBossBar);
+	}
+
 	@SubscribeEvent
 	public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(ModEntities.JUNGLE_ZOMBIE.get(), CustomZombieRenderer::new);

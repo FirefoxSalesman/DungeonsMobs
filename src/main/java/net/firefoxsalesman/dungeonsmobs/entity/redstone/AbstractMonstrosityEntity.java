@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.firefoxsalesman.dungeonsmobs.ModSoundEvents;
 import net.firefoxsalesman.dungeonslibs.summon.goals.AbstractSummonGoal;
 import net.firefoxsalesman.dungeonsmobs.goals.SimpleRangedAttackGoal;
+import net.firefoxsalesman.dungeonsmobs.network.DungeonsBossInfo;
 import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonsmobs.utils.AreaAttackHelper;
@@ -17,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -67,9 +67,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 	private AnimationTimer summonTimer = new AnimationTimer(72);
 	private static final EntityDataAccessor<Boolean> MELEEATTACKING = SynchedEntityData
 			.defineId(AbstractMonstrosityEntity.class, EntityDataSerializers.BOOLEAN);
-	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
-			BossEvent.BossBarColor.RED,
-			BossEvent.BossBarOverlay.PROGRESS));
+	private final DungeonsBossInfo bossEvent;
 
 	public AbstractMonstrosityEntity(EntityType<? extends AbstractMonstrosityEntity> pEntityType, Level pLevel,
 			String firingAnimation, int fireAnimationLength, int fireActionPoint) {
@@ -79,6 +77,8 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 		this.firingAnimation = firingAnimation;
 		fireAnimationTimer = new AnimationTimer(fireAnimationLength);
 		this.fireActionPoint = fireActionPoint;
+		bossEvent = new DungeonsBossInfo(this,
+				BossEvent.BossBarOverlay.PROGRESS);
 	}
 
 	protected abstract void doSpewAction(Vec3 pos, LivingEntity target);
@@ -242,6 +242,9 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 	@Override
 	public void tick() {
 		super.tick();
+		if (tickCount % 5 == 0)
+			bossEvent.update();
+		bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
 		summonTimer.dec();
 		fireTimer.dec();
 		fireAnimationTimer.dec();

@@ -101,8 +101,8 @@ Double damage, fire trail, quick, regeneration, burning
 Minion: 20 mountaineers (regeneration)
 * TODO Fancy Boss Bars
 Basically, we need
-+ An overlay
-+ A proxy type thing
-+ Network packets (yippee!)
-+ A superclass of BossInfo
++ [X] An overlay
++ [X] A proxy type thing
++ [X] Network packets (yippee!)
++ [X] A subclass of BossInfo
 * TODO Finish Mixins
