@@ -19,8 +19,10 @@ public class DungeonsBossInfo extends ServerBossEvent {
 		this.boss = boss;
 	}
 
-	public void update() {
+	public void update(int tickCount) {
 		this.setProgress(this.boss.getHealth() / this.boss.getMaxHealth());
+		if (tickCount % 5 != 0)
+			return;
 		Iterator<ServerPlayer> it = this.players.iterator();
 
 		while (it.hasNext()) {

@@ -89,10 +89,8 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 
 	public void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		if (hasCustomName()) {
+		if (hasCustomName())
 			bossEvent.setName(getDisplayName());
-		}
-
 	}
 
 	public void setCustomName(@Nullable Component p_200203_1_) {
@@ -242,9 +240,7 @@ public abstract class AbstractMonstrosityEntity extends Raider implements GeoEnt
 	@Override
 	public void tick() {
 		super.tick();
-		if (tickCount % 5 == 0)
-			bossEvent.update();
-		bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+		bossEvent.update(tickCount);
 		summonTimer.dec();
 		fireTimer.dec();
 		fireAnimationTimer.dec();

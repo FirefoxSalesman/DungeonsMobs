@@ -1,7 +1,5 @@
 package net.firefoxsalesman.dungeonsmobs.entity.ender;
 
-import static net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig.COMMON;
-
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -13,9 +11,9 @@ import baguchan.enchantwithmob.registry.MobEnchants;
 import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
+import net.firefoxsalesman.dungeonsmobs.network.DungeonsBossInfo;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.EntityType;
@@ -33,15 +31,12 @@ import net.minecraft.world.level.Level;
  * how to synchronize it on my own
  */
 public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
-	private final ServerBossEvent bossEvent = COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()
-			? (ServerBossEvent) (new ServerBossEvent(getDisplayName(),
-					BossEvent.BossBarColor.PURPLE,
-					BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(true)
-					.setPlayBossMusic(true)
-			: null;
+	private final DungeonsBossInfo bossEvent;
 
 	public EyeHolderEndersentEntity(EntityType<? extends EyeHolderEndersentEntity> type, Level level) {
 		super(type, level);
+		bossEvent = new DungeonsBossInfo(this,
+				BossEvent.BossBarOverlay.PROGRESS);
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes() {
@@ -69,7 +64,7 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 
 	public void readAdditionalSaveData(CompoundTag p_70037_1_) {
 		super.readAdditionalSaveData(p_70037_1_);
-		if (hasCustomName() && COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
+		if (hasCustomName()) {
 			bossEvent.setName(getDisplayName());
 		}
 
@@ -77,9 +72,7 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 
 	public void setCustomName(@Nullable Component p_200203_1_) {
 		super.setCustomName(p_200203_1_);
-		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
-			bossEvent.setName(getDisplayName());
-		}
+		bossEvent.setName(getDisplayName());
 	}
 
 	private void setupEnchants(String name, List<MobEnchant> enchants, MobEnchantCapability cap) {
@@ -113,23 +106,18 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 
 	public void baseTick() {
 		super.baseTick();
-		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
-			bossEvent.setProgress(getHealth() / getMaxHealth());
-		}
+		bossEvent.update(tickCount);
+		bossEvent.setProgress(getHealth() / getMaxHealth());
 	}
 
 	public void startSeenByPlayer(ServerPlayer player) {
 		super.startSeenByPlayer(player);
-		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
-			bossEvent.addPlayer(player);
-		}
+		bossEvent.addPlayer(player);
 	}
 
 	public void stopSeenByPlayer(ServerPlayer player) {
 		super.stopSeenByPlayer(player);
-		if (COMMON.ENABLE_ENDERSENT_BOSS_BAR.get()) {
-			bossEvent.removePlayer(player);
-		}
+		bossEvent.removePlayer(player);
 	}
 
 	@Override
