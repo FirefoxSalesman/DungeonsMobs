@@ -51,6 +51,7 @@ public class BossBarRenderer {
 		int i = (int) (percent * 182.0F);
 		int pX2 = pX + 9;
 		int pY2 = pY + 4;
+		guiGraphics.blit(TEXTURE, pX2, pY2, 0, 17, 182, 5, 182, 128);
 		guiGraphics.blit(TEXTURE, pX2, pY2, 0, 9, i, 5, 182, 128);
 		if (i > 0)
 			guiGraphics.blit(TEXTURE, pX2, pY2, 0, 1, 182, 5, 182, 128);
