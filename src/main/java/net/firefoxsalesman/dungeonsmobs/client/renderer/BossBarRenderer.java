@@ -33,7 +33,7 @@ public class BossBarRenderer {
 			event.setCanceled(true);
 			int k = i / 2 - 100;
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			drawBar(event.getGuiGraphics(), k, event.getY(), event.getPartialTick(), boss);
+			drawBar(event.getGuiGraphics(), k, event.getY(), boss);
 			Component itextcomponent = boss.getDisplayName();
 			int l = minecraft.font.width(itextcomponent);
 			int i1 = i / 2 - l / 2;
@@ -46,21 +46,14 @@ public class BossBarRenderer {
 		}
 	}
 
-	private static void drawBar(GuiGraphics guiGraphics, int pX, int pY, float partialTicks, Mob pEntity) {
-		System.out.println("I am drawing");
+	private static void drawBar(GuiGraphics guiGraphics, int pX, int pY, Mob pEntity) {
 		float percent = pEntity.getHealth() / pEntity.getMaxHealth();
 		int i = (int) (percent * 182.0F);
 		int pX2 = pX + 9;
 		int pY2 = pY + 4;
-		int offset = (int) ((pEntity.tickCount + partialTicks) % 364);
-		if (percent <= 0.25F)
-			offset = (int) (((pEntity.tickCount + partialTicks) * 4) % 364);
-		else if (percent <= 0.5F)
-			offset = (int) (((pEntity.tickCount + partialTicks) * 2) % 364);
-
-		guiGraphics.blit(TEXTURE, pX2, pY2, offset, 0, i, 8, 364, 64);
+		guiGraphics.blit(TEXTURE, pX2, pY2, 0, 0, i, 16, 182, 128);
 		if (i > 0)
-			guiGraphics.blit(TEXTURE, pX2, pY2, offset, 8, i, 8, 364, 64);
+			guiGraphics.blit(TEXTURE, pX2, pY2, 0, 0, 182, 8, 182, 128);
 
 	}
 
