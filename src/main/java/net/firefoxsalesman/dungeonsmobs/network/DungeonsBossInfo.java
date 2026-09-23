@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import net.firefoxsalesman.dungeonsmobs.network.message.BossBarMessage;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Mob;
@@ -15,14 +14,10 @@ public class DungeonsBossInfo extends ServerBossEvent {
 	private final Mob boss;
 	private final Set<ServerPlayer> players = new HashSet<>();
 
-	public DungeonsBossInfo(Component displayName, Mob boss, BossBarOverlay pOverlay) {
-		super(displayName, BossBarColor.RED, pOverlay);
-		System.out.println(displayName);
-		this.boss = boss;
-	}
-
 	public DungeonsBossInfo(Mob boss, BossBarOverlay pOverlay) {
-		this(boss.getDisplayName(), boss, pOverlay);
+		super(boss.getDisplayName(), BossBarColor.RED, pOverlay);
+		this.boss = boss;
+		boss.setCustomNameVisible(false);
 	}
 
 	public void update(int tickCount) {

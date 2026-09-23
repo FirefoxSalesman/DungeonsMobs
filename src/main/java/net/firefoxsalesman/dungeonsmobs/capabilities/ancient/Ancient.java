@@ -25,7 +25,8 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 
 	public boolean initiateBossBar(Mob boss, Component displayName) {
 		this.displayName = displayName;
-		bossInfo = new DungeonsBossInfo(displayName, boss, BossEvent.BossBarOverlay.PROGRESS);
+		boss.setCustomName(displayName);
+		bossInfo = new DungeonsBossInfo(boss, BossEvent.BossBarOverlay.PROGRESS);
 		return true;
 	}
 
