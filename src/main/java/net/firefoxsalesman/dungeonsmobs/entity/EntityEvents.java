@@ -1,5 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraftforge.client.event.RenderNameTagEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
@@ -26,7 +28,10 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.mod.ModEffects.ENSNARED;
 import static net.minecraft.world.entity.EntityType.HUSK;
 
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import net.firefoxsalesman.dungeonsmobs.capabilities.ancient.AncientHelper;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class EntityEvents {

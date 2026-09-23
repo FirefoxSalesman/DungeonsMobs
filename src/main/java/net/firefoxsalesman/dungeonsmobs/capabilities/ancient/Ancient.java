@@ -8,6 +8,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 import static net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities.ANCIENT_CAPABILITY;
 
+import net.firefoxsalesman.dungeonsmobs.interfaces.NametagHaver;
 import net.firefoxsalesman.dungeonsmobs.network.DungeonsBossInfo;
 
 public class Ancient implements INBTSerializable<CompoundTag> {
@@ -27,6 +28,7 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 		this.displayName = displayName;
 		boss.setCustomName(displayName);
 		bossInfo = new DungeonsBossInfo(boss, BossEvent.BossBarOverlay.PROGRESS);
+		System.out.println("Has nametag: " + ((NametagHaver) boss).getShowNametag());
 		return true;
 	}
 
@@ -56,7 +58,6 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 		this.setAncient(tag.getBoolean("ancient"));
 		if (tag.contains("displayName")) {
 			this.displayName = Component.literal(tag.getString("displayName"));
-			// this.initiateBossBar(boss, Component.literal(tag.getString("displayName")));
 		}
 	}
 }

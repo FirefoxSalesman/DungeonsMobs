@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import net.firefoxsalesman.dungeonsmobs.interfaces.NametagHaver;
 import net.firefoxsalesman.dungeonsmobs.network.message.BossBarMessage;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,7 +18,7 @@ public class DungeonsBossInfo extends ServerBossEvent {
 	public DungeonsBossInfo(Mob boss, BossBarOverlay pOverlay) {
 		super(boss.getDisplayName(), BossBarColor.RED, pOverlay);
 		this.boss = boss;
-		boss.setCustomNameVisible(false);
+		((NametagHaver) boss).setShowNametag(false);
 	}
 
 	public void update(int tickCount) {
