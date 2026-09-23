@@ -11,11 +11,13 @@ import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -82,6 +84,16 @@ public class AncientEvents {
 		Ancient cap = AncientHelper.getAncientCapability(livingEntity);
 		if (cap.isAncient() && cap.getBossInfo() != null) {
 			cap.getBossInfo().setProgress(livingEntity.getHealth() / livingEntity.getMaxHealth());
+		}
+	}
+
+	@SubscribeEvent
+	public static void onJoinLevel(EntityJoinLevelEvent event) {
+		Entity entity = event.getEntity();
+		if (entity instanceof Mob mob) {
+			Ancient cap = AncientHelper.getAncientCapability(mob);
+			if (cap.isAncient())
+				cap.initiateBossBar(mob, cap.getDisplayName());
 		}
 	}
 

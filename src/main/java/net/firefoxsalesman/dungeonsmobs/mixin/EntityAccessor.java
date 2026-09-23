@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Entity.class)
 public interface EntityAccessor {
-    @Accessor
-    @Mutable
-    public void setDimensions(EntityDimensions dimensions);
+	@Accessor
+	@Mutable
+	public void setDimensions(EntityDimensions dimensions);
 }

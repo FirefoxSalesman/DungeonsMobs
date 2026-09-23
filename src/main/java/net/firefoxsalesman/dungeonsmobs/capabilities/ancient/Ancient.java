@@ -2,15 +2,18 @@ package net.firefoxsalesman.dungeonsmobs.capabilities.ancient;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.Mob;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import static net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities.ANCIENT_CAPABILITY;
 
+import net.firefoxsalesman.dungeonsmobs.network.DungeonsBossInfo;
+
 public class Ancient implements INBTSerializable<CompoundTag> {
 	private boolean ancient = false;
-	private ServerBossEvent bossInfo = null;
+	private DungeonsBossInfo bossInfo = null;
+	private Component displayName = null;
 
 	public boolean isAncient() {
 		return ancient;
@@ -20,15 +23,18 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 		this.ancient = ancient;
 	}
 
-	// TODO Make this appear & dissapear when it's supposed to
-	public boolean initiateBossBar(Component displayName) {
-		bossInfo = new ServerBossEvent(displayName, BossEvent.BossBarColor.YELLOW,
-				BossEvent.BossBarOverlay.PROGRESS);
+	public boolean initiateBossBar(Mob boss, Component displayName) {
+		this.displayName = displayName;
+		bossInfo = new DungeonsBossInfo(displayName, boss, BossEvent.BossBarOverlay.PROGRESS);
 		return true;
 	}
 
-	public ServerBossEvent getBossInfo() {
+	public DungeonsBossInfo getBossInfo() {
 		return bossInfo;
+	}
+
+	public Component getDisplayName() {
+		return displayName;
 	}
 
 	@Override
@@ -48,7 +54,8 @@ public class Ancient implements INBTSerializable<CompoundTag> {
 	public void deserializeNBT(CompoundTag tag) {
 		this.setAncient(tag.getBoolean("ancient"));
 		if (tag.contains("displayName")) {
-			this.initiateBossBar(Component.literal(tag.getString("displayName")));
+			this.displayName = Component.literal(tag.getString("displayName"));
+			// this.initiateBossBar(boss, Component.literal(tag.getString("displayName")));
 		}
 	}
 }

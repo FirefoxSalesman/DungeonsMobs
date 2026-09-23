@@ -5,6 +5,7 @@ import net.firefoxsalesman.dungeonsmobs.data.AncientDataHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 
 public class AncientHelper {
 	public static Ancient getAncientCapability(Entity entity) {
@@ -14,7 +15,9 @@ public class AncientHelper {
 	private static void makeAncient(LivingEntity entity, boolean unique) {
 		Ancient cap = getAncientCapability(entity);
 		cap.setAncient(true);
-		cap.initiateBossBar(Component.literal(AncientDataHelper.getAncientName(entity, unique)));
+		if (entity instanceof Mob mob) {
+			cap.initiateBossBar(mob, Component.literal(AncientDataHelper.getAncientName(mob, unique)));
+		}
 	}
 
 	public static void makeUniqueAncient(LivingEntity entity) {
