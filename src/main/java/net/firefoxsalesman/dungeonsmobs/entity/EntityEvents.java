@@ -1,6 +1,13 @@
 package net.firefoxsalesman.dungeonsmobs.entity;
 
-import net.minecraft.network.chat.Component;
+import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
+import static net.firefoxsalesman.dungeonsmobs.mod.ModEffects.ENSNARED;
+import static net.minecraft.world.entity.EntityType.HUSK;
+
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import net.firefoxsalesman.dungeonsmobs.capabilities.ancient.AncientHelper;
+import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
+import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,22 +23,18 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.*;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickEmpty;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.event.level.BlockEvent.BreakEvent;
 import net.minecraftforge.event.level.BlockEvent.EntityPlaceEvent;
 import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
-import static net.firefoxsalesman.dungeonsmobs.mod.ModEffects.ENSNARED;
-import static net.minecraft.world.entity.EntityType.HUSK;
-
-import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
-import net.firefoxsalesman.dungeonsmobs.capabilities.ancient.AncientHelper;
-import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
-import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class EntityEvents {
@@ -192,5 +195,13 @@ public class EntityEvents {
 						4, 4));
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void renderNametag(RenderNameTagEvent event) {
+		Entity entity = event.getEntity();
+		if (AncientHelper.getAncientCapability(entity).isAncient()
+				|| (entity instanceof EyeHolderEndersentEntity && ModHelper.hasMod("enchantwithmob")))
+			event.setResult(Result.DENY);
 	}
 }
