@@ -89,7 +89,7 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 					? enchantedEntity.getEnchantCap()
 					: new MobEnchantCapability();
 			if (!cap.hasEnchant()) {
-				int type = getRandom().nextInt(2);
+				int type = getRandom().nextInt(3);
 				switch (type) {
 					case 0:
 						setupEnchants("Blight Eye", List.of(MobEnchants.POISON_CLOUD.get(),
@@ -98,6 +98,10 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 					case 1:
 						setupEnchants("Spiked Eye", List.of(MobEnchants.STRONG.get(),
 								MobEnchants.THORN.get()), cap);
+						break;
+					case 2:
+						setupEnchants("Reaping Eye", List.of(ModMobEnchants.THUNDERING.get(),
+								ModMobEnchants.SHOCKWAVE.get()), cap);
 						break;
 				}
 			}

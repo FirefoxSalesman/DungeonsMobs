@@ -13,6 +13,8 @@ import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.LeechingMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.RegenerationMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.ShockwaveMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.ThunderingMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.WeakeningMobEnchant;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -51,6 +53,12 @@ public class ModMobEnchants {
 			() -> new RegenerationMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 	public static final RegistryObject<MobEnchant> RUSH = MOB_ENCHANTS_DEFERRED.register("rush",
 			() -> new MobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
+	public static final RegistryObject<ShockwaveMobEnchant> SHOCKWAVE = MOB_ENCHANTS_DEFERRED.register(
+			"shockwave",
+			() -> new ShockwaveMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
+	public static final RegistryObject<ThunderingMobEnchant> THUNDERING = MOB_ENCHANTS_DEFERRED.register(
+			"thundering",
+			() -> new ThunderingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<WeakeningMobEnchant> WEAKENING = MOB_ENCHANTS_DEFERRED.register("weakening",
 			() -> new WeakeningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 

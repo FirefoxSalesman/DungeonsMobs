@@ -75,6 +75,8 @@ public class MobEnchantEvents {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			EchoMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
+			ShockwaveMobEnchant.doEffect(defender, entity, event.getAmount());
+			ThunderingMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
 		}
 	}
 

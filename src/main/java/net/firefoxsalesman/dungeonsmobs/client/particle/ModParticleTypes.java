@@ -18,6 +18,7 @@ public class ModParticleTypes {
 	public static final RegistryObject<SimpleParticleType> NECROMANCY = registerParticle("necromancy");
 	public static final RegistryObject<SimpleParticleType> CORRUPTED_DUST = registerParticle("corrupted_dust");
 	public static final RegistryObject<SimpleParticleType> CORRUPTED_MAGIC = registerParticle("corrupted_magic");
+	public static final RegistryObject<SimpleParticleType> ELECTRIC_SHOCK = registerParticle("electric_shock");
 
 	private static RegistryObject<SimpleParticleType> registerParticle(String name) {
 		return PARTICLES.register(name, () -> new SimpleParticleType(true));

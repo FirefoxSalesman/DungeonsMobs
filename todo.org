@@ -1,3 +1,4 @@
+* TODO Use the new version of the library
 * TODO Illusioner
 + [X] Make an option for fireworks
 + [X] Make an option to put it in raids
@@ -99,10 +100,4 @@ Minion: 15 pillagers (poison cloud, tempo theft)
 Goat
 Double damage, fire trail, quick, regeneration, burning
 Minion: 20 mountaineers (regeneration)
-* TODO Fancy Boss Bars
-Basically, we need
-+ [X] An overlay
-+ [X] A proxy type thing
-+ [X] Network packets (yippee!)
-+ [X] A subclass of BossInfo
 * TODO Finish Mixins
