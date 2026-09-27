@@ -33,19 +33,21 @@ public class MobEnchantEvents {
 			} else {
 				attacker = event.getSource().getEntity();
 			}
-			if (attacker instanceof LivingEntity) {
+			if (attacker instanceof LivingEntity livingAttacker) {
 
-				CommittedMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
-				CriticalHitMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
-				DoubleDamageMobEnchant.doEffect(defender, (LivingEntity) attacker, event);
-				WeakeningMobEnchant.doEffect(defender, (LivingEntity) attacker);
+				CommittedMobEnchant.doEffect(defender, livingAttacker, event);
+				CriticalHitMobEnchant.doEffect(defender, livingAttacker, event);
+				DoubleDamageMobEnchant.doEffect(defender, livingAttacker, event);
+				FrenziedMobEnchant.doEffect(defender, livingAttacker, event.getAmount(),
+						event);
+				WeakeningMobEnchant.doEffect(defender, livingAttacker);
 				// radiance
-				executeIfPresentWithLevel((LivingEntity) attacker, ModMobEnchants.RADIANCE.get(),
+				executeIfPresentWithLevel(livingAttacker, ModMobEnchants.RADIANCE.get(),
 						(level) -> {
 							LivingEntity source = event.getSource()
 									.is(DamageTypeTags.IS_PROJECTILE)
 											? event.getEntity()
-											: (LivingEntity) attacker;
+											: livingAttacker;
 							applyToNearbyEntities(source, 1.5F,
 									getCanHealPredicate(source),
 									(LivingEntity nearbyEntity) -> {

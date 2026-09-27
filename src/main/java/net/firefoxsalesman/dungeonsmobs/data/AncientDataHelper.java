@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import baguchan.enchantwithmob.api.IEnchantCap;
 import baguchan.enchantwithmob.capability.MobEnchantCapability;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import baguchan.enchantwithmob.registry.MobEnchants;
@@ -17,6 +16,7 @@ import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.data.util.MergeableCodecDataManager;
 import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -78,9 +78,7 @@ public class AncientDataHelper {
 	}
 
 	private static void addEnchant(LivingEntity entity, ResourceLocation enchant, boolean ancient) {
-		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
-				? enchantedEntity.getEnchantCap()
-				: new MobEnchantCapability();
+		MobEnchantCapability enchantCap = NewMobEnchantUtils.getEnchantCapability(entity);
 		MobEnchant enchantment = MobEnchants.getRegistry().get().getValue(enchant);
 		enchantCap.addMobEnchant(entity, enchantment, enchantment.getMaxLevel(), ancient);
 
@@ -146,9 +144,7 @@ public class AncientDataHelper {
 	public static String getAncientName(LivingEntity entity, boolean unique) {
 		Set<String> adjectives = new HashSet<>();
 		Set<String> nouns = new HashSet<>();
-		MobEnchantCapability enchantCap = entity instanceof IEnchantCap enchantedEntity
-				? enchantedEntity.getEnchantCap()
-				: new MobEnchantCapability();
+		MobEnchantCapability enchantCap = NewMobEnchantUtils.getEnchantCapability(entity);
 		enchantCap.getMobEnchants().forEach(mobEnchantment -> {
 			MobEnchantmentAncientData mobEnchantmentAncientData = getMobEnchantmentAncientData(
 					MobEnchants.getRegistry().get().getKey(mobEnchantment.getMobEnchant()));

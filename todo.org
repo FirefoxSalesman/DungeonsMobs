@@ -1,4 +1,3 @@
-* TODO Use the new version of the library
 * TODO Illusioner
 + [X] Make an option for fireworks
 + [X] Make an option to put it in raids
@@ -15,7 +14,7 @@
 + [ ] Add gilded weapons
 + [ ] Move to library
 ** TODO Endersent
-+ [ ] Savage eye- critical hit, frenzied
++ [X] Savage eye- critical hit, frenzied
 + [ ] Ravenous eye- committed, rampaging
 + [ ] Blinding eye- chains, echo, fire trail
 ** TODO Ancients

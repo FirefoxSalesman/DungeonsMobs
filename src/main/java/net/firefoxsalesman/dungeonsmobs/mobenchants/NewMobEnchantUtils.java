@@ -2,11 +2,19 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
 import java.util.function.Consumer;
 import baguchan.enchantwithmob.api.IEnchantCap;
+import baguchan.enchantwithmob.capability.MobEnchantCapability;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import baguchan.enchantwithmob.utils.MobEnchantUtils;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class NewMobEnchantUtils {
+	public static MobEnchantCapability getEnchantCapability(Entity entity) {
+		return entity instanceof IEnchantCap enchantedEntity
+				? enchantedEntity.getEnchantCap()
+				: new MobEnchantCapability();
+	}
+
 	public static void executeIfPresentWithLevel(LivingEntity entity, MobEnchant mobEnchantment,
 			Consumer<Integer> consumer) {
 		if (entity != null && entity instanceof IEnchantCap cap) {

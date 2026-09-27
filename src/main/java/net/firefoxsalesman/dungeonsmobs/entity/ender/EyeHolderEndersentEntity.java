@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import baguchan.enchantwithmob.api.IEnchantCap;
 import baguchan.enchantwithmob.capability.MobEnchantCapability;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import baguchan.enchantwithmob.registry.MobEnchants;
 import net.firefoxsalesman.dungeonslibs.attribute.AttributeRegistry;
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.firefoxsalesman.dungeonsmobs.network.DungeonsBossInfo;
 import net.minecraft.nbt.CompoundTag;
@@ -85,11 +85,9 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 	public void tick() {
 		super.tick();
 		if (ModHelper.hasMod("enchantwithmob")) {
-			MobEnchantCapability cap = this instanceof IEnchantCap enchantedEntity
-					? enchantedEntity.getEnchantCap()
-					: new MobEnchantCapability();
+			MobEnchantCapability cap = NewMobEnchantUtils.getEnchantCapability(this);
 			if (!cap.hasEnchant()) {
-				int type = getRandom().nextInt(3);
+				int type = getRandom().nextInt(4);
 				switch (type) {
 					case 0:
 						setupEnchants("Blight Eye", List.of(MobEnchants.POISON_CLOUD.get(),
@@ -102,6 +100,10 @@ public class EyeHolderEndersentEntity extends AbstractEndersentEntity {
 					case 2:
 						setupEnchants("Reaping Eye", List.of(ModMobEnchants.THUNDERING.get(),
 								ModMobEnchants.SHOCKWAVE.get()), cap);
+						break;
+					case 3:
+						setupEnchants("Savage Eye", List.of(ModMobEnchants.CRITICAL_HIT.get(),
+								ModMobEnchants.FRENZIED.get()), cap);
 						break;
 				}
 			}

@@ -9,6 +9,7 @@ import net.firefoxsalesman.dungeonsmobs.mobenchants.CommittedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.CriticalHitMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.DoubleDamageMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.FrenziedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.LeechingMobEnchant;
@@ -38,6 +39,8 @@ public class ModMobEnchants {
 			() -> new DoubleDamageMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 1)));
 	public static final RegistryObject<EchoMobEnchant> ECHO = MOB_ENCHANTS_DEFERRED.register("echo",
 			() -> new EchoMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 3)));
+	public static final RegistryObject<FrenziedMobEnchant> FRENZIED = MOB_ENCHANTS_DEFERRED.register("frenzied",
+			() -> new FrenziedMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 3)));
 	public static final RegistryObject<GravityPulseMobEnchant> GRAVITY_PULSE = MOB_ENCHANTS_DEFERRED.register(
 			"gravity_pulse",
 			() -> new GravityPulseMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.RARE, 3)));
