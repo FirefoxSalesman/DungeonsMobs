@@ -17,7 +17,6 @@
 ** TODO Endersent
 + [ ] Savage eye- critical hit, frenzied
 + [ ] Ravenous eye- committed, rampaging
-+ [ ] Reaping eye- shockwave, thundering
 + [ ] Blinding eye- chains, echo, fire trail
 ** TODO Ancients
 *** TODO Abominable Weaver

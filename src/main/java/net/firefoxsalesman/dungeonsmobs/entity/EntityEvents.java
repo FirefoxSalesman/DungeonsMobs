@@ -4,15 +4,28 @@ import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.MOD_ID;
 import static net.firefoxsalesman.dungeonsmobs.mod.ModEffects.ENSNARED;
 import static net.minecraft.world.entity.EntityType.HUSK;
 
+import net.firefoxsalesman.dungeonslibs.entities.ai.goal.MeleeAttackGoal;
+import net.firefoxsalesman.dungeonslibs.utils.GoalUtils;
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ancient.AncientHelper;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
+import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -41,23 +54,44 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public static void changeAttributes(EntityJoinLevelEvent event) {
-		// Tougher Husks
-		if (event.getEntity().getType().equals(HUSK)
-				&& event.getEntity() instanceof LivingEntity livingEntity
-				&& DungeonsMobsConfig.COMMON.ENABLE_STRONGER_HUSKS.get()) {
-			AttributeInstance attribute = livingEntity.getAttribute(Attributes.ARMOR);
-			if (attribute != null) {
-				attribute.setBaseValue(10.0D);
+		if (event.getEntity() instanceof LivingEntity livingEntity) {
+			// Tougher Husks
+			if (livingEntity.getType().equals(HUSK)
+					&& DungeonsMobsConfig.COMMON.ENABLE_STRONGER_HUSKS.get()) {
+				AttributeInstance attribute = livingEntity.getAttribute(Attributes.ARMOR);
+				if (attribute != null) {
+					attribute.setBaseValue(10.0D);
+				}
+				attribute = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
+				if (attribute != null) {
+					attribute.setBaseValue(0.17D);
+				}
+				attribute = livingEntity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
+				if (attribute != null) {
+					attribute.setBaseValue(0.6D);
+				}
 			}
-			attribute = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
-			if (attribute != null) {
-				attribute.setBaseValue(0.17D);
-			}
-			attribute = livingEntity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
-			if (attribute != null) {
-				attribute.setBaseValue(0.6D);
+			if (livingEntity.getType().equals(EntityType.MOOSHROOM)
+					&& DungeonsMobsConfig.COMMON.ENABLE_HOSTILE_MOOSHROOMS.get()
+					&& livingEntity instanceof MushroomCow mob) {
+				GoalUtils.removeGoal(mob.goalSelector, FloatGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, PanicGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, BreedGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, TemptGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, FollowParentGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, WaterAvoidingRandomStrollGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, LookAtPlayerGoal.class);
+				GoalUtils.removeGoal(mob.goalSelector, RandomLookAroundGoal.class);
+				mob.goalSelector.addGoal(0, new MeleeAttackGoal(mob, 1.5D, false));
+				mob.goalSelector.addGoal(1, new ApproachTargetGoal(mob, 0, 1.0D, true));
+				mob.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(mob, 1.0D));
+				mob.goalSelector.addGoal(3, new LookAtPlayerGoal(mob, Player.class, 6.0F));
+				mob.goalSelector.addGoal(4, new RandomLookAroundGoal(mob));
+				mob.targetSelector.addGoal(0,
+						new NearestAttackableTargetGoal<>(mob, Player.class, true));
 			}
 		}
+
 	}
 
 	// TODO Pack and organize -- Meme Man
