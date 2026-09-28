@@ -13,6 +13,7 @@ import net.firefoxsalesman.dungeonsmobs.mobenchants.FrenziedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.LeechingMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.RampagingMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.RegenerationMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ShockwaveMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ThunderingMobEnchant;
@@ -54,6 +55,8 @@ public class ModMobEnchants {
 	public static final RegistryObject<RegenerationMobEnchant> REGENERATION = MOB_ENCHANTS_DEFERRED.register(
 			"regeneration",
 			() -> new RegenerationMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
+	public static final RegistryObject<RampagingMobEnchant> RAMPAGING = MOB_ENCHANTS_DEFERRED.register("rampaging",
+			() -> new RampagingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 	public static final RegistryObject<MobEnchant> RUSH = MOB_ENCHANTS_DEFERRED.register("rush",
 			() -> new MobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.COMMON, 3)));
 	public static final RegistryObject<ShockwaveMobEnchant> SHOCKWAVE = MOB_ENCHANTS_DEFERRED.register(

@@ -89,6 +89,7 @@ public class MobEnchantEvents {
 			Entity entity = event.getSource().getEntity();
 			if (entity instanceof LivingEntity attacker) {
 				LeechingMobEnchant.doEffect(attacker, defender);
+				RampagingMobEnchant.doEffect(attacker);
 			}
 		}
 	}
