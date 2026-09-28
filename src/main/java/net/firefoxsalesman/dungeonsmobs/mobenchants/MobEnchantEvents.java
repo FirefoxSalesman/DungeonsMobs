@@ -28,15 +28,15 @@ public class MobEnchantEvents {
 			RushMobEnchant.doEffect(defender);
 			HealsAlliesMobEnchant.doEffect(defender, event.getAmount());
 			Entity attacker;
-			if (!event.getSource().is(DamageTypeTags.IS_PROJECTILE)) {
+			if (!event.getSource().is(DamageTypeTags.IS_PROJECTILE))
 				attacker = event.getSource().getDirectEntity();
-			} else {
+			else
 				attacker = event.getSource().getEntity();
-			}
 			if (attacker instanceof LivingEntity livingAttacker) {
 
 				CommittedMobEnchant.doEffect(defender, livingAttacker, event);
 				CriticalHitMobEnchant.doEffect(defender, livingAttacker, event);
+				ChainsMobEnchant.doEffect(defender, livingAttacker);
 				DoubleDamageMobEnchant.doEffect(defender, livingAttacker, event);
 				FrenziedMobEnchant.doEffect(defender, livingAttacker, event.getAmount(),
 						event);
@@ -66,6 +66,7 @@ public class MobEnchantEvents {
 			LivingEntity entity = event.getEntity();
 			BurningMobEnchant.doEffect(entity);
 			ChillingMobEnchant.doEffect(entity);
+			FireTrailMobEnchant.doEffect(entity);
 			GravityPulseMobEnchant.doEffect(entity);
 			RegenerationMobEnchant.doEffect(entity);
 		}

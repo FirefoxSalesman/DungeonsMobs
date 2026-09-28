@@ -4,11 +4,13 @@ import baguchan.enchantwithmob.EnchantWithMob;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.BurningMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.ChainsMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.ChillingMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.CommittedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.CriticalHitMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.DoubleDamageMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.EchoMobEnchant;
+import net.firefoxsalesman.dungeonsmobs.mobenchants.FireTrailMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.FrenziedMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.GravityPulseMobEnchant;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.HealsAlliesMobEnchant;
@@ -28,6 +30,8 @@ public class ModMobEnchants {
 			.create(new ResourceLocation(EnchantWithMob.MODID, "mob_enchant"), DungeonsMobs.MOD_ID);
 	public static final RegistryObject<BurningMobEnchant> BURNING = MOB_ENCHANTS_DEFERRED.register("burning",
 			() -> new BurningMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
+	public static final RegistryObject<ChainsMobEnchant> CHAINS = MOB_ENCHANTS_DEFERRED.register("chains",
+			() -> new ChainsMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<ChillingMobEnchant> CHILLING = MOB_ENCHANTS_DEFERRED.register("chilling",
 			() -> new ChillingMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.UNCOMMON, 3)));
 	public static final RegistryObject<CommittedMobEnchant> COMMITTED = MOB_ENCHANTS_DEFERRED.register("committed",
@@ -42,6 +46,9 @@ public class ModMobEnchants {
 			() -> new EchoMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 3)));
 	public static final RegistryObject<FrenziedMobEnchant> FRENZIED = MOB_ENCHANTS_DEFERRED.register("frenzied",
 			() -> new FrenziedMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 3)));
+	public static final RegistryObject<FireTrailMobEnchant> FIRE_TRAIL = MOB_ENCHANTS_DEFERRED.register(
+			"fire_trail",
+			() -> new FireTrailMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.VERY_RARE, 1)));
 	public static final RegistryObject<GravityPulseMobEnchant> GRAVITY_PULSE = MOB_ENCHANTS_DEFERRED.register(
 			"gravity_pulse",
 			() -> new GravityPulseMobEnchant(new MobEnchant.Properties(MobEnchant.Rarity.RARE, 3)));

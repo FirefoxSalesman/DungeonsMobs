@@ -12,6 +12,7 @@ import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
+import net.firefoxsalesman.dungeonsmobs.mod.ModBlocks;
 import net.firefoxsalesman.dungeonsmobs.mod.ModEffects;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
@@ -62,6 +63,7 @@ public class DungeonsMobs {
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.register(modEventBus);
 		ModItems.register(modEventBus);
+		ModBlocks.register(modEventBus);
 		ModParticleTypes.register(modEventBus);
 
 		ModCapabilities.setupCapabilities();

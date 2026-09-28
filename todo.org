@@ -15,7 +15,6 @@
 + [ ] Add gilded weapons
 + [ ] Move to library
 ** TODO Endersent
-+ [ ] Ravenous eye- committed, rampaging
 + [ ] Blinding eye- chains, echo, fire trail
 ** TODO Ancients
 *** TODO Abominable Weaver
