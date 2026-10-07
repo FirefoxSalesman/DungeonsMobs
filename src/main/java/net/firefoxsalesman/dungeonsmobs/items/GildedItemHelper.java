@@ -67,6 +67,8 @@ public class GildedItemHelper {
 				.getBuiltInEnchantmentsCapability(event.getItemStack());
 		List<EnchantmentInstance> builtInEnchantments = cap
 				.getBuiltInEnchantments(GILDED_ITEM_RESOURCELOCATION);
+		System.out.println(
+				"Built in enchants (item toolip): " + cap.getAllBuiltInEnchantmentInstancesPerSource());
 		builtInEnchantments.forEach(enchantmentData -> {
 			event.getToolTip().add(enchantmentData.enchantment.getFullname(enchantmentData.level).copy()
 					.withStyle(ChatFormatting.GOLD));
@@ -77,6 +79,8 @@ public class GildedItemHelper {
 	public static void onRenderTooltip(RenderTooltipEvent.Color event) {
 		BuiltInEnchantments cap = BuiltInEnchantmentsHelper
 				.getBuiltInEnchantmentsCapability(event.getItemStack());
+		System.out.println("Built in enchants (render tooltip): "
+				+ cap.getAllBuiltInEnchantmentInstancesPerSource());
 		List<EnchantmentInstance> builtInEnchantments = cap
 				.getBuiltInEnchantments(GILDED_ITEM_RESOURCELOCATION);
 		if (!builtInEnchantments.isEmpty()) {

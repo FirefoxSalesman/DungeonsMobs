@@ -12,7 +12,7 @@
 + [ ] Add missing mob enchants (or just rename some from enchant with mob)
   - Treat strong like sharpness, & speedy like quick
 + [ ] Any percent effect on attack speed goes to damage instead
-+ [ ] Add gilded weapons
++ [ ] Add gilded weapons. These are probably giving us trouble because we don't have packets.
 + [ ] Move to library
 ** TODO Endersent
 + [ ] Blinding eye- chains, echo, fire trail

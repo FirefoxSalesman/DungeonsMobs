@@ -24,13 +24,14 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 		double d3 = target.getZ() - pos.z;
 		for (float i = 0; i < 7; i++) {
 			float rot = yBodyRot - 45F + (22.5F * i);
-			Vec3 v = new Vec3(-Math.sin(Math.toRadians(rot)), 0, Math.cos(Math.toRadians(rot)));
+			Vec3 v = new Vec3(-Math.sin(Math.toRadians(rot)) * 3, 0, Math.cos(Math.toRadians(rot)) * 3);
 			MooshroomMonstrosityProjectileEntity projectile = new MooshroomMonstrosityProjectileEntity(
 					level(),
 					this, d1 + pos.x, d2, d3 + pos.z);
-
 			projectile.rotateToMatchMovement();
-			v = v.scale(3);
+			System.out.println("v before: " + v);
+			// v = v.scale(3);
+			// System.out.println("v after: " + v);
 			projectile.moveTo(pos.x + v.x, pos.y, pos.z + v.z);
 			level().addFreshEntity(projectile);
 

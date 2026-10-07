@@ -1,12 +1,17 @@
 package net.firefoxsalesman.dungeonsmobs.capabilities.ancient;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantments;
+import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantmentsHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.items.GildedItemHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.network.message.AncientMessage;
+import net.firefoxsalesman.dungeonsmobs.network.message.GildedItemMessage;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -17,6 +22,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -99,18 +105,26 @@ public class AncientEvents {
 
 	@SubscribeEvent
 	public static void onLivingDeathEvent(LivingDeathEvent event) {
-		Entity attacker = event.getSource().getEntity();
-		if (AncientHelper.getAncientCapability(event.getEntity()).isAncient()
-				&& attacker instanceof ServerPlayer player)
-			dropGildedItem(player,
-					ForgeRegistries.ITEMS.getValue(GeneralHelper.modLoc("windcaller_helmet")));
+		if (AncientHelper.getAncientCapability(event.getEntity()).isAncient())
+			dropGildedItem(
+					ForgeRegistries.ITEMS.getValue(GeneralHelper.modLoc("windcaller_helmet")),
+					event.getEntity());
 	}
 
-	private static void dropGildedItem(LivingEntity entity, Item item) {
-		ItemStack sword = new ItemStack(item);
-		ItemStack gildedItem = GildedItemHelper.getGildedItem(entity.getRandom(), sword);
-		ItemEntity gildedItemDrop = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(),
+	private static void dropGildedItem(Item item, LivingEntity defender) {
+		if (defender.level().isClientSide())
+			return;
+		ItemStack gildedItem = GildedItemHelper.getGildedItem(defender.getRandom(), new ItemStack(item));
+		BuiltInEnchantments cap = BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(gildedItem);
+		ItemEntity gildedItemDrop = new ItemEntity(defender.level(), defender.getX(), defender.getY(),
+				defender.getZ(),
 				gildedItem);
-		entity.level().addFreshEntity(gildedItemDrop);
+		Map<String, Integer> enchants = new HashMap<>();
+		cap.getBuiltInEnchantments(GildedItemHelper.GILDED_ITEM_RESOURCELOCATION).forEach(enchant -> enchants
+				.put(EnchantmentHelper.getEnchantmentId(enchant.enchantment).toString(),
+						enchant.level));
+		defender.level().addFreshEntity(gildedItemDrop);
+		NetworkHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),
+				new GildedItemMessage(gildedItemDrop.getId(), enchants));
 	}
 }
