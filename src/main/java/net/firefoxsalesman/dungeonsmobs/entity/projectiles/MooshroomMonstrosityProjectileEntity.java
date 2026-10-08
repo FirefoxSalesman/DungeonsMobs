@@ -91,4 +91,9 @@ public class MooshroomMonstrosityProjectileEntity extends StraightMovingProjecti
 			remove(RemovalReason.DISCARDED);
 		}
 	}
+
+	@Override
+	protected boolean shouldFuckOff() {
+		return true;
+	}
 }

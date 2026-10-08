@@ -29,10 +29,8 @@ public class MooshroomMonstrosityEntity extends AbstractMonstrosityEntity {
 					level(),
 					this, d1 + pos.x, d2, d3 + pos.z);
 			projectile.rotateToMatchMovement();
-			System.out.println("v before: " + v);
-			// v = v.scale(3);
-			// System.out.println("v after: " + v);
 			projectile.moveTo(pos.x + v.x, pos.y, pos.z + v.z);
+			projectile.setDeltaMovement(v);
 			level().addFreshEntity(projectile);
 
 		}

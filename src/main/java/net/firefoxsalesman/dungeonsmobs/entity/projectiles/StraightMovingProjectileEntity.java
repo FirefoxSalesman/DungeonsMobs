@@ -56,13 +56,14 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 			yPower = pY / d0 * 0.1D;
 			zPower = pZ / d0 * 0.1D;
 		}
-		Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize();
-		double d1 = vec3.horizontalDistance();
-		setYRot((float) (Mth.atan2(vec3.x, vec3.z) * Mth.DEG_TO_RAD));
-		setXRot((float) (Mth.atan2(vec3.y, d1) * Mth.DEG_TO_RAD));
-		yRotO = getYRot();
-		xRotO = getXRot();
-
+		if (!shouldFuckOff()) {
+			Vec3 vec3 = (new Vec3(pX, pY, pZ)).normalize();
+			double d1 = vec3.horizontalDistance();
+			setYRot((float) (Mth.atan2(vec3.x, vec3.z) * Mth.DEG_TO_RAD));
+			setXRot((float) (Mth.atan2(vec3.y, d1) * Mth.DEG_TO_RAD));
+			yRotO = getYRot();
+			xRotO = getXRot();
+		}
 	}
 
 	public StraightMovingProjectileEntity(EntityType<? extends StraightMovingProjectileEntity> pEntityType,
@@ -186,7 +187,9 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 				}
 			}
 
-			setDeltaMovement(vector3d.add(xPower, yPower, zPower).scale(f));
+			if (!shouldFuckOff()) {
+				setDeltaMovement(vector3d.add(xPower, yPower, zPower).scale(f));
+			}
 			if (getTrailParticle() != null && shouldSpawnParticles()) {
 				spawnTrailParticle();
 			}
@@ -349,5 +352,12 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
 
 	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	/**
+	 * Pretty self-explanatory
+	 */
+	protected boolean shouldFuckOff() {
+		return false;
 	}
 }
