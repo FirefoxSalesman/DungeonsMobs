@@ -1,0 +1,10 @@
+{
+  "type": "dungeonslibs:loottable",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/pillager_outpost"
+    }
+  ],
+  "table": "dungeonsmobs:chests/mooshroom_monstrosity_map"
+}
