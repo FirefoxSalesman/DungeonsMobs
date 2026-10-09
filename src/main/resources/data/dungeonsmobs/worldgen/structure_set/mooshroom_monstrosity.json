@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "dungeonsmobs:mooshroom_monstrosity",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 82352737,
+    "separation": 15,
+    "spacing": 21
+  }
+}

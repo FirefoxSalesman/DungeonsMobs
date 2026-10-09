@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:jigsaw",
+  "start_pool": "dungeonsmobs:mooshroom_monstrosity",
+  "size": 1,
+  "max_distance_from_center": 80,
+  "biomes": "#dungeonsmobs:has_mooshroom_monstrosity",
+  "step": "surface_structures",
+  "start_height": {
+    "absolute": 70
+  },
+  "terrain_adaptation": "beard_box",
+  "use_expansion_hack": false,
+  "spawn_overrides": {}
+}
