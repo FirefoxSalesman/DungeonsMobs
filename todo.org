@@ -4,8 +4,6 @@
 + [ ] Make a new texture, & use mixins to make it optional
 + [ ] Possibly make the clones fire arrows
 * TODO Nameless one (maybe)
-* TODO Mooshroom monstrosity (maybe)
-+ I need to learn trig in order to do this
 * TODO Corrupted cauldron (maybe)
 * TODO Fix conjured slime bullets (they don't render)
 * TODO Port ancient mobs
