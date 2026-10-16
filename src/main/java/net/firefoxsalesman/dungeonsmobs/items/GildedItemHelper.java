@@ -5,13 +5,8 @@ import java.util.Optional;
 
 import com.google.common.collect.Lists;
 
-import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantments;
-import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantmentsHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
-import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.WeightedRandom;
 import net.minecraft.world.item.ItemStack;
@@ -19,23 +14,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID, value = Dist.CLIENT)
 public class GildedItemHelper {
-
-	public static final ResourceLocation GILDED_ITEM_RESOURCELOCATION = GeneralHelper.modLoc("gilded_item");
-
 	public static ItemStack getGildedItem(RandomSource random, ItemStack itemStack) {
-		BuiltInEnchantments cap = BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(itemStack);
 		List<EnchantmentInstance> list1 = getAvailableEnchantmentResults(1, 1, itemStack, true);
 		Optional<EnchantmentInstance> randomItem = WeightedRandom.getRandomItem(random, list1, list1.size());
 		randomItem.ifPresent(randomEnchantment -> {
-			cap.addBuiltInEnchantment(GILDED_ITEM_RESOURCELOCATION, randomEnchantment);
+			Enchantment enchantment = randomEnchantment.enchantment;
+			itemStack.enchant(enchantment, enchantment.getMaxLevel() + 1);
 			itemStack.setHoverName(Component.translatable("dungeonsmobs.gilded").append(" ")
 					.append(itemStack.getHoverName()));
 		});
@@ -60,34 +49,4 @@ public class GildedItemHelper {
 
 		return list;
 	}
-
-	@SubscribeEvent
-	public static void onItemTooltip(ItemTooltipEvent event) {
-		BuiltInEnchantments cap = BuiltInEnchantmentsHelper
-				.getBuiltInEnchantmentsCapability(event.getItemStack());
-		List<EnchantmentInstance> builtInEnchantments = cap
-				.getBuiltInEnchantments(GILDED_ITEM_RESOURCELOCATION);
-		System.out.println(
-				"Built in enchants (item toolip): " + cap.getAllBuiltInEnchantmentInstancesPerSource());
-		builtInEnchantments.forEach(enchantmentData -> {
-			event.getToolTip().add(enchantmentData.enchantment.getFullname(enchantmentData.level).copy()
-					.withStyle(ChatFormatting.GOLD));
-		});
-	}
-
-	@SubscribeEvent
-	public static void onRenderTooltip(RenderTooltipEvent.Color event) {
-		BuiltInEnchantments cap = BuiltInEnchantmentsHelper
-				.getBuiltInEnchantmentsCapability(event.getItemStack());
-		System.out.println("Built in enchants (render tooltip): "
-				+ cap.getAllBuiltInEnchantmentInstancesPerSource());
-		List<EnchantmentInstance> builtInEnchantments = cap
-				.getBuiltInEnchantments(GILDED_ITEM_RESOURCELOCATION);
-		if (!builtInEnchantments.isEmpty()) {
-			event.setBorderStart(0xF0FFD700);
-			event.setBorderEnd(0x50F5CC27);
-			event.setBackground(0xF0AF7923);
-		}
-	}
-
 }

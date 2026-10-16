@@ -5,13 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantments;
-import net.firefoxsalesman.dungeonslibs.capabilities.builtinenchantments.BuiltInEnchantmentsHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.items.GildedItemHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.network.message.AncientMessage;
-import net.firefoxsalesman.dungeonsmobs.network.message.GildedItemMessage;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -22,7 +19,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -115,16 +111,9 @@ public class AncientEvents {
 		if (defender.level().isClientSide())
 			return;
 		ItemStack gildedItem = GildedItemHelper.getGildedItem(defender.getRandom(), new ItemStack(item));
-		BuiltInEnchantments cap = BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(gildedItem);
 		ItemEntity gildedItemDrop = new ItemEntity(defender.level(), defender.getX(), defender.getY(),
 				defender.getZ(),
 				gildedItem);
-		Map<String, Integer> enchants = new HashMap<>();
-		cap.getBuiltInEnchantments(GildedItemHelper.GILDED_ITEM_RESOURCELOCATION).forEach(enchant -> enchants
-				.put(EnchantmentHelper.getEnchantmentId(enchant.enchantment).toString(),
-						enchant.level));
 		defender.level().addFreshEntity(gildedItemDrop);
-		NetworkHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),
-				new GildedItemMessage(gildedItemDrop.getId(), enchants));
 	}
 }

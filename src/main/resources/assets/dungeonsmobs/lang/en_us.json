@@ -490,5 +490,7 @@
   "commands.summonuniqueancient.failed": "Failed to summon unique ancient mob",
   "commands.summonuniqueancient.failed.uuid": "A mob with the same uuid already exists",
   "commands.summonuniqueancient.invalidPosition": "Invalid position!",
-  "commands.summonuniqueancient.success": "Unique ancient mob summoned successfully"
+  "commands.summonuniqueancient.success": "Unique ancient mob summoned successfully",
+
+  "dungeonsmobs.gilded": "Gilded"
 }
