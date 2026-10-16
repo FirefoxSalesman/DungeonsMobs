@@ -1,8 +1,6 @@
 package net.firefoxsalesman.dungeonsmobs.capabilities.ancient;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
@@ -10,6 +8,8 @@ import net.firefoxsalesman.dungeonsmobs.items.GildedItemHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonsmobs.network.message.AncientMessage;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
+import net.firefoxsalesman.dungeonsmobs.utils.LootTableHelper;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,7 +17,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -26,7 +25,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = DungeonsMobs.MOD_ID)
 public class AncientEvents {
@@ -101,16 +99,20 @@ public class AncientEvents {
 
 	@SubscribeEvent
 	public static void onLivingDeathEvent(LivingDeathEvent event) {
-		if (AncientHelper.getAncientCapability(event.getEntity()).isAncient())
+		LivingEntity victim = event.getEntity();
+		if (!victim.level().isClientSide && AncientHelper.getAncientCapability(victim).isAncient())
 			dropGildedItem(
-					ForgeRegistries.ITEMS.getValue(GeneralHelper.modLoc("windcaller_helmet")),
+					LootTableHelper.generateItemStack((ServerLevel) victim.level(),
+							victim.blockPosition(),
+							GeneralHelper.modLoc("entities/gilded_entity"),
+							victim.getRandom()),
 					event.getEntity());
 	}
 
-	private static void dropGildedItem(Item item, LivingEntity defender) {
+	private static void dropGildedItem(ItemStack item, LivingEntity defender) {
 		if (defender.level().isClientSide())
 			return;
-		ItemStack gildedItem = GildedItemHelper.getGildedItem(defender.getRandom(), new ItemStack(item));
+		ItemStack gildedItem = GildedItemHelper.getGildedItem(defender.getRandom(), item);
 		ItemEntity gildedItemDrop = new ItemEntity(defender.level(), defender.getX(), defender.getY(),
 				defender.getZ(),
 				gildedItem);

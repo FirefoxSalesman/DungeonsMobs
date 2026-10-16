@@ -1,3 +1,6 @@
+* TODO Put this in the library
+
+[[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/utils/LootTableHelper.java::import net.minecraft.server.level.ServerLevel;]]
 * TODO Illusioner
 + [X] Make an option for fireworks
 + [X] Make an option to put it in raids
