@@ -21,6 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class GildedItemHelper {
 	public static ItemStack getGildedItem(RandomSource random, ItemStack itemStack) {
 		List<EnchantmentInstance> list1 = getAvailableEnchantmentResults(1, 1, itemStack, true);
+		System.out.println(list1);
 		Optional<EnchantmentInstance> randomItem = WeightedRandom.getRandomItem(random, list1, list1.size());
 		randomItem.ifPresent(randomEnchantment -> {
 			Enchantment enchantment = randomEnchantment.enchantment;

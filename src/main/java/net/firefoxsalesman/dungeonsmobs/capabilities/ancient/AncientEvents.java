@@ -2,7 +2,10 @@ package net.firefoxsalesman.dungeonsmobs.capabilities.ancient;
 
 import java.util.List;
 
+import org.violetmoon.quark.content.tools.base.RuneColor;
+import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.items.GildedItemHelper;
 import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
@@ -100,13 +103,16 @@ public class AncientEvents {
 	@SubscribeEvent
 	public static void onLivingDeathEvent(LivingDeathEvent event) {
 		LivingEntity victim = event.getEntity();
-		if (!victim.level().isClientSide && AncientHelper.getAncientCapability(victim).isAncient())
-			dropGildedItem(
-					LootTableHelper.generateItemStack((ServerLevel) victim.level(),
-							victim.blockPosition(),
-							GeneralHelper.modLoc("entities/gilded_entity"),
-							victim.getRandom()),
-					event.getEntity());
+		if (!victim.level().isClientSide && AncientHelper.getAncientCapability(victim).isAncient()) {
+			ItemStack stack = LootTableHelper.generateItemStack((ServerLevel) victim.level(),
+					victim.blockPosition(),
+					GeneralHelper.modLoc("entities/gilded_entity"),
+					victim.getRandom());
+			if (ModHelper.hasMod("quark")) {
+				stack = ColorRunesModule.withRune(stack, RuneColor.YELLOW);
+			}
+			dropGildedItem(stack, event.getEntity());
+		}
 	}
 
 	private static void dropGildedItem(ItemStack item, LivingEntity defender) {
