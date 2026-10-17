@@ -17,6 +17,7 @@ import net.firefoxsalesman.dungeonslibs.data.util.MergeableCodecDataManager;
 import net.firefoxsalesman.dungeonslibs.summon.SummonHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils;
+import net.firefoxsalesman.dungeonsmobs.utils.RandomHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -84,10 +85,6 @@ public class AncientDataHelper {
 
 	}
 
-	private static <T> T getRandomElement(RandomSource random, Collection<T> collection) {
-		return (T) collection.toArray()[random.nextInt(0, collection.size())];
-	}
-
 	private static void ancientHelper(LivingEntity entity, MobAncientData mobAncientData,
 			List<ResourceLocation> mobEnchants, int minionCount,
 			EntityType<?> minion, List<ResourceLocation> minionEnchants) {
@@ -120,10 +117,10 @@ public class AncientDataHelper {
 		Collection<ResourceLocation> enchants = MobEnchants.getRegistry().get().getKeys();
 		List<ResourceLocation> mobEnchants = new ArrayList<>();
 		for (int i = 0; i < 3; i++)
-			mobEnchants.add(getRandomElement(random, enchants));
+			mobEnchants.add(RandomHelper.getRandomElement(random, enchants));
 		ancientHelper(entity, mobAncientData, mobEnchants, 7, ForgeRegistries.ENTITY_TYPES
-				.getValue(getRandomElement(random, mobAncientData.getMinions())),
-				List.of(getRandomElement(random, enchants)));
+				.getValue(RandomHelper.getRandomElement(random, mobAncientData.getMinions())),
+				List.of(RandomHelper.getRandomElement(random, enchants)));
 		return Optional.empty();
 	}
 
@@ -131,7 +128,7 @@ public class AncientDataHelper {
 		List<UniqueAncientData> uniques = mobAncientData.getUniques();
 		if (uniques.size() > 0) {
 			RandomSource random = entity.getRandom();
-			UniqueAncientData unique = getRandomElement(random, uniques);
+			UniqueAncientData unique = RandomHelper.getRandomElement(random, uniques);
 			ancientHelper(entity, mobAncientData, unique.getMobEnchantments(), unique.getMinionCount(),
 					ForgeRegistries.ENTITY_TYPES.getValue(unique.getMinion()),
 					unique.getMinionMobEnchantments());
