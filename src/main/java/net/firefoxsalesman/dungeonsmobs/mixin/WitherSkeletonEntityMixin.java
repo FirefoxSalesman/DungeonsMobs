@@ -2,8 +2,8 @@ package net.firefoxsalesman.dungeonsmobs.mixin;
 
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -56,7 +56,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeleton {
 	private ItemStack createSpawnWeapon() {
 		ItemStack bowStack = new ItemStack(Items.BOW);
 		ItemStack swordStack = new ItemStack(Items.STONE_SWORD);
-		if (ModHelper.hasMod("dungeonsgear")) {
+		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
 			bowStack = new ItemStack(ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsgear", "red_snake")));
 		}

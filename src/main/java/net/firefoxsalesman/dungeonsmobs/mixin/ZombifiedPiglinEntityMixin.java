@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
-import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.entity.SpawnEquipmentHelper;
 import net.firefoxsalesman.dungeonsmobs.goals.SmartZombieAttackGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.ISmartCrossBowUser;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -88,7 +88,7 @@ public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmar
 	}
 
 	private ItemStack createSpawnWeapon() {
-		ItemStack meleeWeapon = ModHelper.hasMod("dungeonsgear")
+		ItemStack meleeWeapon = GeneralHelper.DUNGEONSGEAR.hasMod()
 				? new ItemStack(Items.GOLDEN_AXE)
 				: new ItemStack(Items.GOLDEN_SWORD);
 		return (double) this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : meleeWeapon;

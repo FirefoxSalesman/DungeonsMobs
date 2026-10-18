@@ -12,7 +12,6 @@ import baguchan.enchantwithmob.registry.MobEnchants;
 import net.firefoxsalesman.dungeonslibs.entities.ai.goal.MeleeAttackGoal;
 import net.firefoxsalesman.dungeonslibs.utils.GoalUtils;
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
-import net.firefoxsalesman.dungeonsmobs.capabilities.ancient.AncientHelper;
 import net.firefoxsalesman.dungeonsmobs.config.DungeonsMobsConfig;
 import net.firefoxsalesman.dungeonsmobs.entity.ender.EyeHolderEndersentEntity;
 import net.firefoxsalesman.dungeonsmobs.goals.ApproachTargetGoal;
@@ -105,51 +104,53 @@ public class EntityEvents {
 				mob.targetSelector.addGoal(0,
 						new NearestAttackableTargetGoal<>(mob, Player.class, true));
 			}
-			if (ModHelper.hasMod("enchantwithmob")
-					&& livingEntity.getType().equals(ModEntities.ENDERSENT_EYE_HOLDER.get())
-					&& !livingEntity.level().isClientSide()) {
-				MobEnchantCapability cap = NewMobEnchantUtils.getEnchantCapability(livingEntity);
-				if (!cap.hasEnchant()) {
-					int type = livingEntity.getRandom().nextInt(5);
-					switch (type) {
-						case 0:
-							setupEnchants(livingEntity, "Blight Eye",
-									List.of(MobEnchants.POISON_CLOUD.get(),
-											ModMobEnchants.WEAKENING
-													.get()),
-									cap);
-							break;
-						case 1:
-							setupEnchants(livingEntity, "Spiked Eye",
-									List.of(MobEnchants.STRONG.get(),
-											MobEnchants.THORN
-													.get()),
-									cap);
-							break;
-						case 2:
-							setupEnchants(livingEntity, "Reaping Eye",
-									List.of(ModMobEnchants.THUNDERING.get(),
-											ModMobEnchants.SHOCKWAVE
-													.get()),
-									cap);
-							break;
-						case 3:
-							setupEnchants(livingEntity, "Savage Eye", List.of(
-									ModMobEnchants.CRITICAL_HIT.get(),
-									ModMobEnchants.FRENZIED.get()), cap);
-							break;
-						case 4:
-							setupEnchants(livingEntity, "Ravenous Eye",
-									List.of(ModMobEnchants.COMMITTED.get(),
-											ModMobEnchants.RAMPAGING
-													.get()),
-									cap);
-							break;
-						default:
-							break;
+			ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+				if (livingEntity.getType().equals(ModEntities.ENDERSENT_EYE_HOLDER.get())
+						&& !livingEntity.level().isClientSide()) {
+					MobEnchantCapability cap = NewMobEnchantUtils
+							.getEnchantCapability(livingEntity);
+					if (!cap.hasEnchant()) {
+						int type = livingEntity.getRandom().nextInt(5);
+						switch (type) {
+							case 0:
+								setupEnchants(livingEntity, "Blight Eye",
+										List.of(MobEnchants.POISON_CLOUD.get(),
+												ModMobEnchants.WEAKENING
+														.get()),
+										cap);
+								break;
+							case 1:
+								setupEnchants(livingEntity, "Spiked Eye",
+										List.of(MobEnchants.STRONG.get(),
+												MobEnchants.THORN
+														.get()),
+										cap);
+								break;
+							case 2:
+								setupEnchants(livingEntity, "Reaping Eye",
+										List.of(ModMobEnchants.THUNDERING.get(),
+												ModMobEnchants.SHOCKWAVE
+														.get()),
+										cap);
+								break;
+							case 3:
+								setupEnchants(livingEntity, "Savage Eye", List.of(
+										ModMobEnchants.CRITICAL_HIT.get(),
+										ModMobEnchants.FRENZIED.get()), cap);
+								break;
+							case 4:
+								setupEnchants(livingEntity, "Ravenous Eye",
+										List.of(ModMobEnchants.COMMITTED.get(),
+												ModMobEnchants.RAMPAGING
+														.get()),
+										cap);
+								break;
+							default:
+								break;
+						}
 					}
 				}
-			}
+			});
 		}
 
 	}
@@ -294,8 +295,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public static void renderNametag(RenderNameTagEvent event) {
 		Entity entity = event.getEntity();
-		if (AncientHelper.getAncientCapability(entity).isAncient()
-				|| (entity instanceof EyeHolderEndersentEntity && ModHelper.hasMod("enchantwithmob")))
+		if (entity instanceof EyeHolderEndersentEntity && ModHelper.ENCHANTWITHMOB.hasMod())
 			event.setResult(Result.DENY);
 	}
 }

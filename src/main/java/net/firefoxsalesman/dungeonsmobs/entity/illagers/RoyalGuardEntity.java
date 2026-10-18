@@ -11,8 +11,8 @@ import net.firefoxsalesman.dungeonsmobs.goals.UseShieldGoal;
 import net.firefoxsalesman.dungeonsmobs.interfaces.IShieldUser;
 import net.firefoxsalesman.dungeonslibs.client.AnimationTimer;
 import net.firefoxsalesman.dungeonslibs.client.KeyframeEntity;
-import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModItems;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -107,18 +107,18 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 		goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 	}
 
-    @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
-	MobSpawnType spawnType, @Nullable SpawnGroupData groupData,
-	@Nullable CompoundTag compoundTag) {
-	SpawnGroupData ilivingentitydata = super.finalizeSpawn(accessor, difficulty, spawnType,
-	    groupData,
-	    compoundTag);
-	((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
-	populateDefaultEquipmentSlots(getRandom(), difficulty);
-	populateDefaultEquipmentEnchantments(getRandom(), difficulty);
-	return ilivingentitydata;
-    }
+	@Nullable
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty,
+			MobSpawnType spawnType, @Nullable SpawnGroupData groupData,
+			@Nullable CompoundTag compoundTag) {
+		SpawnGroupData ilivingentitydata = super.finalizeSpawn(accessor, difficulty, spawnType,
+				groupData,
+				compoundTag);
+		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
+		populateDefaultEquipmentSlots(getRandom(), difficulty);
+		populateDefaultEquipmentEnchantments(getRandom(), difficulty);
+		return ilivingentitydata;
+	}
 
 	@Override
 	public boolean isLeftHanded() {
@@ -198,7 +198,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		if (ModHelper.hasMod("dungeonsgear")) {
+		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			ItemStack mace = new ItemStack(MACE);
@@ -216,7 +216,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (ModHelper.hasMod("dungeonsgear")) {
+		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			mainhandWeapon = new ItemStack(MACE);

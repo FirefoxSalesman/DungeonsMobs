@@ -153,11 +153,9 @@ dependencies {
     // Use the full Curios API jar at runtime
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
-    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:8985135")
+    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:9233552")
     runtimeOnly(fg.deobf("curse.maven:bagus-lib-866533:6944371"))
     implementation fg.deobf("curse.maven:enchant-with-mob-913523:7187787")
-    implementation fg.deobf("curse.maven:zeta-968868:7335229")
-    implementation fg.deobf("curse.maven:quark-243121:6427817")
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {

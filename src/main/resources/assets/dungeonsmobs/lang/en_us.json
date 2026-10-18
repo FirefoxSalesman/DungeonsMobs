@@ -480,17 +480,5 @@
 
   "subtitles.entity.spider.prepare_shoot": "Spider calls",
   "subtitles.entity.spider.shoot": "Spider shoots",
-  "subtitles.entity.spider.web_impact": "Spider Web hits",
-
-  "commands.summoncommonancient.failed": "Failed to summon non-unique ancient mob",
-  "commands.summoncommonancient.failed.uuid": "A mob with the same uuid already exists",
-  "commands.summoncommonancient.invalidPosition": "Invalid position!",
-  "commands.summoncommonancient.success": "Non-unique ancient mob summoned successfully",
-
-  "commands.summonuniqueancient.failed": "Failed to summon unique ancient mob",
-  "commands.summonuniqueancient.failed.uuid": "A mob with the same uuid already exists",
-  "commands.summonuniqueancient.invalidPosition": "Invalid position!",
-  "commands.summonuniqueancient.success": "Unique ancient mob summoned successfully",
-
-  "dungeonsmobs.gilded": "Gilded"
+  "subtitles.entity.spider.web_impact": "Spider Web hits"
 }

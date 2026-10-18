@@ -36,7 +36,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
-import net.firefoxsalesman.dungeonsmobs.network.NetworkHandler;
 import net.firefoxsalesman.dungeonslibs.network.CommonProxy;
 import net.firefoxsalesman.dungeonslibs.client.ClientProxy;
 
@@ -68,9 +67,7 @@ public class DungeonsMobs {
 
 		ModCapabilities.setupCapabilities();
 
-		if (ModHelper.hasMod("enchantwithmob"))
-			ModMobEnchants.register(modEventBus);
-
+		ModHelper.ENCHANTWITHMOB.runWithMod(() -> ModMobEnchants.register(modEventBus));
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
 		ModStructureModifiers.register(modEventBus);
@@ -89,13 +86,12 @@ public class DungeonsMobs {
 				for (String s : List.of("wraith", "necromancer"))
 					if (GeneralHelper.modLoc(s + "_spawn_egg").equals(item.getId()))
 						idMatches = true;
-				if (!(ModHelper.hasGoety() && idMatches))
+				if (!(ModHelper.GOETY.hasMod() && idMatches))
 					event.accept(item);
 			});
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
-		event.enqueueWork(NetworkHandler::init);
 		event.enqueueWork(EntitySpawnPlacement::createPlacementTypes);
 		event.enqueueWork(EntitySpawnPlacement::initSpawnPlacements);
 		event.enqueueWork(RaidEntries::initWaveMemberEntries);

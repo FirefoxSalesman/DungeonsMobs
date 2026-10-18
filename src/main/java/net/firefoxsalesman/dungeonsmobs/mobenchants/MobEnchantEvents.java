@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 public class MobEnchantEvents {
 	@SubscribeEvent
 	public static void onLivingDamage(LivingDamageEvent event) {
-		if (ModHelper.hasMod("enchantwithmob")) {
+		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
 			LivingEntity defender = event.getEntity();
 			RushMobEnchant.doEffect(defender);
 			HealsAlliesMobEnchant.doEffect(defender, event.getAmount());
@@ -57,41 +57,41 @@ public class MobEnchantEvents {
 									});
 						});
 			}
-		}
+		});
 	}
 
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
-		if (ModHelper.hasMod("enchantwithmob")) {
+		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
 			LivingEntity entity = event.getEntity();
 			BurningMobEnchant.doEffect(entity);
 			ChillingMobEnchant.doEffect(entity);
 			FireTrailMobEnchant.doEffect(entity);
 			GravityPulseMobEnchant.doEffect(entity);
 			RegenerationMobEnchant.doEffect(entity);
-		}
+		});
 	}
 
 	@SubscribeEvent
 	public static void onLivingAttack(LivingAttackEvent event) {
-		if (ModHelper.hasMod("enchantwithmob")) {
+		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			EchoMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
 			ShockwaveMobEnchant.doEffect(defender, entity, event.getAmount());
 			ThunderingMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
-		}
+		});
 	}
 
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
-		if (ModHelper.hasMod("enchantwithmob")) {
+		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			if (entity instanceof LivingEntity attacker) {
 				LeechingMobEnchant.doEffect(attacker, defender);
 				RampagingMobEnchant.doEffect(attacker);
 			}
-		}
+		});
 	}
 }
