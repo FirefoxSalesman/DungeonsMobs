@@ -3,7 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;
 import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanHealPredicate;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
+import static net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils.executeIfPresentWithLevel;
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;

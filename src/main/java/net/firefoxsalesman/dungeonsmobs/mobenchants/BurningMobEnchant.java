@@ -9,7 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.applyToNearbyEntities;
 import static net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
-import static net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils.executeIfPresentWithLevel;
+import static net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils.executeIfPresentWithLevel;
 
 public class BurningMobEnchant extends MobEnchant {
 	public BurningMobEnchant(Properties properties) {

@@ -2,6 +2,7 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;

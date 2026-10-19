@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
-import net.firefoxsalesman.dungeonsmobs.mobenchants.NewMobEnchantUtils;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

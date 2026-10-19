@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.utils.AbilityHelper;
 import net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonslibs.utils.SoundHelper;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.world.damagesource.DamageSource;

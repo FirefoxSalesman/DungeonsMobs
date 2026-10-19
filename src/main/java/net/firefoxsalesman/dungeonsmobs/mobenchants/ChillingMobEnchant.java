@@ -3,6 +3,7 @@ package net.firefoxsalesman.dungeonsmobs.mobenchants;
 import static net.firefoxsalesman.dungeonsmobs.DungeonsMobs.PROXY;
 
 import net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobProps;
 import net.firefoxsalesman.dungeonsmobs.capabilities.properties.MobPropsHelper;
 import baguchan.enchantwithmob.mobenchant.MobEnchant;

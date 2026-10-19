@@ -4,6 +4,7 @@ import baguchan.enchantwithmob.mobenchant.MobEnchant;
 import net.firefoxsalesman.dungeonslibs.init.ModDamageSources;
 import net.firefoxsalesman.dungeonslibs.utils.AreaOfEffectHelper;
 import net.firefoxsalesman.dungeonslibs.utils.DamageSourceHelper;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

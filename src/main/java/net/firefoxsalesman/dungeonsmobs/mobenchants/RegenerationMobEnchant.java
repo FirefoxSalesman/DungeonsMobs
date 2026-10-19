@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.mobenchants;
 
 import baguchan.enchantwithmob.mobenchant.MobEnchant;
+import net.firefoxsalesman.dungeonslibs.utils.NewMobEnchantUtils;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.mod.ModMobEnchants;
 import net.minecraft.core.particles.ParticleTypes;
