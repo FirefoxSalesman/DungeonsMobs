@@ -66,8 +66,11 @@ import net.firefoxsalesman.dungeonsmobs.client.renderer.water.SunkenSkeletonRend
 import net.firefoxsalesman.dungeonsmobs.client.renderer.water.WavewhispererRenderer;
 import net.firefoxsalesman.dungeonsmobs.entity.ModEntities;
 import net.firefoxsalesman.dungeonsmobs.items.shield.CustomISTER;
+import net.firefoxsalesman.dungeonsmobs.mod.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -85,6 +88,7 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void clientInit(FMLClientSetupEvent event) {
 		MinecraftForge.EVENT_BUS.addListener(BossBarRenderer::renderBossBar);
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_FIRE.get(), RenderType.cutout());
 	}
 
 	@SubscribeEvent
