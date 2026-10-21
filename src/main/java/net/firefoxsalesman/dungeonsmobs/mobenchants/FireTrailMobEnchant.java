@@ -13,8 +13,10 @@ public class FireTrailMobEnchant extends MobEnchant {
 
 	public static void doEffect(LivingEntity entity) {
 		NewMobEnchantUtils.executeIfPresentWithLevel(entity, ModMobEnchants.FIRE_TRAIL.get(),
-				level -> entity.level().setBlock(entity.blockPosition(),
-						ModBlocks.MAGIC_FIRE.get().defaultBlockState(),
-						1));
+				level -> {
+					if (entity.level().getBlockState(entity.blockPosition().below(1)).isSolid())
+						entity.level().setBlock(entity.blockPosition(),
+								ModBlocks.MAGIC_FIRE.get().defaultBlockState(), 1);
+				});
 	}
 }
