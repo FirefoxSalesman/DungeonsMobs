@@ -110,7 +110,7 @@ public class EntityEvents {
 					MobEnchantCapability cap = NewMobEnchantUtils
 							.getEnchantCapability(livingEntity);
 					if (!cap.hasEnchant()) {
-						int type = livingEntity.getRandom().nextInt(5);
+						int type = livingEntity.getRandom().nextInt(6);
 						switch (type) {
 							case 0:
 								setupEnchants(livingEntity, "Blight Eye",
@@ -142,6 +142,15 @@ public class EntityEvents {
 								setupEnchants(livingEntity, "Ravenous Eye",
 										List.of(ModMobEnchants.COMMITTED.get(),
 												ModMobEnchants.RAMPAGING
+														.get()),
+										cap);
+								break;
+							case 5:
+								setupEnchants(livingEntity, "Blinding Eye",
+										List.of(ModMobEnchants.CHAINS.get(),
+												ModMobEnchants.ECHO
+														.get(),
+												ModMobEnchants.FIRE_TRAIL
 														.get()),
 										cap);
 								break;

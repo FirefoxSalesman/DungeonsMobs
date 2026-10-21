@@ -1,6 +1,7 @@
 package net.firefoxsalesman.dungeonsmobs.items;
 
-import net.firefoxsalesman.dungeonsmobs.interfaces.IHasInventorySprite;
+import java.util.function.Consumer;
+
 import net.firefoxsalesman.dungeonsmobs.items.shield.CustomISTER;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -9,9 +10,7 @@ import net.minecraft.world.item.TridentItem;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.util.NonNullLazy;
 
-import java.util.function.Consumer;
-
-public class ColoredTridentItem extends TridentItem implements IHasInventorySprite {
+public class ColoredTridentItem extends TridentItem {
 	private final DyeColor tridentColor;
 
 	public ColoredTridentItem(Properties properties, DyeColor dyeColor) {
@@ -21,11 +20,6 @@ public class ColoredTridentItem extends TridentItem implements IHasInventorySpri
 
 	public DyeColor getTridentColor() {
 		return tridentColor;
-	}
-
-	@Override
-	public String getModelResource() {
-		return "replace with actual location, currently just here to assure the Tridents are working correctly";
 	}
 
 	@Override
