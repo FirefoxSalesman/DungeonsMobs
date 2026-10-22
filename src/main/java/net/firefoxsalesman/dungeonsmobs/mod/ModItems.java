@@ -11,7 +11,6 @@ import net.firefoxsalesman.dungeonsmobs.items.NecromancerTridentItem;
 import net.firefoxsalesman.dungeonsmobs.items.armor.WindcallerArmorGear;
 import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.items.shield.VanguardShieldItem;
-import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorGear;
 import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -34,9 +33,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModItems {
-	private static final ResourceLocation DEFAULT_ANIMATION_RESOURCE = modLoc(
-			"animations/armor/armor_default.animation.json");
-
 	public static final Map<ResourceLocation, RegistryObject<Item>> ARMORS = new HashMap<>();
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
@@ -98,29 +94,6 @@ public class ModItems {
 
 	public static final RegistryObject<Item> PURPLE_TRIDENT = ITEMS.register("purple_trident",
 			() -> new ColoredTridentItem((new Item.Properties().durability(250)), DyeColor.PURPLE));
-
-	private static ArmorSet registerArmorSet(String armorSetId, String helmetId, String chestId, String legsId,
-			String bootsId, boolean animated) {
-		ResourceLocation armorSet = modLoc(armorSetId);
-		ResourceLocation modelLocation = modLoc("geo/armor/" + armorSetId + ".geo.json");
-		ResourceLocation textureLocation = modLoc("textures/models/armor/" + armorSetId + ".png");
-		ResourceLocation animationFileLocation = animated
-				? modLoc("animations/armor/" + armorSetId + ".animation.json")
-				: DEFAULT_ANIMATION_RESOURCE;
-		return new ArmorSet(
-				armorSet,
-				registerArmor(helmetId,
-						() -> new ArmorGear(Type.HELMET, ARMOR_PROPERTIES, armorSet,
-								modelLocation, textureLocation, animationFileLocation)),
-				registerArmor(chestId,
-						() -> new ArmorGear(Type.CHESTPLATE, ARMOR_PROPERTIES, armorSet,
-								modelLocation, textureLocation, animationFileLocation)),
-				registerArmor(legsId,
-						() -> new ArmorGear(Type.LEGGINGS, ARMOR_PROPERTIES, armorSet,
-								modelLocation, textureLocation, animationFileLocation)),
-				registerArmor(bootsId, () -> new ArmorGear(Type.BOOTS, ARMOR_PROPERTIES,
-						armorSet, modelLocation, textureLocation, animationFileLocation)));
-	}
 
 	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)

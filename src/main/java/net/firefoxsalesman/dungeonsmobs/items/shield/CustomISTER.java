@@ -1,18 +1,31 @@
 package net.firefoxsalesman.dungeonsmobs.items.shield;
 
+import static net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers.VANGUARD_SHIELD;
+import static net.firefoxsalesman.dungeonsmobs.items.shield.ShieldTextures.LOCATION_ROYAL_GUARD_SHIELD_BASE;
+import static net.firefoxsalesman.dungeonsmobs.items.shield.ShieldTextures.LOCATION_ROYAL_GUARD_SHIELD_NO_PATTERN;
+import static net.firefoxsalesman.dungeonsmobs.items.shield.ShieldTextures.LOCATION_VANGUARD_SHIELD;
+import static net.minecraft.client.model.geom.ModelLayers.SHIELD;
+import static net.minecraft.client.model.geom.ModelLayers.TRIDENT;
+
+import java.util.List;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 
 import net.firefoxsalesman.dungeonsmobs.client.models.armor.VanguardShieldModel;
+import net.firefoxsalesman.dungeonsmobs.items.ColoredTridentItem;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ShieldModel;
+import net.minecraft.client.model.TridentModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Holder;
@@ -27,26 +40,24 @@ import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.List;
-import static net.firefoxsalesman.dungeonsmobs.client.models.geom.ModModelLayers.VANGUARD_SHIELD;
-import static net.firefoxsalesman.dungeonsmobs.items.shield.ShieldTextures.*;
-import static net.minecraft.client.model.geom.ModelLayers.SHIELD;
-
 @OnlyIn(Dist.CLIENT)
 public class CustomISTER extends BlockEntityWithoutLevelRenderer {
 
 	private final ShieldModel royalGuardShieldModel;
 	private final VanguardShieldModel modelVanguardShield;
+	private final TridentModel tridentModel;
 
-	public CustomISTER(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
-		super(p_172550_, p_172551_);
-		modelVanguardShield = new VanguardShieldModel(p_172551_.bakeLayer(VANGUARD_SHIELD));
-		royalGuardShieldModel = new ShieldModel(p_172551_.bakeLayer(SHIELD));
+	public CustomISTER(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet) {
+		super(dispatcher, modelSet);
+		modelVanguardShield = new VanguardShieldModel(modelSet.bakeLayer(VANGUARD_SHIELD));
+		royalGuardShieldModel = new ShieldModel(modelSet.bakeLayer(SHIELD));
+		tridentModel = new TridentModel(modelSet.bakeLayer(TRIDENT));
 	}
 
 	@Override
 	public void renderByItem(ItemStack stack, ItemDisplayContext pDisplayContext, PoseStack matrixStack,
 			MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+		System.out.println("rendering");
 		Item item = stack.getItem();
 		if (item instanceof RoyalGuardShieldItem) {
 			boolean flag = stack.getTagElement("BlockEntityTag") != null;
@@ -86,7 +97,36 @@ public class CustomISTER extends BlockEntityWithoutLevelRenderer {
 					combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 
 			matrixStack.popPose();
+		} else if (item instanceof ColoredTridentItem) {
+			System.out.println("Found trident");
+			renderTridentEntityModel(stack, matrixStack, buffer, pDisplayContext, combinedLight,
+					combinedOverlay, (ColoredTridentItem) item);
 		}
+	}
+
+	private void renderTridentSpriteModel(ItemStack stack, PoseStack matrixStack, MultiBufferSource buffer,
+			ItemDisplayContext transformType, int combinedLight, int combinedOverlay,
+			ColoredTridentItem item, boolean inHand) {
+		matrixStack.pushPose();
+		// matrixStack.translate(0.5, 0.5, 0.5);
+		BakedModel model = Minecraft.getInstance().getModelManager()
+				.getModel(getTridentMRL(item.getTridentColor(), inHand));
+		Minecraft.getInstance().getItemRenderer().render(stack, transformType, false, matrixStack, buffer,
+				combinedLight, combinedOverlay, model);
+		matrixStack.popPose();
+	}
+
+	private void renderTridentEntityModel(ItemStack stack, PoseStack matrixStack, MultiBufferSource buffer,
+			ItemDisplayContext transformType, int combinedLight, int combinedOverlay,
+			ColoredTridentItem item) {
+		matrixStack.pushPose();
+		matrixStack.scale(1.0F, -1.0F, -1.0F);
+		ResourceLocation texture = getTridentTexture(item.getTridentColor());
+		VertexConsumer foilBufferDirect = ItemRenderer.getFoilBufferDirect(buffer,
+				this.tridentModel.renderType(texture), false, stack.hasFoil());
+		this.tridentModel.renderToBuffer(matrixStack, foilBufferDirect, combinedLight, combinedOverlay, 1.0F,
+				1.0F, 1.0F, 1.0F);
+		matrixStack.popPose();
 	}
 
 	public static ResourceLocation getTridentTexture(DyeColor dyeColor) {

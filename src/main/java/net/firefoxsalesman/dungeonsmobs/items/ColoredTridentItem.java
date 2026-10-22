@@ -24,13 +24,16 @@ public class ColoredTridentItem extends TridentItem {
 
 	@Override
 	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		System.out.println("I am initializing my client");
 		consumer.accept(new IClientItemExtensions() {
-			static final NonNullLazy<BlockEntityWithoutLevelRenderer> renderer = NonNullLazy.of(
-					() -> new CustomISTER(Minecraft.getInstance().getBlockEntityRenderDispatcher(),
+			static final NonNullLazy<BlockEntityWithoutLevelRenderer> renderer = NonNullLazy
+					.of(() -> new CustomISTER(
+							Minecraft.getInstance().getBlockEntityRenderDispatcher(),
 							Minecraft.getInstance().getEntityModels()));
 
 			@Override
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				System.out.println("I am getting my renderer");
 				return renderer.get();
 			}
 		});
