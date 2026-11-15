@@ -56,7 +56,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeleton {
 	private ItemStack createSpawnWeapon() {
 		ItemStack bowStack = new ItemStack(Items.BOW);
 		ItemStack swordStack = new ItemStack(Items.STONE_SWORD);
-		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
+		if (GeneralHelper.DUNGEONSGEAR.isLoaded()) {
 			bowStack = new ItemStack(ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsgear", "red_snake")));
 		}

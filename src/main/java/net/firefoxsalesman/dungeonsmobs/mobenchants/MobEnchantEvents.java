@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 public class MobEnchantEvents {
 	@SubscribeEvent
 	public static void onLivingDamage(LivingDamageEvent event) {
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 			LivingEntity defender = event.getEntity();
 			RushMobEnchant.doEffect(defender);
 			HealsAlliesMobEnchant.doEffect(defender, event.getAmount());
@@ -62,7 +62,7 @@ public class MobEnchantEvents {
 
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 			LivingEntity entity = event.getEntity();
 			BurningMobEnchant.doEffect(entity);
 			ChillingMobEnchant.doEffect(entity);
@@ -74,7 +74,7 @@ public class MobEnchantEvents {
 
 	@SubscribeEvent
 	public static void onLivingAttack(LivingAttackEvent event) {
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			EchoMobEnchant.doEffect(defender, entity, event.getSource(), event.getAmount());
@@ -85,7 +85,7 @@ public class MobEnchantEvents {
 
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 			LivingEntity defender = event.getEntity();
 			Entity entity = event.getSource().getEntity();
 			if (entity instanceof LivingEntity attacker) {

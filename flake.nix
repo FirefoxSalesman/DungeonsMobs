@@ -1,7 +1,7 @@
 {
   description = "A Nix-flake-based Java development environment";
 
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs =
     { self, nixpkgs }:
@@ -45,13 +45,12 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               gcc
-              gradle
+              gradle_9
               jdk
               maven
               ncurses
               patchelf
               zlib
-              jetbrains.idea-community-bin
             ];
 
             shellHook =

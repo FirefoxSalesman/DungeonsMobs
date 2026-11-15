@@ -5,6 +5,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
+    id 'org.jetbrains.kotlin.jvm' version '2.4.21'
 }
 
 version = mod_version
@@ -119,9 +120,9 @@ repositories {
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+    flatDir {
+        dir 'deps'
+    }
     maven {
         url 'https://cursemaven.com'
     }
@@ -153,9 +154,11 @@ dependencies {
     // Use the full Curios API jar at runtime
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
 
-    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:9235817")
+    implementation fg.deobf("curse.maven:dungeons-libraries-port-1605448:9805932")
     runtimeOnly(fg.deobf("curse.maven:bagus-lib-866533:6944371"))
     implementation fg.deobf("curse.maven:enchant-with-mob-913523:7187787")
+    implementation(fg.deobf("curse.maven:fragmentum-1123970:9202572"))
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.23'
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}")) {

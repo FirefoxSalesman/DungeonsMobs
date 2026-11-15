@@ -198,7 +198,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficultyInstance) {
-		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
+		if (GeneralHelper.DUNGEONSGEAR.isLoaded()) {
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			ItemStack mace = new ItemStack(MACE);
@@ -216,7 +216,7 @@ public class RoyalGuardEntity extends AbstractIllager implements IShieldUser, Ke
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
+		if (GeneralHelper.DUNGEONSGEAR.isLoaded()) {
 			Item MACE = ForgeRegistries.ITEMS.getValue(new ResourceLocation("dungeonsgear", "mace"));
 
 			mainhandWeapon = new ItemStack(MACE);

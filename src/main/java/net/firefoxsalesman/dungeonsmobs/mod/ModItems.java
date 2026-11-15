@@ -13,6 +13,8 @@ import net.firefoxsalesman.dungeonsmobs.items.shield.RoyalGuardShieldItem;
 import net.firefoxsalesman.dungeonsmobs.items.shield.VanguardShieldItem;
 import net.firefoxsalesman.dungeonslibs.items.gearconfig.ArmorSet;
 import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
+import dev.obscuria.fragmentum.api.registry.Deferred;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ShovelItem;
@@ -95,12 +97,12 @@ public class ModItems {
 	public static final RegistryObject<Item> PURPLE_TRIDENT = ITEMS.register("purple_trident",
 			() -> new ColoredTridentItem((new Item.Properties().durability(250)), DyeColor.PURPLE));
 
-	private static RegistryObject<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
+	private static Deferred<Item> registerArmor(String armorId, Supplier<Item> itemSupplier) {
 		if (armorId == null)
 			return null;
 		RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
 		ARMORS.put(GeneralHelper.modLoc(armorId), register);
-		return register;
+		return Deferred.Companion.create(() -> register.getHolder().orElseThrow());
 	}
 
 	private static ArmorSet registerArmorSetWindcaller(String armorSetId, String helmetId, String chestId,

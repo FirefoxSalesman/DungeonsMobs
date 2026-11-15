@@ -192,7 +192,7 @@ public class EntitySpawnPlacement {
 	private static boolean goetyFriendlySpawnRule(EntityType<? extends Monster> type, ServerLevelAccessor world,
 			MobSpawnType spawnReason,
 			BlockPos pos, RandomSource random) {
-		return !ModHelper.GOETY.hasMod()
+		return !ModHelper.GOETY.isLoaded()
 				&& Monster.checkMonsterSpawnRules(type, world, spawnReason, pos, random);
 	}
 

@@ -88,7 +88,7 @@ public abstract class ZombifiedPiglinEntityMixin extends Zombie implements ISmar
 	}
 
 	private ItemStack createSpawnWeapon() {
-		ItemStack meleeWeapon = GeneralHelper.DUNGEONSGEAR.hasMod()
+		ItemStack meleeWeapon = GeneralHelper.DUNGEONSGEAR.isLoaded()
 				? new ItemStack(Items.GOLDEN_AXE)
 				: new ItemStack(Items.GOLDEN_SWORD);
 		return (double) this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : meleeWeapon;

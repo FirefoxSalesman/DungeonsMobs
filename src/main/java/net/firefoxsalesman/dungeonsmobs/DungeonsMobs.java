@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import dev.obscuria.fragmentum.api.registry.FragmentumRegistry;
+import dev.obscuria.fragmentum.api.registry.Registrar;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
@@ -48,6 +50,7 @@ public class DungeonsMobs {
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
 	public static CommonProxy PROXY;
+    public static Registrar REGISTRAR = FragmentumRegistry.INSTANCE.registrar(MOD_ID);
 
 	public DungeonsMobs() {
 		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
@@ -69,7 +72,7 @@ public class DungeonsMobs {
 
 		ModCapabilities.setupCapabilities();
 
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> ModMobEnchants.register(modEventBus));
+	        ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> ModMobEnchants.register(modEventBus));
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
 		ModStructureModifiers.register(modEventBus);
@@ -88,7 +91,7 @@ public class DungeonsMobs {
 				for (String s : List.of("wraith", "necromancer"))
 					if (GeneralHelper.modLoc(s + "_spawn_egg").equals(item.getId()))
 						idMatches = true;
-				if (!(ModHelper.GOETY.hasMod() && idMatches))
+				if (!(ModHelper.GOETY.isLoaded() && idMatches))
 					event.accept(item);
 			});
 	}

@@ -15,7 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class EntityMixin {
 	@Inject(at = @At("RETURN"), method = "fireImmune", cancellable = true)
 	private void fireImmune(CallbackInfoReturnable<Boolean> ci) {
-		ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 			if ((Entity) ((Object) this) instanceof LivingEntity living)
 				NewMobEnchantUtils.executeIfPresentWithLevel(living, ModMobEnchants.FIRE_TRAIL.get(),
 						level -> ci.setReturnValue(true));

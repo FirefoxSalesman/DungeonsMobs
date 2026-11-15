@@ -183,6 +183,13 @@ versionRange = "[2.5.52.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
+[[dependencies.${mod_id}]]
+modId = "fragmentum"
+mandatory = true
+versionRange = "[5.4.0,)"
+ordering = "NONE"
+side = "BOTH"
+
 [[dependencies.${mod_id}]]  # optional
 # the modid of the dependency
 modId = "dungeonslibs"  # mandatory

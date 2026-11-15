@@ -42,7 +42,7 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-		if (GeneralHelper.DUNGEONSGEAR.hasMod())
+		if (GeneralHelper.DUNGEONSGEAR.isLoaded())
 			this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsgear", "double_axe"))));
 		else
@@ -52,7 +52,7 @@ public class ArmoredVindicatorEntity extends Vindicator implements KeyframeEntit
 	@Override
 	public void applyRaidBuffs(int waveAmount, boolean b) {
 		ItemStack mainhandWeapon = new ItemStack(Items.IRON_AXE);
-		if (GeneralHelper.DUNGEONSGEAR.hasMod()) {
+		if (GeneralHelper.DUNGEONSGEAR.isLoaded()) {
 			Item DOUBLE_AXE = ForgeRegistries.ITEMS
 					.getValue(new ResourceLocation("dungeonsmobs", "double_axe"));
 

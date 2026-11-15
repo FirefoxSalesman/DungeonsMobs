@@ -104,7 +104,7 @@ public class EntityEvents {
 				mob.targetSelector.addGoal(0,
 						new NearestAttackableTargetGoal<>(mob, Player.class, true));
 			}
-			ModHelper.ENCHANTWITHMOB.runWithMod(() -> {
+			ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> {
 				if (livingEntity.getType().equals(ModEntities.ENDERSENT_EYE_HOLDER.get())
 						&& !livingEntity.level().isClientSide()) {
 					MobEnchantCapability cap = NewMobEnchantUtils
@@ -304,7 +304,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public static void renderNametag(RenderNameTagEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof EyeHolderEndersentEntity && ModHelper.ENCHANTWITHMOB.hasMod())
+		if (entity instanceof EyeHolderEndersentEntity && ModHelper.ENCHANTWITHMOB.isLoaded())
 			event.setResult(Result.DENY);
 	}
 }
