@@ -60,7 +60,7 @@ public class DungeonsMobs {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		ModSoundEvents.register(modEventBus);
+		ModSoundEvents.init();
 		ModEffects.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
