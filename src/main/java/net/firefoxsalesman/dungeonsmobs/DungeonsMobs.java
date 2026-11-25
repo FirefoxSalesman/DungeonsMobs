@@ -50,7 +50,7 @@ public class DungeonsMobs {
 	// Directly reference a slf4j logger
 	public static final Logger LOGGER = LogUtils.getLogger();
 	public static CommonProxy PROXY;
-    public static Registrar REGISTRAR = FragmentumRegistry.INSTANCE.registrar(MOD_ID);
+	public static Registrar REGISTRAR = FragmentumRegistry.INSTANCE.registrar(MOD_ID);
 
 	public DungeonsMobs() {
 		PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
@@ -68,11 +68,11 @@ public class DungeonsMobs {
 		ModItems.register(modEventBus);
 		ModBlocks.register(modEventBus);
 		ModBlockEntities.register(modEventBus);
-		ModParticleTypes.register(modEventBus);
+		ModParticleTypes.init();
 
 		ModCapabilities.setupCapabilities();
 
-	        ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> ModMobEnchants.register(modEventBus));
+		ModHelper.ENCHANTWITHMOB.runIfLoaded(() -> () -> ModMobEnchants.register(modEventBus));
 		MinecraftForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::addCreative);
 		ModStructureModifiers.register(modEventBus);
