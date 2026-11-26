@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
+import dev.obscuria.fragmentum.api.registry.Deferred;
 import dev.obscuria.fragmentum.api.registry.FragmentumRegistry;
 import dev.obscuria.fragmentum.api.registry.Registrar;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
@@ -65,7 +66,7 @@ public class DungeonsMobs {
 
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.register(modEventBus);
-		ModItems.register(modEventBus);
+		ModItems.init();
 		ModBlocks.register(modEventBus);
 		ModBlockEntities.register(modEventBus);
 		ModParticleTypes.init();
@@ -82,9 +83,8 @@ public class DungeonsMobs {
 	}
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-			ModItems.getEntries().forEach((RegistryObject<Item> item) -> event.accept(item));
-		}
+		if (event.getTabKey() == CreativeModeTabs.COMBAT)
+			ModItems.getEntries().forEach((Deferred<Item> item) -> event.accept(item));
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> {
 				boolean idMatches = false;

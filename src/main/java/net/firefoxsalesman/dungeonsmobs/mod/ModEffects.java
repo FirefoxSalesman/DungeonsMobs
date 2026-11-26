@@ -23,7 +23,7 @@ public class ModEffects {
 			() -> new WarpedEffect(MobEffectCategory.HARMFUL,
 					BlueNethershroomEntity.LIGHT_BLUE_HEX_COLOR_CODE));
 
-	public static Deferred<MobEffect> registerMobEffects(String name, Function0<? extends MobEffect> fn) {
+	private static Deferred<MobEffect> registerMobEffects(String name, Function0<? extends MobEffect> fn) {
 		return DungeonsMobs.REGISTRAR.register(Registries.MOB_EFFECT, GeneralHelper.modLoc(name), fn);
 	}
 
