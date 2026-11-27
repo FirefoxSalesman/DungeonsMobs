@@ -6,10 +6,12 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import dev.obscuria.fragmentum.api.registry.Deferred;
 import dev.obscuria.fragmentum.api.registry.FragmentumRegistry;
 import dev.obscuria.fragmentum.api.registry.Registrar;
+import net.firefoxsalesman.dungeonslibs.client.ClientProxy;
+import net.firefoxsalesman.dungeonslibs.network.CommonProxy;
+import net.firefoxsalesman.dungeonslibs.utils.ModHelper;
 import net.firefoxsalesman.dungeonsmobs.capabilities.ModCapabilities;
 import net.firefoxsalesman.dungeonsmobs.client.ModItemModelProperties;
 import net.firefoxsalesman.dungeonsmobs.client.particle.ModParticleTypes;
@@ -39,9 +41,6 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
-import net.firefoxsalesman.dungeonslibs.network.CommonProxy;
-import net.firefoxsalesman.dungeonslibs.client.ClientProxy;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(DungeonsMobs.MOD_ID)
@@ -65,7 +64,7 @@ public class DungeonsMobs {
 		ModEffects.init();
 
 		modEventBus.addListener(this::commonSetup);
-		ModEntities.register(modEventBus);
+		ModEntities.init();
 		ModItems.init();
 		ModBlocks.register(modEventBus);
 		ModBlockEntities.register(modEventBus);
@@ -86,10 +85,10 @@ public class DungeonsMobs {
 		if (event.getTabKey() == CreativeModeTabs.COMBAT)
 			ModItems.getEntries().forEach((Deferred<Item> item) -> event.accept(item));
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
-			ModEntities.getEntries().forEach((RegistryObject<Item> item) -> {
+			ModEntities.getEntries().forEach((Deferred<Item> item) -> {
 				boolean idMatches = false;
 				for (String s : List.of("wraith", "necromancer"))
-					if (GeneralHelper.modLoc(s + "_spawn_egg").equals(item.getId()))
+					if (item.holder().is(GeneralHelper.modLoc(s + "_spawn_egg")))
 						idMatches = true;
 				if (!(ModHelper.GOETY.isLoaded() && idMatches))
 					event.accept(item);

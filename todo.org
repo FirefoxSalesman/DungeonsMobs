@@ -1,3 +1,6 @@
+* TODO Find the proper equivalent of this statement
+
+[[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/DungeonsMobs.java::// for (String s : List.of("wraith", "necromancer"))]]
 * TODO Put this in the library
 
 [[file:~/projects/DungeonsMobs/src/main/java/net/firefoxsalesman/dungeonsmobs/utils/LootTableHelper.java::import net.minecraft.server.level.ServerLevel;]]
