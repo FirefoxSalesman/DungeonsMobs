@@ -66,8 +66,8 @@ public class DungeonsMobs {
 		modEventBus.addListener(this::commonSetup);
 		ModEntities.init();
 		ModItems.init();
-		ModBlocks.register(modEventBus);
-		ModBlockEntities.register(modEventBus);
+		ModBlocks.init();
+		ModBlockEntities.init();
 		ModParticleTypes.init();
 
 		ModCapabilities.setupCapabilities();

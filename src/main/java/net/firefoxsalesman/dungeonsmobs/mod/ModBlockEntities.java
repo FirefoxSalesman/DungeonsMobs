@@ -1,22 +1,25 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
+import dev.obscuria.fragmentum.api.registry.Deferred;
+import kotlin.jvm.functions.Function0;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.blocks.entities.MagicFireBlockEntity;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntities {
-	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister
-			.create(ForgeRegistries.BLOCK_ENTITY_TYPES, DungeonsMobs.MOD_ID);
-
-	public static final RegistryObject<BlockEntityType<MagicFireBlockEntity>> MAGIC_FIRE = BLOCK_ENTITIES
-			.register("magic_fire", () -> BlockEntityType.Builder.of(MagicFireBlockEntity::new,
+	public static final Deferred<BlockEntityType<MagicFireBlockEntity>> MAGIC_FIRE = registerBlockEntities(
+			"magic_fire", () -> BlockEntityType.Builder.of(MagicFireBlockEntity::new,
 					ModBlocks.MAGIC_FIRE.get()).build(null));
 
-	public static void register(IEventBus eventBus) {
-		BLOCK_ENTITIES.register(eventBus);
+	private static <T extends BlockEntity> Deferred<BlockEntityType<T>> registerBlockEntities(String name,
+			Function0<? extends BlockEntityType<T>> fn) {
+		return DungeonsMobs.REGISTRAR.register(Registries.BLOCK_ENTITY_TYPE, GeneralHelper.modLoc(name), fn)
+				.as();
+	}
+
+	public static void init() {
 	}
 }

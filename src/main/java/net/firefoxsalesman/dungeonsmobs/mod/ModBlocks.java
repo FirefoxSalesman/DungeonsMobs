@@ -1,22 +1,22 @@
 package net.firefoxsalesman.dungeonsmobs.mod;
 
+import dev.obscuria.fragmentum.api.registry.Deferred;
+import kotlin.jvm.functions.Function0;
 import net.firefoxsalesman.dungeonsmobs.DungeonsMobs;
 import net.firefoxsalesman.dungeonsmobs.blocks.MagicFireBlock;
+import net.firefoxsalesman.dungeonsmobs.utils.GeneralHelper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlocks {
-	private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
-			DungeonsMobs.MOD_ID);
-
-	public static RegistryObject<Block> MAGIC_FIRE = BLOCKS.register("magic_fire",
+	public static Deferred<Block> MAGIC_FIRE = registerBlocks("magic_fire",
 			() -> new MagicFireBlock(Block.Properties.copy(Blocks.SOUL_FIRE)));
 
-	public static void register(IEventBus eventBus) {
-		BLOCKS.register(eventBus);
+	public static void init() {
+	}
+
+	private static Deferred<Block> registerBlocks(String name, Function0<? extends Block> fn) {
+		return DungeonsMobs.REGISTRAR.register(Registries.BLOCK, GeneralHelper.modLoc(name), fn);
 	}
 }
